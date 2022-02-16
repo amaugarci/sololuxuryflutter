@@ -45,6 +45,7 @@ dependencies:
   connectivity_plus: ^2.2.0
   dio_http_cache: ^0.3.0
   awesome_dialog: ^2.1.2
+  datetime_picker_formfield: ^2.0.0
 
 dev_dependencies:
   flutter_test:

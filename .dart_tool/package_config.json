@@ -176,6 +176,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "datetime_picker_formfield",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "dbus",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/dbus-0.6.8",
       "packageUri": "lib/",
@@ -292,6 +298,12 @@
     {
       "name": "http_parser",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -614,7 +626,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-02-16T07:03:45.217984Z",
+  "generated": "2022-02-16T10:15:28.821571Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

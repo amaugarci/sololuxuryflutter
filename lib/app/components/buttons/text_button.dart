@@ -27,36 +27,20 @@ class PrimaryTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      autofocus: autofocus,
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: circular5BorderRadius,
+    return SizedBox(
+      width: 160,
+      height: 41,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          elevation: 1,
+          primary: appColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
-        primary: textColor ?? primaryWhite,
-        onSurface: primaryWhite,
-        backgroundColor: buttonColor ?? appColor,
-        fixedSize: Size(
-          width ?? MediaQuery.of(context).size.width,
-          height ?? 45,
-        ),
-        alignment: Alignment.center,
-        textStyle: const TextStyle(
-          fontSize: 18,
-          debugLabel: "Title",
-          fontWeight: FontWeight.w500,
-        ),
+        child: Text(title.toString()),
       ),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Text(
-          title.toString(),
-          softWrap: true,
-          textAlign: TextAlign.center,
-          style: AppTextStyle.normalWhiteSemiBold16,
-        ),
-      ),
-      onPressed: onPressed,
     );
   }
 }

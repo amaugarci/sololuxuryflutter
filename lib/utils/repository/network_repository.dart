@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:solo_luxury/app/screens/login/login_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/data/model/Authentication/login_model.dart';
-import 'package:solo_luxury/data/model/profile/update_image_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/network_dio/network_dio.dart';
@@ -26,17 +24,16 @@ class NetworkRepository {
   FocusNode searchFocus = new FocusNode();
 
   // StreamController gameDetailStream = new StreamController
-  //     .broadcast(); // for stream builder - to add data in stramCiontroller
-//Login
+  //     .broadcast(); // for stream builder - to add data in streamCiontroller
+
   userLogin(context, authUserData) async {
     try {
       final authUserResponse = await NetworkDioHttp.postDioHttpMethod(
         context: context,
-        url: '${AppConstants.apiEndPoint}${AppConstants.signup}',
+        url: '${AppConstants.apiEndPoint}${AppConstants.login}',
         data: authUserData,
       );
-      return checkResponse(
-          authUserResponse, LoginModel.fromJson(authUserResponse['body']));
+      return checkResponse(authUserResponse, authUserResponse['body']);
     } catch (e) {
       CommonMethod().getXSnackBar("Error", e.toString(), red);
     }
@@ -63,7 +60,7 @@ class NetworkRepository {
 
     if (context != null) Circle().hide(context);
     if (response.statusCode == 200) {
-      return UpdateImageModel.fromJson(parsedJson);
+      // return UpdateImageModel.fromJson(parsedJson);
     } else {
       return '';
     }
