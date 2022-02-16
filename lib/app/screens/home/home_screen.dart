@@ -1,24 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
+import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int index = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
         backgroundColor: backGroundColor,
@@ -42,8 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.asset(AppAsset.banner),
             ),
             detailsButton('ABOUT US', 1),
+
             Visibility(
-              visible: index == 1 ? true : false,
+              visible: controller.index.value == 1 ? true : false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,19 +86,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          if (index == value) {
-            index = 0;
-          } else {
-            index = value;
-          }
-        });
+        if(controller.index.value == value) {
+          controller.index.value = 0;
+        } else {
+          controller.index.value = value;
+        }
       },
       child: Container(
         height: 50,
@@ -173,4 +166,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }
