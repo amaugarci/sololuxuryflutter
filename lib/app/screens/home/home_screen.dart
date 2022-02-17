@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class HomeScreen extends GetView<HomeController> {
               width: MediaQuery.of(context).size.width,
               child: Image.asset(AppAsset.banner),
             ),
-            detailsButton('ABOUT US', 1),
+            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
 
             Visibility(
               visible: controller.index.value == 1 ? true : false,
@@ -46,40 +47,40 @@ class HomeScreen extends GetView<HomeController> {
                     onPressed: () {
                       Get.to(() => const AboutUsScreen());
                     },
-                    child: const Text(
-                      'About Us',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.aboutUsText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => ReferFriendScreen());
+                      Get.to(() => const ReferFriendScreen());
                     },
-                    child: const Text(
-                      'Refer Friend',
+                    child: Text(
+                      LanguageConstant.referFriendText.tr,
                       style: TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      'Returns & Refunds',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.returnsRefundsText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      'FAQ       ',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.faqText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                 ],
               ),
             ),
-            detailsButton('CONTACT', 2),
-            detailsButton('SOCIAL', 3),
-            detailsButton('COMPANY', 4),
+            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
+            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
+            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
             const SizedBox(height: 20),
             emailSubscribe(),
             const SizedBox(height: 40),
