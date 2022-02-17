@@ -1,24 +1,19 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
+import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int index = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
         backgroundColor: backGroundColor,
@@ -41,9 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
               width: MediaQuery.of(context).size.width,
               child: Image.asset(AppAsset.banner),
             ),
-            detailsButton('ABOUT US', 1),
+            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
+
             Visibility(
-              visible: index == 1 ? true : false,
+              visible: controller.index.value == 1 ? true : false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,59 +47,57 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Get.to(() => const AboutUsScreen());
                     },
-                    child: const Text(
-                      'About Us',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.aboutUsText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => ReferFriendScreen());
+                      Get.to(() => const ReferFriendScreen());
                     },
-                    child: const Text(
-                      'Refer Friend',
+                    child: Text(
+                      LanguageConstant.referFriendText.tr,
                       style: TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      'Returns & Refunds',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.returnsRefundsText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      'FAQ       ',
-                      style: TextStyle(color: Colors.black87),
+                    child: Text(
+                      LanguageConstant.faqText.tr,
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                 ],
               ),
             ),
-            detailsButton('CONTACT', 2),
-            detailsButton('SOCIAL', 3),
-            detailsButton('COMPANY', 4),
+            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
+            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
+            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
             const SizedBox(height: 20),
             emailSubscribe(),
             const SizedBox(height: 40),
           ],
         ),
       ),
-    );
+    ));
   }
 
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          if (index == value) {
-            index = 0;
-          } else {
-            index = value;
-          }
-        });
+        if(controller.index.value == value) {
+          controller.index.value = 0;
+        } else {
+          controller.index.value = value;
+        }
       },
       child: Container(
         height: 50,
@@ -173,4 +167,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }

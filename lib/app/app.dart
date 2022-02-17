@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:solo_luxury/app/screens/splash/splash_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_pages.dart';
+import 'package:solo_luxury/utils/lang_directory/translation_service.dart';
 
 class SoloLuxuryApp extends StatefulWidget {
   const SoloLuxuryApp({Key? key}) : super(key: key);
+
   @override
   _SoloLuxuryAppState createState() => _SoloLuxuryAppState();
 }
@@ -26,23 +28,27 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
         title: 'Grub-Grams-App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          backgroundColor: primaryWhite,
+          scaffoldBackgroundColor: primaryWhite,
+          fontFamily: 'SofiaPro',
+          hintColor: regularGrey,
+          iconTheme: const IconThemeData(
+            color: regularGrey,
+            size: 24,
+          ),
+          appBarTheme: const AppBarTheme(
+            elevation: 1,
+            // ignore: deprecated_member_use
+            textTheme: TextTheme(headline6: TextStyle(color: Colors.white)),
             backgroundColor: primaryWhite,
-            scaffoldBackgroundColor: primaryWhite,
-            fontFamily: 'SofiaPro',
-            hintColor: regularGrey,
-            iconTheme: const IconThemeData(
-              color: regularGrey,
-              size: 24,
-            ),
-            appBarTheme: const AppBarTheme(
-              elevation: 1,
-              // ignore: deprecated_member_use
-              textTheme: TextTheme(headline6: TextStyle(color: Colors.white)),
-              backgroundColor: primaryWhite,
-              foregroundColor: titleBlack,
-              centerTitle: true,
-            )),
-        home: const SplashScreen(),
+            foregroundColor: titleBlack,
+            centerTitle: true,
+          ),
+        ),
+        getPages: AppPages.routes,
+        locale: TranslationService.locale,
+        fallbackLocale: TranslationService.fallbackLocale,
+        translations: TranslationService(),
       ),
     );
   }
