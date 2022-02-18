@@ -46,6 +46,7 @@ dependencies:
   dio_http_cache: ^0.3.0
   awesome_dialog: ^2.1.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
