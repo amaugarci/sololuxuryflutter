@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class HomeScreen extends GetView<HomeController> {
@@ -26,7 +27,7 @@ class HomeScreen extends GetView<HomeController> {
           child: const HeaderWidget(),
         ),
       ),
-      endDrawer: const Drawer(),
+      endDrawer: Drawer(child: getDrawerView()),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,4 +169,23 @@ class HomeScreen extends GetView<HomeController> {
     );
   }
 
+
+  Widget getDrawerView() {
+    if(controller.menuModel?.value?.childrenData==null){
+      return Container();
+    }
+    return ListView.builder(
+      // Important: Remove any padding from the ListView.
+        padding: const EdgeInsets.only(top: 50.0),
+        physics: const ClampingScrollPhysics(),
+        itemCount: controller.menuModel?.value?.childrenData?.length,
+        itemBuilder: (context, index) {
+          ChildrenData item = controller.menuModel?.value?.childrenData?[index];
+          return Container(
+            child: Row(
+              children: [Container(margin: const EdgeInsets.all(20.0), child: Text(item.name??""))],
+            ),
+          );
+        });
+  }
 }
