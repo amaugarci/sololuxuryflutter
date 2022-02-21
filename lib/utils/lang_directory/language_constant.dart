@@ -11,4 +11,6 @@ class LanguageConstant {
 
   static const String companyText = "companyText";
 
+  static const String yourEmailText = "yourEmailText";
+
 }

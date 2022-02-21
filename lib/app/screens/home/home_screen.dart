@@ -1,11 +1,14 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:solo_luxury/app/components/expandable_container.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/image_constant.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class HomeScreen extends GetView<HomeController> {
@@ -14,89 +17,323 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        backgroundColor: backGroundColor,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        centerTitle: true,
-        title: Image.asset(AppAsset.logo, width: 110),
-        bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),
-      ),
-      endDrawer: const Drawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.45,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(AppAsset.banner),
-            ),
-            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
-
-            Visibility(
-              visible: controller.index.value == 1 ? true : false,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Get.to(() => const AboutUsScreen());
-                    },
-                    child: Text(
-                      LanguageConstant.aboutUsText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(() => const ReferFriendScreen());
-                    },
-                    child: Text(
-                      LanguageConstant.referFriendText.tr,
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      LanguageConstant.returnsRefundsText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      LanguageConstant.faqText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                ],
+          key: controller.scaffoldKey.value,
+          backgroundColor: backGroundColor,
+          appBar: AppBar(
+            backgroundColor: backGroundColor,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
+            leading: InkWell(
+              onTap: () {
+                controller.scaffoldKey.value.currentState!.openDrawer();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SvgPicture.asset(ImageConstant.menuIcon),
               ),
             ),
-            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
-            const SizedBox(height: 20),
-            emailSubscribe(),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
-    ));
+            actions: [
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.searchIcon),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.heartIcon),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
+                      color: Colors.black),
+                ),
+              ),
+            ],
+            title: Image.asset(AppAsset.logo, width: 110),
+            /*bottom: PreferredSize(
+          preferredSize: Size(Get.width, 60),
+          child: const HeaderWidget(),
+        ),*/
+          ),
+          drawer: const Drawer(),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(AppAsset.banner, fit: BoxFit.fitHeight),
+                ),
+
+                ExpandableNotifier(
+                    child: Column(
+                  children: <Widget>[
+                    ScrollOnExpand(
+                      scrollOnExpand: true,
+                      scrollOnCollapse: false,
+                      child: ExpandablePanel(
+                        theme:  ExpandableThemeData(
+                          headerAlignment:
+                              ExpandablePanelHeaderAlignment.center,
+                          tapBodyToCollapse: true,
+                          expandIcon: Container(),
+                          collapseIcon: Container(),
+                          iconPadding: const EdgeInsets.all(0.0)
+                        ),
+                        header: detailsButton(
+                            LanguageConstant.aboutUsText.tr.toUpperCase(),
+                            1),
+                        controller:
+                            controller.aboutUsExpandableController.value,
+                        collapsed: Container(),
+                        expanded: Container(
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(() => const AboutUsScreen());
+                                },
+                                child: Text(
+                                  LanguageConstant.aboutUsText.tr,
+                                  style: const TextStyle(color: Colors.black87),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(() => const ReferFriendScreen());
+                                },
+                                child: Text(
+                                  LanguageConstant.referFriendText.tr,
+                                  style: TextStyle(color: Colors.black87),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  LanguageConstant.returnsRefundsText.tr,
+                                  style: const TextStyle(color: Colors.black87),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  LanguageConstant.faqText.tr,
+                                  style: const TextStyle(color: Colors.black87),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        builder: (_, collapsed, expanded) {
+                          return Expandable(
+                            collapsed: collapsed,
+                            expanded: expanded,
+                            theme: const ExpandableThemeData(crossFadePoint: 0),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                )),
+                ExpandableNotifier(
+                    child: Column(
+                      children: <Widget>[
+                        ScrollOnExpand(
+                          scrollOnExpand: true,
+                          scrollOnCollapse: false,
+                          child: ExpandablePanel(
+                            theme:  ExpandableThemeData(
+                                headerAlignment:
+                                ExpandablePanelHeaderAlignment.center,
+                                tapBodyToCollapse: true,
+                                expandIcon: Container(),
+                                collapseIcon: Container(),
+                                iconPadding: const EdgeInsets.all(0.0)
+                            ),
+                            header: detailsButton(LanguageConstant.contactText.tr.toUpperCase(),
+                                2),
+                            collapsed: Container(),
+                            expanded: Container(
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const AboutUsScreen());
+                                    },
+                                    child: Text(
+                                      LanguageConstant.aboutUsText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const ReferFriendScreen());
+                                    },
+                                    child: Text(
+                                      LanguageConstant.referFriendText.tr,
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      LanguageConstant.returnsRefundsText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      LanguageConstant.faqText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            builder: (_, collapsed, expanded) {
+                              return Expandable(
+                                collapsed: collapsed,
+                                expanded: expanded,
+                                theme: const ExpandableThemeData(crossFadePoint: 0),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )),
+                ExpandableNotifier(child: Column(
+                      children: <Widget>[
+                        ScrollOnExpand(
+                          scrollOnExpand: true,
+                          scrollOnCollapse: false,
+                          child: ExpandablePanel(
+                            theme:  ExpandableThemeData(
+                                headerAlignment:
+                                ExpandablePanelHeaderAlignment.center,
+                                tapBodyToCollapse: true,
+                                expandIcon: Container(),
+                                collapseIcon: Container(),
+                                iconPadding: const EdgeInsets.all(0.0)
+                            ),
+                            header: detailsButton(LanguageConstant.socialText.tr.toUpperCase(),
+                                3),
+                            collapsed: Container(),
+                            expanded: Container(
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const AboutUsScreen());
+                                    },
+                                    child: Text(
+                                      LanguageConstant.aboutUsText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const ReferFriendScreen());
+                                    },
+                                    child: Text(
+                                      LanguageConstant.referFriendText.tr,
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      LanguageConstant.returnsRefundsText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      LanguageConstant.faqText.tr,
+                                      style: const TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            builder: (_, collapsed, expanded) {
+                              return Expandable(
+                                collapsed: collapsed,
+                                expanded: expanded,
+                                theme: const ExpandableThemeData(crossFadePoint: 0),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )),
+                ExpandableNotifier(child: Column(
+                      children: <Widget>[
+                        ScrollOnExpand(
+                          scrollOnExpand: true,
+                          scrollOnCollapse: false,
+                          child: ExpandablePanel(
+                            theme:  ExpandableThemeData(
+                                headerAlignment:
+                                ExpandablePanelHeaderAlignment.center,
+                                tapBodyToCollapse: true,
+                                expandIcon: Container(),
+                                collapseIcon: Container(),
+                                iconPadding: const EdgeInsets.all(0.0)
+                            ),
+                            header: detailsButton(LanguageConstant.companyText.tr.toUpperCase(),
+                                4),
+                            collapsed: Container(),
+                            expanded: Container(),
+                            builder: (_, collapsed, expanded) {
+                              return Expandable(
+                                collapsed: collapsed,
+                                expanded: expanded,
+                                theme: const ExpandableThemeData(crossFadePoint: 0),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )),
+
+
+                const SizedBox(height: 20),
+                emailSubscribe(),
+                const SizedBox(height: 40),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
-        if(controller.index.value == value) {
-          controller.index.value = 0;
-        } else {
-          controller.index.value = value;
+        if(value == 1) {
+         controller.aboutUsExpandableController.value.toggle();
         }
       },
       child: Container(
@@ -137,10 +374,10 @@ class HomeScreen extends GetView<HomeController> {
       child: Row(
         children: [
           const SizedBox(width: 18),
-          const Expanded(
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Your E-Mail',
+                hintText: LanguageConstant.yourEmailText.tr,
                 hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
                 border: InputBorder.none,
               ),
@@ -167,5 +404,4 @@ class HomeScreen extends GetView<HomeController> {
       ),
     );
   }
-
 }
