@@ -9,4 +9,7 @@ class AppConstants {
 
   //Sign Up
   static String login = 'integration/customer/token';
+
+
+
 }

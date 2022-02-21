@@ -4,7 +4,7 @@ import 'package:solo_luxury/app/screens/splash/splash_controller.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
-import '../login/login_screen.dart';
+import '../login/views/login_screen.dart';
 
 class SplashScreen extends GetView<SplashController> {
   const SplashScreen({Key? key}) : super(key: key);

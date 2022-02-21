@@ -6,23 +6,27 @@ import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 class SignupController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
-  TextEditingController emailController = TextEditingController();
 
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController marriageAnniversaryController = TextEditingController();
+  Rx<TextEditingController> emailController = TextEditingController().obs;
+  Rx<TextEditingController> firstNameController = TextEditingController().obs;
+  Rx<TextEditingController> lastNameController = TextEditingController().obs;
+  Rx<TextEditingController> dateOfBirthController = TextEditingController().obs;
+  Rx<TextEditingController> marriageAnniversaryController = TextEditingController().obs;
+  Rx<TextEditingController> passwordController = TextEditingController().obs;
+  Rx<TextEditingController> confirmPasswordController = TextEditingController().obs;
+
   RxBool newsLetter = false.obs;
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
 
   static final dataStorage = GetStorage();
+
+  Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
 
   registerUser(context, formKey) async {
     if (formKey.currentState!.validate()) {
       final authUserData = {
-        "username": emailController.text.trim(),
-        "password": passwordController.text.trim(),
+        "password": passwordController.value.text.trim(),
+        "username": emailController.value.text.trim(),
+
       };
       dynamic authResponse =
           await networkRepository.userLogin(context, authUserData);
