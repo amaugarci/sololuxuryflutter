@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:get/get.dart';
+
 class MenuModel {
   int? id;
   int? parentId;
@@ -59,7 +63,8 @@ class ChildrenData {
   int? position;
   int? level;
   int? productCount;
-  List<MenuModel>? childrenData;
+  List<ChildrenData>? childrenData;
+  RxBool isExpand = false.obs;
 
   ChildrenData(
       {id,
@@ -69,7 +74,8 @@ class ChildrenData {
         position,
         level,
         productCount,
-        childrenData});
+        childrenData,
+        isExpand = false});
 
   ChildrenData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -80,9 +86,9 @@ class ChildrenData {
     level = json['level'];
     productCount = json['product_count'];
     if (json['children_data'] != null) {
-      childrenData = <MenuModel>[];
+      childrenData = <ChildrenData>[];
       json['children_data'].forEach((v) {
-        childrenData!.add(MenuModel.fromJson(v));
+        childrenData!.add(ChildrenData.fromJson(v));
       });
     }
   }

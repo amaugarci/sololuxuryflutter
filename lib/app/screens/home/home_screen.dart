@@ -27,7 +27,11 @@ class HomeScreen extends GetView<HomeController> {
           child: const HeaderWidget(),
         ),
       ),
-      endDrawer: Drawer(child: getDrawerView()),
+      drawer: Drawer(
+          child: SizedBox(
+            width: Get.width - 40.0,
+            child: getDrawerView(),
+          )),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,21 +175,205 @@ class HomeScreen extends GetView<HomeController> {
 
 
   Widget getDrawerView() {
-    if(controller.menuModel?.value?.childrenData==null){
+    if (controller.menuModel?.value?.childrenData == null) {
       return Container();
     }
-    return ListView.builder(
-      // Important: Remove any padding from the ListView.
-        padding: const EdgeInsets.only(top: 50.0),
-        physics: const ClampingScrollPhysics(),
-        itemCount: controller.menuModel?.value?.childrenData?.length,
-        itemBuilder: (context, index) {
-          ChildrenData item = controller.menuModel?.value?.childrenData?[index];
-          return Container(
-            child: Row(
-              children: [Container(margin: const EdgeInsets.all(20.0), child: Text(item.name??""))],
+    return Container(
+      color: Colors.white,
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                color: Colors.white,
+                margin: const EdgeInsets.only(top: 50.0, left: 10.0, right: 20.0, bottom: 8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      (controller.menuModel?.value?.name).toString(),
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Image.asset(
+                        AppAsset.close,
+                        height: 20,
+                        color: Colors.black,
+                        width: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(
+                height: 2.0,
+                color: Colors.black,
+              )
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 85.0),
+            child: ListView(
+              physics: const ClampingScrollPhysics(),
+              shrinkWrap: true,
+              primary: true,
+              padding: EdgeInsets.zero,
+              children: [
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    ListView.builder(
+                      // Important: Remove any padding from the ListView.
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.menuModel?.value?.childrenData?.length,
+                        itemBuilder: (context, index) {
+                          ChildrenData itemLevel1 = controller.menuModel?.value?.childrenData?[index];
+                          return Container(
+                            margin: const EdgeInsets.only(bottom: 5.0, right: 10.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                textWithIcon(
+                                  name: itemLevel1.name!,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  isIcon: itemLevel1.childrenData!.isEmpty ? true : false,
+                                  isExpand: itemLevel1.isExpand.value ? true : false,
+                                  onTapExpand: () {
+                                    itemLevel1.isExpand.value = true;
+                                    controller.menuModel!.refresh();
+                                  },
+                                  onTapCollapse: () {
+                                    itemLevel1.isExpand.value = false;
+                                    controller.menuModel!.refresh(); // for (var element in itemLevel1.childrenData!) {
+                                  },
+                                ),
+                                SizedBox(
+                                  // height: 100,
+                                  width: Get.width / 1.3,
+                                  child: itemLevel1.isExpand.value
+                                      ? ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: itemLevel1.childrenData!.length,
+                                      itemBuilder: (context, index1) {
+                                        ChildrenData itemLevel2 = itemLevel1.childrenData![index1];
+                                        return Container(
+                                          margin: const EdgeInsets.only(left: 10.0),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              textWithIcon(
+                                                name: itemLevel2.name!,
+                                                style: const TextStyle(
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
+                                                isExpand: itemLevel2.isExpand.value ? true : false,
+                                                onTapExpand: () {
+                                                  itemLevel2.isExpand.value = true;
+                                                  controller.menuModel!.refresh();
+                                                },
+                                                onTapCollapse: () {
+                                                  itemLevel2.isExpand.value = false;
+                                                  controller.menuModel!
+                                                      .refresh(); // for (var element in itemLevel1.childrenData!) {
+                                                },
+                                              ),
+                                              Column(
+                                                children: [
+                                                  const SizedBox(
+                                                    height: 8.0,
+                                                  ),
+                                                  itemLevel2.isExpand.value
+                                                      ? ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      shrinkWrap: true,
+                                                      physics: const NeverScrollableScrollPhysics(),
+                                                      itemCount: itemLevel2.childrenData!.length,
+                                                      itemBuilder: (context, index2) {
+                                                        ChildrenData itemLevel3 =
+                                                        itemLevel2.childrenData![index2];
+                                                        return Container(
+                                                          margin: const EdgeInsets.only(
+                                                              left: 10.0, top: 3.0, bottom: 3.0),
+                                                          child: Text(
+                                                            itemLevel3.name!,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            style: const TextStyle(
+                                                              fontSize: 12.0,
+                                                              fontWeight: FontWeight.w400,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      })
+                                                      : Container(),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      })
+                                      : Container(),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                  ],
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textWithIcon({
+    String? name,
+    TextStyle? style,
+    bool isIcon = false,
+    bool isExpand = false,
+    GestureTapCallback? onTapExpand,
+    GestureTapCallback? onTapCollapse,
+  }) {
+    return InkWell(
+      onTap: !isExpand ? onTapExpand : onTapCollapse,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(name!, overflow: TextOverflow.ellipsis, style: style),
+            isIcon
+                ? Container()
+                : Image.asset(
+              !isExpand ? AppAsset.plus : AppAsset.minus,
+              height: 14,
+              color: Colors.black,
+              width: 14,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
