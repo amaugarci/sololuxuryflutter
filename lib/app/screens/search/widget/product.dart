@@ -5,8 +5,14 @@ import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dar
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
+import '../../../../data/model/Product/product_model.dart';
+
 class Product extends StatelessWidget {
-  const Product({Key? key}) : super(key: key);
+  //const Product({Key? key}) : super(key: key);
+  ProductModel product;
+
+  Product({required this.product});
+
 
   @override
   Widget build(BuildContext context) {

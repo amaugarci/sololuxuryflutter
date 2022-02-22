@@ -11,6 +11,10 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/image_constant.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../utils/app_routes.dart';
+import '../product_detail/product_detail_screen.dart';
+import '../search/search_screen.dart';
+
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -123,7 +127,11 @@ class HomeScreen extends GetView<HomeController> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () async{
+                                  await Future.delayed(const Duration(seconds: 2), () async  {
+                                    Get.toNamed(RoutesConstants.productsScreen);
+                                  });
+                                },
                                 child: Text(
                                   LanguageConstant.returnsRefundsText.tr,
                                   style: const TextStyle(color: Colors.black87),

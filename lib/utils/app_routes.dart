@@ -6,4 +6,8 @@ class RoutesConstants {
 
   static const String homeScreen = "/homeScreen";
 
+  static const String productListScreen = "/productListScreen";
+
+  static const String productsScreen = "/productsScreen";
+
 }
