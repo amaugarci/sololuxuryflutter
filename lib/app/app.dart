@@ -30,7 +30,7 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
         theme: ThemeData(
           backgroundColor: primaryWhite,
           scaffoldBackgroundColor: primaryWhite,
-          fontFamily: 'Montserrat',
+          fontFamily: 'Poppins',
           hintColor: regularGrey,
           iconTheme: const IconThemeData(
             color: regularGrey,
