@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
+import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
 import 'package:solo_luxury/app/screens/login/login_screen.dart';
@@ -19,5 +21,10 @@ class AppPages {
       page: () => const HomeScreen(),
       binding: HomeBindings(),
     ),
+    GetPage(
+      name: RoutesConstants.faqScreen,
+      page: () => const FaqScreen(),
+      binding: FaqBindings(),
+    )
   ];
 }

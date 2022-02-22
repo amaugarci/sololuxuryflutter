@@ -1,5 +1,4 @@
 class LanguageConstant {
-
   //Home Screen Constant
   static const String aboutUsText = "aboutUsText";
   static const String referFriendText = "referFriendText";
@@ -10,5 +9,8 @@ class LanguageConstant {
   static const String socialText = "socialText";
 
   static const String companyText = "companyText";
-
+  static const String freuentlyAskedQueText = "freuentlyAskedQueText";
+  static const String shopAndPlaceOrder = "shopAndPlaceOrder";
+  static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
+  static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 }

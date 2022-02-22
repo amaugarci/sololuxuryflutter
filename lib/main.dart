@@ -7,6 +7,7 @@ import 'package:solo_luxury/utils/app_constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
   // await Firebase.initializeApp();
   NetworkDioHttp.setDynamicHeader(

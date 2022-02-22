@@ -19,7 +19,7 @@ class ContactUsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.5),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'Contact Us',
                 style: TextStyle(
                   color: appColor,
