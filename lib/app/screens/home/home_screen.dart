@@ -128,9 +128,7 @@ class HomeScreen extends GetView<HomeController> {
                               ),
                               TextButton(
                                 onPressed: () async{
-                                  await Future.delayed(const Duration(seconds: 2), () async  {
-                                    Get.toNamed(RoutesConstants.productsScreen);
-                                  });
+                                
                                 },
                                 child: Text(
                                   LanguageConstant.returnsRefundsText.tr,

@@ -96,7 +96,7 @@ class ProductController extends GetxController {
 
     for (int i = 0; i < data['media_gallery_entries'].length; i++) {
       Map<String, dynamic> mediaItems = data['media_gallery_entries'][i];
-      
+
     }
 
 
