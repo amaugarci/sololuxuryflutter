@@ -29,6 +29,9 @@ const Color blue = Color(0xff068AEC);
 const Color yellow = Color(0xffFFCC00);
 const Color borderGrey = Color(0xffDBDBDB);
 
+const Color appColorPrimary = Color(0xffF9EAE3);
+const Color appColorDarkGrey = Color(0xff969290);
+
 Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);
 Color grey = Color(0xff999999);
