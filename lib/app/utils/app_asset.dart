@@ -9,6 +9,7 @@ class AppAsset {
   static const search = "assets/icons/search.svg";
   static const heart = "assets/icons/heart.svg";
   static const filter = "assets/icons/filter.svg";
+  static const menu = "assets/icons/menu.png";
 
   /// Images
   static const dialogError = 'assets/images/error_dialog.png';

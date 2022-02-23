@@ -8,7 +8,6 @@ class HomeController extends GetxController {
   RxInt index = 0.obs;
   RxObjectMixin? menuModel = MenuModel().obs;
 
-  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
 
   @override
   void onInit() {
