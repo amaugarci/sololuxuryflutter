@@ -18,7 +18,7 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen());
+        Get.to(() => ProductDetailScreen(product: product,));
       },
       child: Container(
         width: 150,
@@ -28,7 +28,7 @@ class Product extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 140,
+              height: 200,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
@@ -52,7 +52,7 @@ class Product extends StatelessWidget {
                   const SizedBox(height: 10),
                   Image.network(
                     'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
-                    height: 90,
+                    height: 150,
                     fit: BoxFit.cover,
                   ),
                 ],
@@ -60,26 +60,36 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "Name",
+              "${product.name}",
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
+                overflow: TextOverflow.ellipsis
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 10),
+            Text(
+              "${product.name}",
+              style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  overflow: TextOverflow.ellipsis
+              ),
+            ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "10,000",
+                Text(
+                  '\$ '+"${product.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                     fontSize: 14.5,
                   ),
                 ),
-                const Text(
-                  '\$1000.00',
+                Text(
+                  '\$ '+"${product.price}",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black45,

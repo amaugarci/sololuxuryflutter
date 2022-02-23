@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/utils/app_text_style.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/app/utils/static_decoration.dart';
-import 'package:solo_luxury/app/utils/colors.dart';
 
 // ignore: must_be_immutable
 class PrimaryTextButton extends StatelessWidget {
