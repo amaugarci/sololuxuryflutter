@@ -207,7 +207,7 @@ class HomeScreen extends GetView<HomeController> {
                         Row(
                           children: const [
                             SizedBox(
-                              width: 10.0,
+                              width: 15.0,
                             ),
                             Text(
                               "Menu",
