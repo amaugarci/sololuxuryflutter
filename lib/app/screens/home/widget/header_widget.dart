@@ -5,6 +5,8 @@ import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/search/search_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 
+import '../../../../utils/app_routes.dart';
+
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key}) : super(key: key);
 
@@ -52,13 +54,20 @@ class HeaderWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(AppAsset.search, height: 12.5)),
           const SizedBox(width: 10),
-          SvgPicture.asset(AppAsset.heart, height: 12.5),
+          GestureDetector(
+              onTap: () async{
+                await Future.delayed(const Duration(seconds: 2), () async  {
+                  Get.offAllNamed(RoutesConstants.wishlistScreen);
+                });
+              },
+              child: SvgPicture.asset(AppAsset.heart, height: 12.5)),
           const SizedBox(width: 10),
           GestureDetector(
               onTap: () {
                 Get.to(() => CartScreen());
               },
-              child: SvgPicture.asset(AppAsset.cart, height: 12.5)),
+              child: SvgPicture.asset(AppAsset.cart,
+                  color: Colors.black, height: 12.5)),
           const SizedBox(width: 2),
           const Text('0'),
         ],

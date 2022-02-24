@@ -1,5 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+
+import '../../utils/app_asset.dart';
+import '../home/widget/header_widget.dart';
 
 class MyWishListPage extends StatefulWidget {
   const MyWishListPage({Key? key}) : super(key: key);
@@ -14,11 +20,15 @@ class _MyWishListPageState extends State<MyWishListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Icon(Icons.ac_unit),
+      drawer: Icon(Icons.ac_unit),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: backGroundColor,
-        title: Image.asset("assets/images/logo 2.png"),
+        title: Image.asset(AppAsset.logo, width: 110),
+        bottom: PreferredSize(
+          preferredSize: Size(Get.width, 60),
+          child: const HeaderWidget(),
+        ),
         centerTitle: true,
         iconTheme: IconThemeData(color: appColor),
       ),
@@ -28,118 +38,13 @@ class _MyWishListPageState extends State<MyWishListPage> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 110,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "UNITED KINGDOM",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "GBF",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 70,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "ENGLISH",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Icon(Icons.search),
-                      Image.asset("assets/images/heart.png"),
-                      Icon(Icons.shopping_bag_rounded),
-                      Text("0", style: TextStyle(fontSize: 11))
-                    ],
-                  )),
-              SizedBox(height: 30),
-              Container(
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: appColor),
-                    borderRadius: BorderRadius.circular(5)),
+                    border: Border.all(width: 1, color: appColor),),
                 margin: EdgeInsets.all(10),
                 padding: EdgeInsets.all(5),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
+                    alignment: AlignmentDirectional.center,
                     isExpanded: true, dropdownColor: offWhite,
                     value: _chosenValue1,
                     // elevation: 0,
@@ -156,16 +61,20 @@ class _MyWishListPageState extends State<MyWishListPage> {
                       'My Tickets',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
+                        alignment: AlignmentDirectional.center,
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
-                    hint: Text(
-                      "My Wish List",
-                      style: TextStyle(
-                          color: appColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
+                    hint: Center(
+                      child: Text(
+                        "My Wish List",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: appColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     onChanged: (String? value) {
                       setState(() {
@@ -185,9 +94,30 @@ class _MyWishListPageState extends State<MyWishListPage> {
                       child: Column(
                         children: [
                           Container(
+                            padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(color: Colors.white),
                               width: MediaQuery.of(context).size.width,
-                              height: 250),
+                              height: 250,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Image.asset(
+                                    AppAsset.logo,
+                                    width: 90,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Image.network(
+                                'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),),
                           Container(
                               padding: EdgeInsets.all(10),
                               alignment: Alignment.centerLeft,
@@ -198,9 +128,11 @@ class _MyWishListPageState extends State<MyWishListPage> {
                                   children: [
                                     Text("MIU MIU",
                                         style: TextStyle(fontSize: 20)),
+                                    SizedBox(height: 5,),
                                     Text("PAINTED MARY JANE",
                                         style: TextStyle(fontSize: 14)),
-                                    Text("Rs 560.00",
+                                    SizedBox(height: 10,),
+                                    Text("\$ 560.00",
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold))
@@ -232,8 +164,8 @@ class _MyWishListPageState extends State<MyWishListPage> {
                                               color: Colors.white,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold)))),
-                              Image.asset("assets/images/edit.png"),
-                              Image.asset("assets/images/delete.png")
+                              Icon(Icons.edit),
+                              Icon(Icons.delete),
                             ],
                           ))
                         ],
