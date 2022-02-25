@@ -57,7 +57,7 @@ class HeaderWidget extends StatelessWidget {
           GestureDetector(
               onTap: () async{
                 await Future.delayed(const Duration(seconds: 2), () async  {
-                  Get.offAllNamed(RoutesConstants.wishlistScreen);
+                  Get.toNamed(RoutesConstants.wishlistScreen);
                 });
               },
               child: SvgPicture.asset(AppAsset.heart, height: 12.5)),

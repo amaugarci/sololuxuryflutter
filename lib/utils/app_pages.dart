@@ -22,7 +22,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.wishlistScreen,
-      page: () => const MyWishListPage(),
+      page: () => MyWishListPage(),
       binding: WishlistBindings(),
     ),
   ];
