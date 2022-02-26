@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/screens/login/login_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Authentication/login_model.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/profile/update_image_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
@@ -94,6 +95,101 @@ class NetworkRepository {
       return null;
     }
 
+  }
+
+
+  // Estimate-shipping-methods API Call
+  Future postEstimateShippingMethod() async {
+    String url = '${AppConstants.apiEndPointNew1}${AppConstants.estimatesShippingMethodEndPoint}';
+    final header = await NetworkDioHttp.getTestHeaders1();
+    print("url -> " + url);
+    print("header -> " + header.toString());
+    var params = json.encode({
+      "address": {
+        "region": "Maharashtra",
+        "region_id": 553,
+        "region_code": "MH",
+        "country_id": "IN",
+        "street": ["123 Oak Ave"],
+        "postcode": "400012",
+        "city": "Mumbai",
+        "firstname": "ap",
+        "lastname": "test",
+        "customer_id": 55,
+        "email": "aptest@gmail.com",
+        "telephone": "9876988111",
+        "same_as_billing": 1
+      }
+    });
+    http.Response response = await http.post(
+        Uri.parse(url),
+        headers: header,
+        body: params);
+    if (response != null) {
+      print("response.statusCode -> ");
+      print(response.statusCode);
+      print(response.body);
+    }
+    if (response!=null && response.statusCode == 200) {
+      var parsedJson = await json.decode(response.body);
+      return parsedJson as List;
+    } else {
+      return null;
+    }
+  }
+
+  // Shipping Information API Call
+  Future postShippingInformation() async {
+    String url = '${AppConstants.apiEndPointNew1}${AppConstants.shippingInformationEndPoint}';
+    final header = await NetworkDioHttp.getTestHeaders1();
+    print("url -> " + url);
+    print("header -> " + header.toString());
+
+    var params = json.encode({
+      "addressInformation": {
+        "shipping_address": {
+          "region": "Maharashtra",
+          "region_id": 553,
+          "region_code": "MH",
+          "country_id": "IN",
+          "street": ["123 Oak Ave"],
+          "postcode": "400012",
+          "city": "Mumbai",
+          "firstname": "ap",
+          "lastname": "test",
+          "email": "aptest@gmail.com",
+          "telephone": "9876988111"
+        },
+        "billing_address": {
+          "region": "Maharashtra",
+          "region_code": "MH",
+          "country_id": "IN",
+          "street": ["123 Oak Ave"],
+          "postcode": "400012",
+          "city": "Mumbai",
+          "firstname": "ap",
+          "lastname": "test",
+          "email": "aptest@gmail.com",
+          "telephone": "9876988111"
+        },
+        "shipping_carrier_code": "freeshipping",
+        "shipping_method_code": "freeshipping"
+      }
+    });
+
+    http.Response response = await http.post(Uri.parse(url), headers: header, body: params);
+    //request.headers.addAll(token);
+    if (response != null) {
+      print("response.statusCode -> ");
+      print(response.statusCode);
+      print(response.body);
+    }
+    if (response != null && response.statusCode == 200) {
+      var parsedJson = await json.decode(response.body);
+      return ShippingInformationModel.fromJson(parsedJson);
+    } else {
+      return null;
+    }
   }
 
 

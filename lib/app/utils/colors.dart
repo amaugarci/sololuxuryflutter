@@ -30,9 +30,12 @@ const Color yellow = Color(0xffFFCC00);
 const Color borderGrey = Color(0xffDBDBDB);
 
 const Color appColorPrimary = Color(0xff8A3A06);
+const Color appColorButton = Color(0xff6F3015);
 const Color appColorAccent = Color(0xfff9eae3);
+const Color appColorDullPrimary = Color(0xffCEAEA0);
 const Color appColorPrimaryGrey = Color(0xffEEE2DB);
 const Color appColorDarkGrey = Color(0xff969290);
+const Color appColorDarkLineGrey = Color(0xff838383);
 
 Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);

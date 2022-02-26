@@ -45,6 +45,13 @@ class NetworkDioHttp {
     };
   }
 
+  static Future<Map<String, String>> getTestHeaders1() async {
+    return {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer x536g4i24esplihpbotof7k79a8fhmvw',
+    };
+  }
+
   static setDynamicHeader({@required String? endPoint}) async {
     endPointUrl = endPoint;
     BaseOptions options =

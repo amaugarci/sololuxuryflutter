@@ -8,9 +8,7 @@ import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 import '../../../data/model/Home/estimate_shipping_method_model.dart';
 
-class HomeController extends GetxController {
-  RxInt index = 0.obs;
-  RxObjectMixin? menuModel = MenuModel().obs;
+class CheckoutOrderController extends GetxController {
   Rx<EstimateShippingMethodModel>? estimateShipModel = EstimateShippingMethodModel().obs;
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
@@ -22,7 +20,6 @@ class HomeController extends GetxController {
   }
 
   getMenuDataFromApi() async {
-    menuModel!.value = await NetworkRepository().getMenu();
     if(estimatesList!=null){
       estimatesList?.value = [];
       estimatesList?.value = await NetworkRepository().postEstimateShippingMethod()??[];
