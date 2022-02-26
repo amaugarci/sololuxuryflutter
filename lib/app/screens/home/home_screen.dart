@@ -2,6 +2,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
+import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
@@ -9,6 +10,9 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../utils/app_routes.dart';
+import '../checkout_order/checkout_order_controller.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -132,45 +136,50 @@ class HomeScreen extends GetView<HomeController> {
   }
 
   Widget emailSubscribe() {
-    return Container(
-      height: 47,
-      width: Get.width,
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: appColor, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          const SizedBox(width: 18),
-          const Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Your E-Mail',
-                hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
-                border: InputBorder.none,
+    return InkWell(
+      onTap: (){
+        Get.toNamed(RoutesConstants.checkoutOrderScreen);
+      },
+      child: Container(
+        height: 47,
+        width: Get.width,
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: appColor, width: 1.5),
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 18),
+            const Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Your E-Mail',
+                  hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
+                  border: InputBorder.none,
+                ),
               ),
             ),
-          ),
-          Container(
-            height: 47,
-            width: 120,
-            decoration: BoxDecoration(
-              color: appColor,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: appColor, width: 1.5),
-            ),
-            alignment: Alignment.center,
-            child: const Text(
-              'SUBSCRIBE',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13.5,
+            Container(
+              height: 47,
+              width: 120,
+              decoration: BoxDecoration(
+                color: appColor,
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: appColor, width: 1.5),
+              ),
+              alignment: Alignment.center,
+              child: const Text(
+                'SUBSCRIBE',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13.5,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

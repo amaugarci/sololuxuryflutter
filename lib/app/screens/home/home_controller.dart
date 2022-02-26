@@ -11,9 +11,7 @@ import '../../../data/model/Home/estimate_shipping_method_model.dart';
 class HomeController extends GetxController {
   RxInt index = 0.obs;
   RxObjectMixin? menuModel = MenuModel().obs;
-  Rx<EstimateShippingMethodModel>? estimateShipModel = EstimateShippingMethodModel().obs;
-  Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
-  RxList? estimatesList = [].obs;
+
 
   @override
   void onInit() {
@@ -23,11 +21,5 @@ class HomeController extends GetxController {
 
   getMenuDataFromApi() async {
     menuModel!.value = await NetworkRepository().getMenu();
-    if(estimatesList!=null){
-      estimatesList?.value = [];
-      estimatesList?.value = await NetworkRepository().postEstimateShippingMethod()??[];
-    }
-
-    shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 }

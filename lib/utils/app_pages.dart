@@ -20,5 +20,10 @@ class AppPages {
       page: () => const HomeScreen(),
       binding: HomeBindings(),
     ),
+    GetPage(
+      name: RoutesConstants.checkoutOrderScreen,
+      page: () => const CheckoutOrderScreen(),
+      binding: CheckoutOrderBindings(),
+    ),
   ];
 }
