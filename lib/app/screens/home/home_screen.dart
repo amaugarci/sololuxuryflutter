@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
+import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class HomeScreen extends GetView<HomeController> {
@@ -14,86 +16,88 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        backgroundColor: backGroundColor,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        centerTitle: true,
-        title: Image.asset(AppAsset.logo, width: 110),
-        bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),
-      ),
-      endDrawer: const Drawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.45,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(AppAsset.banner),
+          backgroundColor: backGroundColor,
+          appBar: AppBar(
+            backgroundColor: backGroundColor,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
+            title: Image.asset(AppAsset.logo, width: 110),
+            bottom: PreferredSize(
+              preferredSize: Size(Get.width, 60),
+              child: const HeaderWidget(),
             ),
-            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
-
-            Visibility(
-              visible: controller.index.value == 1 ? true : false,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Get.to(() => const AboutUsScreen());
-                    },
-                    child: Text(
-                      LanguageConstant.aboutUsText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
+          ),
+          endDrawer: const Drawer(),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.45,
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(AppAsset.banner),
+                ),
+                detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
+                Visibility(
+                  visible: controller.index.value == 1 ? true : false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => const AboutUsScreen());
+                        },
+                        child: Text(
+                          LanguageConstant.aboutUsText.tr,
+                          style: const TextStyle(color: Colors.black87),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => const ReferFriendScreen());
+                        },
+                        child: Text(
+                          LanguageConstant.referFriendText.tr,
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          //        Get.to(const MyOrdersScreen());
+                          Get.toNamed(RoutesConstants.myOrderScreen);
+                        },
+                        child: Text(
+                          LanguageConstant.returnsRefundsText.tr,
+                          style: const TextStyle(color: Colors.black87),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          LanguageConstant.faqText.tr,
+                          style: const TextStyle(color: Colors.black87),
+                        ),
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(() => const ReferFriendScreen());
-                    },
-                    child: Text(
-                      LanguageConstant.referFriendText.tr,
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      LanguageConstant.returnsRefundsText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      LanguageConstant.faqText.tr,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
+                detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
+                detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
+                const SizedBox(height: 20),
+                emailSubscribe(),
+                const SizedBox(height: 40),
+              ],
             ),
-            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
-            const SizedBox(height: 20),
-            emailSubscribe(),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
-        if(controller.index.value == value) {
+        if (controller.index.value == value) {
           controller.index.value = 0;
         } else {
           controller.index.value = value;
@@ -167,5 +171,4 @@ class HomeScreen extends GetView<HomeController> {
       ),
     );
   }
-
 }
