@@ -22,7 +22,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.checkoutOrderScreen,
-      page: () => const CheckoutOrderScreen(),
+      page: () =>  CheckoutOrderScreen(),
       binding: CheckoutOrderBindings(),
     ),
   ];
