@@ -317,7 +317,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black,
-                                        width: controller.selectedShippingIndex.value == index ? 4.0 : 0.8),
+                                        width: controller.selectedShippingIndex.value == index ? 4.5 : 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -346,10 +346,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           Expanded(
                             flex: 4,
                             child: CommonTextPoppins(
-                              "Flat Rate",
+                              controller.estimateShipModel!.value.carrierTitle,
                               textAlign: TextAlign.left,
                               fontSize: 10.0,
                               fontWeight: FontWeight.w500,
+                              maxLine: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
@@ -389,7 +391,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       color: Colors.black,
-                                      width: controller.selectedShippingIndex.value == index ? 4.0 : 0.8),
+                                      width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(
@@ -690,7 +692,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           ],
         ),
         const SizedBox(
-          height: 10.0,
+          height: 15.0,
         ),
         Align(
           alignment: Alignment.center,

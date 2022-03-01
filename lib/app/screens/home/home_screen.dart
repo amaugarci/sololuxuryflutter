@@ -472,31 +472,29 @@ appBarWidget(controller) {
       children: [
         Image.asset(
           AppAsset.logo,
-          height: 30.0,
+          height: 40.0,
           width: Get.width * 0.35,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              child: GestureDetector(
-                onTap: () {
-                  print("onTap ->");
+            GestureDetector(
+              onTap: () {
+                print("onTap ->");
 
-                  if (!controller.scaffoldkey.currentState!.isDrawerOpen) {
-                    controller.scaffoldkey.currentState!.openDrawer();
-                  }
-                },
-                child: Container(
-                  height: 30.0,
-                  width: 30.0,
-                  child: Center(
-                    child: Image.asset(
-                      AppAsset.menu,
-                      height: 20.0,
-                      width: 20.0,
-                      color: Colors.black,
-                    ),
+                if (!controller.scaffoldkey.currentState!.isDrawerOpen) {
+                  controller.scaffoldkey.currentState!.openDrawer();
+                }
+              },
+              child: Container(
+                height: 30.0,
+                width: 30.0,
+                child: Center(
+                  child: Image.asset(
+                    AppAsset.menu,
+                    height: 20.0,
+                    width: 20.0,
+                    color: appColorPrimary,
                   ),
                 ),
               ),
