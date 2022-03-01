@@ -25,7 +25,7 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
       designSize: const Size(375, 812),
       builder: () => GetMaterialApp(
         navigatorKey: navigatorKey,
-        title: 'Grub-Grams-App',
+        title: 'Solo Luxury',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           backgroundColor: primaryWhite,

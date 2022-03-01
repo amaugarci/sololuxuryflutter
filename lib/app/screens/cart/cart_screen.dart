@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:get/get.dart';
 
-class CartScreen extends StatelessWidget {
+import '../../utils/colors.dart';
+import 'cart_controller.dart';
+
+class CartScreen extends GetView<CartController> {
   const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
         elevation: 0,
@@ -20,7 +23,7 @@ class CartScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   Widget cartWidget() {
@@ -46,7 +49,7 @@ class CartScreen extends StatelessWidget {
               ),
             ],
           ),
-          Text(
+          const Text(
             'You added ALEXANDER MCQUEEN MULES ALEXANDER MCQUEEN HYBRID SIGNATURE SLIDES to your shopping cart.',
             textAlign: TextAlign.center,
             style: TextStyle(

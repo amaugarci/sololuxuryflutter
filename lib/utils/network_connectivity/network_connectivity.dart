@@ -10,8 +10,9 @@ class NetworkConnectivity {
       result = await _connectivity.checkConnectivity();
       if (result == ConnectivityResult.none) {
         return false;
-      } else
+      } else {
         return true;
+      }
       // ignore: unused_catch_clause
     } on PlatformException catch (e) {
       return false;

@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
-import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
-import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/login/login_screen.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
+import '../app/screens/product_listing/product_list_binding.dart';
+import '../app/screens/product_listing/product_list_screen.dart';
+import '../app/screens/search/search_screen.dart';
 import '../app/screens/splash/splash_screen.dart';
 
 class AppPages {
@@ -21,9 +23,14 @@ class AppPages {
       binding: HomeBindings(),
     ),
     GetPage(
-      name: RoutesConstants.myAccountScreen,
-      page: () => const MyAccountPage(),
-      binding: MyAccountBinding(),
+      name: RoutesConstants.productListScreen,
+      page: () => const ProductListScreen(),
+      binding: ProductListBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.productsScreen,
+      page: () => const SearchScreen(),
+      binding: ProductListBinding(),
     ),
   ];
 }

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
+printLog(dynamic log) {
+  if (kDebugMode) {
+    print("--------- App logs ---------\n$log");
+  }
+}
+
 class CommonMethod {
   void showSnackBar(BuildContext context, SnackBar snackBar) {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
