@@ -1,6 +1,8 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
+import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
@@ -20,18 +22,8 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          backgroundColor: backGroundColor,
-          appBar: AppBar(
-            backgroundColor: backGroundColor,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.black),
-            centerTitle: true,
-            title: Image.asset(AppAsset.logo, width: 110),
-            bottom: PreferredSize(
-              preferredSize: Size(Get.width, 60),
-              child: const HeaderWidget(),
-            ),
-          ),
+          key: controller.scaffoldkey,
+          backgroundColor: appColorAccent,
           drawer: SizedBox(
             child: Drawer(
                 child: SizedBox(
@@ -39,66 +31,154 @@ class HomeScreen extends GetView<HomeController> {
               child: getDrawerView(),
             )),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          body: Container(
+            width: Get.width,
+            child: Stack(
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(AppAsset.banner),
-                ),
-                detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
-                Visibility(
-                  visible: controller.index.value == 1 ? true : false,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Get.to(() => const AboutUsScreen());
-                        },
-                        child: Text(
-                          LanguageConstant.aboutUsText.tr,
-                          style: const TextStyle(color: Colors.black87),
+                Container(
+                  // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
+                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          AppAsset.banner,
+                          height: 500.0,
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(() => const ReferFriendScreen());
-                        },
-                        child: Text(
-                          LanguageConstant.referFriendText.tr,
-                          style: const TextStyle(color: Colors.black87),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
+                            Visibility(
+                              visible: controller.index.value == 1 ? true : false,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const AboutUsScreen());
+                                    },
+                                    child:  CommonTextOpenSans(
+                                      LanguageConstant.aboutUsText.tr,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => const ReferFriendScreen());
+                                    },
+                                    child:CommonTextOpenSans(
+                                      LanguageConstant.referFriendText.tr,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: CommonTextOpenSans(
+                                      LanguageConstant.returnsRefundsText.tr,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child:CommonTextOpenSans(
+                                      LanguageConstant.faqText.tr,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
+                            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
+                            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
+                            const SizedBox(height: 20),
+                            emailSubscribe(),
+                            const SizedBox(height: 40),
+                          ],
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          LanguageConstant.returnsRefundsText.tr,
-                          style: const TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          LanguageConstant.faqText.tr,
-                          style: const TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-                detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-                detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
-                const SizedBox(height: 20),
-                emailSubscribe(),
-                const SizedBox(height: 40),
+                appBarWidget(),
               ],
             ),
           ),
         ));
+  }
+
+  appBarWidget() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 10.0, left: 10.0, right: 15.0),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(
+            AppAsset.logo,
+            height: 30.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: GestureDetector(
+                  onTap: () {
+                    if (!controller.scaffoldkey.currentState!.isDrawerOpen) {
+                      controller.scaffoldkey.currentState!.openDrawer();
+                    }
+                  },
+                  child: Container(
+                    height: 30.0,
+                    width: 30.0,
+                    child: Center(
+                      child: Image.asset(
+                        AppAsset.menu,
+                        height: 16.0,
+                        width: 16.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    AppAsset.search,
+                    height: 16.0,
+                    width: 16.0,
+                  ),
+                  const SizedBox(
+                    width: 15.0,
+                  ),
+                  SvgPicture.asset(
+                    AppAsset.heart,
+                    height: 16.0,
+                    width: 16.0,
+                  ),
+                  const SizedBox(
+                    width: 15.0,
+                  ),
+                  SvgPicture.asset(
+                    AppAsset.cart,
+                    height: 16.0,
+                    width: 16.0,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Widget detailsButton(String text, int value) {
@@ -115,7 +195,6 @@ class HomeScreen extends GetView<HomeController> {
         width: Get.width,
         decoration: BoxDecoration(
           color: appColor,
-          border: Border.all(color: Colors.black, width: 0.4),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -136,33 +215,35 @@ class HomeScreen extends GetView<HomeController> {
   }
 
   Widget emailSubscribe() {
-    return InkWell(
-      onTap: (){
-        Get.toNamed(RoutesConstants.checkoutOrderScreen);
-      },
-      child: Container(
-        height: 47,
-        width: Get.width,
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(color: appColor, width: 1.5),
-        ),
-        child: Row(
-          children: [
-            const SizedBox(width: 18),
-            const Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Your E-Mail',
-                  hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
-                  border: InputBorder.none,
-                ),
-              ),
+    return Container(
+      height: 35.0,
+      width: Get.width,
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        children: [
+          const SizedBox(
+            width: 5.0,
+          ),
+          Expanded(
+            child: CommonTextField(
+              hintText: 'Your E-Mail',
+              controller: TextEditingController(),
+              textFieldBorder: Border.all(color: Colors.transparent),
+              textColor: appTextFieldHintColor,
+              fontFamily: "OpenSans",
+              fontWeight: FontWeight.w600,
             ),
-            Container(
-              height: 47,
+          ),
+          InkWell(
+            onTap: (){
+              Get.toNamed(RoutesConstants.checkoutOrderScreen);
+            },
+            child: Container(
+              height: 35,
               width: 120,
               decoration: BoxDecoration(
                 color: appColor,
@@ -170,16 +251,15 @@ class HomeScreen extends GetView<HomeController> {
                 border: Border.all(color: appColor, width: 1.5),
               ),
               alignment: Alignment.center,
-              child: const Text(
+              child: CommonTextOpenSans(
                 'SUBSCRIBE',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13.5,
-                ),
+                color: appSubscribeButtonColor,
+                fontSize: 13.5,
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

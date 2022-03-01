@@ -12,14 +12,18 @@ class CheckoutOrderController extends GetxController {
   Rx<EstimateShippingMethodModel>? estimateShipModel = EstimateShippingMethodModel().obs;
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
+  RxInt selectedShippingIndex= 0.obs;
+  RxInt selectedPaymentIndex= 0.obs;
+  RxBool isShowItems= true.obs;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
     super.onInit();
-    getMenuDataFromApi();
+    getEstimateAndShipInformationFromApi();
   }
 
-  getMenuDataFromApi() async {
+  getEstimateAndShipInformationFromApi() async {
     if(estimatesList!=null){
       estimatesList?.value = [];
       estimatesList?.value = await NetworkRepository().postEstimateShippingMethod()??[];
@@ -27,4 +31,5 @@ class CheckoutOrderController extends GetxController {
 
     shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
+
 }

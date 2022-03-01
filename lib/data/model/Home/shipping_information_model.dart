@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class ShippingInformationModel {
   List<PaymentMethods>? paymentMethods;
   Totals? totals;

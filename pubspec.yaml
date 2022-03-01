@@ -112,3 +112,17 @@ flutter:
             weight: 700
           - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
             weight: 900
+    - family: OpenSans
+      fonts:
+          - asset: assets/fonts/OpenSans/OpenSans-Light.ttf
+            weight: 300
+          - asset: assets/fonts/OpenSans/OpenSans-Regular.ttf
+            weight: 400
+          - asset: assets/fonts/OpenSans/OpenSans-Medium.ttf
+            weight: 500
+          - asset: assets/fonts/OpenSans/OpenSans-SemiBold.ttf
+            weight: 600
+          - asset: assets/fonts/OpenSans/OpenSans-Bold.ttf
+            weight: 700
+          - asset: assets/fonts/OpenSans/OpenSans-ExtraBold.ttf
+            weight: 900

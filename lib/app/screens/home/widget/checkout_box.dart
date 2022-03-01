@@ -8,9 +8,8 @@ import 'package:solo_luxury/app/utils/colors.dart';
 class CheckOutBox extends StatelessWidget {
   String? title;
   Widget? formFieldWidget;
-  bool? isUnderlineShow = true;
 
-  CheckOutBox({Key? key, this.formFieldWidget, this.title, this.isUnderlineShow = true}) : super(key: key);
+  CheckOutBox({Key? key, this.formFieldWidget, this.title,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +29,11 @@ class CheckOutBox extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              isUnderlineShow! ? Column(
-                children: [
-                  const SizedBox(height: 10.0),
-                  Container(
-                    color: appColorDarkLineGrey,
-                    height: 1.0,
-                  ),
-                  const SizedBox(height: 10.0),
-                ],
-              ):Container(),
+              const SizedBox(height: 10.0),
+              Container(
+                color: appColorDarkLineGrey,
+                height: 1.0,
+              ),
               formFieldWidget!,
             ])));
   }

@@ -11,6 +11,7 @@ import '../../../data/model/Home/estimate_shipping_method_model.dart';
 class HomeController extends GetxController {
   RxInt index = 0.obs;
   RxObjectMixin? menuModel = MenuModel().obs;
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
 
 
   @override

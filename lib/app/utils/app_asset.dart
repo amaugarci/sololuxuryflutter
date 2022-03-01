@@ -4,7 +4,7 @@ class AppAsset {
   /// Icons
 
   static const logo = "assets/images/logo.png";
-  static const banner = "assets/images/banner.jpeg";
+  static const banner = "assets/images/banner.png";
   static const frame = "assets/images/frame.png";
   static const cart = "assets/icons/cart.svg";
   static const search = "assets/icons/search.svg";
