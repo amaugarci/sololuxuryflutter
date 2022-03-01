@@ -9,5 +9,6 @@ class RoutesConstants {
   static const String productListScreen = "/productListScreen";
 
   static const String productsScreen = "/productsScreen";
+  static const String wishlistScreen = "/wishlistScreen";
 
 }
