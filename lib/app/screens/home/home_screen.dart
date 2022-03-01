@@ -37,9 +37,9 @@ class HomeScreen extends GetView<HomeController> {
                       children: [
                         Image.asset(
                           AppAsset.banner,
-                          height: 450.0,
+                          height: 500.0,
                           width: Get.width,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
