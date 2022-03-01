@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/add_address/add_address.dart';
+import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
@@ -33,10 +35,15 @@ class AppPages {
       page: () => const SearchScreen(),
       binding: ProductListBinding(),
     ),
-  GetPage(
+    GetPage(
       name: RoutesConstants.wishlistScreen,
       page: () => MyWishListPage(),
       binding: WishlistBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.addAdressScreen,
+      page: () => const AddAddressScreen(),
+      binding: AddAdressBindings(),
     ),
   ];
 }
