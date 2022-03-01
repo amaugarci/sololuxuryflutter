@@ -37,6 +37,20 @@ class NetworkDioHttp {
       };
     }
   }
+  static Future<Map<String, String>> getTestHeaders() async {
+    return {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer u75tnrg0z2ls8c4yubonwquupncvhqie',
+    };
+  }
+
+  static Future<Map<String, String>> getTestHeaders1() async {
+    return {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer 5wal7g5xmecwevhwtqdtctskd1z3grh4',
+    };
+  }
 
   static setDynamicHeader({@required String? endPoint}) async {
     endPointUrl = endPoint;
