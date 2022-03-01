@@ -43,7 +43,7 @@ class AppPages {
     GetPage(
       name: RoutesConstants.addAdressScreen,
       page: () => const AddAddressScreen(),
-      binding: AddAdressBindings(),
+      binding: AddAddressBindings(),
     ),
   ];
 }

@@ -12,7 +12,7 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import 'add_address_controller.dart';
 
-class AddAddressScreen extends GetView<AddAdressController> {
+class AddAddressScreen extends GetView<AddAddressController> {
   const AddAddressScreen({Key? key}) : super(key: key);
 
   @override
