@@ -473,6 +473,7 @@ appBarWidget(controller) {
         Image.asset(
           AppAsset.logo,
           height: 30.0,
+          width: Get.width * 0.35,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -492,8 +493,8 @@ appBarWidget(controller) {
                   child: Center(
                     child: Image.asset(
                       AppAsset.menu,
-                      height: 16.0,
-                      width: 16.0,
+                      height: 20.0,
+                      width: 20.0,
                       color: Colors.black,
                     ),
                   ),
@@ -502,26 +503,29 @@ appBarWidget(controller) {
             ),
             Row(
               children: [
+                const SizedBox(
+                  width: 15.0,
+                ),
                 SvgPicture.asset(
                   AppAsset.search,
-                  height: 16.0,
-                  width: 16.0,
+                  height: 20.0,
+                  width: 20.0,
                 ),
                 const SizedBox(
                   width: 15.0,
                 ),
                 SvgPicture.asset(
                   AppAsset.heart,
-                  height: 16.0,
-                  width: 16.0,
+                  height: 20.0,
+                  width: 20.0,
                 ),
                 const SizedBox(
                   width: 15.0,
                 ),
                 SvgPicture.asset(
                   AppAsset.cart,
-                  height: 16.0,
-                  width: 16.0,
+                  height: 20.0,
+                  width: 20.0,
                   color: Colors.black,
                 ),
               ],
