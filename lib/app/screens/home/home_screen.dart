@@ -30,7 +30,6 @@ class HomeScreen extends GetView<HomeController> {
             child: Stack(
               children: [
                 Container(
-                  // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
                   margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: EdgeInsets.zero,
@@ -38,7 +37,9 @@ class HomeScreen extends GetView<HomeController> {
                       children: [
                         Image.asset(
                           AppAsset.banner,
-                          height: 500.0,
+                          height: 450.0,
+                          width: Get.width,
+                          fit: BoxFit.fill,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
