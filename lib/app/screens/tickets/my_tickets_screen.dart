@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:solo_luxury/app/utils/colors.dart';
 
 class MyTicketScreen extends StatefulWidget {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -16,74 +18,51 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
     var MediaQueryw = MediaQuery.of(context).size.width;
     var MediaQueryh = MediaQuery.of(context).size.height;
 
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: Color(0xffFBECE5),
+    return Scaffold(
+          backgroundColor: backgroundticket,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Container(
                 child: Column(
                   children: [
                     Container(
-                      margin:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                      margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // SizedBox(width:1.0,),
-                          Row(
-                            children: [
-                              Icon(Icons.menu, color: Color(0xFF6F3015)),
-                              // SizedBox(width: 12.0),
-                            ],
-                          ),
-                          // Text(
-                          //   "AVOIR CHIC",
-                          //   style: TextStyle(color: Color(0xFFBD367587)),
-                          // ),
-
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 12.0, right: 12.0),
-                                child: Image.asset(
-                                  "assets/images/logo.png",
+                          Container(
+                            width: MediaQueryw*0.1,
+                              child: Image.asset("assets/images/menusolo.png")),
+                          Container(
+                            width: MediaQueryw*0.7,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset("assets/images/solo1.png",),
+                                Image.asset("assets/images/magnifying2.png"),
+                                Image.asset(
+                                  "assets/images/like2.png",
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Icon(
-                                Icons.search,
-                                size: 25.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 12.0, right: 12.0),
-                                child: Image.asset(
-                                  "assets/images/like1.png",
-                                ),
-                              ),
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/shoppingbag2.png",
-                                    // width: 15.0,
-                                  ),
-                                  Positioned(
-                                      top: 6,
-                                      right: 0,
-                                      child: Text(
-                                        "0",
-                                        style: TextStyle(
-                                            fontSize: 8.0, color: Colors.black),
-                                      ))
-                                ],
-                              )
-                            ],
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/shoppingbag2.png",
+                                      // width: 15.0,
+                                    ),
+                                    Positioned(
+                                        top: 6,
+                                        right: 0,
+                                        child: Text(
+                                          "0",
+                                          style: TextStyle(
+                                              fontSize: 8.0, color: Colors.black),
+                                        ))
+                                  ],
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -98,7 +77,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                           Container(
                             padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
                             width: MediaQueryw,
-                            color: Color(0xFFF6E6DF),
+                            color: secondarybackgroundcolor,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -111,19 +90,18 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 6)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("My Account",
                                                     style: TextStyle(
-                                                        color:
-                                                            Color(0xFF6F3015))),
+                                                        color:ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -134,7 +112,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("My Account",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -147,19 +125,18 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 5)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("My Orders",
                                                     style: TextStyle(
-                                                        color:
-                                                            Color(0xFF6F3015))),
+                                                        color: ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -170,7 +147,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("My Orders",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -183,19 +160,19 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 4)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("My Wish List",
                                                     style: TextStyle(
                                                         color:
-                                                            Color(0xFF6F3015))),
+                                                            ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -206,7 +183,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("My Wish List",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -219,19 +196,19 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 3)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("Address Book",
                                                     style: TextStyle(
                                                         color:
-                                                            Color(0xFF6F3015))),
+                                                            ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -242,7 +219,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("Address Book",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -255,19 +232,18 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 2)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("Account Information",
                                                     style: TextStyle(
-                                                        color:
-                                                            Color(0xFF6F3015))),
+                                                        color:ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -278,7 +254,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("Account Information",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -291,19 +267,19 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                   child: (click == 1)
                                       ? Container(
                                           width: MediaQueryw,
-                                          color: Color(0xffFBECE5),
+                                          color: backgroundticket,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.check,
-                                                  color: Color(0xFF6F3015),
+                                                  color: ticketTextColor,
                                                 ),
                                                 Text("My Tickets",
                                                     style: TextStyle(
                                                         color:
-                                                            Color(0xFF6F3015))),
+                                                            ticketTextColor)),
                                               ],
                                             ),
                                           ),
@@ -314,7 +290,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text("My Tickets",
                                                 style: TextStyle(
-                                                    color: Color(0xFF6F3015))),
+                                                    color: ticketTextColor)),
                                           ),
                                         ),
                                 ),
@@ -327,7 +303,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                           Container(
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: Color(0xffFBECE5),
+                              color: backgroundticket,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withAlpha(40),
@@ -354,237 +330,11 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                     ],
                                   ),
                                 ),
-                                // Container(
-                                //   width: MediaQuery.of(context).size.width,
-                                //   height: 1.0,
-                                //   color: Colors.black,
-                                // ),
                                 Container(
-                                  // padding: EdgeInsets.only(top: 12.0,bottom: 12.0,left: 10.0,right: 10.0),
-                                  // margin: EdgeInsets.only(top: 12.0,bottom: 22.0,left: 10.0,right: 10.0),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.5 -
-                                          50,
+                                  height: MediaQuery.of(context).size.height * 0.5 -50,
 
-                                  child: ListView.builder(
-                                    // itemCount: 2,
-                                    itemBuilder: (context, index) =>
-                                        GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return AlertDialog(
-                                                  backgroundColor:
-                                                      Color(0xffFBECE5),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0),
-                                                  ),
-                                                  insetPadding: EdgeInsets.only(
-                                                      left: 12.0, right: 12.0),
-
-                                                  // title:
-                                                  content: Container(
-                                                    // margin: EdgeInsets.zero,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: MediaQueryh * 0.2,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Transform.rotate(
-                                                          angle: 95,
-                                                          //set the angel
-                                                          child: Icon(
-                                                            Icons
-                                                                .add_circle_outline,
-                                                          ),
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                          0.4 -
-                                                                      30,
-                                                              child: Text(
-                                                                "Id",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                      0.4,
-                                                              child: Text(
-                                                                "Name",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      top: 10.0,
-                                                                      bottom:
-                                                                          10.0),
-                                                              child: Container(
-                                                                width:
-                                                                    MediaQueryw *
-                                                                            0.4 -
-                                                                        30,
-                                                                child: Text(
-                                                                  "1010005",
-                                                                  style:
-                                                                      TextStyle(),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                      0.4,
-                                                              child: Text(
-                                                                "Hello Greate Team",
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                          0.4 -
-                                                                      30,
-                                                              child: Text(
-                                                                "Last Updated",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                      0.4,
-                                                              child: Text(
-                                                                  "10-11-2021"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10.0,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                          0.4 -
-                                                                      30,
-                                                              child: Text(
-                                                                "Message",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width:
-                                                                  MediaQueryw *
-                                                                      0.5,
-                                                              child: Text(
-                                                                  "Can you sourece this bag \nfor me Can you sourece this \nbag for me"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              });
-                                        });
-                                      },
-                                      child: Container(
-                                        // margin: EdgeInsets.only(
-                                        //     top: 12.0,
-                                        //     bottom: 22.0,
-                                        //     left: 10.0,
-                                        //     right: 10.0),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              color: (index % 2 == 0)
-                                                  ? Color(0xFFF6E6DF)
-                                                  : Color(0xffFBECE5),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 8.0,
-                                                    bottom: 8.0,
-                                                    left: 12.0,
-                                                    right: 25.0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text("1010005"),
-                                                    Container(
-                                                        width:
-                                                            MediaQueryw * 0.3,
-                                                        child: Text(
-                                                          "Special Request | Suvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                        )),
-                                                    Icon(Icons
-                                                        .visibility_outlined)
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  child: cartList()
                                 ),
-                                // Container(
-                                //   width: MediaQuery.of(context).size.width,
-                                //   height: 1.0,
-                                //   color: Colors.black,
-                                // ),
                               ],
                             ),
                           ),
@@ -595,7 +345,7 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                       height: 100,
                     ),
                     Container(
-                      color: Color(0xFF8A3A06),
+                      color: buttoncolor,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         // crossAxisAlignment: CrossAxisAlignment.center,
@@ -614,13 +364,13 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                       child: Center(
                                         child: Text(
                                           "ABOUT US",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: whiteColor),
                                         ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.keyboard_arrow_down_outlined,
-                                      color: Colors.white,
+                                      color: whiteColor
                                     )
                                   ],
                                 )),
@@ -638,13 +388,13 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                       child: Center(
                                         child: Text(
                                           "CONTACT",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: whiteColor),
                                         ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.keyboard_arrow_down_outlined,
-                                      color: Colors.white,
+                                      color: whiteColor,
                                     )
                                   ],
                                 )),
@@ -662,13 +412,13 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                       child: Center(
                                         child: Text(
                                           "SOCIAL",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: whiteColor),
                                         ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.keyboard_arrow_down_outlined,
-                                      color: Colors.white,
+                                      color: whiteColor,
                                     )
                                   ],
                                 )),
@@ -686,13 +436,13 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                                       child: Center(
                                         child: Text(
                                           "COMPANY",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: whiteColor),
                                         ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.keyboard_arrow_down_outlined,
-                                      color: Colors.white,
+                                      color: whiteColor,
                                     )
                                   ],
                                 )),
@@ -708,9 +458,9 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       margin: const EdgeInsets.symmetric(horizontal: 15),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: whiteColor,
                         borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: Colors.white, width: 1.5),
+                        border: Border.all(color: whiteColor, width: 1.5),
                       ),
                       child: Row(
                         children: [
@@ -729,16 +479,16 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
                             height: 47,
                             width: 120,
                             decoration: BoxDecoration(
-                              color: Color(0xFF8A3A06),
+                              color: buttoncolor,
                               borderRadius: BorderRadius.circular(30),
                               border: Border.all(
-                                  color: Color(0xFF6F3015), width: 1.5),
+                                  color: ticketTextColor, width: 1.5),
                             ),
                             alignment: Alignment.center,
                             child: const Text(
                               'SUBSCRIBE',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: whiteColor,
                                 fontSize: 13.5,
                               ),
                             ),
@@ -754,30 +504,226 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
               ),
             ),
           ),
-        ),
-        Visibility(
-          visible: visible,
-          child: Scaffold(
-            backgroundColor: Colors.black54,
-            body: Center(
-              child: Container(
-                margin: EdgeInsets.only(left: 12.0, right: 12.0),
-                width: MediaQueryw,
-                height: 200,
-                color: Colors.white,
-                child: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    setState(() {
-                      visible = !visible;
-                    });
-                  },
+        );
+
+  }
+
+  Widget Dialogbbox(){
+    return AlertDialog(
+      backgroundColor: backgroundticket,
+      shape: RoundedRectangleBorder(
+        borderRadius:
+        BorderRadius.circular(
+            0),
+      ),
+      insetPadding: EdgeInsets.only(
+          left: 12.0, right: 12.0),
+
+      // title:
+      content: Container(
+        // margin: EdgeInsets.zero,
+        width:
+        MediaQuery.of(context)
+            .size
+            .width,
+        height: MediaQuery.of(context).size.height * 0.2,
+        child: Column(
+          crossAxisAlignment:
+          CrossAxisAlignment
+              .end,
+          mainAxisAlignment:
+          MainAxisAlignment
+              .start,
+          children: [
+            Transform.rotate(
+              angle: 95,
+              //set the angel
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons
+                      .add_circle_outline,
                 ),
               ),
             ),
-          ),
-        )
-      ],
+            Row(
+              children: [
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4 -
+                      30,
+                  child: Text(
+                    "Id",
+                    style:
+                    TextStyle(
+                      decoration:
+                      TextDecoration
+                          .underline,
+                    ),
+                  ),
+                ),
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4,
+                  child: Text(
+                    "Name",
+                    style:
+                    TextStyle(
+                      decoration:
+                      TextDecoration
+                          .underline,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding:
+                  const EdgeInsets
+                      .only(
+                      top: 10.0,
+                      bottom:
+                      10.0),
+                  child: Container(
+                    width:
+                    MediaQuery.of(context).size.width *
+                        0.4 -
+                        30,
+                    child: Text(
+                      "1010005",
+                      style:
+                      TextStyle(),
+                    ),
+                  ),
+                ),
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4,
+                  child: Text(
+                    "Hello Greate Team",
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4 -
+                      30,
+                  child: Text(
+                    "Last Updated",
+                    style:
+                    TextStyle(
+                      decoration:
+                      TextDecoration
+                          .underline,
+                    ),
+                  ),
+                ),
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4,
+                  child: Text(
+                      "10-11-2021"),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.4 -
+                      30,
+                  child: Text(
+                    "Message",
+                    style:
+                    TextStyle(
+                      decoration:
+                      TextDecoration
+                          .underline,
+                    ),
+                  ),
+                ),
+                Container(
+                  width:
+                  MediaQuery.of(context).size.width *
+                      0.5,
+                  child: Text(
+                      "Can you sourece this bag \nfor me Can you sourece this \nbag for me"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  Widget cartList(){
+
+    var listview= ListView.builder(
+      itemBuilder: (context, index) =>
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialogbbox();
+                    });
+              });
+            },
+            child: Container(
+              child: Column(
+                children: [
+                  Container(
+                    color: (index % 2 == 0)
+                        ? secondarybackgroundcolor
+                        : backgroundticket,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8.0,
+                          bottom: 8.0,
+                          left: 12.0,
+                          right: 25.0),
+                      child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment
+                            .spaceBetween,
+                        children: [
+                          Text("1010005"),
+                          Container(
+                              width: MediaQuery.of(context).size.width*0.3,
+                              child: Text(
+                                "Special Request | Suvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+                                overflow: TextOverflow
+                                    .ellipsis,
+                              )),
+                          Icon(Icons
+                              .visibility_outlined)
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+    );
+        return listview;
   }
 }
