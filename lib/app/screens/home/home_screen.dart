@@ -115,6 +115,8 @@ class HomeScreen extends GetView<HomeController> {
 
 
 
+
+
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
@@ -202,6 +204,7 @@ class HomeScreen extends GetView<HomeController> {
 
 
 }
+
 
 
 
@@ -447,6 +450,7 @@ appBarWidget(controller) {
                 ),
               ],
             ),
+
           ],
         ),
       ],

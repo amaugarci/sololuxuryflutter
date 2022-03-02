@@ -1,6 +1,6 @@
 class LanguageConstant {
   //Home Screen Constant
-  static const String aboutUsText = "aboutUsText";
+  static const String aboutUsText = "aboutUs";
   static const String referFriendText = "referFriendText";
   static const String returnsRefundsText = "returnsRefundsText";
   static const String faqText = "faqText";
@@ -25,8 +25,12 @@ class LanguageConstant {
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
 
+
   static const String freuentlyAskedQueText = "freuentlyAskedQueText";
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
+
+  static const String yourEmailText = "Your Email";
+
 }
