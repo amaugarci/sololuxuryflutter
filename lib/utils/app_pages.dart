@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
-
 
 import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
@@ -44,16 +45,14 @@ class AppPages {
       page: () => const SearchScreen(),
       binding: ProductListBinding(),
     ),
-
-  GetPage(
-
+    GetPage(
       name: RoutesConstants.wishlistScreen,
       page: () => MyWishListPage(),
       binding: WishlistBindings(),
-  ),
+    ),
     GetPage(
       name: RoutesConstants.checkoutOrderScreen,
-      page: () =>  CheckoutOrderScreen(),
+      page: () => CheckoutOrderScreen(),
       binding: CheckoutOrderBindings(),
     ),
     GetPage(
@@ -61,7 +60,7 @@ class AppPages {
       page: () => const MyOrdersScreen(),
       binding: MyOrdersBinding(),
     ),
-  GetPage(
+    GetPage(
       name: RoutesConstants.faqScreen,
       page: () => const FaqScreen(),
       binding: FaqBindings(),
@@ -71,6 +70,10 @@ class AppPages {
       page: () => const AddAddressScreen(),
       binding: AddAddressBindings(),
     ),
-
+    GetPage(
+      name: RoutesConstants.brandScreen,
+      page: () => const BrandListPage(),
+      binding: BrandBinding(),
+    ),
   ];
 }
