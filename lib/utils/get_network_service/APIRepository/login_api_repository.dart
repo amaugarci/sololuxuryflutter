@@ -10,10 +10,8 @@ class LoginAPIRepository implements ILoginRepository {
   LoginAPIRepository({required this.provider});
 
   @override
-  Future<LoginResponseModel> getLoginAPIResponse(String loginRequestJson) async {
-    // TODO: implement getLoginAPIResponse
-
-    final loginResponseModel = await provider.getLoginResponseProvider(urlPath: AppConstants.login, loginRequestJson: loginRequestJson);
+  Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password) async {
+    final loginResponseModel = await provider.getLoginResponseProvider(urlPath: AppConstants.login, userName: userName, password: password, loginRequestJson: loginRequestJson);
 
     if(loginResponseModel.status.hasError) {
       return Future.error(loginResponseModel.statusText!);

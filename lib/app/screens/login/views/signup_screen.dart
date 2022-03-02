@@ -76,6 +76,7 @@ class SignupScreen extends GetView<SignupController> {
                     const SizedBox(height: 7.5),
                     DatepickerWidget(
                       enabled: true,
+                      controller: controller.dateOfBirthController.value,
                       labelText: LanguageConstant.dateOfBirthText.tr,
                       validator: (date) => (date == null &&
                           controller.dateOfBirthController.value.text == '')
@@ -224,6 +225,8 @@ class SignupScreen extends GetView<SignupController> {
   Widget emailTextField() {
     return EmailWidget(
       controller: controller.emailController.value,
+        validator: (value) =>
+            Validators.validateEmail(value!.trim(),)
       // keyboardType: TextInputType.emailAddress,
       // cursorColor: appColor,
       // decoration: decoration('Email address..'),
@@ -237,6 +240,8 @@ class SignupScreen extends GetView<SignupController> {
     return PasswordWidget(
       controller: controller.passwordController.value,
       hintText: LanguageConstant.passwordText.tr,
+        validator: (value) =>
+            Validators.validatePassword(value!.trim())
       // keyboardType: TextInputType.emailAddress,
       // cursorColor: appColor,
       // decoration: decoration('Password'),
@@ -250,6 +255,8 @@ class SignupScreen extends GetView<SignupController> {
     return PasswordWidget(
       controller: controller.confirmPasswordController.value,
       hintText: LanguageConstant.confirmPasswordText.tr,
+        validator: (value) =>
+            Validators.validateConfirmPassword(value!.trim(), controller.passwordController.value.text.trim())
       // keyboardType: TextInputType.emailAddress,
       // cursorColor: appColor,
       // decoration: decoration('Confirm Password'),

@@ -17,7 +17,7 @@ class LoginController extends GetxController {
   static final dataStorage = GetStorage();
 
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
-  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
+  Rx<String> loginResponseModel = "".obs;
 
   final LoginAPIRepository loginAPIRepository;
 
@@ -32,24 +32,9 @@ class LoginController extends GetxController {
 
       log("authUserData : $authUserData");
 
-      loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData))).obs;
-      log("test");
-      log("login response :  ${loginResponseModel.value.message!}");
+      loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim())).obs;
 
-      if(loginResponseModel.value.success!) {
-        log("test 1");
-        log("login response from : ${jsonEncode(loginResponseModel.value.data)}");
-      } else {
-        log("test 2");
-        log("login response error : ${jsonEncode(loginResponseModel.value.data)}");
-
-      }
-
-      dynamic authResponse =
-          await networkRepository.userLogin(context, authUserData);
-      printLog(authResponse);
-
-      // checkLoginData(authResponse, context);
+      log("loginResponseModel : $loginResponseModel");
     } else {}
   }
 }
