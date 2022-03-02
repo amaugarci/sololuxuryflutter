@@ -34,13 +34,13 @@ class Data {
 
   Data(
       {this.fullName,
-      this.userName,
-      this.email,
-      this.phoneNumber,
-      this.image,
-      this.isActive,
-      this.isBlock,
-      this.sId});
+        this.userName,
+        this.email,
+        this.phoneNumber,
+        this.image,
+        this.isActive,
+        this.isBlock,
+        this.sId});
 
   Data.fromJson(Map<String, dynamic> json) {
     fullName = json['fullName'];

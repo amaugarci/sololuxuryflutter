@@ -13,10 +13,10 @@ class UpdateImageModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "data": data == null ? null : data!.toJson(),
-      };
+    "status": status == null ? null : status,
+    "message": message == null ? null : message,
+    "data": data == null ? null : data!.toJson(),
+  };
 }
 
 class Data {
@@ -26,10 +26,10 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        image: json["image"] == null ? null : json["image"],
-      );
+    image: json["image"] == null ? null : json["image"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "image": image == null ? null : image,
-      };
+    "image": image == null ? null : image,
+  };
 }

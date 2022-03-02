@@ -5,12 +5,14 @@ import 'package:solo_luxury/app/components/common_widget/common_text_field.dart'
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
+import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_routes.dart';
@@ -111,6 +113,8 @@ class HomeScreen extends GetView<HomeController> {
 
 
 
+
+
   Widget detailsButton(String text, int value) {
     return GestureDetector(
       onTap: () {
@@ -199,182 +203,183 @@ class HomeScreen extends GetView<HomeController> {
 
 }
 
+
+
 getDrawer(controller){
 
   return SizedBox(
-    child: Drawer(
-        child: SizedBox(
-          width: Get.width - 40.0,
-          child: getDrawerView(controller),
-        ))
+      child: Drawer(
+          child: SizedBox(
+            width: Get.width - 40.0,
+            child: getDrawerView(controller),
+          ))
   );
-
 }
 
 Widget getDrawerView(controller) {
   if (controller.menuModel?.value?.childrenData == null) {
     return Container();
   }
-      return Container(
-        height: Get.height,
-        width: Get.width,
-        color: appColorAccent,
-        child: Stack(
-          children: [
-            Container(
-              height: 40.0,
-              margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      height: Get.height,
-                      color: appColorPrimary,
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Image.asset(AppAsset.menu, color: appColorAccent, height: 18.0, width: 18.0)),
-                          Row(
-                            children: const [
-                              SizedBox(
-                                width: 15.0,
-                              ),
-                              Text(
-                                "Menu",
-                                style: TextStyle(color: appColorAccent, fontSize: 16.0),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      height: Get.height,
-                      color: appColorPrimaryGrey,
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: const Text(
-                        "Account",
-                        style: TextStyle(color: appColorDarkGrey, fontSize: 16.0),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 65),
-              child: Stack(
-                children: [
-                  ListView(
-                    physics: const ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    primary: true,
-                    padding: EdgeInsets.zero,
+  return Container(
+    height: Get.height,
+    width: Get.width,
+    color: appColorAccent,
+    child: Stack(
+      children: [
+        Container(
+          height: 40.0,
+          margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  height: Get.height,
+                  color: appColorPrimary,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          const SizedBox(
-                            height: 10.0,
+                      GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Image.asset(AppAsset.menu, color: appColorAccent, height: 18.0, width: 18.0)),
+                      Row(
+                        children: const [
+                          SizedBox(
+                            width: 15.0,
                           ),
-                          ListView.builder(
-                            // Important: Remove any padding from the ListView.
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              itemCount: controller.menuModel?.value?.childrenData?.length,
-                              itemBuilder: (context, index) {
-                                ChildrenData itemLevel1 = controller.menuModel?.value?.childrenData?[index];
-                                return itemLevel1.isActive!
-                                    ? Column(
-                                    children: [
-                                      custom.ExpansionTile(
-                                        tileHeight: 40,
-                                        verticalVisualDensity: -1,
-                                        contentPadding: const EdgeInsets.only(left: 10,right: 20),
-                                        title: Text(itemLevel1.name!,style: const TextStyle(
-                                                      fontSize: 16.0,
-                                                      fontWeight: FontWeight.w400,
-                                                      color: appColorDarkGrey)),
-                                        isIcon: itemLevel1.childrenData!.isEmpty ? true : false,
-                                        children: [
-                                          ListView.builder(
-                                            padding: const EdgeInsets.only(left: 0,right: 0,top: 0,bottom: 10),
-                                            shrinkWrap: true,
-                                            physics: const NeverScrollableScrollPhysics(),
-                                            itemCount: itemLevel1.childrenData!.length,
-                                            itemBuilder: (context,index1){
-                                              ChildrenData itemLevel2 = itemLevel1.childrenData![index1];
-                                              return custom.ExpansionTile(
-                                                title: Text(itemLevel2.name!,  style: const TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: appColorDarkGrey,
-                                                )),
-                                                contentPadding: const EdgeInsets.only(left: 25,right: 20),
-                                                tileHeight: 35,
-                                                verticalVisualDensity: -1,
-                                                isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
-                                                children: [
-                                                  ListView.builder(
-                                                      shrinkWrap: true,
-                                                      physics: const NeverScrollableScrollPhysics(),
-                                                      padding: EdgeInsets.zero,
-                                                      itemCount:  itemLevel2.childrenData!.length,
-                                                      itemBuilder: (context,index2){
-                                                        ChildrenData itemLevel3 = itemLevel2.childrenData![index2];
-                                                        return Container(
-                                                          margin: const EdgeInsets.only(
-                                                              left: 40.0,
-                                                              top: 3.0,
-                                                              bottom: 3.0),
-                                                          child: Text(
-                                                            itemLevel3.name!,
-                                                            overflow:TextOverflow.ellipsis,
-                                                            style: const TextStyle(
-                                                                fontSize: 12.0,
-                                                                fontWeight:
-                                                                FontWeight.w400,
-                                                                color:
-                                                                appColorDarkGrey),
-                                                          ),
-                                                        );
-                                                      }
-                                                  )
-                                                ],
-                                              );
-                                            },
-                                          )
-                                        ],
-                                      ),
-
-                                      const Divider(
-                                        height: 2.0,
-                                        color: appColorDarkGrey,
-                                      )
-                                    ],
-                                )
-                                    : Container();
-                              }),
+                          Text(
+                            "Menu",
+                            style: TextStyle(color: appColorAccent, fontSize: 16.0),
+                          ),
                         ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  height: Get.height,
+                  color: appColorPrimaryGrey,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(left: 30.0),
+                  child: const Text(
+                    "Account",
+                    style: TextStyle(color: appColorDarkGrey, fontSize: 16.0),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 65),
+          child: Stack(
+            children: [
+              ListView(
+                physics: const ClampingScrollPhysics(),
+                shrinkWrap: true,
+                primary: true,
+                padding: EdgeInsets.zero,
+                children: [
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10.0,
                       ),
+                      ListView.builder(
+                        // Important: Remove any padding from the ListView.
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          itemCount: controller.menuModel?.value?.childrenData?.length,
+                          itemBuilder: (context, index) {
+                            ChildrenData itemLevel1 = controller.menuModel?.value?.childrenData?[index];
+                            return itemLevel1.isActive!
+                                ? Column(
+                              children: [
+                                custom.ExpansionTile(
+                                  tileHeight: 40,
+                                  verticalVisualDensity: -1,
+                                  contentPadding: const EdgeInsets.only(left: 10,right: 20),
+                                  title: Text(itemLevel1.name!,style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: appColorDarkGrey)),
+                                  isIcon: itemLevel1.childrenData!.isEmpty ? true : false,
+                                  children: [
+                                    ListView.builder(
+                                      padding: const EdgeInsets.only(left: 0,right: 0,top: 0,bottom: 10),
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: itemLevel1.childrenData!.length,
+                                      itemBuilder: (context,index1){
+                                        ChildrenData itemLevel2 = itemLevel1.childrenData![index1];
+                                        return custom.ExpansionTile(
+                                          title: Text(itemLevel2.name!,  style: const TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w400,
+                                            color: appColorDarkGrey,
+                                          )),
+                                          contentPadding: const EdgeInsets.only(left: 25,right: 20),
+                                          tileHeight: 35,
+                                          verticalVisualDensity: -1,
+                                          isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
+                                          children: [
+                                            ListView.builder(
+                                                shrinkWrap: true,
+                                                physics: const NeverScrollableScrollPhysics(),
+                                                padding: EdgeInsets.zero,
+                                                itemCount:  itemLevel2.childrenData!.length,
+                                                itemBuilder: (context,index2){
+                                                  ChildrenData itemLevel3 = itemLevel2.childrenData![index2];
+                                                  return Container(
+                                                    margin: const EdgeInsets.only(
+                                                        left: 40.0,
+                                                        top: 3.0,
+                                                        bottom: 3.0),
+                                                    child: Text(
+                                                      itemLevel3.name!,
+                                                      overflow:TextOverflow.ellipsis,
+                                                      style: const TextStyle(
+                                                          fontSize: 12.0,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          color:
+                                                          appColorDarkGrey),
+                                                    ),
+                                                  );
+                                                }
+                                            )
+                                          ],
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ),
+
+                                const Divider(
+                                  height: 2.0,
+                                  color: appColorDarkGrey,
+                                )
+                              ],
+                            )
+                                : Container();
+                          }),
                     ],
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }
 
 appBarWidget(controller) {

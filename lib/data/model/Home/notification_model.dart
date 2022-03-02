@@ -17,10 +17,10 @@ class NotificationModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "data": data == null ? null : data!.toJson(),
-      };
+    "status": status == null ? null : status,
+    "message": message == null ? null : message,
+    "data": data == null ? null : data!.toJson(),
+  };
 }
 
 class Data {
@@ -33,19 +33,19 @@ class Data {
   State? state;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        notificationList: json["notificationData"] == null
-            ? null
-            : List<NotificationDatum>.from(json["notificationData"]
-                .map((x) => NotificationDatum.fromJson(x))),
-        state: json["state"] == null ? null : State.fromJson(json["state"]),
-      );
+    notificationList: json["notificationData"] == null
+        ? null
+        : List<NotificationDatum>.from(json["notificationData"]
+        .map((x) => NotificationDatum.fromJson(x))),
+    state: json["state"] == null ? null : State.fromJson(json["state"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "notificationData": notificationList == null
-            ? null
-            : List<dynamic>.from(notificationList!.map((x) => x.toJson())),
-        "state": state == null ? null : state!.toJson(),
-      };
+    "notificationData": notificationList == null
+        ? null
+        : List<dynamic>.from(notificationList!.map((x) => x.toJson())),
+    "state": state == null ? null : state!.toJson(),
+  };
 }
 
 class NotificationDatum {
@@ -69,20 +69,20 @@ class NotificationDatum {
         title: json["title"] == null ? null : json["title"],
         description: json["description"] == null ? null : json["description"],
         notificationType:
-            json["notificationType"] == null ? null : json["notificationType"],
+        json["notificationType"] == null ? null : json["notificationType"],
         notificationData: json["notificationData"] == null
             ? null
             : NotificationData.fromJson(json["notificationData"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "_id": id == null ? null : id,
-        "title": title == null ? null : title,
-        "description": description,
-        "notificationType": notificationType == null ? null : notificationType,
-        "notificationData":
-            notificationData == null ? null : notificationData!.toJson(),
-      };
+    "_id": id == null ? null : id,
+    "title": title == null ? null : title,
+    "description": description,
+    "notificationType": notificationType == null ? null : notificationType,
+    "notificationData":
+    notificationData == null ? null : notificationData!.toJson(),
+  };
 }
 
 class NotificationData {
@@ -107,11 +107,11 @@ class NotificationData {
       );
 
   Map<String, dynamic> toJson() => {
-        "type": type == null ? null : type,
-        "reviewId": reviewId == null ? null : reviewId,
-        "storeId": storeId == null ? null : storeId,
-        "click_action": clickAction == null ? null : clickAction,
-      };
+    "type": type == null ? null : type,
+    "reviewId": reviewId == null ? null : reviewId,
+    "storeId": storeId == null ? null : storeId,
+    "click_action": clickAction == null ? null : clickAction,
+  };
 }
 
 class State {
@@ -126,14 +126,14 @@ class State {
   int? pageLimit;
 
   factory State.fromJson(Map<String, dynamic> json) => State(
-        page: json["page"] == null ? null : json["page"],
-        limit: json["limit"] == null ? null : json["limit"],
-        pageLimit: json["page_limit"] == null ? null : json["page_limit"],
-      );
+    page: json["page"] == null ? null : json["page"],
+    limit: json["limit"] == null ? null : json["limit"],
+    pageLimit: json["page_limit"] == null ? null : json["page_limit"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "page": page == null ? null : page,
-        "limit": limit == null ? null : limit,
-        "page_limit": pageLimit == null ? null : pageLimit,
-      };
+    "page": page == null ? null : page,
+    "limit": limit == null ? null : limit,
+    "page_limit": pageLimit == null ? null : pageLimit,
+  };
 }

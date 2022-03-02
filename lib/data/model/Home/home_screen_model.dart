@@ -137,7 +137,7 @@ class NearStore {
     category = json["category"] == null
         ? null
         : List<Category>.from(
-            json["category"].map((x) => Category.fromJson(x)));
+        json["category"].map((x) => Category.fromJson(x)));
     isCollect = json['isCollect'];
   }
 
@@ -168,7 +168,7 @@ class PopularStore {
     category = json["category"] == null
         ? null
         : List<Category>.from(
-            json["category"].map((x) => Category.fromJson(x)));
+        json["category"].map((x) => Category.fromJson(x)));
     isCollect = json['isCollect'];
   }
 

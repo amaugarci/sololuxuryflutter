@@ -28,17 +28,16 @@ class NetworkRepository {
   FocusNode searchFocus = new FocusNode();
 
   // StreamController gameDetailStream = new StreamController
-  //     .broadcast(); // for stream builder - to add data in stramCiontroller
-//Login
+  //     .broadcast(); // for stream builder - to add data in streamCiontroller
+
   userLogin(context, authUserData) async {
     try {
       final authUserResponse = await NetworkDioHttp.postDioHttpMethod(
         context: context,
-        url: '${AppConstants.apiEndPoint}${AppConstants.signup}',
+        url: '${AppConstants.apiEndPoint}${AppConstants.login}',
         data: authUserData,
       );
-      return checkResponse(
-          authUserResponse, LoginModel.fromJson(authUserResponse['body']));
+      return checkResponse(authUserResponse, authUserResponse['body']);
     } catch (e) {
       CommonMethod().getXSnackBar("Error", e.toString(), red);
     }
@@ -65,7 +64,7 @@ class NetworkRepository {
 
     if (context != null) Circle().hide(context);
     if (response.statusCode == 200) {
-      return UpdateImageModel.fromJson(parsedJson);
+      // return UpdateImageModel.fromJson(parsedJson);
     } else {
       return '';
     }

@@ -17,10 +17,10 @@ class GetCommentModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "data": data == null
-            ? null
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-      };
+    "status": status == null ? null : status,
+    "message": message == null ? null : message,
+    "data": data == null
+        ? null
+        : List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
 }

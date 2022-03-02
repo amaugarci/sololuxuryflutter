@@ -39,13 +39,13 @@ class LoginData {
 
   LoginData(
       {this.phoneNumber,
-      this.userType,
-      this.sId,
-      this.email,
-      this.image,
-      this.token,
-      this.isEmailVerified,
-      this.refreshToken});
+        this.userType,
+        this.sId,
+        this.email,
+        this.image,
+        this.token,
+        this.isEmailVerified,
+        this.refreshToken});
 
   LoginData.fromJson(Map<String, dynamic> json) {
     phoneNumber = json['phoneNumber'];

@@ -4,8 +4,13 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
+import '../../../data/model/Product/product_model.dart';
+
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
+  ProductModel product;
+
+  ProductDetailScreen({required this.product});
+
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -52,15 +57,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
               const SizedBox(height: 15),
               Text(
-                "Item Name",
+                "${widget.product.name}",
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),
               const SizedBox(height: 5),
-              const Text(
-                'Loafers In Leather',
+              Text(
+                "${widget.product.name}",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 13,
@@ -96,16 +101,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-              const Text(
-                "2000",
+              Text(
+                '\$ '+"${widget.product.price}",
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                     fontSize: 16),
               ),
               const SizedBox(height: 5),
-              const Text(
-                'SKU:',
+              Text(
+                'SKU : '+"${widget.product.sku}",
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,

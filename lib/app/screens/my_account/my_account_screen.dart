@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
-class MyAccountPage extends StatefulWidget {
+import '../../utils/app_asset.dart';
+import '../home/widget/header_widget.dart';
+import 'my_account_controller.dart';
+
+class MyAccountPage extends GetView<MyAccountController> {
   const MyAccountPage({Key? key}) : super(key: key);
 
   @override
-  _MyAccountPageState createState() => _MyAccountPageState();
-}
-
-class _MyAccountPageState extends State<MyAccountPage> {
-  String? _chosenValue;
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
+      key: controller.scaffoldKey.value,
       endDrawer: Icon(Icons.ac_unit),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: backGroundColor,
-        title: Image.asset("assets/images/logo 2.png"),
+        title: Image.asset(AppAsset.logo, width: 110),
+        bottom: PreferredSize(
+          preferredSize: Size(Get.width, 60),
+          child: const HeaderWidget(),
+        ),
         centerTitle: true,
         iconTheme: IconThemeData(color: appColor),
       ),
@@ -27,120 +31,14 @@ class _MyAccountPageState extends State<MyAccountPage> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 110,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "UNITED KINGDOM",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "GBF",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 70,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            dropdownColor: offWhite,
-                            value: _chosenValue,
-                            // elevation: 0,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                            items: <String>[]
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            hint: Text(
-                              "ENGLISH",
-                              style: TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.w600),
-                            ),
-                            onChanged: (String? value) {
-                              setState(() {
-                                _chosenValue = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Icon(Icons.search),
-                      Image.asset("assets/images/heart.png"),
-                      Icon(Icons.shopping_bag_rounded),
-                      Text("0", style: TextStyle(fontSize: 11))
-                    ],
-                  )),
-              SizedBox(height: 30),
-              Container(
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: appColor),
-                    borderRadius: BorderRadius.circular(5)),
+                    border: Border.all(width: 1, color: appColor),),
                 margin: EdgeInsets.all(10),
                 padding: EdgeInsets.all(5),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     isExpanded: true, dropdownColor: offWhite,
-                    value: _chosenValue,
+                    value: controller.chosenValue.value,
                     // elevation: 0,
                     style: TextStyle(
                         color: appColor,
@@ -156,20 +54,21 @@ class _MyAccountPageState extends State<MyAccountPage> {
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(value),
+                        ),
                       );
                     }).toList(),
                     hint: Text(
-                      "My Account",
+                      'My Account',
                       style: TextStyle(
                           color: appColor,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     onChanged: (String? value) {
-                      setState(() {
-                        _chosenValue = value;
-                      });
+                      controller.chosenValue.value = value!;
                     },
                   ),
                 ),
@@ -194,7 +93,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                             color: appColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
-                    Divider(),
+                    Divider(color: appColor,),
                     SizedBox(height: 10),
                     Text("Yogesh Kumar Sharma",
                         style: TextStyle(color: silver, fontSize: 12)),
@@ -202,9 +101,9 @@ class _MyAccountPageState extends State<MyAccountPage> {
                         style: TextStyle(color: silver, fontSize: 12)),
                     SizedBox(height: 50),
                     Container(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(12),
                         width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: offWhite),
+                        decoration: BoxDecoration(color: secondaryColor),
                         child: Text("EDIT | CHANGE PASSWORD",
                             style: TextStyle(
                                 color: appColor,
@@ -227,15 +126,15 @@ class _MyAccountPageState extends State<MyAccountPage> {
                             color: appColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
-                    Divider(),
+                    Divider(color: appColor,),
                     SizedBox(height: 10),
                     Text("You Aren;t Subscribed To\nOur Newsletter.",
                         style: TextStyle(color: silver, fontSize: 12)),
                     SizedBox(height: 50),
                     Container(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(12),
                         width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: offWhite),
+                        decoration: BoxDecoration(color: secondaryColor),
                         child: Text("EDIT",
                             style: TextStyle(
                                 color: appColor,
@@ -248,6 +147,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.centerLeft,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Address Book ",
                         style: TextStyle(color: appColor, fontSize: 18)),
@@ -272,16 +172,16 @@ class _MyAccountPageState extends State<MyAccountPage> {
                             color: appColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
-                    Divider(),
+                    Divider(color: appColor,),
                     SizedBox(height: 10),
                     Text(
                         "12345\n\nJaipur, Delhi, 302019\n\nIndia\n\nT: 01234567890",
                         style: TextStyle(color: silver, fontSize: 12)),
                     SizedBox(height: 50),
                     Container(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(12),
                         width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: offWhite),
+                        decoration: BoxDecoration(color: secondaryColor),
                         child: Text("EDIT ADDRESS",
                             style: TextStyle(
                                 color: appColor,
@@ -304,16 +204,16 @@ class _MyAccountPageState extends State<MyAccountPage> {
                             color: appColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
-                    Divider(),
+                    Divider(color: appColor,),
                     SizedBox(height: 10),
                     Text(
                         "12345\n\nJaipur, Delhi, 302019\n\nIndia\n\nT: 01234567890",
                         style: TextStyle(color: silver, fontSize: 12)),
                     SizedBox(height: 50),
                     Container(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(12),
                         width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: offWhite),
+                        decoration: BoxDecoration(color: secondaryColor),
                         child: Text("EDIT ADDRESS",
                             style: TextStyle(
                                 color: appColor,
@@ -326,6 +226,6 @@ class _MyAccountPageState extends State<MyAccountPage> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

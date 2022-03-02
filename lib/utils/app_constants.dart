@@ -2,6 +2,7 @@ enum Environment { DEV, STAGING, PROD }
 
 class AppConstants {
   // Network Constants
+
   // static String apiEndPoint = "http://192.168.29.135";
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
@@ -16,5 +17,5 @@ class AppConstants {
   //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
 
   //Sign Up
-  static String signup = '/user';
+  static String login = 'integration/customer/token';
 }

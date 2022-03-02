@@ -33,12 +33,12 @@ class SignupData {
 
   SignupData(
       {this.userType,
-      this.sId,
-      this.email,
-      this.image,
-      this.token,
-      this.isEmailVerified,
-      this.refreshToken});
+        this.sId,
+        this.email,
+        this.image,
+        this.token,
+        this.isEmailVerified,
+        this.refreshToken});
 
   SignupData.fromJson(Map<String, dynamic> json) {
     userType = json['userType'];

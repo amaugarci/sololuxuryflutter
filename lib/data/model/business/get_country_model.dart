@@ -16,16 +16,16 @@ class GetCountryModel {
         data: json["data"] == null
             ? null
             : List<CountryData>.from(
-                json["data"].map((x) => CountryData.fromJson(x))),
+            json["data"].map((x) => CountryData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "data": data == null
-            ? null
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-      };
+    "status": status == null ? null : status,
+    "message": message == null ? null : message,
+    "data": data == null
+        ? null
+        : List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
 }
 
 class CountryData {
@@ -38,12 +38,12 @@ class CountryData {
   String? country;
 
   factory CountryData.fromJson(Map<String, dynamic> json) => CountryData(
-        id: json["_id"] == null ? null : json["_id"],
-        country: json["country"] == null ? null : json["country"],
-      );
+    id: json["_id"] == null ? null : json["_id"],
+    country: json["country"] == null ? null : json["country"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "_id": id == null ? null : id,
-        "country": country == null ? null : country,
-      };
+    "_id": id == null ? null : id,
+    "country": country == null ? null : country,
+  };
 }

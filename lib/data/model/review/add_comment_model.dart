@@ -15,8 +15,8 @@ class AddCommentModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "data": data == null ? null : data!.toJson(),
-      };
+    "status": status == null ? null : status,
+    "message": message == null ? null : message,
+    "data": data == null ? null : data!.toJson(),
+  };
 }
