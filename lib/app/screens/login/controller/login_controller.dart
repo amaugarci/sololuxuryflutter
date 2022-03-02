@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:solo_luxury/data/model/login_response_model.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/login_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
