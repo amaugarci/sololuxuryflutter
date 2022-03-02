@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
 class SplashController extends GetxController {

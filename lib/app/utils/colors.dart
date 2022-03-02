@@ -43,6 +43,11 @@ Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);
 Color grey = Color(0xff999999);
 
+Color backgroundticket=Color(0xffFBECE5);
+Color secondarybackgroundcolor=Color(0xFFF6E6DF);
+Color ticketTextColor=Color(0xFF6F3015);
+Color buttoncolor=Color(0xFF8A3A06);
+
 const MaterialColor primaryBlack = MaterialColor(
   _blackPrimaryValue,
   <int, Color>{
