@@ -13,7 +13,7 @@ class SplashController extends GetxController {
 
   _navigate() async {
     await Future.delayed(const Duration(seconds: 2), () async {
-      Get.offAllNamed(RoutesConstants.addAdressScreen);
+      Get.offAllNamed(RoutesConstants.veralussoaddAdressScreen);
     });
   }
 }

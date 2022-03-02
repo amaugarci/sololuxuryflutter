@@ -10,5 +10,6 @@ class RoutesConstants {
   static const String productsScreen = "/productsScreen";
 
   static const String addAdressScreen = "/addAddressAScreen";
+  static const String veralussoaddAdressScreen = "/veralussoaddAddressAScreen";
   static const String wishlistScreen = "/wishlistScreen";
 }

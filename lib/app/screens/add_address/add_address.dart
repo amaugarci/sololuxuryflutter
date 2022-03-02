@@ -466,13 +466,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                     ],
                   ),
                 ),
-
                 SizedBox(height: 50),
-                // SizedBox(
-                //   height: MediaQuery.of(context).size.width,
-                //   width: MediaQuery.of(context).size.width,
-                //   child: Image.asset(AppAsset.banner, fit: BoxFit.fitHeight),
-                // ),
                 ExpandableNotifier(
                     child: Column(
                   children: <Widget>[
