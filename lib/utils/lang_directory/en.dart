@@ -20,7 +20,6 @@ const Map<String, String> en = {
   "paymentMethod": " Payment Method",
   "shippingAddress": "Shipping Address",
   "billingAddress": "Billing Address",
-  "continueShopping": "Continue Shopping"
   "continueShopping": "Continue Shopping",
   "freuentlyAskedQueText": "Frequently Asked Questions",
   "shopAndPlaceOrder": "How to shop & place an order?",

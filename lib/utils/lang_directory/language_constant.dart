@@ -25,10 +25,12 @@ class LanguageConstant {
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
 
+
   static const String freuentlyAskedQueText = "freuentlyAskedQueText";
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 
-  static const String yourEmailText = "Your Email";
+
+
 }

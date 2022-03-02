@@ -48,7 +48,7 @@ class NetworkDioHttp {
   static Future<Map<String, String>> getTestHeaders1() async {
     return {
       'Content-type': 'application/json',
-      'Authorization': 'Bearer 5wal7g5xmecwevhwtqdtctskd1z3grh4',
+      'Authorization': 'Bearer j4lsyku1ruayxi9410x62ghyv6hfod7w',
     };
   }
 

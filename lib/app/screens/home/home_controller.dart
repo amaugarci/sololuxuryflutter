@@ -26,6 +26,7 @@ class HomeController extends GetxController {
   }
 
   getMenuDataFromApi() async {
+    print("getMenuDataFromApi -> ");
     menuModel!.value = await NetworkRepository().getMenu();
   }
 }

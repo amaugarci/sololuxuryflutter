@@ -66,8 +66,11 @@ class HeaderWidget extends StatelessWidget {
               onTap: () {
                 Get.to(() => CartScreen());
               },
+
+
               child: SvgPicture.asset(AppAsset.cart, color: Colors.black, height: 12.5)),
-              child: SvgPicture.asset(AppAsset.cart, color: Colors.black, height: 12.5)),
+
+
           const SizedBox(width: 2),
           const Text('0'),
         ],
