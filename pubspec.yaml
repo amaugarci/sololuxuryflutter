@@ -39,14 +39,14 @@ dependencies:
   get_storage: ^2.0.3
   lottie: ^1.2.1
   sms_autofill: ^2.2.0
-  flutter_svg: ^1.0.3
+  flutter_svg: 
   flutter_screenutil: ^5.2.0
   carousel_slider: ^4.0.0
   connectivity_plus: ^2.2.0
   dio_http_cache: ^0.3.0
   awesome_dialog: ^2.1.2
   datetime_picker_formfield: ^2.0.0
-
+  flutter_html: ^2.2.1
 
 dev_dependencies:
   flutter_test:
