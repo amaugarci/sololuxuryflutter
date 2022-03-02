@@ -5,12 +5,14 @@ import 'package:solo_luxury/app/components/common_widget/common_text_field.dart'
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
+import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_routes.dart';

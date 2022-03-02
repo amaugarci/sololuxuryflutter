@@ -18,11 +18,15 @@ class LanguageConstant {
   static const String quantity = "quantity";
   static const String status = "status";
   static const String action = "action";
-
   static const String yourEmailText = "yourEmailText";
 
   static const String paymentMethod = "paymentMethod";
   static const String shippingAddress = "shippingAddress";
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
+
+  static const String freuentlyAskedQueText = "freuentlyAskedQueText";
+  static const String shopAndPlaceOrder = "shopAndPlaceOrder";
+  static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
+  static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 }
