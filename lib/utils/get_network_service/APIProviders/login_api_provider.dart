@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:solo_luxury/data/model/login_response_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 abstract class ILoginProvider {
