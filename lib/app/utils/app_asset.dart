@@ -29,4 +29,5 @@ class AppAsset {
   static const close = "assets/icons/close.png";
   static const minus = "assets/icons/minus.png";
   static const plus = "assets/icons/plus.png";
+  static const bag = "assets/icons/bag.png";
 }
