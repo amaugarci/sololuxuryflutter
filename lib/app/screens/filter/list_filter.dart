@@ -207,7 +207,14 @@ class ListFilterPage extends GetView<FilterController> {
                     ),
                   ],
                 )),
-            SizedBox(height: 100)
+            SizedBox(height: 50),
+            Container(
+              height: 40,
+                decoration: BoxDecoration(
+                    color: appColor,
+                    border: Border.all(width: 1, color: brownColor)),
+                width: Get.width * .42,
+                child: Center(child: Text('Apply', style: TextStyle(color: Colors.white, fontSize: 18),))),
           ]),
         ))));
   }
