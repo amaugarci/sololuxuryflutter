@@ -31,7 +31,6 @@ class LanguageConstant {
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 
-  static const String yourEmailText = "Your Email";
 
   static const String registeredCustomersText = "registeredCustomersText";
   static const String registeredCustomersDescriptionText = "registeredCustomersDescriptionText";
