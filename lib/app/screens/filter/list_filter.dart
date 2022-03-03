@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+
+import '../../utils/app_asset.dart';
 
 class ListFilterPage extends StatefulWidget {
   const ListFilterPage({Key? key}) : super(key: key);
@@ -18,29 +21,101 @@ class _ListFilterPageState extends State<ListFilterPage> {
           child: Column(children: [
             SizedBox(height: 40),
             Container(
-                child: Row(children: [
-              SizedBox(width: MediaQuery.of(context).size.width * 0.3),
-              Image.asset("assets/images/logo 2.png"),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.2),
-              Icon(Icons.close, color: appColor)
-            ])),
+                child: Image.asset(
+              AppAsset.logo,
+              height: 40,
+              width: 100,
+            )),
             SizedBox(height: 40),
             Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: brownColor)),
+                // decoration: BoxDecoration(
+                //     border: Border.all(width: 1, color: brownColor)),
                 margin: EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10),
+                      //padding: EdgeInsets.all(10),
+                      height: 500,
                       decoration: BoxDecoration(color: lightBrownColor),
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Price",
-                        style: TextStyle(color: brownColor, fontSize: 16),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Center(
+                                  child: Text(
+                                    "Filters",
+                                    style: TextStyle(color: brownColor, fontSize: 20, fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                              Icon(Icons.close, size: 25.0, color: appColor,)
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: brownColor)),
+                              padding: EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: brownColor)),
+                                      width: Get.width * .42,
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              decoration: BoxDecoration(color: offWhite),
+                                              width: Get.width,
+                                              height: 40,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text('Price', style: TextStyle(fontSize: 18, color: appColor)),
+                                              )),
+                                          Container(
+                                              width: Get.width,
+                                              height: 40,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text('Color', style: TextStyle(fontSize: 18, color: appColor),),
+                                              )),
+                                          Container(
+                                              width: Get.width,
+                                              height: 40,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text('Brand', style: TextStyle(fontSize: 18, color: appColor)),
+                                              )),
+                                          Container(
+                                              width: Get.width,
+                                              height: 40,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text('Size', style: TextStyle(fontSize: 18, color: appColor)),
+                                              )),
+                                        ],
+                                      )),
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: brownColor)),
+                                      width: Get.width * .42,
+                                      child: Container()),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    // Slider(value: 100, onChanged: null)
                   ],
                 )),
             Container(
