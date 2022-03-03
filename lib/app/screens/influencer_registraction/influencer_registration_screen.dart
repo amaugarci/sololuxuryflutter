@@ -402,7 +402,7 @@ class InfluencerRegistrationScreen
                   color: appColorButton,
                   borderRadius: 0.0,
                   child: CommonTextPoppins(
-                    "Sign In",
+                    "Let's Go",
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                   ),
