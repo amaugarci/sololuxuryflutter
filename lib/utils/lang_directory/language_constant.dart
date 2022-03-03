@@ -18,7 +18,6 @@ class LanguageConstant {
   static const String quantity = "quantity";
   static const String status = "status";
   static const String action = "action";
-  static const String yourEmailText = "yourEmailText";
 
   static const String paymentMethod = "paymentMethod";
   static const String shippingAddress = "shippingAddress";
