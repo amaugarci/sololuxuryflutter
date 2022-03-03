@@ -6,6 +6,8 @@ import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
+import '../app/screens/influencer_registraction/influencer_binding.dart';
+import '../app/screens/influencer_registraction/influencer_registration_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
 import '../app/screens/search/search_screen.dart';
@@ -35,15 +37,20 @@ class AppPages {
       page: () => const SearchScreen(),
       binding: ProductListBinding(),
     ),
-  GetPage(
+    GetPage(
       name: RoutesConstants.wishlistScreen,
       page: () => MyWishListPage(),
       binding: WishlistBindings(),
-  ),
+    ),
     GetPage(
       name: RoutesConstants.checkoutOrderScreen,
       page: () => const CheckoutOrderScreen(),
       binding: CheckoutOrderBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.influencerRegistrationScreen,
+      page: () =>  InfluencerRegistrationScreen(),
+      binding: InfluencerRegistrationBindings(),
     ),
   ];
 }

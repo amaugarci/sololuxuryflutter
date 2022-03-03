@@ -20,7 +20,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           backgroundColor: backGroundColor,
-          body: SingleChildScrollView(padding: EdgeInsets.only(top: 70.0),child: Form(key: controller.formKey, child: checkOutWidget())),
+          body: SingleChildScrollView(
+              padding: EdgeInsets.only(top: 70.0),
+              child: Form(key: controller.formKey, child: checkOutWidget())),
         ));
   }
 
@@ -32,7 +34,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CommonTextPoppins("Checkout",
-              color: Colors.black87, fontSize: 16.0, fontWeight: FontWeight.w500, decoration: TextDecoration.underline),
+              color: Colors.black87,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w500,
+              decoration: TextDecoration.underline),
           const SizedBox(
             height: 10.0,
           ),
@@ -88,9 +93,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm() {
     return Column(
       children: [
-        CheckOutBox(title: "Shipping Address", formFieldWidget: shippingAddress()),
+        CheckOutBox(
+            title: "Shipping Address", formFieldWidget: shippingAddress()),
         const SizedBox(height: 15.0),
-        CheckOutBox(title: "Shipping Method", formFieldWidget: shippingMethod()),
+        CheckOutBox(
+            title: "Shipping Method", formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
           title: "Payment Method",
@@ -275,7 +282,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             itemCount: controller.estimatesList?.length,
             itemBuilder: (context, index) {
               controller.estimateShipModel!.value =
-                  EstimateShippingMethodModel.fromJson(controller.estimatesList?[index]);
+                  EstimateShippingMethodModel.fromJson(
+                      controller.estimatesList?[index]);
               return Obx(() => InkWell(
                     onTap: () {
                       controller.selectedShippingIndex.value = index;
@@ -294,10 +302,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 height: 12,
                                 width: 12,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedShippingIndex.value == index
+                                    color: controller
+                                                .selectedShippingIndex.value ==
+                                            index
                                         ? Colors.black
                                         : Colors.transparent,
-                                    border: Border.all(color: Colors.black, width: 0.8),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -308,7 +319,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           Expanded(
                             flex: 2,
                             child: CommonTextPoppins(
-                              controller.estimateShipModel!.value.baseAmount.toString(),
+                              controller.estimateShipModel!.value.baseAmount
+                                  .toString(),
                               fontSize: 10.0,
                               textAlign: TextAlign.left,
                               fontWeight: FontWeight.w500,
@@ -354,7 +366,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.shipInfoModel!.value.paymentMethods!.length,
             itemBuilder: (context, index) {
-              PaymentMethods paymentMethods = controller.shipInfoModel!.value.paymentMethods![index];
+              PaymentMethods paymentMethods =
+                  controller.shipInfoModel!.value.paymentMethods![index];
               return InkWell(
                 onTap: () {
                   controller.selectedPaymentIndex.value = index;
@@ -367,10 +380,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                               height: 12,
                               width: 12,
                               decoration: BoxDecoration(
-                                  color: controller.selectedPaymentIndex.value == index
-                                      ? Colors.black
-                                      : Colors.transparent,
-                                  border: Border.all(color: Colors.black, width: 0.8),
+                                  color:
+                                      controller.selectedPaymentIndex.value ==
+                                              index
+                                          ? Colors.black
+                                          : Colors.transparent,
+                                  border: Border.all(
+                                      color: Colors.black, width: 0.8),
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(
@@ -389,7 +405,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            index == controller.shipInfoModel!.value.paymentMethods!.length - 1
+                            index ==
+                                    controller.shipInfoModel!.value
+                                            .paymentMethods!.length -
+                                        1
                                 ? Container()
                                 : Column(
                                     children: [
@@ -460,9 +479,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           padding: EdgeInsets.zero,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: controller.shipInfoModel!.value.totals!.items!.length,
+                          itemCount: controller
+                              .shipInfoModel!.value.totals!.items!.length,
                           itemBuilder: (context, index) {
-                            Items shipItem = controller.shipInfoModel!.value.totals!.items![index];
+                            Items shipItem = controller
+                                .shipInfoModel!.value.totals!.items![index];
                             return Column(
                               children: [
                                 const SizedBox(
@@ -471,7 +492,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset(AppAsset.frame, height: 85.0, width: 85.0),
+                                    Image.asset(AppAsset.frame,
+                                        height: 85.0, width: 85.0),
                                     const SizedBox(
                                       width: 10.0,
                                     ),
@@ -480,8 +502,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                         height: 85.0,
                                         width: Get.width,
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             CommonTextPoppins(
                                               shipItem.name,
@@ -492,7 +516,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 CommonTextPoppins(
                                                   "Qty: ${shipItem.qty}",
@@ -611,9 +637,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: controller.shipInfoModel!.value.totals!.totalSegments!.length,
+            itemCount:
+                controller.shipInfoModel!.value.totals!.totalSegments!.length,
             itemBuilder: (context, index) {
-              TotalSegments totalSegmentsItem = controller.shipInfoModel!.value.totals!.totalSegments![index];
+              TotalSegments totalSegmentsItem =
+                  controller.shipInfoModel!.value.totals!.totalSegments![index];
               return Column(
                 children: [
                   Row(
@@ -681,7 +709,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                print("valid -> ${controller.formKey.currentState!.validate()}");
+                print(
+                    "valid -> ${controller.formKey.currentState!.validate()}");
                 if (controller.formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.

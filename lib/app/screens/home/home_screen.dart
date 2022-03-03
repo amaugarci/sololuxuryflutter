@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
+import 'package:solo_luxury/app/screens/influencer_registraction/influencer_registration_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -37,7 +38,8 @@ class HomeScreen extends GetView<HomeController> {
               children: [
                 Container(
                   // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: EdgeInsets.zero,
                     child: Column(
@@ -49,9 +51,12 @@ class HomeScreen extends GetView<HomeController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
+                            detailsButton(
+                                LanguageConstant.aboutUsText.tr.toUpperCase(),
+                                1),
                             Visibility(
-                              visible: controller.index.value == 1 ? true : false,
+                              visible:
+                                  controller.index.value == 1 ? true : false,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -59,7 +64,7 @@ class HomeScreen extends GetView<HomeController> {
                                     onPressed: () {
                                       Get.to(() => const AboutUsScreen());
                                     },
-                                    child:  CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.aboutUsText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
@@ -69,14 +74,17 @@ class HomeScreen extends GetView<HomeController> {
                                     onPressed: () {
                                       Get.to(() => const ReferFriendScreen());
                                     },
-                                    child:CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.referFriendText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.toNamed(RoutesConstants
+                                          .influencerRegistrationScreen);
+                                    },
                                     child: CommonTextOpenSans(
                                       LanguageConstant.returnsRefundsText.tr,
                                       color: Colors.black87,
@@ -85,7 +93,7 @@ class HomeScreen extends GetView<HomeController> {
                                   ),
                                   TextButton(
                                     onPressed: () {},
-                                    child:CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
@@ -94,9 +102,15 @@ class HomeScreen extends GetView<HomeController> {
                                 ],
                               ),
                             ),
-                            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-                            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-                            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
+                            detailsButton(
+                                LanguageConstant.contactText.tr.toUpperCase(),
+                                2),
+                            detailsButton(
+                                LanguageConstant.socialText.tr.toUpperCase(),
+                                3),
+                            detailsButton(
+                                LanguageConstant.companyText.tr.toUpperCase(),
+                                4),
                             const SizedBox(height: 20),
                             emailSubscribe(),
                             const SizedBox(height: 40),
@@ -116,7 +130,10 @@ class HomeScreen extends GetView<HomeController> {
   appBarWidget() {
     return Container(
       width: Get.width,
-      margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 10.0, left: 10.0, right: 15.0),
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(Get.context!).viewPadding.top + 10.0,
+          left: 10.0,
+          right: 15.0),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -239,7 +256,7 @@ class HomeScreen extends GetView<HomeController> {
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               Get.toNamed(RoutesConstants.checkoutOrderScreen);
             },
             child: Container(
@@ -276,7 +293,8 @@ class HomeScreen extends GetView<HomeController> {
         children: [
           Container(
             height: 40.0,
-            margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
+            margin: EdgeInsets.only(
+                top: MediaQuery.of(Get.context!).viewPadding.top),
             child: Row(
               children: [
                 Expanded(
@@ -292,7 +310,10 @@ class HomeScreen extends GetView<HomeController> {
                             onTap: () {
                               Get.back();
                             },
-                            child: Image.asset(AppAsset.menu, color: appColorAccent, height: 18.0, width: 18.0)),
+                            child: Image.asset(AppAsset.menu,
+                                color: appColorAccent,
+                                height: 18.0,
+                                width: 18.0)),
                         Row(
                           children: const [
                             SizedBox(
@@ -300,7 +321,8 @@ class HomeScreen extends GetView<HomeController> {
                             ),
                             Text(
                               "Menu",
-                              style: TextStyle(color: appColorAccent, fontSize: 16.0),
+                              style: TextStyle(
+                                  color: appColorAccent, fontSize: 16.0),
                             ),
                           ],
                         )
@@ -344,17 +366,24 @@ class HomeScreen extends GetView<HomeController> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.zero,
-                            itemCount: controller.menuModel?.value?.childrenData?.length,
+                            itemCount: controller
+                                .menuModel?.value?.childrenData?.length,
                             itemBuilder: (context, index) {
-                              ChildrenData itemLevel1 = controller.menuModel?.value?.childrenData?[index];
+                              ChildrenData itemLevel1 = controller
+                                  .menuModel?.value?.childrenData?[index];
                               return itemLevel1.isActive!
                                   ? Column(
                                       children: [
                                         Container(
-                                          margin: const EdgeInsets.only(bottom: 5.0, right: 10.0, top: 5.0),
-                                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                          margin: const EdgeInsets.only(
+                                              bottom: 5.0,
+                                              right: 10.0,
+                                              top: 5.0),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               textWithIcon(
                                                 name: itemLevel1.name!,
@@ -362,14 +391,23 @@ class HomeScreen extends GetView<HomeController> {
                                                     fontSize: 16.0,
                                                     fontWeight: FontWeight.w400,
                                                     color: appColorDarkGrey),
-                                                isIcon: itemLevel1.childrenData!.isEmpty ? true : false,
-                                                isExpand: itemLevel1.isExpand.value ? true : false,
+                                                isIcon: itemLevel1
+                                                        .childrenData!.isEmpty
+                                                    ? true
+                                                    : false,
+                                                isExpand:
+                                                    itemLevel1.isExpand.value
+                                                        ? true
+                                                        : false,
                                                 onTapExpand: () {
-                                                  itemLevel1.isExpand.value = true;
-                                                  controller.menuModel!.refresh();
+                                                  itemLevel1.isExpand.value =
+                                                      true;
+                                                  controller.menuModel!
+                                                      .refresh();
                                                 },
                                                 onTapCollapse: () {
-                                                  itemLevel1.isExpand.value = false;
+                                                  itemLevel1.isExpand.value =
+                                                      false;
                                                   controller.menuModel!
                                                       .refresh(); // for (var element in itemLevel1.childrenData!) {
                                                 },
@@ -379,73 +417,91 @@ class HomeScreen extends GetView<HomeController> {
                                                 width: Get.width / 1.3,
                                                 child: itemLevel1.isExpand.value
                                                     ? ListView.builder(
-                                                        padding: EdgeInsets.zero,
+                                                        padding:
+                                                            EdgeInsets.zero,
                                                         shrinkWrap: true,
-                                                        physics: const NeverScrollableScrollPhysics(),
-                                                        itemCount: itemLevel1.childrenData!.length,
-                                                        itemBuilder: (context, index1) {
-                                                          ChildrenData itemLevel2 = itemLevel1.childrenData![index1];
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        itemCount: itemLevel1
+                                                            .childrenData!
+                                                            .length,
+                                                        itemBuilder:
+                                                            (context, index1) {
+                                                          ChildrenData
+                                                              itemLevel2 =
+                                                              itemLevel1
+                                                                      .childrenData![
+                                                                  index1];
                                                           return Container(
-                                                            margin: const EdgeInsets.only(left: 10.0),
-                                                            child: itemLevel2.isActive!
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10.0),
+                                                            child: itemLevel2
+                                                                    .isActive!
                                                                 ? Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
                                                                     children: [
                                                                       textWithIcon(
-                                                                        name: itemLevel2.name!,
-                                                                        style: const TextStyle(
-                                                                          fontSize: 15.0,
-                                                                          fontWeight: FontWeight.w400,
-                                                                          color: appColorDarkGrey,
+                                                                        name: itemLevel2
+                                                                            .name!,
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              15.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w400,
+                                                                          color:
+                                                                              appColorDarkGrey,
                                                                         ),
                                                                         isIcon: itemLevel2.childrenData!.isEmpty
                                                                             ? true
                                                                             : false,
-                                                                        isExpand:
-                                                                            itemLevel2.isExpand.value ? true : false,
-                                                                        onTapExpand: () {
-                                                                          itemLevel2.isExpand.value = true;
-                                                                          controller.menuModel!.refresh();
+                                                                        isExpand: itemLevel2.isExpand.value
+                                                                            ? true
+                                                                            : false,
+                                                                        onTapExpand:
+                                                                            () {
+                                                                          itemLevel2
+                                                                              .isExpand
+                                                                              .value = true;
+                                                                          controller
+                                                                              .menuModel!
+                                                                              .refresh();
                                                                         },
-                                                                        onTapCollapse: () {
-                                                                          itemLevel2.isExpand.value = false;
-                                                                          controller.menuModel!
+                                                                        onTapCollapse:
+                                                                            () {
+                                                                          itemLevel2
+                                                                              .isExpand
+                                                                              .value = false;
+                                                                          controller
+                                                                              .menuModel!
                                                                               .refresh(); // for (var element in itemLevel1.childrenData!) {
                                                                         },
                                                                       ),
                                                                       Column(
                                                                         children: [
                                                                           const SizedBox(
-                                                                            height: 8.0,
+                                                                            height:
+                                                                                8.0,
                                                                           ),
                                                                           itemLevel2.isExpand.value
                                                                               ? ListView.builder(
                                                                                   padding: EdgeInsets.zero,
                                                                                   shrinkWrap: true,
-                                                                                  physics:
-                                                                                      const NeverScrollableScrollPhysics(),
-                                                                                  itemCount:
-                                                                                      itemLevel2.childrenData!.length,
+                                                                                  physics: const NeverScrollableScrollPhysics(),
+                                                                                  itemCount: itemLevel2.childrenData!.length,
                                                                                   itemBuilder: (context, index2) {
-                                                                                    ChildrenData itemLevel3 = itemLevel2
-                                                                                        .childrenData![index2];
+                                                                                    ChildrenData itemLevel3 = itemLevel2.childrenData![index2];
                                                                                     return itemLevel3.isActive!
                                                                                         ? Container(
-                                                                                            margin:
-                                                                                                const EdgeInsets.only(
-                                                                                                    left: 10.0,
-                                                                                                    top: 3.0,
-                                                                                                    bottom: 3.0),
+                                                                                            margin: const EdgeInsets.only(left: 10.0, top: 3.0, bottom: 3.0),
                                                                                             child: Text(
                                                                                               itemLevel3.name!,
-                                                                                              overflow:
-                                                                                                  TextOverflow.ellipsis,
-                                                                                              style: const TextStyle(
-                                                                                                  fontSize: 12.0,
-                                                                                                  fontWeight:
-                                                                                                      FontWeight.w400,
-                                                                                                  color:
-                                                                                                      appColorDarkGrey),
+                                                                                              overflow: TextOverflow.ellipsis,
+                                                                                              style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400, color: appColorDarkGrey),
                                                                                             ),
                                                                                           )
                                                                                         : Container();
