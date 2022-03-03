@@ -57,5 +57,6 @@ class LanguageConstant {
   static const String forgotYourPasswordDescriptionText = "forgotYourPasswordDescriptionText";
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
+  static const String yourEmailText = "yourEmailText";
 
 }
