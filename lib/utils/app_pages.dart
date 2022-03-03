@@ -93,7 +93,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.filterScreen,
-      page: () => const ListFilterPage(),
+      page: () => ListFilterPage(),
       binding: FilterBinding(),
     ),
   ];
