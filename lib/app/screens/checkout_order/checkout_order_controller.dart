@@ -7,6 +7,7 @@ import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 import '../../../data/model/Home/estimate_shipping_method_model.dart';
+import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
   Rx<EstimateShippingMethodModel>? estimateShipModel = EstimateShippingMethodModel().obs;
@@ -16,6 +17,7 @@ class CheckoutOrderController extends GetxController {
   RxInt selectedPaymentIndex= 0.obs;
   RxBool isShowItems= true.obs;
   final formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
 
   @override
   void onInit() {

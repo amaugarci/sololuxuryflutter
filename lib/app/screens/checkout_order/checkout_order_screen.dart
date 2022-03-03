@@ -13,14 +13,34 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
 
+import '../home/home_screen.dart';
+
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
-  const CheckoutOrderScreen({Key? key}) : super(key: key);
+  CheckoutOrderScreen({Key? key}) : super(key: key);
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
+    print("homeController -> " + runtimeType.toString());
     return Obx(() => Scaffold(
+          key: controller.scaffoldkey,
           backgroundColor: backGroundColor,
-          body: SingleChildScrollView(padding: EdgeInsets.only(top: 70.0),child: Form(key: controller.formKey, child: checkOutWidget())),
+          drawer: getDrawer(homeController),
+          body: Container(
+            width: Get.width,
+            child: Stack(
+              children: [
+                Container(
+                  // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
+                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: Form(key: controller.formKey, child: checkOutWidget())),
+                ),
+                appBarWidget(controller),
+              ],
+            ),
+          ),
         ));
   }
 
@@ -32,7 +52,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CommonTextPoppins("Checkout",
-              color: Colors.black87, fontSize: 16.0, fontWeight: FontWeight.w500, decoration: TextDecoration.underline),
+              color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.w600, decoration: TextDecoration.underline),
           const SizedBox(
             height: 10.0,
           ),
@@ -60,7 +80,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               borderRadius: 0.0,
               child: CommonTextPoppins(
                 "Sign In",
-                fontSize: 14.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -127,7 +147,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           ),
           const SizedBox(height: 15.0),
           SizedBox(
-            height: 40.0,
+            height: 36.0,
             width: Get.width,
             child: CommonButton(
               buttonType: ButtonType.ElevatedButton,
@@ -135,6 +155,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               elevation: 0.0,
               color: appColorButton,
               borderRadius: 0.0,
+              padding: EdgeInsets.zero,
               child: CommonTextPoppins(
                 "LOGIN",
                 fontSize: 14.0,
@@ -291,13 +312,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             width: 18.0,
                             child: Center(
                               child: Container(
-                                height: 12,
-                                width: 12,
+                                height: 14,
+                                width: 14,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedShippingIndex.value == index
-                                        ? Colors.black
-                                        : Colors.transparent,
-                                    border: Border.all(color: Colors.black, width: 0.8),
+                                    border: Border.all(
+                                        color: Colors.black,
+                                        width: controller.selectedShippingIndex.value == index ? 4.5 : 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -326,10 +346,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           Expanded(
                             flex: 4,
                             child: CommonTextPoppins(
-                              "Flat Rate",
+                              controller.estimateShipModel!.value.carrierTitle,
                               textAlign: TextAlign.left,
                               fontSize: 10.0,
                               fontWeight: FontWeight.w500,
+                              maxLine: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
@@ -364,13 +386,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         Row(
                           children: [
                             Container(
-                              height: 12,
-                              width: 12,
+                              height: 14,
+                              width: 14,
                               decoration: BoxDecoration(
-                                  color: controller.selectedPaymentIndex.value == index
-                                      ? Colors.black
-                                      : Colors.transparent,
-                                  border: Border.all(color: Colors.black, width: 0.8),
+                                  border: Border.all(
+                                      color: Colors.black,
+                                      width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(
@@ -671,7 +692,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           ],
         ),
         const SizedBox(
-          height: 10.0,
+          height: 15.0,
         ),
         Align(
           alignment: Alignment.center,

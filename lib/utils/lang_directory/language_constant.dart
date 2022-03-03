@@ -25,6 +25,7 @@ class LanguageConstant {
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
 
+
   static const String freuentlyAskedQueText = "freuentlyAskedQueText";
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
