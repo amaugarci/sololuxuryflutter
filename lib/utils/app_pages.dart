@@ -3,6 +3,8 @@ import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
@@ -44,6 +46,11 @@ class AppPages {
       name: RoutesConstants.addAdressScreen,
       page: () => const AddAddressScreen(),
       binding: AddAddressBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.selectCountryScreen,
+      page: () => const SelectCountryScreen(),
+      binding: SelectCountryBindings(),
     ),
   ];
 }

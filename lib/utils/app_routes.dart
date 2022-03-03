@@ -12,4 +12,5 @@ class RoutesConstants {
   static const String addAdressScreen = "/addAddressAScreen";
   static const String veralussoaddAdressScreen = "/veralussoaddAddressAScreen";
   static const String wishlistScreen = "/wishlistScreen";
+  static const String selectCountryScreen = "/selectCountryScreen";
 }
