@@ -2,6 +2,7 @@ class RoutesConstants {
   static const String splashScreen = "/";
 
   static const String loginScreen = "/loginScreen";
+  static const String signUpScreen = "/signUpScreen";
 
   static const String homeScreen = "/homeScreen";
 
@@ -16,4 +17,7 @@ class RoutesConstants {
 
   static const String addAdressScreen = "/addAddressAScreen";
   static const String wishlistScreen = "/wishlistScreen";
+
+  static const String forgotPasswordScreen = "/forgotPasswordScreen";
+
 }

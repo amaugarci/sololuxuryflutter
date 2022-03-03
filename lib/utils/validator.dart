@@ -95,6 +95,21 @@ class Validators {
     }
   }
 
+  static String? validateConfirmEmail(String? value, String? email) {
+    String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(pattern);
+    if (value == null || value.length <= 0) {
+      return "Confirm Email is Required";
+    } else if (!regExp.hasMatch(value)) {
+      return "Invalid Email";
+    } else if(value  !=  email) {
+      return "Confirm email should be match with email";
+    } else {
+      return null;
+    }
+  }
+
   static String? validateName(String? value, String type) {
     String pattern = r'^[a-zA-Z ]{2,50}$';
     RegExp regExp = new RegExp(pattern);
@@ -133,6 +148,21 @@ class Validators {
     } else if (!regExp.hasMatch(value)) {
       return "The password must be at least 8 characters long and contain a mixture of both uppercase and lowercase letters, at least one number and one special character (e.g.,! @ # ?).";
     } else {
+      return null;
+    }
+  }
+
+  static String? validateConfirmPassword(String value, String password) {
+    String pattern =
+        r'^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$';
+    RegExp regExp = new RegExp(pattern);
+    if (value.isEmpty) {
+      return "Confirm Password is Required";
+    } else if (!regExp.hasMatch(value)) {
+      return "The password must be at least 8 characters long and contain a mixture of both uppercase and lowercase letters, at least one number and one special character (e.g.,! @ # ?).";
+    } else if(value  !=  password) {
+      return "Confirm password should be match with password";
+    }else {
       return null;
     }
   }
