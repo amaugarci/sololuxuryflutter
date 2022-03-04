@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/image_constant.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import 'select_country_controller.dart';
 
 class SelectCountryScreen extends GetView<SelectCountryController> {
@@ -73,7 +74,7 @@ class SelectCountryScreen extends GetView<SelectCountryController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Choose your country",
+                    LanguageConstant.chooseYourCountryText.tr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: appColor,

@@ -6,6 +6,8 @@ import 'package:solo_luxury/app/screens/home/home_screen.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
@@ -51,6 +53,11 @@ class AppPages {
       name: RoutesConstants.selectCountryScreen,
       page: () => const SelectCountryScreen(),
       binding: SelectCountryBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.storeCreditScreen,
+      page: () => const StoreCreditScreen(),
+      binding: StoreCreditBindings(),
     ),
   ];
 }
