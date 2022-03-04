@@ -13,6 +13,11 @@ class AppAsset {
   static const menu = "assets/icons/menu.png";
   static const downArrow = "assets/icons/down_arrow.png";
   static const upArrow = "assets/icons/up_arrow.png";
+  static const home = "assets/icons/home.png";
+  static const search1 = "assets/icons/search.png";
+  static const tag = "assets/icons/tag.png";
+  static const userProfile = "assets/icons/user_profile.png";
+  static const heart1 = "assets/icons/heart.png";
 
   //Add Address Icnon List
   static const user = "assets/icons/user.svg";

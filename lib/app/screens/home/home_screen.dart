@@ -29,7 +29,7 @@ class HomeScreen extends GetView<HomeController> {
           key: controller.scaffoldkey,
           backgroundColor: appColorAccent,
           drawer: getDrawer(controller),
-          body: Container(
+          body: SizedBox(
             width: Get.width,
             child: Stack(
               children: [
