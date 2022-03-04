@@ -59,4 +59,46 @@ class LanguageConstant {
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
 
+
+
+  static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
+  static const String signUpText = "signUpText";
+  static const String loginText = "loginText";
+  static const String myOrdersText = "myOrdersText";
+  static const String myWishlistText = "myWishlistText";
+  static const String addressBookText = "addressBookText";
+  static const String accountInformationText = "accountInformationText";
+  static const String myTicketsText = "myTicketsText";
+  static const String trackOrderText = "trackOrderText";
+  static const String companyMyAccountText = "companyMyAccountText";
+  static const String contactUsText = "contactUsText";
+  static const String secureShoppingText = "secureShoppingText";
+  static const String advancedSearchText = "advancedSearchText";
+  static const String testimonialsText = "testimonialsText";
+  static const String socialMyAccountText = "socialMyAccountText";
+  static const String hopeText = "hopeText";
+  static const String affiliateProgramText = "affiliateProgramText";
+  static const String influencerRegistrationText = "influencerRegistrationText";
+  static const String exchangeText = "exchangeText";
+  static const String contactMyAccountText = "contactMyAccountText";
+  static const String privacyPolicyText = "privacyPolicyText";
+  static const String termsConditionsText = "termsConditionsText";
+  static const String shippingText = "shippingText";
+  static const String aboutText = "aboutText";
+  static const String aboutUsMyAccountText = "aboutUsMyAccountText";
+  static const String referFriendMyAccountText = "referFriendMyAccountText";
+  static const String returnsText = "returnsText";
+  static const String faqMyAccountText = "faqMyAccountText";
+  static const String myAccountText = "myAccountText";
+
+
+  static const String filtersText = "filtersText";
+  static const String priceText = "priceText";
+  static const String colorText = "colorText";
+  static const String brandText = "brandText";
+  static const String sizeText = "sizeText";
+  static const String applyText = "applyText";
+  static const String searchText = "searchText";
+
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import 'my_account_controller.dart';
@@ -34,7 +35,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     child: Column(
                       children: [
                         Text(
-                          'Access your account details and rewards',
+                          LanguageConstant.accessYourAccountDetailsText.tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -55,7 +56,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                                 ),
                                 child: Center(
                                     child: Text(
-                                      'SIGN UP',
+                                      LanguageConstant.signUpText.tr,
                                       style: TextStyle(
                                           color: appColor,
                                           fontSize: 18,
@@ -71,7 +72,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                                 ),
                                 child: Center(
                                     child: Text(
-                                      'LOGIN',
+                                      LanguageConstant.loginText.tr,
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -89,7 +90,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'My Orders',
+                        LanguageConstant.myOrdersText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -100,7 +101,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'My Wish List',
+                        LanguageConstant.myWishlistText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -111,7 +112,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Address Book',
+                        LanguageConstant.addressBookText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -122,7 +123,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Account Information',
+                        LanguageConstant.accountInformationText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -133,7 +134,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'My Tickets',
+                        LanguageConstant.myTicketsText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -144,64 +145,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Track Order',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          'Company',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Contact Us',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Secure Shopping',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Advanced Search',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Testimonials',
+                        LanguageConstant.trackOrderText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -213,7 +157,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: Text(
-                          'Social',
+                          LanguageConstant.companyMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
@@ -225,7 +169,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Hope',
+                        LanguageConstant.contactUsText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -236,7 +180,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Affiliate Program',
+                        LanguageConstant.secureShoppingText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -247,7 +191,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Influencer Registration',
+                        LanguageConstant.advancedSearchText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -258,7 +202,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Exchange and Returns',
+                        LanguageConstant.testimonialsText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -270,7 +214,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: Text(
-                          'Contacts',
+                          LanguageConstant.socialMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
@@ -282,7 +226,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Privacy Policy',
+                        LanguageConstant.hopeText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -293,7 +237,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Terms & Conditions',
+                        LanguageConstant.affiliateProgramText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -304,7 +248,18 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Shipping',
+                        LanguageConstant.influencerRegistrationText.tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        LanguageConstant.exchangeText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -316,7 +271,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: Text(
-                          'About',
+                          LanguageConstant.contactMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
@@ -328,7 +283,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'About Us',
+                        LanguageConstant.privacyPolicyText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -339,7 +294,7 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Refer Friend',
+                        LanguageConstant.termsConditionsText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -350,7 +305,31 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Returns & Refunds',
+                        LanguageConstant.shippingText.tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    Divider(),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: Text(
+                          LanguageConstant.aboutText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        LanguageConstant.aboutUsMyAccountText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -361,7 +340,29 @@ class MyAccountPage extends GetView<MyAccountController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'FAQ',
+                        LanguageConstant.referFriendMyAccountText.tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        LanguageConstant.returnsText.tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        LanguageConstant.faqMyAccountText.tr,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -384,7 +385,7 @@ class MyAccountPage extends GetView<MyAccountController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              'My Account',
+              LanguageConstant.myAccountText.tr,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,

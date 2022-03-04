@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/filter/filter_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../utils/app_asset.dart';
 
@@ -42,7 +43,7 @@ class ListFilterPage extends GetView<FilterController> {
                               Expanded(
                                 child: Center(
                                   child: Text(
-                                    "Filters",
+                                    LanguageConstant.filtersText.tr,
                                     style: TextStyle(
                                         color: appColor,
                                         fontSize: 20,
@@ -98,7 +99,7 @@ class ListFilterPage extends GetView<FilterController> {
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text('Price',
+                                                  child: Text(LanguageConstant.priceText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           color: appColor)),
@@ -127,7 +128,7 @@ class ListFilterPage extends GetView<FilterController> {
                                                   padding: const EdgeInsets.all(
                                                       10.0),
                                                   child: Text(
-                                                    'Color',
+                                                    LanguageConstant.colorText.tr,
                                                     style: TextStyle(
                                                         fontSize: 18,
                                                         color: appColor),
@@ -156,7 +157,7 @@ class ListFilterPage extends GetView<FilterController> {
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text('Brand',
+                                                  child: Text(LanguageConstant.brandText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           color: appColor)),
@@ -184,7 +185,7 @@ class ListFilterPage extends GetView<FilterController> {
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text('Size',
+                                                  child: Text(LanguageConstant.sizeText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           color: appColor)),
@@ -214,7 +215,7 @@ class ListFilterPage extends GetView<FilterController> {
                     color: appColor,
                     border: Border.all(width: 1, color: brownColor)),
                 width: Get.width * .42,
-                child: Center(child: Text('Apply', style: TextStyle(color: Colors.white, fontSize: 18),))),
+                child: Center(child: Text(LanguageConstant.applyText.tr, style: TextStyle(color: Colors.white, fontSize: 18),))),
           ]),
         ))));
   }
@@ -234,7 +235,7 @@ class ListFilterPage extends GetView<FilterController> {
                   color: brownColor,
                 ),
                 Text(
-                  'Search..',
+                  LanguageConstant.searchText.tr,
                   style: TextStyle(color: brownColor),
                 ),
               ],
