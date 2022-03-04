@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
@@ -102,6 +104,11 @@ class AppPages {
       name: RoutesConstants.filterScreen,
       page: () => ListFilterPage(),
       binding: FilterBinding(),
+  ),
+  GetPage(
+      name: RoutesConstants.brandScreen,
+      page: () => const BrandListPage(),
+      binding: BrandBinding(),
     ),
   ];
 }

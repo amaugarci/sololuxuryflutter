@@ -17,7 +17,8 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_routes.dart';
 import '../checkout_order/checkout_order_controller.dart';
-import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart' as custom;
+import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
+    as custom;
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,7 +34,8 @@ class HomeScreen extends GetView<HomeController> {
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: EdgeInsets.zero,
                     child: Column(
@@ -47,9 +49,12 @@ class HomeScreen extends GetView<HomeController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
+                            detailsButton(
+                                LanguageConstant.aboutUsText.tr.toUpperCase(),
+                                1),
                             Visibility(
-                              visible: controller.index.value == 1 ? true : false,
+                              visible:
+                                  controller.index.value == 1 ? true : false,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -57,7 +62,7 @@ class HomeScreen extends GetView<HomeController> {
                                     onPressed: () {
                                       Get.to(() => const AboutUsScreen());
                                     },
-                                    child:  CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.aboutUsText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
@@ -67,14 +72,17 @@ class HomeScreen extends GetView<HomeController> {
                                     onPressed: () {
                                       Get.to(() => const ReferFriendScreen());
                                     },
-                                    child:CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.referFriendText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.offAllNamed(
+                                          RoutesConstants.brandScreen);
+                                    },
                                     child: CommonTextOpenSans(
                                       LanguageConstant.returnsRefundsText.tr,
                                       color: Colors.black87,
@@ -83,7 +91,7 @@ class HomeScreen extends GetView<HomeController> {
                                   ),
                                   TextButton(
                                     onPressed: () {},
-                                    child:CommonTextOpenSans(
+                                    child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
@@ -92,9 +100,15 @@ class HomeScreen extends GetView<HomeController> {
                                 ],
                               ),
                             ),
-                            detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-                            detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-                            detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
+                            detailsButton(
+                                LanguageConstant.contactText.tr.toUpperCase(),
+                                2),
+                            detailsButton(
+                                LanguageConstant.socialText.tr.toUpperCase(),
+                                3),
+                            detailsButton(
+                                LanguageConstant.companyText.tr.toUpperCase(),
+                                4),
                             const SizedBox(height: 20),
                             emailSubscribe(),
                             const SizedBox(height: 40),
@@ -110,12 +124,6 @@ class HomeScreen extends GetView<HomeController> {
           ),
         ));
   }
-
-
-
-
-
-
 
   Widget detailsButton(String text, int value) {
     return GestureDetector(
@@ -175,7 +183,7 @@ class HomeScreen extends GetView<HomeController> {
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               Get.toNamed(RoutesConstants.checkoutOrderScreen);
             },
             child: Container(
@@ -199,24 +207,15 @@ class HomeScreen extends GetView<HomeController> {
       ),
     );
   }
-
-
-
-
 }
 
-
-
-
-getDrawer(controller){
-
+getDrawer(controller) {
   return SizedBox(
       child: Drawer(
           child: SizedBox(
-            width: Get.width - 40.0,
-            child: getDrawerView(controller),
-          ))
-  );
+    width: Get.width - 40.0,
+    child: getDrawerView(controller),
+  )));
 }
 
 Widget getDrawerView(controller) {
@@ -231,7 +230,8 @@ Widget getDrawerView(controller) {
       children: [
         Container(
           height: 40.0,
-          margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
           child: Row(
             children: [
               Expanded(
@@ -247,7 +247,10 @@ Widget getDrawerView(controller) {
                           onTap: () {
                             Get.back();
                           },
-                          child: Image.asset(AppAsset.menu, color: appColorAccent, height: 18.0, width: 18.0)),
+                          child: Image.asset(AppAsset.menu,
+                              color: appColorAccent,
+                              height: 18.0,
+                              width: 18.0)),
                       Row(
                         children: const [
                           SizedBox(
@@ -255,7 +258,8 @@ Widget getDrawerView(controller) {
                           ),
                           Text(
                             "Menu",
-                            style: TextStyle(color: appColorAccent, fontSize: 16.0),
+                            style: TextStyle(
+                                color: appColorAccent, fontSize: 16.0),
                           ),
                         ],
                       )
@@ -295,82 +299,113 @@ Widget getDrawerView(controller) {
                         height: 10.0,
                       ),
                       ListView.builder(
-                        // Important: Remove any padding from the ListView.
+                          // Important: Remove any padding from the ListView.
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
-                          itemCount: controller.menuModel?.value?.childrenData?.length,
+                          itemCount:
+                              controller.menuModel?.value?.childrenData?.length,
                           itemBuilder: (context, index) {
-                            ChildrenData itemLevel1 = controller.menuModel?.value?.childrenData?[index];
+                            ChildrenData itemLevel1 = controller
+                                .menuModel?.value?.childrenData?[index];
                             return itemLevel1.isActive!
                                 ? Column(
-                              children: [
-                                custom.ExpansionTile(
-                                  tileHeight: 40,
-                                  verticalVisualDensity: -1,
-                                  contentPadding: const EdgeInsets.only(left: 10,right: 20),
-                                  title: Text(itemLevel1.name!,style: const TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: appColorDarkGrey)),
-                                  isIcon: itemLevel1.childrenData!.isEmpty ? true : false,
-                                  children: [
-                                    ListView.builder(
-                                      padding: const EdgeInsets.only(left: 0,right: 0,top: 0,bottom: 10),
-                                      shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount: itemLevel1.childrenData!.length,
-                                      itemBuilder: (context,index1){
-                                        ChildrenData itemLevel2 = itemLevel1.childrenData![index1];
-                                        return custom.ExpansionTile(
-                                          title: Text(itemLevel2.name!,  style: const TextStyle(
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.w400,
-                                            color: appColorDarkGrey,
-                                          )),
-                                          contentPadding: const EdgeInsets.only(left: 25,right: 20),
-                                          tileHeight: 35,
-                                          verticalVisualDensity: -1,
-                                          isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
-                                          children: [
-                                            ListView.builder(
-                                                shrinkWrap: true,
-                                                physics: const NeverScrollableScrollPhysics(),
-                                                padding: EdgeInsets.zero,
-                                                itemCount:  itemLevel2.childrenData!.length,
-                                                itemBuilder: (context,index2){
-                                                  ChildrenData itemLevel3 = itemLevel2.childrenData![index2];
-                                                  return Container(
-                                                    margin: const EdgeInsets.only(
-                                                        left: 40.0,
-                                                        top: 3.0,
-                                                        bottom: 3.0),
-                                                    child: Text(
-                                                      itemLevel3.name!,
-                                                      overflow:TextOverflow.ellipsis,
-                                                      style: const TextStyle(
-                                                          fontSize: 12.0,
-                                                          fontWeight:
+                                    children: [
+                                      custom.ExpansionTile(
+                                        tileHeight: 40,
+                                        verticalVisualDensity: -1,
+                                        contentPadding: const EdgeInsets.only(
+                                            left: 10, right: 20),
+                                        title: Text(itemLevel1.name!,
+                                            style: const TextStyle(
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w400,
+                                                color: appColorDarkGrey)),
+                                        isIcon: itemLevel1.childrenData!.isEmpty
+                                            ? true
+                                            : false,
+                                        children: [
+                                          ListView.builder(
+                                            padding: const EdgeInsets.only(
+                                                left: 0,
+                                                right: 0,
+                                                top: 0,
+                                                bottom: 10),
+                                            shrinkWrap: true,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            itemCount:
+                                                itemLevel1.childrenData!.length,
+                                            itemBuilder: (context, index1) {
+                                              ChildrenData itemLevel2 =
+                                                  itemLevel1
+                                                      .childrenData![index1];
+                                              return custom.ExpansionTile(
+                                                title: Text(itemLevel2.name!,
+                                                    style: const TextStyle(
+                                                      fontSize: 15.0,
+                                                      fontWeight:
                                                           FontWeight.w400,
-                                                          color:
-                                                          appColorDarkGrey),
-                                                    ),
-                                                  );
-                                                }
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    )
-                                  ],
-                                ),
-
-                                const Divider(
-                                  height: 2.0,
-                                  color: appColorDarkGrey,
-                                )
-                              ],
-                            )
+                                                      color: appColorDarkGrey,
+                                                    )),
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 25, right: 20),
+                                                tileHeight: 35,
+                                                verticalVisualDensity: -1,
+                                                isIcon: itemLevel2
+                                                        .childrenData!.isEmpty
+                                                    ? true
+                                                    : false,
+                                                children: [
+                                                  ListView.builder(
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      padding: EdgeInsets.zero,
+                                                      itemCount: itemLevel2
+                                                          .childrenData!.length,
+                                                      itemBuilder:
+                                                          (context, index2) {
+                                                        ChildrenData
+                                                            itemLevel3 =
+                                                            itemLevel2
+                                                                    .childrenData![
+                                                                index2];
+                                                        return Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 40.0,
+                                                                  top: 3.0,
+                                                                  bottom: 3.0),
+                                                          child: Text(
+                                                            itemLevel3.name!,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: const TextStyle(
+                                                                fontSize: 12.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color:
+                                                                    appColorDarkGrey),
+                                                          ),
+                                                        );
+                                                      })
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                      const Divider(
+                                        height: 2.0,
+                                        color: appColorDarkGrey,
+                                      )
+                                    ],
+                                  )
                                 : Container();
                           }),
                     ],
@@ -388,7 +423,10 @@ Widget getDrawerView(controller) {
 appBarWidget(controller) {
   return Container(
     width: Get.width,
-    margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 10.0, left: 10.0, right: 15.0),
+    margin: EdgeInsets.only(
+        top: MediaQuery.of(Get.context!).viewPadding.top + 10.0,
+        left: 10.0,
+        right: 15.0),
     child: Stack(
       alignment: Alignment.center,
       children: [
@@ -450,7 +488,6 @@ appBarWidget(controller) {
                 ),
               ],
             ),
-
           ],
         ),
       ],
