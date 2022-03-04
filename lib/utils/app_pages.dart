@@ -5,6 +5,8 @@ import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 
 import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
+import 'package:solo_luxury/app/screens/filter/filter_binding.dart';
+import 'package:solo_luxury/app/screens/filter/list_filter.dart';
 
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
@@ -95,6 +97,11 @@ class AppPages {
       name: RoutesConstants.orderConfirmScreen,
       page: () => OrderConfirmationPage(),
       binding: OrderConfirmationBinding(),
+  ),
+  GetPage(
+      name: RoutesConstants.filterScreen,
+      page: () => ListFilterPage(),
+      binding: FilterBinding(),
     ),
   ];
 }

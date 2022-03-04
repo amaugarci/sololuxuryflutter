@@ -22,4 +22,6 @@ class RoutesConstants {
 
   static const String orderConfirmScreen = "/orderConfirmScreen";
 
+  static const String filterScreen = "/filterScreen";
+
 }
