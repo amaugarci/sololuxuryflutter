@@ -23,6 +23,9 @@ class AppConstants {
 
   static const String signUp = "customers";
 
+  static const String forgotpassword= "/in-en/V1/customers/password";
+
+
 
 
 }

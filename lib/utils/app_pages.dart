@@ -9,6 +9,8 @@ import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
 
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
+import 'package:solo_luxury/app/screens/login/bindings/forgot_password_page_binding.dart';
+import 'package:solo_luxury/app/screens/login/views/forgot_password_page.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_binding.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
 import 'package:solo_luxury/app/screens/login/bindings/forgot_password_binding.dart';
@@ -99,6 +101,12 @@ class AppPages {
       page: () => const ForgotPasswordScreen(),
       binding: ForgotPasswordBinding(),
     ),
+
+    GetPage(
+      name: RoutesConstants.forgotPasswordPage,
+      page: () => ForgotPasswordPage(),
+      binding: ForgotPasswordPageBinding(),
+    )
 
   ];
 }

@@ -7,3 +7,7 @@ abstract class ILoginRepository {
 abstract class ISignupRepository {
   Future<SignUpResponseModel> getSignupAPIResponse(String signupRequestJson);
 }
+
+abstract class IForgotpasswordRepository{
+  Future<String> getForgotpasswordAPIResponse(String ForgotpasswordRequestJson,String emailAddress);
+}

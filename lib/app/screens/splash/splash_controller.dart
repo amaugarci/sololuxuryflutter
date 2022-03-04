@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/login/views/forgot_password.dart';
 import 'package:solo_luxury/app/screens/login/views/forgot_password_page.dart';
+import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
+import 'package:solo_luxury/app/screens/login/views/signup_screen.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 

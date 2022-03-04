@@ -202,8 +202,7 @@ class SignupScreen extends GetView<SignupController> {
     return TextFormFieldWidget(
       controller: controller.firstNameController.value,
       hintText: LanguageConstant.firstNameText.tr,
-      validator: (value) =>
-          Validators.validateRequired(value!.trim(), "First Name"),
+      validator: (value) => Validators.validateRequired(value!.trim(), "First Name"),
     );
   }
 
