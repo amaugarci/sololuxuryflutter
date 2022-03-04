@@ -20,4 +20,6 @@ class RoutesConstants {
 
   static const String forgotPasswordScreen = "/forgotPasswordScreen";
 
+  static const String orderConfirmScreen = "/orderConfirmScreen";
+
 }
