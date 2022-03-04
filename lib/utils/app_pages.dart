@@ -112,7 +112,6 @@ class AppPages {
       page: () => const BrandListPage(),
       binding: BrandBinding(),
     ),
-  ),
   GetPage(
       name: RoutesConstants.myAccountScreen,
       page: () => const MyAccountPage(),
