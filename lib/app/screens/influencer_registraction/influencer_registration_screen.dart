@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/influencer_registraction/influencer_registration_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../utils/validator.dart';
 import '../../components/common_widget/common_button.dart';
 import '../../components/common_widget/common_text_poppins.dart';
 import 'influencer_binding.dart';
@@ -13,25 +15,27 @@ class InfluencerRegistrationScreen
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: appColorAccent,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 90),
-          child: Container(
-            child: influencerDesign(context),
-            height: Get.height,
-            width: Get.width,
-            decoration: BoxDecoration(
-              color: appColorAccent,
-              boxShadow: [
-                BoxShadow(
-                  color: blackColor.withOpacity(0.35),
-                  blurRadius: 9,
-                  // offset: Offset(0, 9),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(12),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: appColorAccent,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 90),
+            child: Container(
+              child: influencerDesign(context),
+              height: Get.height,
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: appColorAccent,
+                boxShadow: [
+                  BoxShadow(
+                    color: blackColor.withOpacity(0.35),
+                    blurRadius: 9,
+                    // offset: Offset(0, 9),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
           ),
         ),
@@ -63,12 +67,14 @@ class InfluencerRegistrationScreen
   Widget textFormField(
       {var hintText,
       var height,
+      var validation,
       var bottomPadding,
       var topPadding,
-      var controller}) {
+      TextEditingController? controller}) {
     return Container(
-      child: TextField(
+      child: TextFormField(
         controller: controller,
+        validator: validation,
         cursorColor: brownColorCEAE9F,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -95,11 +101,11 @@ class InfluencerRegistrationScreen
       padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
       child: SingleChildScrollView(
         child: Form(
-          key: controller.formKey,
+          key: controller.formKey.value,
           child: Column(
             children: [
               Text(
-                "Profile",
+                LanguageConstant.profile.tr,
                 style: headerTextStyle(),
               ),
               const SizedBox(
@@ -109,7 +115,7 @@ class InfluencerRegistrationScreen
                 children: [
                   Container(
                     child: Text(
-                      "Mr.",
+                      LanguageConstant.mr.tr,
                       style: subTextStyle(),
                     ),
                     alignment: Alignment.center,
@@ -128,8 +134,10 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "First name",
-                      controller: controller.firstName,
+                      hintText: LanguageConstant.firstNameText.tr,
+                      controller: controller.firstName.value,
+                      validation: (value) => Validators.validateRequired(
+                          value!.trim(), "First Name"),
                     ),
                   ),
                 ],
@@ -138,8 +146,10 @@ class InfluencerRegistrationScreen
                 height: 10,
               ),
               textFormField(
-                hintText: "Last Name",
-                controller: controller.lastName,
+                hintText: LanguageConstant.lastNameText.tr,
+                controller: controller.lastName.value,
+                validation: (value) =>
+                    Validators.validateRequired(value!.trim(), "Last Name"),
               ),
               const SizedBox(
                 height: 10,
@@ -148,8 +158,11 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Email",
-                      controller: controller.email,
+                      hintText: LanguageConstant.emailText.tr,
+                      controller: controller.email.value,
+                      validation: (value) => Validators.validateEmail(
+                        value!.trim(),
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -157,8 +170,11 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Contact no.",
-                      controller: controller.contactNo,
+                      hintText: LanguageConstant.contactNoText.tr,
+                      controller: controller.contactNo.value,
+                      validation: (value) => Validators.validateMobile(
+                        value!.trim(),
+                      ),
                     ),
                   ),
                 ],
@@ -170,8 +186,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Website URL",
-                      controller: controller.websiteUrl,
+                      hintText: LanguageConstant.websiteUrlText.tr,
+                      controller: controller.websiteUrl.value,
                     ),
                   ),
                   const SizedBox(
@@ -179,8 +195,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "City",
-                      controller: controller.city,
+                      hintText: LanguageConstant.cityText.tr,
+                      controller: controller.city.value,
                     ),
                   ),
                 ],
@@ -192,8 +208,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Country",
-                      controller: controller.country,
+                      hintText: LanguageConstant.countryText.tr,
+                      controller: controller.country.value,
                     ),
                   ),
                   const SizedBox(
@@ -201,8 +217,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Post Code",
-                      controller: controller.postCode,
+                      hintText: LanguageConstant.postCodeText.tr,
+                      controller: controller.postCode.value,
                     ),
                   ),
                 ],
@@ -211,7 +227,7 @@ class InfluencerRegistrationScreen
                 height: 30,
               ),
               Text(
-                "Social links",
+                LanguageConstant.socialLinksText.tr,
                 style: headerTextStyle(),
               ),
               const SizedBox(
@@ -221,8 +237,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Facebook",
-                      controller: controller.faceBook,
+                      hintText: LanguageConstant.facebookText.tr,
+                      controller: controller.faceBook.value,
                     ),
                   ),
                   const SizedBox(
@@ -230,8 +246,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Instagram",
-                      controller: controller.instagram,
+                      hintText: LanguageConstant.instagramText.tr,
+                      controller: controller.instagram.value,
                     ),
                   ),
                 ],
@@ -243,8 +259,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Twitter",
-                      controller: controller.twitter,
+                      hintText: LanguageConstant.twitterText.tr,
+                      controller: controller.twitter.value,
                     ),
                   ),
                   const SizedBox(
@@ -252,8 +268,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Youtube",
-                      controller: controller.youtube,
+                      hintText: LanguageConstant.youtubeText.tr,
+                      controller: controller.youtube.value,
                     ),
                   ),
                 ],
@@ -265,8 +281,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Linkendin",
-                      controller: controller.linkedin,
+                      hintText: LanguageConstant.linkendinText.tr,
+                      controller: controller.linkedin.value,
                     ),
                   ),
                   const SizedBox(
@@ -274,8 +290,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Pinterest",
-                      controller: controller.pinterest,
+                      hintText: LanguageConstant.pinterestText.tr,
+                      controller: controller.pinterest.value,
                     ),
                   ),
                 ],
@@ -284,7 +300,7 @@ class InfluencerRegistrationScreen
                 height: 30,
               ),
               Text(
-                "Followers",
+                LanguageConstant.followersText.tr,
                 style: headerTextStyle(),
               ),
               const SizedBox(
@@ -294,8 +310,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Facebook",
-                      controller: controller.faceBookFollower,
+                      hintText: LanguageConstant.facebookText.tr,
+                      controller: controller.faceBookFollower.value,
                     ),
                   ),
                   const SizedBox(
@@ -303,8 +319,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Instagram",
-                      controller: controller.instagramFollower,
+                      hintText: LanguageConstant.instagramText.tr,
+                      controller: controller.instagramFollower.value,
                     ),
                   ),
                 ],
@@ -316,8 +332,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Twitter",
-                      controller: controller.twitterFollower,
+                      hintText: LanguageConstant.twitterText.tr,
+                      controller: controller.twitterFollower.value,
                     ),
                   ),
                   const SizedBox(
@@ -325,8 +341,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Youtube",
-                      controller: controller.youtubeFollower,
+                      hintText: LanguageConstant.youtubeText.tr,
+                      controller: controller.youtubeFollower.value,
                     ),
                   ),
                 ],
@@ -338,8 +354,8 @@ class InfluencerRegistrationScreen
                 children: [
                   Expanded(
                     child: textFormField(
-                      hintText: "Linkendin",
-                      controller: controller.linkedinFollower,
+                      hintText: LanguageConstant.linkendinText.tr,
+                      controller: controller.linkedinFollower.value,
                     ),
                   ),
                   const SizedBox(
@@ -347,8 +363,8 @@ class InfluencerRegistrationScreen
                   ),
                   Expanded(
                     child: textFormField(
-                      hintText: "Pinterest",
-                      controller: controller.pinterestFollower,
+                      hintText: LanguageConstant.pinterestText.tr,
+                      controller: controller.pinterestFollower.value,
                     ),
                   ),
                 ],
@@ -361,7 +377,7 @@ class InfluencerRegistrationScreen
                 topPadding: 10.0,
                 height: 79.0,
                 hintText: "Projects worked on",
-                controller: controller.projectWork,
+                controller: controller.projectWork.value,
               ),
               const SizedBox(
                 height: 40,
@@ -372,31 +388,8 @@ class InfluencerRegistrationScreen
                 child: CommonButton(
                   padding: EdgeInsets.zero,
                   buttonType: ButtonType.ElevatedButton,
-                  onPressed: () async {
-                    if (controller.formKey.currentState!.validate()) {
-                      controller.influencerReg(
-                        firstNameVal: controller.firstName,
-                        websiteUrlVal: controller.websiteUrl,
-                        facebookFollowerVal: controller.faceBookFollower,
-                        countryVal: controller.country,
-                        cityVal: controller.city,
-                        contactVal: controller.contactNo,
-                        lastNameVal: controller.lastName,
-                        emailVal: controller.email,
-                        facebookVal: controller.faceBook,
-                        instagramFollowerVal: controller.instagramFollower,
-                        instagramVal: controller.instagram,
-                        linkedinFollowerVal: controller.linkedinFollower,
-                        linkedinVal: controller.linkedin,
-                        pinterestFollowerVal: controller.pinterestFollower,
-                        pinterestVal: controller.pinterest,
-                        postCodeVal: controller.postCode,
-                        twitterFollowerVal: controller.twitterFollower,
-                        twitterVal: controller.twitter,
-                        youtubeFollowerVal: controller.youtubeFollower,
-                        youtubeVal: controller.youtube,
-                      );
-                    }
+                  onPressed: () {
+                    controller.influencerReg(context, controller.formKey.value);
                   },
                   elevation: 0.0,
                   color: appColorButton,
