@@ -27,6 +27,7 @@ const Map<String, String> en = {
   "linkendinText" :  "Linkendin",
   "pinterestText" :  "Pinterest",
   "followersText" :  "Followers",
+  "workedOnText" : "Projects worked on",
   "mr":"Mr.",
   "returnsRefundsText" : "Returns & Refunds",
   "faqText" : "FAQ",

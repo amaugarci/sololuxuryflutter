@@ -26,6 +26,7 @@ class LanguageConstant {
   static const String pinterestText = "pinterestText";
   static const String followersText = "followersText";
   static const String countryText = "countryText";
+  static const String workedOnText = "workedOnText";
   static const String referFriendText = "referFriendText";
   static const String returnsRefundsText = "returnsRefundsText";
   static const String faqText = "faqText";

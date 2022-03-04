@@ -376,7 +376,7 @@ class InfluencerRegistrationScreen
                 bottomPadding: 50.0,
                 topPadding: 10.0,
                 height: 79.0,
-                hintText: "Projects worked on",
+                hintText: LanguageConstant.workedOnText.tr,
                 controller: controller.projectWork.value,
               ),
               const SizedBox(
