@@ -20,6 +20,7 @@ class AppConstants {
   static String login = 'integration/customer/token';
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
+  static const String defaultToken1 = "Bearer z06ykor014yz4e777zsj76bgle9qofp7";
 
   static const String signUp = "customers";
 

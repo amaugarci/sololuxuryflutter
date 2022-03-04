@@ -12,3 +12,7 @@ abstract class ISignupRepository {
 abstract class IHomeRepository {
   Future<MenuModel> getMenuAPIResponse();
 }
+
+abstract class ICheckoutOrderRepository {
+  Future<String> postEstimateAPIResponse(String loginRequestJson);
+}
