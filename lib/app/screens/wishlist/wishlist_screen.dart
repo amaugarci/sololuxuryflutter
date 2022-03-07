@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/wishlist/widget/wishlist_item.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../utils/app_asset.dart';
@@ -51,12 +52,12 @@ class MyWishListPage extends GetView<WishlistController> {
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                       items: <String>[
-                        'My Account',
-                        'My Orders',
-                        'My WishList',
-                        'Address Book',
-                        'Account Information',
-                        'My Tickets',
+                        LanguageConstant.myAccountText.tr,
+                        LanguageConstant.myOrdersText.tr,
+                        LanguageConstant.myWishlistText.tr,
+                        LanguageConstant.addressBookText.tr,
+                        LanguageConstant.accountInformationText.tr,
+                        LanguageConstant.myTicketsText.tr,
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           alignment: AlignmentDirectional.center,
@@ -66,7 +67,7 @@ class MyWishListPage extends GetView<WishlistController> {
                       }).toList(),
                       hint: Center(
                         child: Text(
-                          "My WishList",
+                          LanguageConstant.myWishlistText.tr,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: appColor,
