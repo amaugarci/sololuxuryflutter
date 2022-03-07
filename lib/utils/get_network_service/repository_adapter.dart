@@ -1,3 +1,4 @@
+import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
@@ -21,6 +22,14 @@ abstract class IHomeRepository {
   Future<MenuModel> getMenuAPIResponse();
 }
 
+abstract class ICountryRepository {
+  Future<String> getStoreWebsitesAPIResponse();
+  Future<String> getStoreViewsAPIResponse();
+  Future<String> getStoreConfigsAPIResponse();
+}
+
 abstract class ICheckoutOrderRepository {
   Future<String> postEstimateAPIResponse(String loginRequestJson);
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(String loginRequestJson);
 }
+

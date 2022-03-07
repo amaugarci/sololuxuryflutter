@@ -106,7 +106,6 @@ class LanguageConstant {
   static const String lastName1Text = "Last Name";
   static const String company1Text = "Company";
   static const String stLineText = "Street Address: Line 1";
-  static const String cityText = "City";
   static const String japanText = "Japan";
   static const String stateText = "State/Province";
   static const String zipPostalText = "Zip/Postal Code";
@@ -125,7 +124,6 @@ class LanguageConstant {
 
   static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
   static const String signUpText = "signUpText";
-  static const String loginText = "loginText";
   static const String myOrdersText = "myOrdersText";
   static const String myWishlistText = "myWishlistText";
   static const String addressBookText = "addressBookText";
@@ -151,7 +149,6 @@ class LanguageConstant {
   static const String referFriendMyAccountText = "referFriendMyAccountText";
   static const String returnsText = "returnsText";
   static const String faqMyAccountText = "faqMyAccountText";
-  static const String myAccountText = "myAccountText";
 
 
   static const String filtersText = "filtersText";

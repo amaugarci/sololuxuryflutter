@@ -8,6 +8,8 @@ class RoutesConstants {
 
   static const String dashboardScreen = "/dashboardScreen";
 
+  static const String countryScreen = "/countryScreen";
+
   static const String productListScreen = "/productListScreen";
 
   static const String productsScreen = "/productsScreen";

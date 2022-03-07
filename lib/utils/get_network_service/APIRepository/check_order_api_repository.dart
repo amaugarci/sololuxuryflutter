@@ -6,7 +6,7 @@ import 'package:solo_luxury/utils/get_network_service/APIProviders/check_order_a
 import 'package:solo_luxury/utils/get_network_service/APIProviders/login_api_provider.dart';
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
 
-import '../../../data/model/Home/shipping_information_model.dart';
+import '../../../data/model/checkout_order/shipping_information_model.dart';
 
 class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
 

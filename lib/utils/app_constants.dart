@@ -7,11 +7,13 @@ class AppConstants {
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
   static String menuEndPoint = "/V1/categories";
-  static String estimatesShippingMethodEndPoint =
-      "/in-en/V1/carts/mine/estimate-shipping-methods";
-  static String shippingInformationEndPoint =
-      "/in-en/V1/carts/mine/shipping-information";
+  static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
+  static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
+  static String storeWebsitesEndPoint = "/V1/store/websites";
+  static String storeViewsEndPoint = "/V1/store/storeViews";
+  static String storeConfigsEndPoint = "/V1/store/storeConfigs";
 
+  static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
   static String apiEndPointNewInfluencer =
       "https://erp.theluxuryunlimited.com/api/influencer/add";
@@ -25,7 +27,7 @@ class AppConstants {
   static String login = 'integration/customer/token';
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
-  static const String defaultToken1 = "Bearer z06ykor014yz4e777zsj76bgle9qofp7";
+  static const String defaultToken1 = "Bearer t81cgyyth8uaa6pcnbacdu3jo4l583gj";
 
   static const String signUp = "customers";
 

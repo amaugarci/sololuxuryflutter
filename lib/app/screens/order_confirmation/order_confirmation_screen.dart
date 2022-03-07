@@ -14,7 +14,7 @@ import '../home/home_controller.dart';
 class OrderConfirmationPage extends GetView<OrderConfirmationController> {
   OrderConfirmationPage({Key? key}) : super(key: key);
 
-  final HomeController homeController = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.find()));
 
   @override
   Widget build(BuildContext context) {
