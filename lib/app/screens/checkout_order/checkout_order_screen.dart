@@ -12,6 +12,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
 import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
@@ -19,7 +20,7 @@ import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.find()));
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ],
             ),
           ),
-          // body: SingleChildScrollView(
-          //     padding: EdgeInsets.only(top: 70.0),
-          //     child: Form(key: controller.formKey, child: checkOutWidget())),
         ));
   }
 
@@ -56,16 +54,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CommonTextPoppins("Checkout",
-              color: Colors.black87,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              decoration: TextDecoration.underline),
+          CommonTextPoppins(LanguageConstant.checkOutText.tr,
+              color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.w600, decoration: TextDecoration.underline),
           const SizedBox(
             height: 10.0,
           ),
           CommonTextPoppins(
-            "Please Enter Your Details Below To Complete Your Purchase",
+            LanguageConstant.purchaseText.tr,
             textAlign: TextAlign.center,
             color: Colors.black87,
             fontSize: 10.0,
@@ -87,12 +82,20 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               color: appColorButton,
               borderRadius: 0.0,
               child: CommonTextPoppins(
-                "Sign In",
+                LanguageConstant.signInText.tr  ,
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
+          // PrimaryTextButton(
+          //   height: 40,
+          //   width: 120.0,
+          //   title: 'Sign In',
+          //   buttonColor: appColorButton,
+          //   titleTextStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
+          //   onPressed: () {},
+          // ),
           const SizedBox(
             height: 20.0,
           ),
@@ -108,18 +111,16 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm() {
     return Column(
       children: [
-        CheckOutBox(
-            title: "Shipping Address", formFieldWidget: shippingAddress()),
+        CheckOutBox(title:  LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
+        const SizedBox(height: 15.0),
+        CheckOutBox(title:  LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
-            title: "Shipping Method", formFieldWidget: shippingMethod()),
-        const SizedBox(height: 15.0),
-        CheckOutBox(
-          title: "Payment Method",
+          title:  LanguageConstant.paymentMethod.tr,
           formFieldWidget: paymentMethod(),
         ),
         const SizedBox(height: 15.0),
-        CheckOutBox(title: "Order Summary", formFieldWidget: orderSummary()),
+        CheckOutBox(title:  LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary()),
       ],
     );
   }
@@ -132,17 +133,17 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         children: [
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText: "Email",
+            hintText:  LanguageConstant.emailText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText: "Password",
+            hintText:  LanguageConstant.passwordText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 5.0),
           CommonTextPoppins(
-            "You Already have an account with us. Sign in or continue as guest.",
+            LanguageConstant.alreadyAcText.tr,
             textAlign: TextAlign.center,
             fontWeight: FontWeight.w500,
             fontSize: 9.0,
@@ -159,7 +160,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               borderRadius: 0.0,
               padding: EdgeInsets.zero,
               child: CommonTextPoppins(
-                "LOGIN",
+                LanguageConstant.loginText.tr,
                 fontSize: 14.0,
                 fontWeight: FontWeight.w500,
               ),
@@ -169,7 +170,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             height: 15.0,
           ),
           CommonTextPoppins(
-            "Forgot Your Password?",
+            LanguageConstant.forgotText.tr,
             textAlign: TextAlign.center,
             fontWeight: FontWeight.w500,
             fontSize: 10.0,
@@ -189,7 +190,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             children: [
               Expanded(
                 child: CommonTextField(
-                  hintText: "First Name",
+                  hintText: LanguageConstant.firstNameText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -198,7 +199,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
               Expanded(
                 child: CommonTextField(
-                  hintText: "Last Name",
+                  hintText: LanguageConstant.lastNameText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -208,7 +209,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             height: 10.0,
           ),
           CommonTextField(
-            hintText: "Company",
+            hintText: LanguageConstant.companyText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(
@@ -218,7 +219,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             children: [
               Expanded(
                 child: CommonTextField(
-                  hintText: "Street Address: Line 1",
+                  hintText: LanguageConstant.stLineText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -227,7 +228,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
               Expanded(
                 child: CommonTextField(
-                  hintText: "City",
+                  hintText: LanguageConstant.cityText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -240,7 +241,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             children: [
               Expanded(
                 child: CommonTextField(
-                  hintText: "Japan",
+                  hintText: LanguageConstant.japanText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -249,7 +250,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
               Expanded(
                 child: CommonTextField(
-                  hintText: "State/Province",
+                  hintText: LanguageConstant.stateText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -262,7 +263,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             children: [
               Expanded(
                 child: CommonTextField(
-                  hintText: "Zip/Postal Code",
+                  hintText: LanguageConstant.zipPostalText.tr,
                   controller: TextEditingController(),
                   isValidationShow: false,
                 ),
@@ -272,7 +273,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
               Expanded(
                 child: CommonTextField(
-                  hintText: "Phone Number",
+                  hintText: LanguageConstant.phoneNumberText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -298,8 +299,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             itemCount: controller.estimatesList?.length,
             itemBuilder: (context, index) {
               controller.estimateShipModel!.value =
-                  EstimateShippingMethodModel.fromJson(
-                      controller.estimatesList?[index]);
+                  EstimateShippingMethodModel.fromJson(controller.estimatesList?[index]);
               return Obx(() => InkWell(
                     onTap: () {
                       controller.selectedShippingIndex.value = index;
@@ -321,13 +321,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                     border: Border.all(
                                         color: Colors.black,
                                         width: controller.selectedShippingIndex.value == index ? 4.5 : 0.8),
-                                    color: controller
-                                                .selectedShippingIndex.value ==
-                                            index
-                                        ? Colors.black
-                                        : Colors.transparent,
-                                    // border: Border.all(
-                                    //     color: Colors.black, width: 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -338,8 +331,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           Expanded(
                             flex: 2,
                             child: CommonTextPoppins(
-                              controller.estimateShipModel!.value.baseAmount
-                                  .toString(),
+                              controller.estimateShipModel!.value.baseAmount.toString(),
                               fontSize: 10.0,
                               textAlign: TextAlign.left,
                               fontWeight: FontWeight.w500,
@@ -387,8 +379,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.shipInfoModel!.value.paymentMethods!.length,
             itemBuilder: (context, index) {
-              PaymentMethods paymentMethods =
-                  controller.shipInfoModel!.value.paymentMethods![index];
+              PaymentMethods paymentMethods = controller.shipInfoModel!.value.paymentMethods![index];
               return InkWell(
                 onTap: () {
                   controller.selectedPaymentIndex.value = index;
@@ -404,13 +395,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   border: Border.all(
                                       color: Colors.black,
                                       width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
-                                  color:
-                                      controller.selectedPaymentIndex.value ==
-                                              index
-                                          ? Colors.black
-                                          : Colors.transparent,
-                                  // border: Border.all(
-                                  //     color: Colors.black, width: 0.8),
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(
@@ -429,10 +413,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            index ==
-                                    controller.shipInfoModel!.value
-                                            .paymentMethods!.length -
-                                        1
+                            index == controller.shipInfoModel!.value.paymentMethods!.length - 1
                                 ? Container()
                                 : Column(
                                     children: [
@@ -475,7 +456,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CommonTextPoppins(
-                          "${controller.shipInfoModel!.value.totals!.itemsQty} Item in Cart",
+                          "${controller.shipInfoModel!.value.totals!.itemsQty} ${LanguageConstant.itemInCartText.tr}",
                           fontSize: 10.0,
                           fontWeight: FontWeight.w500,
                           textAlign: TextAlign.left,
@@ -503,11 +484,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           padding: EdgeInsets.zero,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: controller
-                              .shipInfoModel!.value.totals!.items!.length,
+                          itemCount: controller.shipInfoModel!.value.totals!.items!.length,
                           itemBuilder: (context, index) {
-                            Items shipItem = controller
-                                .shipInfoModel!.value.totals!.items![index];
+                            Items shipItem = controller.shipInfoModel!.value.totals!.items![index];
                             return Column(
                               children: [
                                 const SizedBox(
@@ -516,8 +495,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset(AppAsset.frame,
-                                        height: 85.0, width: 85.0),
+                                    Image.asset(AppAsset.frame, height: 85.0, width: 85.0),
                                     const SizedBox(
                                       width: 10.0,
                                     ),
@@ -526,10 +504,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                         height: 85.0,
                                         width: Get.width,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             CommonTextPoppins(
                                               shipItem.name,
@@ -540,12 +516,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 CommonTextPoppins(
-                                                  "Qty: ${shipItem.qty}",
+                                                  "${LanguageConstant.qtyText.tr}: ${shipItem.qty}",
                                                   fontSize: 12.0,
                                                   fontWeight: FontWeight.w500,
                                                   textAlign: TextAlign.left,
@@ -580,7 +554,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           children: [
             SizedBox(width: Get.width * 0.269),
             CommonTextPoppins(
-              "View Details",
+              LanguageConstant.viewDetailsText.tr,
               fontSize: 12.0,
               fontWeight: FontWeight.w500,
               textAlign: TextAlign.left,
@@ -608,7 +582,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           height: 20.0,
         ),
         CommonTextPoppins(
-          "Apply Discount Code",
+          LanguageConstant.applyDisCodeText.tr,
           fontSize: 10.0,
           fontWeight: FontWeight.w500,
           textAlign: TextAlign.left,
@@ -623,7 +597,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               Expanded(
                 flex: 4,
                 child: CommonTextField(
-                  hintText: "Enter Discount Code",
+                  hintText: LanguageConstant.enterDisCodeText.tr,
                   controller: TextEditingController(),
                   isValidationShow: false,
                 ),
@@ -641,7 +615,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   color: appColorButton,
                   borderRadius: 0.0,
                   child: CommonTextPoppins(
-                    "Apply Discount",
+                    LanguageConstant.applyDiscountText.tr,
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
@@ -661,11 +635,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount:
-                controller.shipInfoModel!.value.totals!.totalSegments!.length,
+            itemCount: controller.shipInfoModel!.value.totals!.totalSegments!.length,
             itemBuilder: (context, index) {
-              TotalSegments totalSegmentsItem =
-                  controller.shipInfoModel!.value.totals!.totalSegments![index];
+              TotalSegments totalSegmentsItem = controller.shipInfoModel!.value.totals!.totalSegments![index];
               return Column(
                 children: [
                   Row(
@@ -709,7 +681,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CommonTextPoppins(
-              "Order Total",
+              LanguageConstant.orderTotalText.tr,
               fontSize: 14.0,
               fontWeight: FontWeight.w600,
               textAlign: TextAlign.left,
@@ -733,8 +705,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                print(
-                    "valid -> ${controller.formKey.currentState!.validate()}");
+                print("valid -> ${controller.formKey.currentState!.validate()}");
                 if (controller.formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
@@ -747,7 +718,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               color: appColorButton,
               borderRadius: 0.0,
               child: CommonTextPoppins(
-                "PLACE ORDER",
+                LanguageConstant.placeOrderText.tr,
                 fontSize: 14.0,
                 fontWeight: FontWeight.w400,
                 color: Colors.white,
