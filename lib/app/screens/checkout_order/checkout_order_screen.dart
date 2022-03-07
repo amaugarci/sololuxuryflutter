@@ -12,11 +12,15 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 
+import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
+import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
 import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.find()));
+
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+
 
   @override
   Widget build(BuildContext context) {
@@ -318,7 +322,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                                 .selectedShippingIndex.value ==
                                             index
                                         ? Colors.black
-                                        : Colors.transparent,),
+                                        : Colors.transparent,
+                                    // border: Border.all(
+                                    //     color: Colors.black, width: 0.8),
+                                    shape: BoxShape.circle),
                               ),
                             ),
                           ),
@@ -398,7 +405,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                       controller.selectedPaymentIndex.value ==
                                               index
                                           ? Colors.black
-                                          : Colors.transparent,),
+
+                                          : Colors.transparent,
+
+                                  // border: Border.all(
+                                  //     color: Colors.black, width: 0.8),
+                                  shape: BoxShape.circle),
+
                             ),
                             const SizedBox(
                               width: 20.0,

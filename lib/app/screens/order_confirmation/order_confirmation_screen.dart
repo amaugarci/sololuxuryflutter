@@ -5,6 +5,8 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_co
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../data/model/Home/menu_model.dart';
+import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
+import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
 import '../../utils/app_asset.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
@@ -14,7 +16,10 @@ import '../home/home_controller.dart';
 class OrderConfirmationPage extends GetView<OrderConfirmationController> {
   OrderConfirmationPage({Key? key}) : super(key: key);
 
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.find()));
+
+
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+
 
   @override
   Widget build(BuildContext context) {
