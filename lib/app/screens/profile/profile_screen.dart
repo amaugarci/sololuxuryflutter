@@ -5,6 +5,7 @@ import 'package:solo_luxury/app/components/common_widget/common_text_opensans.da
 import 'package:solo_luxury/app/screens/profile/profile_controller.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 
 class ProfileScreen extends GetView<ProfileController> {
@@ -67,7 +68,7 @@ class ProfileScreen extends GetView<ProfileController> {
       child: Column(
         children: [
           CommonTextOpenSans(
-            "My Account",
+            LanguageConstant.myAccountText.tr,
             fontWeight: FontWeight.w600,
             fontSize: 16,
             color: appColorPrimary,

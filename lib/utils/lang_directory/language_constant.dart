@@ -84,6 +84,42 @@ class LanguageConstant {
   static const String forgotYourPasswordDescriptionText = "forgotYourPasswordDescriptionText";
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
+  static const String yourEmailText = "yourEmailText";
+
+  //TODO:Brijesh
+  static const String yourEmail1Text = "Your E-Mail";
+  static const String subscribeText = "SUBSCRIBE";
+  static const String menuText = "Menu";
+  static const String accountText = "Account";
+  static const String checkOutText = "Checkout";
+  static const String purchaseText = "Please Enter Your Details Below To Complete Your Purchase";
+  static const String shippingAddressText = "Shipping Address";
+  static const String shippingMethodText = "Shipping Method";
+  static const String paymentMethodText = "Payment Method";
+  static const String orderSummaryText = "Order Summary";
+  static const String email1Text = "Email";
+  static const String password1Text = "Password";
+  static const String alreadyAcText = "You Already have an account with us. Sign in or continue as guest.";
+  static const String loginText = "LOGIN";
+  static const String forgotText = "Forgot Your Password?";
+  static const String firstName1Text = "First Name";
+  static const String lastName1Text = "Last Name";
+  static const String company1Text = "Company";
+  static const String stLineText = "Street Address: Line 1";
+  static const String cityText = "City";
+  static const String japanText = "Japan";
+  static const String stateText = "State/Province";
+  static const String zipPostalText = "Zip/Postal Code";
+  static const String phoneNumberText = "Phone Number";
+  static const String itemInCartText = "Item in cart";
+  static const String qtyText = "Qty";
+  static const String viewDetailsText = "View Details";
+  static const String applyDisCodeText = "Apply Discount Code";
+  static const String enterDisCodeText = "Enter Discount Code";
+  static const String applyDiscountText = "Apply Discount";
+  static const String orderTotalText = "Order Total";
+  static const String placeOrderText = "PLACE ORDER";
+  static const String myAccountText = "My Account";
 
 
 
