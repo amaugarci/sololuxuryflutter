@@ -47,7 +47,7 @@ class CountryScreen extends GetView<CountryScreenController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "My Account".toUpperCase(),
+                    LanguageConstant.myAccountText.tr.toUpperCase(),
                     style: TextStyle(),
                   ),
                   Icon(
@@ -62,7 +62,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "My Orders".toUpperCase(),
+                  LanguageConstant.myOrdersText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(
@@ -76,7 +76,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "My Wish List".toUpperCase(),
+                  LanguageConstant.myWidhListText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(
@@ -90,7 +90,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Address Book".toUpperCase(),
+                  LanguageConstant.addressBookText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(
@@ -104,7 +104,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Account Information".toUpperCase(),
+                  LanguageConstant.accountInfoText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(
@@ -118,7 +118,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Store payment methods".toUpperCase(),
+                  LanguageConstant.storePaymentText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(
@@ -132,7 +132,7 @@ class CountryScreen extends GetView<CountryScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Newsletter Subscriptions".toUpperCase(),
+                  LanguageConstant.newsletterSubText.tr.toUpperCase(),
                   style: TextStyle(),
                 ),
                 Icon(

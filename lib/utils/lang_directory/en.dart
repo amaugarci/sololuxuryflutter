@@ -18,4 +18,11 @@ const Map<String, String> en = {
       "ENGLISH is also available in your\nlocation. Would you like to change?",
   "noThanksText": "No, Thanks",
   "changeText": "CHANGE",
+  "myAccountText": "My Account",
+  "myOrdersText": "My Orders",
+  "myWidhListText": "My Wish List",
+  "addressBookText": "Address Book",
+  "accountInfoText": "Account Information",
+  "storePaymentText": "Store Payment Methods",
+  "newsletterSubText": "Newsletter Subscriptions",
 };
