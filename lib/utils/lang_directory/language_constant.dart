@@ -15,4 +15,9 @@ class LanguageConstant {
   static const String addressText = "addressText";
   static const String shippingText = "shippingText";
   static const String billingText = "billingText";
+  static const String yourAppExpericanceText = "yourAppExpericanceText";
+  static const String indiaText = "indiaText";
+  static const String englishIsAlsoText = "englishIsAlsoText";
+  static const String noThanksText = "noThanksText";
+  static const String changeText = "changeText";
 }
