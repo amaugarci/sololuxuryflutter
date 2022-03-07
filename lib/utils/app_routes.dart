@@ -32,4 +32,7 @@ class RoutesConstants {
 
   static const String influencerRegistrationScreen =
       "/influencerRegistrationScreen";
+
+  static const String affiliateProgramScreen =
+      "/affiliateProgramScreen";
 }
