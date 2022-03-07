@@ -99,9 +99,9 @@ class StoreCreditScreen extends GetView<StoreCreditController> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                      flex: 2,
-                                      child:
-                                          Text("Date : ${storeData['Date']}")),
+                                    flex: 2,
+                                    child: Text("Date : ${storeData['Date']}"),
+                                  ),
                                 ],
                               ),
                             ),

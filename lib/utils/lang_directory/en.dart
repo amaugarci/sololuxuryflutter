@@ -9,4 +9,7 @@ const Map<String, String> en = {
   "socialText": "Social",
   "companyText": "Company",
   "chooseYourCountryText": "Choose your country",
+  "addressText": "Address",
+  "billingText": "Default\nBilling",
+  "shippingText": "Default\nShipping",
 };

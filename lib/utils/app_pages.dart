@@ -1,8 +1,12 @@
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
@@ -58,6 +62,16 @@ class AppPages {
       name: RoutesConstants.storeCreditScreen,
       page: () => const StoreCreditScreen(),
       binding: StoreCreditBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.myAccountScreen,
+      page: () => const MyAccountPage(),
+      binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.addressBookScreen,
+      page: () => const AddressBookScreen(),
+      binding: AddressBookBindings(),
     ),
   ];
 }
