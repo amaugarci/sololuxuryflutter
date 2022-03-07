@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bindings.dart';
+import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
@@ -128,8 +130,13 @@ class AppPages {
   ),
   GetPage(
       name: RoutesConstants.influencerRegistrationScreen,
-      page: () =>  InfluencerRegistrationScreen(),
+      page: () =>  const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
+    ),
+  GetPage(
+      name: RoutesConstants.affiliateProgramScreen,
+      page: () =>  const AffiliateProgramScreen(),
+      binding: AffiliateProgramBindings(),
     ),
   ];
 }
