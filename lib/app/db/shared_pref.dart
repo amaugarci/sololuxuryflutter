@@ -5,7 +5,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String key_store_localization = "key_store_localization";
+const String key_local_store_model = "local_store_model";
 
 getPrefIntValue(String key) async {
   final prefs = await SharedPreferences.getInstance();
