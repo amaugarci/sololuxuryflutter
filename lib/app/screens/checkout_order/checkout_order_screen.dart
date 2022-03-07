@@ -131,12 +131,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         children: [
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText:  LanguageConstant.email1Text.tr,
+            hintText:  LanguageConstant.emailText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText:  LanguageConstant.password1Text.tr,
+            hintText:  LanguageConstant.passwordText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 5.0),
@@ -188,7 +188,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             children: [
               Expanded(
                 child: CommonTextField(
-                  hintText: LanguageConstant.firstName1Text.tr,
+                  hintText: LanguageConstant.firstNameText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -197,7 +197,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
               Expanded(
                 child: CommonTextField(
-                  hintText: LanguageConstant.lastName1Text.tr,
+                  hintText: LanguageConstant.lastNameText.tr,
                   controller: TextEditingController(),
                 ),
               ),
@@ -207,7 +207,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             height: 10.0,
           ),
           CommonTextField(
-            hintText: LanguageConstant.company1Text.tr,
+            hintText: LanguageConstant.companyText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(
