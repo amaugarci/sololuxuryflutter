@@ -29,4 +29,7 @@ class RoutesConstants {
   static const String filterScreen = "/filterScreen";
 
   static const String brandScreen = "/brandScreen";
+
+  static const String influencerRegistrationScreen =
+      "/influencerRegistrationScreen";
 }
