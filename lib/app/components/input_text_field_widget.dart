@@ -182,6 +182,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.textInputAction,
     this.keyboardType,
     this.textAlign = TextAlign.left,
+    this.unFillField = false,
   }) : super(key: key);
 
   final Key? fieldKey;
@@ -201,10 +202,29 @@ class TextFormFieldWidget extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final TextAlign textAlign;
+  final bool unFillField;
 
   @override
   Widget build(BuildContext context) {
-    return textFormField(
+    return unFillField ? outlineTextField(
+      fieldKey: fieldKey,
+      focusNode: focusNode,
+      hintText: hintText,
+      controller: controller,
+      keyboardType: TextInputType.text,
+      validator: validator,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      textInputAction: textInputAction,
+      textAlign: textAlign,
+      onTap: onTap,
+      onFieldSubmitted: onFieldSubmitted,
+      onChanged: onChanged,
+      textStyle: textStyle,
+      hintStyle: hintStyle,
+    ) : textFormField(
       fieldKey: fieldKey,
       focusNode: focusNode,
       hintText: hintText,
@@ -524,6 +544,6 @@ TextFormField outlineTextField({
 }
 
 OutlineInputBorder outlineBorderDecoration = const OutlineInputBorder(
-  borderSide: BorderSide(color: darkGreyBlue, width: 1.2),
-  borderRadius: BorderRadius.zero,
+  borderSide: BorderSide(color: affiliateBorderColor, width: 1.2),
+  borderRadius: BorderRadius.all(Radius.circular(4.0)),
 );

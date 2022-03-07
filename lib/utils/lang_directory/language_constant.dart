@@ -151,4 +151,29 @@ class LanguageConstant {
   static const String orderTotalText = "orderTotalText";
   static const String placeOrderText = "placeOrderText";
 
+  static const String affiliateProgramTitleText = "affiliateProgramTitleText";
+  static const String whoAreWeLookingTitleText = "whoAreWeLookingTitleText";
+  static const String whoAreWeLookingDescriptionOneText = "whoAreWeLookingDescriptionOneText";
+  static const String whatCanYouExpectTitleText = "whatCanYouExpectTitleText";
+  static const String expectRuleOneText = "expectRuleOneText";
+  static const String expectRuleTwoText = "expectRuleTwoText";
+  static const String expectRuleThreeText = "expectRuleThreeText";
+  static const String expectRuleFourText = "expectRuleFourText";
+  static const String expectRuleFiveText = "expectRuleFiveText";
+  static const String promoteSoloQuestionText = "promoteSoloQuestionText";
+  static const String promoteSoloAnswerOneText = "promoteSoloAnswerOneText";
+  static const String promoteSoloAnswerTwoText = "promoteSoloAnswerTwoText";
+  static const String promoteSoloAnswerThreeText = "promoteSoloAnswerThreeText";
+  static const String promoteSoloAnswerFourText = "promoteSoloAnswerFourText";
+  static const String promoteSoloAnswerFiveText = "promoteSoloAnswerFiveText";
+  static const String howApplyTitleText = "howApplyTitleText";
+  static const String howApplyAnswerOneText = "howApplyAnswerOneText";
+  static const String addressText = "addressText";
+  static const String visitorMonthHintText = "visitorMonthHintText";
+  static const String viewsMonthHintText = "viewsMonthHintText";
+  static const String cityHintText = "cityHintText";
+  static const String countryHintText = "countryHintText";
+  static const String addressOneText = "addressOneText";
+  static const String addressTwoText = "addressTwoText";
+  static const String letsGoText = "letsGoText";
 }

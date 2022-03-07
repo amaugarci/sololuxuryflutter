@@ -39,6 +39,7 @@ const Color appColorDarkGrey = Color(0xff969290);
 const Color appColorDarkLineGrey = Color(0xff838383);
 const Color appTextFieldHintColor = Color(0xffCBB6A1);
 const Color appSubscribeButtonColor = Color(0xffFBECE5);
+const Color affiliateBorderColor = Color(0xffCEAE9F);
 
 Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);
