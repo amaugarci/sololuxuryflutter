@@ -8,6 +8,7 @@ import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dar
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/influencer_registraction/influencer_registration_screen.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -92,7 +93,10 @@ class HomeScreen extends GetView<HomeController> {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.toNamed(RoutesConstants
+                                          .myAccountScreenScreen);
+                                    },
                                     child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,
                                       color: Colors.black87,

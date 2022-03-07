@@ -10,6 +10,7 @@ class RoutesConstants {
   static const String productsScreen = "/productsScreen";
   static const String wishlistScreen = "/wishlistScreen";
   static const String checkoutOrderScreen = "/checkoutOrderScreen";
+  static const String myAccountScreenScreen = "/myAccountScreenScreen";
 
   static const String influencerRegistrationScreen =
       "/influencerRegistrationScreen";
