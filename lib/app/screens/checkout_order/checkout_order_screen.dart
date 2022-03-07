@@ -13,11 +13,13 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
 
+import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
+import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
 import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-  final HomeController homeController = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +43,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ],
             ),
           ),
-          body: SingleChildScrollView(
-              padding: EdgeInsets.only(top: 70.0),
-              child: Form(key: controller.formKey, child: checkOutWidget())),
+          // body: SingleChildScrollView(
+          //     padding: EdgeInsets.only(top: 70.0),
+          //     child: Form(key: controller.formKey, child: checkOutWidget())),
         ));
   }
 
@@ -324,8 +326,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                             index
                                         ? Colors.black
                                         : Colors.transparent,
-                                    border: Border.all(
-                                        color: Colors.black, width: 0.8),
+                                    // border: Border.all(
+                                    //     color: Colors.black, width: 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -407,8 +409,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                               index
                                           ? Colors.black
                                           : Colors.transparent,
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.8),
+                                  // border: Border.all(
+                                  //     color: Colors.black, width: 0.8),
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(

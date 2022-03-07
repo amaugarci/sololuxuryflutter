@@ -100,13 +100,11 @@ class LanguageConstant {
   static const String email1Text = "Email";
   static const String password1Text = "Password";
   static const String alreadyAcText = "You Already have an account with us. Sign in or continue as guest.";
-  static const String loginText = "LOGIN";
   static const String forgotText = "Forgot Your Password?";
   static const String firstName1Text = "First Name";
   static const String lastName1Text = "Last Name";
   static const String company1Text = "Company";
   static const String stLineText = "Street Address: Line 1";
-  static const String cityText = "City";
   static const String japanText = "Japan";
   static const String stateText = "State/Province";
   static const String zipPostalText = "Zip/Postal Code";
@@ -119,7 +117,6 @@ class LanguageConstant {
   static const String applyDiscountText = "Apply Discount";
   static const String orderTotalText = "Order Total";
   static const String placeOrderText = "PLACE ORDER";
-  static const String myAccountText = "My Account";
 
 
 
