@@ -34,14 +34,17 @@ class CountryController extends GetxController {
   RxList currencyList = [].obs;
 
   final langSelected = "English".obs;
-  final currencySelected = "EUR".obs;
 
+  final currencySelected = "EUR".obs;
   void setLanguageSelected(String value){
     langSelected.value = value;
+    changeLanguage(value);
     update();
   }
+
   void setCurrencySelected(String value){
     currencySelected.value = value;
+    changeCurrency(value);
     update();
   }
 
@@ -61,14 +64,9 @@ class CountryController extends GetxController {
       if(element.code == localStoreModel.currentCode){
         langSelected.value = element.name!;
         print("Languages -> ${language.value}");
-        for (var element1 in localStoreModel.storeLanguageCurrencyModelList!) {
-          if(element1.baseCurrencyCode == localStoreModel.currentCurrency){
-            currencySelected.value = element1.baseCurrencyCode!;
-            print("Currency -> ${currency.value}");
-          }
-        }
       }
     }
+    currencySelected.value = localStoreModel.currentCurrency!;
     languageList.value = localStoreModel.languageList!;
     currencyList.value = localStoreModel.currencyList!;
     update();
@@ -149,6 +147,29 @@ class CountryController extends GetxController {
     await setPrefStringValue(key_local_store_model, jsonEncode(localStoreModel));
     data = await getPrefStringValue(key_local_store_model);
     localStoreModel = LocalStoreModel.fromJson(jsonDecode(data!));
+    print("LocalMap -> ${jsonEncode(localStoreModel)}");
+    await getCurrentLanguageCurrency();
+  }
+
+  changeLanguage(langValue) async {
+    String data = await getPrefStringValue(key_local_store_model);
+    LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+    LocalStoreViewModel localStoreViewModel = localStoreModel.storeViewModelList!.firstWhere((element) => element.name==langValue);
+    localStoreModel.currentCode = localStoreViewModel.code;
+    await setPrefStringValue(key_local_store_model, jsonEncode(localStoreModel));
+    data = await getPrefStringValue(key_local_store_model);
+    localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+    print("LocalMap -> ${jsonEncode(localStoreModel)}");
+    await getCurrentLanguageCurrency();
+  }
+
+  changeCurrency(currencyValue) async {
+    String data = await getPrefStringValue(key_local_store_model);
+    LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+    localStoreModel.currentCurrency = currencyValue;
+    await setPrefStringValue(key_local_store_model, jsonEncode(localStoreModel));
+    data = await getPrefStringValue(key_local_store_model);
+    localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
     print("LocalMap -> ${jsonEncode(localStoreModel)}");
     await getCurrentLanguageCurrency();
   }
