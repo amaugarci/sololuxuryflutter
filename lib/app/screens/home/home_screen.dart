@@ -83,8 +83,7 @@ class HomeScreen extends GetView<HomeController> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Get.toNamed(RoutesConstants
-                                          .myAccountScreenScreen);
+
                                     },
                                     child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,

@@ -48,6 +48,7 @@ dependencies:
   awesome_dialog: ^2.1.2
   datetime_picker_formfield: ^2.0.0
   flutter_html: ^2.2.1
+  livechatt: ^1.4.0
 
 dev_dependencies:
   flutter_test:

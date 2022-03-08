@@ -374,6 +374,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "livechatt",
+      "rootUri": "file:///E:/flutter/.pub-cache/hosted/pub.dartlang.org/livechatt-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "logging",
       "rootUri": "file:///E:/flutter/.pub-cache/hosted/pub.dartlang.org/logging-1.0.2",
       "packageUri": "lib/",
@@ -788,7 +794,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-03-07T12:21:13.825061Z",
+  "generated": "2022-03-08T10:29:14.338975Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

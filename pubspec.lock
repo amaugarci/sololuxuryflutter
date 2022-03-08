@@ -429,6 +429,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  livechatt:
+    dependency: "direct main"
+    description:
+      name: livechatt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   logging:
     dependency: transitive
     description:

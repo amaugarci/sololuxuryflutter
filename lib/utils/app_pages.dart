@@ -14,6 +14,7 @@ import 'package:solo_luxury/app/screens/filter/list_filter.dart';
 
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_menu_screen.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_binding.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
 import 'package:solo_luxury/app/screens/login/bindings/forgot_password_binding.dart';
@@ -141,8 +142,8 @@ class AppPages {
       binding: AffiliateProgramBindings(),
     ),
     GetPage(
-      name: RoutesConstants.myAccountScreenScreen,
-      page: () => MyAccountScreen(),
+      name: RoutesConstants.myAccountMenuScreen,
+      page: () => MyAccountMenuPage(),
       binding: MyAccountBinding(),
     ),
   ];

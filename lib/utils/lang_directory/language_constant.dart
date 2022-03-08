@@ -184,4 +184,8 @@ class LanguageConstant {
   static const String addressOneText = "addressOneText";
   static const String addressTwoText = "addressTwoText";
   static const String letsGoText = "letsGoText";
+
+  static const String liveChatText = "liveChatText";
+
+  static const String startChatText = "startChatText";
 }
