@@ -5,13 +5,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/InfluenceRegistration/influencer_registration_model.dart';
-
-import '../../../utils/app_constants.dart';
-import '../../../utils/common_methods.dart';
 import '../../../utils/get_network_service/APIRepository/influencer_api_repository.dart';
-import '../../../utils/network_dio/network_dio.dart';
-import 'package:http/http.dart' as http;
 import '../../../utils/repository/network_repository.dart';
+
 
 class InfluencerRegistrationController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
@@ -62,6 +58,8 @@ class InfluencerRegistrationController extends GetxController {
           country: country.value.toString(),
           emailaddress: email.value.toString(),
           facebook: faceBook.value.toString(),
+          postcode: postCode.toString(),
+          city: city.toString(),
           facebookFollowers: faceBookFollower.value.toString(),
           instagram: instagram.value.toString(),
           instagramFollowers: instagramFollower.value.toString(),
@@ -95,50 +93,4 @@ class InfluencerRegistrationController extends GetxController {
       }
     }
   }
-
-/* influencerReg({
-    var firstNameVal,
-    var lastNameVal,
-    var emailVal,
-    var contactVal,
-    var websiteUrlVal,
-    var cityVal,
-    var countryVal,
-    var postCodeVal,
-    var facebookVal,
-    var instagramVal,
-    var twitterVal,
-    var youtubeVal,
-    var linkedinVal,
-    var pinterestVal,
-    var facebookFollowerVal,
-    var instagramFollowerVal,
-    var twitterFollowerVal,
-    var youtubeFollowerVal,
-    var linkedinFollowerVal,
-    var pinterestFollowerVal,
-  }) async {
-    dynamic authResponse = await networkRepository.influencerRegistrationMethod(
-      firstNameVal: firstName.value.toString(),
-      countryVal: country.value.toString(),
-      emailVal: email.value.toString(),
-      facebookVal: faceBook.value.toString(),
-      facebookFollowerVal: faceBookFollower.value.toString(),
-      instagramVal: instagram.value.toString(),
-      instagramFollowerVal: instagramFollower.value.toString(),
-      lastNameVal: lastName.value.toString(),
-      linkedinVal: linkedin.value.toString(),
-      linkedinFollowerVal: linkedinFollower.value.toString(),
-      contactVal: contactNo.value.toString(),
-      pinterestVal: pinterest.value.toString(),
-      pinterestFollowerVal: pinterestFollower.value.toString(),
-      twitterVal: twitter.value.toString(),
-      twitterFollowerVal: twitterFollower.value.toString(),
-      youtubeVal: youtube.value.toString(),
-      youtubeFollowerVal: youtubeFollower.value.toString(),
-      // websiteUrlVal: "WWW.SOLOLUXURY.COM",
-      websiteUrlVal: websiteUrl.value.toString(),
-    );
-    printLog(authResponse);
-  }*/
 }

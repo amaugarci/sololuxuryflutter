@@ -1,400 +1,368 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
+import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
-import '../../utils/app_asset.dart';
-import '../../utils/colors.dart';
-import 'my_account_controller.dart';
 
-class MyAccountPage extends GetView<MyAccountController> {
-  const MyAccountPage({Key? key}) : super(key: key);
+class MyAccountScreen extends GetView<MyAccountController> {
+  const MyAccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-        key: controller.scaffoldKey.value,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: appColor,
-          bottom: PreferredSize(
-            preferredSize: Size(Get.width, 60),
-            child: myAccountHeader(),
-          ),
-          iconTheme: IconThemeData(color: appColor),
-        ),
-        backgroundColor: backGroundColor,
-        body: Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
-                    child: Column(
-                      children: [
-                        Text(
-                          LanguageConstant.accessYourAccountDetailsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                                height: 50,
-                                width: Get.width * .4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(width: 2, color: appColor),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                      LanguageConstant.signUpText.tr,
-                                      style: TextStyle(
-                                          color: appColor,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400),
-                                    ))),
-                            Container(
-                                height: 50,
-                                width: Get.width * .4,
-                                decoration: BoxDecoration(
-                                  color: appColor,
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(width: 2, color: appColor),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                      LanguageConstant.loginText.tr,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400),
-                                    ))),
-                          ],
-                        )
-                      ],
-                    ),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: appColorAccent,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 120,
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                height: 50,
+                width: Get.width,
+                decoration: BoxDecoration(
+                  color: appColorAccent,
+                  border: Border.all(
+                    color: appColor,
+                    width: 1,
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    dropdownColor: appColorFDF3F1,
+                    icon:
+                        const Icon(Icons.expand_more_outlined, color: appColor),
+                    value: controller.chosenValue.value,
+                    elevation: 2,
+                    style: commonTextStyle(),
+                    items: controller.data
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(value),
+                        ),
+                      );
+                    }).toList(),
+                    hint: Text(
+                      LanguageConstant.myAccountText.tr,
+                      style: commonTextStyle(),
+                    ),
+                    onChanged: (String? value) {
+                      controller.chosenValue.value = value!;
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              newsLettersDesign(),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myOrdersText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
+                    Text(
+                      LanguageConstant.addressBookText.tr,
+                      style: commonTextStyle600(fontSize: 20.0),
                     ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myWishlistText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.addressBookText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.accountInformationText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myTicketsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.trackOrderText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.companyMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.contactUsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.secureShoppingText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.advancedSearchText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.testimonialsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.socialMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.hopeText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.affiliateProgramText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.influencerRegistrationText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.exchangeText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.contactMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.privacyPolicyText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.termsConditionsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.shippingText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.aboutText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.aboutUsMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.referFriendMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.returnsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.faqMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    Text(
+                      LanguageConstant.manageAddresses.tr,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: blackColor,
+                        decorationThickness: 1.5,
+                        fontSize: 14,
+                        color: blackColor,
+                        fontFamily: "OpenSans",
                       ),
                     ),
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              defaultBillingDesign(),
+              const SizedBox(
+                height: 20,
+              ),
+              defaultShippingDesign(),
+              const SizedBox(
+                height: 40,
+              ),
+            ],
           ),
-        )));
-  }
-
-  Widget myAccountHeader() {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              LanguageConstant.myAccountText.tr,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w500),
-            ),
-            Image.asset(AppAsset.bag, color: Colors.white, width: 25, height: 25,),
-          ],
         ),
       ),
+    );
+  }
+
+  commonTextStyle() {
+    return const TextStyle(
+      fontFamily: "OpenSans",
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyleNormal() {
+    return const TextStyle(
+      fontFamily: "OpenSans",
+      fontSize: 16,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyle300() {
+    return const TextStyle(
+      fontFamily: "OpenSans",
+      fontWeight: FontWeight.w300,
+      fontSize: 16,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyle600({var fontSize}) {
+    return TextStyle(
+      fontFamily: "OpenSans",
+      fontWeight: FontWeight.w600,
+      fontSize: fontSize,
+      color: appColorButton,
+    );
+  }
+
+  newsLettersDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.newsLetters.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 40),
+            child: Text(
+              LanguageConstant.newsLettersContain.tr,
+              style: commonTextStyle300(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.edit.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
+    );
+  }
+
+  defaultBillingDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.defaultBillingAddress.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10),
+            child: SizedBox(
+              width: Get.width / 2.5,
+              child: Text(
+                LanguageConstant.defaultShippingContain.tr,
+                style: commonTextStyle300(),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, bottom: 20),
+            child: Text(
+              "T: 01234567890",
+              style: TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 16,
+                color: grey6D6D6D,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.editAddress.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
+    );
+  }
+
+  defaultShippingDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.defaultShippingAddress.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10),
+            child: SizedBox(
+              width: Get.width / 2.5,
+              child: Text(
+                LanguageConstant.defaultShippingContain.tr,
+                style: commonTextStyle300(),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, bottom: 20),
+            child: Text(
+              "T: 01234567890",
+              style: TextStyle(
+                fontFamily: "Poppins",
+                fontSize: 16,
+                color: grey6D6D6D,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.editAddress.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
     );
   }
 }

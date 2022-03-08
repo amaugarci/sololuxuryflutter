@@ -29,6 +29,8 @@ class InfluencerRegistrationMethodModel {
   String? workedOn;
   String? websiteName;
   String? url;
+  String? city;
+  String? postcode;
   String? country;
   String? type;
   String? langCode;
@@ -53,6 +55,8 @@ class InfluencerRegistrationMethodModel {
       this.pinterestFollowers,
       this.workedOn,
       this.websiteName,
+      this.city,
+      this.postcode,
       this.url,
       this.country,
       this.type,
@@ -80,13 +84,15 @@ class InfluencerRegistrationMethodModel {
         pinterestFollowers: json['pinterest_followers'],
         workedOn: json['worked_on'],
         websiteName: json['website_name'],
+        city: json['city'],
+        postcode: json['postcode'],
         url: json['url'],
         country: json['country'],
         type: json['type'],
         langCode: json['lang_code'],
       );
 
-   Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         'website': website,
         'first_name': firstName,
         'last_name': lastName,
@@ -105,6 +111,8 @@ class InfluencerRegistrationMethodModel {
         'pinterest': pinterest,
         'pinterest_followers': pinterestFollowers,
         'worked_on': workedOn,
+        'city': city,
+        'postcode': postcode,
         'website_name': websiteName,
         'url': url,
         'country': country,

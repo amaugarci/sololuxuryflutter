@@ -34,6 +34,21 @@ class LanguageConstant {
   static const String contactText = "contactText";
   static const String contactNoText = "ContactNoText";
 
+  static const String myOrdersText = "myOrdersText";
+  static const String myWishlistText = "myWishlistText";
+  static const String addressBookText = "addressBookText";
+  static const String myTicketsText = "myTicketsText";
+  static const String accountInformationText = "accountInformationText";
+  static const String myAccountText = "myAccountText";
+  static const String newsLetters = "newsLetters";
+  static const String newsLettersContain = "newsLettersContain";
+  static const String manageAddresses = "manageAddresses";
+  static const String defaultBillingAddress = "defaultBillingAddress";
+  static const String defaultShippingAddress = "defaultShippingAddress";
+  static const String defaultShippingContain = "defaultShippingContain";
+  static const String edit = "edit";
+  static const String editAddress = "editAddress";
+
   static const String socialText = "socialText";
 
   static const String companyText = "companyText";
@@ -85,15 +100,9 @@ class LanguageConstant {
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
-
   static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
   static const String signUpText = "signUpText";
   static const String loginText = "loginText";
-  static const String myOrdersText = "myOrdersText";
-  static const String myWishlistText = "myWishlistText";
-  static const String addressBookText = "addressBookText";
-  static const String accountInformationText = "accountInformationText";
-  static const String myTicketsText = "myTicketsText";
   static const String trackOrderText = "trackOrderText";
   static const String companyMyAccountText = "companyMyAccountText";
   static const String contactUsText = "contactUsText";
@@ -114,7 +123,6 @@ class LanguageConstant {
   static const String referFriendMyAccountText = "referFriendMyAccountText";
   static const String returnsText = "returnsText";
   static const String faqMyAccountText = "faqMyAccountText";
-  static const String myAccountText = "myAccountText";
 
 
   static const String filtersText = "filtersText";

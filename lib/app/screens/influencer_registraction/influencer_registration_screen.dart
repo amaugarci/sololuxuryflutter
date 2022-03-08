@@ -7,7 +7,6 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../utils/validator.dart';
 import '../../components/common_widget/common_button.dart';
 import '../../components/common_widget/common_text_poppins.dart';
-import 'influencer_binding.dart';
 
 class InfluencerRegistrationScreen
     extends GetView<InfluencerRegistrationController> {

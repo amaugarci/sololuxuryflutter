@@ -24,6 +24,8 @@ import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/screens/login/views/signup_screen.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_binding.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
@@ -112,31 +114,36 @@ class AppPages {
       name: RoutesConstants.orderConfirmScreen,
       page: () => OrderConfirmationPage(),
       binding: OrderConfirmationBinding(),
-  ),
-  GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.filterScreen,
       page: () => ListFilterPage(),
       binding: FilterBinding(),
-  ),
-  GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.brandScreen,
       page: () => const BrandListPage(),
       binding: BrandBinding(),
     ),
-  GetPage(
+    GetPage(
       name: RoutesConstants.myAccountScreen,
-      page: () => const MyAccountPage(),
+      page: () => const MyAccountScreen(),
       binding: MyAccountBinding(),
-  ),
-  GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.influencerRegistrationScreen,
-      page: () =>  const InfluencerRegistrationScreen(),
+      page: () => const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
     ),
-  GetPage(
+    GetPage(
       name: RoutesConstants.affiliateProgramScreen,
-      page: () =>  const AffiliateProgramScreen(),
+      page: () => const AffiliateProgramScreen(),
       binding: AffiliateProgramBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.myAccountScreenScreen,
+      page: () => MyAccountScreen(),
+      binding: MyAccountBinding(),
     ),
   ];
 }

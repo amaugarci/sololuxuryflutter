@@ -8,6 +8,7 @@ import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dar
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
+
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -16,7 +17,6 @@ import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_routes.dart';
-import '../checkout_order/checkout_order_controller.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart' as custom;
 
 class HomeScreen extends GetView<HomeController> {
@@ -82,7 +82,10 @@ class HomeScreen extends GetView<HomeController> {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.toNamed(RoutesConstants
+                                          .myAccountScreenScreen);
+                                    },
                                     child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,
                                       color: Colors.black87,
