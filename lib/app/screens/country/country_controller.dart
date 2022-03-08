@@ -30,11 +30,46 @@ class CountryController extends GetxController {
   RxString language = "English".obs;
   RxInt id = 1.obs;
 
+  RxList languageList = [].obs;
+  RxList currencyList = [].obs;
+
+  final langSelected = "English".obs;
+  final currencySelected = "EUR".obs;
+
+  void setLanguageSelected(String value){
+    langSelected.value = value;
+  }
+  void setCurrencySelected(String value){
+    currencySelected.value = value;
+  }
+
 
   @override
   void onInit() {
     super.onInit();
     getStoreDataFromApi();
+    getCurrentLanguageCurrency();
+  }
+
+  getCurrentLanguageCurrency()async {
+    String data = await getPrefStringValue(key_local_store_model);
+    LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+    print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
+    for (var element in localStoreModel.storeViewModelList!) {
+      if(element.code == localStoreModel.currentCode){
+        language.value = element.name!;
+        print("Languages -> ${language.value}");
+        for (var element1 in localStoreModel.storeLanguageCurrencyModelList!) {
+          if(element1.baseCurrencyCode == localStoreModel.currentCurrency){
+            currency.value = element1.baseCurrencyCode!;
+            print("Currency -> ${currency.value}");
+          }
+        }
+      }
+    }
+    languageList.value = localStoreModel.languageList!.toSet().toList();
+    currencyList.value = localStoreModel.currencyList!.toSet().toList();
+    update();
   }
 
   getStoreDataFromApi() async {
@@ -49,6 +84,8 @@ class CountryController extends GetxController {
 
   Future<void> setLanguageAndCurrency(StoreWebSitesModel item) async {
     print("selection Country -> ");
+    List<dynamic>? languageList = [];
+    List<dynamic>? currencyList = [];
     List<StoreViewsModel>? storeViewModelList = [];
     List<StoreLanguageCurrencyModel>? storeLanguageCurrencyModelList = [];
     language.value = item.name!;
@@ -65,17 +102,20 @@ class CountryController extends GetxController {
       if (item.id == storeViewsItem.websiteId) {
         // print("storeViewsItem.websiteId -> ${item.id!}");
         language.value = storeViewsItem.name!;
-        if(mapData["currentCode"]==null){
-          mapData["currentCode"] = storeViewsItem.code;
+        languageList.add(storeViewsItem.name!);
+        if(mapData["current_code"]==null){
+          mapData["current_code"] = storeViewsItem.code;
         }
+
         update();
-        storeViewModelList!.add(storeViewsItem);
+        print("languageList -> ${languageList.length}");
+        storeViewModelList.add(storeViewsItem);
         for (int i = 0; i < storeConfigsList.value.length; i++) {
           storeConfigItem = StoreConfigModel.fromJson(storeConfigsList.value[i]);
           if (storeViewsItem.id == storeConfigItem.id) {
             currency.value = storeConfigItem.defaultDisplayCurrencyCode!;
-            if(mapData["currentCurrency"]==null){
-              mapData["currentCurrency"] = storeConfigItem.baseCurrencyCode;
+            if(mapData["current_currency"]==null){
+              mapData["current_currency"] = storeConfigItem.baseCurrencyCode;
             }
             update();
             StoreLanguageCurrencyModel storeModel = StoreLanguageCurrencyModel(
@@ -83,15 +123,21 @@ class CountryController extends GetxController {
                 locale: storeConfigItem.locale,
                 baseCurrencyCode: storeConfigItem.baseCurrencyCode,
                 defaultDisplayCurrencyCode: storeConfigItem.defaultDisplayCurrencyCode);
-            storeLanguageCurrencyModelList!.add(storeModel);
+            storeLanguageCurrencyModelList.add(storeModel);
+            currencyList.add(storeModel.baseCurrencyCode!);
+            print("currencyList -> ${currencyList.length}");
+
           }
         }
       }
     }
 
-    mapData!.addAll({
-      "store_view_model": (storeViewModelList!),
-      "store_language_currency_model": (storeLanguageCurrencyModelList!)
+
+    mapData.addAll({
+      "language_list": languageList,
+      "currency_list": currencyList,
+      "store_view_model": (storeViewModelList),
+      "store_language_currency_model": (storeLanguageCurrencyModelList)
     });
 
     //LocalStoreModel localStoreModel = LocalStoreModel.fromJson(mapData);
@@ -101,5 +147,6 @@ class CountryController extends GetxController {
     data = await getPrefStringValue(key_local_store_model);
     localStoreModel = LocalStoreModel.fromJson(jsonDecode(data!));
     print("LocalMap -> ${jsonEncode(localStoreModel)}");
+    await getCurrentLanguageCurrency();
   }
 }

@@ -51,22 +51,53 @@ class CountryScreen extends GetView<CountryController> {
                         },
                       ),
                     ),
-                    Expanded(
-                        child: Obx(() => Container(
-                              padding: const EdgeInsets.only(left: 20.0),
+                    Expanded(child: Obx(() {
+                      print("controller.languageList -> ${controller.languageList.length}");
+                      return Container(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: DropdownButton(
+                          focusColor: appColorButton,
+                          hint: CommonTextPoppins(''),
+                          onChanged: (language) {
+                            controller.setLanguageSelected(language.toString());
+                          },
+                          value: controller.langSelected.value,
+                          items: controller.languageList.map((languageSelect) {
+                            return DropdownMenuItem(
                               child: CommonTextPoppins(
-                                controller.language.value,
+                                languageSelect,
                                 fontSize: 18.0,
                               ),
-                            ))),
-                    Expanded(
-                        child: Obx(() => Container(
-                              padding: const EdgeInsets.only(left: 20.0),
+                              value: languageSelect,
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    })),
+                    Expanded(child: Obx(() {
+                      print("controller.currencyList -> ${controller.currencyList.length}");
+                      return Container(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: DropdownButton(
+                          focusColor: appColorButton,
+                          hint: CommonTextPoppins(''),
+                          onChanged: (currency) {
+                            controller.setCurrencySelected(currency.toString());
+                          },
+                          value: controller.currencySelected.value,
+                          items: controller.currencyList.map((currencySelect) {
+                            print("currencySelect -> $currencySelect");
+                            return DropdownMenuItem(
                               child: CommonTextPoppins(
-                                controller.currency.value,
+                                currencySelect,
                                 fontSize: 18.0,
                               ),
-                            ))),
+                              value: currencySelect,
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    })),
                   ],
                 ),
               ],

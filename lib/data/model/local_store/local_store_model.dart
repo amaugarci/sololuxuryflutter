@@ -12,27 +12,45 @@ class LocalStoreModel {
   LocalStoreModel({
     this.id,
     this.name,
-    this.storeViewModel,
-    this.storeLanguageCurrencyModel,
+    this.currentCode,
+    this.currentCurrency,
+    this.languageList,
+    this.currencyList,
+    this.storeViewModelList,
+    this.storeLanguageCurrencyModelList,
   });
 
   int? id;
   String? name;
-  List<LocalStoreViewModel>? storeViewModel;
-  List<LocalStoreLanguageCurrencyModel>? storeLanguageCurrencyModel;
+  String? currentCode;
+  String? currentCurrency;
+  List<dynamic>? languageList;
+  List<dynamic>? currencyList;
+  List<LocalStoreViewModel>? storeViewModelList;
+  List<LocalStoreLanguageCurrencyModel>? storeLanguageCurrencyModelList;
 
-  factory LocalStoreModel.fromJson(Map<String?, dynamic> json) => LocalStoreModel(
+  factory LocalStoreModel.fromJson(Map<String?, dynamic> json) {
+    return LocalStoreModel(
     id: json["id"],
     name: json["name"],
-    storeViewModel: List<LocalStoreViewModel>.from(json["store_view_model"].map((x) => LocalStoreViewModel.fromJson(x))),
-    storeLanguageCurrencyModel: List<LocalStoreLanguageCurrencyModel>.from(json["store_language_currency_model"].map((x) => LocalStoreLanguageCurrencyModel.fromJson(x))),
+    currentCode: json["current_code"],
+    currentCurrency: json["current_currency"],
+    languageList: json["language_list"],
+    currencyList: json["currency_list"],
+    storeViewModelList: List<LocalStoreViewModel>.from(json["store_view_model"].map((x) => LocalStoreViewModel.fromJson(x))),
+    storeLanguageCurrencyModelList: List<LocalStoreLanguageCurrencyModel>.from(json["store_language_currency_model"].map((x) => LocalStoreLanguageCurrencyModel.fromJson(x))),
   );
+  }
 
   Map<String?, dynamic> toJson() => {
     "id": id,
     "name": name,
-    "store_view_model": List<dynamic>.from(storeViewModel!.map((x) => x.toJson())),
-    "store_language_currency_model": List<dynamic>.from(storeLanguageCurrencyModel!.map((x) => x.toJson())),
+    "current_code": currentCode,
+    "current_currency": currentCurrency,
+    "language_list": languageList,
+    "currency_list": currencyList,
+    "store_view_model": List<dynamic>.from(storeViewModelList!.map((x) => x.toJson())),
+    "store_language_currency_model": List<dynamic>.from(storeLanguageCurrencyModelList!.map((x) => x.toJson())),
   };
 }
 
