@@ -69,8 +69,8 @@ class CountryController extends GetxController {
         }
       }
     }
-    languageList.value = localStoreModel.languageList!.toSet().toList();
-    currencyList.value = localStoreModel.currencyList!.toSet().toList();
+    languageList.value = localStoreModel.languageList!;
+    currencyList.value = localStoreModel.currencyList!;
     update();
   }
 
@@ -127,6 +127,7 @@ class CountryController extends GetxController {
                 defaultDisplayCurrencyCode: storeConfigItem.defaultDisplayCurrencyCode);
             storeLanguageCurrencyModelList.add(storeModel);
             currencyList.add(storeModel.baseCurrencyCode!);
+            currencyList.add(storeModel.defaultDisplayCurrencyCode!);
             print("currencyList -> ${currencyList.length}");
 
           }
@@ -136,8 +137,8 @@ class CountryController extends GetxController {
 
 
     mapData.addAll({
-      "language_list": languageList,
-      "currency_list": currencyList,
+      "language_list": languageList.toSet().toList(),
+      "currency_list": currencyList.toSet().toList(),
       "store_view_model": (storeViewModelList),
       "store_language_currency_model": (storeLanguageCurrencyModelList)
     });
