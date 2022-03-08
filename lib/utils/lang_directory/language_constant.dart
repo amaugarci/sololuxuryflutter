@@ -27,4 +27,7 @@ class LanguageConstant {
   static const String accountInfoText = "accountInfoText";
   static const String storePaymentText = "storePaymentText";
   static const String newsletterSubText = "newsletterSubText";
+  static const String youaddCartText = "youaddCartText";
+  static const String viewCartText = "viewCartText";
+  static const String continueShoppingText = "continueShoppingText";
 }

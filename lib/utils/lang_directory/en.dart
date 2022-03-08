@@ -25,4 +25,8 @@ const Map<String, String> en = {
   "accountInfoText": "Account Information",
   "storePaymentText": "Store Payment Methods",
   "newsletterSubText": "Newsletter Subscriptions",
+  "youaddCartText":
+      "You added ALEXANDER MCQUEEN MULES ALEXANDER MCQUEEN HYBRID SIGNATURE SLIDES to your shopping cart.",
+  "viewCartText": "View Cart",
+  "continueShoppingText": "Continue Shopping",
 };
