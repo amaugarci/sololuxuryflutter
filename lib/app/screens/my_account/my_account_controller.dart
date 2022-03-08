@@ -6,7 +6,10 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 class MyAccountController extends GetxController {
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
-  RxString chosenValue = 'My Account'.obs;
+  RxString chosenValue = LanguageConstant.myAccountText.tr.obs;
+  Rx<TextEditingController> emailController = TextEditingController().obs;
+  Rx<TextEditingController> firstNameController = TextEditingController().obs;
+
 
   List<String> data = [
     LanguageConstant.myAccountText.tr,

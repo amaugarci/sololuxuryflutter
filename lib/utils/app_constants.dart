@@ -29,6 +29,8 @@ class AppConstants {
 
   static const String signUp = "customers";
 
+  static const String licenceId = '11434003';
+
 
 
 }
