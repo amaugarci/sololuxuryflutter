@@ -11,7 +11,7 @@ import 'package:solo_luxury/data/model/country/store_websites_model.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/country_api_repository.dart';
 
 import '../../../data/model/country/store_views_model.dart';
-import '../../../data/model/local_store/local_store_model.dart';
+import '../../../data/model/country/local_store_language_currency/local_store_model.dart';
 import '../../db/shared_pref.dart';
 
 class CountryController extends GetxController {
