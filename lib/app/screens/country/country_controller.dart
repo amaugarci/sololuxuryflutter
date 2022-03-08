@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
-import 'package:solo_luxury/data/model/Home/local_store_language_currency/local_store_language_currency_model.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
-import 'package:solo_luxury/data/model/Home/store_config_model.dart';
-import 'package:solo_luxury/data/model/Home/store_websites_model.dart';
+import 'package:solo_luxury/data/model/country/local_store_language_currency/local_store_language_currency_model.dart';
+import 'package:solo_luxury/data/model/country/store_config_model.dart';
+import 'package:solo_luxury/data/model/country/store_websites_model.dart';
 
 import 'package:solo_luxury/utils/get_network_service/APIRepository/country_api_repository.dart';
 
-import '../../../data/model/Home/store_views_model.dart';
+import '../../../data/model/country/store_views_model.dart';
 import '../../../data/model/local_store/local_store_model.dart';
 import '../../db/shared_pref.dart';
 
@@ -58,18 +58,20 @@ class CountryController extends GetxController {
 
   getCurrentLanguageCurrency()async {
     String data = await getPrefStringValue(key_local_store_model);
-    LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
-    print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
-    for (var element in localStoreModel.storeViewModelList!) {
-      if(element.code == localStoreModel.currentCode){
-        langSelected.value = element.name!;
-        print("Languages -> ${language.value}");
+    if(data!=null && data.isNotEmpty) {
+      LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+      print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
+      for (var element in localStoreModel.storeViewModelList!) {
+        if (element.code == localStoreModel.currentCode) {
+          langSelected.value = element.name!;
+          print("Languages -> ${language.value}");
+        }
       }
+      currencySelected.value = localStoreModel.currentCurrency!;
+      languageList.value = localStoreModel.languageList!;
+      currencyList.value = localStoreModel.currencyList!;
+      update();
     }
-    currencySelected.value = localStoreModel.currentCurrency!;
-    languageList.value = localStoreModel.languageList!;
-    currencyList.value = localStoreModel.currencyList!;
-    update();
   }
 
   getStoreDataFromApi() async {

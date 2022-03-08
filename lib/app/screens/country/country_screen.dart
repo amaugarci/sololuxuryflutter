@@ -10,11 +10,11 @@ import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
-import 'package:solo_luxury/data/model/Home/store_views_model.dart';
+import 'package:solo_luxury/data/model/country/store_views_model.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-import '../../../data/model/Home/store_websites_model.dart';
+import '../../../data/model/country/store_websites_model.dart';
 
 class CountryScreen extends GetView<CountryController> {
   const CountryScreen({Key? key}) : super(key: key);

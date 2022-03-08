@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:solo_luxury/data/model/Home/store_views_model.dart';
+import 'package:solo_luxury/data/model/country/store_views_model.dart';
 
 class LocalStoreLanguageCurrencyModel{
 
