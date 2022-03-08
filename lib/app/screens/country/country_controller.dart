@@ -65,12 +65,18 @@ class CountryController extends GetxController {
       if (item.id == storeViewsItem.websiteId) {
         // print("storeViewsItem.websiteId -> ${item.id!}");
         language.value = storeViewsItem.name!;
+        if(mapData["currentCode"]==null){
+          mapData["currentCode"] = storeViewsItem.code;
+        }
         update();
         storeViewModelList!.add(storeViewsItem);
         for (int i = 0; i < storeConfigsList.value.length; i++) {
           storeConfigItem = StoreConfigModel.fromJson(storeConfigsList.value[i]);
           if (storeViewsItem.id == storeConfigItem.id) {
             currency.value = storeConfigItem.defaultDisplayCurrencyCode!;
+            if(mapData["currentCurrency"]==null){
+              mapData["currentCurrency"] = storeConfigItem.baseCurrencyCode;
+            }
             update();
             StoreLanguageCurrencyModel storeModel = StoreLanguageCurrencyModel(
                 id: storeConfigItem.id,
