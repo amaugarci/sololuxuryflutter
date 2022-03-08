@@ -38,9 +38,11 @@ class CountryController extends GetxController {
 
   void setLanguageSelected(String value){
     langSelected.value = value;
+    update();
   }
   void setCurrencySelected(String value){
     currencySelected.value = value;
+    update();
   }
 
 
@@ -57,11 +59,11 @@ class CountryController extends GetxController {
     print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
     for (var element in localStoreModel.storeViewModelList!) {
       if(element.code == localStoreModel.currentCode){
-        language.value = element.name!;
+        langSelected.value = element.name!;
         print("Languages -> ${language.value}");
         for (var element1 in localStoreModel.storeLanguageCurrencyModelList!) {
           if(element1.baseCurrencyCode == localStoreModel.currentCurrency){
-            currency.value = element1.baseCurrencyCode!;
+            currencySelected.value = element1.baseCurrencyCode!;
             print("Currency -> ${currency.value}");
           }
         }
