@@ -17,6 +17,7 @@ class CountryAPIProvider extends GetConnect implements ICountryProvider {
     //Get All Store Model (Websites,Views and Configs)
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointNew2;
+    httpClient.timeout = const Duration(seconds: 60);
   }
 
   @override

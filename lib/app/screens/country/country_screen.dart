@@ -52,7 +52,7 @@ class CountryScreen extends GetView<CountryController> {
                       ),
                     ),
                     Expanded(child: Obx(() {
-                      print("controller.languageList -> ${controller.languageList.length}");
+
                       return Container(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: DropdownButton(
@@ -75,7 +75,6 @@ class CountryScreen extends GetView<CountryController> {
                       );
                     })),
                     Expanded(child: Obx(() {
-                      print("controller.currencyList -> ${controller.currencyList.length}");
                       return Container(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: DropdownButton(
@@ -86,7 +85,7 @@ class CountryScreen extends GetView<CountryController> {
                           },
                           value: controller.currencySelected.value,
                           items: controller.currencyList.map((currencySelect) {
-                            print("currencySelect -> $currencySelect");
+
                             return DropdownMenuItem(
                               child: CommonTextPoppins(
                                 currencySelect,

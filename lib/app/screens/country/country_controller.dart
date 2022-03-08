@@ -7,6 +7,7 @@ import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/data/model/country/local_store_language_currency/local_store_language_currency_model.dart';
 import 'package:solo_luxury/data/model/country/store_config_model.dart';
 import 'package:solo_luxury/data/model/country/store_websites_model.dart';
+import 'package:solo_luxury/main.dart';
 
 import 'package:solo_luxury/utils/get_network_service/APIRepository/country_api_repository.dart';
 
@@ -72,6 +73,7 @@ class CountryController extends GetxController {
       currencyList.value = localStoreModel.currencyList!;
       update();
     }
+    localStore.getStore();
   }
 
   getStoreDataFromApi() async {
