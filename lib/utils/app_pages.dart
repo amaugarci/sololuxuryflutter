@@ -127,7 +127,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.myAccountScreen,
-      page: () => const MyAccountPage(),
+      page: () => const MyAccountScreen(),
       binding: MyAccountBinding(),
     ),
     GetPage(
