@@ -29,10 +29,12 @@ const Color infoDialog = Color(0xff79B3E4);
 const Color blue = Color(0xff068AEC);
 const Color yellow = Color(0xffFFCC00);
 const Color borderGrey = Color(0xffDBDBDB);
+const Color grey6D6D6D = Color(0xff6D6D6D);
 
 const Color appColorPrimary = Color(0xff8A3A06);
 const Color appColorButton = Color(0xff6F3015);
 const Color appColorAccent = Color(0xffF9EAE3);
+const Color appColorFDF3F1 = Color(0xffFDF3F1);
 const Color appColorDullPrimary = Color(0xffCEAEA0);
 const Color appColorPrimaryGrey = Color(0xffEEE2DB);
 const Color appColorDarkGrey = Color(0xff969290);
@@ -44,6 +46,7 @@ const Color affiliateBorderColor = Color(0xffCEAE9F);
 Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);
 Color grey = Color(0xff999999);
+
 const Color grey636363 = Color(0xff636363);
 
 Color backgroundticket=Color(0xffFBECE5);
