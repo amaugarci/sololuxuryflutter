@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/Guest_Returns/guest_returns_binding.dart';
+import 'package:solo_luxury/app/screens/Guest_Returns/guest_returns_screen.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book.dart';
@@ -79,6 +81,11 @@ class AppPages {
       name: RoutesConstants.countryScreen,
       page: () => const CountryScreen(),
       binding: CountryScreenBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.guestReturnsScreen,
+      page: () => const GuestReturns(),
+      binding: GuestReturnsBindings(),
     ),
   ];
 }

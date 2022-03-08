@@ -30,4 +30,9 @@ class LanguageConstant {
   static const String youaddCartText = "youaddCartText";
   static const String viewCartText = "viewCartText";
   static const String continueShoppingText = "continueShoppingText";
+  static const String checkYourOrderText = "checkYourOrderText";
+  static const String enterYourOrderText = "enterYourOrderText";
+  static const String howDoIFindText = "howDoIFindText";
+  static const String submitText = "submitText";
+  static const String orderRefernceText = "orderRefernceText";
 }
