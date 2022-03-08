@@ -8,6 +8,7 @@ import 'package:solo_luxury/data/model/InfluenceRegistration/influencer_registra
 import '../../../utils/get_network_service/APIRepository/influencer_api_repository.dart';
 import '../../../utils/repository/network_repository.dart';
 
+
 class InfluencerRegistrationController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
   final formKey = GlobalKey<FormState>().obs;
