@@ -109,7 +109,7 @@ class LanguageConstant {
 
 
   static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
-  
+
   static const String signUpText = "signUpText";
   static const String loginText = "loginText";
 
