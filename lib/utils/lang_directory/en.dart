@@ -1,6 +1,10 @@
 const Map<String, String> en = {
   "language": "English",
   "appNameText": "Solo Luxury",
+  "forgetPassword": "Forgot Your Password?",
+  "backToSignInScreen": "Back to sign in screen",
+  "forgetPasswordContain":
+      "If there is a account associated with ( test @test.com ) we will send you a email with the instructions to reset your password.If you need any further assistance pls",
   "aboutUsText": "About us",
   "referFriendText": "Refer Friend",
   "aboutUsContain1":
@@ -60,9 +64,8 @@ const Map<String, String> en = {
   "accountToPlaceOrderAns":
       "No, all you need is an email address. We recommend that you register for an account to start adding pieces to your Wishlist, but, you can also place and track orders as a guest and signup at a time that suits you.",
   "registeredCustomersText": "Registered Customers",
-
-  "registeredCustomersDescriptionText": "If You Have An Account, Sign In With Your\nEmail Address.",
-
+  "registeredCustomersDescriptionText":
+      "If You Have An Account, Sign In With Your\nEmail Address.",
   "usernameText": "Username",
   "passwordText": "Password",
   "signInText": "Sign in",
@@ -76,14 +79,12 @@ const Map<String, String> en = {
   "marriageAnniversaryText": "Marriage Anniversary",
   "confirmPasswordText": "Confirm Password",
   "signUpForNewsletterText": "Sign Up for Newsletter",
-
   "forgotYourPasswordDescriptionText":
       "Please Enter Your Email Address Below To Receive\nA Password Reset Link",
   "enterYourEmailText": "Enter your email",
   "resetMyPasswordText": "Reset My Password",
   "accessYourAccountDetailsText": "Access your account details and rewards",
   "signUpText": "SIGN UP",
-
   "myOrdersText": "My Orders",
   "myWishlistText": "My Wish List",
   "addressBookText": "Address Book",
@@ -117,7 +118,6 @@ const Map<String, String> en = {
   "sizeText": "Size",
   "applyText": "Apply",
   "searchText": "Search..",
-
   "yourEmail1Text": "Your E-Mail",
   "subscribeText": "SUBSCRIBE",
   "menuText": "Menu",
@@ -128,7 +128,8 @@ const Map<String, String> en = {
   "shippingMethodText": "Shipping Method",
   "paymentMethodText": "Payment Method",
   "orderSummaryText": "Order Summary",
-  "alreadyAcText": "You Already have an account with us. Sign in or continue as guest.",
+  "alreadyAcText":
+      "You Already have an account with us. Sign in or continue as guest.",
   "loginText": "LOGIN",
   "forgotText": "Forgot Your Password?",
   "stLineText": "Street Address: Line 1",
@@ -144,37 +145,46 @@ const Map<String, String> en = {
   "applyDiscountText": "Apply Discount",
   "orderTotalText": "Order Total",
   "placeOrderText": "PLACE ORDER",
-
-  "affiliateProgramTitleText":"SOLO LUXURY AFFILIATE PROGRAM",
-  "whoAreWeLookingTitleText":"Who are we looking for?",
-  "whoAreWeLookingDescriptionOneText":"Do you have a fashion-forward, luxury oriented website, blog, social media profile that is trend savvy with an international outlook? Is your focus fashion, lifestyle, beauty and design? If so, we are looking for you!\n\nJoin our global Affiliate Program and you will have the opportunity to earn a commission every time your visitors purchase from SOLO.",
-  "whatCanYouExpectTitleText":"What can you expect?",
-  "expectRuleOneText":"Commission on all approved net sales",
-  "expectRuleTwoText":"45 days cookie window",
-  "expectRuleThreeText":"Data feed updated multiple times per day",
-  "expectRuleFourText":"Access to customized banners, textlinks, deeplinks and our datafeed in 9 languages (English, Italian, French, German, Korean, Spanish, Chinese,Russian & Japanese)",
-  "expectRuleFiveText":"The possibility to customize feeds into all world currencies",
-  "promoteSoloQuestionText":"How can you promote solo (as an affiliate)?",
-  "promoteSoloAnswerOneText":"Creating high-quality and engaging content that mirrors the style of SOLO",
-  "promoteSoloAnswerTwoText":"Featuring our content, banners and links for multiple categories and events on your website and social media channels",
-  "promoteSoloAnswerThreeText":"Promoting the benefits that our customers love",
-  "promoteSoloAnswerFourText":"A selection of continuously updated articles from the best brands",
-  "promoteSoloAnswerFiveText":"Free returns with no added taxes for the US, Canada, the UK and ",
-  "howApplyTitleText":"How to apply?",
-  "howApplyAnswerOneText":"Email us the name and URL of your website, blog or social media profile and your main markets. We’ll review your site and get back to you with further information on how to join the affiliate program.\n\nPlease note that all applications are manually evaluated and processing may take up to 10 days.\n\nIf you feel your application has been wrongfully declined please contact affiliates@solo.com and a member of the team will address your concerns.",
-  "visitorMonthHintText":"Select Unique Visitors/Month",
-  "viewsMonthHintText":"Select Page Views/Month",
-  "cityHintText":"City",
-  "countryHintText":"Country",
-  "addressOneText" : "Street Address 1",
-  "addressTwoText" : "Street Address 2",
-  "addressText" : "Address",
-  "letsGoText" : "Let's Go",
+  "affiliateProgramTitleText": "SOLO LUXURY AFFILIATE PROGRAM",
+  "whoAreWeLookingTitleText": "Who are we looking for?",
+  "whoAreWeLookingDescriptionOneText":
+      "Do you have a fashion-forward, luxury oriented website, blog, social media profile that is trend savvy with an international outlook? Is your focus fashion, lifestyle, beauty and design? If so, we are looking for you!\n\nJoin our global Affiliate Program and you will have the opportunity to earn a commission every time your visitors purchase from SOLO.",
+  "whatCanYouExpectTitleText": "What can you expect?",
+  "expectRuleOneText": "Commission on all approved net sales",
+  "expectRuleTwoText": "45 days cookie window",
+  "expectRuleThreeText": "Data feed updated multiple times per day",
+  "expectRuleFourText":
+      "Access to customized banners, textlinks, deeplinks and our datafeed in 9 languages (English, Italian, French, German, Korean, Spanish, Chinese,Russian & Japanese)",
+  "expectRuleFiveText":
+      "The possibility to customize feeds into all world currencies",
+  "promoteSoloQuestionText": "How can you promote solo (as an affiliate)?",
+  "promoteSoloAnswerOneText":
+      "Creating high-quality and engaging content that mirrors the style of SOLO",
+  "promoteSoloAnswerTwoText":
+      "Featuring our content, banners and links for multiple categories and events on your website and social media channels",
+  "promoteSoloAnswerThreeText":
+      "Promoting the benefits that our customers love",
+  "promoteSoloAnswerFourText":
+      "A selection of continuously updated articles from the best brands",
+  "promoteSoloAnswerFiveText":
+      "Free returns with no added taxes for the US, Canada, the UK and ",
+  "howApplyTitleText": "How to apply?",
+  "howApplyAnswerOneText":
+      "Email us the name and URL of your website, blog or social media profile and your main markets. We’ll review your site and get back to you with further information on how to join the affiliate program.\n\nPlease note that all applications are manually evaluated and processing may take up to 10 days.\n\nIf you feel your application has been wrongfully declined please contact affiliates@solo.com and a member of the team will address your concerns.",
+  "visitorMonthHintText": "Select Unique Visitors/Month",
+  "viewsMonthHintText": "Select Page Views/Month",
+  "cityHintText": "City",
+  "countryHintText": "Country",
+  "addressOneText": "Street Address 1",
+  "addressTwoText": "Street Address 2",
+  "addressText": "Address",
+  "letsGoText": "Let's Go",
   "newsLetters": "NEWSLETTERS",
   "manageAddresses": "Manage Addresses",
   "defaultBillingAddress": "DEFAULT BILLING ADDRESS",
   "defaultShippingAddress": "DEFAULT SHIPPING ADDRESS",
-  "defaultShippingContain": "sdsdsd sdsdsd sds ds sdsd kl skldjlsdjklsdjljsl jaipur, Delhi, 302019 India",
+  "defaultShippingContain":
+      "sdsdsd sdsdsd sds ds sdsd kl skldjlsdjklsdjljsl jaipur, Delhi, 302019 India",
   "newsLettersContain": "You Aren't Subscribed To\nOur Newsletter.",
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",

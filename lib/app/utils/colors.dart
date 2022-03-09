@@ -52,7 +52,7 @@ const Color grey636363 = Color(0xff636363);
 Color backgroundticket=Color(0xffFBECE5);
 Color secondarybackgroundcolor=Color(0xFFF6E6DF);
 Color ticketTextColor=Color(0xFF6F3015);
-Color buttoncolor=Color(0xFF8A3A06);
+const Color buttoncolor=Color(0xFF8A3A06);
 
 
 
