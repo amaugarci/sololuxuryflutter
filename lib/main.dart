@@ -4,7 +4,9 @@ import 'package:solo_luxury/app/app.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/network_dio/network_dio.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
+import 'package:solo_luxury/utils/store_info/local_store.dart';
 
+LocalStore localStore = LocalStore();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

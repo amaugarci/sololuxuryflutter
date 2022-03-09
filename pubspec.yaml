@@ -49,6 +49,7 @@ dependencies:
   datetime_picker_formfield: ^2.0.0
   flutter_html: ^2.2.1
   livechatt: ^1.4.0
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

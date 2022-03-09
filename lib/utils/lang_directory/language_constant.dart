@@ -100,9 +100,11 @@ class LanguageConstant {
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
+
   static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
   static const String signUpText = "signUpText";
   static const String loginText = "loginText";
+
   static const String trackOrderText = "trackOrderText";
   static const String companyMyAccountText = "companyMyAccountText";
   static const String contactUsText = "contactUsText";
@@ -158,6 +160,7 @@ class LanguageConstant {
   static const String applyDiscountText = "applyDiscountText";
   static const String orderTotalText = "orderTotalText";
   static const String placeOrderText = "placeOrderText";
+
 
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";
   static const String whoAreWeLookingTitleText = "whoAreWeLookingTitleText";

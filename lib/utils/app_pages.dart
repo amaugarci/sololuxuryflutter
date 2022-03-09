@@ -37,6 +37,10 @@ import '../app/screens/my_account/my_account_binding.dart';
 import '../app/screens/my_account/my_account_screen.dart';
 import '../app/screens/influencer_registraction/influencer_binding.dart';
 import '../app/screens/influencer_registraction/influencer_registration_screen.dart';
+import '../app/screens/country/country_binding.dart';
+import '../app/screens/country/country_screen.dart';
+import '../app/screens/dashboard/dashboard_binding.dart';
+import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
 import '../app/screens/search/search_screen.dart';
@@ -60,6 +64,11 @@ class AppPages {
       name: RoutesConstants.dashboardScreen,
       page: () => DashboardScreen(),
       binding: DashboardBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.countryScreen,
+      page: () => const CountryScreen(),
+      binding: CountryBindings(),
     ),
     GetPage(
       name: RoutesConstants.productListScreen,

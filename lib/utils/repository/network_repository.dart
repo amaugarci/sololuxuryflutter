@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
-import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/network_dio/network_dio.dart';

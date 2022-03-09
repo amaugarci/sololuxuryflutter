@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/components/buttons/text_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
@@ -10,9 +9,11 @@ import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/checkout_box.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/data/model/Home/estimate_shipping_method_model.dart';
-import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
+
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
 
 import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
 import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
@@ -20,16 +21,18 @@ import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.find()));
+
+  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+
+
 
   @override
   Widget build(BuildContext context) {
-    print("homeController -> " + runtimeType.toString());
     return Obx(() => Scaffold(
           key: controller.scaffoldkey,
           backgroundColor: backGroundColor,
           drawer: getDrawer(homeController),
-          body: Container(
+          body: SizedBox(
             width: Get.width,
             child: Stack(
               children: [
@@ -395,7 +398,14 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   border: Border.all(
                                       color: Colors.black,
                                       width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
+                                  color:
+                                      controller.selectedPaymentIndex.value ==
+                                              index
+                                          ? Colors.black
+
+                                          : Colors.transparent,
                                   shape: BoxShape.circle),
+
                             ),
                             const SizedBox(
                               width: 20.0,
@@ -500,7 +510,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                       width: 10.0,
                                     ),
                                     Expanded(
-                                      child: Container(
+                                      child: SizedBox(
                                         height: 85.0,
                                         width: Get.width,
                                         child: Column(
@@ -705,7 +715,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                print("valid -> ${controller.formKey.currentState!.validate()}");
                 if (controller.formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
