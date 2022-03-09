@@ -28,15 +28,21 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_sc
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
+import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
+import '../app/screens/contact_us/contact_us_screen.dart';
 import '../app/screens/dashboard/dashboard_binding.dart';
 import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/my_account/my_account_binding.dart';
 import '../app/screens/my_account/my_account_screen.dart';
 import '../app/screens/influencer_registraction/influencer_binding.dart';
 import '../app/screens/influencer_registraction/influencer_registration_screen.dart';
+import '../app/screens/country/country_binding.dart';
+import '../app/screens/country/country_screen.dart';
+import '../app/screens/dashboard/dashboard_binding.dart';
+import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
 import '../app/screens/search/search_screen.dart';
@@ -60,6 +66,11 @@ class AppPages {
       name: RoutesConstants.dashboardScreen,
       page: () => DashboardScreen(),
       binding: DashboardBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.countryScreen,
+      page: () => const CountryScreen(),
+      binding: CountryBindings(),
     ),
     GetPage(
       name: RoutesConstants.productListScreen,
@@ -145,6 +156,14 @@ class AppPages {
       name: RoutesConstants.myAccountMenuScreen,
       page: () => MyAccountMenuPage(),
       binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.myTicketsScreen,
+      page: () => MyTicketScreen(),
+    ),
+    GetPage(
+      name: RoutesConstants.contactUsScreen,
+      page: () => ContactUsScreen(),
     ),
   ];
 }

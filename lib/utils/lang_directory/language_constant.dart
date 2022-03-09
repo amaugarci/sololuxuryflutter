@@ -1,6 +1,7 @@
 class LanguageConstant {
   //Home Screen Constant
   static const String aboutUsText = "aboutUs";
+
   //static const String aboutUsText = "aboutUsText";
   static const String aboutUsContain1 = "aboutUsContain1";
   static const String aboutUsContain2 = "aboutUsContain2";
@@ -27,6 +28,11 @@ class LanguageConstant {
   static const String followersText = "followersText";
   static const String countryText = "countryText";
   static const String workedOnText = "workedOnText";
+
+  ///forgetPassword menu Screen
+  static const String forgetPassword = "forgetPassword";
+  static const String backToSignInScreen = "backToSignInScreen";
+  static const String forgetPasswordContain = "forgetPasswordContain";
 
   static const String referFriendText = "referFriendText";
   static const String returnsRefundsText = "returnsRefundsText";
@@ -67,15 +73,14 @@ class LanguageConstant {
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
 
-
   static const String freuentlyAskedQueText = "freuentlyAskedQueText";
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 
-
   static const String registeredCustomersText = "registeredCustomersText";
-  static const String registeredCustomersDescriptionText = "registeredCustomersDescriptionText";
+  static const String registeredCustomersDescriptionText =
+      "registeredCustomersDescriptionText";
 
   static const String usernameText = "usernameText";
 
@@ -96,13 +101,18 @@ class LanguageConstant {
 
   static const String confirmPasswordText = "confirmPasswordText";
   static const String signUpForNewsletterText = "signUpForNewsletterText";
-  static const String forgotYourPasswordDescriptionText = "forgotYourPasswordDescriptionText";
+  static const String forgotYourPasswordDescriptionText =
+      "forgotYourPasswordDescriptionText";
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
+
+
   static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
+
   static const String signUpText = "signUpText";
   static const String loginText = "loginText";
+
   static const String trackOrderText = "trackOrderText";
   static const String companyMyAccountText = "companyMyAccountText";
   static const String contactUsText = "contactUsText";
@@ -123,7 +133,6 @@ class LanguageConstant {
   static const String referFriendMyAccountText = "referFriendMyAccountText";
   static const String returnsText = "returnsText";
   static const String faqMyAccountText = "faqMyAccountText";
-
 
   static const String filtersText = "filtersText";
   static const String priceText = "priceText";
@@ -159,9 +168,11 @@ class LanguageConstant {
   static const String orderTotalText = "orderTotalText";
   static const String placeOrderText = "placeOrderText";
 
+
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";
   static const String whoAreWeLookingTitleText = "whoAreWeLookingTitleText";
-  static const String whoAreWeLookingDescriptionOneText = "whoAreWeLookingDescriptionOneText";
+  static const String whoAreWeLookingDescriptionOneText =
+      "whoAreWeLookingDescriptionOneText";
   static const String whatCanYouExpectTitleText = "whatCanYouExpectTitleText";
   static const String expectRuleOneText = "expectRuleOneText";
   static const String expectRuleTwoText = "expectRuleTwoText";

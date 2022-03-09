@@ -17,7 +17,9 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
   OrderConfirmationPage({Key? key}) : super(key: key);
 
 
+
   final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+
 
   @override
   Widget build(BuildContext context) {

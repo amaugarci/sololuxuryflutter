@@ -13,6 +13,8 @@ import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
+import '../country/country_screen.dart';
+
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({Key? key}) : super(key: key);
 
@@ -28,7 +30,7 @@ class DashboardScreen extends GetView<DashboardController> {
               const HomeScreen(),
               const SearchScreen(),
               CheckoutOrderScreen(),
-              MyWishListPage(),
+              const CountryScreen(),
               const ProfileScreen(),
             ]),
           ],

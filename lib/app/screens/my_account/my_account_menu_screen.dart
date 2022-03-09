@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
+import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
+import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_screen.dart';
+import 'package:solo_luxury/app/screens/privacy_policy/terms_and_condition_screen.dart';
+import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import '../../../utils/app_routes.dart';
 import '../../../utils/validator.dart';
 import '../../components/input_text_field_widget.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
+import '../refer_friend/refer_friend_screen.dart';
 import 'my_account_controller.dart';
 import 'package:livechatt/livechatt.dart';
 
@@ -51,37 +58,48 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                                height: 50,
-                                width: Get.width * .4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(width: 2, color: appColor),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  LanguageConstant.signUpText.tr,
-                                  style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
-                                ))),
-                            Container(
-                                height: 50,
-                                width: Get.width * .4,
-                                decoration: BoxDecoration(
-                                  color: appColor,
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(width: 2, color: appColor),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  LanguageConstant.loginText.tr,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
-                                ))),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(RoutesConstants.signUpScreen);
+                              },
+                              child: Container(
+                                  height: 50,
+                                  width: Get.width * .4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border:
+                                        Border.all(width: 2, color: appColor),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    LanguageConstant.signUpText.tr,
+                                    style: TextStyle(
+                                        color: appColor,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400),
+                                  ))),
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                Get.toNamed(RoutesConstants.loginScreen);
+                              },
+                              child: Container(
+                                  height: 50,
+                                  width: Get.width * .4,
+                                  decoration: BoxDecoration(
+                                    color: appColor,
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(width: 2, color: appColor),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    LanguageConstant.loginText.tr,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400),
+                                  ))),
+                            ),
                           ],
                         )
                       ],
@@ -91,69 +109,99 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myOrdersText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.myOrderScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.myOrdersText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myWishlistText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.wishlistScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.myWishlistText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.addressBookText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.addAdressScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.addressBookText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.accountInformationText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.myAccountScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.accountInformationText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.myTicketsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const MyTicketScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.myTicketsText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.trackOrderText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.trackOrderText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
@@ -170,47 +218,67 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.contactUsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const ContactUsScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.contactUsText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.secureShoppingText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.secureShoppingText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.advancedSearchText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.productsScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.advancedSearchText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.testimonialsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.testimonialsText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
@@ -227,47 +295,67 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.hopeText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.hopeText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.affiliateProgramText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.affiliateProgramScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.affiliateProgramText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.influencerRegistrationText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.influencerRegistrationScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.influencerRegistrationText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.exchangeText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.exchangeText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
@@ -284,36 +372,51 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.privacyPolicyText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const PrivacyPolicyScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.privacyPolicyText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.termsConditionsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const TermsAndConditionScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.termsConditionsText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.shippingText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.shippingText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
@@ -330,54 +433,73 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.aboutUsMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const AboutUsScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.aboutUsMyAccountText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.referFriendMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => const ReferFriendScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.referFriendMyAccountText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.returnsText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.returnsText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        LanguageConstant.faqMyAccountText.tr,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.faqScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          LanguageConstant.faqMyAccountText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                     Divider(),
                     GestureDetector(
                       onTap: () {
-                       showTitleDialog(context);
-                       //Livechat.beginChat(LICENSE_NO, GROUP_ID, VISITOR_NAME, VISITOR_EMAIL);
+                        showTitleDialog(context);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -424,7 +546,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
     );
   }
 
-
   Future showTitleDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -464,7 +585,11 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
-                  Livechat.beginChat(AppConstants.licenceId, '1', controller.firstNameController.value.text.trim(), controller.emailController.value.text.trim());
+                  Livechat.beginChat(
+                      AppConstants.licenceId,
+                      '1',
+                      controller.firstNameController.value.text.trim(),
+                      controller.emailController.value.text.trim());
                 },
                 child: Text(LanguageConstant.startChatText.tr),
               ),
@@ -477,18 +602,15 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
     return TextFormFieldWidget(
       controller: controller.firstNameController.value,
       hintText: '',
-      validator: (value) =>
-          Validators.validateRequired(value!.trim(), "Name"),
+      validator: (value) => Validators.validateRequired(value!.trim(), "Name"),
     );
   }
 
   Widget emailTextField() {
     return EmailWidget(
         controller: controller.emailController.value,
-        validator: (value) =>
-            Validators.validateEmail(value!.trim(),)
-    );
+        validator: (value) => Validators.validateEmail(
+              value!.trim(),
+            ));
   }
-
-
 }

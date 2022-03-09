@@ -1,6 +1,10 @@
 const Map<String, String> en = {
   "language": "English",
   "appNameText": "Solo Luxury",
+  "forgetPassword": "Forgot Your Password?",
+  "backToSignInScreen": "Back to sign in screen",
+  "forgetPasswordContain":
+      "If there is a account associated with ( test @test.com ) we will send you a email with the instructions to reset your password.If you need any further assistance pls",
   "aboutUsText": "About us",
   "referFriendText": "Refer Friend",
   "aboutUsContain1":
