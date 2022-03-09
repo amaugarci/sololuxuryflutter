@@ -13,12 +13,13 @@ class Product extends StatelessWidget {
 
   Product({required this.product});
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(product: product,));
+        Get.to(() => ProductDetailScreen(
+              product: product,
+            ));
       },
       child: Container(
         width: 150,
@@ -62,10 +63,9 @@ class Product extends StatelessWidget {
             Text(
               "${product.name}",
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                overflow: TextOverflow.ellipsis
-              ),
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 10),
             Text(
@@ -73,15 +73,14 @@ class Product extends StatelessWidget {
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
-                  overflow: TextOverflow.ellipsis
-              ),
+                  overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '\$ '+"${product.price}",
+                  '\$ ' + "${product.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -89,8 +88,8 @@ class Product extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$ '+"${product.price}",
-                  style: TextStyle(
+                  '\$ ' + "${product.price}",
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black45,
                     decoration: TextDecoration.lineThrough,

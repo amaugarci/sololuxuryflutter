@@ -18,21 +18,23 @@ class GetMyOrdersRequest {
 
     final response = await client.get(Uri.parse(url), headers: headers);
     List apiData = [];
+    Iterable itemData = [];
 
     try {
       if (response.statusCode == 200) {
         Map data = jsonDecode(response.body);
         apiData = data['items'];
 
-        String itemData = data['base_currency_code'].toString();
-
-        print(itemData.toString());
+        // List resData1 = apiData;
+        // print(resData1);
+        itemData = apiData[0]['items'];
+        print(itemData);
       }
     } on FormatException catch (e) {
       print(e);
     }
 //    return apiData.toString();
-    return apiData.map((e) => MyOrdersData.fromJson(e)).toList();
+    return itemData.map((e) => MyOrdersData.fromJson(e)).toList();
   }
 
   static Future<List<MyOrdersData>> fetchBillingAddressData() async {

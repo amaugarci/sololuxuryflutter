@@ -4,8 +4,8 @@ import '../../data/model/Home/menu_model.dart';
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
 
 abstract class ILoginRepository {
-
-  Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password);
+  Future<String> getLoginAPIResponse(
+      String loginRequestJson, String userName, String password);
 }
 
 abstract class ISignupRepository {

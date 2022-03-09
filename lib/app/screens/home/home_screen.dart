@@ -9,6 +9,7 @@ import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
+import 'package:solo_luxury/app/screens/search/search_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
@@ -137,7 +138,7 @@ class HomeScreen extends GetView<HomeController> {
       child: Container(
         height: 50,
         width: Get.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: appColor,
         ),
         child: Row(
@@ -464,10 +465,15 @@ appBarWidget(controller) {
                 const SizedBox(
                   width: 15.0,
                 ),
-                SvgPicture.asset(
-                  AppAsset.search,
-                  height: 20.0,
-                  width: 20.0,
+                InkWell(
+                  child: SvgPicture.asset(
+                    AppAsset.search,
+                    height: 20.0,
+                    width: 20.0,
+                  ),
+                  onTap: () {
+                    Get.to(const SearchScreen());
+                  },
                 ),
                 const SizedBox(
                   width: 15.0,

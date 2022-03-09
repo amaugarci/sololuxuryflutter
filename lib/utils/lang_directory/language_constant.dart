@@ -52,15 +52,14 @@ class LanguageConstant {
   static const String billingAddress = "billingAddress";
   static const String continueShopping = "continueShopping";
 
-
   static const String freuentlyAskedQueText = "freuentlyAskedQueText";
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 
-
   static const String registeredCustomersText = "registeredCustomersText";
-  static const String registeredCustomersDescriptionText = "registeredCustomersDescriptionText";
+  static const String registeredCustomersDescriptionText =
+      "registeredCustomersDescriptionText";
 
   static const String usernameText = "usernameText";
 
@@ -81,7 +80,8 @@ class LanguageConstant {
 
   static const String confirmPasswordText = "confirmPasswordText";
   static const String signUpForNewsletterText = "signUpForNewsletterText";
-  static const String forgotYourPasswordDescriptionText = "forgotYourPasswordDescriptionText";
+  static const String forgotYourPasswordDescriptionText =
+      "forgotYourPasswordDescriptionText";
   static const String enterYourEmailText = "enterYourEmailText";
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
@@ -92,14 +92,16 @@ class LanguageConstant {
   static const String menuText = "Menu";
   static const String accountText = "Account";
   static const String checkOutText = "Checkout";
-  static const String purchaseText = "Please Enter Your Details Below To Complete Your Purchase";
+  static const String purchaseText =
+      "Please Enter Your Details Below To Complete Your Purchase";
   static const String shippingAddressText = "Shipping Address";
   static const String shippingMethodText = "Shipping Method";
   static const String paymentMethodText = "Payment Method";
   static const String orderSummaryText = "Order Summary";
   static const String email1Text = "Email";
   static const String password1Text = "Password";
-  static const String alreadyAcText = "You Already have an account with us. Sign in or continue as guest.";
+  static const String alreadyAcText =
+      "You Already have an account with us. Sign in or continue as guest.";
   static const String forgotText = "Forgot Your Password?";
   static const String firstName1Text = "First Name";
   static const String lastName1Text = "Last Name";
@@ -118,9 +120,8 @@ class LanguageConstant {
   static const String orderTotalText = "Order Total";
   static const String placeOrderText = "PLACE ORDER";
 
-
-
-  static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
+  static const String accessYourAccountDetailsText =
+      "accessYourAccountDetailsText";
   static const String signUpText = "signUpText";
   static const String loginText = "loginText";
   static const String myOrdersText = "myOrdersText";
@@ -133,6 +134,7 @@ class LanguageConstant {
   static const String contactUsText = "contactUsText";
   static const String secureShoppingText = "secureShoppingText";
   static const String advancedSearchText = "advancedSearchText";
+  static const String searchText = "searchText";
   static const String testimonialsText = "testimonialsText";
   static const String socialMyAccountText = "socialMyAccountText";
   static const String hopeText = "hopeText";
@@ -150,14 +152,13 @@ class LanguageConstant {
   static const String faqMyAccountText = "faqMyAccountText";
   static const String myAccountText = "myAccountText";
 
-
   static const String filtersText = "filtersText";
   static const String priceText = "priceText";
   static const String colorText = "colorText";
   static const String brandText = "brandText";
   static const String sizeText = "sizeText";
   static const String applyText = "applyText";
-  static const String searchText = "searchText";
-
-
+  static const String menText = "menText";
+  static const String womenText = "womenText";
+  static const String kidsText = "kidsText";
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -12,6 +11,7 @@ import 'package:solo_luxury/app/screens/search/search_screen.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({Key? key}) : super(key: key);
@@ -23,14 +23,17 @@ class DashboardScreen extends GetView<DashboardController> {
         resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
-            TabBarView(controller: controller.tabController, physics: const NeverScrollableScrollPhysics(), children: [
-              //TODO: PAGES
-              const HomeScreen(),
-              const SearchScreen(),
-              CheckoutOrderScreen(),
-              MyWishListPage(),
-              const ProfileScreen(),
-            ]),
+            TabBarView(
+                controller: controller.tabController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  //TODO: PAGES
+                  const HomeScreen(),
+                  const SearchScreen(),
+                  CheckoutOrderScreen(),
+                  MyWishListPage(),
+                  const ProfileScreen(),
+                ]),
           ],
         ),
         bottomNavigationBar: SizedBox(
