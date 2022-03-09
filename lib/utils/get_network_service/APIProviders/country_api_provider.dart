@@ -24,6 +24,7 @@ class CountryAPIProvider extends GetConnect implements ICountryProvider {
   Future<Response> getStoreAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointNew2;
+    httpClient.timeout = const Duration(seconds: 60);
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint, headers: {"Content-type": "application/json", "Authorization": AppConstants.defaultToken});
   }

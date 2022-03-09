@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,12 +20,13 @@ class CountryController extends GetxController {
   RxList storeWebsitesList = [].obs;
   RxList storeViewsList = [].obs;
   RxList storeConfigsList = [].obs;
+
   //LocalStoreLanguageCurrencyModel? localStoreLanguageCurrencyModel;
 
-
   CountryAPIRepository countryAPIRepository;
+  String? countryCode;
 
-  CountryController({required this.countryAPIRepository});
+  CountryController({required this.countryAPIRepository, this.countryCode});
 
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
   RxString currency = "INR".obs;
@@ -37,18 +39,22 @@ class CountryController extends GetxController {
   final langSelected = "English".obs;
 
   final currencySelected = "EUR".obs;
-  void setLanguageSelected(String value){
+
+  void setLanguageSelected(String value) {
     langSelected.value = value;
     changeLanguage(value);
     update();
   }
 
-  void setCurrencySelected(String value){
+  abc() {
+    log("hello abc ->");
+  }
+
+  void setCurrencySelected(String value) {
     currencySelected.value = value;
     changeCurrency(value);
     update();
   }
-
 
   @override
   void onInit() {
@@ -57,9 +63,9 @@ class CountryController extends GetxController {
     getCurrentLanguageCurrency();
   }
 
-  getCurrentLanguageCurrency()async {
+  getCurrentLanguageCurrency() async {
     String data = await getPrefStringValue(key_local_store_model);
-    if(data!=null && data.isNotEmpty) {
+    if (data != null && data.isNotEmpty) {
       LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
       print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
       for (var element in localStoreModel.storeViewModelList!) {
@@ -84,6 +90,14 @@ class CountryController extends GetxController {
     storeWebsitesList.value = jsonDecode(await countryAPIRepository.getStoreWebsitesAPIResponse());
     storeViewsList.value = jsonDecode(await countryAPIRepository.getStoreViewsAPIResponse());
     storeConfigsList.value = jsonDecode(await countryAPIRepository.getStoreConfigsAPIResponse());
+    for (int i = 0; i < storeWebsitesList.value.length; i++) {
+      StoreWebSitesModel item = StoreWebSitesModel.fromJson(storeWebsitesList.value[i]);
+      if (item.code == countryCode!.toLowerCase()) {
+        print("item-> ${item.toJson()}");
+        setLanguageAndCurrency(item);
+        break;
+      }
+    }
   }
 
   Future<void> setLanguageAndCurrency(StoreWebSitesModel item) async {
@@ -107,7 +121,7 @@ class CountryController extends GetxController {
         // print("storeViewsItem.websiteId -> ${item.id!}");
         language.value = storeViewsItem.name!;
         languageList.add(storeViewsItem.name!);
-        if(mapData["current_code"]==null){
+        if (mapData["current_code"] == null) {
           mapData["current_code"] = storeViewsItem.code;
         }
 
@@ -118,7 +132,7 @@ class CountryController extends GetxController {
           storeConfigItem = StoreConfigModel.fromJson(storeConfigsList.value[i]);
           if (storeViewsItem.id == storeConfigItem.id) {
             currency.value = storeConfigItem.defaultDisplayCurrencyCode!;
-            if(mapData["current_currency"]==null){
+            if (mapData["current_currency"] == null) {
               mapData["current_currency"] = storeConfigItem.baseCurrencyCode;
             }
             update();
@@ -131,12 +145,10 @@ class CountryController extends GetxController {
             currencyList.add(storeModel.baseCurrencyCode!);
             currencyList.add(storeModel.defaultDisplayCurrencyCode!);
             print("currencyList -> ${currencyList.length}");
-
           }
         }
       }
     }
-
 
     mapData.addAll({
       "language_list": languageList.toSet().toList(),
@@ -158,7 +170,8 @@ class CountryController extends GetxController {
   changeLanguage(langValue) async {
     String data = await getPrefStringValue(key_local_store_model);
     LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
-    LocalStoreViewModel localStoreViewModel = localStoreModel.storeViewModelList!.firstWhere((element) => element.name==langValue);
+    LocalStoreViewModel localStoreViewModel =
+        localStoreModel.storeViewModelList!.firstWhere((element) => element.name == langValue);
     localStoreModel.currentCode = localStoreViewModel.code;
     await setPrefStringValue(key_local_store_model, jsonEncode(localStoreModel));
     await getCurrentLanguageCurrency();

@@ -1,10 +1,16 @@
 
 import 'dart:convert';
 
-import '../../app/db/shared_pref.dart';
-import '../../data/model/country/local_store_language_currency/local_store_model.dart';
+import 'package:get/get.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
+import 'package:solo_luxury/app/screens/country/country_binding.dart';
+import 'package:solo_luxury/app/screens/country/country_controller.dart';
+import 'package:solo_luxury/data/model/country/local_store_language_currency/local_store_model.dart';
 
-class LocalStore {
+import '../get_network_service/APIProviders/country_api_provider.dart';
+import '../get_network_service/APIRepository/country_api_repository.dart';
+
+class LocalStore{
   static final LocalStore _singleton = LocalStore._internal();
   factory LocalStore() {
     return _singleton;
@@ -23,7 +29,9 @@ class LocalStore {
       currentCurrency = localStoreModel.currentCurrency!;
       print("currentCode -> " + currentCode);
       print("currentCurrency -> " + currentCurrency);
+      return true;
     }
+    return false;
   }
 
 }

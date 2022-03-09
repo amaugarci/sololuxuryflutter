@@ -4,8 +4,11 @@ import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
 
-abstract class ILoginRepository {
+abstract class ISplashRepository {
+  Future<String> getSplashAPIResponse();
+}
 
+abstract class ILoginRepository {
   Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password);
 }
 
