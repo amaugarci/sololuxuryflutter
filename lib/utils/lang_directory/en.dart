@@ -173,4 +173,8 @@ const Map<String, String> en = {
   "wishListText": "WhistList",
   "storePaymentText": "STORED PAYMENT METHODS",
   "newsLetterText": "NEWSLETTER SUBSCRIPTIONS",
+  "selectLangCurrText": "Select Language & Currency",
+  "selectLangCurrDescText": "Please choose from the following Language and currency options available in your country Language",
+  "saveText": "Save",
+  "cancelText": "Cancel",
 };

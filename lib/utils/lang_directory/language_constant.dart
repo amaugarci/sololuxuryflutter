@@ -173,6 +173,10 @@ class LanguageConstant {
   static const String wishListText = "wishListText";
   static const String storePaymentText = "storePaymentText";
   static const String newsLetterText = "newsLetterText";
+  static const String selectLangCurrText = "selectLangCurrText";
+  static const String selectLangCurrDescText = "selectLangCurrDescText";
+  static const String saveText = "saveText";
+  static const String cancelText = "cancelText";
 
 
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";

@@ -41,6 +41,9 @@ class CountryController extends GetxController {
   final currencySelected = "EUR".obs;
   LocalStoreModel? localStoreModel;
 
+  RxInt languageSelectIndex = 0.obs;
+  RxInt currencySelectIndex = 0.obs;
+
   void setLanguageSelected(String value) {
     langSelected.value = value;
     //changeLanguage(value);
