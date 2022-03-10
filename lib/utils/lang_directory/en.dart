@@ -212,4 +212,7 @@ const Map<String, String> en = {
   "howDoIFindText": "How do i find my",
   "orderRefernceText": "Order reference?",
   "submitText": "Submit",
+  "menText": "Men",
+  "womenText": "Women",
+  "kidsText": "Kids",
 };

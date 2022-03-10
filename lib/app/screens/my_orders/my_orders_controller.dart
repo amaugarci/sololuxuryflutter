@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/data/get_my_orders.dart';
+import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
+import 'package:solo_luxury/data/requests/get_my_orders.dart';
 
 class MyOrdersController extends GetxController {
-  var myOrdersList = [].obs;
-
+  var myOrdersList = <MyOrdersData>[].obs;
   RxInt index = 0.obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
 
@@ -15,7 +15,7 @@ class MyOrdersController extends GetxController {
   }
 
   void getMyOrders() async {
-    List myOrders = await GetMyOrdersRequest.fetchMyOrdersData();
+    List<MyOrdersData> myOrders = await GetMyOrdersRequest.fetchMyOrdersData();
     if (myOrders != null) {
       myOrdersList.value = myOrders;
     }

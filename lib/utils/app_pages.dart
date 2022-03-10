@@ -5,6 +5,8 @@ import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_scre
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
+import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
+import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 
@@ -31,6 +33,7 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_bi
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book.dart';
@@ -206,6 +209,21 @@ class AppPages {
       name: RoutesConstants.guestReturnsScreen,
       page: () => const GuestReturns(),
       binding: GuestReturnsBindings(),
+  ),
+  GetPage(
+      name: RoutesConstants.influencerRegistrationScreen,
+      page: () => InfluencerRegistrationScreen(),
+      binding: InfluencerRegistrationBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.searchScreen,
+      page: () => const SearchScreen(),
+      binding: SearchBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.contactUsScreen,
+      page: () => const ContactUsScreen(),
+      binding: ContactUsBindings(),
     ),
   ];
 }

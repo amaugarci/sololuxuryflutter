@@ -35,6 +35,4 @@ class AppConstants {
 
   static const String licenceId = '11434003';
 
-
-
 }

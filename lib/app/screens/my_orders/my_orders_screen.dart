@@ -46,12 +46,13 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     child: ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => myOrderWidget(),
+                      itemBuilder: (context, index) => myOrderWidget(index),
                       separatorBuilder: (context, index) => const Divider(
                         color: appColor,
                         thickness: 1.5,
                       ),
-                      itemCount: controller.myOrdersList.length,
+                      itemCount: controller
+                          .myOrdersList.length, //controller.myOrdersList.length
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -234,7 +235,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
   //   );
   // }
 
-  Widget myOrderWidget() {
+  Widget myOrderWidget(index) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(
@@ -264,9 +265,10 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
-              const Text(
-                '8/29.21',
-                style: TextStyle(color: Colors.black54),
+              Text(
+                controller.myOrdersList[index].name,
+                style: TextStyle(
+                    color: Colors.black54), //controller.brandList[index].name
               ),
             ],
           ),
@@ -279,8 +281,8 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
-              const Text(
-                'ship test aska p',
+              Text(
+                controller.myOrdersList[index].sku,
                 style: TextStyle(color: Colors.black54),
               ),
             ],
@@ -294,9 +296,9 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
-              const Text(
-                '@280.00',
-                style: TextStyle(color: Colors.black54),
+              Text(
+                controller.myOrdersList[index].price.toString(),
+                style: const TextStyle(color: Colors.black54),
               ),
             ],
           ),
@@ -309,9 +311,9 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
-              const Text(
-                '1',
-                style: TextStyle(color: Colors.black54),
+              Text(
+                controller.myOrdersList[index].qtyOrdered.toString(),
+                style: const TextStyle(color: Colors.black54),
               ),
             ],
           ),
@@ -325,7 +327,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
               const Text(
-                'pending',
+                'Processing',
                 style: TextStyle(color: Colors.black54),
               ),
             ],
