@@ -31,4 +31,6 @@ class RoutesConstants {
   static const String influencerRegistrationScreen =
       "/influencerRegistrationScreen";
   static const String searchScreen = "/searchScreen";
+
+  static const String contactUsScreen = "/contactUsScreen";
 }

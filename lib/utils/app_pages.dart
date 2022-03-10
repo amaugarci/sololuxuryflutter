@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
+import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
+import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 
@@ -136,6 +138,11 @@ class AppPages {
       name: RoutesConstants.searchScreen,
       page: () => const SearchScreen(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.contactUsScreen,
+      page: () => const ContactUsScreen(),
+      binding: ContactUsBindings(),
     ),
   ];
 }

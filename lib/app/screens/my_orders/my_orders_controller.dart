@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/data/model/MyOders/MyOrdersData.dart';
+import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/data/requests/get_my_orders.dart';
 
 class MyOrdersController extends GetxController {

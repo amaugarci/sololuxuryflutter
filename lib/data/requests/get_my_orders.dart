@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:solo_luxury/config/global_config.dart';
-import 'package:solo_luxury/data/model/MyOders/MyOrdersData.dart';
+import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 
 class GetMyOrdersRequest {
   static Future<List<MyOrdersData>> fetchMyOrdersData() async {

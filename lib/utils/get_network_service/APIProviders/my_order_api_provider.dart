@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:solo_luxury/data/model/MyOders/MyOrdersData.dart';
+import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:http/http.dart' as http;
 import '../../../data/model/Home/menu_model.dart';
