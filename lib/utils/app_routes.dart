@@ -50,6 +50,5 @@ class RoutesConstants {
   static const String storeCreditScreen = "/storeCreditScreen";
 
   static const String addressBookScreen = "/addressBookScreen";
-  static const String countryScreen = "/countryScreen";
   static const String guestReturnsScreen = "/guestReturnsScreen";
 }

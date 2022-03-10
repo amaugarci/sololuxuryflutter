@@ -207,10 +207,7 @@ class LanguageConstant {
   static const String englishIsAlsoText = "englishIsAlsoText";
   static const String noThanksText = "noThanksText";
   static const String changeText = "changeText";
-  static const String myAccountText = "myAccountText";
-  static const String myOrdersText = "myOrdersText";
   static const String myWidhListText = "myWidhListText";
-  static const String addressBookText = "addressBookText";
   static const String accountInfoText = "accountInfoText";
   static const String storePaymentText = "storePaymentText";
   static const String newsletterSubText = "newsletterSubText";
