@@ -129,4 +129,6 @@ const Map<String, String> nl = {
   "applyDiscountText": "Korting toepassen",
   "orderTotalText": "totale bestelling",
   "placeOrderText": "PLAATS BESTELLING",
+  "storePaymentText": "OPGESLAGEN BETAALMETHODEN",
+  "newsLetterText": "NIEUWSBRIEF ABONNEMENTEN",
 };

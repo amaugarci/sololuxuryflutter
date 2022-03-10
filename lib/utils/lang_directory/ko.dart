@@ -129,4 +129,6 @@ const Map<String, String> ko = {
   "applyDiscountText": "할인 적용",
   "orderTotalText": "주문 합계",
   "placeOrderText": "주문하기",
+  "storePaymentText": "저장된 결제 방법",
+  "newsLetterText": "뉴스레터 구독",
 };

@@ -30,13 +30,13 @@ class ProfileScreen extends GetView<ProfileController> {
                     EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 90.0, left: 30.0, right: 25.0),
                 child: Obx(() => Column(
                       children: [
-                        titleWithArrow("MY ACCOUNT"),
-                        titleWithArrow("MY ORDERS"),
-                        titleWithArrow("MY WISH LIST"),
-                        titleWithArrow("ADDRESS BOOK"),
-                        titleWithArrow("ACCOUNT INFORMATION"),
-                        titleWithArrow("STORED PAYMENT METHODS"),
-                        titleWithArrow("NEWSLETTER SUBSCRIPTIONS"),
+                        titleWithArrow(LanguageConstant.myAccountText.tr),
+                        titleWithArrow(LanguageConstant.myOrdersText.tr),
+                        titleWithArrow(LanguageConstant.myWishlistText.tr),
+                        titleWithArrow(LanguageConstant.addressBookText.tr),
+                        titleWithArrow(LanguageConstant.accountInformationText.tr),
+                        titleWithArrow(LanguageConstant.storePaymentText.tr),
+                        titleWithArrow(LanguageConstant.newsLetterText.tr),
                         titleWithArrow("${controller.countryCurrency.value}", onTap: () {
                           Get.toNamed(RoutesConstants.countryScreen);
                         }),

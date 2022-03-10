@@ -129,4 +129,6 @@ const Map<String, String> ja = {
   "applyDiscountText": "割引を適用する",
   "orderTotalText": "注文合計",
   "placeOrderText": "注文する",
+  "storePaymentText": "保管された支払い方法",
+  "newsLetterText": "ニュースレターの購読",
 };

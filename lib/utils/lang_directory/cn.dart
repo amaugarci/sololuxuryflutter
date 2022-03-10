@@ -129,4 +129,6 @@ const Map<String, String> cn = {
   "applyDiscountText": "申请折扣",
   "orderTotalText": "合计订单",
   "placeOrderText": "下订单",
+  "storePaymentText": "存储的付款方式",
+  "newsLetterText": "通讯订阅",
 };

@@ -3,24 +3,16 @@ const Map<String, String> en = {
   "appNameText": "Solo Luxury",
   "forgetPassword": "Forgot Your Password?",
   "backToSignInScreen": "Back to sign in screen",
-  "forgetPasswordContain":
-      "If there is a account associated with ( test @test.com ) we will send you a email with the instructions to reset your password.If you need any further assistance pls",
+  "forgetPasswordContain": "If there is a account associated with ( test @test.com ) we will send you a email with the instructions to reset your password.If you need any further assistance pls",
   "aboutUsText": "About us",
   "referFriendText": "Refer Friend",
-  "aboutUsContain1":
-      "SOLO IS A TOP ONLINE LUXURYFASHION DESTINATION WITH 5 MILLION VISITORS PER MONTHAND WORLDWIDE SHIPPING.",
-  "aboutUsContain2":
-      'The website features the best selection of thetop established designers as wellas young emerging talents. Solo was founded in Florence in the early 1930s, with the opening of the company’s eponymous concept store on Via Roma.Online since 1999, the company attributes 90% of total revenue to online sales. To this day it remains a 100% privately owned family business, with the founder’s grandson, Andrea Panconesi acting as CEO and his daughter, Annagreta Panconesi as Creative Director.',
-  "aboutUsContain3":
-      'The site offers a wide selection of clothing, shoes, bags, accessories, luxuryhome interiors and beauty, with products available for men, women and kids from the most prestigious designers such as Balenciaga, Vetements, Off-White,J.W. Anderson, Balmain, Dolce & Gabbana, Gucci, Saint Laurent, Valentino, Givenchy, Loewe, Jacquemus and more.',
-  "aboutUsContain4":
-      'There are currently 200 people from 15 different countries that work to produce and maintain Solo. The site is available in 9 languages: English, Italian, German, Chinese, Russian, Spanish, French,Korean and Japanese. The site is created entirely in-house, with the Florence office housing graphic design, IT,customer service, marketing and buying departments. The stylists and press teams operate from the Solo office in the fashion capital of the world – Milan.',
-  "aboutUsContain5":
-      'All orders are shipped worldwide from the Solo headquarters in boxes that are prepared with maximum care and use the finest materials, from the signature shoe bags to the personalized ribbon.',
-  "aboutUsContain6":
-      'Solo had 1.5 million unique visitors access the site in 2008 and has grown to 53 million unique visitors in 2017. More than 15% of online sales are generated from the United States, followed by Germany, UK, Italy, China and France.',
-  "aboutUsContain7":
-      'Solo pushes the boundaries of the luxury retail landscape both on and offline with an array of exclusive services and trademark initiatives including Buy It First, Luxury Club, Sneakers Club, LVR Privilege and LVR Editions.',
+  "aboutUsContain1": "SOLO IS A TOP ONLINE LUXURYFASHION DESTINATION WITH 5 MILLION VISITORS PER MONTHAND WORLDWIDE SHIPPING.",
+  "aboutUsContain2": 'The website features the best selection of thetop established designers as wellas young emerging talents. Solo was founded in Florence in the early 1930s, with the opening of the company’s eponymous concept store on Via Roma.Online since 1999, the company attributes 90% of total revenue to online sales. To this day it remains a 100% privately owned family business, with the founder’s grandson, Andrea Panconesi acting as CEO and his daughter, Annagreta Panconesi as Creative Director.',
+  "aboutUsContain3": 'The site offers a wide selection of clothing, shoes, bags, accessories, luxuryhome interiors and beauty, with products available for men, women and kids from the most prestigious designers such as Balenciaga, Vetements, Off-White,J.W. Anderson, Balmain, Dolce & Gabbana, Gucci, Saint Laurent, Valentino, Givenchy, Loewe, Jacquemus and more.',
+  "aboutUsContain4": 'There are currently 200 people from 15 different countries that work to produce and maintain Solo. The site is available in 9 languages: English, Italian, German, Chinese, Russian, Spanish, French,Korean and Japanese. The site is created entirely in-house, with the Florence office housing graphic design, IT,customer service, marketing and buying departments. The stylists and press teams operate from the Solo office in the fashion capital of the world – Milan.',
+  "aboutUsContain5": 'All orders are shipped worldwide from the Solo headquarters in boxes that are prepared with maximum care and use the finest materials, from the signature shoe bags to the personalized ribbon.',
+  "aboutUsContain6": 'Solo had 1.5 million unique visitors access the site in 2008 and has grown to 53 million unique visitors in 2017. More than 15% of online sales are generated from the United States, followed by Germany, UK, Italy, China and France.',
+  "aboutUsContain7": 'Solo pushes the boundaries of the luxury retail landscape both on and offline with an array of exclusive services and trademark initiatives including Buy It First, Luxury Club, Sneakers Club, LVR Privilege and LVR Editions.',
   "profile": "Profile",
   "firstNameText": "First Name",
   "lastNameText": "Last Name",
@@ -61,26 +53,22 @@ const Map<String, String> en = {
   "freuentlyAskedQueText": "Frequently Asked Questions",
   "shopAndPlaceOrder": "How to shop & place an order?",
   "accountToPlaceOrderQues": "Do I need an account to place an order?",
-  "accountToPlaceOrderAns":
-      "No, all you need is an email address. We recommend that you register for an account to start adding pieces to your Wishlist, but, you can also place and track orders as a guest and signup at a time that suits you.",
+  "accountToPlaceOrderAns": "No, all you need is an email address. We recommend that you register for an account to start adding pieces to your Wishlist, but, you can also place and track orders as a guest and signup at a time that suits you.",
   "registeredCustomersText": "Registered Customers",
-  "registeredCustomersDescriptionText":
-      "If You Have An Account, Sign In With Your\nEmail Address.",
+  "registeredCustomersDescriptionText": "If You Have An Account, Sign In With Your\nEmail Address.",
   "usernameText": "Username",
   "passwordText": "Password",
   "signInText": "Sign in",
   "forgotYourPasswordText": "Forgot Your Password?",
   "newCustomersText": "New Customers",
-  "loginDescriptionText":
-      "Creating an account has many benefits: check\nout faster, keep more than one address\ntrack orders and more.",
+  "loginDescriptionText": "Creating an account has many benefits: check\nout faster, keep more than one address\ntrack orders and more.",
   "createAccountText": "Create Account",
   "dateOfBirthText": "Date of Birth",
   "pleaseSelectValidDateText": "Please select valid date",
   "marriageAnniversaryText": "Marriage Anniversary",
   "confirmPasswordText": "Confirm Password",
   "signUpForNewsletterText": "Sign Up for Newsletter",
-  "forgotYourPasswordDescriptionText":
-      "Please Enter Your Email Address Below To Receive\nA Password Reset Link",
+  "forgotYourPasswordDescriptionText": "Please Enter Your Email Address Below To Receive\nA Password Reset Link",
   "enterYourEmailText": "Enter your email",
   "resetMyPasswordText": "Reset My Password",
   "accessYourAccountDetailsText": "Access your account details and rewards",
@@ -128,8 +116,7 @@ const Map<String, String> en = {
   "shippingMethodText": "Shipping Method",
   "paymentMethodText": "Payment Method",
   "orderSummaryText": "Order Summary",
-  "alreadyAcText":
-      "You Already have an account with us. Sign in or continue as guest.",
+  "alreadyAcText": "You Already have an account with us. Sign in or continue as guest.",
   "loginText": "LOGIN",
   "forgotText": "Forgot Your Password?",
   "stLineText": "Street Address: Line 1",
@@ -147,30 +134,21 @@ const Map<String, String> en = {
   "placeOrderText": "PLACE ORDER",
   "affiliateProgramTitleText": "SOLO LUXURY AFFILIATE PROGRAM",
   "whoAreWeLookingTitleText": "Who are we looking for?",
-  "whoAreWeLookingDescriptionOneText":
-      "Do you have a fashion-forward, luxury oriented website, blog, social media profile that is trend savvy with an international outlook? Is your focus fashion, lifestyle, beauty and design? If so, we are looking for you!\n\nJoin our global Affiliate Program and you will have the opportunity to earn a commission every time your visitors purchase from SOLO.",
+  "whoAreWeLookingDescriptionOneText": "Do you have a fashion-forward, luxury oriented website, blog, social media profile that is trend savvy with an international outlook? Is your focus fashion, lifestyle, beauty and design? If so, we are looking for you!\n\nJoin our global Affiliate Program and you will have the opportunity to earn a commission every time your visitors purchase from SOLO.",
   "whatCanYouExpectTitleText": "What can you expect?",
   "expectRuleOneText": "Commission on all approved net sales",
   "expectRuleTwoText": "45 days cookie window",
   "expectRuleThreeText": "Data feed updated multiple times per day",
-  "expectRuleFourText":
-      "Access to customized banners, textlinks, deeplinks and our datafeed in 9 languages (English, Italian, French, German, Korean, Spanish, Chinese,Russian & Japanese)",
-  "expectRuleFiveText":
-      "The possibility to customize feeds into all world currencies",
+  "expectRuleFourText": "Access to customized banners, textlinks, deeplinks and our datafeed in 9 languages (English, Italian, French, German, Korean, Spanish, Chinese,Russian & Japanese)",
+  "expectRuleFiveText": "The possibility to customize feeds into all world currencies",
   "promoteSoloQuestionText": "How can you promote solo (as an affiliate)?",
-  "promoteSoloAnswerOneText":
-      "Creating high-quality and engaging content that mirrors the style of SOLO",
-  "promoteSoloAnswerTwoText":
-      "Featuring our content, banners and links for multiple categories and events on your website and social media channels",
-  "promoteSoloAnswerThreeText":
-      "Promoting the benefits that our customers love",
-  "promoteSoloAnswerFourText":
-      "A selection of continuously updated articles from the best brands",
-  "promoteSoloAnswerFiveText":
-      "Free returns with no added taxes for the US, Canada, the UK and ",
+  "promoteSoloAnswerOneText": "Creating high-quality and engaging content that mirrors the style of SOLO",
+  "promoteSoloAnswerTwoText": "Featuring our content, banners and links for multiple categories and events on your website and social media channels",
+  "promoteSoloAnswerThreeText": "Promoting the benefits that our customers love",
+  "promoteSoloAnswerFourText": "A selection of continuously updated articles from the best brands",
+  "promoteSoloAnswerFiveText": "Free returns with no added taxes for the US, Canada, the UK and ",
   "howApplyTitleText": "How to apply?",
-  "howApplyAnswerOneText":
-      "Email us the name and URL of your website, blog or social media profile and your main markets. We’ll review your site and get back to you with further information on how to join the affiliate program.\n\nPlease note that all applications are manually evaluated and processing may take up to 10 days.\n\nIf you feel your application has been wrongfully declined please contact affiliates@solo.com and a member of the team will address your concerns.",
+  "howApplyAnswerOneText": "Email us the name and URL of your website, blog or social media profile and your main markets. We’ll review your site and get back to you with further information on how to join the affiliate program.\n\nPlease note that all applications are manually evaluated and processing may take up to 10 days.\n\nIf you feel your application has been wrongfully declined please contact affiliates@solo.com and a member of the team will address your concerns.",
   "visitorMonthHintText": "Select Unique Visitors/Month",
   "viewsMonthHintText": "Select Page Views/Month",
   "cityHintText": "City",
@@ -183,8 +161,7 @@ const Map<String, String> en = {
   "manageAddresses": "Manage Addresses",
   "defaultBillingAddress": "DEFAULT BILLING ADDRESS",
   "defaultShippingAddress": "DEFAULT SHIPPING ADDRESS",
-  "defaultShippingContain":
-      "sdsdsd sdsdsd sds ds sdsd kl skldjlsdjklsdjljsl jaipur, Delhi, 302019 India",
+  "defaultShippingContain": "sdsdsd sdsdsd sds ds sdsd kl skldjlsdjklsdjljsl jaipur, Delhi, 302019 India",
   "newsLettersContain": "You Aren't Subscribed To\nOur Newsletter.",
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",
@@ -194,4 +171,6 @@ const Map<String, String> en = {
   "search1Text": "Search",
   "designersText": "Designers",
   "wishListText": "WhistList",
+  "storePaymentText": "STORED PAYMENT METHODS",
+  "newsLetterText": "NEWSLETTER SUBSCRIPTIONS",
 };

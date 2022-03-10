@@ -129,4 +129,6 @@ const Map<String, String> ru = {
   "applyDiscountText": "Применить скидку",
   "orderTotalText": "Весь заказ",
   "placeOrderText": "РАЗМЕСТИТЬ ЗАКАЗ",
+  "storePaymentText": "СОХРАНЕННЫЕ СПОСОБЫ ОПЛАТЫ",
+  "newsLetterText": "ПОДПИСКА НА РАССЫЛКУ",
 };

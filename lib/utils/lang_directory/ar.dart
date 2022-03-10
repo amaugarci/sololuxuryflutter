@@ -142,4 +142,6 @@ const Map<String, String> ar = {
   "search1Text": "بحث",
   "designersText": "المصممون",
   "wishListText": "قائمة الرغبات",
+  "storePaymentText": "طرق الدفع المخزنة",
+  "newsLetterText": "اشتراك الرسائل الإخبارية",
 };

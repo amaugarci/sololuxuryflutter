@@ -129,4 +129,6 @@ const Map<String, String> ur = {
   "applyDiscountText": "ڈسکاؤنٹ کا اطلاق کریں۔",
   "orderTotalText": "ٹوٹل آرڈر",
   "placeOrderText": "حکم صادر کریں",
+  "storePaymentText": "ذخیرہ شدہ ادائیگی کے طریقے",
+  "newsLetterText": "نیوز لیٹر سبسکرپشنز",
 };

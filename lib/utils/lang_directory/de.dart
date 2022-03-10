@@ -129,4 +129,6 @@ const Map<String, String> de = {
   "applyDiscountText": "Rabatt anwenden",
   "orderTotalText": "Auftragssumme",
   "placeOrderText": "BESTELLUNG AUFGEBEN",
+  "storePaymentText": "GESPEICHERTE ZAHLUNGSARTEN",
+  "newsLetterText": "NEWSLETTER-ABOS",
 };
