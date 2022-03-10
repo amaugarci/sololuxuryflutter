@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/screens/country/country_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/product_listing/product_list_binding.dart';
 import 'package:solo_luxury/app/screens/profile/profile_binding.dart';
+import 'package:solo_luxury/app/screens/wishlist/wishlist_binding.dart';
 
 
 class DashboardController extends GetxController with GetSingleTickerProviderStateMixin{
@@ -20,5 +21,6 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     CheckoutOrderBindings().dependencies();
     CountryBindings().dependencies();
     ProfileBindings().dependencies();
+    WishlistBindings().dependencies();
   }
 }
