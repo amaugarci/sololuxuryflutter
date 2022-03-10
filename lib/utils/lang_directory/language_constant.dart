@@ -174,6 +174,16 @@ class LanguageConstant {
   static const String brandText = "brandText";
   static const String sizeText = "sizeText";
   static const String applyText = "applyText";
+  static const String homeText = "homeText";
+  static const String search1Text = "search1Text";
+  static const String designersText = "designersText";
+  static const String wishListText = "wishListText";
+  static const String storePaymentText = "storePaymentText";
+  static const String newsLetterText = "newsLetterText";
+  static const String selectLangCurrText = "selectLangCurrText";
+  static const String selectLangCurrDescText = "selectLangCurrDescText";
+  static const String saveText = "saveText";
+  static const String cancelText = "cancelText";
 
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";
   static const String whoAreWeLookingTitleText = "whoAreWeLookingTitleText";
@@ -215,7 +225,6 @@ class LanguageConstant {
   static const String changeText = "changeText";
   static const String myWidhListText = "myWidhListText";
   static const String accountInfoText = "accountInfoText";
-  static const String storePaymentText = "storePaymentText";
   static const String newsletterSubText = "newsletterSubText";
   static const String youaddCartText = "youaddCartText";
   static const String viewCartText = "viewCartText";
