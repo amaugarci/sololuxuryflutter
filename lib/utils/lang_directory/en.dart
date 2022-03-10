@@ -189,5 +189,27 @@ const Map<String, String> en = {
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",
   "liveChatText": "Live Chat",
-  "startChatText": "Start Chat"
+  "startChatText": "Start Chat",
+  "chooseYourCountryText": "Choose your country",
+  "billingText": "Default\nBilling",
+  "yourAppExpericanceText": "Your app experience is set to",
+  "indiaText": "INDIA (IND) - ENGLISH (IND)",
+  "englishIsAlsoText":
+      "ENGLISH is also available in your\nlocation. Would you like to change?",
+  "noThanksText": "No, Thanks",
+  "changeText": "CHANGE",
+  "myWidhListText": "My Wish List",
+  "accountInfoText": "Account Information",
+  "storePaymentText": "Store Payment Methods",
+  "newsletterSubText": "Newsletter Subscriptions",
+  "youaddCartText":
+      "You added ALEXANDER MCQUEEN MULES ALEXANDER MCQUEEN HYBRID SIGNATURE SLIDES to your shopping cart.",
+  "viewCartText": "View Cart",
+  "continueShoppingText": "Continue Shopping",
+  "checkYourOrderText": "Check your order",
+  "enterYourOrderText":
+      "Enter your order reference and email address below to see your order details. From there you can check its shipping status,cancel items or make a return.",
+  "howDoIFindText": "How do i find my",
+  "orderRefernceText": "Order reference?",
+  "submitText": "Submit",
 };

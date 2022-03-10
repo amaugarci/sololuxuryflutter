@@ -30,7 +30,7 @@ class DashboardScreen extends GetView<DashboardController> {
               const HomeScreen(),
               const SearchScreen(),
               CheckoutOrderScreen(),
-              const CountryScreen(),
+              MyWishListPage(),
               const ProfileScreen(),
             ]),
           ],

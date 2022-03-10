@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bindings.dart';
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
@@ -7,8 +8,11 @@ import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 
+import 'package:solo_luxury/app/screens/Guest_Returns/guest_returns_binding.dart';
+import 'package:solo_luxury/app/screens/Guest_Returns/guest_returns_screen.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address.dart';
 import 'package:solo_luxury/app/screens/add_address/add_address_binding.dart';
+
 import 'package:solo_luxury/app/screens/filter/filter_binding.dart';
 import 'package:solo_luxury/app/screens/filter/list_filter.dart';
 
@@ -29,6 +33,14 @@ import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
+import 'package:solo_luxury/app/screens/country_screen/country_screen.dart' as country;
+import 'package:solo_luxury/app/screens/country_screen/country_screen_binding.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
@@ -164,6 +176,36 @@ class AppPages {
     GetPage(
       name: RoutesConstants.contactUsScreen,
       page: () => ContactUsScreen(),
+    ),
+    GetPage(
+      name: RoutesConstants.selectCountryScreen,
+      page: () => const SelectCountryScreen(),
+      binding: SelectCountryBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.storeCreditScreen,
+      page: () => const StoreCreditScreen(),
+      binding: StoreCreditBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.myAccountScreen,
+      page: () => const MyAccountScreen(),
+      binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.addressBookScreen,
+      page: () => const AddressBookScreen(),
+      binding: AddressBookBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.countryScreen,
+      page: () => const CountryScreen(),
+      binding: CountryScreenBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.guestReturnsScreen,
+      page: () => const GuestReturns(),
+      binding: GuestReturnsBindings(),
     ),
   ];
 }

@@ -7,7 +7,7 @@ import '../../../data/model/Product/product_model.dart';
 class WishlistController extends GetxController {
   RxInt index = 0.obs;
   RxString chosenValue = LanguageConstant.myWishlistText.tr.obs;
-  Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
   var wishlistProductList = <ProductModel>[].obs;
 
   @override

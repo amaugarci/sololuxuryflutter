@@ -7,107 +7,112 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
-import '../../utils/app_asset.dart';
-import '../home/widget/header_widget.dart';
+import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
+import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
+import '../home/home_controller.dart';
+import '../home/home_screen.dart';
 
 class MyWishListPage extends GetView<WishlistController> {
   MyWishListPage({Key? key}) : super(key: key);
 
+  final HomeController homeController = Get.put(HomeController(
+      homeAPIRepository:
+          Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      key: controller.scaffoldKey.value,
-      drawer: Icon(Icons.ac_unit),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        title: Image.asset(AppAsset.logo, width: 110),
-        bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: appColor),
-      ),
-      backgroundColor: backGroundColor,
-      body: Container(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
+          key: controller.scaffoldkey,
+          drawer: getDrawer(homeController),
+          backgroundColor: backGroundColor,
+          body: SizedBox(
+            width: Get.width,
+            child: Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: appColor),),
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      alignment: AlignmentDirectional.center,
-                      isExpanded: true, dropdownColor: offWhite,
-                      value: controller.chosenValue.value,
-                      // elevation: 0,
-                      style: TextStyle(
-                          color: appColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                      items: <String>[
-                        LanguageConstant.myAccountText.tr,
-                        LanguageConstant.myOrdersText.tr,
-                        LanguageConstant.myWishlistText.tr,
-                        LanguageConstant.addressBookText.tr,
-                        LanguageConstant.accountInformationText.tr,
-                        LanguageConstant.myTicketsText.tr,
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          alignment: AlignmentDirectional.center,
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      hint: Center(
-                        child: Text(
-                          LanguageConstant.myWishlistText.tr,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: appColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.only(top: 40.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: appColor),
+                          ),
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(5),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              alignment: AlignmentDirectional.center,
+                              isExpanded: true,
+                              dropdownColor: offWhite,
+                              value: controller.chosenValue.value,
+                              // elevation: 0,
+                              style: TextStyle(
+                                  color: appColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
+                              items: <String>[
+                                LanguageConstant.myAccountText.tr,
+                                LanguageConstant.myOrdersText.tr,
+                                LanguageConstant.myWishlistText.tr,
+                                LanguageConstant.addressBookText.tr,
+                                LanguageConstant.accountInformationText.tr,
+                                LanguageConstant.myTicketsText.tr,
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  alignment: AlignmentDirectional.center,
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              hint: Center(
+                                child: Text(
+                                  LanguageConstant.myWishlistText.tr,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: appColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              onChanged: (String? value) {
+                                controller.chosenValue.value = value!;
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                      onChanged: (String? value) {
-                        controller.chosenValue.value = value!;
-                      },
+                        FutureBuilder<List<ProductModel>>(
+                          future: controller.getWishlistProducts(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Expanded(
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  itemBuilder: (_, index) {
+                                    return WishlistItem(
+                                        product: controller
+                                            .wishlistProductList[index]);
+                                  },
+                                  itemCount: controller
+                                      .wishlistProductList.value.length,
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                FutureBuilder<List<ProductModel>>(
-                  future: controller.getWishlistProducts(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Expanded(
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          itemBuilder: (_, index) {
-                            return WishlistItem(
-                                product:
-                                controller.wishlistProductList[index]);
-                          },
-                          itemCount:
-                          controller.wishlistProductList.value.length,
-                        ),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
-                ),
+                appBarWidget(controller),
               ],
             ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 }
