@@ -121,7 +121,7 @@ class SearchScreen extends GetView<SearchController> {
                                               ),
                                               const Icon(
                                                 Icons.arrow_forward_ios,
-                                                color: Colors.black54,
+                                                color: selectedTabColor,
                                                 size: 12,
                                               ),
                                             ],
@@ -147,7 +147,7 @@ class SearchScreen extends GetView<SearchController> {
                                               ),
                                               const Icon(
                                                 Icons.arrow_forward_ios,
-                                                color: Colors.black54,
+                                                color: selectedTabColor,
                                                 size: 12,
                                               ),
                                             ],
@@ -173,7 +173,7 @@ class SearchScreen extends GetView<SearchController> {
                                               ),
                                               const Icon(
                                                 Icons.arrow_forward_ios,
-                                                color: Colors.black54,
+                                                color: selectedTabColor,
                                                 size: 12,
                                               ),
                                             ],
