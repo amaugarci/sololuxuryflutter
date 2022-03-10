@@ -20,11 +20,15 @@ class AppAsset {
   static const heart1 = "assets/icons/heart.png";
 
   //Add Address Icnon List
-  static const user = "assets/icons/user.svg";
-  static const zip = "assets/icons/zip.svg";
-  static const navigation = "assets/icons/navigation.svg";
-  static const envelope = "assets/icons/envelope.svg";
-  static const call = "assets/icons/call.svg";
+  static const user = "assets/icons/user1.png";
+  static const zip = "assets/icons/zip1.png";
+  static const envelope = "assets/icons/envelope1.png";
+  static const call = "assets/icons/call1.png";
+  static const drawerIcon = "assets/icons/drawer.png";
+  static const searchIcon = "assets/icons/search.png";
+  static const heartIcon = "assets/icons/heart.png";
+  static const bagIcon = "assets/icons/bag.png";
+  static const applogo = "assets/icons/logo.png";
 
   /// Images
   static const dialogError = 'assets/images/error_dialog.png';

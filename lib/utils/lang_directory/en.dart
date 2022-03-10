@@ -189,5 +189,7 @@ const Map<String, String> en = {
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",
   "liveChatText": "Live Chat",
-  "startChatText": "Start Chat"
+  "startChatText": "Start Chat",
+  "chooseYourCountryText": "Choose your country",
+  "billingText": "Default\nBilling",
 };

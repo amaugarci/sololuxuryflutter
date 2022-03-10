@@ -9,9 +9,27 @@ class AddAddressController extends GetxController {
 
   Rx<ExpandableController> aboutUsExpandableController =
       ExpandableController().obs;
+//TextFiledController-------------------------------------------------
+  final firstNameController = TextEditingController().obs;
+  final lastNameController = TextEditingController().obs;
+  final phoneNumberController = TextEditingController().obs;
+  final zipPovinceController = TextEditingController().obs;
+  final address1Controller = TextEditingController().obs;
+  final address2Controller = TextEditingController().obs;
+  final cityController = TextEditingController().obs;
 
+  //TextFiledController-------------------------------------------------
+  final formKey = new GlobalKey<FormState>().obs;
+  final List<String> stateList = ["State/Province"];
+  final List<String> countryList = ["Country"];
+  var selectedState = "".obs;
+  var selectedCoutry = "".obs;
   @override
   void onInit() {
     super.onInit();
+  }
+
+  void addAdress() {
+    print("Add Address ${firstNameController.value.text}");
   }
 }

@@ -199,4 +199,7 @@ class LanguageConstant {
   static const String liveChatText = "liveChatText";
 
   static const String startChatText = "startChatText";
+
+  static const String chooseYourCountryText = "chooseYourCountryText";
+  static const String billingText = "billingText";
 }
