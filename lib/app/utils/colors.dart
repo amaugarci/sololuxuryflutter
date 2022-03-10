@@ -40,17 +40,18 @@ const Color appColorDarkLineGrey = Color(0xff838383);
 const Color appTextFieldHintColor = Color(0xffCBB6A1);
 const Color appSubscribeButtonColor = Color(0xffFBECE5);
 
+const Color selectedTabColor = Color(0xFF983400);
+const Color unselectedTabColor = Color(0xFF6D6D6D);
+
 Color lightSilver = Color(0xffF7F7F7);
 Color darkSilver = Color(0xffE4E4E4);
 Color grey = Color(0xff999999);
 const Color grey636363 = Color(0xff636363);
 
-Color backgroundticket=Color(0xffFBECE5);
-Color secondarybackgroundcolor=Color(0xFFF6E6DF);
-Color ticketTextColor=Color(0xFF6F3015);
-Color buttoncolor=Color(0xFF8A3A06);
-
-
+Color backgroundticket = Color(0xffFBECE5);
+Color secondarybackgroundcolor = Color(0xFFF6E6DF);
+Color ticketTextColor = Color(0xFF6F3015);
+Color buttoncolor = Color(0xFF8A3A06);
 
 const MaterialColor primaryBlack = MaterialColor(
   _blackPrimaryValue,
