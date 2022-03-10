@@ -94,7 +94,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.productsScreen,
-      page: () => const SearchScreen(),
+      page: () => const ProductListScreen(),
       binding: ProductListBinding(),
     ),
     GetPage(
