@@ -198,7 +198,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.countryScreen,
-      page: () => const CountryScreen(),
+      page: () => CountryScreen(),
       binding: CountryScreenBindings(),
     ),
     GetPage(
