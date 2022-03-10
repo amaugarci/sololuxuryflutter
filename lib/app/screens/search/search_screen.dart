@@ -81,10 +81,12 @@ class SearchScreen extends GetView<SearchController> {
                           children: <Widget>[
                             Container(
                               child: TabBar(
-                                labelColor: Colors.green,
-                                unselectedLabelColor: Colors.black,
+                                labelColor: selectedTabColor,
+                                unselectedLabelColor: unselectedTabColor,
                                 tabs: [
-                                  Tab(text: LanguageConstant.menText.tr),
+                                  Tab(
+                                    text: LanguageConstant.menText.tr,
+                                  ),
                                   Tab(text: LanguageConstant.womenText.tr),
                                   Tab(text: LanguageConstant.kidsText.tr),
                                 ],
@@ -102,68 +104,80 @@ class SearchScreen extends GetView<SearchController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Text('Clothing',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            SizedBox(
-                                              width: Get.width * 0.7,
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.black54,
-                                              size: 12,
-                                            ),
-                                          ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, top: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text('Clothing',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                              SizedBox(
+                                                width: Get.width * 0.7,
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward_ios,
+                                                color: selectedTabColor,
+                                                size: 12,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Text('Bags',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            SizedBox(
-                                              width: Get.width * 0.7,
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.black54,
-                                              size: 12,
-                                            ),
-                                          ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, top: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text('Bags',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                              SizedBox(
+                                                width: Get.width * 0.75,
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward_ios,
+                                                color: selectedTabColor,
+                                                size: 12,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Text('Footwear',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            SizedBox(
-                                              width: Get.width * 0.7,
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.black54,
-                                              size: 12,
-                                            ),
-                                          ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, top: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text('Footwear',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                              SizedBox(
+                                                width: Get.width * 0.68,
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward_ios,
+                                                color: selectedTabColor,
+                                                size: 12,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
