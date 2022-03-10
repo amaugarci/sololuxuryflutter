@@ -11,15 +11,7 @@ class ProfileController extends GetxController {
   TabController? tabController;
   String? countryName;
   String? currency;
-  RxList<String> profileMenu = [
-    "MY ACCOUNT",
-    "MY ORDERS",
-    "MY WISH LIST",
-    "ADDRESS BOOK",
-    "ACCOUNT INFORMATION",
-    "STORED PAYMENT METHODS",
-    "NEWSLETTER SUBSCRIPTIONS",
-  ].obs;
+  RxString countryCurrency = "".obs;
 
   @override
   void onInit() {
@@ -33,7 +25,7 @@ class ProfileController extends GetxController {
     if (data != null && data.isNotEmpty) {
       LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
       print("Get LocalMap -> ${jsonEncode(localStoreModel)}");
-      profileMenu.add("${localStoreModel.name} (${localStoreModel.currentCurrency})");
+      countryCurrency.value = "${localStoreModel.name} (${localStoreModel.currentCurrency})";
       update();
     }
   }

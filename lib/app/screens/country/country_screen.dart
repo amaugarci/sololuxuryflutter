@@ -1,19 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:solo_luxury/app/components/common_widget/common_button.dart';
-import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
-import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
-import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/country/country_controller.dart';
 import 'package:solo_luxury/app/screens/profile/profile_controller.dart';
-import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
-import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/data/model/Home/menu_model.dart';
-import 'package:solo_luxury/data/model/country/store_views_model.dart';
-import 'package:solo_luxury/utils/app_routes.dart';
-import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/country/store_websites_model.dart';
 
@@ -53,10 +43,8 @@ class CountryScreen extends GetView<CountryController> {
                                       await controller.changeLanguage();
                                       await controller.changeCurrency();
                                       await controller.getCurrentLanguageCurrency();
-                                      print("Length--> ${profileController.profileMenu.length}");
-                                      profileController.profileMenu.value.removeLast();
-                                      profileController.profileMenu.value.add(
-                                          "${controller.localStoreModel!.name} (${controller.localStoreModel!.currentCurrency})");
+                                      profileController.countryCurrency.value =
+                                          "${controller.localStoreModel!.name} (${controller.localStoreModel!.currentCurrency})";
                                       Get.back();
                                     },
                                     onCancel: () {
