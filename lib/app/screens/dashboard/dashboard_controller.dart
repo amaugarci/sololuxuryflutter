@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/country/country_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/product_listing/product_list_binding.dart';
 import 'package:solo_luxury/app/screens/profile/profile_binding.dart';
+import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_binding.dart';
 
 
@@ -22,5 +24,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     CountryBindings().dependencies();
     ProfileBindings().dependencies();
     WishlistBindings().dependencies();
+    MyAccountBinding().dependencies();
+    SearchBinding().dependencies();
   }
 }

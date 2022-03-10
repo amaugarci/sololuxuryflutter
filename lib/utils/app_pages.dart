@@ -177,10 +177,6 @@ class AppPages {
       page: () => MyTicketScreen(),
     ),
     GetPage(
-      name: RoutesConstants.contactUsScreen,
-      page: () => ContactUsScreen(),
-    ),
-    GetPage(
       name: RoutesConstants.selectCountryScreen,
       page: () => const SelectCountryScreen(),
       binding: SelectCountryBindings(),

@@ -13,7 +13,7 @@ class SignupAPIProvider extends GetConnect implements ISignupProvider {
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => SignUpResponseModel.fromJson(val);
-    httpClient.baseUrl = AppConstants.apiEndPoint;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
   @override
