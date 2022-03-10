@@ -167,6 +167,10 @@ class LanguageConstant {
   static const String applyDiscountText = "applyDiscountText";
   static const String orderTotalText = "orderTotalText";
   static const String placeOrderText = "placeOrderText";
+  static const String homeText = "homeText";
+  static const String search1Text = "search1Text";
+  static const String designersText = "designersText";
+  static const String wishListText = "wishListText";
 
 
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";

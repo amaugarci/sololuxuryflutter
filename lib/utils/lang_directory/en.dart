@@ -189,5 +189,9 @@ const Map<String, String> en = {
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",
   "liveChatText": "Live Chat",
-  "startChatText": "Start Chat"
+  "startChatText": "Start Chat",
+  "homeText": "Home",
+  "search1Text": "Search",
+  "designersText": "Designers",
+  "wishListText": "WhistList",
 };

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
@@ -6,6 +7,8 @@ import 'package:solo_luxury/app/screens/profile/profile_controller.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../utils/app_routes.dart';
 
 
 class ProfileScreen extends GetView<ProfileController> {
@@ -23,38 +26,49 @@ class ProfileScreen extends GetView<ProfileController> {
             appBarWidget(),
             Container(
               margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 90.0, left: 30.0, right: 25.0),
-              child: ListView.builder(
-                itemCount: controller.profileMenu.length,
+              child: Obx(()=>ListView.builder(
+                itemCount: controller.profileMenu.value.length,
                 padding: EdgeInsets.zero,
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (_, index) {
-                  return Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.all(1.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CommonTextOpenSans(
-                          "${controller.profileMenu[index]}",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          overflow: TextOverflow.ellipsis,
-                          color: Colors.black,
-                        ),
-                        Center(
-                          child: Image.asset(
-                            AppAsset.downArrow,
-                            height: 16.0,
-                            width: 16.0,
+                  return InkWell(
+                    onTap: controller.profileMenu.value.length-1 == index ? ()async{
+                      await Get.toNamed(RoutesConstants.countryScreen);
+                      // controller.getCountryData();
+
+                    }:(){},
+                    child: Container(
+                      height: 30.0,
+                      width: 30.0,
+                      margin: EdgeInsets.all(1.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CommonTextOpenSans(
+                            "${controller.profileMenu.value[index]}",
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            overflow: TextOverflow.ellipsis,
                             color: Colors.black,
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            height: 18.0,
+                            width: 18.0,
+                            child: Center(
+                              child: SvgPicture.asset(
+                                AppAsset.rightIcon,
+                                height: 10.0,
+                                width: 10.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
-              ),
+              )),
             )
           ],
         ),

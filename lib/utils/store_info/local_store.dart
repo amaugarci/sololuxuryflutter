@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/app/screens/country/country_binding.dart';
@@ -29,6 +30,7 @@ class LocalStore{
       currentCurrency = localStoreModel.currentCurrency!;
       print("currentCode -> " + currentCode);
       print("currentCurrency -> " + currentCurrency);
+      Get.updateLocale(Locale(localStoreModel.currentCode!.split("-")[1]));
       return true;
     }
     return false;
