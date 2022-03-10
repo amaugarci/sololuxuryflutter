@@ -23,20 +23,23 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
-  setLocalStore()async{
+  setLocalStore() async {
     bool isCall = await localStore.getStore();
     print("isCall -> $isCall");
-    if(!isCall){
+    if (!isCall) {
       String countryCode = await splashAPIRepository.getSplashAPIResponse();
       print("countryCode---> $countryCode");
-      Get.put(CountryController(countryAPIRepository: CountryAPIRepository(countryAPIProvider: CountryAPIProvider()),countryCode: countryCode));
+      Get.put(CountryController(
+          countryAPIRepository:
+              CountryAPIRepository(countryAPIProvider: CountryAPIProvider()),
+          countryCode: countryCode));
     }
     _navigate();
   }
 
   _navigate() async {
     await Future.delayed(const Duration(seconds: 2), () async {
-      Get.offAllNamed(RoutesConstants.myAccountMenuScreen);
+      Get.offAllNamed(RoutesConstants.myTickets);
     });
   }
 }

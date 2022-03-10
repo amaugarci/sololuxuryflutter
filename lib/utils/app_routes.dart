@@ -23,8 +23,6 @@ class RoutesConstants {
   static const String addAdressScreen = "/addAddressAScreen";
   static const String myAccountScreen = "/myAccountScreen";
 
-
-
   static const String forgotPasswordScreen = "/forgotPasswordScreen";
 
   static const String orderConfirmScreen = "/orderConfirmScreen";
@@ -36,12 +34,10 @@ class RoutesConstants {
   static const String influencerRegistrationScreen =
       "/influencerRegistrationScreen";
 
-  static const String affiliateProgramScreen =
-      "/affiliateProgramScreen";
+  static const String affiliateProgramScreen = "/affiliateProgramScreen";
 
-  static const String myTicketsScreen =
-      "/myTicketsScreen";
+  static const String myTicketsScreen = "/myTicketsScreen";
 
-  static const String contactUsScreen =
-      "/contactUsScreen";
+  static const String contactUsScreen = "/contactUsScreen";
+  static const String myTickets = "/myTickets";
 }
