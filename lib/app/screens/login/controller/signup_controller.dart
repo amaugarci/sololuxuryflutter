@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:solo_luxury/app/components/storage_constant.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/data/model/signup_request_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
@@ -50,6 +52,8 @@ class SignupController extends GetxController {
         );
 
         signUpResponseModel = (await signupAPIRepository.getSignupAPIResponse(jsonEncode(signUpRequestModel))).obs;
+
+        setPrefStringValue(StorageConstant.authToken, signUpResponseModelToJson(signUpResponseModel.value));
         
         log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value)}");
 
