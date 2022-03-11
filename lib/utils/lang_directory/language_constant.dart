@@ -184,6 +184,8 @@ class LanguageConstant {
   static const String selectLangCurrDescText = "selectLangCurrDescText";
   static const String saveText = "saveText";
   static const String cancelText = "cancelText";
+  static const String languageText = "languageText";
+  static const String currencyText = "currencyText";
 
   static const String affiliateProgramTitleText = "affiliateProgramTitleText";
   static const String whoAreWeLookingTitleText = "whoAreWeLookingTitleText";

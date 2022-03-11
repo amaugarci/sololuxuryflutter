@@ -150,7 +150,7 @@ class CountryScreen extends GetView<CountryController> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CommonTextOpenSans(
-            "Select Language & Currency",
+            LanguageConstant.selectLangCurrText.tr,
             fontSize: 14,
             textAlign: TextAlign.center,
             color: appColorPrimary,
@@ -158,7 +158,7 @@ class CountryScreen extends GetView<CountryController> {
           ),
           const SizedBox(height: 15.0),
           CommonTextOpenSans(
-            "Please choose from the following Language and currency options available in your country Language",
+            LanguageConstant.selectLangCurrDescText.tr,
             fontSize: 12,
             textAlign: TextAlign.center,
             color: Colors.black,
@@ -174,7 +174,7 @@ class CountryScreen extends GetView<CountryController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CommonTextOpenSans(
-                  "Language : ",
+                  "${LanguageConstant.languageText.tr} : ",
                   fontSize: 12,
                   textAlign: TextAlign.center,
                   color: Colors.black,
@@ -217,7 +217,7 @@ class CountryScreen extends GetView<CountryController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CommonTextOpenSans(
-                  "Currency : ",
+                  "${LanguageConstant.currencyText.tr} : ",
                   fontSize: 12,
                   textAlign: TextAlign.center,
                   color: Colors.black,

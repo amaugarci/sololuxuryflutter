@@ -201,4 +201,6 @@ const Map<String, String> en = {
   "selectLangCurrDescText": "Please choose from the following Language and currency options available in your country Language",
   "saveText": "Save",
   "cancelText": "Cancel",
+  "languageText": "Language",
+  "currencyText": "Currency",
 };
