@@ -1,4 +1,7 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
@@ -7,6 +10,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../utils/app_routes.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -22,40 +26,22 @@ class ProfileScreen extends GetView<ProfileController> {
           children: [
             appBarWidget(),
             Container(
-              margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 90.0, left: 30.0, right: 25.0),
-              child: ListView.builder(
-                itemCount: controller.profileMenu.length,
-                padding: EdgeInsets.zero,
-                physics: const ClampingScrollPhysics(),
-                itemBuilder: (_, index) {
-                  return Container(
-                    height: 30.0,
-                    width: 30.0,
-                    margin: EdgeInsets.all(1.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                margin:
+                    EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 90.0, left: 30.0, right: 25.0),
+                child: Obx(() => Column(
                       children: [
-                        CommonTextOpenSans(
-                          "${controller.profileMenu[index]}",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          overflow: TextOverflow.ellipsis,
-                          color: Colors.black,
-                        ),
-                        Center(
-                          child: Image.asset(
-                            AppAsset.downArrow,
-                            height: 16.0,
-                            width: 16.0,
-                            color: Colors.black,
-                          ),
-                        )
+                        titleWithArrow(LanguageConstant.myAccountText.tr),
+                        titleWithArrow(LanguageConstant.myOrdersText.tr),
+                        titleWithArrow(LanguageConstant.myWishlistText.tr),
+                        titleWithArrow(LanguageConstant.addressBookText.tr),
+                        titleWithArrow(LanguageConstant.accountInformationText.tr),
+                        titleWithArrow(LanguageConstant.storePaymentText.tr),
+                        titleWithArrow(LanguageConstant.newsLetterText.tr),
+                        titleWithArrow("${controller.countryCurrency.value}", onTap: () {
+                          Get.toNamed(RoutesConstants.countryScreen);
+                        }),
                       ],
-                    ),
-                  );
-                },
-              ),
-            )
+                    ))),
           ],
         ),
       ),
@@ -77,8 +63,44 @@ class ProfileScreen extends GetView<ProfileController> {
           const SizedBox(
             height: 15.0,
           ),
-          CommonDivider(color: appColorPrimary,),
+          CommonDivider(
+            color: appColorPrimary,
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget titleWithArrow(title, {onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 30.0,
+        margin: const EdgeInsets.all(1.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CommonTextOpenSans(
+              title ?? "",
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+              overflow: TextOverflow.ellipsis,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 18.0,
+              width: 18.0,
+              child: Center(
+                child: SvgPicture.asset(
+                  AppAsset.rightIcon,
+                  height: 10.0,
+                  width: 10.0,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

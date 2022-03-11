@@ -20,13 +20,16 @@ class AppConstants {
       "https://erp.theluxuryunlimited.com/api/influencer/add";
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
   static String apiEndPoint = "https://api.solo_luxury.com";
+  static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiCountryGet = "http://ip-api.com";
 
   // static String apiEndPoint =
   //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
 
   //Sign Up
-  static String login = 'integration/customer/token';
+  //static String login = '/integration/customer/token';
+  static String login = '/rest/V1/integration/customer/token';
+
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
@@ -34,7 +37,5 @@ class AppConstants {
   static const String signUp = "customers";
 
   static const String licenceId = '11434003';
-
-
 
 }

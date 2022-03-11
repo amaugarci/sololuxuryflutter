@@ -49,7 +49,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.accessYourAccountDetailsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                         SizedBox(
@@ -75,7 +75,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                     LanguageConstant.signUpText.tr,
                                     style: TextStyle(
                                         color: appColor,
-                                        fontSize: 18,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.w400),
                                   ))),
                             ),
@@ -96,7 +96,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                     LanguageConstant.loginText.tr,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.w400),
                                   ))),
                             ),
@@ -119,7 +119,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.myOrdersText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -135,7 +135,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.myWishlistText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -143,7 +143,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(RoutesConstants.addAdressScreen);
+                        Get.toNamed(RoutesConstants.addressBookScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -151,7 +151,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.addressBookText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -167,7 +167,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.accountInformationText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -183,7 +183,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.myTicketsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -199,7 +199,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.trackOrderText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -212,7 +212,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.companyMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -220,7 +220,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: (){
-                        Get.to(() => const ContactUsScreen());
+                        Get.toNamed(RoutesConstants.contactUsScreen);
+                        //Get.to(() => const ContactUsScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -228,7 +229,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.contactUsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -244,7 +245,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.secureShoppingText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -260,7 +261,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.advancedSearchText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -276,7 +277,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.testimonialsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -289,7 +290,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.socialMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -305,7 +306,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.hopeText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -321,7 +322,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.affiliateProgramText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -337,7 +338,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.influencerRegistrationText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -353,7 +354,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.exchangeText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -366,7 +367,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.contactMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -382,7 +383,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.privacyPolicyText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -398,7 +399,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.termsConditionsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -414,7 +415,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.shippingText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -427,7 +428,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.aboutText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -443,7 +444,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.aboutUsMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -459,7 +460,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.referFriendMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -467,7 +468,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: (){
-
+                        Get.toNamed(RoutesConstants.guestReturnsScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -475,7 +476,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.returnsText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -491,7 +492,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.faqMyAccountText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -507,7 +508,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           LanguageConstant.liveChatText.tr,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -531,7 +532,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
               LanguageConstant.myAccountText.tr,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w500),
             ),
             Image.asset(

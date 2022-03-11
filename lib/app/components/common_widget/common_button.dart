@@ -126,7 +126,11 @@ class CommonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    shape = const RoundedRectangleBorder(borderRadius: BorderRadius.zero);
+    if(borderRadius==0.0) {
+      shape = const RoundedRectangleBorder(borderRadius: BorderRadius.zero);
+    }else{
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!));
+    }
 
     if (lable != null) {
       child = CommonTextPoppins(
