@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
 import 'package:solo_luxury/app/screens/country/country_controller.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/screens/profile/profile_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
@@ -13,7 +14,7 @@ import '../../components/common_widget/common_text_opensans.dart';
 class CountryScreen extends GetView<CountryController> {
   CountryScreen({Key? key}) : super(key: key);
 
-  ProfileController profileController = Get.find<ProfileController>();
+  MyAccountController myAccountController = Get.find<MyAccountController>();
 
   @override
   Widget build(BuildContext context) {
@@ -262,7 +263,7 @@ class CountryScreen extends GetView<CountryController> {
                     await controller.changeLanguage();
                     await controller.changeCurrency();
                     await controller.getCurrentLanguageCurrency();
-                    profileController.countryCurrency.value =
+                    myAccountController.countryCurrency.value =
                         "${controller.localStoreModel!.name} (${controller.localStoreModel!.currentCurrency})";
                     controller.languageSelectIndex.value = 0;
                     controller.currencySelectIndex.value = 0;
