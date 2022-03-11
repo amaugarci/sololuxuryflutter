@@ -53,7 +53,7 @@ class SignupController extends GetxController {
 
         signUpResponseModel = (await signupAPIRepository.getSignupAPIResponse(jsonEncode(signUpRequestModel))).obs;
 
-        setPrefStringValue(StorageConstant.authToken, signUpResponseModelToJson(signUpResponseModel.value));
+        setPrefStringValue(StorageConstant.userDatModel, signUpResponseModelToJson(signUpResponseModel.value));
         
         log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value)}");
 
