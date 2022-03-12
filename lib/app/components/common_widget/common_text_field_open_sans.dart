@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../../utils/colors.dart';
 
 // ignore: must_be_immutable
-class CommonTextField extends StatelessWidget {
+class CommonTextFieldOpenSans extends StatelessWidget {
   double? width;
   String? hintText;
   TextEditingController? controller;
@@ -15,12 +15,12 @@ class CommonTextField extends StatelessWidget {
   bool? isValidationShow = true;
   Border? textFieldBorder;
   Color? textColor;
-  String? fontFamily;
+  String? fontFamily = "Open Sans";
   FontWeight? fontWeight;
   TextAlign? textAlign;
   Color? borderColor;
 
-  CommonTextField(
+  CommonTextFieldOpenSans(
       {Key? key,
       this.hintText,
       this.controller,
@@ -34,7 +34,6 @@ class CommonTextField extends StatelessWidget {
       this.textAlign = TextAlign.left,
       this.textColor = Colors.black,
       this.borderColor = appColorButton,
-      this.fontFamily = "Poppins",
       this.fontWeight = FontWeight.w400})
       : super(key: key);
 

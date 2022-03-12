@@ -7,6 +7,9 @@ import '../../data/model/InfluenceRegistration/influencer_registration_model.dar
 abstract class ISplashRepository {
   Future<String> getSplashAPIResponse();
 }
+abstract class IReferFriendRepository {
+  Future<String> getReferFriendAPIResponse();
+}
 
 abstract class ILoginRepository {
   Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password);

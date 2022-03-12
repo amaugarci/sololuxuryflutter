@@ -469,7 +469,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: (){
-                        Get.to(() => const ReferFriendScreen());
+                        Get.toNamed(RoutesConstants.referFriendScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),

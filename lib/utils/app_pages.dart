@@ -33,6 +33,7 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_bi
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/refer_friend/refer_friend_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
@@ -60,6 +61,7 @@ import '../app/screens/dashboard/dashboard_binding.dart';
 import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
+import '../app/screens/refer_friend/refer_friend_screen.dart';
 import '../app/screens/search/search_screen.dart';
 import '../app/screens/checkout_order/checkout_order_screen.dart';
 import '../app/screens/splash/splash_screen.dart';
@@ -220,6 +222,11 @@ class AppPages {
       name: RoutesConstants.contactUsScreen,
       page: () => const ContactUsScreen(),
       binding: ContactUsBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.referFriendScreen,
+      page: () => const ReferFriendScreen(),
+      binding: ReferFriendBindings(),
     ),
   ];
 }
