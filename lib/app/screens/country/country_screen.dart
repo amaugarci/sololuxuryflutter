@@ -35,6 +35,7 @@ class CountryScreen extends GetView<CountryController> {
                               StoreWebSitesModel.fromJson(controller.storeWebsitesList.value[index]);
                           return InkWell(
                               onTap: () async {
+                                controller.isChangeCurrency.value = false;
                                 await controller.setLanguageAndCurrency(item, false);
 
                                 // Get.defaultDialog(
@@ -190,8 +191,10 @@ class CountryScreen extends GetView<CountryController> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
+                            controller.isChangeLanguage.value = true;
                             controller.languageSelectIndex.value = index;
                             controller.setLanguageSelected(controller.rxLanguageList[index].toString());
+
                           },
                           child: Obx(() => CommonTextOpenSans(
                             controller.rxLanguageList.length - 1 != index
@@ -233,6 +236,7 @@ class CountryScreen extends GetView<CountryController> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
+                            controller.isChangeCurrency.value = true;
                             controller.currencySelectIndex.value = index;
                             controller.setCurrencySelected(controller.rxCurrencyList[index].toString());
                           },
@@ -259,6 +263,15 @@ class CountryScreen extends GetView<CountryController> {
                 child: CommonButton(
                   buttonType: ButtonType.ElevatedButton,
                   onPressed: () async {
+                    print("Language -> ${controller.isChangeLanguage.value}");
+                    print("Currency -> ${controller.isChangeCurrency.value}");
+                    if(!controller.isChangeLanguage.value){
+                      controller.langSelected.value = controller.rxLanguageList.first.toString();
+                    }
+                    if(!controller.isChangeCurrency.value){
+                      controller.currencySelected.value = controller.rxCurrencyList.first.toString();
+
+                    }
                     await controller.changeName(item.name);
                     await controller.changeLanguage();
                     await controller.changeCurrency();
@@ -267,6 +280,8 @@ class CountryScreen extends GetView<CountryController> {
                         "${controller.localStoreModel!.name} (${controller.localStoreModel!.currentCurrency})";
                     controller.languageSelectIndex.value = 0;
                     controller.currencySelectIndex.value = 0;
+                    controller.isChangeLanguage.value = false;
+                    controller.isChangeCurrency.value = false;
                     Get.back();
                   },
                   elevation: 0.0,
@@ -293,6 +308,8 @@ class CountryScreen extends GetView<CountryController> {
                   onPressed: () async {
                     controller.languageSelectIndex.value = 0;
                     controller.currencySelectIndex.value = 0;
+                    controller.isChangeLanguage.value = false;
+                    controller.isChangeCurrency.value = false;
                     Get.back();
                   },
                   elevation: 0.0,

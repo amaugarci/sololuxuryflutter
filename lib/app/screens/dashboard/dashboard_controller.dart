@@ -10,9 +10,19 @@ import 'package:solo_luxury/app/screens/profile/profile_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_binding.dart';
 
+import '../../../data/model/Home/menu_model.dart';
+import '../../../utils/get_network_service/APIRepository/dashboard_api_repository.dart';
+
 
 class DashboardController extends GetxController with GetSingleTickerProviderStateMixin{
   TabController? tabController;
+
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
+  Rx<MenuModel>? menuModel = MenuModel().obs;
+
+
+  final DashboardAPIRepository dashboardAPIRepository;
+  DashboardController({required this.dashboardAPIRepository});
 
   @override
   void onInit() {
@@ -25,5 +35,12 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     WishlistBindings().dependencies();
     MyAccountBinding().dependencies();
     SearchBinding().dependencies();
+    getMenuDataFromApi();
+  }
+  getMenuDataFromApi() async {
+    print("getMenuDataFromApi -> ");
+    //menuModel!.value = await NetworkRepository().getMenu();
+
+    menuModel!.value = await dashboardAPIRepository.getMenuAPIResponse();
   }
 }

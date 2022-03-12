@@ -24,6 +24,10 @@ abstract class IInfluencerRepository {
       String influencerRequestJson);
 }
 
+abstract class IDashboardRepository {
+  Future<MenuModel> getMenuAPIResponse();
+}
+
 abstract class IHomeRepository {
   Future<MenuModel> getMenuAPIResponse();
 }
