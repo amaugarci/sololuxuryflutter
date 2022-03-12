@@ -9,4 +9,6 @@ class AppConstants {
 
   //Sign Up
   static String login = 'integration/customer/token';
+  static String addAddress = 'customers/me';
+  static String countryList = 'directory/countries';
 }
