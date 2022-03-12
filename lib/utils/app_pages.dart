@@ -33,6 +33,8 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_bi
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
@@ -186,6 +188,11 @@ class AppPages {
       name: RoutesConstants.myAccountScreen,
       page: () => const MyAccountScreen(),
       binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.returnsAndRefundsScreen,
+      page: () => const ReturnsAndRefundsScreen(),
+      binding: ReturnsAndRefundsBinding(),
     ),
     GetPage(
       name: RoutesConstants.addressBookScreen,

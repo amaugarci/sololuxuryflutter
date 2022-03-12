@@ -5,6 +5,7 @@ import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
 import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:solo_luxury/app/screens/privacy_policy/terms_and_condition_screen.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -80,7 +81,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                   ))),
                             ),
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 Get.toNamed(RoutesConstants.loginScreen);
                               },
                               child: Container(
@@ -89,7 +90,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                   decoration: BoxDecoration(
                                     color: appColor,
                                     borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(width: 2, color: appColor),
+                                    border:
+                                        Border.all(width: 2, color: appColor),
                                   ),
                                   child: Center(
                                       child: Text(
@@ -110,7 +112,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.myOrderScreen);
                       },
                       child: Padding(
@@ -126,7 +128,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.wishlistScreen);
                       },
                       child: Padding(
@@ -142,7 +144,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.addressBookScreen);
                       },
                       child: Padding(
@@ -158,7 +160,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.myAccountScreen);
                       },
                       child: Padding(
@@ -174,7 +176,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.to(() => const MyTicketScreen());
                       },
                       child: Padding(
@@ -190,9 +192,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -219,7 +219,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.contactUsScreen);
                         //Get.to(() => const ContactUsScreen());
                       },
@@ -236,9 +236,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -252,7 +250,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.productsScreen);
                       },
                       child: Padding(
@@ -268,9 +266,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -297,9 +293,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -313,7 +307,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.affiliateProgramScreen);
                       },
                       child: Padding(
@@ -329,8 +323,9 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-                        Get.toNamed(RoutesConstants.influencerRegistrationScreen);
+                      onTap: () {
+                        Get.toNamed(
+                            RoutesConstants.influencerRegistrationScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -345,9 +340,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -374,7 +367,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.to(() => const PrivacyPolicyScreen());
                       },
                       child: Padding(
@@ -390,7 +383,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.to(() => const TermsAndConditionScreen());
                       },
                       child: Padding(
@@ -406,9 +399,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -435,7 +426,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.to(() => const AboutUsScreen());
                       },
                       child: Padding(
@@ -451,8 +442,10 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.to(() => const ReferFriendScreen());
+
+                        // Get.toNamed(RoutesConstants.returnsAndRefundsScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -467,8 +460,10 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
-                        Get.toNamed(RoutesConstants.guestReturnsScreen);
+                      onTap: () {
+
+                        // Get.toNamed(RoutesConstants.guestReturnsScreen);
+                        Get.toNamed(RoutesConstants.returnsAndRefundsScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -483,7 +478,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RoutesConstants.faqScreen);
                       },
                       child: Padding(

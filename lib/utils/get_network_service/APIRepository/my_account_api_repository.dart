@@ -28,13 +28,10 @@ class MyAccountAPIRepository implements IMyAccountRepository {
 */
 
 class MyAccountAPIRepository extends GetxController {
-  String baseUrl =
-      "https://findd.sg/api/v1/listing/categories/featured.json?token=33e7-d8be-b192-b825-3bdb-4c51-7f69-92ba";
-
   Future<MyAccountDetails?> myAccountsApi() async {
     final response = await http.get(
       Uri.parse(AppConstants.apiEndPointMyAccount),
-      headers: {"Authorization": "Bearer 4lpwy9aoo06632v0p3uljiybt0v10d12"},
+      headers: {"Authorization": "Bearer uci7ew9pxt2h45nlsv50zknlv26q3qir"},
     );
     if (response.statusCode == 200) {
       print("Categories=======================================");
