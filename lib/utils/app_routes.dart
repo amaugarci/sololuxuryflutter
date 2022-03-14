@@ -49,6 +49,6 @@ class RoutesConstants {
   static const String guestReturnsScreen = "/guestReturnsScreen";
 
   static const String searchScreen = "/searchScreen";
-  
+
   static const String myTickets = "/myTickets";
 }
