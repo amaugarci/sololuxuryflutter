@@ -39,7 +39,7 @@ class AppConstants {
 
   static const String licenceId = '11434003';
 
-  static String login = 'integration/customer/token';
+  //static String login = 'integration/customer/token';
   static String addAddress = 'customers/me';
   static String countryList = 'directory/countries';
 }
