@@ -19,6 +19,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
 
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
   Rx<MenuModel>? menuModel = MenuModel().obs;
+  RxString appbarTitle = "".obs;
 
 
   final DashboardAPIRepository dashboardAPIRepository;

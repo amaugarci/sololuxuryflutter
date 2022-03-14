@@ -29,7 +29,7 @@ abstract class IDashboardRepository {
 }
 
 abstract class IHomeRepository {
-  Future<MenuModel> getMenuAPIResponse();
+
 }
 
 abstract class ICountryRepository {

@@ -11,39 +11,29 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
-
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
-
 
 import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
 import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
+import '../../components/common_widget/common_appbar.dart';
 import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
-
-
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           key: controller.scaffoldkey,
           backgroundColor: backGroundColor,
-          drawer: getDrawer(homeController),
+          appBar: commonAppbar(),
           body: SizedBox(
             width: Get.width,
             child: Stack(
               children: [
-                Container(
-                  // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Form(key: controller.formKey, child: checkOutWidget())),
-                ),
-                appBarWidget(controller),
+                SingleChildScrollView(
+                    padding: const EdgeInsets.only(top: 40.0),
+                    child: Form(key: controller.formKey, child: checkOutWidget())),
               ],
             ),
           ),
@@ -85,7 +75,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               color: appColorButton,
               borderRadius: 0.0,
               child: CommonTextPoppins(
-                LanguageConstant.signInText.tr  ,
+                LanguageConstant.signInText.tr,
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
               ),
@@ -114,16 +104,16 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm() {
     return Column(
       children: [
-        CheckOutBox(title:  LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
+        CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         const SizedBox(height: 15.0),
-        CheckOutBox(title:  LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
+        CheckOutBox(title: LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
-          title:  LanguageConstant.paymentMethod.tr,
+          title: LanguageConstant.paymentMethod.tr,
           formFieldWidget: paymentMethod(),
         ),
         const SizedBox(height: 15.0),
-        CheckOutBox(title:  LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary()),
+        CheckOutBox(title: LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary()),
       ],
     );
   }
@@ -136,12 +126,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         children: [
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText:  LanguageConstant.emailText.tr,
+            hintText: LanguageConstant.emailText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 10.0),
           CommonTextField(
-            hintText:  LanguageConstant.passwordText.tr,
+            hintText: LanguageConstant.passwordText.tr,
             controller: TextEditingController(),
           ),
           const SizedBox(height: 5.0),
@@ -398,14 +388,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   border: Border.all(
                                       color: Colors.black,
                                       width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
-                                  color:
-                                      controller.selectedPaymentIndex.value ==
-                                              index
-                                          ? Colors.black
-
-                                          : Colors.transparent,
+                                  color: controller.selectedPaymentIndex.value == index
+                                      ? Colors.black
+                                      : Colors.transparent,
                                   shape: BoxShape.circle),
-
                             ),
                             const SizedBox(
                               width: 20.0,

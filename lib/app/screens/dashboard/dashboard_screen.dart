@@ -28,21 +28,15 @@ class DashboardScreen extends GetView<DashboardController> {
         resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top - 10.0),
-              child: TabBarView(
-                  controller: controller.tabController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    //TODO: PAGES
-                    const HomeScreen(),
-                    const SearchScreen(),
-                    CheckoutOrderScreen(),
-                    MyWishListPage(),
-                    //ProfileScreen(),
-                    MyAccountMenuPage(),
-                  ]),
-            ),
+            TabBarView(controller: controller.tabController, physics: const NeverScrollableScrollPhysics(), children: [
+              //TODO: PAGES
+              const HomeScreen(),
+              const SearchScreen(),
+              CheckoutOrderScreen(),
+              MyWishListPage(),
+              //ProfileScreen(),
+              MyAccountMenuPage(),
+            ]),
             appBarWidget(),
           ],
         ),
@@ -62,6 +56,23 @@ class DashboardScreen extends GetView<DashboardController> {
                 child: TabBar(
                   onTap: (int index) async {
                     print("index: $index");
+                    switch (index) {
+                      case 0:
+                        controller.appbarTitle.value = "";
+                        break;
+                      case 1:
+                        controller.appbarTitle.value = LanguageConstant.search1Text.tr;
+                        break;
+                      case 2:
+                        controller.appbarTitle.value = LanguageConstant.designersText.tr;
+                        break;
+                      case 3:
+                        controller.appbarTitle.value = LanguageConstant.wishListText.tr;
+                        break;
+                      case 4:
+                        controller.appbarTitle.value = LanguageConstant.loginText.tr;
+                        break;
+                    }
                   },
                   tabs: [
                     Tab(
@@ -177,10 +188,21 @@ class DashboardScreen extends GetView<DashboardController> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image.asset(
-              AppAsset.logo,
+            Container(
               height: 40.0,
               width: Get.width * 0.35,
+              child: controller.appbarTitle.value.isEmpty
+                  ? Image.asset(
+                      AppAsset.logo,
+                    )
+                  : Center(
+                    child: CommonTextOpenSans(
+                        controller.appbarTitle.value,
+                        fontSize: 16.0,
+                        color: appColorPrimary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                  ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

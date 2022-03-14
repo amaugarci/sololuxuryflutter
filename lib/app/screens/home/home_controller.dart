@@ -15,17 +15,6 @@ import '../../../utils/get_network_service/APIRepository/home_api_repository.dar
 
 class HomeController extends GetxController {
   RxInt index = 0.obs;
-  Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
-
-  Rx<ExpandableController> aboutUsExpandableController = ExpandableController().obs;
-  RxList storeWebsitesList = [].obs;
-  RxList storeViewsList = [].obs;
-  RxList storeConfigsList = [].obs;
-
-  RxObjectMixin? menuModel = MenuModel().obs;
-  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
-  final HomeAPIRepository homeAPIRepository;
-  HomeController({required this.homeAPIRepository});
 
   @override
   void onInit() {
@@ -35,8 +24,5 @@ class HomeController extends GetxController {
 
   getMenuDataFromApi() async {
     print("getMenuDataFromApi -> ");
-    //menuModel!.value = await NetworkRepository().getMenu();
-
-    menuModel!.value = await homeAPIRepository.getMenuAPIResponse();
   }
 }
