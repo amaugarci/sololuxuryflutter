@@ -257,4 +257,7 @@ class LanguageConstant {
   static const String menText = "menText";
   static const String womenText = "womenText";
   static const String kidsText = "kidsText";
+  static const String welcometoChatText = "welcometoChatText";
+  static const String fillTheFormText = "fillTheFormText";
+  static const String nameChatText = "nameChatText";
 }

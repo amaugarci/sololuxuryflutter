@@ -255,4 +255,7 @@ const Map<String, String> en = {
       "Please choose from the following Language and currency options available in your country Language",
   "saveText": "Save",
   "cancelText": "Cancel",
+  "welcometoChatText": "Welcome to our LiveChat!",
+  "fillTheFormText": "Please fill in the form below before starting the chat.",
+  "nameChatText": "Name",
 };
