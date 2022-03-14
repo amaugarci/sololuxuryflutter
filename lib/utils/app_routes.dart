@@ -35,15 +35,12 @@ class RoutesConstants {
   static const String influencerRegistrationScreen =
       "/influencerRegistrationScreen";
 
-  static const String affiliateProgramScreen =
-      "/affiliateProgramScreen";
+  static const String affiliateProgramScreen = "/affiliateProgramScreen";
 
-  static const String myTicketsScreen =
-      "/myTicketsScreen";
+  static const String myTicketsScreen = "/myTicketsScreen";
 
-  static const String contactUsScreen =
-      "/contactUsScreen";
-
+  static const String contactUsScreen = "/contactUsScreen";
+  static const String returnsAndRefundsScreen = "/returnsAndRefundsScreen";
   static const String selectCountryScreen = "/selectCountryScreen";
   static const String storeCreditScreen = "/storeCreditScreen";
 

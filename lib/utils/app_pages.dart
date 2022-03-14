@@ -33,12 +33,15 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_bi
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
-import 'package:solo_luxury/app/screens/country_screen/country_screen.dart' as country;
+import 'package:solo_luxury/app/screens/country_screen/country_screen.dart'
+    as country;
 import 'package:solo_luxury/app/screens/country_screen/country_screen_binding.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
@@ -153,11 +156,6 @@ class AppPages {
       binding: BrandBinding(),
     ),
     GetPage(
-      name: RoutesConstants.myAccountScreen,
-      page: () => const MyAccountScreen(),
-      binding: MyAccountBinding(),
-    ),
-    GetPage(
       name: RoutesConstants.influencerRegistrationScreen,
       page: () => const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
@@ -192,6 +190,11 @@ class AppPages {
       binding: MyAccountBinding(),
     ),
     GetPage(
+      name: RoutesConstants.returnsAndRefundsScreen,
+      page: () => const ReturnsAndRefundsScreen(),
+      binding: ReturnsAndRefundsBinding(),
+    ),
+    GetPage(
       name: RoutesConstants.addressBookScreen,
       page: () => const AddressBookScreen(),
       binding: AddressBookBindings(),
@@ -205,8 +208,8 @@ class AppPages {
       name: RoutesConstants.guestReturnsScreen,
       page: () => const GuestReturns(),
       binding: GuestReturnsBindings(),
-  ),
-  GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.influencerRegistrationScreen,
       page: () => InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),

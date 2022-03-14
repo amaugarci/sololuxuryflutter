@@ -1,4 +1,5 @@
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
+import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
@@ -36,3 +37,7 @@ abstract class ICheckoutOrderRepository {
   Future<ShippingInformationModel> postShippingInformationAPIResponse(String loginRequestJson);
 }
 
+///myAccount Class
+abstract class IMyAccountRepository {
+  Future<MyAccountDetails> getMyAccountApiResponse();
+}
