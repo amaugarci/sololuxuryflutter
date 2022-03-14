@@ -82,26 +82,15 @@ class NetworkRepository {
     }
   }
 
-  Future countryList() async {
-    String url = '${AppConstants.apiEndPoint}${AppConstants.countryList}';
-    // final header = await NetworkDioHttp.getTestHeaders();
-    print("url -> " + url);
-    // print("header -> " + header.toString());
-    http.Response response = await http.get(
-      Uri.parse(url),
-    );
-    //request.headers.addAll(token);
-    if (response != null) {
-      print("response.statusCode -> ");
-      print(response.statusCode);
-    }
-    if (response != null && response.statusCode == 200) {
-      var parsedJson = await json.decode(response.body);
-      print("Files Is ${parsedJson}");
-      return List<CountryListModel>.from(
-          parsedJson.map((country) => CountryListModel.fromJson(country)));
-    } else {
-      return null!;
+  countryList() async {
+    try {
+      final authUserResponse = await NetworkDioHttp.getDioHttpMethod(
+          url: '${AppConstants.apiEndPoint}${AppConstants.countryList}');
+
+      return List<CountryListModel>.from(authUserResponse['body']
+          .map((country) => CountryListModel.fromJson(country)));
+    } catch (e) {
+      CommonMethod().getXSnackBar("Error", e.toString(), red);
     }
   }
 

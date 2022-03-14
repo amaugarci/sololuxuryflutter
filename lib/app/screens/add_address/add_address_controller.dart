@@ -40,7 +40,6 @@ class AddAddressController extends GetxController {
 //CountrList
   getCountryList() async {
     print("getCountryList  -> ");
-
     getcountryList!.value = await networkRepository.countryList();
     print("getCountryList ->  ${getcountryList!.value}");
   }
