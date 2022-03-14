@@ -10,6 +10,26 @@ class LanguageConstant {
   static const String aboutUsContain5 = "aboutUsContain5";
   static const String aboutUsContain6 = "aboutUsContain6";
   static const String aboutUsContain7 = "aboutUsContain7";
+
+
+  static const String returnPolicyTitle = "returnPolicyTitle";
+  static const String returnProcessTitle = "returnProcessTitle";
+  static const String refundTitle = "refundTitle";
+  static const String returnsRefundsTitle = "returnsRefundsTitle";
+  static const String howToReturnTitle = "howToReturnTitle";
+  static const String customisedTitle = "customisedTitle";
+  static const String returnPolicyContain1 = "returnPolicyContain1";
+  static const String returnPolicyContain2 = "returnPolicyContain2";
+  static const String returnPolicyContain3 = "returnPolicyContain3";
+  static const String returnPolicyContain4 = "returnPolicyContain4";
+  static const String returnPolicyContain5 = "returnPolicyContain5";
+  static const String returnPolicyContain6 = "returnPolicyContain6";
+  static const String returnPolicyContain7 = "returnPolicyContain7";
+  static const String returnPolicyContain8 = "returnPolicyContain8";
+  static const String returnPolicyContain9 = "returnPolicyContain9";
+  static const String returnPolicyContain10 = "returnPolicyContain10";
+  static const String returnPolicyContain11 = "returnPolicyContain11";
+  static const String returnPolicyContain12 = "returnPolicyContain12";
   static const String profile = "profile";
   static const String mr = "mr";
   static const String firstNameText = "firstNameText";

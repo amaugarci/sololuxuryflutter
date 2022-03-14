@@ -16,6 +16,7 @@ class AppConstants {
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
+  static String apiEndPointMyAccount = "https://dev2.brands-labels.com/rest/V1/customers/me";
   static String apiEndPointNewInfluencer =
       "https://erp.theluxuryunlimited.com/api/influencer/add";
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
@@ -38,4 +39,7 @@ class AppConstants {
 
   static const String licenceId = '11434003';
 
+  //static String login = 'integration/customer/token';
+  static String addAddress = 'customers/me';
+  static String countryList = 'directory/countries';
 }

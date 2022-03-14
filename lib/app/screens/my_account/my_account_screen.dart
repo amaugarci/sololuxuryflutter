@@ -13,98 +13,100 @@ class MyAccountScreen extends GetView<MyAccountController> {
     return Obx(
       () => Scaffold(
         backgroundColor: appColorAccent,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 120,
-              ),
-              Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                height: 50,
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: appColorAccent,
-                  border: Border.all(
-                    color: appColor,
-                    width: 1,
-                  ),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    isExpanded: true,
-                    dropdownColor: appColorFDF3F1,
-                    icon:
-                        const Icon(Icons.expand_more_outlined, color: appColor),
-                    value: controller.chosenValue.value,
-                    elevation: 2,
-                    style: commonTextStyle(),
-                    items: controller.data
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(value),
-                        ),
-                      );
-                    }).toList(),
-                    hint: Text(
-                      LanguageConstant.myAccountText.tr,
-                      style: commonTextStyle(),
-                    ),
-                    onChanged: (String? value) {
-                      controller.chosenValue.value = value!;
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              newsLettersDesign(),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: controller.isLoading.value == true
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Column(
                   children: [
-                    Text(
-                      LanguageConstant.addressBookText.tr,
-                      style: commonTextStyle600(fontSize: 20.0),
+                    const SizedBox(
+                      height: 120,
                     ),
-                    Text(
-                      LanguageConstant.manageAddresses.tr,
-                      style: const TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationColor: blackColor,
-                        decorationThickness: 1.5,
-                        fontSize: 14,
-                        color: blackColor,
-                        fontFamily: "OpenSans",
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      height: 50,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        color: appColorAccent,
+                        border: Border.all(
+                          color: appColor,
+                          width: 1,
+                        ),
                       ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          dropdownColor: appColorFDF3F1,
+                          icon: const Icon(Icons.expand_more_outlined,
+                              color: appColor),
+                          value: controller.chosenValue.value,
+                          elevation: 2,
+                          style: commonTextStyle(),
+                          items: controller.data
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(value),
+                              ),
+                            );
+                          }).toList(),
+                          hint: Text(
+                            LanguageConstant.myAccountText.tr,
+                            style: commonTextStyle(),
+                          ),
+                          onChanged: (String? value) {
+                            controller.chosenValue.value = value!;
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    newsLettersDesign(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            LanguageConstant.addressBookText.tr,
+                            style: commonTextStyle600(fontSize: 20.0),
+                          ),
+                          Text(
+                            LanguageConstant.manageAddresses.tr,
+                            style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              decorationColor: blackColor,
+                              decorationThickness: 1.5,
+                              fontSize: 14,
+                              color: blackColor,
+                              fontFamily: "OpenSans",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    defaultBillingDesign(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    defaultShippingDesign(),
+                    const SizedBox(
+                      height: 40,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              defaultBillingDesign(),
-              const SizedBox(
-                height: 20,
-              ),
-              defaultShippingDesign(),
-              const SizedBox(
-                height: 40,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

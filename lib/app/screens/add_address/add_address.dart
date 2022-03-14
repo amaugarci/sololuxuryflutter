@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/data/model/country/country_model.dart';
 import 'package:solo_luxury/utils/image_constant.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import 'add_address_controller.dart';
@@ -82,6 +83,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                       children: [
                         TextFormField(
                           controller: controller.firstNameController.value,
+                          cursorColor: appColor,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -89,7 +91,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 EdgeInsets.only(bottom: 10, top: 10, left: 10),
                             hintText: "First Name",
                             labelStyle: TextStyle(color: Colors.black54),
-                            errorStyle: TextStyle(color: Colors.black),
+                            errorStyle: TextStyle(color: Colors.red),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(
@@ -130,6 +132,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.lastNameController.value,
                           decoration: InputDecoration(
                             filled: true,
@@ -138,7 +141,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 EdgeInsets.only(bottom: 10, top: 10, left: 10),
                             hintText: "Last Name",
                             labelStyle: TextStyle(color: Colors.black54),
-                            errorStyle: TextStyle(color: Colors.black),
+                            errorStyle: TextStyle(color: Colors.red),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(
@@ -178,6 +181,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.phoneNumberController.value,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -187,7 +191,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 EdgeInsets.only(bottom: 10, top: 10, left: 10),
                             hintText: "Phone Number",
                             labelStyle: TextStyle(color: Colors.black54),
-                            errorStyle: TextStyle(color: Colors.black),
+                            errorStyle: TextStyle(color: Colors.red),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(
@@ -219,45 +223,8 @@ class AddAddressScreen extends GetView<AddAddressController> {
                           },
                         ),
                         SizedBox(height: 8),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(color: appColor, width: 1),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              items: controller.stateList
-                                  .map((value) => DropdownMenuItem(
-                                        child: Text(value),
-                                        value: value,
-                                      ))
-                                  .toList(),
-                              isExpanded: true,
-                              hint: controller.selectedState.value == ""
-                                  ? Text(
-                                      "State/Provine",
-                                      style: TextStyle(color: Colors.black54),
-                                    )
-                                  : Text(
-                                      controller.selectedState.value.toString(),
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                              icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                size: 28,
-                                color: appColor.withOpacity(0.2),
-                              ),
-                              onChanged: (String? value) {
-                                controller.selectedState.value = value!;
-                              },
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.zipPovinceController.value,
                           decoration: InputDecoration(
                             filled: true,
@@ -266,7 +233,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 EdgeInsets.only(bottom: 10, top: 10, left: 10),
                             hintText: "Zip/Province",
                             labelStyle: TextStyle(color: Colors.black54),
-                            errorStyle: TextStyle(color: Colors.black),
+                            errorStyle: TextStyle(color: Colors.red),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(
@@ -306,6 +273,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.address1Controller.value,
                           decoration: InputDecoration(
                               filled: true,
@@ -317,7 +285,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                               ),
                               hintText: "Street Address 1",
                               labelStyle: TextStyle(color: Colors.black54),
-                              errorStyle: TextStyle(color: Colors.black),
+                              errorStyle: TextStyle(color: Colors.red),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide: BorderSide(
@@ -355,6 +323,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.address2Controller.value,
                           decoration: InputDecoration(
                             filled: true,
@@ -363,7 +332,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 EdgeInsets.only(bottom: 10, top: 10, left: 10),
                             hintText: "Street Address 2",
                             labelStyle: TextStyle(color: Colors.black54),
-                            errorStyle: TextStyle(color: Colors.black),
+                            errorStyle: TextStyle(color: Colors.red),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(
@@ -403,6 +372,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          cursorColor: appColor,
                           controller: controller.cityController.value,
                           decoration: InputDecoration(
                               filled: true,
@@ -411,7 +381,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                   bottom: 10, top: 10, left: 10),
                               hintText: "City",
                               labelStyle: TextStyle(color: Colors.black54),
-                              errorStyle: TextStyle(color: Colors.black),
+                              errorStyle: TextStyle(color: Colors.red),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide: BorderSide(
@@ -450,21 +420,28 @@ class AddAddressScreen extends GetView<AddAddressController> {
                             border: Border.all(color: appColor, width: 1),
                           ),
                           child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              items: controller.countryList
-                                  .map((value) => DropdownMenuItem(
-                                        child: Text(value),
+                            child: DropdownButton<CountryListModel>(
+                              dropdownColor: backGroundColor,
+                              items: controller.getcountryList!
+                                  .map((value) =>
+                                      DropdownMenuItem<CountryListModel>(
+                                        child: Text(
+                                            value.fullNameEnglish.toString()),
                                         value: value,
                                       ))
                                   .toList(),
                               isExpanded: true,
-                              hint: controller.selectedCoutry.value == ""
+                              hint: controller
+                                          .selectedCoutry.value.fullNameEnglish
+                                          .toString() ==
+                                      "null"
                                   ? Text(
                                       "Country",
                                       style: TextStyle(color: Colors.black54),
                                     )
                                   : Text(
-                                      controller.selectedCoutry.value
+                                      controller
+                                          .selectedCoutry.value.fullNameEnglish
                                           .toString(),
                                       style: TextStyle(color: Colors.black),
                                     ),
@@ -473,22 +450,70 @@ class AddAddressScreen extends GetView<AddAddressController> {
                                 size: 28,
                                 color: appColor.withOpacity(0.2),
                               ),
-                              onChanged: (String? value) {
+                              onChanged: (value) {
+                                print("value Is $value");
                                 controller.selectedCoutry.value = value!;
                               },
                             ),
                           ),
                         ),
                         SizedBox(height: 8),
+                        controller.selectedCoutry.value.availableRegions == null
+                            ? Container()
+                            : Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  border: Border.all(color: appColor, width: 1),
+                                ),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<AvailableRegion>(
+                                    dropdownColor: backGroundColor,
+                                    items: controller
+                                        .selectedCoutry.value.availableRegions!
+                                        .map((value) =>
+                                            DropdownMenuItem<AvailableRegion>(
+                                              child:
+                                                  Text(value.name.toString()),
+                                              value: value,
+                                            ))
+                                        .toList(),
+                                    isExpanded: true,
+                                    hint: controller.selectedState.value.name
+                                                .toString() ==
+                                            "null"
+                                        ? Text(
+                                            "State/Provine",
+                                            style: TextStyle(
+                                                color: Colors.black54),
+                                          )
+                                        : Text(
+                                            controller.selectedState.value.name
+                                                .toString(),
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down,
+                                      size: 28,
+                                      color: appColor.withOpacity(0.2),
+                                    ),
+                                    onChanged: (value) {
+                                      controller.selectedState.value = value!;
+                                    },
+                                  ),
+                                ),
+                              ),
+                        SizedBox(height: 8),
                         Container(
                           width: double.infinity,
                           height: 40,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (controller.formKey.value.currentState!
-                                  .validate()) {
-                                controller.addAdress();
-                              }
+                              controller.addAddress(
+                                  context, controller.formKey.value);
                             },
                             child: Text(
                               'Save Address'.toUpperCase(),
