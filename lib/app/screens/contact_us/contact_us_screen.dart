@@ -32,7 +32,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
               child: Column(
                 children: [
                   const Text(
-                    'Contact Us',
+                    LanguageConstant.contactUsText,
                     style: TextStyle(
                       color: appColor,
                       decoration: TextDecoration.underline,
