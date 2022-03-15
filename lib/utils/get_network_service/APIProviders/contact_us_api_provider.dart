@@ -51,7 +51,7 @@ class ContactUsAPIProvider extends GetConnect implements IContactUsProvider {
         +"&contactForm[email]="+" "
         +"&contactForm[lastname]="+" "
         +"&contactForm[name]="+" "
-        +"", contactusRequestJson, headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken1});
+        +"", contactusRequestJson, headers: {"Content-type" : "application/json", "Authorization" : AppConstants.adminToken});
   }
 
 }

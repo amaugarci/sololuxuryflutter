@@ -31,7 +31,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
 
   @override
   Future<String> postEstimateAPIResponse(String requestJson) async {
-    Response estimateResponseModel = await provider.postEstimateResponseProvider(endPoint: AppConstants.estimatesShippingMethodEndPoint,requestJson: requestJson );
+    Response estimateResponseModel = await provider.postEstimateResponseProvider(endPoint: AppConstants.getUrlWithCode(AppConstants.estimatesShippingMethodEndPoint),requestJson: requestJson );
     print("statusCode -> ${estimateResponseModel.statusCode}");
     if(estimateResponseModel.status.hasError) {
       return Future.error(estimateResponseModel.statusText!);
@@ -42,7 +42,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
 
   @override
   Future<ShippingInformationModel> postShippingInformationAPIResponse(String requestJson) async {
-    Response estimateResponseModel = await provider.postShippingInformationResponseProvider(endPoint: AppConstants.shippingInformationEndPoint,requestJson: requestJson );
+    Response estimateResponseModel = await provider.postShippingInformationResponseProvider(endPoint: AppConstants.getUrlWithCode(AppConstants.shippingInformationEndPoint),requestJson: requestJson );
     print("statusCode -> ${estimateResponseModel.statusCode}");
     if(estimateResponseModel.status.hasError) {
       return Future.error(estimateResponseModel.statusText!);

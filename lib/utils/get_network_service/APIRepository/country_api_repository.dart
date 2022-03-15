@@ -14,7 +14,7 @@ class CountryAPIRepository implements ICountryRepository {
   Future<String> getStoreWebsitesAPIResponse() async {
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeWebsitesEndPoint);
     if (response != null) {
-      print("response.statusCode -> ");
+      print("getStoreWebsitesAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {
@@ -28,7 +28,7 @@ class CountryAPIRepository implements ICountryRepository {
   Future<String> getStoreViewsAPIResponse() async {
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeViewsEndPoint);
     if (response != null) {
-      print("response.statusCode -> ");
+      print("getStoreViewsAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {
@@ -43,7 +43,7 @@ class CountryAPIRepository implements ICountryRepository {
   Future<String> getStoreConfigsAPIResponse() async{
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeConfigsEndPoint);
     if (response != null) {
-      print("response.statusCode -> ");
+      print("getStoreConfigsAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {

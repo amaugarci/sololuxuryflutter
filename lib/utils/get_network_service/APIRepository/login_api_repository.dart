@@ -13,8 +13,11 @@ class LoginAPIRepository implements ILoginRepository {
     final loginResponseModel = await provider.getLoginResponseProvider(urlPath: AppConstants.login, userName: userName, password: password, loginRequestJson: loginRequestJson);
 
     if(loginResponseModel.status.hasError) {
+      print("error -> ");
+      print(loginResponseModel.statusText!);
       return Future.error(loginResponseModel.statusText!);
     } else {
+      print("success -> ");
       return loginResponseModel.body!;
     }
   }
