@@ -11,11 +11,7 @@ abstract class ILoginProvider {
 
 class LoginProvider extends GetConnect implements ILoginProvider {
 
-  Map<String, String> headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    'Authorization': 'Bearer $token',
-  };
+
 
 
   @override
@@ -30,7 +26,8 @@ class LoginProvider extends GetConnect implements ILoginProvider {
   @override
   Future<Response<String>> getLoginResponseProvider({required String urlPath,required String userName,required String password, required String loginRequestJson}) {
     // TODO: implement getLoginResponseProvider
-    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken});
+    print("url -> " + httpClient.baseUrl.toString() + urlPath);
+    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json"});
   }
 
 }
