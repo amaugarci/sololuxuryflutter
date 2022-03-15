@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bindings.dart';
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
+import 'package:solo_luxury/app/screens/app_secure_shopping/app_secure_shopping.dart';
+import 'package:solo_luxury/app/screens/app_secure_shopping/app_secure_shopping_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
@@ -128,6 +130,11 @@ class AppPages {
       binding: AddAddressBindings(),
     ),
     GetPage(
+      name: RoutesConstants.appSecureShoppingScreen,
+      page: () => const AppSecureShoppingScreen(),
+      binding: AppSecureShoppingBindings(),
+    ),
+    GetPage(
       name: RoutesConstants.loginScreen,
       page: () => const LoginScreen(),
       binding: LoginBinding(),
@@ -149,7 +156,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.productDetailsScreen,
-      page: () =>  ProductDetailScreen(),
+      page: () => ProductDetailScreen(),
       binding: ProductDetailsBindings(),
     ),
     GetPage(

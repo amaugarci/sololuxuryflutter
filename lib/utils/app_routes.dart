@@ -11,6 +11,7 @@ class RoutesConstants {
   static const String countryScreen = "/countryScreen";
 
   static const String productListScreen = "/productListScreen";
+  static const String appSecureShoppingScreen = "/appSecureShoppingScreen";
 
   static const String productsScreen = "/productsScreen";
   static const String wishlistScreen = "/wishlistScreen";

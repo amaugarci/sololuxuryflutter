@@ -89,9 +89,7 @@ class HomeScreen extends GetView<HomeController> {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {
-
-                                    },
+                                    onPressed: () {},
                                     child: CommonTextOpenSans(
                                       LanguageConstant.faqText.tr,
                                       color: Colors.black87,
@@ -469,8 +467,8 @@ appBarWidget(controller) {
                 InkWell(
                   onTap: () {
                     // Get.to(() => const ForgetPasswordMenuScreen());
-                    Get.toNamed(RoutesConstants.productDetailsScreen);
-
+                    // Get.toNamed(RoutesConstants.productDetailsScreen);
+                    Get.toNamed(RoutesConstants.appSecureShoppingScreen);
                   },
                   child: SvgPicture.asset(
                     AppAsset.search,

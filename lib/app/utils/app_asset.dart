@@ -38,6 +38,10 @@ class AppAsset {
   static const dialogSuccess = 'assets/images/success_dialog.png';
   static const shoze = 'assets/images/shoze.png';
   static const shoze1 = 'assets/images/shoze1.png';
+  static const appSecure = 'assets/images/appSecure.png';
+  static const googleStore = 'assets/images/googleStore.png';
+  static const moneyBank = 'assets/images/moneyBank.png';
+  static const payPal = 'assets/images/payPal.png';
 
   static const close = "assets/icons/close.png";
   static const minus = "assets/icons/minus.png";
