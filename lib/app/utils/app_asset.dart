@@ -36,6 +36,8 @@ class AppAsset {
   static const dialogError = 'assets/images/error_dialog.png';
   static const dialogInfo = 'assets/images/info_dialog.png';
   static const dialogSuccess = 'assets/images/success_dialog.png';
+  static const shoze = 'assets/images/shoze.png';
+  static const shoze1 = 'assets/images/shoze1.png';
 
   static const close = "assets/icons/close.png";
   static const minus = "assets/icons/minus.png";

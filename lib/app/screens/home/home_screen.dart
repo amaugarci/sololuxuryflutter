@@ -9,6 +9,7 @@ import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/login/views/forget_password_menu/forget_password_menu_screen.dart';
+import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
 
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
@@ -467,7 +468,9 @@ appBarWidget(controller) {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(() => const ForgetPasswordMenuScreen());
+                    // Get.to(() => const ForgetPasswordMenuScreen());
+                    Get.toNamed(RoutesConstants.productDetailsScreen);
+
                   },
                   child: SvgPicture.asset(
                     AppAsset.search,

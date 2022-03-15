@@ -49,6 +49,21 @@ class LanguageConstant {
   static const String countryText = "countryText";
   static const String workedOnText = "workedOnText";
 
+
+  ///product Details Screen
+  static const String details = "details";
+  static const String description = "description";
+  static const String estimatedDelivery = "estimatedDelivery";
+  static const String guaranteedDelivery = "guaranteedDelivery";
+  static const String sizeChart = "sizeChart";
+  static const String size = "size";
+  static const String knowMore = "knowMore";
+  static const String addTOCart = "addTOCart";
+  static const String addToWishlist = "addToWishlist";
+  static const String whyVeraLusso = "whyVeraLusso";
+  static const String recommendation = "recommendation";
+  static const String recentlyViewed = "recentlyViewed";
+
   ///forgetPassword menu Screen
   static const String forgetPassword = "forgetPassword";
   static const String backToSignInScreen = "backToSignInScreen";

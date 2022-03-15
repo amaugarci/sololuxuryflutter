@@ -1,3 +1,5 @@
+import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
+import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/contact_us_response_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
@@ -11,7 +13,8 @@ abstract class ISplashRepository {
 }
 
 abstract class ILoginRepository {
-  Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password);
+  Future<String> getLoginAPIResponse(
+      String loginRequestJson, String userName, String password);
 }
 
 abstract class ISignupRepository {
@@ -25,17 +28,23 @@ abstract class IInfluencerRepository {
 
 abstract class IHomeRepository {
   Future<MenuModel> getMenuAPIResponse();
+  Future<BannerListModel> getBannerListAPIResponse();
+
 }
 
 abstract class ICountryRepository {
   Future<String> getStoreWebsitesAPIResponse();
+
   Future<String> getStoreViewsAPIResponse();
+
   Future<String> getStoreConfigsAPIResponse();
 }
 
 abstract class ICheckoutOrderRepository {
   Future<String> postEstimateAPIResponse(String loginRequestJson);
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(String loginRequestJson);
+
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+      String loginRequestJson);
 }
 
 ///myAccount Class
@@ -44,7 +53,8 @@ abstract class IMyAccountRepository {
 }
 
 abstract class IContactUsRepository {
-  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson, String orderNo,
+  Future<ContactUsResponseModel> getContactUsApiResponse(
+      String contactusRequestJson, String orderNo,
       String country,
       String subject,
       String message,
@@ -54,4 +64,8 @@ abstract class IContactUsRepository {
       String email,
       String name,
       String lastName);
+}
+///RecommendedProduct Class
+abstract class IRecommendedProductsRepository {
+  Future<RecommendedProductModel> getMyAccountApiResponse();
 }
