@@ -8,9 +8,7 @@ class HomeBindings extends Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut(() => HomeController(homeAPIRepository: Get.find()));
-    Get.lazyPut<HomeAPIProvider>(() => HomeAPIProvider());
-    Get.put(HomeAPIRepository(homeAPIProvider: Get.find()));
+    Get.lazyPut(() => HomeController());
   }
 
 }

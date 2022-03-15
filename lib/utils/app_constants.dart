@@ -15,6 +15,13 @@ class AppConstants {
   static String storeViewsEndPoint = "/V1/store/storeViews";
   static String storeConfigsEndPoint = "/V1/store/storeConfigs";
   static String bannerListEndPoint = "/bannerList";
+  // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
+  // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
+  static String multiAddressEndPoint = "/V1/customers/me";
+  // static String storeWebsitesEndPoint = "/V1/store/websites";
+  // static String storeViewsEndPoint = "/V1/store/storeViews";
+  // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
+  static String referFriendEndPoint = "/V1/referFriend";
   static String jsonEndPoint = "/json";
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
@@ -39,7 +46,7 @@ class AppConstants {
   static String login = '/rest/V1/integration/customer/token';
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
-  static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
+  static const String defaultToken1 = "Bearer 7cn032equ94z91iz1ykkeus8ds62twlf";
 
   static const String signUp = "customers";
 

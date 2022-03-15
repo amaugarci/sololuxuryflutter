@@ -39,6 +39,7 @@ import 'package:solo_luxury/app/screens/product_detail/product_detail_binding.da
 import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
+import 'package:solo_luxury/app/screens/refer_friend/refer_friend_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
 import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
@@ -67,6 +68,7 @@ import '../app/screens/dashboard/dashboard_binding.dart';
 import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
+import '../app/screens/refer_friend/refer_friend_screen.dart';
 import '../app/screens/search/search_screen.dart';
 import '../app/screens/checkout_order/checkout_order_screen.dart';
 import '../app/screens/splash/splash_screen.dart';
@@ -237,6 +239,11 @@ class AppPages {
       name: RoutesConstants.myTickets,
       page: () => const MyTicketsScreen(),
       binding: MyTicketsBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.referFriendScreen,
+      page: () => const ReferFriendScreen(),
+      binding: ReferFriendBindings(),
     ),
   ];
 }

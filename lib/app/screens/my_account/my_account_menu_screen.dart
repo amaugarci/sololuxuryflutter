@@ -14,6 +14,7 @@ import '../../../utils/validator.dart';
 import '../../components/input_text_field_widget.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
+import '../country/country_screen.dart';
 import '../refer_friend/refer_friend_screen.dart';
 import 'my_account_controller.dart';
 import 'package:livechatt/livechatt.dart';
@@ -108,7 +109,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                   ),
                 ),
-                Column(
+                Obx(()=>Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
@@ -197,6 +198,22 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           LanguageConstant.trackOrderText.tr,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.countryScreen);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          controller.countryCurrency.value,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 16.0,
@@ -442,10 +459,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: () {
-                        Get.to(() => const ReferFriendScreen());
-
-                        // Get.toNamed(RoutesConstants.returnsAndRefundsScreen);
+                      onTap: (){
+                        Get.toNamed(RoutesConstants.referFriendScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -509,7 +524,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       ),
                     ),
                   ],
-                )
+                ))
               ],
             ),
           ),

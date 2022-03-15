@@ -13,9 +13,6 @@ abstract class IHomeProvider {
 class HomeAPIProvider extends GetConnect implements IHomeProvider {
   @override
   void onInit() {
-    httpClient.defaultDecoder = (val) => MenuModel.fromJson(val);
-    httpClient.baseUrl = AppConstants.apiEndPointNew;
-  }
 
   @override
   Future<Response<MenuModel>> getMenuResponseProvider(

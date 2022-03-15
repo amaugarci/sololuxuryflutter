@@ -7,9 +7,13 @@ import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
+import '../../data/model/checkout_order/multi_address_model.dart';
 
 abstract class ISplashRepository {
   Future<String> getSplashAPIResponse();
+}
+abstract class IReferFriendRepository {
+  Future<String> getReferFriendAPIResponse();
 }
 
 abstract class ILoginRepository {
@@ -26,9 +30,13 @@ abstract class IInfluencerRepository {
       String influencerRequestJson);
 }
 
-abstract class IHomeRepository {
+abstract class IDashboardRepository {
   Future<MenuModel> getMenuAPIResponse();
   Future<BannerListModel> getBannerListAPIResponse();
+
+}
+
+abstract class IHomeRepository {
 
 }
 
@@ -42,9 +50,11 @@ abstract class ICountryRepository {
 
 abstract class ICheckoutOrderRepository {
   Future<String> postEstimateAPIResponse(String loginRequestJson);
-
   Future<ShippingInformationModel> postShippingInformationAPIResponse(
       String loginRequestJson);
+  Future<String> postEstimateAPIResponse(String requestJson);
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(String requestJson);
+  Future<String> getMultiAddressAPIResponse();
 }
 
 ///myAccount Class

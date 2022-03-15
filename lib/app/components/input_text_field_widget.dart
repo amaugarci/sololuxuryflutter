@@ -21,6 +21,7 @@ class EmailWidget extends StatelessWidget {
     this.enabled,
     this.focusNode,
     this.validator,
+    this.textAlign = TextAlign.left,
   }) : super(key: key);
   final Key? fieldKey;
   final String? hintText;
@@ -32,6 +33,7 @@ class EmailWidget extends StatelessWidget {
   final bool? enabled;
   final TextInputType? keyboardType;
   final FormFieldValidator<String?>? validator;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class EmailWidget extends StatelessWidget {
         enabled: enabled,
         focusNode: focusNode,
         controller: controller,
+        textAlign: textAlign!,
         textInputAction: textInputAction,
         keyboardType: TextInputType.emailAddress,
         validator: validator ??

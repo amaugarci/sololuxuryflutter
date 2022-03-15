@@ -18,6 +18,7 @@ class AppAsset {
   static const tag = "assets/icons/tag.png";
   static const userProfile = "assets/icons/user_profile.png";
   static const heart1 = "assets/icons/heart.png";
+  static const check = "assets/icons/check.png";
   static const rightIcon = "assets/icons/righticon.svg";
 
   //Add Address Icnon List

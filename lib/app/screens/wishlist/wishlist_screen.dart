@@ -7,31 +7,23 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
-import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
-import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
-import '../home/home_controller.dart';
-import '../home/home_screen.dart';
+import '../../components/common_widget/common_appbar.dart';
 
 class MyWishListPage extends GetView<WishlistController> {
   MyWishListPage({Key? key}) : super(key: key);
-
-  final HomeController homeController = Get.put(HomeController(
-      homeAPIRepository:
-          Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           key: controller.scaffoldkey,
-          drawer: getDrawer(homeController),
+          appBar: commonAppbar(title: LanguageConstant.myWishlistText.tr),
           backgroundColor: backGroundColor,
           body: SizedBox(
             width: Get.width,
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
                     child: Column(
@@ -49,10 +41,7 @@ class MyWishListPage extends GetView<WishlistController> {
                               dropdownColor: offWhite,
                               value: controller.chosenValue.value,
                               // elevation: 0,
-                              style: TextStyle(
-                                  color: appColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600),
+                              style: TextStyle(color: appColor, fontSize: 14, fontWeight: FontWeight.w600),
                               items: <String>[
                                 LanguageConstant.myAccountText.tr,
                                 LanguageConstant.myOrdersText.tr,
@@ -71,10 +60,7 @@ class MyWishListPage extends GetView<WishlistController> {
                                 child: Text(
                                   LanguageConstant.myWishlistText.tr,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(color: appColor, fontSize: 14, fontWeight: FontWeight.w600),
                                 ),
                               ),
                               onChanged: (String? value) {
@@ -92,12 +78,9 @@ class MyWishListPage extends GetView<WishlistController> {
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
                                   itemBuilder: (_, index) {
-                                    return WishlistItem(
-                                        product: controller
-                                            .wishlistProductList[index]);
+                                    return WishlistItem(product: controller.wishlistProductList[index]);
                                   },
-                                  itemCount: controller
-                                      .wishlistProductList.value.length,
+                                  itemCount: controller.wishlistProductList.value.length,
                                 ),
                               );
                             } else {
@@ -109,7 +92,6 @@ class MyWishListPage extends GetView<WishlistController> {
                     ),
                   ),
                 ),
-                appBarWidget(controller),
               ],
             ),
           ),

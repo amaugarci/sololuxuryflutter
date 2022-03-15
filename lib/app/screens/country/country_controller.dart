@@ -25,6 +25,8 @@ class CountryController extends GetxController {
 
   CountryAPIRepository countryAPIRepository;
   String? countryCode;
+  RxBool isChangeLanguage = false.obs;
+  RxBool isChangeCurrency = false.obs;
 
   CountryController({required this.countryAPIRepository, this.countryCode});
 

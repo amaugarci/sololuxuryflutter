@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import '../../../data/model/Home/menu_model.dart';
 import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
 import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
+import '../../components/common_widget/common_appbar.dart';
 import '../../utils/app_asset.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
@@ -18,7 +19,6 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
 
 
 
-  final HomeController homeController = Get.put(HomeController(homeAPIRepository: Get.put(HomeAPIRepository(homeAPIProvider: HomeAPIProvider()))));
 
 
   @override
@@ -26,7 +26,12 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return Obx(() => Scaffold(
           key: controller.scaffoldkey,
           backgroundColor: appColorAccent,
-          drawer: getDrawer(homeController),
+      appBar: AppBar(
+        leading: commonAppbar(),
+        elevation: 0,
+        backgroundColor: backGroundColor,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
           body: Container(
             margin: EdgeInsets.all(10),
             width: Get.width,

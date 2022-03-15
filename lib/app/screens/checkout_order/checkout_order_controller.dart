@@ -10,12 +10,15 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/check_order_
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 import '../../../data/model/checkout_order/estimate_shipping_method_model.dart';
+import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
   Rx<EstimateShippingMethodModel>? estimateShipModel = EstimateShippingMethodModel().obs;
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
+  Rx<MultiAddressModel>? multiAddressModel = MultiAddressModel().obs;
+  RxInt selectedAddressIndex = 0.obs;
   RxInt selectedShippingIndex = 0.obs;
   RxInt selectedPaymentIndex = 0.obs;
   RxBool isShowItems = true.obs;
@@ -33,6 +36,12 @@ class CheckoutOrderController extends GetxController {
   }
 
   getEstimateAndShipInformationFromApi() async {
+    Rx<MultiAddressModel>? multiAddressModel = MultiAddressModel().obs;
+    RxInt selectedAddressIndex = 0.obs;
+    final response = await checkoutOrderAPIRepository.getMultiAddressAPIResponse();
+    if(response.isNotEmpty){
+      multiAddressModel.value = MultiAddressModel.fromJson(jsonDecode(response));
+    }
     if (estimatesList != null) {
       estimatesList?.value = [];
       var params = json.encode({

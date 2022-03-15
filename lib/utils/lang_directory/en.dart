@@ -279,4 +279,6 @@ const Map<String, String> en = {
   "confirmEmailText": "Confirm Email",
   "subjectText": "Subject",
   "whatsonyourmindText": "What\'s On Your Mind?",
+  "languageText": "Language",
+  "currencyText": "Currency",
 };
