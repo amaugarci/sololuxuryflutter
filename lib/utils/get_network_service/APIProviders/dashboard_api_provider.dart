@@ -15,7 +15,7 @@ class DashboardAPIProvider extends GetConnect implements IDashboardProvider {
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => MenuModel.fromJson(val);
-    httpClient.baseUrl = AppConstants.apiEndPointNew;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
   @override

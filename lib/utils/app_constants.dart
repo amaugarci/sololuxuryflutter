@@ -9,13 +9,8 @@ class AppConstants {
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
   //static String menuEndPoint = "/V1/categories";
-  static String estimatesShippingMethodEndPoint =
-      "/in-en/V1/carts/mine/estimate-shipping-methods";
-  static String shippingInformationEndPoint =
-      "/in-en/V1/carts/mine/shipping-information";
-  static String storeWebsitesEndPoint = "/V1/store/websites";
-  static String storeViewsEndPoint = "/V1/store/storeViews";
-  static String storeConfigsEndPoint = "/V1/store/storeConfigs";
+
+
   static String bannerListEndPoint = "/bannerList";
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
@@ -24,7 +19,7 @@ class AppConstants {
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
   static String referFriendEndPoint = "/V1/referFriend";
-  static String jsonEndPoint = "/json";
+
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -33,12 +28,12 @@ class AppConstants {
   static String recommendedProductsEndPoint =
       "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
 
-  // static String estimatesShippingMethodEndPoint = "/V1/carts/mine/estimate-shipping-methods";
-  // static String shippingInformationEndPoint = "/V1/carts/mine/shipping-information";
-  // static String storeWebsitesEndPoint = "/rest/V1/store/websites";
-  // static String storeViewsEndPoint = "/rest/V1/store/storeViews";
-  // static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
-  // static String jsonEndPoint = "/json";
+  static String estimatesShippingMethodEndPoint = "/V1/carts/mine/estimate-shipping-methods";
+  static String shippingInformationEndPoint = "/V1/carts/mine/shipping-information";
+  static String storeWebsitesEndPoint = "/rest/V1/store/websites";
+  static String storeViewsEndPoint = "/rest/V1/store/storeViews";
+  static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
+  static String jsonEndPoint = "/json";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
