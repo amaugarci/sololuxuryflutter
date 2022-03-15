@@ -18,7 +18,7 @@ class ProductDetailController extends GetxController
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getMyAccountDataFromApi();
+    getRecommendedProductDataFromApi();
     controller = TabController(vsync: this, length: myTabs.length);
   }
 
@@ -39,7 +39,7 @@ class ProductDetailController extends GetxController
   RxBool isSelected1 = false.obs;
 
   ///API CALLING
-  Future<void> getMyAccountDataFromApi() async {
+  Future<void> getRecommendedProductDataFromApi() async {
     isLoading(true);
     try {
       var itemsData = await RecommendedProductsAPIRepository()
