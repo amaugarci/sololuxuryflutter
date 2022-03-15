@@ -21,7 +21,7 @@ class LocalStore{
 
   var currentCode = "";
   var currentCurrency = "";
-  var loginToken = "";
+  var customerToken = "";
 
   getStore() async {
     print("getStore -> ");
@@ -42,8 +42,8 @@ class LocalStore{
     print("getToken -> ");
     String data = await getPrefStringValue(StorageConstant.authToken);
     if(data!=null && data.isNotEmpty) {
-      loginToken = data;
-      print("token -> " + loginToken);
+      customerToken = data;
+      print("token -> " + customerToken);
       return true;
     }
   }
