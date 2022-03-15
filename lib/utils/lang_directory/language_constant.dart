@@ -257,4 +257,18 @@ class LanguageConstant {
   static const String menText = "menText";
   static const String womenText = "womenText";
   static const String kidsText = "kidsText";
+
+  static const String deliveryText = "deliveryText";
+  static const String ordersText = "ordersText";
+  static const String paymentText = "paymentText";
+  static const String productText = "productText";
+  static const String promotionText = "promotionText";
+  static const String returnsContactText = "returnsContactText";
+  static const String technicalText = "technicalText";
+  static const String typeOfEnquiryText = "typeOfEnquiryText";
+  static const String surNameText = "surNameText";
+  static const String confirmEmailText = "confirmEmailText";
+  static const String subjectText = "subjectText";
+  static const String whatsonyourmindText = "whatsonyourmindText";
+
 }

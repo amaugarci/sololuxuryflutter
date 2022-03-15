@@ -25,5 +25,6 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     WishlistBindings().dependencies();
     MyAccountBinding().dependencies();
     SearchBinding().dependencies();
+    CountryBindings().dependencies();
   }
 }

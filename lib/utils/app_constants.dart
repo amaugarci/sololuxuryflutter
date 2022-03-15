@@ -22,6 +22,7 @@ class AppConstants {
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
   static String apiEndPoint = "https://api.solo_luxury.com";
   static String apiEndPointLogin = "https://dev3.sololuxury.com";
+  static String apiEndPointContactUs = "https://dev3.sololuxury.com/rest/V1/contactus";
   static String apiCountryGet = "http://ip-api.com";
 
   // static String apiEndPoint =
