@@ -1,3 +1,5 @@
+import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
+
 import '../../../data/model/Home/menu_model.dart';
 import '../../app_constants.dart';
 import '../APIProviders/dashboard_api_provider.dart';
@@ -21,6 +23,12 @@ class DashboardAPIRepository implements IDashboardRepository {
     } else {
       return response.body!;
     }
+  }
+
+  @override
+  Future<BannerListModel> getBannerListAPIResponse() {
+    // TODO: implement getBannerListAPIResponse
+    throw UnimplementedError();
   }
 
 }

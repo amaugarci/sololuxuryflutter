@@ -27,7 +27,7 @@ class SearchController extends GetxController
   getMenuDataFromApi() async {
     isLoading(true);
     print("CONTROLLER DATA ==============${menuModel}");
-    menuModel!.value = await homeAPIRepository.getMenuAPIResponse();
-    bannerList!.value = await homeAPIRepository.getBannerListAPIResponse();
+    // menuModel!.value = await homeAPIRepository.getMenuAPIResponse();
+    // bannerList!.value = await homeAPIRepository.getBannerListAPIResponse();
   }
 }
