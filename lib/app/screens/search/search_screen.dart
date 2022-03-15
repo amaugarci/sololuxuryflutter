@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../utils/image_constant.dart';
 import '../../utils/app_asset.dart';
@@ -12,6 +13,7 @@ class SearchScreen extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
+    late ChildrenData itemLevel1;
     return Obx(
       () => Scaffold(
         key: controller.scaffoldKey.value,
@@ -70,7 +72,8 @@ class SearchScreen extends GetView<SearchController> {
               const SizedBox(height: 10),
               Flexible(
                 child: DefaultTabController(
-                  length: 3, // length of tabs
+                  length: controller.menuModel?.value?.childrenData?.length,
+                  // length of tabs
                   initialIndex: 0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -80,16 +83,20 @@ class SearchScreen extends GetView<SearchController> {
                         Container(
                           child: TabBar(
                             indicatorColor: buttoncolor,
-                            indicatorSize: TabBarIndicatorSize.tab,
                             labelColor: selectedTabColor,
                             unselectedLabelColor: unselectedTabColor,
-                            tabs: [
-                              Tab(
-                                text: LanguageConstant.menText.tr,
-                              ),
-                              Tab(text: LanguageConstant.womenText.tr),
-                              Tab(text: LanguageConstant.kidsText.tr),
-                            ],
+                            isScrollable: true,
+                            tabs: List<Widget>.generate(
+                                controller.menuModel?.value?.childrenData
+                                    ?.length, (int index) {
+                              itemLevel1 = controller
+                                  .menuModel?.value?.childrenData?[index];
+                              return Tab(
+                                  child: Text(itemLevel1.name!,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12.0)));
+                            }),
                           ),
                         ),
                         Container(
@@ -103,47 +110,30 @@ class SearchScreen extends GetView<SearchController> {
                             ),
                           ),
                           child: TabBarView(
-                            children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  categoriesOptions(text: "Clothing"),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  categoriesOptions(text: "Bags"),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  categoriesOptions(text: "Footwear"),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  categoriesOptions(text: "Accessories"),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  categoriesOptions(text: "Intimates"),
-                                ],
-                              ),
-                              Column(
-                                children: const [
-                                  Text('Display Tab 2',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                              const Center(
-                                child: Text(
-                                  'Display Tab 3',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
+                            children: List<Widget>.generate(
+                              controller.menuModel?.value?.childrenData?.length,
+                              (int index1) {
+                                return ListView.builder(
+                                  itemCount: controller
+                                      .menuModel
+                                      ?.value
+                                      ?.childrenData?[index1]
+                                      .childrenData
+                                      .length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return categoriesOptions(
+                                      text: controller
+                                          .menuModel
+                                          ?.value
+                                          ?.childrenData?[index1]
+                                          .childrenData[index]
+                                          .name,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ],

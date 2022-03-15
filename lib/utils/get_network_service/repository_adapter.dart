@@ -1,3 +1,4 @@
+import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
@@ -26,6 +27,8 @@ abstract class IInfluencerRepository {
 
 abstract class IHomeRepository {
   Future<MenuModel> getMenuAPIResponse();
+  Future<BannerListModel> getBannerListAPIResponse();
+
 }
 
 abstract class ICountryRepository {

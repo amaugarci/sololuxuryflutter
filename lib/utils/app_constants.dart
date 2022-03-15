@@ -14,7 +14,7 @@ class AppConstants {
   static String storeWebsitesEndPoint = "/V1/store/websites";
   static String storeViewsEndPoint = "/V1/store/storeViews";
   static String storeConfigsEndPoint = "/V1/store/storeConfigs";
-
+  static String bannerListEndPoint = "/bannerList";
   static String jsonEndPoint = "/json";
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
