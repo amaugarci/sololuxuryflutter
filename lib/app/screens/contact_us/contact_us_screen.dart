@@ -31,8 +31,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
               padding: const EdgeInsets.symmetric(horizontal: 12.5),
               child: Column(
                 children: [
-                  const Text(
-                    LanguageConstant.contactUsText,
+                  Text(
+                    LanguageConstant.contactUsText.tr,
                     style: TextStyle(
                       color: appColor,
                       decoration: TextDecoration.underline,
@@ -186,7 +186,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                               child: new Text(
                                 item1.name ?? '',    //Names that the api dropdown contains
                                 style: TextStyle(
-                                  fontSize: 13.0,
+                                  fontSize: 15.0,
                                 ),
                               ),
                               value: item1.name.toString()       //Id that has to be passed that the dropdown has.....
