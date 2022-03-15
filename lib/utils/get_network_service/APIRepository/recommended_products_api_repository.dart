@@ -31,9 +31,9 @@ import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
   }
 }*/
 class RecommendedProductsAPIRepository extends GetxController {
-  List itemData = [];
+  List<RecommendedProductModel> itemData = [];
 
-  Future<RecommendedProductModel?> getRecommendedProductResponse() async {
+  Future getRecommendedProductResponse() async {
     final response = await http.get(
       Uri.parse(AppConstants.recommendedProductsEndPoint),
     );
@@ -43,12 +43,15 @@ class RecommendedProductsAPIRepository extends GetxController {
 /*        print(response.body.toString());
         itemData.add(recommendedProductResponseModelFromJson(response.body));*/
         List<dynamic> list = json.decode(response.body);
+        /*itemData = json.decode(response.body);
 
-        print(itemData.toString());
+        print("ITEMDATA===================${itemData.toString()}");*/
         print(response.statusCode);
-        return recommendedProductResponseModelFromJson(list[0]);
+        print("LIST DATA +++++++++++++++++++$list");
+        print("LIST DATA +++++++++++++++++++${list[0]["product_id"]}");
+        return list;
       } else {
-        print("${response.body}");
+        print("###################${response.body}");
         return null;
       }
     } catch (e) {

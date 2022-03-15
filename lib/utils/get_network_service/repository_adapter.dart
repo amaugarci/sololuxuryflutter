@@ -48,7 +48,7 @@ abstract class IMyAccountRepository {
   Future<MyAccountDetails> getMyAccountApiResponse();
 }
 
-///myAccount Class
+///RecommendedProduct Class
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
 }

@@ -38,18 +38,21 @@ class ProductDetailController extends GetxController
   RxBool isSelected = false.obs;
   RxBool isSelected1 = false.obs;
 
+  List itemsData=[];
+
   ///API CALLING
   Future<void> getRecommendedProductDataFromApi() async {
     isLoading(true);
     try {
-      var itemsData = await RecommendedProductsAPIRepository()
+      itemsData = await RecommendedProductsAPIRepository()
           .getRecommendedProductResponse();
       if (itemsData != null) {
         isLoading(false);
-        recommendedProductModel(itemsData);
+        // recommendedProductModel(itemsData);
+        print("CONTROLLER DATA ==============${itemsData[0]["type_id"]}");
       }
-      print(recommendedProductModel.value.price);
     } catch (e) {
+      print("CONTROLLER DATA ==============$e");
       isLoading(false);
     }
   }

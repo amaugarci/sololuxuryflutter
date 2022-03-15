@@ -26,235 +26,241 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           backgroundColor: backGroundColor,
           iconTheme: const IconThemeData(color: Colors.black),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.5),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                imageCarousel(),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 20,
-                      margin: EdgeInsets.only(right: 12),
-                      color: whiteColor,
-                      child: const Icon(Icons.arrow_back_ios, size: 13),
-                    ),
-                    Expanded(child: allProductImages()),
-                    Container(
-                      height: 50,
-                      width: 20,
-                      margin: EdgeInsets.only(left: 12),
-                      color: whiteColor,
-                      child: const Icon(Icons.arrow_forward_ios, size: 13),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 41),
-                Text(
-                  "BALENCIAGA",
-                  style: commonTextStyle400(size: 24.0),
-                ),
-                const SizedBox(height: 14),
-                Text(
-                  "Loafers in Leather",
-                  style: commonTextStyle400(size: 18.0),
-                ),
-                const SizedBox(height: 28),
-                expandDetailWidget(
-                  text: LanguageConstant.description.tr,
-                  onTap: () {
-                    controller.isSelected.value = !controller.isSelected.value;
-                  },
-                ),
-                const SizedBox(height: 10),
-                Visibility(
-                  visible: controller.isSelected.isTrue ? true : false,
-                  child: const Text(
-                    'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                expandDetailWidget(
-                  text: LanguageConstant.details.tr,
-                  onTap: () {
-                    controller.isSelected1.value =
-                        !controller.isSelected1.value;
-                  },
-                ),
-                const SizedBox(height: 10),
-                Visibility(
-                  visible: controller.isSelected1.isTrue ? true : false,
-                  child: const Text(
-                    'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 35),
-                Text(
-                  "£780.00",
-                  style: commonTextStyle600(size: 24.0),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  "SKU:- 636924WA72L1000-Black",
-                  style: commonTextStyle600(
-                      size: 14.0, color: const Color(0xff777777)),
-                ),
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(child: chooseAnOptionWidget()),
-                    const SizedBox(width: 15),
-                    sizeChartWidget(),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: addToCartButton(context: context),
-                    ),
-                    const SizedBox(width: 25),
-                    Expanded(
-                      child: addToWishlistButton(),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                TabBar(
-                  tabs: controller.myTabs,
-                  unselectedLabelColor: blackColor.withOpacity(0.50),
-                  labelStyle: commonTextStyle600(size: 18.0),
-                  unselectedLabelStyle: commonTextStyle600(
-                    size: 18.0,
-                    color: blackColor.withOpacity(0.50),
-                  ),
-                  labelColor: blackColor,
-                  controller: controller.controller,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorPadding: EdgeInsets.zero,
-                  labelPadding: EdgeInsets.zero,
-                  indicatorColor: brown743617,
-                  indicatorWeight: 2,
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
-                SizedBox(
-                  height: Get.height / 2,
-                  child: TabBarView(
-                    controller: controller.controller,
+        body: controller.isLoading.value == true
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.5),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio:
-                              MediaQuery.of(context).size.aspectRatio * 3 / 3,
-                          crossAxisSpacing: 10,
+                      imageCarousel(),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 20,
+                            margin: EdgeInsets.only(right: 12),
+                            color: whiteColor,
+                            child: const Icon(Icons.arrow_back_ios, size: 13),
+                          ),
+                          Expanded(child: allProductImages()),
+                          Container(
+                            height: 50,
+                            width: 20,
+                            margin: EdgeInsets.only(left: 12),
+                            color: whiteColor,
+                            child:
+                                const Icon(Icons.arrow_forward_ios, size: 13),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 41),
+                      Text(
+                        "BALENCIAGA",
+                        style: commonTextStyle400(size: 24.0),
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        "Loafers in Leather",
+                        style: commonTextStyle400(size: 18.0),
+                      ),
+                      const SizedBox(height: 28),
+                      expandDetailWidget(
+                        text: LanguageConstant.description.tr,
+                        onTap: () {
+                          controller.isSelected.value =
+                              !controller.isSelected.value;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      Visibility(
+                        visible: controller.isSelected.isTrue ? true : false,
+                        child: const Text(
+                          'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54,
+                          ),
                         ),
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: const [
-                                    Positioned(
-                                      top: 0,
-                                      right: 0,
-                                      child: Padding(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          Icons.favorite_border,
-                                          size: 18,
-                                          color: blackColor,
+                      ),
+                      const SizedBox(height: 10),
+                      expandDetailWidget(
+                        text: LanguageConstant.details.tr,
+                        onTap: () {
+                          controller.isSelected1.value =
+                              !controller.isSelected1.value;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      Visibility(
+                        visible: controller.isSelected1.isTrue ? true : false,
+                        child: const Text(
+                          'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+                      Text(
+                        "£780.00",
+                        style: commonTextStyle600(size: 24.0),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        "SKU:- 636924WA72L1000-Black",
+                        style: commonTextStyle600(
+                            size: 14.0, color: const Color(0xff777777)),
+                      ),
+                      const SizedBox(height: 25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(child: chooseAnOptionWidget()),
+                          const SizedBox(width: 15),
+                          sizeChartWidget(),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: addToCartButton(context: context),
+                          ),
+                          const SizedBox(width: 25),
+                          Expanded(
+                            child: addToWishlistButton(),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 50),
+                      TabBar(
+                        tabs: controller.myTabs,
+                        unselectedLabelColor: blackColor.withOpacity(0.50),
+                        labelStyle: commonTextStyle600(size: 18.0),
+                        unselectedLabelStyle: commonTextStyle600(
+                          size: 18.0,
+                          color: blackColor.withOpacity(0.50),
+                        ),
+                        labelColor: blackColor,
+                        isScrollable: false,
+                        controller: controller.controller,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        indicatorPadding: EdgeInsets.zero,
+                        labelPadding: EdgeInsets.zero,
+                        indicatorColor: brown743617,
+                        indicatorWeight: 2,
+                      ),
+                      const SizedBox(
+                        height: 22,
+                      ),
+                      SizedBox(
+                        height: Get.height / 2,
+                        child: TabBarView(
+                          controller: controller.controller,
+                          children: [
+                            SizedBox(
+                              height: 290,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.itemsData.length,
+                                itemBuilder: (context, index) => SizedBox(
+                                  width: 215,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            const Positioned(
+                                              top: 0,
+                                              right: 0,
+                                              child: Padding(
+                                                padding: EdgeInsets.all(5.0),
+                                                child: Icon(
+                                                  Icons.favorite_border,
+                                                  size: 18,
+                                                  color: blackColor,
+                                                ),
+                                              ),
+                                            ),
+                                            Image(
+                                              width: 162,
+                                              image: NetworkImage(
+                                                controller.itemsData[index]
+                                                    ["image_url"],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        height: 215,
+                                        width: 215,
+                                        margin: const EdgeInsets.only(
+                                            right: 5, left: 5, top: 5),
+                                        decoration: BoxDecoration(
+                                          color: backGroundColor,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  blackColor.withOpacity(0.30),
+                                              blurRadius: 8,
+                                            ),
+                                          ],
+                                          border: Border.all(
+                                            color: brown743617,
+                                            width: 1,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      child: Image(
-                                        image: AssetImage(
-                                          AppAsset.shoze1,
-                                        ),
+                                      const SizedBox(
+                                        height: 15,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                height: 210,
-                                margin:
-                                    EdgeInsets.only(right: 5, left: 5, top: 5),
-                                decoration: BoxDecoration(
-                                  color: backGroundColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: blackColor.withOpacity(0.30),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
-                                  border: Border.all(
-                                    color: brown743617,
-                                    width: 1,
+                                      Text(
+                                        controller.itemsData[index]
+                                            ["brand_name"],
+                                        textAlign: TextAlign.center,
+                                        style: commonTextStyle400(size: 16.0),
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        controller.itemsData[index]["name"],
+                                        textAlign: TextAlign.center,
+                                        style: commonTextStyle400(size: 16.0),
+                                      ),
+                                      Text(
+                                        controller.itemsData[index]["price"],
+                                        textAlign: TextAlign.center,
+                                        style: commonTextStyle400(size: 16.0),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "BALENCIAGA",
-                                textAlign: TextAlign.center,
-                                style: commonTextStyle400(size: 16.0),
-                              ),
-                              Text(
-                                "Balenciaga mules balenciaga ‘CHUNKY’ rubber slides",
-                                textAlign: TextAlign.center,
-                                style: commonTextStyle400(size: 16.0),
-                              ),
-                              Text(
-                                "£390.00",
-                                textAlign: TextAlign.center,
-                                style: commonTextStyle400(size: 16.0),
-                              ),
-                            ],
-                          );
-                        },
+                            ),
+                            Text(
+                              "Free global returns and pick up",
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: commonTextStyle400(size: 16.0),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        "Free global returns and pick up",
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: commonTextStyle400(size: 16.0),
+                      const SizedBox(
+                        height: 30,
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
