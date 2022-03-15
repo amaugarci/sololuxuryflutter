@@ -23,7 +23,7 @@ class HomeAPIProvider extends GetConnect implements IHomeProvider {
   @override
   Future<Response<MenuModel>> getMenuResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
-    return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : localStore.token});
+    return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : AppConstants.adminToken});
   }
 
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 import '../../../config/global_config.dart';
@@ -15,7 +16,7 @@ class CheckOutOrderProvider extends GetConnect implements ICheckOutOrderProvider
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    'Authorization': AppConstants.defaultToken1,
+    'Authorization': AppConstants.adminToken,
   };
 
 
@@ -23,7 +24,7 @@ class CheckOutOrderProvider extends GetConnect implements ICheckOutOrderProvider
   void onInit() {
 
     httpClient.defaultDecoder = (val) => jsonEncode(val);
-    httpClient.baseUrl = AppConstants.apiEndPointNew1;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
 
