@@ -9,6 +9,7 @@ class AppConstants {
   static String menuEndPoint = "/V1/categories";
   static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
+  static String multiAddressEndPoint = "/V1/customers/me";
   static String storeWebsitesEndPoint = "/V1/store/websites";
   static String storeViewsEndPoint = "/V1/store/storeViews";
   static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -33,7 +34,7 @@ class AppConstants {
 
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
-  static const String defaultToken1 = "Bearer hamtbvnkark2xu39nf513dhblsyc3zr8";
+  static const String defaultToken1 = "Bearer 7cn032equ94z91iz1ykkeus8ds62twlf";
 
   static const String signUp = "customers";
 

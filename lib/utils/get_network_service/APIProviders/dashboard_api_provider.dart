@@ -5,12 +5,12 @@ import '../../app_constants.dart';
 import '../repository_adapter.dart';
 
 
-abstract class IHomeProvider {
+abstract class IDashboardProvider {
   Future<Response<MenuModel>> getMenuResponseProvider({required String endPoint});
 }
 
 
-class DashboardAPIProvider extends GetConnect implements IDashboardRepository {
+class DashboardAPIProvider extends GetConnect implements IDashboardProvider {
 
   @override
   void onInit() {
@@ -22,12 +22,6 @@ class DashboardAPIProvider extends GetConnect implements IDashboardRepository {
   Future<Response<MenuModel>> getMenuResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken});
-  }
-
-  @override
-  Future<MenuModel> getMenuAPIResponse() {
-    // TODO: implement getMenuAPIResponse
-    throw UnimplementedError();
   }
 
 }

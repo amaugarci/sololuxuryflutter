@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 import '../../../config/global_config.dart';
+import '../../../data/model/checkout_order/multi_address_model.dart';
 
 abstract class ICheckOutOrderProvider {
+  Future<Response> getMultiAddressResponseProvider({required String endPoint});
   Future<Response> postEstimateResponseProvider({required String endPoint,required String requestJson});
   Future<Response> postShippingInformationResponseProvider({required String endPoint,required String requestJson});
 }
@@ -24,8 +26,16 @@ class CheckOutOrderProvider extends GetConnect implements ICheckOutOrderProvider
 
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointNew1;
+    httpClient.timeout = Duration(seconds: 60);
   }
 
+
+  @override
+  Future<Response> getMultiAddressResponseProvider({required String endPoint}) {
+    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    // httpClient.defaultDecoder = (val) => MultiAddressModel.fromJson(val);
+    return get(endPoint,  headers: headers);
+  }
 
   @override
   Future<Response<dynamic>> postEstimateResponseProvider({required String endPoint, required String requestJson}) {

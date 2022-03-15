@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
+import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_controller.dart';
-import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/checkout_box.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -13,10 +13,8 @@ import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_m
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-import '../../../utils/get_network_service/APIProviders/home_api_provider.dart';
-import '../../../utils/get_network_service/APIRepository/home_api_repository.dart';
+import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../../components/common_widget/common_appbar.dart';
-import '../home/home_screen.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
@@ -106,6 +104,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
       children: [
         CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         const SizedBox(height: 15.0),
+        // CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
+        // const SizedBox(height: 15.0),
         CheckOutBox(title: LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
@@ -118,159 +118,277 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
+  // Widget shippingAddress() {
+  //   return SizedBox(
+  //     width: Get.width,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         const SizedBox(height: 10.0),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.emailText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(height: 10.0),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.passwordText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(height: 5.0),
+  //         CommonTextPoppins(
+  //           LanguageConstant.alreadyAcText.tr,
+  //           textAlign: TextAlign.center,
+  //           fontWeight: FontWeight.w500,
+  //           fontSize: 9.0,
+  //         ),
+  //         const SizedBox(height: 15.0),
+  //         SizedBox(
+  //           height: 36.0,
+  //           width: Get.width,
+  //           child: CommonButton(
+  //             buttonType: ButtonType.ElevatedButton,
+  //             onPressed: () {},
+  //             elevation: 0.0,
+  //             color: appColorButton,
+  //             borderRadius: 0.0,
+  //             padding: EdgeInsets.zero,
+  //             child: CommonTextPoppins(
+  //               LanguageConstant.loginText.tr,
+  //               fontSize: 14.0,
+  //               fontWeight: FontWeight.w500,
+  //             ),
+  //           ),
+  //         ),
+  //         const SizedBox(
+  //           height: 15.0,
+  //         ),
+  //         CommonTextPoppins(
+  //           LanguageConstant.forgotText.tr,
+  //           textAlign: TextAlign.center,
+  //           fontWeight: FontWeight.w500,
+  //           fontSize: 10.0,
+  //         ),
+  //         const SizedBox(
+  //           height: 15.0,
+  //         ),
+  //         CommonDivider(
+  //           color: appColorDarkLineGrey,
+  //           height: 1.0,
+  //           width: Get.width,
+  //         ),
+  //         const SizedBox(
+  //           height: 25.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.firstNameText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.lastNameText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.companyText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.stLineText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.cityText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.japanText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.stateText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.zipPostalText.tr,
+  //                 controller: TextEditingController(),
+  //                 isValidationShow: false,
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.phoneNumberText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
   Widget shippingAddress() {
+    if (controller.multiAddressModel!.value.addresses == null ||
+        controller.multiAddressModel!.value.addresses!.isEmpty) {
+      return Container();
+    }
     return SizedBox(
       width: Get.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10.0),
-          CommonTextField(
-            hintText: LanguageConstant.emailText.tr,
-            controller: TextEditingController(),
-          ),
-          const SizedBox(height: 10.0),
-          CommonTextField(
-            hintText: LanguageConstant.passwordText.tr,
-            controller: TextEditingController(),
-          ),
-          const SizedBox(height: 5.0),
-          CommonTextPoppins(
-            LanguageConstant.alreadyAcText.tr,
-            textAlign: TextAlign.center,
-            fontWeight: FontWeight.w500,
-            fontSize: 9.0,
-          ),
-          const SizedBox(height: 15.0),
-          SizedBox(
-            height: 36.0,
-            width: Get.width,
-            child: CommonButton(
-              buttonType: ButtonType.ElevatedButton,
-              onPressed: () {},
-              elevation: 0.0,
-              color: appColorButton,
-              borderRadius: 0.0,
-              padding: EdgeInsets.zero,
-              child: CommonTextPoppins(
-                LanguageConstant.loginText.tr,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.multiAddressModel!.value.addresses!.length,
+              itemBuilder: (context, index) {
+                Address? address = controller.multiAddressModel!.value.addresses![index];
+                return Obx(() => Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CommonTextOpenSans(
+                                    "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}",
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13.0,
+                                    maxLine: 5,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(
+                                    height: 15.0,
+                                  ),
+                                  CommonTextOpenSans(
+                                    '${address.telephone}',
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13.0,
+                                    maxLine: 5,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 60.0,
+                            ),
+                            Expanded(
+                              child: CommonButton(
+                                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                buttonType: ButtonType.OutlinedButton,
+                                onPressed: () {
+                                  controller.selectedAddressIndex.value = index;
+                                },
+                                elevation: 0.0,
+                                color: controller.selectedAddressIndex.value == index
+                                    ? appColorButton
+                                    : Colors.transparent,
+                                border: controller.selectedAddressIndex.value == index
+                                    ? BorderSide.none
+                                    : const BorderSide(color: appColorButton, width: 1.0),
+                                borderRadius: 20.0,
+                                child: CommonTextOpenSans(
+                                  "Ship Here",
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        controller.multiAddressModel!.value.addresses!.length -1 == index ? Container() :Column(
+                          children: [
+                            CommonDivider(
+                              width: Get.width,
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ));
+              }),
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: 40,
+              width: 135.0,
+              child: CommonButton(
+                padding: EdgeInsets.zero,
+                buttonType: ButtonType.ElevatedButton,
+                onPressed: () {},
+                elevation: 0.0,
+                color: appColorButton,
+                borderRadius: 20.0,
+                child: CommonTextPoppins(
+                  "New Address",
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                  color: appColorAccent,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          CommonTextPoppins(
-            LanguageConstant.forgotText.tr,
-            textAlign: TextAlign.center,
-            fontWeight: FontWeight.w500,
-            fontSize: 10.0,
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          CommonDivider(
-            color: appColorDarkLineGrey,
-            height: 1.0,
-            width: Get.width,
-          ),
-          const SizedBox(
-            height: 25.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.firstNameText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.lastNameText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          CommonTextField(
-            hintText: LanguageConstant.companyText.tr,
-            controller: TextEditingController(),
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.stLineText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.cityText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.japanText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.stateText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.zipPostalText.tr,
-                  controller: TextEditingController(),
-                  isValidationShow: false,
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: LanguageConstant.phoneNumberText.tr,
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
           ),
           const SizedBox(
             height: 10.0,
