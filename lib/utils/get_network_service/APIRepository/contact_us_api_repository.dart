@@ -10,8 +10,29 @@ class ContactUsAPIRepository implements IContactUsRepository {
   ContactUsAPIRepository({required this.contactUsAPIProvider});
 
   @override
-  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson) async {
-    final contactUsResponseModel = await contactUsAPIProvider.getContactUsResponseProvider(urlPath: AppConstants.signUp,  contactusRequestJson:contactusRequestJson);
+  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson, String orderNo,
+      String country,
+      String subject,
+      String message,
+      String sourceOfTicket,
+      String phoneNumber,
+      String typeOfEnquiry,
+      String email,
+      String name,
+      String lastName) async {
+    final contactUsResponseModel = await contactUsAPIProvider.getContactUsResponseProvider(urlPath: AppConstants.signUp,
+        contactusRequestJson:contactusRequestJson,
+      orderNo: orderNo,
+      country: country,
+      subject: subject,
+      message: message,
+      sourceOfTicket: sourceOfTicket,
+      phoneNumber: phoneNumber,
+      typeOfEnquiry: typeOfEnquiry,
+      email: email,
+      name: name,
+      lastName: lastName,
+    );
 
     if(contactUsResponseModel.status.hasError) {
       return Future.error(contactUsResponseModel.statusText!);

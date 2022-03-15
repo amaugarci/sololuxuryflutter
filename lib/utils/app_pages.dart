@@ -221,7 +221,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.contactUsScreen,
-      page: () => const ContactUsScreen(),
+      page: () => ContactUsScreen(),
       binding: ContactUsBindings(),
     ),
   ];

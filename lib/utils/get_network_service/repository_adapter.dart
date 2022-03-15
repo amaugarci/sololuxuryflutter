@@ -44,5 +44,14 @@ abstract class IMyAccountRepository {
 }
 
 abstract class IContactUsRepository {
-  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson);
+  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson, String orderNo,
+      String country,
+      String subject,
+      String message,
+      String sourceOfTicket,
+      String phoneNumber,
+      String typeOfEnquiry,
+      String email,
+      String name,
+      String lastName);
 }
