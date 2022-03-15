@@ -10,6 +10,8 @@ const Color silver = Color(0xff717171);
 const Color brownColor = Color(0xff8A3A07);
 const Color brownColorCEAE9F = Color(0xffCEAE9F);
 const Color lightBrownColor = Color(0xffECDAD4);
+const Color brown743617 = Color(0xff743617);
+const Color brownF4E5DF = Color(0xffF4E5DF);
 
 const Color whiteColor = Color(0xffFFFFFF);
 const Color blackColor = Color(0xff000000);
