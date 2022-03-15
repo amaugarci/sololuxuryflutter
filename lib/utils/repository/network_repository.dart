@@ -67,33 +67,6 @@ class NetworkRepository {
     }
   }
 
-  addAddress(context, addAddress) async {
-    try {
-      final authUserResponse = await NetworkDioHttp.putDioHttpMethod(
-        context: context,
-        url: '${AppConstants.apiEndPoint}${AppConstants.addAddress}',
-        data: addAddress,
-      );
-
-      return checkResponse(authUserResponse, authUserResponse['body']);
-    } catch (e) {
-      print("Add Address");
-      CommonMethod().getXSnackBar("Error", e.toString(), red);
-    }
-  }
-
-  countryList() async {
-    try {
-      final authUserResponse = await NetworkDioHttp.getDioHttpMethod(
-          url: '${AppConstants.apiEndPoint}${AppConstants.countryList}');
-
-      return List<CountryListModel>.from(authUserResponse['body']
-          .map((country) => CountryListModel.fromJson(country)));
-    } catch (e) {
-      CommonMethod().getXSnackBar("Error", e.toString(), red);
-    }
-  }
-
   Future<void> checkResponse(
     response,
     modelResponse,

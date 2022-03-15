@@ -17,7 +17,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AddAddressController());
+    AddAddressController controller = Get.find<AddAddressController>();
 
     return Obx(() => Scaffold(
           backgroundColor: backGroundColor,
@@ -422,7 +422,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<CountryListModel>(
                               dropdownColor: backGroundColor,
-                              items: controller.getcountryList!
+                              items: controller.getcountryList
                                   .map((value) =>
                                       DropdownMenuItem<CountryListModel>(
                                         child: Text(
