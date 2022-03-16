@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
+import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/dashboard/dashboard_controller.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
@@ -39,7 +40,7 @@ class DashboardScreen extends GetView<DashboardController> {
                   const HomeScreen(),
                   const SearchScreen(),
                   CheckoutOrderScreen(),
-                  MyOrdersScreen(),
+                  BrandListPage(),
                   //MyWishListPage(),
                   //ProfileScreen(),
                   MyAccountMenuPage(),

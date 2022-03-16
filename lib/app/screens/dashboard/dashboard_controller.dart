@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/country/country_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
@@ -38,6 +39,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     MyAccountBinding().dependencies();
     SearchBinding().dependencies();
     MyOrdersBinding().dependencies();
+    BrandBinding().dependencies();
     getMenuDataFromApi();
   }
   getMenuDataFromApi() async {

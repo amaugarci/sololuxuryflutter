@@ -1,3 +1,4 @@
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -12,36 +13,36 @@ String brandDataToJson(List<List<BrandData>> data) =>
 
 class BrandData {
   BrandData({
-    required this.brandId,
-    required this.attributeId,
-    required this.name,
-    required this.description,
-    required this.urlKey,
-    required this.logoPath,
-    required this.sortOrder,
-    required this.isActive,
-    required this.isFeatured,
-    required this.seoTitle,
-    required this.seoDesc,
-    required this.seoKeyword,
-    required this.updatedAt,
-    required this.createdAt,
+    this.brandId,
+    this.attributeId,
+    this.name,
+    this.description,
+    this.urlKey,
+    this.logoPath,
+    this.sortOrder,
+    this.isActive,
+    this.isFeatured,
+    this.seoTitle,
+    this.seoDesc,
+    this.seoKeyword,
+    this.updatedAt,
+    this.createdAt,
   });
 
-  String brandId;
-  String attributeId;
-  String name;
-  String description;
-  String urlKey;
-  String logoPath;
-  String sortOrder;
-  String isActive;
-  String isFeatured;
-  String seoTitle;
-  String seoDesc;
-  String seoKeyword;
-  DateTime updatedAt;
-  DateTime createdAt;
+  String? brandId;
+  String? attributeId;
+  String? name;
+  String? description;
+  String? urlKey;
+  String? logoPath;
+  String? sortOrder;
+  String? isActive;
+  String? isFeatured;
+  String? seoTitle;
+  String? seoDesc;
+  String? seoKeyword;
+  DateTime? updatedAt;
+  DateTime? createdAt;
 
   factory BrandData.fromJson(Map<String, dynamic> json) => BrandData(
         brandId: json["brand_id"],
@@ -73,8 +74,8 @@ class BrandData {
         "seo_title": seoTitle,
         "seo_desc": seoDesc,
         "seo_keyword": seoKeyword,
-        "updated_at": updatedAt.toIso8601String(),
-        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
       };
 
   void add(BrandData brand) {}

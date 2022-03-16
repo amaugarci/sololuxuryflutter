@@ -98,7 +98,7 @@ abstract class IWishListRepository {
 }
 
 abstract class IBrandListRepository {
-  Future<BrandData> getBrandDataApiResponse();
+  Future<List<BrandData>> getBrandDataApiResponse();
 }
 
 abstract class IDeleteWishListRepository {
