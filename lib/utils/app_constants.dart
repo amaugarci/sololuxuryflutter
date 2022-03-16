@@ -18,7 +18,7 @@ class AppConstants {
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
-  static String referFriendEndPoint = "/V1/referFriend";
+  // static String referFriendEndPoint = "/V1/referFriend";
 
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
@@ -33,6 +33,8 @@ class AppConstants {
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
   static String storeViewsEndPoint = "/rest/V1/store/storeViews";
   static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
+  static String referFriendEndPoint = "/rest//V1/referFriend";
+
   static String jsonEndPoint = "/json";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
