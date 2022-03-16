@@ -61,7 +61,7 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "${product.name}",
+              "${product.items![1].name}",
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
@@ -69,7 +69,7 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "${product.name}",
+              "${product.items![1].name}",
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
@@ -80,7 +80,7 @@ class Product extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '\$ ' + "${product.price}",
+                  '\$ ' + "${product.items![1].price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -88,7 +88,7 @@ class Product extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$ ' + "${product.price}",
+                  '\$ ' + "${product.items![1].price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black45,

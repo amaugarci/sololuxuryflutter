@@ -73,7 +73,7 @@ class ProductListScreen extends GetView<ProductController> {
             filterDropDown(),
             const SizedBox(height: 30),
             FutureBuilder<List<ProductModel>>(
-              future: controller.getHomeProducts("12"),
+              future: controller.getHomeProducts(""),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Expanded(
