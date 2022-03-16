@@ -14,7 +14,7 @@ class AppConstants {
   static String bannerListEndPoint = "/bannerList";
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
-  static String multiAddressEndPoint = "/V1/customers/me";
+  static String multiAddressEndPoint = "/rest/V1/customers/me";
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";

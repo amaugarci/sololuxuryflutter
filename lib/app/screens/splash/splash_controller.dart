@@ -24,6 +24,7 @@ class SplashController extends GetxController {
   }
 
   setLocalStore()async{
+    await localStore.getToken();
     bool isCall = await localStore.getStore();
     print("isCall -> $isCall");
     if(!isCall){

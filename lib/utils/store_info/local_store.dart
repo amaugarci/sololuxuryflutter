@@ -42,7 +42,7 @@ class LocalStore{
     print("getToken -> ");
     String data = await getPrefStringValue(StorageConstant.authToken);
     if(data!=null && data.isNotEmpty) {
-      customerToken = data;
+      customerToken = "Bearer "+data;
       print("token -> " + customerToken);
       return true;
     }
