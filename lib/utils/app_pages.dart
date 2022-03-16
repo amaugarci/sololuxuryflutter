@@ -29,6 +29,8 @@ import 'package:solo_luxury/app/screens/login/bindings/signup_bindings.dart';
 import 'package:solo_luxury/app/screens/login/views/forgot_password.dart';
 import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/screens/login/views/signup_screen.dart';
+import 'package:solo_luxury/app/screens/my_tickets/my_tickets_binding.dart';
+import 'package:solo_luxury/app/screens/my_tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_binding.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
@@ -37,7 +39,6 @@ import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
-import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
 import 'package:solo_luxury/app/screens/country_screen/country_screen.dart'
@@ -173,6 +174,7 @@ class AppPages {
     GetPage(
       name: RoutesConstants.myTicketsScreen,
       page: () => MyTicketScreen(),
+      binding: MyTicketsBindings(),
     ),
     GetPage(
       name: RoutesConstants.selectCountryScreen,

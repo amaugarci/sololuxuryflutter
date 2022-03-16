@@ -10,7 +10,8 @@ abstract class ISplashRepository {
 }
 
 abstract class ILoginRepository {
-  Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password);
+  Future<String> getLoginAPIResponse(
+      String loginRequestJson, String userName, String password);
 }
 
 abstract class ISignupRepository {
@@ -34,10 +35,15 @@ abstract class ICountryRepository {
 
 abstract class ICheckoutOrderRepository {
   Future<String> postEstimateAPIResponse(String loginRequestJson);
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(String loginRequestJson);
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+      String loginRequestJson);
 }
 
 ///myAccount Class
 abstract class IMyAccountRepository {
   Future<MyAccountDetails> getMyAccountApiResponse();
+}
+
+abstract class IMyTicketRepository {
+  Future<dynamic> getmyTicketApiResponse(String response);
 }

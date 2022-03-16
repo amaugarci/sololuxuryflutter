@@ -6,7 +6,6 @@ import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
 import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:solo_luxury/app/screens/privacy_policy/terms_and_condition_screen.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
-import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../utils/app_routes.dart';
@@ -177,7 +176,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => const MyTicketScreen());
+                        Get.toNamed(RoutesConstants.myTicketsScreen);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -461,7 +460,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: () {
-
                         // Get.toNamed(RoutesConstants.guestReturnsScreen);
                         Get.toNamed(RoutesConstants.returnsAndRefundsScreen);
                       },

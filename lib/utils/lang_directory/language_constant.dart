@@ -11,7 +11,6 @@ class LanguageConstant {
   static const String aboutUsContain6 = "aboutUsContain6";
   static const String aboutUsContain7 = "aboutUsContain7";
 
-
   static const String returnPolicyTitle = "returnPolicyTitle";
   static const String returnProcessTitle = "returnProcessTitle";
   static const String refundTitle = "refundTitle";
@@ -127,8 +126,8 @@ class LanguageConstant {
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
 
-
-  static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
+  static const String accessYourAccountDetailsText =
+      "accessYourAccountDetailsText";
 
   //TODO:Brijesh
   static const String yourEmail1Text = "Your E-Mail";
@@ -257,4 +256,7 @@ class LanguageConstant {
   static const String menText = "menText";
   static const String womenText = "womenText";
   static const String kidsText = "kidsText";
+  static const String nameChatText = "nameChatText";
+  static const String idText = "idText";
+  static const String actionText = "actionText";
 }

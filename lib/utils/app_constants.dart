@@ -7,8 +7,10 @@ class AppConstants {
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
   static String menuEndPoint = "/V1/categories";
-  static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
-  static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
+  static String estimatesShippingMethodEndPoint =
+      "/in-en/V1/carts/mine/estimate-shipping-methods";
+  static String shippingInformationEndPoint =
+      "/in-en/V1/carts/mine/shipping-information";
   static String storeWebsitesEndPoint = "/V1/store/websites";
   static String storeViewsEndPoint = "/V1/store/storeViews";
   static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -16,7 +18,8 @@ class AppConstants {
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
-  static String apiEndPointMyAccount = "https://dev2.brands-labels.com/rest/V1/customers/me";
+  static String apiEndPointMyAccount =
+      "https://dev2.brands-labels.com/rest/V1/customers/me";
   static String apiEndPointNewInfluencer =
       "https://erp.theluxuryunlimited.com/api/influencer/add";
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
@@ -31,9 +34,8 @@ class AppConstants {
   //static String login = '/integration/customer/token';
   static String login = '/rest/V1/integration/customer/token';
 
-
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
-  static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
+  static const String defaultToken1 = "Bearer yfjnz2mpcpn6lkhojttzvj3396i0qrd6";
 
   static const String signUp = "customers";
 
@@ -42,4 +44,5 @@ class AppConstants {
   //static String login = 'integration/customer/token';
   static String addAddress = 'customers/me';
   static String countryList = 'directory/countries';
+  static String myTicketApi = '/V1/mytickets/';
 }
