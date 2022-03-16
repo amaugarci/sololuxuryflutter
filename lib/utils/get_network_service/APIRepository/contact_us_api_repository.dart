@@ -20,7 +20,7 @@ class ContactUsAPIRepository implements IContactUsRepository {
       String email,
       String name,
       String lastName) async {
-    final contactUsResponseModel = await contactUsAPIProvider.getContactUsResponseProvider(urlPath: AppConstants.signUp,
+    final contactUsResponseModel = await contactUsAPIProvider.getContactUsResponseProvider(urlPath: AppConstants.contactUs,
         contactusRequestJson:contactusRequestJson,
       orderNo: orderNo,
       country: country,

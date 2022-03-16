@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/utils/get_network_service/APIRepository/product_list_api_repository.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../data/requests/category_product_request.dart';
@@ -14,6 +15,9 @@ class ProductController extends GetxController {
   final CartController cartController = Get.put(CartController());
   var homeCategoryProductList = <ProductModel>[].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
+  Rx<ProductModel>? productModel = ProductModel().obs;
+  final ProductListAPIRepository productListAPIRepository;
+  ProductController({required this.productListAPIRepository});
 
   @override
   void onInit() {
@@ -38,7 +42,8 @@ class ProductController extends GetxController {
   }
 
   Future<List<ProductModel>> getHomeProducts(String val)  async{
-    homeCategoryProductList.value = await categoryProductsRequest(val);
+    homeCategoryProductList.value = await productListAPIRepository.getProductListApiResponse();
     return homeCategoryProductList.value;
   }
+
 }

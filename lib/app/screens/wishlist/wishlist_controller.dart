@@ -3,12 +3,16 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../../utils/get_network_service/APIRepository/wishlist_api_repository.dart';
 
 class WishlistController extends GetxController {
   RxInt index = 0.obs;
   RxString chosenValue = LanguageConstant.myWishlistText.tr.obs;
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
   var wishlistProductList = <ProductModel>[].obs;
+  final WishListAPIRepository wishListAPIRepository;
+  WishlistController({required this.wishListAPIRepository});
+
 
   @override
   void onInit() {
@@ -16,7 +20,7 @@ class WishlistController extends GetxController {
   }
 
   Future<List<ProductModel>> getWishlistProducts() async {
-    wishlistProductList.value = await getWishlistProducts();
+    wishlistProductList.value = await wishListAPIRepository.getWishListApiResponse();
     return wishlistProductList.value;
   }
 

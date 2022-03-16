@@ -69,6 +69,14 @@ class AppConstants {
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
+  static const String contactUs = "/rest/V1/contactus";
+  static const String productList = "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
+  static const String wishList = "/rest/V1/wishlist";
+  static const String brandList = "/rest/V1/brandList";
+  static const String faq = "/rest/default/V1/snowdog/cmsPage/16";
+  static const String myOrders = "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
+  static const String deleteWishlist = "/rest/V1/wishlist/";
+  static const String postWishlist = "/rest/V1/wishlist/";
 
   static const String licenceId = '11434003';
 

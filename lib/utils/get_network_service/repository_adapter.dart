@@ -1,4 +1,5 @@
 import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
+import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/contact_us_response_model.dart';
@@ -7,6 +8,8 @@ import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
+import '../../data/model/Product/product_model.dart';
+import '../../data/model/brand_list/BrandData.dart';
 import '../../data/model/checkout_order/multi_address_model.dart';
 
 abstract class ISplashRepository {
@@ -76,3 +79,33 @@ abstract class IContactUsRepository {
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
 }
+
+abstract class IProductListRepository {
+  Future<List<ProductModel>> getProductListApiResponse();
+}
+
+abstract class IWishListRepository {
+  Future<List<ProductModel>> getWishListApiResponse();
+}
+
+
+abstract class IBrandListRepository {
+  Future<BrandData> getBrandDataApiResponse();
+}
+
+abstract class IDeleteWishListRepository {
+  Future<String> deleteWishListApiResponse(String id);
+}
+
+abstract class IFaqRepository {
+  Future<String> getFaqApiResponse();
+}
+
+abstract class IMyOrdersRepository {
+  Future<MyOrdersData> getMyOrdersApiResponse();
+}
+
+abstract class IPostWishListRepository {
+  Future<String> postWishListApiResponse(String sku);
+}
+
