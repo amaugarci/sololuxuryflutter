@@ -26,7 +26,19 @@ class DashboardAPIRepository implements IDashboardRepository {
   }
 
   @override
-  Future<BannerListModel> getBannerListAPIResponse() {
+  Future<BannerListModel> getBannerListAPIResponse() async {
+
+    final response = await dashboardAPIProvider.getBannerListAPIResponseProvider(endPoint: AppConstants.bannerListEndPoint);
+    if (response != null) {
+      print("response.statusCode -> ");
+      print(response.statusCode);
+    }
+    if(response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      return response.body!;
+    }
+
     // TODO: implement getBannerListAPIResponse
     throw UnimplementedError();
   }

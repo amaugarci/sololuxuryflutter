@@ -1,17 +1,16 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 
 import '../../../data/model/Home/menu_model.dart';
 import '../../app_constants.dart';
 import '../repository_adapter.dart';
 
-
 abstract class IDashboardProvider {
-  Future<Response<MenuModel>> getMenuResponseProvider({required String endPoint});
+  Future<Response<MenuModel>> getMenuResponseProvider(
+      {required String endPoint});
 }
 
-
 class DashboardAPIProvider extends GetConnect implements IDashboardProvider {
-
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => MenuModel.fromJson(val);
@@ -19,9 +18,22 @@ class DashboardAPIProvider extends GetConnect implements IDashboardProvider {
   }
 
   @override
-  Future<Response<MenuModel>> getMenuResponseProvider({required String endPoint}) {
+  Future<Response<MenuModel>> getMenuResponseProvider(
+      {required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
-    return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken});
+    return get(endPoint, headers: {
+      "Content-type": "application/json",
+      "Authorization": AppConstants.defaultToken
+    });
   }
 
+  Future<Response> getBannerListAPIResponseProvider(
+      {required String endPoint}) {
+
+    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    return get(endPoint, headers: {
+      "Content-type": "application/json",
+      "Authorization": AppConstants.defaultToken
+    });
+  }
 }

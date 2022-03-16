@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 /*
@@ -29,12 +30,20 @@ class MyAccountAPIRepository implements IMyAccountRepository {
 
 class MyAccountAPIRepository extends GetxController {
   Future<MyAccountDetails?> myAccountsApi() async {
+    print(
+        "Categories=======================================Bearer ${localStore.customerToken}");
+    print(
+        "Categories=======================================Bearer ${AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount}");
     final response = await http.get(
-      Uri.parse(AppConstants.apiEndPointMyAccount),
-      headers: {"Authorization": "Bearer uci7ew9pxt2h45nlsv50zknlv26q3qir"},
+      Uri.parse(
+          AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount),
+      headers: {"Authorization": "Bearer ${localStore.customerToken}"},
     );
     if (response.statusCode == 200) {
-      print("Categories=======================================");
+      print(
+          "Categories=======================================Bearer ${localStore.customerToken}");
+      print(
+          "Categories=======================================Bearer ${AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount}");
       print(myAccountDetailsResponseModelFromJson(response.body));
       print(response.body);
       return myAccountDetailsResponseModelFromJson(response.body);

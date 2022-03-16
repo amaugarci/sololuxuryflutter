@@ -24,7 +24,7 @@ class AppConstants {
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
   static String apiEndPointMyAccount =
-      "https://dev2.brands-labels.com/rest/V1/customers/me";
+      "/rest/V1/customers/me";
   static String recommendedProductsEndPoint =
       "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
 
