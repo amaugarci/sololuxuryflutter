@@ -15,6 +15,7 @@ import '../../data/model/checkout_order/multi_address_model.dart';
 abstract class ISplashRepository {
   Future<String> getSplashAPIResponse();
 }
+
 abstract class IReferFriendRepository {
   Future<String> getReferFriendAPIResponse();
 }
@@ -35,13 +36,15 @@ abstract class IInfluencerRepository {
 
 abstract class IDashboardRepository {
   Future<MenuModel> getMenuAPIResponse();
+}
+
+abstract class ISearchRepository {
+  Future<MenuModel> getMenuAPIResponse();
+
   Future<BannerListModel> getBannerListAPIResponse();
-
 }
 
-abstract class IHomeRepository {
-
-}
+abstract class IHomeRepository {}
 
 abstract class ICountryRepository {
   Future<String> getStoreWebsitesAPIResponse();
@@ -53,7 +56,10 @@ abstract class ICountryRepository {
 
 abstract class ICheckoutOrderRepository {
   Future<String> postEstimateAPIResponse(String requestJson);
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(String requestJson);
+
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+      String requestJson);
+
   Future<String> getMultiAddressAPIResponse();
 }
 
@@ -64,7 +70,8 @@ abstract class IMyAccountRepository {
 
 abstract class IContactUsRepository {
   Future<ContactUsResponseModel> getContactUsApiResponse(
-      String contactusRequestJson, String orderNo,
+      String contactusRequestJson,
+      String orderNo,
       String country,
       String subject,
       String message,
@@ -75,6 +82,7 @@ abstract class IContactUsRepository {
       String name,
       String lastName);
 }
+
 ///RecommendedProduct Class
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
@@ -87,7 +95,6 @@ abstract class IProductListRepository {
 abstract class IWishListRepository {
   Future<List<ProductModel>> getWishListApiResponse();
 }
-
 
 abstract class IBrandListRepository {
   Future<BrandData> getBrandDataApiResponse();
@@ -108,4 +115,3 @@ abstract class IMyOrdersRepository {
 abstract class IPostWishListRepository {
   Future<String> postWishListApiResponse(String sku);
 }
-
