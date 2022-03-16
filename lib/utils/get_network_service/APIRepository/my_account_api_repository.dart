@@ -37,7 +37,7 @@ class MyAccountAPIRepository extends GetxController {
     final response = await http.get(
       Uri.parse(
           AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount),
-      headers: {"Authorization": "Bearer ${localStore.customerToken}"},
+      headers: {"Authorization": "Bearer h1rob69o1jhxi0m3ip3krv3d8abuhftw"},
     );
     if (response.statusCode == 200) {
       print(
