@@ -26,6 +26,7 @@ class ReferFriendAPIRepository implements IReferFriendRepository {
     Response response =
         await referFriendAPIProvider.getReferFriendAPIResponse(endPoint: endPoints);
     if (response != null) {
+      print(AppConstants.apiEndPointLogin + endPoints);
       print("response.statusCode -> ");
       print(response.statusCode);
     }
