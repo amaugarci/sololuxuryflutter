@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../../data/model/Faq/faq_model.dart';
 import '../../app_constants.dart';
 
 abstract class IFaqProvider {
-  Future<Response<String>> getFaqResponseProvider({required String endPoint});
+  Future<Response<FaqModel>> getFaqResponseProvider({required String endPoint});
 }
 
 class FaqProvider extends GetConnect implements IFaqProvider {
@@ -15,7 +16,7 @@ class FaqProvider extends GetConnect implements IFaqProvider {
   }
 
   @override
-  Future<Response<String>> getFaqResponseProvider({required String endPoint}) {
+  Future<Response<FaqModel>> getFaqResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : AppConstants.adminToken});
   }

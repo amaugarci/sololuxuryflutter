@@ -11,7 +11,7 @@ class WishListAPIRepository implements IWishListRepository{
   WishListAPIRepository({required this.wishListProvider});
 
   @override
-  Future<List<ProductModel>> getWishListApiResponse() async{
+  Future<ProductModel> getWishListApiResponse() async{
     final response = await wishListProvider.getWishListResponseProvider(endPoint: AppConstants.wishList);
     if (response != null) {
       print("response.statusCode -> ");

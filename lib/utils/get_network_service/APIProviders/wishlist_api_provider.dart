@@ -4,7 +4,7 @@ import '../../../data/model/Product/product_model.dart';
 import '../../app_constants.dart';
 
 abstract class IWishListProvider {
-  Future<Response<List<ProductModel>>> getWishListResponseProvider({required String endPoint});
+  Future<Response<ProductModel>> getWishListResponseProvider({required String endPoint});
 }
 
 class WishListAPIProvider extends GetConnect implements IWishListProvider {
@@ -16,7 +16,7 @@ class WishListAPIProvider extends GetConnect implements IWishListProvider {
   }
 
   @override
-  Future<Response<List<ProductModel>>> getWishListResponseProvider({required String endPoint}) {
+  Future<Response<ProductModel>> getWishListResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : AppConstants.adminToken});
   }

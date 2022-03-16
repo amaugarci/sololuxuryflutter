@@ -1,10 +1,16 @@
 import 'package:get/get.dart';
+import 'package:solo_luxury/data/model/Faq/faq_model.dart';
 import 'package:solo_luxury/data/requests/faq_content.dart';
+
+import '../../../utils/get_network_service/APIRepository/faq_api_repository.dart';
 
 class FaqController extends GetxController {
   var faqContentData = ''.obs;
-
+  Rx<FaqModel>? faqModel = FaqModel().obs;
   RxInt index = 0.obs;
+
+  final FaqAPIRepository faqAPIRepository;
+  FaqController({required this.faqAPIRepository});
 
   @override
   void onInit() {
@@ -12,11 +18,15 @@ class FaqController extends GetxController {
     getFaqContent();
   }
 
+  // void getFaqContent() async {
+  //   var faqContent = await FaqContentReq.fetchFaqData();
+  //   if (faqContent != null) {
+  //     faqContentData.value = faqContent;
+  //   }
+  // }
+
   void getFaqContent() async {
-    var faqContent = await FaqContentReq.fetchFaqData();
-    if (faqContent != null) {
-      faqContentData.value = faqContent;
-    }
+    faqModel?.value = await faqAPIRepository.getFaqApiResponse();
   }
 
   // Future<List<FaqModel>> getFaqContent() async {

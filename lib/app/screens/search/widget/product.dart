@@ -9,7 +9,7 @@ import '../../../../data/model/Product/product_model.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
-  ProductModel product;
+  Item? product;
 
   Product({required this.product});
 
@@ -17,9 +17,9 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(
-              product: product,
-            ));
+        // Get.to(() => ProductDetailScreen(
+        //       product: product,
+        //     ));
       },
       child: Container(
         width: 150,
@@ -61,7 +61,7 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "${product.items![1].name}",
+              "${product?.name}",
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
@@ -69,7 +69,7 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "${product.items![1].name}",
+              "${product?.name}",
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
@@ -80,7 +80,7 @@ class Product extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '\$ ' + "${product.items![1].price}",
+                  '\$ ' + "${product?.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -88,7 +88,7 @@ class Product extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$ ' + "${product.items![1].price}",
+                  '\$ ' + "${product?.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black45,

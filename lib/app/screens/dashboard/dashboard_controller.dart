@@ -5,6 +5,7 @@ import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/country/country_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
+import 'package:solo_luxury/app/screens/my_orders/my_orders_binding.dart';
 import 'package:solo_luxury/app/screens/product_listing/product_list_binding.dart';
 import 'package:solo_luxury/app/screens/profile/profile_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
@@ -36,6 +37,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     WishlistBindings().dependencies();
     MyAccountBinding().dependencies();
     SearchBinding().dependencies();
+    MyOrdersBinding().dependencies();
     getMenuDataFromApi();
   }
   getMenuDataFromApi() async {

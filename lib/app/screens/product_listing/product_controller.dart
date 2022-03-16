@@ -41,8 +41,8 @@ class ProductController extends GetxController {
   // }
 
   getHomeProducts(String val)  async{
-    homeCategoryProductList.value = await productListAPIRepository.getProductListApiResponse();
-    return homeCategoryProductList.value;
+    productModel?.value = await productListAPIRepository.getProductListApiResponse();
+    //return homeCategoryProductList.value;
   }
 
 }

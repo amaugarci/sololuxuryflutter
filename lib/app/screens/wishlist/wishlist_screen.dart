@@ -23,7 +23,8 @@ class MyWishListPage extends GetView<WishlistController> {
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
                     child: Column(
@@ -41,7 +42,10 @@ class MyWishListPage extends GetView<WishlistController> {
                               dropdownColor: offWhite,
                               value: controller.chosenValue.value,
                               // elevation: 0,
-                              style: TextStyle(color: appColor, fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  color: appColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
                               items: <String>[
                                 LanguageConstant.myAccountText.tr,
                                 LanguageConstant.myOrdersText.tr,
@@ -60,7 +64,10 @@ class MyWishListPage extends GetView<WishlistController> {
                                 child: Text(
                                   LanguageConstant.myWishlistText.tr,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(color: appColor, fontSize: 14, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      color: appColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                               onChanged: (String? value) {
@@ -69,24 +76,18 @@ class MyWishListPage extends GetView<WishlistController> {
                             ),
                           ),
                         ),
-                        FutureBuilder<List<ProductModel>>(
-                          future: controller.getWishlistProducts(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Expanded(
-                                child: ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  itemBuilder: (_, index) {
-                                    return WishlistItem(product: controller.wishlistProductList[index]);
-                                  },
-                                  itemCount: controller.wishlistProductList.value.length,
-                                ),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
+                        Expanded(
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            itemBuilder: (_, index) {
+                              Item? item =
+                                  controller.productModel?.value.items?[index];
+                              return WishlistItem(product: item);
+                            },
+                            itemCount:
+                                controller.productModel?.value.items?.length,
+                          ),
                         ),
                       ],
                     ),
