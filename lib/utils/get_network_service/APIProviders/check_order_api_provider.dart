@@ -18,7 +18,7 @@ class CheckOutOrderProvider extends GetConnect implements ICheckOutOrderProvider
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    'Authorization': AppConstants.adminToken,
+    'Authorization': localStore.customerToken,
   };
 
 
@@ -35,6 +35,7 @@ class CheckOutOrderProvider extends GetConnect implements ICheckOutOrderProvider
   @override
   Future<Response> getMultiAddressResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    print("headers -> " + headers.toString());
     // httpClient.defaultDecoder = (val) => MultiAddressModel.fromJson(val);
     return get(endPoint,  headers: headers);
   }
