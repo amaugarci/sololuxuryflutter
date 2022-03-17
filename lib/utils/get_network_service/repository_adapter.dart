@@ -75,4 +75,10 @@ abstract class IContactUsRepository {
 ///RecommendedProduct Class
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
+  Future<LoginResponseModel> getLoginAPIResponse(String loginRequestJson);
+}
+
+abstract class ICountryListRepository {
+  Future<String> getCountryListResponse();
+  Future<String> postaddAddressApiResponse(String response);
 }
