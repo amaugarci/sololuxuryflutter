@@ -41,9 +41,9 @@ class EmailWidget extends StatelessWidget {
         fieldKey: fieldKey,
         hintText: hintText,
         enabled: enabled,
+        textAlign: textAlign!,
         focusNode: focusNode,
         controller: controller,
-        textAlign: textAlign!,
         textInputAction: textInputAction,
         keyboardType: TextInputType.emailAddress,
         validator: validator ??

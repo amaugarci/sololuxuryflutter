@@ -508,7 +508,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     Divider(),
                     GestureDetector(
                       onTap: () {
-                        showTitleDialog(context);
+                        showTitleDialog1(context);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -607,10 +607,112 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
         });
   }
 
+  Future showTitleDialog1(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            content: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: -30.0,
+                  child: CircleAvatar(
+                    radius: 30,
+                    child: Image.asset(
+                      AppAsset.account,
+                      color: Colors.white,
+                      width: 25,
+                      height: 25,
+                    ),
+                    backgroundColor: appColor,
+                  ),
+                ),
+                Form(
+                  key: controller.formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        height: 60,
+                        margin: EdgeInsets.only(top: 40),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: Text(LanguageConstant.welcometoChatText.tr,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500))),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Center(
+                                child: Text(
+                                    LanguageConstant.fillTheFormText.tr,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 12))),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                        child: Column(
+                          children: [
+                            nameTextField(),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            emailTextField(),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: RaisedButton(
+                          padding: EdgeInsets.zero,
+                          child: Container(
+                            height: 30,
+                            color: appColor,
+                            child: Center(
+                                child: Text(
+                                  LanguageConstant.startChatText.tr,
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400),
+                                )),
+                          ),
+                          onPressed: () {
+                            if (controller.formKey.currentState!.validate()) {
+                              Livechat.beginChat(
+                                  AppConstants.licenceId,
+                                  '1',
+                                  controller.firstNameController.value.text.trim(),
+                                  controller.emailController.value.text.trim());
+                            }
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   Widget nameTextField() {
     return TextFormFieldWidget(
       controller: controller.firstNameController.value,
-      hintText: '',
+      hintText: LanguageConstant.nameChatText.tr,
+      textAlign: TextAlign.center,
       validator: (value) => Validators.validateRequired(value!.trim(), "Name"),
     );
   }
@@ -618,8 +720,10 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
   Widget emailTextField() {
     return EmailWidget(
         controller: controller.emailController.value,
+        hintText: LanguageConstant.emailText.tr,
+        textAlign: TextAlign.center,
         validator: (value) => Validators.validateEmail(
-              value!.trim(),
-            ));
+          value!.trim(),
+        ));
   }
 }

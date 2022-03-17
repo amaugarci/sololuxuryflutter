@@ -283,5 +283,7 @@ const Map<String, String> en = {
   "currencyText": "Currency",
   "nameChatText": "Name",
   "idText": "ID",
-  "actionText": "Action"
+  "actionText": "Action",
+  "welcometoChatText": "Welcome to our LiveChat!",
+  "fillTheFormText": "Please fill in the form below before starting the chat.",
 };
