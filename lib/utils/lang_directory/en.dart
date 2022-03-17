@@ -281,4 +281,7 @@ const Map<String, String> en = {
   "whatsonyourmindText": "What\'s On Your Mind?",
   "languageText": "Language",
   "currencyText": "Currency",
+  "nameChatText": "Name",
+  "idText": "ID",
+  "actionText": "Action"
 };

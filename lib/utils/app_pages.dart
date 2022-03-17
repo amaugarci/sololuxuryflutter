@@ -42,7 +42,6 @@ import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
-import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book.dart';
 import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
 import 'package:solo_luxury/app/screens/country_screen/country_screen.dart'
@@ -184,6 +183,7 @@ class AppPages {
     GetPage(
       name: RoutesConstants.myTicketsScreen,
       page: () => MyTicketScreen(),
+      binding: MyTicketsBindings(),
     ),
     GetPage(
       name: RoutesConstants.selectCountryScreen,

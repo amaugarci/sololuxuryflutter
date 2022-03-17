@@ -20,6 +20,15 @@ class AppConstants {
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
   static String referFriendEndPoint = "/V1/referFriend";
 
+  // static String menuEndPoint = "/V1/categories";
+  // static String estimatesShippingMethodEndPoint =
+  //     "/in-en/V1/carts/mine/estimate-shipping-methods";
+  // static String shippingInformationEndPoint =
+  //     "/in-en/V1/carts/mine/shipping-information";
+  // static String storeWebsitesEndPoint = "/V1/store/websites";
+  // static String storeViewsEndPoint = "/V1/store/storeViews";
+  // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
+  // static String jsonEndPoint = "/json";
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -69,6 +78,8 @@ class AppConstants {
   //static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   //static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
 
+
+
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
@@ -78,7 +89,10 @@ class AppConstants {
   //static String login = 'integration/customer/token';
   static String addAddress = 'customers/me';
   static String countryList = 'directory/countries';
-  static getUrlWithCode(url){
-    return "/rest/"+localStore.currentCode +  url;
+
+  static getUrlWithCode(url) {
+    return "/rest/" + localStore.currentCode + url;
   }
+
+  static String myTicketApi = '/V1/mytickets/';
 }

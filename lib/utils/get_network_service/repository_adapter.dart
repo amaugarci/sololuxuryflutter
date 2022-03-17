@@ -79,5 +79,10 @@ abstract class IRecommendedProductsRepository {
 
 abstract class ICountryListRepository {
   Future<String> getCountryListResponse();
+
   Future<String> postaddAddressApiResponse(String response);
+}
+
+abstract class IMyTicketRepository {
+  Future<dynamic> getmyTicketApiResponse(String response);
 }
