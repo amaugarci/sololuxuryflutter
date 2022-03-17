@@ -23,7 +23,7 @@ class MyWishListPage extends GetView<WishlistController> {
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
+                  //margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
                     child: Column(
