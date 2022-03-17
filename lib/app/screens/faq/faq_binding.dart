@@ -8,7 +8,7 @@ class FaqBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => FaqController(faqAPIRepository: Get.find()));
-    Get.lazyPut<IFaqProvider>(() => FaqProvider());
+    Get.lazyPut<FaqProvider>(() => FaqProvider());
     Get.put(FaqAPIRepository(faqProvider: Get.find()));
   }
 }
