@@ -75,7 +75,6 @@ abstract class IContactUsRepository {
 ///RecommendedProduct Class
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
-  Future<LoginResponseModel> getLoginAPIResponse(String loginRequestJson);
 }
 
 abstract class ICountryListRepository {

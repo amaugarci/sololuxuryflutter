@@ -63,8 +63,8 @@ class AppConstants {
   //Sign Up
   //static String login = '/integration/customer/token';
 
-  static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
-  static const String defaultToken1 = "Bearer 7cn032equ94z91iz1ykkeus8ds62twlf";
+  // static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
+  // static const String defaultToken1 = "Bearer 7cn032equ94z91iz1ykkeus8ds62twlf";
 
   //static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   //static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
