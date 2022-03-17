@@ -8,7 +8,7 @@ class CartScreen extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
         elevation: 0,
@@ -22,7 +22,7 @@ class CartScreen extends GetView<CartController> {
           ],
         ),
       ),
-    ));
+    );
   }
 
   Widget cartWidget() {

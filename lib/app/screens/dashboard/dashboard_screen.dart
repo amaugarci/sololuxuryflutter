@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
+import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/dashboard/dashboard_controller.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
@@ -267,11 +268,16 @@ class DashboardScreen extends GetView<DashboardController> {
                     const SizedBox(
                       width: 15.0,
                     ),
-                    SvgPicture.asset(
-                      AppAsset.cart,
-                      height: 20.0,
-                      width: 20.0,
-                      color: Colors.black,
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => CartScreen());
+                      },
+                      child: SvgPicture.asset(
+                        AppAsset.cart,
+                        height: 20.0,
+                        width: 20.0,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),

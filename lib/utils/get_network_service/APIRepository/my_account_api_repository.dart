@@ -30,14 +30,10 @@ class MyAccountAPIRepository implements IMyAccountRepository {
 
 class MyAccountAPIRepository extends GetxController {
   Future<MyAccountDetails?> myAccountsApi() async {
-    print(
-        "Categories=======================================Bearer ${localStore.customerToken}");
-    print(
-        "Categories=======================================Bearer ${AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount}");
     final response = await http.get(
       Uri.parse(
           AppConstants.apiEndPointLogin + AppConstants.apiEndPointMyAccount),
-      headers: {"Authorization": "Bearer h1rob69o1jhxi0m3ip3krv3d8abuhftw"},
+      headers: {"Authorization": localStore.customerToken},
     );
     if (response.statusCode == 200) {
       print(
