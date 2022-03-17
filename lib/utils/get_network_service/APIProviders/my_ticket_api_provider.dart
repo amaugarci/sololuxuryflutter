@@ -16,34 +16,29 @@ class MyTicketAPIProvider extends GetConnect implements IMyTicketProvider {
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Cookie": "PHPSESSID=kleu1ck02qon4i2obtjo6cef2j",
-    'Authorization': AppConstants.defaultToken1,
+    'Authorization': AppConstants.adminToken,
   };
 
   @override
   void onInit() {
     //Get All Store Model (Websites,Views and Configs)
     httpClient.defaultDecoder = (val) => jsonEncode(val);
-    httpClient.baseUrl = AppConstants.apiEndPoint;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
   }
 
   @override
   Future<dynamic> getmyTicketAPIResponse(
       {required String endPoint, required dynamic requestJson}) async {
-    var request = http.MultipartRequest(
-        "POST", Uri.parse("https://dev3.sololuxury.com/rest/V1/mytickets/"));
+    print('Api Is ${AppConstants.apiEndPointLogin + AppConstants.myTicketApi}');
+    // var request = http.MultipartRequest(
+    //     "POST", Uri.parse("https://dev3.sololuxury.com/rest/V1/mytickets/"));
+    var request = http.MultipartRequest("POST",
+        Uri.parse(AppConstants.apiEndPointLogin + AppConstants.myTicketApi));
     request.fields["website"] = "www.sololuxury.com";
     request.fields["email"] = "devdyna@gmail.com";
     final response = await request.send().timeout(const Duration(seconds: 60));
     var res = await http.Response.fromStream(response);
-
-    // FormData formData = FormData.fromMap(
-    //     {"website": "www.sololuxury.com", "email": "devdyna@gmail.com"});
-    // httpClient.defaultDecoder = (val) => jsonEncode(val);
-
-    // httpClient.timeout = const Duration(seconds: 60);
-    print("url country -> " + httpClient.baseUrl.toString() + endPoint);
-    print("response -> " + res.body);
     var json1 = json.decode(res.body);
 
     return json1;

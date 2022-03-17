@@ -10,7 +10,6 @@ class AppConstants {
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
   //static String menuEndPoint = "/V1/categories";
 
-
   static String bannerListEndPoint = "/bannerList";
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
@@ -37,8 +36,10 @@ class AppConstants {
   static String recommendedProductsEndPoint =
       "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
 
-  static String estimatesShippingMethodEndPoint = "/V1/carts/mine/estimate-shipping-methods";
-  static String shippingInformationEndPoint = "/V1/carts/mine/shipping-information";
+  static String estimatesShippingMethodEndPoint =
+      "/V1/carts/mine/estimate-shipping-methods";
+  static String shippingInformationEndPoint =
+      "/V1/carts/mine/shipping-information";
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
   static String storeViewsEndPoint = "/rest/V1/store/storeViews";
   static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
@@ -59,7 +60,8 @@ class AppConstants {
 
   //static String apiEndPoint = "https://api.solo_luxury.com";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
-  static String apiEndPointContactUs = "https://dev3.sololuxury.com/rest/V1/contactus";
+  static String apiEndPointContactUs =
+      "https://dev3.sololuxury.com/rest/V1/contactus";
 
   static String apiCountryGet = "http://ip-api.com";
 
@@ -78,8 +80,6 @@ class AppConstants {
   //static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   //static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
 
-
-
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
@@ -87,12 +87,12 @@ class AppConstants {
   static const String licenceId = '11434003';
 
   //static String login = 'integration/customer/token';
-  static String addAddress = 'customers/me';
-  static String countryList = 'directory/countries';
+  static String addAddress = '/rest/V1/customers/me';
+  static String countryList = '/rest/V1/directory/countries';
 
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }
 
-  static String myTicketApi = '/V1/mytickets/';
+  static String myTicketApi = '/rest/V1/mytickets/';
 }
