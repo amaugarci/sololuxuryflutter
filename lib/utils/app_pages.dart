@@ -237,7 +237,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.myTickets,
-      page: () => const MyTicketsScreen(),
+      page: () => const MyTicketScreen(),
       binding: MyTicketsBindings(),
     ),
     GetPage(
