@@ -4,13 +4,14 @@ import 'package:solo_luxury/utils/get_network_service/APIProviders/contact_us_ap
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
 
 class ContactUsAPIRepository implements IContactUsRepository {
-
   final ContactUsAPIProvider contactUsAPIProvider;
 
   ContactUsAPIRepository({required this.contactUsAPIProvider});
 
   @override
-  Future<ContactUsResponseModel> getContactUsApiResponse(String contactusRequestJson, String orderNo,
+  Future<dynamic> getContactUsApiResponse(
+      String contactusRequestJson,
+      String orderNo,
       String country,
       String subject,
       String message,
@@ -20,8 +21,10 @@ class ContactUsAPIRepository implements IContactUsRepository {
       String email,
       String name,
       String lastName) async {
-    final contactUsResponseModel = await contactUsAPIProvider.getContactUsResponseProvider(urlPath: AppConstants.signUp,
-        contactusRequestJson:contactusRequestJson,
+    final contactUsResponseModel =
+        await contactUsAPIProvider.getContactUsResponseProvider(
+      urlPath: AppConstants.signUp,
+      contactusRequestJson: contactusRequestJson,
       orderNo: orderNo,
       country: country,
       subject: subject,
@@ -33,12 +36,12 @@ class ContactUsAPIRepository implements IContactUsRepository {
       name: name,
       lastName: lastName,
     );
+    print("Contact Us Response $contactUsResponseModel");
 
-    if(contactUsResponseModel.status.hasError) {
-      return Future.error(contactUsResponseModel.statusText!);
-    } else {
-      return contactUsResponseModel.body!;
-    }
+    // if (contactUsResponseMode.) {
+    //   return Future.error(contactUsResponseModel.statusText!);
+    // } else {
+    return contactUsResponseModel;
+    // }
   }
-
 }

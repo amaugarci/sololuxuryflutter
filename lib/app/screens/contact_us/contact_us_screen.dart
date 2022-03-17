@@ -13,8 +13,9 @@ import '../../../utils/lang_directory/language_constant.dart';
 class ContactUsScreen extends GetView<ContactUsController> {
   ContactUsScreen({Key? key}) : super(key: key);
 
-  final CountryController countryController = Get.put(CountryController(countryAPIRepository: Get.put(CountryAPIRepository(countryAPIProvider: CountryAPIProvider()))));
-
+  final CountryController countryController = Get.put(CountryController(
+      countryAPIRepository: Get.put(
+          CountryAPIRepository(countryAPIProvider: CountryAPIProvider()))));
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
                           color: appColor,
                           width: 1,
                         ),
-                      ),child: surNameTextField()),
+                      ),
+                      child: surNameTextField()),
                   const SizedBox(height: 12),
                   Container(
                       height: 50,
@@ -83,7 +85,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
                           color: appColor,
                           width: 1,
                         ),
-                      ),child: emailTextField()),
+                      ),
+                      child: emailTextField()),
                   const SizedBox(height: 12),
                   Container(
                       height: 50,
@@ -94,7 +97,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
                           color: appColor,
                           width: 1,
                         ),
-                      ),child: emailConfirmationTextField()),
+                      ),
+                      child: emailConfirmationTextField()),
                   const SizedBox(height: 12),
                   Container(
                     alignment: Alignment.center,
@@ -145,7 +149,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
                           color: appColor,
                           width: 1,
                         ),
-                      ),child: subjectTextField()),
+                      ),
+                      child: subjectTextField()),
                   const SizedBox(height: 12),
                   Container(
                       //height: 50,
@@ -156,7 +161,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
                           color: appColor,
                           width: 1,
                         ),
-                      ),child: whatsOnYourMindTextField()),
+                      ),
+                      child: whatsOnYourMindTextField()),
                   const SizedBox(height: 12),
 
                   Container(
@@ -179,23 +185,24 @@ class ContactUsScreen extends GetView<ContactUsController> {
                             color: appColor),
                         value: controller.chosenCountry.value,
                         elevation: 2,
-                        items: countryController.storeWebsitesList.value.map((item) {
+                        items: countryController.storeWebsitesList.value
+                            .map((item) {
                           StoreWebSitesModel item1 =
-                          StoreWebSitesModel.fromJson(item);
+                              StoreWebSitesModel.fromJson(item);
                           return new DropdownMenuItem(
                               child: new Text(
-                                item1.name ?? '',    //Names that the api dropdown contains
+                                item1.name ??
+                                    '', //Names that the api dropdown contains
                                 style: TextStyle(
                                   fontSize: 15.0,
                                 ),
                               ),
-                              value: item1.name.toString()       //Id that has to be passed that the dropdown has.....
-                            //e.g   India (Name)    and   its   ID (55fgf5f6frf56f) somethimg like that....
-                          );
+                              value: item1.name
+                                  .toString() //Id that has to be passed that the dropdown has.....
+                              //e.g   India (Name)    and   its   ID (55fgf5f6frf56f) somethimg like that....
+                              );
                         }).toList(),
-                        hint: Text(
-                         LanguageConstant.countryText.tr
-                        ),
+                        hint: Text(LanguageConstant.countryText.tr),
                         onChanged: (String? value) {
                           controller.chosenCountry.value = value!;
                         },
@@ -204,7 +211,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                   ),
                   //countryTextField(),
                   const SizedBox(height: 20),
-                  submitAccountButton(),
+                  submitAccountButton(context),
                   const SizedBox(height: 30),
                   Text(
                     'Head Office',
@@ -292,13 +299,13 @@ class ContactUsScreen extends GetView<ContactUsController> {
     );
   }
 
-  Widget submitAccountButton() {
+  Widget submitAccountButton(context) {
     return SizedBox(
       width: 160,
       height: 41,
       child: ElevatedButton(
         onPressed: () {
-          controller.contactUsPost();
+          controller.contactUsPost(context);
         },
         style: ElevatedButton.styleFrom(
           elevation: 1,
@@ -318,8 +325,4 @@ class ContactUsScreen extends GetView<ContactUsController> {
       ),
     );
   }
-
-
-
 }
-
