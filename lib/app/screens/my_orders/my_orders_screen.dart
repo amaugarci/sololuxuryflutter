@@ -6,6 +6,8 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../data/model/MyOrders/MyOrdersData.dart';
+
 class MyOrdersScreen extends GetView<MyOrdersController> {
   const MyOrdersScreen({Key? key}) : super(key: key);
 
@@ -43,16 +45,13 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(border: Border.all(width: 1)),
-                    child: ListView.separated(
+                    child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => myOrderWidget(index),
-                      separatorBuilder: (context, index) => const Divider(
-                        color: appColor,
-                        thickness: 1.5,
-                      ),
-                      itemCount: controller
-                          .myOrdersList.length, //controller.myOrdersList.length
+                      itemBuilder: (context, index) {
+                        return myOrderWidget(index);
+                      },
+                      itemCount: controller.myOrdersModel?.value.items?.length,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -76,166 +75,9 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
         ));
   }
 
-  // Widget detailsButton(String text, int value) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // if (controller.index.value == value) {
-  //       //   controller.index.value = 0;
-  //       // } else {
-  //       //   controller.index.value = value;
-  //       // }
-  //     },
-  //     child: Container(
-  //       height: 50,
-  //       width: Get.width,
-  //       decoration: BoxDecoration(
-  //         color: appColor,
-  //         border: Border.all(color: Colors.black, width: 0.4),
-  //       ),
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Text(
-  //             text,
-  //             style: const TextStyle(color: Colors.white),
-  //           ),
-  //           const SizedBox(width: 10),
-  //           const Icon(
-  //             Icons.expand_more,
-  //             color: Colors.white,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Widget shippingAdd() {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 6),
-  //     child: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: [
-  //         const SizedBox(height: 12),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.paymentMethod.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Cash On Delivery',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.shippingAddress.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Lucknow',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.billingAddress.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Lucknow',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         const SizedBox(height: 5),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget emailSubscribe() {
-  //   return Container(
-  //     height: 47,
-  //     width: Get.width,
-  //     margin: const EdgeInsets.symmetric(horizontal: 15),
-  //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       borderRadius: BorderRadius.circular(30),
-  //       border: Border.all(color: appColor, width: 1.5),
-  //     ),
-  //     child: Row(
-  //       children: [
-  //         const SizedBox(width: 18),
-  //         const Expanded(
-  //           child: TextField(
-  //             decoration: InputDecoration(
-  //               hintText: 'Your E-Mail',
-  //               hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
-  //               border: InputBorder.none,
-  //             ),
-  //           ),
-  //         ),
-  //         Container(
-  //           height: 47,
-  //           width: 120,
-  //           decoration: BoxDecoration(
-  //             color: appColor,
-  //             borderRadius: BorderRadius.circular(30),
-  //             border: Border.all(color: appColor, width: 1.5),
-  //           ),
-  //           alignment: Alignment.center,
-  //           child: const Text(
-  //             'SUBSCRIBE',
-  //             style: TextStyle(
-  //               color: Colors.white,
-  //               fontSize: 13.5,
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget buttonShopping() {
-  //   return Container(
-  //     child: ElevatedButton(
-  //       onPressed: () {},
-  //       style: ElevatedButton.styleFrom(
-  //         elevation: 1,
-  //         primary: appColor,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(20),
-  //         ),
-  //       ),
-  //       child: Text(
-  //         LanguageConstant.continueShopping.tr.toUpperCase(),
-  //         style: const TextStyle(
-  //           color: Colors.white,
-  //           fontWeight: FontWeight.w600,
-  //           fontSize: 12.5,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget myOrderWidget(index) {
+    ParentItemElement? item =
+        controller.myOrdersModel?.value.items?[index].items?[0];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(
@@ -266,7 +108,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].name,
+                item!.name!,
                 style: TextStyle(
                     color: Colors.black54), //controller.brandList[index].name
               ),
@@ -282,7 +124,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].sku,
+                item.sku!,
                 style: TextStyle(color: Colors.black54),
               ),
             ],
@@ -297,7 +139,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].price.toString(),
+                item.price!.toString(),
                 style: const TextStyle(color: Colors.black54),
               ),
             ],
@@ -312,7 +154,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                     color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].qtyOrdered.toString(),
+                item.qtyOrdered.toString(),
                 style: const TextStyle(color: Colors.black54),
               ),
             ],

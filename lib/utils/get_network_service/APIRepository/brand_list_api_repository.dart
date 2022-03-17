@@ -12,7 +12,7 @@ class BrandListAPIRepository implements IBrandListRepository {
 
 
   @override
-  Future<BrandData> getBrandDataApiResponse() async{
+  Future<List<BrandData>> getBrandDataApiResponse() async{
     final response = await brandListProvider.getBrandListResponseProvider(endPoint: AppConstants.brandList);
     if (response != null) {
       print("response.statusCode -> ");

@@ -3,7 +3,7 @@ import '../../../../data/model/Product/product_model.dart';
 import '../../../utils/colors.dart';
 
 class WishlistItem extends StatelessWidget {
-  ProductModel product;
+  Item? product;
 
   WishlistItem({required this.product});
 
@@ -33,15 +33,15 @@ class WishlistItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("MIU MIU", style: TextStyle(fontSize: 20)),
+                    Text("${product?.name}", style: TextStyle(fontSize: 20)),
                     SizedBox(
                       height: 5,
                     ),
-                    Text("PAINTED MARY JANE", style: TextStyle(fontSize: 14)),
+                    Text("${product?.name}", style: TextStyle(fontSize: 14)),
                     SizedBox(
                       height: 10,
                     ),
-                    Text("\$ 560.00",
+                    Text('\$ ' + "${product?.price}",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold))
                   ]),

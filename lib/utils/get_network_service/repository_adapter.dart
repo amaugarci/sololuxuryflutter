@@ -1,3 +1,4 @@
+import 'package:solo_luxury/data/model/Faq/faq_model.dart';
 import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
@@ -89,15 +90,15 @@ abstract class IRecommendedProductsRepository {
 }
 
 abstract class IProductListRepository {
-  Future<List<ProductModel>> getProductListApiResponse();
+  Future<ProductModel> getProductListApiResponse();
 }
 
 abstract class IWishListRepository {
-  Future<List<ProductModel>> getWishListApiResponse();
+  Future<ProductModel> getWishListApiResponse();
 }
 
 abstract class IBrandListRepository {
-  Future<BrandData> getBrandDataApiResponse();
+  Future<List<BrandData>> getBrandDataApiResponse();
 }
 
 abstract class IDeleteWishListRepository {
@@ -105,7 +106,7 @@ abstract class IDeleteWishListRepository {
 }
 
 abstract class IFaqRepository {
-  Future<String> getFaqApiResponse();
+  Future<FaqModel> getFaqApiResponse();
 }
 
 abstract class IMyOrdersRepository {

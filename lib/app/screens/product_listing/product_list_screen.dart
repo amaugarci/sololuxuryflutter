@@ -15,94 +15,86 @@ class ProductListScreen extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      key: controller.scaffoldKey.value,
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        backgroundColor: backGroundColor,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {
-            controller.scaffoldKey.value.currentState!.openDrawer();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SvgPicture.asset(ImageConstant.menuIcon),
-          ),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.searchIcon),
+          key: controller.scaffoldKey.value,
+          backgroundColor: backGroundColor,
+          appBar: AppBar(
+            backgroundColor: backGroundColor,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
+            leading: InkWell(
+              onTap: () {
+                controller.scaffoldKey.value.currentState!.openDrawer();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SvgPicture.asset(ImageConstant.menuIcon),
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.heartIcon),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
-                  color: Colors.black),
-            ),
-          ),
-        ],
-        title: Image.asset(AppAsset.logo, width: 110),
-        /*bottom: PreferredSize(
+            actions: [
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.searchIcon),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.heartIcon),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
+                      color: Colors.black),
+                ),
+              ),
+            ],
+            title: Image.asset(AppAsset.logo, width: 110),
+            /*bottom: PreferredSize(
           preferredSize: Size(Get.width, 60),
           child: const HeaderWidget(),
         ),*/
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.5),
-        child: Column(
-          children: [
-            filterWidget(),
-            const SizedBox(height: 15),
-            filterDropDown(),
-            const SizedBox(height: 30),
-            FutureBuilder<List<ProductModel>>(
-              future: controller.getHomeProducts("12"),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Expanded(
-                    child: GridView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 12.5,
-                        childAspectRatio: 0.55,
-                      ),
-                      itemBuilder: (_, index) {
-                        return Product(product: controller.homeCategoryProductList[index]);
-                      },
-                      itemCount: controller.homeCategoryProductList.value.length,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.5),
+            child: Column(
+              children: [
+                filterWidget(),
+                const SizedBox(height: 15),
+                filterDropDown(),
+                const SizedBox(height: 30),
+                Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 12.5,
+                      childAspectRatio: 0.55,
                     ),
-                  );
-                }else{
-                  return Container();
-                }
-              },
+                    itemBuilder: (_, index) {
+                      Item? item = controller.productModel?.value.items?[index];
+                      return Product(product: item);
+                    },
+                    itemCount: controller.productModel?.value.items?.length,
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget filterWidget() {

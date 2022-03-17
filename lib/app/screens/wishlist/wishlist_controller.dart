@@ -12,15 +12,15 @@ class WishlistController extends GetxController {
   var wishlistProductList = <ProductModel>[].obs;
   final WishListAPIRepository wishListAPIRepository;
   WishlistController({required this.wishListAPIRepository});
-
+  Rx<ProductModel>? productModel = ProductModel().obs;
 
   @override
   void onInit() {
     super.onInit();
   }
 
-  Future<List<ProductModel>> getWishlistProducts() async {
-    wishlistProductList.value = await wishListAPIRepository.getWishListApiResponse();
+ getWishlistProducts() async {
+    productModel?.value = await wishListAPIRepository.getWishListApiResponse();
     return wishlistProductList.value;
   }
 
