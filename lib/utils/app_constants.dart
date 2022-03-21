@@ -88,4 +88,6 @@ class AppConstants {
   static getUrlWithCode(url){
     return "/rest/"+localStore.currentCode +  url;
   }
+  static const String fontPoppins = 'Poppins';
+  static const String fontOpenSans = 'OpenSans';
 }

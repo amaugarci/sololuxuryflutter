@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 
 import '../../utils/colors.dart';
 
@@ -34,7 +35,7 @@ class CommonTextField extends StatelessWidget {
       this.textAlign = TextAlign.left,
       this.textColor = Colors.black,
       this.borderColor = appColorButton,
-      this.fontFamily = "Poppins",
+      this.fontFamily = AppConstants.fontPoppins,
       this.fontWeight = FontWeight.w400})
       : super(key: key);
 
