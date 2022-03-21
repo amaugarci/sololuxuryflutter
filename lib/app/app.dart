@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_pages.dart';
 import 'package:solo_luxury/utils/lang_directory/translation_service.dart';
 
@@ -30,7 +31,7 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
         theme: ThemeData(
           backgroundColor: primaryWhite,
           scaffoldBackgroundColor: primaryWhite,
-          fontFamily: 'Poppins',
+          fontFamily: AppConstants.fontPoppins,
           //fontFamily: 'Roboto',
           hintColor: regularGrey,
           iconTheme: const IconThemeData(
