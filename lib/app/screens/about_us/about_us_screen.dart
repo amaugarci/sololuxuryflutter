@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
+import '../../../utils/app_constants.dart';
 import '../../../utils/lang_directory/language_constant.dart';
 
 class AboutUsScreen extends StatelessWidget {
@@ -19,12 +20,12 @@ class AboutUsScreen extends StatelessWidget {
               const SizedBox(height: 60),
               Text(
                 LanguageConstant.aboutUsText.tr,
-                style: const TextStyle(
+                style: TextStyle(
                   decoration: TextDecoration.underline,
                   decorationColor: appColor,
                   decorationThickness: 1.5,
                   color: appColor,
-                  fontFamily: "OpenSans",
+                  fontFamily: AppConstants.fontOpenSans,
                   fontWeight: FontWeight.w600,
                   fontSize: 22,
                 ),
