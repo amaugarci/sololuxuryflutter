@@ -288,4 +288,8 @@ class LanguageConstant {
   static const String subjectText = "subjectText";
   static const String whatsonyourmindText = "whatsonyourmindText";
 
+  static const String welcometoChatText = "welcometoChatText";
+  static const String fillTheFormText = "fillTheFormText";
+  static const String nameChatText = "nameChatText";
+
 }

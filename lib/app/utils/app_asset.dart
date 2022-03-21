@@ -44,4 +44,5 @@ class AppAsset {
   static const minus = "assets/icons/minus.png";
   static const plus = "assets/icons/plus.png";
   static const bag = "assets/icons/bag.png";
+  static const account = "assets/icons/account.png";
 }

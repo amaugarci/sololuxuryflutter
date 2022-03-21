@@ -16,6 +16,7 @@ class MyAccountController extends GetxController {
   RxString chosenValue = LanguageConstant.myAccountText.tr.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> firstNameController = TextEditingController().obs;
+  final formKey = GlobalKey<FormState>();
   var myAccountModel = MyAccountDetails().obs;
   RxBool isLoading = true.obs;
   String? countryName;
