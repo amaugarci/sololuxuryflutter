@@ -49,6 +49,7 @@ class AppConstants {
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
+  static String productImageUrl = "https://www.sololuxury.com/media/catalog/product/";
 
   //static String apiEndPoint = "https://api.solo_luxury.com";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
