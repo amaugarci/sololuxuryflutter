@@ -85,6 +85,8 @@ class AppConstants {
   //static String login = 'integration/customer/token';
   static String addAddress = 'customers/me';
   static String countryList = 'directory/countries';
+
+  static const int websiteId = 151;
   static getUrlWithCode(url){
     return "/rest/"+localStore.currentCode +  url;
   }

@@ -35,6 +35,8 @@ class Customer {
     this.lastname,
     this.websiteId,
     this.addresses,
+    this.dob,
+    this.extensionAttributes,
   });
 
   String? email;
@@ -42,6 +44,8 @@ class Customer {
   String? lastname;
   int? websiteId;
   List<AddressRequest>? addresses;
+  String? dob;
+  RequestExtensionAttributes? extensionAttributes;
 
   factory Customer.fromJson(Map<String, dynamic> json) => Customer(
     email: json["email"],
@@ -49,6 +53,8 @@ class Customer {
     lastname: json["lastname"],
     websiteId: json["website_id"],
     addresses: List<AddressRequest>.from(json["addresses"].map((x) => AddressRequest.fromJson(x))),
+    dob: json["dob"],
+    extensionAttributes: RequestExtensionAttributes.fromJson(json["extension_attributes"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -57,8 +63,27 @@ class Customer {
     "lastname": lastname,
     "website_id": websiteId,
     "addresses": List<dynamic>.from(addresses!.map((x) => x.toJson())),
+    "dob": dob,
+    "extension_attributes": extensionAttributes!.toJson(),
   };
 }
+
+class RequestExtensionAttributes {
+  RequestExtensionAttributes({
+    this.dom,
+  });
+
+  String? dom;
+
+  factory RequestExtensionAttributes.fromJson(Map<String, dynamic> json) => RequestExtensionAttributes(
+    dom: json["dom"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "dom": dom,
+  };
+}
+
 
 class AddressRequest {
   AddressRequest({
