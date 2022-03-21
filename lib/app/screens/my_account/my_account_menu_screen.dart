@@ -28,7 +28,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
         key: controller.scaffoldKey.value,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: appColor,
+          backgroundColor: secondaryColor,
           bottom: PreferredSize(
             preferredSize: Size(Get.width, 60),
             child: myAccountHeader(),
@@ -37,7 +37,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
         ),
         backgroundColor: backGroundColor,
         body: Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
+          //padding: EdgeInsets.only(left: 10, right: 10),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                         Text(
                           LanguageConstant.accessYourAccountDetailsText.tr,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: appColor,
                               fontSize: 16.0,
                               fontWeight: FontWeight.w400),
                         ),
@@ -109,422 +109,475 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                   ),
                 ),
-                Obx(()=>Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.myOrderScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.myOrdersText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                Obx(() => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.myOrderScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.myOrdersText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.wishlistScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.myWishlistText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(
+                                      RoutesConstants.addressBookScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.addressBookText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.myAccountScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.accountInformationText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => const MyTicketScreen());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.myTicketsText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.trackOrderText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.countryScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    controller.countryCurrency.value,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.wishlistScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.myWishlistText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Container(
+                          color: secondaryColor,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 15.0, bottom: 15.0),
+                              child: Text(
+                                LanguageConstant.companyMyAccountText.tr,
+                                style: TextStyle(
+                                    color: appColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.addressBookScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.addressBookText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.contactUsScreen);
+                                  //Get.to(() => const ContactUsScreen());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.contactUsText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.secureShoppingText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.productsScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.advancedSearchText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.testimonialsText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.myAccountScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.accountInformationText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Container(
+                          color: secondaryColor,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 15.0, bottom: 15.0),
+                              child: Text(
+                                LanguageConstant.socialMyAccountText.tr,
+                                style: TextStyle(
+                                    color: appColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => const MyTicketScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.myTicketsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.hopeText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(
+                                      RoutesConstants.affiliateProgramScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.affiliateProgramText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants
+                                      .influencerRegistrationScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant
+                                        .influencerRegistrationText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.exchangeText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.trackOrderText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Container(
+                          color: secondaryColor,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 15.0, bottom: 15.0),
+                              child: Text(
+                                LanguageConstant.contactMyAccountText.tr,
+                                style: TextStyle(
+                                    color: appColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: (){
-                        Get.toNamed(RoutesConstants.countryScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          controller.countryCurrency.value,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => const PrivacyPolicyScreen());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.privacyPolicyText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => const TermsAndConditionScreen());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.termsConditionsText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.shippingText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.companyMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500),
+                        Container(
+                          color: secondaryColor,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 15.0, bottom: 15.0),
+                              child: Text(
+                                LanguageConstant.aboutText.tr,
+                                style: TextStyle(
+                                    color: appColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.contactUsScreen);
-                        //Get.to(() => const ContactUsScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.contactUsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => const AboutUsScreen());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.aboutUsMyAccountText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(
+                                      RoutesConstants.referFriendScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant
+                                        .referFriendMyAccountText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  // Get.toNamed(RoutesConstants.guestReturnsScreen);
+                                  Get.toNamed(
+                                      RoutesConstants.returnsAndRefundsScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.returnsText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.faqScreen);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.faqMyAccountText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              GestureDetector(
+                                onTap: () {
+                                  showTitleDialog(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    LanguageConstant.liveChatText.tr,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.secureShoppingText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.productsScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.advancedSearchText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.testimonialsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.socialMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.hopeText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.affiliateProgramScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.affiliateProgramText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                            RoutesConstants.influencerRegistrationScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.influencerRegistrationText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.exchangeText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.contactMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => const PrivacyPolicyScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.privacyPolicyText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => const TermsAndConditionScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.termsConditionsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.shippingText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Text(
-                          LanguageConstant.aboutText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => const AboutUsScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.aboutUsMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: (){
-                        Get.toNamed(RoutesConstants.referFriendScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.referFriendMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-
-                        // Get.toNamed(RoutesConstants.guestReturnsScreen);
-                        Get.toNamed(RoutesConstants.returnsAndRefundsScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.returnsText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RoutesConstants.faqScreen);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.faqMyAccountText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-                    GestureDetector(
-                      onTap: () {
-                        showTitleDialog(context);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          LanguageConstant.liveChatText.tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                  ],
-                ))
+                      ],
+                    ))
               ],
             ),
           ),
@@ -541,13 +594,13 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
             Text(
               LanguageConstant.myAccountText.tr,
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
+                  color: Colors.black,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w500),
             ),
             Image.asset(
               AppAsset.bag,
-              color: Colors.white,
+              color: Colors.black,
               width: 25,
               height: 25,
             ),
