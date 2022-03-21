@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_controller.dart';
-import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/MyOrders/MyOrdersData.dart';
+import '../../components/common_widget/common_appbar.dart';
 
 class MyOrdersScreen extends GetView<MyOrdersController> {
   const MyOrdersScreen({Key? key}) : super(key: key);
@@ -16,68 +15,66 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     return Obx(() => Scaffold(
           key: controller.scaffoldKey.value,
           backgroundColor: backGroundColor,
-          appBar: AppBar(
-            backgroundColor: backGroundColor,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.black),
-            centerTitle: true,
-            title: Image.asset(AppAsset.logo, width: 110),
-            bottom: PreferredSize(
-              preferredSize: Size(Get.width, 60),
-              child: const HeaderWidget(),
-            ),
-          ),
-          endDrawer: const Drawer(),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.5),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(
-                    LanguageConstant.myOrders.tr,
-                    style: const TextStyle(
-                      color: appColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(border: Border.all(width: 1)),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return myOrderWidget(index);
-                      },
-                      itemCount: controller.myOrdersModel?.value.items?.length,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  //   shippingAdd(),
-                  const SizedBox(height: 20),
-                  //   buttonShopping(),
-                  const SizedBox(height: 20),
-                  // detailsButton(
-                  //     LanguageConstant.contactText.tr.toUpperCase(), 2),
-                  // detailsButton(
-                  //     LanguageConstant.socialText.tr.toUpperCase(), 3),
-                  // detailsButton(
-                  //     LanguageConstant.companyText.tr.toUpperCase(), 4),
-                  const SizedBox(height: 20),
-                  //   emailSubscribe(),
-                  const SizedBox(height: 40)
-                ],
-              ),
-            ),
-          ),
+          appBar: commonAppbar(),
+          body: body(),
         ));
   }
 
-  Widget myOrderWidget(index) {
-    ParentItemElement? item =
-        controller.myOrdersModel?.value.items?[index].items?[0];
+  body() {
+    if (controller.myOrdersModel!.value.items == null) {
+      return Container();
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.5),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              LanguageConstant.myOrders.tr,
+              style: const TextStyle(
+                color: appColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(border: Border.all(width: 1)),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  ParentItemElement? item = controller.myOrdersModel!.value.items![index].items!.first;
+                  return myOrderWidget(item);
+                },
+                itemCount: controller.myOrdersModel!.value.items!.length,
+              ),
+            ),
+            const SizedBox(height: 20),
+            //   shippingAdd(),
+            const SizedBox(height: 20),
+            //   buttonShopping(),
+            const SizedBox(height: 20),
+            // detailsButton(
+            //     LanguageConstant.contactText.tr.toUpperCase(), 2),
+            // detailsButton(
+            //     LanguageConstant.socialText.tr.toUpperCase(), 3),
+            // detailsButton(
+            //     LanguageConstant.companyText.tr.toUpperCase(), 4),
+            const SizedBox(height: 20),
+            //   emailSubscribe(),
+            const SizedBox(height: 40)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget myOrderWidget(ParentItemElement? item) {
+    if (item == null) {
+      return Container();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(
@@ -89,8 +86,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.myOrderImage.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               const Text(
                 '149052',
@@ -104,13 +100,11 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.productName.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                item!.name!,
-                style: TextStyle(
-                    color: Colors.black54), //controller.brandList[index].name
+                item.name!,
+                style: TextStyle(color: Colors.black54), //controller.brandList[index].name
               ),
             ],
           ),
@@ -120,8 +114,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.sku.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
                 item.sku!,
@@ -135,8 +128,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.price.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
                 item.price!.toString(),
@@ -150,8 +142,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.quantity.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
                 item.qtyOrdered.toString(),
@@ -165,8 +156,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.status.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               const Text(
                 'Processing',
@@ -179,16 +169,12 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.action.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Row(
                 children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.remove_red_eye_outlined)),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.cancel_outlined))
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.remove_red_eye_outlined)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.cancel_outlined))
                 ],
               ),
             ],

@@ -12,7 +12,7 @@ class MyOrdersListAPIProvider extends GetConnect implements IMyOrdersListProvide
 
   @override
   void onInit() {
-    httpClient.defaultDecoder = (val) => ProductModel.fromJson(val);
+    httpClient.defaultDecoder = (val) => MyOrdersData.fromJson(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 

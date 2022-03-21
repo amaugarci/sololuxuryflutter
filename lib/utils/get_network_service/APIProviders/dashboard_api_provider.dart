@@ -23,7 +23,7 @@ class DashboardAPIProvider extends GetConnect implements IDashboardProvider {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint, headers: {
       "Content-type": "application/json",
-      "Authorization": AppConstants.defaultToken
+      "Authorization": AppConstants.adminToken
     });
   }
 }

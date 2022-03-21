@@ -15,8 +15,9 @@ class MyOrdersAPIRepository implements IMyOrdersRepository {
   Future<MyOrdersData> getMyOrdersApiResponse() async{
     final response = await myOrderAPIProvider.getMyOrdersListResponseProvider(endPoint: AppConstants.myOrders);
     if (response != null) {
-      print("response.statusCode -> ");
+      print("response.statusCode getMyOrdersApiResponse-> ");
       print(response.statusCode);
+      print(response.body!.toJson());
     }
     if(response.status.hasError) {
       return Future.error(response.statusText!);
