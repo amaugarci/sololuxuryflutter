@@ -8,6 +8,7 @@ import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../../utils/app_constants.dart';
 
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
@@ -38,35 +39,35 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       imageCarousel(),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 25),
                       Row(
                         children: [
                           Container(
-                            height: 50,
+                            height: 65,
                             width: 20,
                             margin: EdgeInsets.only(right: 12),
                             color: whiteColor,
-                            child: const Icon(Icons.arrow_back_ios, size: 13),
+                            child: const Icon(Icons.arrow_back_ios, size: 16, color: Colors.black54,),
                           ),
                           Expanded(child: allProductImages()),
                           Container(
-                            height: 50,
+                            height: 65,
                             width: 20,
                             margin: EdgeInsets.only(left: 12),
                             color: whiteColor,
                             child:
-                                const Icon(Icons.arrow_forward_ios, size: 13),
+                                const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black54,),
                           ),
                         ],
                       ),
                       const SizedBox(height: 41),
                       Text(
-                        "BALENCIAGA",
+                        product!.name!,
                         style: commonTextStyle400(size: 24.0),
                       ),
                       const SizedBox(height: 14),
                       Text(
-                        "Loafers in Leather",
+                        product!.name!,
                         style: commonTextStyle400(size: 18.0),
                       ),
                       const SizedBox(height: 28),
@@ -77,11 +78,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                               !controller.isSelected.value;
                         },
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 8),
                       Visibility(
                         visible: controller.isSelected.isTrue ? true : false,
-                        child: const Text(
-                          'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
+                        child: Text(
+                          "${product!.customAttributes!.first.value}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -111,14 +112,14 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 35),
                       Text(
-                        "£780.00",
+                        "£${product?.price!.toStringAsFixed(2)}",
                         style: commonTextStyle600(size: 24.0),
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        "SKU:- 636924WA72L1000-Black",
+                        "SKU:-${product?.sku}",
                         style: commonTextStyle600(
-                            size: 14.0, color: const Color(0xff777777)),
+                            size: 14.0, color: Colors.black54,),
                       ),
                       const SizedBox(height: 25),
                       Row(
@@ -288,7 +289,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   Widget imageCarousel() {
     return Container(
-      height: 270,
+      height: 436,
       width: Get.width,
       padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
       decoration: BoxDecoration(
@@ -296,16 +297,19 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         border: Border.all(color: appColor),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
                 AppAsset.logo,
-                height: 16,
+                height: 12,
               ),
+              SvgPicture.asset(AppAsset.search, height: 24, color: Colors.black45,),
             ],
           ),
+          SizedBox(height: 97,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -315,14 +319,14 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                 color: Colors.black54,
               ),
               SizedBox(
-                height: 200,
+                height: 241,
                 width: Get.width * 0.78,
                 child: PageView.builder(
                   controller: controllerPage,
                   itemBuilder: (_, index) {
-                    return Image.asset(
-                      AppAsset.shoze,
-                      fit: BoxFit.cover,
+                    return Image.network(
+                      "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                      fit: BoxFit.fill,
                     );
                   },
                   itemCount: 6,
@@ -356,13 +360,13 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       onTap: onTap,
       child: Container(
         color: secondaryColor,
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(13),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               text!,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w400),
             ),
             const Icon(Icons.expand_more, color: Colors.black),
           ],
@@ -447,7 +451,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   Widget allProductImages() {
     return SizedBox(
-      height: 60,
+      height: 65,
       child: ListView.builder(
         itemCount: 6,
         shrinkWrap: true,
@@ -455,12 +459,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         itemBuilder: (context, index) => Row(
           children: [
             Container(
-              width: 60,
+              width: 65,
               margin: const EdgeInsets.only(right: 12),
               decoration: BoxDecoration(
-                image: const DecorationImage(
-                  image: AssetImage(
-                    AppAsset.shoze,
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
                   ),
                   fit: BoxFit.fill,
                 ),

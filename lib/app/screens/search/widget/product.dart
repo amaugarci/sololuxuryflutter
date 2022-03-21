@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../../data/model/Product/product_model.dart';
+import '../../../../utils/app_constants.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class Product extends StatelessWidget {
                   ),
                   const SizedBox(height: 68),
                   Image.network(
-                    'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
                     height: 92,
                     width: 120,
                     fit: BoxFit.cover,
