@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:solo_luxury/app/screens/filter/filter_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../data/model/CheckBoxListTileModel.dart';
 import '../../utils/app_asset.dart';
 
 class ListFilterPage extends GetView<FilterController> {
@@ -32,12 +35,12 @@ class ListFilterPage extends GetView<FilterController> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10),
-                      height: 500,
+                      height: 400,
                       decoration: BoxDecoration(color: lightBrownColor),
                       alignment: Alignment.centerLeft,
                       child: Column(
                         children: [
+                          SizedBox(height: 10),
                           Row(
                             children: [
                               Expanded(
@@ -51,10 +54,13 @@ class ListFilterPage extends GetView<FilterController> {
                                   ),
                                 ),
                               ),
-                              Icon(
-                                Icons.close,
-                                size: 25.0,
-                                color: appColor,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.close,
+                                  size: 25.0,
+                                  color: appColor,
+                                ),
                               )
                             ],
                           ),
@@ -92,16 +98,20 @@ class ListFilterPage extends GetView<FilterController> {
                                                 decoration: BoxDecoration(
                                                     color: controller
                                                             .priceClicked.value
-                                                        ? lightappColor
+                                                        ? backGroundColor
                                                         : lightBrownColor),
                                                 width: Get.width,
                                                 height: 40,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text(LanguageConstant.priceText.tr,
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .priceText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w400,
                                                           color: appColor)),
                                                 )),
                                           ),
@@ -120,7 +130,7 @@ class ListFilterPage extends GetView<FilterController> {
                                                 decoration: BoxDecoration(
                                                     color: controller
                                                             .colorClicked.value
-                                                        ? lightappColor
+                                                        ? backGroundColor
                                                         : lightBrownColor),
                                                 width: Get.width,
                                                 height: 40,
@@ -128,7 +138,8 @@ class ListFilterPage extends GetView<FilterController> {
                                                   padding: const EdgeInsets.all(
                                                       10.0),
                                                   child: Text(
-                                                    LanguageConstant.colorText.tr,
+                                                    LanguageConstant
+                                                        .colorText.tr,
                                                     style: TextStyle(
                                                         fontSize: 18,
                                                         color: appColor),
@@ -150,14 +161,16 @@ class ListFilterPage extends GetView<FilterController> {
                                                 decoration: BoxDecoration(
                                                     color: controller
                                                             .brandClicked.value
-                                                        ? lightappColor
+                                                        ? backGroundColor
                                                         : lightBrownColor),
                                                 width: Get.width,
                                                 height: 40,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text(LanguageConstant.brandText.tr,
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .brandText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           color: appColor)),
@@ -178,14 +191,16 @@ class ListFilterPage extends GetView<FilterController> {
                                                 decoration: BoxDecoration(
                                                     color: controller
                                                             .sizeClicked.value
-                                                        ? lightappColor
+                                                        ? backGroundColor
                                                         : lightBrownColor),
                                                 width: Get.width,
                                                 height: 40,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
                                                       10.0),
-                                                  child: Text(LanguageConstant.sizeText.tr,
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .sizeText.tr,
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           color: appColor)),
@@ -194,6 +209,7 @@ class ListFilterPage extends GetView<FilterController> {
                                         ],
                                       )),
                                   Container(
+                                      alignment: Alignment.topLeft,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               width: 1, color: brownColor)),
@@ -210,18 +226,28 @@ class ListFilterPage extends GetView<FilterController> {
                 )),
             SizedBox(height: 50),
             Container(
-              height: 40,
+                height: 40,
                 decoration: BoxDecoration(
                     color: appColor,
                     border: Border.all(width: 1, color: brownColor)),
-                width: Get.width * .42,
-                child: Center(child: Text(LanguageConstant.applyText.tr, style: TextStyle(color: Colors.white, fontSize: 18),))),
+                width: Get.width * .9,
+                child: Center(
+                    child: Text(
+                  LanguageConstant.applyText.tr,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                ))),
           ]),
         ))));
   }
 
   Widget priceFilterWidget() {
+    List<CheckBoxListTileModel> data1 = getData();
     return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
             margin: EdgeInsets.all(5),
@@ -240,33 +266,43 @@ class ListFilterPage extends GetView<FilterController> {
                 ),
               ],
             )),
-        Expanded(
-            child: Container(
-          child: Column(
-            children: priceList
-                .map((data) => RadioListTile(
+        Flexible(
+          child: ListView.builder(
+              shrinkWrap: true,
+              primary: false, // <- add
+              itemCount: getData().length,
+              itemBuilder: (BuildContext context, int index) {
+                return Column(
+                  children: <Widget>[
+                    new CheckboxListTile(
                       contentPadding: EdgeInsets.zero,
-                      activeColor: appColor,
-                      title: Text("${data}"),
-                      groupValue: controller.priceFilter.value,
-                      value: data,
-                      onChanged: (val) {
-                        controller.priceFilter.value = val as String;
-                      },
-                    ))
-                .toList(),
-          ),
-        )),
+                        activeColor: appColor,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        title: new Text(
+                          data1[index].title!,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,),
+                        ),
+                        value: data1[index].isCheck!,
+                        onChanged: (bool? val) {})
+                  ],
+                );
+              }),
+        ),
       ],
     );
   }
 
-  List<String> priceList = [
-    "500 - 1000",
-    "1500 - 2000",
-    "2500 - 3000",
-    "3500 - 4000",
-    "4500 - 5000",
-    "5500 - 6000"
-  ];
+  List<CheckBoxListTileModel> getData() {
+    return <CheckBoxListTileModel>[
+      CheckBoxListTileModel(title: "\u{20B9} 500 - 1000", isCheck: true),
+      CheckBoxListTileModel(title: "\u{20B9} 1500 - 2000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 2500 - 3000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 3500 - 4000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 4500 - 5000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 5500 - 6000", isCheck: false),
+    ];
+  }
 }
