@@ -11,7 +11,7 @@ import '../../../data/model/Product/product_model.dart';
 
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
-  ProductModel? product;
+  Item? product;
 
   ProductDetailScreen({this.product});
 

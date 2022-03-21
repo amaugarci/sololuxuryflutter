@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -109,23 +110,25 @@ class ProductListScreen extends GetView<ProductController> {
             'WOMEN',
             style: TextStyle(
               color: appColor,
-              fontWeight: FontWeight.w600,
+              fontSize: 16.0, fontWeight: FontWeight.w600,
             ),
           ),
           const Spacer(),
           Container(
             color: appColor,
-            width: 90,
+            width: 166,
             height: 47,
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(AppAsset.filter),
+                SvgPicture.asset(AppAsset.filter, width: 18.0, height: 18.0,),
+                SizedBox(width: 24,),
                 const Text(
                   'FILTER',
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -150,11 +153,11 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
-            color: Colors.black54,
+            color: appColor,
           ),
         ],
       ),
