@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/utils/app_asset.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../utils/colors.dart';
 import 'cart_controller.dart';
 
@@ -9,125 +12,432 @@ class CartScreen extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      backgroundColor: appSubscribeButtonColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            cartWidget(),
+            const SizedBox(
+              height: 60,
+            ),
+            donateDesign(),
+            const SizedBox(
+              height: 50,
+            ),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              itemCount: 3,
+              itemBuilder: (context, index) => Container(
+                width: Get.width,
+                margin: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 5, left: 5, top: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const [
+                                        Image(
+                                          image: AssetImage(AppAsset.logo),
+                                          width: 40,
+                                        ),
+                                        Icon(Icons.favorite_border,
+                                            color: blackColor, size: 10),
+                                      ],
+                                    ),
+                                  ),
+                                  const Image(
+                                    image: AssetImage(AppAsset.sandel),
+                                    width: 40,
+                                  ),
+                                ],
+                              ),
+                              width: 100,
+                              height: 100,
+                              padding: const EdgeInsets.only(bottom: 15),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: brownE7CCBE,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "MIU MIU",
+                                  style: textStyleUtils600(size: 16.0),
+                                ),
+                                Text(
+                                  "Gucci Dionysus sm bag 2",
+                                  style: textStyleUtils300(size: 16.0),
+                                ),
+                                Text(
+                                  "Size: 12",
+                                  style: textStyleUtils300(size: 16.0),
+                                ),
+                              ],
+                            ),
+                          ],
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Image(
+                              image: AssetImage(AppAsset.edit),
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            Image(
+                              image: AssetImage(AppAsset.delete),
+                            ),
+                          ],
+                        ),
+                      ],
+                      alignment: Alignment.bottomRight,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: Get.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${LanguageConstant.price.tr.toUpperCase()}         ",
+                            style: textStyleUtils600(size: 16.0),
+                          ),
+                          Text(
+                            LanguageConstant.qtyText.tr.toUpperCase(),
+                            style: textStyleUtils600(size: 16.0),
+                          ),
+                          Text(
+                            LanguageConstant.subTotal.tr.toUpperCase(),
+                            style: textStyleUtils600(size: 16.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                      color: brownE7CCBE,
+                      height: 1,
+                      thickness: 1,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "\$29,960.00",
+                          style: textStyleUtils400(size: 16.0),
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.remove,
+                              color: blackColor,
+                            ),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            Container(
+                              width: 50,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: brownE7CCBE, width: 1),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            const Icon(
+                              Icons.add,
+                              color: blackColor,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "\$29,960.00",
+                          style: textStyleUtils400(size: 16.0),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            MaterialButton(
+              onPressed: () {},
+              child: Text(
+                LanguageConstant.updateCart.tr,
+                style: textStyleUtils600(color: whiteColor),
+              ),
+              elevation: 0,
+              minWidth: 137,
+              color: ticketTextColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: Get.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    LanguageConstant.orderDetails.tr,
+                    style: textStyleUtils600(size: 22.0),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        LanguageConstant.subTotal.tr,
+                        style: textStyleUtils600(size: 22.0),
+                      ),
+                      Text(
+                        "\$246,320.00",
+                        style: textStyleUtils400(size: 18.0),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  const Divider(
+                    color: brownDBD3D1,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        LanguageConstant.tax.tr,
+                        style: textStyleUtils600(size: 22.0),
+                      ),
+                      Text(
+                        "\$0.00",
+                        style: textStyleUtils400(size: 18.0),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: Get.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          LanguageConstant.promoCode.tr,
+                          style: textStyleUtils600(),
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: LanguageConstant.enterCode.tr,
+                            hintStyle: textStyleUtils400(color: brownBDB5B3),
+                          ),
+                        ),
+                      ],
+                    ),
+                    color: whiteColor,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 15,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      LanguageConstant.orderTotalText.tr.toUpperCase(),
+                      style: textStyleUtils600(size: 16.0),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "\$246,320.00",
+                      style: textStyleUtils400(size: 24.0),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: MaterialButton(
+                      onPressed: () {},
+                      child: Text(
+                        LanguageConstant.checkOutText.tr.toUpperCase(),
+                        style: textStyleUtils600(color: whiteColor),
+                      ),
+                      elevation: 0,
+                      minWidth: 119,
+                      color: ticketTextColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      LanguageConstant.cartContain5.tr,
+                      style: textStyleUtils300(),
+                    ),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.only(
+                  bottom: 15, top: 20, left: 20, right: 20),
+              color: brownF3E5DE,
+            ),
+            const SizedBox(
+              height: 70,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget cartWidget() {
+  textStyleUtils600({var size, var color}) {
+    return TextStyle(
+      color: color ?? blackColor,
+      fontFamily: "OpenSans",
+      fontSize: size ?? 14,
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  textStyleUtils300({var size}) {
+    return TextStyle(
+      color: blackColor,
+      fontFamily: "OpenSans",
+      fontSize: size ?? 14,
+      fontWeight: FontWeight.w300,
+    );
+  }
+
+  textStyleUtils400({var size, var color}) {
+    return TextStyle(
+      color: color ?? blackColor,
+      fontFamily: "OpenSans",
+      fontSize: size ?? 14,
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  Widget donateDesign() {
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      decoration: BoxDecoration(
-        border: Border.all(color: appColor, width: 1.2),
-        color: secondaryColor,
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            LanguageConstant.cartContain1.tr,
+            style: textStyleUtils600(size: 16.0),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            LanguageConstant.cartContain2.tr,
+            style: textStyleUtils300(),
+          ),
+          const SizedBox(
+            height: 28,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.close,
-                  color: Colors.black54,
-                ),
+              const Image(
+                image: AssetImage(AppAsset.he),
               ),
-            ],
-          ),
-          const Text(
-            'You added ALEXANDER MCQUEEN MULES ALEXANDER MCQUEEN HYBRID SIGNATURE SLIDES to your shopping cart.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: appColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Image.network(
-                'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
-                height: 60,
-                width: 60,
-                fit: BoxFit.cover,
+              const SizedBox(
+                width: 30,
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  viewCartButton(),
-                  const SizedBox(height: 8),
-                  continueShoppingButton(),
+                  Text(
+                    LanguageConstant.cartContain3.tr,
+                    style: textStyleUtils600(),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  MaterialButton(
+                    onPressed: () {},
+                    child: Text(
+                      LanguageConstant.cartContain4.tr,
+                      style: textStyleUtils600(color: whiteColor),
+                    ),
+                    elevation: 0,
+                    minWidth: 175,
+                    color: ticketTextColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 12),
         ],
       ),
-    );
-  }
-
-  Widget viewCartButton() {
-    return SizedBox(
-      width: 124,
-      height: 34,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          elevation: 1,
-          primary: appColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: const Text(
-          'VIEW CART',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 12.5,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget continueShoppingButton() {
-    return SizedBox(
-      width: 170,
-      height: 34,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          elevation: 1,
-          primary: appColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: const Text(
-          'CONTINUE SHOPPING',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 12.5,
-          ),
-        ),
+      padding: const EdgeInsets.only(left: 15, top: 15, bottom: 12),
+      margin: const EdgeInsets.only(left: 20, right: 20),
+      width: Get.width,
+      decoration: const BoxDecoration(
+        color: secondarybackgroundcolor,
       ),
     );
   }
