@@ -32,6 +32,8 @@ class AppAsset {
   static const bagIcon = "assets/icons/bag.png";
   static const applogo = "assets/icons/logo.png";
   static const indianflagIcon = "assets/icons/indian_flag.png";
+  static const deleteIcon = "assets/icons/delete.png";
+  static const editIcon = "assets/icons/edit.png";
 
   /// Images
   static const dialogError = 'assets/images/error_dialog.png';

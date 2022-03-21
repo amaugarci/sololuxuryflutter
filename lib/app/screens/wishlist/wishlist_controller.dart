@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../../data/model/Wishlist/wishlist_model.dart';
 import '../../../utils/get_network_service/APIRepository/wishlist_api_repository.dart';
 
 class WishlistController extends GetxController {
@@ -12,16 +13,16 @@ class WishlistController extends GetxController {
   var wishlistProductList = <ProductModel>[].obs;
   final WishListAPIRepository wishListAPIRepository;
   WishlistController({required this.wishListAPIRepository});
-  Rx<ProductModel>? productModel = ProductModel().obs;
+  Rx<WishListProductModel>? wishItemModel = WishListProductModel().obs;
 
   @override
   void onInit() {
     super.onInit();
+      getWishlistProducts();
   }
 
  getWishlistProducts() async {
-    productModel?.value = await wishListAPIRepository.getWishListApiResponse();
-    return wishlistProductList.value;
+    wishItemModel?.value = await wishListAPIRepository.getWishListApiResponse();
   }
 
   Future<bool> deleteWishlistProduct(String id) async {

@@ -44,6 +44,9 @@ const Color appColorDarkLineGrey = Color(0xff838383);
 const Color appTextFieldHintColor = Color(0xffCBB6A1);
 const Color appSubscribeButtonColor = Color(0xffFBECE5);
 const Color affiliateBorderColor = Color(0xffCEAE9F);
+const Color wishListBorder = Color(0xffE7CCBE);
+const Color wishListCardBackground = Color(0xffFFFBF8);
+const Color addToCartColor = Color(0xff713213);
 
 const Color selectedTabColor = Color(0xFF983400);
 const Color unselectedTabColor = Color(0xFF6D6D6D);
