@@ -1,8 +1,8 @@
 class LanguageConstant {
   //Home Screen Constant
-  static const String aboutUsText = "aboutUs";
+  static const String aboutUsText = "aboutUsText";
 
-  //static const String aboutUsText = "aboutUsText";
+  // static const String aboutUsText = "aboutUsText";
   static const String aboutUsContain1 = "aboutUsContain1";
   static const String aboutUsContain2 = "aboutUsContain2";
   static const String aboutUsContain3 = "aboutUsContain3";
@@ -11,6 +11,12 @@ class LanguageConstant {
   static const String aboutUsContain6 = "aboutUsContain6";
   static const String aboutUsContain7 = "aboutUsContain7";
 
+  ///charity
+  static const String charityTitle = "charityTitle";
+  static const String charityContain1 = "charityContain1";
+  static const String charityContain2 = "charityContain2";
+  static const String charityContain3 = "charityContain3";
+  static const String charityContain4 = "charityContain4";
 
   static const String returnPolicyTitle = "returnPolicyTitle";
   static const String returnProcessTitle = "returnProcessTitle";
@@ -48,7 +54,6 @@ class LanguageConstant {
   static const String followersText = "followersText";
   static const String countryText = "countryText";
   static const String workedOnText = "workedOnText";
-
 
   ///product Details Screen
   static const String details = "details";
@@ -142,8 +147,8 @@ class LanguageConstant {
   static const String resetMyPasswordText = "resetMyPasswordText";
   static const String yourEmailText = "yourEmailText";
 
-
-  static const String accessYourAccountDetailsText = "accessYourAccountDetailsText";
+  static const String accessYourAccountDetailsText =
+      "accessYourAccountDetailsText";
 
   //TODO:Brijesh
   static const String yourEmail1Text = "Your E-Mail";

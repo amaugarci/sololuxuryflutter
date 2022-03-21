@@ -42,7 +42,8 @@ class AppAsset {
   static const googleStore = 'assets/images/googleStore.png';
   static const moneyBank = 'assets/images/moneyBank.png';
   static const payPal = 'assets/images/payPal.png';
-
+  static const charity1 = 'assets/images/charity1.png';
+  static const charity2 = 'assets/images/charity2.png';
   static const close = "assets/icons/close.png";
   static const minus = "assets/icons/minus.png";
   static const plus = "assets/icons/plus.png";

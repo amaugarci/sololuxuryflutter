@@ -467,8 +467,8 @@ appBarWidget(controller) {
                 InkWell(
                   onTap: () {
                     // Get.to(() => const ForgetPasswordMenuScreen());
-                    // Get.toNamed(RoutesConstants.productDetailsScreen);
-                    Get.toNamed(RoutesConstants.appSecureShoppingScreen);
+                    Get.toNamed(RoutesConstants.productDetailsScreen);
+                    // Get.toNamed(RoutesConstants.appSecureShoppingScreen);
                   },
                   child: SvgPicture.asset(
                     AppAsset.search,

@@ -236,7 +236,9 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(RoutesConstants.appSecureShoppingScreen);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -293,7 +295,9 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                     Divider(),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(RoutesConstants.charityScreen);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
