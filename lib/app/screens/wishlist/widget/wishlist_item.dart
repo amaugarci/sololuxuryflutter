@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/data/model/Wishlist/wishlist_model.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../utils/colors.dart';
 
 class WishlistItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class WishlistItem extends StatelessWidget {
               Container(
                 height: 350,
                 child: Image.network(
-                  'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                  "${AppConstants.productImageUrl}${item!.product!.customAttributes!.first.value}",
                   // height: 150,
                   fit: BoxFit.cover,
                 ),
