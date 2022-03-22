@@ -22,7 +22,8 @@ class ProductController extends GetxController {
 
   @override
   void onInit() {
-    getHomeProducts("86");
+    print("Id -> ${Get.arguments[0]}");
+    getHomeProducts(Get.arguments[0].toString());
     super.onInit();
   }
 
