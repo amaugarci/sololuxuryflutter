@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
@@ -13,6 +15,8 @@ class BrandListPage extends GetView<BrandController> {
 
   @override
   Widget build(BuildContext context) {
+    BrandController controller = Get.find<BrandController>();
+    var expandvalue = false.obs;
     return Obx(() => Scaffold(
           key: controller.scaffoldKey.value,
           backgroundColor: backGroundColor,
@@ -21,109 +25,293 @@ class BrandListPage extends GetView<BrandController> {
             elevation: 0,
             iconTheme: const IconThemeData(color: Colors.black),
             centerTitle: true,
-            title: Image.asset(AppAsset.logo, width: 110),
-            bottom: PreferredSize(
-              preferredSize: Size(Get.width, 60),
-              child: const HeaderWidget(),
+            title: Image.asset(
+              AppAsset.logo,
+              width: 110,
+              fit: BoxFit.fill,
             ),
           ),
-          endDrawer: const Drawer(),
           body: Column(
             children: [
               Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(color: secondaryColor),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text("Find Brands",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      Icon(
-                        Icons.search,
-                        color: appColor,
-                      )
-                    ],
-                  )),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: backGroundColor),
-                  child: Expanded(
-                    child: Text(
-                        "A  B  C  D  E  F  G  H  I  J  K  L  M  \nN  O  P  Q  R  S  T  U  V  W  X  Y  Z  \n1  2  3  4  5  6  7  8  9",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: appColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                  )),
-              Expanded(
-                child: ListView(
-                  children: [
-                    // for (var entry in groupedLists.entries)
-                    Container(
-                      width: double.infinity,
-                      height: 300,
-                      decoration: BoxDecoration(color: offWhite),
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        height: 90,
-                        child: ListView.builder(
-                          //   physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 5,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
-                            if (index == 4) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child:
-                                        Text(controller.brandList[index].name),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Text(
-                                      'Next',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              );
-                            } else {
-                              return Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Text(controller.brandList[index].name),
-                              );
-                            }
-                          },
+                margin: EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+                height: MediaQuery.of(context).size.height / 15.6,
+                child: TextFormField(
+                  controller: null,
+                  cursorColor: appColor,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.transparent,
+                      contentPadding:
+                          EdgeInsets.only(bottom: 12, top: 12, left: 12),
+                      hintText:
+                          LanguageConstant.findBrandsText.tr.toUpperCase(),
+                      hintStyle: TextStyle(
+                          color: appColor.withOpacity(0.4),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14),
+                      errorStyle: TextStyle(color: Color(0xFF973133)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(
+                          color: appColor,
                         ),
                       ),
-                    ),
-                  ],
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(
+                          color: appColor,
+                          width: 1.0,
+                        ),
+                      ),
+                      isDense: true,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: appColor,
+                          ),
+                          borderRadius: BorderRadius.circular(20.0)),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6.0, vertical: 4),
+                        child: ClipOval(
+                          child: Material(
+                            color: appColor, // Button color
+                            child: InkWell(
+                              splashColor: Colors.red, // Splash color
+                              onTap: () {},
+                              child: Icon(
+                                CupertinoIcons.search,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+                  onChanged: (value) {
+                    controller.onSearchTextChanged(value);
+                  },
                 ),
+              ),
+              Container(
+                height: 30,
+                child: Center(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.filterList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final fliterList = controller.filterList[index];
+                        return InkWell(
+                          onTap: () {
+                            if (controller.filtersearchAlllist
+                                .contains(fliterList)) {
+                              controller.setSerchwithAlphabatic("");
+                            } else {
+                              controller.setSerchwithAlphabatic(fliterList);
+                            }
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? appColor
+                                      : Colors.transparent),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: Text(
+                                "${fliterList}",
+                                style: TextStyle(
+                                    color: controller.filtersearchAlllist
+                                            .contains(fliterList)
+                                        ? Colors.white
+                                        : appColor,
+                                    fontWeight: FontWeight.w500),
+                              )),
+                        );
+                      }),
+                ),
+              ),
+              Container(
+                height: 30,
+                child: Center(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.filterList2.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final fliterList = controller.filterList2[index];
+                        return InkWell(
+                          onTap: () {
+                            if (controller.filtersearchAlllist
+                                .contains(fliterList)) {
+                              controller.setSerchwithAlphabatic("");
+                            } else {
+                              controller.setSerchwithAlphabatic(fliterList);
+                            }
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? appColor
+                                      : Colors.transparent),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 7.6, vertical: 8),
+                              child: Text(
+                                "${fliterList}",
+                                style: TextStyle(
+                                    color: controller.filtersearchAlllist
+                                            .contains(fliterList)
+                                        ? Colors.white
+                                        : appColor,
+                                    fontWeight: FontWeight.w500),
+                              )),
+                        );
+                      }),
+                ),
+              ),
+              Container(
+                height: 30,
+                child: Center(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.filterList3.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final fliterList = controller.filterList3[index];
+                        return InkWell(
+                          onTap: () {
+                            if (controller.filtersearchAlllist
+                                .contains(fliterList)) {
+                              controller.setSerchwithAlphabatic("");
+                            } else {
+                              controller.setSerchwithAlphabatic(fliterList);
+                            }
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? appColor
+                                      : Colors.transparent),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: Text(
+                                "${fliterList}",
+                                style: TextStyle(
+                                    color: controller.filtersearchAlllist
+                                            .contains(fliterList)
+                                        ? Colors.white
+                                        : appColor,
+                                    fontWeight: FontWeight.w500),
+                              )),
+                        );
+                      }),
+                ),
+              ),
+              Expanded(
+                child: controller.isLoading.value
+                    ? Container(
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF973133),
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.filtersearchAlllist.length > 0
+                            ? controller.filtersearchAlllist.length
+                            : controller.filterAlllist.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final brandsListCapital =
+                              controller.filtersearchAlllist.length > 0
+                                  ? controller.filtersearchAlllist[index]
+                                  : controller.filterAlllist[index];
+                          return ListTileTheme(
+                            contentPadding: EdgeInsets.zero,
+                            minVerticalPadding: 10,
+                            dense: true,
+                            horizontalTitleGap: 1.2,
+                            minLeadingWidth: 10,
+                            child: Container(
+                              color: expandvalue.value
+                                  ? backGroundColor
+                                  : appColor.withOpacity(0.1),
+                              padding: EdgeInsets.zero,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 2, horizontal: 8),
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(dividerColor: Colors.transparent),
+                                child: ExpansionTile(
+                                  backgroundColor: appColor.withOpacity(0.1),
+                                  // collapsedBackgroundColor: backGroundColor,
+                                  onExpansionChanged: (value) {
+                                    print("Value Is $value");
+                                    expandvalue.value = value;
+                                  },
+                                  childrenPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  tilePadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  title: Text(
+                                    '${brandsListCapital}'.toUpperCase(),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: appColor),
+                                  ),
+                                  trailing: Icon(
+                                    Icons.add,
+                                    color: appColor,
+                                  ),
+                                  children: [
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: controller
+                                                    .listDisplay(
+                                                        brandsListCapital)
+                                                    .length >
+                                                5
+                                            ? 5
+                                            : controller
+                                                .listDisplay(brandsListCapital)
+                                                .length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final countryInsideList =
+                                              controller.listDisplay(
+                                                  brandsListCapital)[index];
+                                          return Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 8),
+                                              decoration: BoxDecoration(
+                                                  border: Border()),
+                                              child: Text(
+                                                "${countryInsideList}",
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: appColor,
+                                                ),
+                                              ));
+                                        }),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
               ),
             ],
           ),
         ));
   }
-}
-
-class Brand {
-  String name;
-
-  Brand({required this.name});
 }
