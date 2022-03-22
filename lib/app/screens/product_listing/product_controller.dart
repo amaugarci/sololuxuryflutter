@@ -11,11 +11,13 @@ class ProductController extends GetxController {
   var selectedIndex = 0.obs;
   var activeProduct = ProductModel().obs;
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
-  final CartController cartController = Get.put(CartController());
+  /*final CartController cartController =
+      Get.put(CartController(cartGetDataAPIRepository: Get.find()));*/
   var homeCategoryProductList = <ProductModel>[].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
   final ProductListAPIRepository productListAPIRepository;
+
   ProductController({required this.productListAPIRepository});
 
   @override
@@ -40,9 +42,9 @@ class ProductController extends GetxController {
   //   return true;
   // }
 
-  getHomeProducts(String val)  async{
-    productModel?.value = await productListAPIRepository.getProductListApiResponse();
+  getHomeProducts(String val) async {
+    productModel?.value =
+        await productListAPIRepository.getProductListApiResponse();
     //return homeCategoryProductList.value;
   }
-
 }

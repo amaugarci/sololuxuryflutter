@@ -4,6 +4,8 @@ import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bind
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
+import 'package:solo_luxury/app/screens/cart/cart_binding.dart';
+import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
@@ -152,8 +154,13 @@ class AppPages {
       binding: OrderConfirmationBinding(),
     ),
     GetPage(
+      name: RoutesConstants.cartScreen,
+      page: () =>const CartScreen(),
+      binding: CartBinding(),
+    ),
+    GetPage(
       name: RoutesConstants.productDetailsScreen,
-      page: () =>  ProductDetailScreen(),
+      page: () => ProductDetailScreen(),
       binding: ProductDetailsBindings(),
     ),
     GetPage(

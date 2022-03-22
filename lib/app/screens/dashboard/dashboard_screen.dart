@@ -270,7 +270,7 @@ class DashboardScreen extends GetView<DashboardController> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => CartScreen());
+                        Get.toNamed(RoutesConstants.cartScreen);
                       },
                       child: SvgPicture.asset(
                         AppAsset.cart,

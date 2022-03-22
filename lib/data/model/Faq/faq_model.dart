@@ -2,13 +2,7 @@
 //
 //     final faqModel = faqModelFromJson(jsonString);
 
-import 'dart:convert';
 
-List<FaqModel> faqModelFromJson(String str) =>
-    List<FaqModel>.from(json.decode(str).map((x) => FaqModel.fromJson(x)));
-
-String faqModelToJson(List<FaqModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class FaqModel {
   FaqModel({
