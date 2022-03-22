@@ -22,6 +22,9 @@ class LocalStore{
   var currentCode = "";
   var currentCurrency = "";
   var customerToken = "";
+  var website_id = "";
+  var store_group_id = "";
+  var default_group_id = "";
 
   getStore() async {
     print("getStore -> ");
@@ -30,8 +33,14 @@ class LocalStore{
       LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
       currentCode = localStoreModel.currentCode!;
       currentCurrency = localStoreModel.currentCurrency!;
+      website_id = localStoreModel.getStore(currentCode)?.websiteId?.toString()??"";
+      store_group_id = localStoreModel.getStore(currentCode)?.storeGroupId?.toString()??"";
+      default_group_id = store_group_id;
       print("currentCode -> " + currentCode);
       print("currentCurrency -> " + currentCurrency);
+      print("website_id -> " + website_id);
+      print("store_group_id -> " + store_group_id);
+      print("default_group_id -> " + default_group_id);
       Get.updateLocale(Locale(localStoreModel.currentCode!.split("-")[1]));
       return true;
     }

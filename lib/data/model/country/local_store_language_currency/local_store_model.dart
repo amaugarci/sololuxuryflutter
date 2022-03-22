@@ -52,6 +52,12 @@ class LocalStoreModel {
     "store_view_model": List<dynamic>.from(storeViewModelList!.map((x) => x.toJson())),
     "store_language_currency_model": List<dynamic>.from(storeLanguageCurrencyModelList!.map((x) => x.toJson())),
   };
+
+  LocalStoreViewModel getStore(code){
+    LocalStoreViewModel localStoreViewModel = storeViewModelList!.firstWhere((element) => element.code == code);
+    return localStoreViewModel;
+  }
+
 }
 
 class LocalStoreLanguageCurrencyModel {
