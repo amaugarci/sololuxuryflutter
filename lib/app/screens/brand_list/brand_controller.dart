@@ -9,12 +9,15 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/brand_list_a
 class BrandController extends GetxController {
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
+  Rx<GlobalKey<ScaffoldState>> scaffoldKey2 = GlobalKey<ScaffoldState>().obs;
+
   RxList<BrandModel>? getbrandList = <BrandModel>[].obs;
   RxList<BrandModel>? getsearchList = <BrandModel>[].obs;
   var brandList = <BrandModel>[].obs;
   var isLoading = true.obs;
   var filtersearchAlllist = [].obs;
   var lista = "A".obs;
+  RxInt index = 0.obs;
 
   List filterList =
       ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"].obs;
@@ -22,6 +25,7 @@ class BrandController extends GetxController {
       ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"].obs;
   List filterList3 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].obs;
 
+  var brandDetails = "".obs;
   List nAList = [].obs;
   List nBList = [].obs;
   List nCList = [].obs;
