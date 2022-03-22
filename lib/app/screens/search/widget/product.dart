@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../../data/model/Product/product_model.dart';
+import '../../../../utils/app_constants.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
@@ -17,9 +18,9 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Get.to(() => ProductDetailScreen(
-        //       product: product,
-        //     ));
+        Get.to(() => ProductDetailScreen(
+              product: product,
+            ));
       },
       child: Container(
         width: 150,
@@ -29,7 +30,7 @@ class Product extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 200,
+              height: 210,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
@@ -45,15 +46,16 @@ class Product extends StatelessWidget {
                     children: [
                       Image.asset(
                         AppAsset.logo,
-                        width: 90,
+                        width: 50,
                       ),
                       SvgPicture.asset(AppAsset.heart, height: 14),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 68),
                   Image.network(
-                    'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
-                    height: 150,
+                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                    height: 92,
+                    width: 120,
                     fit: BoxFit.cover,
                   ),
                 ],
@@ -63,37 +65,40 @@ class Product extends StatelessWidget {
             Text(
               "${product?.name}",
               style: const TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
+                  fontSize: 16,
                   overflow: TextOverflow.ellipsis),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 6),
             Text(
               "${product?.name}",
               style: const TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
+                  fontSize: 16,
                   overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '\$ ' + "${product?.price}",
+                  '\$' + "${product?.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 14.5,
+                    fontSize: 16,
                   ),
                 ),
+                const SizedBox(width: 50),
                 Text(
-                  '\$ ' + "${product?.price}",
+                  '\$' + "${product?.price}",
                   style: const TextStyle(
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black45,
                     decoration: TextDecoration.lineThrough,
-                    fontSize: 14.5,
+                    fontSize: 16,
                   ),
                 ),
               ],

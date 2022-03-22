@@ -10,6 +10,7 @@ import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
 import '../../data/model/Product/product_model.dart';
+import '../../data/model/Wishlist/wishlist_model.dart';
 import '../../data/model/brand_list/BrandData.dart';
 import '../../data/model/checkout_order/multi_address_model.dart';
 
@@ -94,7 +95,7 @@ abstract class IProductListRepository {
 }
 
 abstract class IWishListRepository {
-  Future<ProductModel> getWishListApiResponse();
+  Future<WishListProductModel> getWishListApiResponse();
 }
 
 abstract class IBrandListRepository {
