@@ -111,6 +111,11 @@ class Product {
     "tier_prices": List<dynamic>.from(tierPrices!.map((x) => x)),
     "custom_attributes": List<dynamic>.from(customAttributes!.map((x) => x.toJson())),
   };
+  getProductImage(){
+    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode=="image");
+    if(customAttributes==null)return "";
+    return customAttribute.value;
+  }
 }
 
 class CustomAttribute {
