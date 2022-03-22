@@ -19,7 +19,8 @@ class WishListProductModel {
 
   factory WishListProductModel.fromJson(Map<String, dynamic> json) => WishListProductModel(
     itemsCount: json["items_count"],
-    items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+      items: json["items"] != null ? new List<Item>.from( json["items"].map((x) => Item.fromJson(x))) : List<Item>.empty(),
+      // items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
