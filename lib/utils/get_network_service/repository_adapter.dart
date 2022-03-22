@@ -2,6 +2,7 @@ import 'package:solo_luxury/data/model/Faq/faq_model.dart';
 import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
+import 'package:solo_luxury/data/model/cart/cart_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/contact_us_response_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
@@ -68,6 +69,11 @@ abstract class ICheckoutOrderRepository {
 ///myAccount Class
 abstract class IMyAccountRepository {
   Future<MyAccountDetails> getMyAccountApiResponse();
+}
+
+///cart Class
+abstract class ICartRepository {
+  Future<CartModel> getCartGetDataApiResponse();
 }
 
 abstract class IContactUsRepository {

@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
-import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
+import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/dashboard/dashboard_controller.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_menu_screen.dart';
-import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
 import 'package:solo_luxury/app/screens/search/search_screen.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
@@ -40,7 +39,6 @@ class DashboardScreen extends GetView<DashboardController> {
                   const HomeScreen(),
                   const SearchScreen(),
                   CheckoutOrderScreen(),
-                  // BrandListPage(),
                   MyWishListPage(),
                   //ProfileScreen(),
                   MyAccountMenuPage(),
@@ -270,11 +268,16 @@ class DashboardScreen extends GetView<DashboardController> {
                     const SizedBox(
                       width: 15.0,
                     ),
-                    SvgPicture.asset(
-                      AppAsset.cart,
-                      height: 20.0,
-                      width: 20.0,
-                      color: Colors.black,
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(RoutesConstants.cartScreen);
+                      },
+                      child: SvgPicture.asset(
+                        AppAsset.cart,
+                        height: 20.0,
+                        width: 20.0,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),

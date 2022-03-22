@@ -62,6 +62,7 @@ class LanguageConstant {
   static const String whyVeraLusso = "whyVeraLusso";
   static const String recommendation = "recommendation";
   static const String recentlyViewed = "recentlyViewed";
+  static const String subTotal = "subTotal";
 
   ///forgetPassword menu Screen
   static const String forgetPassword = "forgetPassword";
@@ -101,6 +102,16 @@ class LanguageConstant {
   static const String quantity = "quantity";
   static const String status = "status";
   static const String action = "action";
+  static const String orderDetails = "orderDetails";
+  static const String tax = "tax";
+  static const String promoCode = "promoCode";
+  static const String enterCode = "enterCode";
+  static const String updateCart = "updateCart";
+  static const String cartContain1 = "cartContain1";
+  static const String cartContain2 = "cartContain2";
+  static const String cartContain3 = "cartContain3";
+  static const String cartContain4 = "cartContain4";
+  static const String cartContain5 = "cartContain5";
 
   static const String paymentMethod = "paymentMethod";
   static const String shippingAddress = "shippingAddress";

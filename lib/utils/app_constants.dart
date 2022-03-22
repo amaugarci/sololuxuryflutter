@@ -91,6 +91,8 @@ class AppConstants {
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
   static const String faq = "/rest/default/V1/snowdog/cmsPage/16";
+  static const String cartGetData = "/rest/in-en/V1/carts/mine";
+
   static const String myOrders = "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
   static const String deleteWishlist = "/rest/V1/wishlist/";
   static const String postWishlist = "/rest/V1/wishlist/";
