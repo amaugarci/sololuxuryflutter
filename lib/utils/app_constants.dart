@@ -100,12 +100,16 @@ class AppConstants {
   static const String licenceId = '11434003';
 
   //static String login = 'integration/customer/token';
+
   static String addAddress = '/rest/V1/customers/me';
   static String countryList = '/rest/V1/directory/countries';
 
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }
+
+  static const int websiteId = 1;
+
 
 
   static String myTicketApi = '/rest/V1/mytickets/';

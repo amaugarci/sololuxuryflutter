@@ -296,9 +296,15 @@ class LanguageConstant {
   static const String confirmEmailText = "confirmEmailText";
   static const String subjectText = "subjectText";
   static const String whatsonyourmindText = "whatsonyourmindText";
+
   static const String nameChatText = "nameChatText";
   static const String idText = "idText";
   static const String actionText = "actionText";
   static const String welcometoChatText = "welcometoChatText";
   static const String fillTheFormText = "fillTheFormText";
+
+
+  static const String dateOfMarriageText = "dateOfMarriageText";
+
+
 }

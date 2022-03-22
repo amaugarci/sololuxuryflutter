@@ -267,6 +267,15 @@ class SignupScreen extends GetView<SignupController> {
   }
 
   Widget marriageAnniversaryTextField() {
+    return DatepickerWidget(
+      enabled: true,
+      controller: controller.marriageAnniversaryController.value,
+      labelText: LanguageConstant.dateOfMarriageText.tr,
+      validator: (date) => (date == null &&
+          controller.marriageAnniversaryController.value.text == '')
+          ? LanguageConstant.pleaseSelectValidDateText.tr
+          : null,
+    );
     return TextFormFieldWidget(
       controller: controller.marriageAnniversaryController.value,
       hintText:LanguageConstant.marriageAnniversaryText.tr,
