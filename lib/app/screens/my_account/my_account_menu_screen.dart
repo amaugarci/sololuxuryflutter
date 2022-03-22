@@ -14,6 +14,7 @@ import '../../components/input_text_field_widget.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import '../country/country_screen.dart';
+import '../my_tickets/my_tickets_screen.dart';
 import '../refer_friend/refer_friend_screen.dart';
 import 'my_account_controller.dart';
 import 'package:livechatt/livechatt.dart';

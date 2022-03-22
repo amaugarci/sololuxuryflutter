@@ -99,6 +99,7 @@ abstract class ICountryListRepository {
 
 abstract class IMyTicketRepository {
   Future<dynamic> getmyTicketApiResponse(String response);
+}
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse();
