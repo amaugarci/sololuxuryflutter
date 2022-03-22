@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 
 class CommonTextPoppins extends StatelessWidget {
   String? text;
@@ -28,7 +29,7 @@ class CommonTextPoppins extends StatelessWidget {
       text!,
       overflow: overflow,
       style: TextStyle(
-          fontFamily: "Poppins",
+          fontFamily: AppConstants.fontPoppins,
           fontSize: fontSize,
           height: height,
           fontWeight: fontWeight,

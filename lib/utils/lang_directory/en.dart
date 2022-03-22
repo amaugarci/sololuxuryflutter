@@ -231,7 +231,7 @@ const Map<String, String> en = {
   "edit": "EDIT",
   "editAddress": "EDIT ADDRESS",
   "liveChatText": "Live Chat",
-  "startChatText": "Start Chat",
+  "startChatText": "Start the chat",
   "chooseYourCountryText": "Choose your country",
   "billingText": "Default\nBilling",
   "yourAppExpericanceText": "Your app experience is set to",
@@ -285,5 +285,5 @@ const Map<String, String> en = {
   "idText": "ID",
   "actionText": "Action",
   "welcometoChatText": "Welcome to our LiveChat!",
-  "fillTheFormText": "Please fill in the form below before starting the chat.",
+  "fillTheFormText": "Please fill in the form below before starting the chat."
 };

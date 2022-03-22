@@ -36,7 +36,8 @@ class LoginController extends GetxController {
 
       loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim())).obs;
       loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
-      setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+      await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+      await localStore.getToken();
       log("loginResponseModel : $loginResponseModel");
     } else {}
   }

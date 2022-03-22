@@ -12,40 +12,40 @@ String faqModelToJson(List<FaqModel> data) =>
 
 class FaqModel {
   FaqModel({
-    required this.id,
-    required this.identifier,
-    required this.title,
-    required this.pageLayout,
-    required this.metaTitle,
-    required this.metaKeywords,
-    required this.metaDescription,
-    required this.contentHeading,
-    required this.content,
-    required this.creationTime,
-    required this.updateTime,
-    required this.sortOrder,
-    required this.layoutUpdateXml,
-    required this.customTheme,
-    required this.customRootTemplate,
-    required this.active,
+    this.id,
+    this.identifier,
+    this.title,
+    this.pageLayout,
+    this.metaTitle,
+    this.metaKeywords,
+    this.metaDescription,
+    this.contentHeading,
+    this.content,
+    this.creationTime,
+    this.updateTime,
+    this.sortOrder,
+    this.layoutUpdateXml,
+    this.customTheme,
+    this.customRootTemplate,
+    this.active,
   });
 
-  int id;
-  String identifier;
-  String title;
-  String pageLayout;
-  String metaTitle;
-  String metaKeywords;
-  String metaDescription;
-  String contentHeading;
-  String content;
-  DateTime creationTime;
-  DateTime updateTime;
-  String sortOrder;
-  String layoutUpdateXml;
-  String customTheme;
-  String customRootTemplate;
-  bool active;
+  int? id;
+  String? identifier;
+  String? title;
+  String? pageLayout;
+  String? metaTitle;
+  String? metaKeywords;
+  String? metaDescription;
+  String? contentHeading;
+  String? content;
+  DateTime? creationTime;
+  DateTime? updateTime;
+  String? sortOrder;
+  String? layoutUpdateXml;
+  String? customTheme;
+  String? customRootTemplate;
+  bool? active;
 
   factory FaqModel.fromJson(Map<String, dynamic> json) => FaqModel(
         id: json["id"],
@@ -76,8 +76,8 @@ class FaqModel {
         "meta_description": metaDescription,
         "content_heading": contentHeading,
         "content": content,
-        "creation_time": creationTime.toIso8601String(),
-        "update_time": updateTime.toIso8601String(),
+        "creation_time": creationTime?.toIso8601String(),
+        "update_time": updateTime?.toIso8601String(),
         "sort_order": sortOrder,
         "layout_update_xml": layoutUpdateXml,
         "custom_theme": customTheme,

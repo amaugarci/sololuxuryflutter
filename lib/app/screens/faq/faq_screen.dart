@@ -10,14 +10,11 @@ class FaqScreen extends GetView<FaqController> {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
-
-    const htmlData = '';
-
     return Obx(() => Scaffold(
         backgroundColor: backGroundColor,
         body: SingleChildScrollView(
             child: Html(
-                data: controller.faqContentData.value,
+                data: controller.faqModel?.value.content,
                 tagsList: Html.tags..addAll(["bird", "flutter"]),
                 style: {
                   "table": Style(

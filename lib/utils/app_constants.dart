@@ -13,11 +13,11 @@ class AppConstants {
   static String bannerListEndPoint = "/bannerList";
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
-  static String multiAddressEndPoint = "/V1/customers/me";
+  static String multiAddressEndPoint = "/rest/V1/customers/me";
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
-  static String referFriendEndPoint = "/V1/referFriend";
+  // static String referFriendEndPoint = "/V1/referFriend";
 
   // static String menuEndPoint = "/V1/categories";
   // static String estimatesShippingMethodEndPoint =
@@ -32,7 +32,7 @@ class AppConstants {
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
   static String apiEndPointMyAccount =
-      "https://dev2.brands-labels.com/rest/V1/customers/me";
+      "/rest/V1/customers/me";
   static String recommendedProductsEndPoint =
       "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
 
@@ -43,6 +43,8 @@ class AppConstants {
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
   static String storeViewsEndPoint = "/rest/V1/store/storeViews";
   static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
+  static String referFriendEndPoint = "/rest//V1/referFriend";
+
   static String jsonEndPoint = "/json";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
@@ -56,7 +58,8 @@ class AppConstants {
   static String apiEndPoint = "";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
-  static String adminToken = "Bearer mnjdon6w9apjczfui8rptpl0eskc02oy";
+  static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
+  static String productImageUrl = "https://www.sololuxury.com/media/catalog/product/";
 
   //static String apiEndPoint = "https://api.solo_luxury.com";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
@@ -83,6 +86,14 @@ class AppConstants {
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
+  static const String contactUs = "/rest/V1/contactus";
+  static const String productList = "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
+  static const String wishList = "/rest/V1/wishlist";
+  static const String brandList = "/rest/V1/brandList";
+  static const String faq = "/rest/default/V1/snowdog/cmsPage/16";
+  static const String myOrders = "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
+  static const String deleteWishlist = "/rest/V1/wishlist/";
+  static const String postWishlist = "/rest/V1/wishlist/";
 
   static const String licenceId = '11434003';
 
@@ -94,5 +105,10 @@ class AppConstants {
     return "/rest/" + localStore.currentCode + url;
   }
 
+
   static String myTicketApi = '/rest/V1/mytickets/';
+
+  static const String fontPoppins = 'Poppins';
+  static const String fontOpenSans = 'OpenSans';
+
 }

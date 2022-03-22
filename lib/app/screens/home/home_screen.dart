@@ -9,6 +9,7 @@ import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
@@ -158,7 +159,7 @@ class HomeScreen extends GetView<HomeController> {
               controller: TextEditingController(),
               textFieldBorder: Border.all(color: Colors.transparent),
               textColor: appTextFieldHintColor,
-              fontFamily: "OpenSans",
+              fontFamily: AppConstants.fontOpenSans,
               fontWeight: FontWeight.w600,
             ),
           ),

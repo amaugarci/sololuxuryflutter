@@ -25,10 +25,4 @@ class DashboardAPIRepository implements IDashboardRepository {
     }
   }
 
-  @override
-  Future<BannerListModel> getBannerListAPIResponse() {
-    // TODO: implement getBannerListAPIResponse
-    throw UnimplementedError();
-  }
-
 }

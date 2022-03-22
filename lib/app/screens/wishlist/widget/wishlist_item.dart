@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../data/model/Product/product_model.dart';
+import 'package:solo_luxury/data/model/Wishlist/wishlist_model.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../utils/colors.dart';
 
 class WishlistItem extends StatelessWidget {
-  ProductModel product;
+  Item? item;
 
-  WishlistItem({required this.product});
+  WishlistItem({required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class WishlistItem extends StatelessWidget {
               Container(
                 height: 350,
                 child: Image.network(
-                  'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                  "${AppConstants.productImageUrl}${item!.product!.customAttributes!.first.value}",
                   // height: 150,
                   fit: BoxFit.cover,
                 ),
@@ -33,15 +34,15 @@ class WishlistItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("MIU MIU", style: TextStyle(fontSize: 20)),
+                    Text("${item!.product!.name}", style: TextStyle(fontSize: 20)),
                     SizedBox(
                       height: 5,
                     ),
-                    Text("PAINTED MARY JANE", style: TextStyle(fontSize: 14)),
+                    Text("${item!.product!.name}", style: TextStyle(fontSize: 14)),
                     SizedBox(
                       height: 10,
                     ),
-                    Text("\$ 560.00",
+                    Text('\$ ' + "${item!.product!.price}",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold))
                   ]),

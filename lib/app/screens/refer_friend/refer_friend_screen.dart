@@ -4,6 +4,7 @@ import 'package:solo_luxury/app/screens/refer_friend/refer_friend_controller.dar
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../utils/app_routes.dart';
+import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_text_field_open_sans.dart';
 import '../../components/common_widget/common_text_opensans.dart';
 import '../../utils/app_asset.dart';
@@ -15,12 +16,7 @@ class ReferFriendScreen extends GetView<ReferFriendController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backGroundColor,
-      appBar: AppBar(
-        leading: const Icon(Icons.close,size: 24.0,),
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: commonAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.5),
         child: SingleChildScrollView(

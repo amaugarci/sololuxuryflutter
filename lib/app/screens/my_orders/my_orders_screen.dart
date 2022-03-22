@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/screens/home/widget/header_widget.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_controller.dart';
-import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../data/model/MyOrders/MyOrdersData.dart';
+import '../../components/common_widget/common_appbar.dart';
 
 class MyOrdersScreen extends GetView<MyOrdersController> {
   const MyOrdersScreen({Key? key}) : super(key: key);
@@ -14,228 +15,66 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     return Obx(() => Scaffold(
           key: controller.scaffoldKey.value,
           backgroundColor: backGroundColor,
-          appBar: AppBar(
-            backgroundColor: backGroundColor,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.black),
-            centerTitle: true,
-            title: Image.asset(AppAsset.logo, width: 110),
-            bottom: PreferredSize(
-              preferredSize: Size(Get.width, 60),
-              child: const HeaderWidget(),
-            ),
-          ),
-          endDrawer: const Drawer(),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.5),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(
-                    LanguageConstant.myOrders.tr,
-                    style: const TextStyle(
-                      color: appColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(border: Border.all(width: 1)),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => myOrderWidget(index),
-                      separatorBuilder: (context, index) => const Divider(
-                        color: appColor,
-                        thickness: 1.5,
-                      ),
-                      itemCount: controller
-                          .myOrdersList.length, //controller.myOrdersList.length
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  //   shippingAdd(),
-                  const SizedBox(height: 20),
-                  //   buttonShopping(),
-                  const SizedBox(height: 20),
-                  // detailsButton(
-                  //     LanguageConstant.contactText.tr.toUpperCase(), 2),
-                  // detailsButton(
-                  //     LanguageConstant.socialText.tr.toUpperCase(), 3),
-                  // detailsButton(
-                  //     LanguageConstant.companyText.tr.toUpperCase(), 4),
-                  const SizedBox(height: 20),
-                  //   emailSubscribe(),
-                  const SizedBox(height: 40)
-                ],
-              ),
-            ),
-          ),
+          appBar: commonAppbar(),
+          body: body(),
         ));
   }
 
-  // Widget detailsButton(String text, int value) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // if (controller.index.value == value) {
-  //       //   controller.index.value = 0;
-  //       // } else {
-  //       //   controller.index.value = value;
-  //       // }
-  //     },
-  //     child: Container(
-  //       height: 50,
-  //       width: Get.width,
-  //       decoration: BoxDecoration(
-  //         color: appColor,
-  //         border: Border.all(color: Colors.black, width: 0.4),
-  //       ),
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Text(
-  //             text,
-  //             style: const TextStyle(color: Colors.white),
-  //           ),
-  //           const SizedBox(width: 10),
-  //           const Icon(
-  //             Icons.expand_more,
-  //             color: Colors.white,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  body() {
+    if (controller.myOrdersModel!.value.items == null) {
+      return Container();
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.5),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              LanguageConstant.myOrders.tr,
+              style: const TextStyle(
+                color: appColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(border: Border.all(width: 1)),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  ParentItemElement? item = controller.myOrdersModel!.value.items![index].items!.first;
+                  return myOrderWidget(item);
+                },
+                itemCount: controller.myOrdersModel!.value.items!.length,
+              ),
+            ),
+            const SizedBox(height: 20),
+            //   shippingAdd(),
+            const SizedBox(height: 20),
+            //   buttonShopping(),
+            const SizedBox(height: 20),
+            // detailsButton(
+            //     LanguageConstant.contactText.tr.toUpperCase(), 2),
+            // detailsButton(
+            //     LanguageConstant.socialText.tr.toUpperCase(), 3),
+            // detailsButton(
+            //     LanguageConstant.companyText.tr.toUpperCase(), 4),
+            const SizedBox(height: 20),
+            //   emailSubscribe(),
+            const SizedBox(height: 40)
+          ],
+        ),
+      ),
+    );
+  }
 
-  // Widget shippingAdd() {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 6),
-  //     child: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: [
-  //         const SizedBox(height: 12),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.paymentMethod.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Cash On Delivery',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.shippingAddress.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Lucknow',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               LanguageConstant.billingAddress.tr,
-  //               style: const TextStyle(
-  //                   color: Colors.black, fontWeight: FontWeight.w500),
-  //             ),
-  //             const Text(
-  //               'Lucknow',
-  //               style: TextStyle(color: Colors.black54),
-  //             ),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 15),
-  //         const SizedBox(height: 5),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget emailSubscribe() {
-  //   return Container(
-  //     height: 47,
-  //     width: Get.width,
-  //     margin: const EdgeInsets.symmetric(horizontal: 15),
-  //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       borderRadius: BorderRadius.circular(30),
-  //       border: Border.all(color: appColor, width: 1.5),
-  //     ),
-  //     child: Row(
-  //       children: [
-  //         const SizedBox(width: 18),
-  //         const Expanded(
-  //           child: TextField(
-  //             decoration: InputDecoration(
-  //               hintText: 'Your E-Mail',
-  //               hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
-  //               border: InputBorder.none,
-  //             ),
-  //           ),
-  //         ),
-  //         Container(
-  //           height: 47,
-  //           width: 120,
-  //           decoration: BoxDecoration(
-  //             color: appColor,
-  //             borderRadius: BorderRadius.circular(30),
-  //             border: Border.all(color: appColor, width: 1.5),
-  //           ),
-  //           alignment: Alignment.center,
-  //           child: const Text(
-  //             'SUBSCRIBE',
-  //             style: TextStyle(
-  //               color: Colors.white,
-  //               fontSize: 13.5,
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Widget buttonShopping() {
-  //   return Container(
-  //     child: ElevatedButton(
-  //       onPressed: () {},
-  //       style: ElevatedButton.styleFrom(
-  //         elevation: 1,
-  //         primary: appColor,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(20),
-  //         ),
-  //       ),
-  //       child: Text(
-  //         LanguageConstant.continueShopping.tr.toUpperCase(),
-  //         style: const TextStyle(
-  //           color: Colors.white,
-  //           fontWeight: FontWeight.w600,
-  //           fontSize: 12.5,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  Widget myOrderWidget(index) {
+  Widget myOrderWidget(ParentItemElement? item) {
+    if (item == null) {
+      return Container();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(
@@ -247,8 +86,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.myOrderImage.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               const Text(
                 '149052',
@@ -262,13 +100,11 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.productName.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].name,
-                style: TextStyle(
-                    color: Colors.black54), //controller.brandList[index].name
+                item.name!,
+                style: TextStyle(color: Colors.black54), //controller.brandList[index].name
               ),
             ],
           ),
@@ -278,11 +114,10 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.sku.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].sku,
+                item.sku!,
                 style: TextStyle(color: Colors.black54),
               ),
             ],
@@ -293,11 +128,10 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.price.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].price.toString(),
+                item.price!.toString(),
                 style: const TextStyle(color: Colors.black54),
               ),
             ],
@@ -308,11 +142,10 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.quantity.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                controller.myOrdersList[index].qtyOrdered.toString(),
+                item.qtyOrdered.toString(),
                 style: const TextStyle(color: Colors.black54),
               ),
             ],
@@ -323,8 +156,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.status.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               const Text(
                 'Processing',
@@ -337,16 +169,12 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             children: [
               Text(
                 LanguageConstant.action.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               ),
               Row(
                 children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.remove_red_eye_outlined)),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.cancel_outlined))
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.remove_red_eye_outlined)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.cancel_outlined))
                 ],
               ),
             ],
