@@ -50,6 +50,7 @@ dependencies:
   flutter_html: ^2.2.1
   livechatt: ^1.4.0
   shared_preferences: ^2.0.13
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

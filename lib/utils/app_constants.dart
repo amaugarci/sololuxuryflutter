@@ -86,7 +86,7 @@ class AppConstants {
   static String addAddress = 'customers/me';
   static String countryList = 'directory/countries';
 
-  static const int websiteId = 151;
+  static const int websiteId = 1;
   static getUrlWithCode(url){
     return "/rest/"+localStore.currentCode +  url;
   }

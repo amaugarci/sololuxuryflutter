@@ -288,4 +288,6 @@ class LanguageConstant {
   static const String subjectText = "subjectText";
   static const String whatsonyourmindText = "whatsonyourmindText";
 
+  static const String dateOfMarriageText = "dateOfMarriageText";
+
 }

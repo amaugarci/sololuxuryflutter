@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:solo_luxury/app/components/storage_constant.dart';
 import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/data/model/signup_request_model.dart';
@@ -38,6 +39,7 @@ class SignupController extends GetxController {
   SignupController({required this.signupAPIRepository});
 
   registerUser(context, formKey) async {
+
     if (formKey.currentState!.validate()) {
       if (newsLetter.value) {
         /*{"customer":{"email":"custom799@gmail.com","firstname":"bb","lastname":"bb","website_id":151,"addresses":[], "dob":"05/05/1990","extension_attributes": {
@@ -57,7 +59,7 @@ class SignupController extends GetxController {
             lastname: lastNameController.value.text,
             email: emailController.value.text.trim(),
             websiteId: AppConstants.websiteId,
-            dob: dateOfBirthController.value.text,
+            dob:  dateOfBirthController.value.text,
             extensionAttributes: RequestExtensionAttributes(
               dom: marriageAnniversaryController.value.text,
             ),

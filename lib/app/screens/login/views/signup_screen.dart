@@ -270,7 +270,7 @@ class SignupScreen extends GetView<SignupController> {
     return DatepickerWidget(
       enabled: true,
       controller: controller.marriageAnniversaryController.value,
-      labelText: LanguageConstant.dateOfBirthText.tr,
+      labelText: LanguageConstant.dateOfMarriageText.tr,
       validator: (date) => (date == null &&
           controller.marriageAnniversaryController.value.text == '')
           ? LanguageConstant.pleaseSelectValidDateText.tr
