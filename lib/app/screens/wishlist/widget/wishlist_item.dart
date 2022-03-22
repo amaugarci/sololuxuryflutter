@@ -24,7 +24,7 @@ class WishlistItem extends StatelessWidget {
               Container(
                 height: 350,
                 child: Image.network(
-                  "${AppConstants.productImageUrl}${item!.product!.customAttributes!.first.value}",
+                  "${AppConstants.productImageUrl}${item!.product!.getProductImage()}",
                   // height: 150,
                   fit: BoxFit.cover,
                 ),
