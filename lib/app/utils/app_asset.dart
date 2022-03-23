@@ -6,6 +6,7 @@ class AppAsset {
   static const logo = "assets/images/logo.png";
   static const sandel = "assets/images/sandel.png";
   static const banner = "assets/images/banner.png";
+  static const banner1 = "assets/images/banner1.png";
   static const frame = "assets/images/frame.png";
   static const cart = "assets/icons/cart.svg";
   static const search = "assets/icons/search.svg";

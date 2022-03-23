@@ -8,6 +8,7 @@ const Color darkGrey = Color(0xff181818);
 const Color lightGrey = Color(0xff5F5959);
 const Color silver = Color(0xff717171);
 const Color brownColor = Color(0xff8A3A07);
+const Color brown833404 = Color(0xff833404);
 const Color brownColorCEAE9F = Color(0xffCEAE9F);
 const Color lightBrownColor = Color(0xffECDAD4);
 const Color brown743617 = Color(0xff743617);
