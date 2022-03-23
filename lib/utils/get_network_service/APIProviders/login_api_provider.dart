@@ -27,7 +27,7 @@ class LoginProvider extends GetConnect implements ILoginProvider {
   Future<Response<String>> getLoginResponseProvider({required String urlPath,required String userName,required String password, required String loginRequestJson}) {
     // TODO: implement getLoginResponseProvider
     print("url -> " + httpClient.baseUrl.toString() + urlPath);
-    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json"});
+    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json","Authorization" : AppConstants.adminToken});
   }
 
 }

@@ -61,91 +61,95 @@ class SearchScreen extends GetView<SearchController> {
           ],
           title: Image.asset(AppAsset.logo, width: 110),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              //  filterWidget(),
-              const SizedBox(height: 15),
-              filterDropDown(),
-              const SizedBox(height: 10),
-              Flexible(
-                child: DefaultTabController(
-                  length: controller.menuModel?.value?.childrenData?.length,
-                  // length of tabs
-                  initialIndex: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Container(
-                          child: TabBar(
-                            indicatorColor: buttoncolor,
-                            labelColor: selectedTabColor,
-                            unselectedLabelColor: unselectedTabColor,
-                            isScrollable: true,
-                            tabs: List<Widget>.generate(
-                                controller.menuModel?.value?.childrenData
-                                    ?.length, (int index) {
-                              itemLevel1 = controller
-                                  .menuModel?.value?.childrenData?[index];
-                              return Tab(
-                                  child: Text(itemLevel1.name!,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 12.0)));
-                            }),
-                          ),
-                        ),
-                        Container(
-                          height: 400, //height of TabBarView
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              top: BorderSide(
-                                color: Colors.grey,
-                                width: 0.5,
+        body: controller.menuModel?.value?.childrenData == null
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    //  filterWidget(),
+                    const SizedBox(height: 15),
+                    filterDropDown(),
+                    const SizedBox(height: 10),
+                    Flexible(
+                      child: DefaultTabController(
+                        length:
+                            controller.menuModel?.value?.childrenData?.length,
+                        // length of tabs
+                        initialIndex: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Container(
+                                child: TabBar(
+                                  indicatorColor: buttoncolor,
+                                  labelColor: selectedTabColor,
+                                  unselectedLabelColor: unselectedTabColor,
+                                  isScrollable: true,
+                                  tabs: List<Widget>.generate(
+                                      controller.menuModel?.value?.childrenData
+                                          ?.length, (int index) {
+                                    itemLevel1 = controller
+                                        .menuModel?.value?.childrenData?[index];
+                                    return Tab(
+                                        child: Text(itemLevel1.name!,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 12.0)));
+                                  }),
+                                ),
                               ),
-                            ),
-                          ),
-                          child: TabBarView(
-                            children: List<Widget>.generate(
-                              controller.menuModel?.value?.childrenData?.length,
-                              (int index1) {
-                                return ListView.builder(
-                                  itemCount: controller
-                                      .menuModel
-                                      ?.value
-                                      ?.childrenData?[index1]
-                                      .childrenData
-                                      .length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return categoriesOptions(
-                                      text: controller
-                                          .menuModel
-                                          ?.value
-                                          ?.childrenData?[index1]
-                                          .childrenData[index]
-                                          .name,
-                                    );
-                                  },
-                                );
-                              },
-                            ),
+                              Container(
+                                height: 400, //height of TabBarView
+                                decoration: const BoxDecoration(
+                                  border: Border(
+                                    top: BorderSide(
+                                      color: Colors.grey,
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                ),
+                                child: TabBarView(
+                                  children: List<Widget>.generate(
+                                    controller
+                                        .menuModel?.value?.childrenData?.length,
+                                    (int index1) {
+                                      return ListView.builder(
+                                        itemCount: controller
+                                            .menuModel
+                                            ?.value
+                                            ?.childrenData?[index1]
+                                            .childrenData
+                                            .length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return categoriesOptions(
+                                            text: controller
+                                                .menuModel
+                                                ?.value
+                                                ?.childrenData?[index1]
+                                                .childrenData[index]
+                                                .name,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+
+                    const SizedBox(height: 20),
+                  ],
                 ),
               ),
-
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
       ),
     );
   }

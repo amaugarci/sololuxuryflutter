@@ -123,6 +123,7 @@ class LanguageConstant {
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
 
+
   static const String registeredCustomersText = "registeredCustomersText";
   static const String registeredCustomersDescriptionText =
       "registeredCustomersDescriptionText";
@@ -297,9 +298,18 @@ class LanguageConstant {
   static const String confirmEmailText = "confirmEmailText";
   static const String subjectText = "subjectText";
   static const String whatsonyourmindText = "whatsonyourmindText";
+
   static const String nameChatText = "nameChatText";
   static const String idText = "idText";
   static const String actionText = "actionText";
   static const String welcometoChatText = "welcometoChatText";
   static const String fillTheFormText = "fillTheFormText";
+
+
+  static const String dateOfMarriageText = "dateOfMarriageText";
+
+
+
+  static const String findBrandsText = "findBrandsText";
+
 }

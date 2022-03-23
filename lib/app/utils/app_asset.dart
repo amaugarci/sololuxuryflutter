@@ -32,6 +32,7 @@ class AppAsset {
   static const searchIcon = "assets/icons/search.png";
   static const heartIcon = "assets/icons/heart.png";
   static const bagIcon = "assets/icons/bag.png";
+  static const logoSVG = "assets/icons/logo 2.svg";
   static const applogo = "assets/icons/logo.png";
   static const indianflagIcon = "assets/icons/indian_flag.png";
   static const deleteIcon = "assets/icons/delete.png";

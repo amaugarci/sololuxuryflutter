@@ -116,6 +116,7 @@ const Map<String, String> en = {
   "accountToPlaceOrderQues": "Do I need an account to place an order?",
   "accountToPlaceOrderAns":
       "No, all you need is an email address. We recommend that you register for an account to start adding pieces to your Wishlist, but, you can also place and track orders as a guest and signup at a time that suits you.",
+
   "registeredCustomersText": "Registered Customers",
   "registeredCustomersDescriptionText":
       "If You Have An Account, Sign In With Your\nEmail Address.",
@@ -293,9 +294,16 @@ const Map<String, String> en = {
   "whatsonyourmindText": "What\'s On Your Mind?",
   "languageText": "Language",
   "currencyText": "Currency",
+
   "nameChatText": "Name",
   "idText": "ID",
   "actionText": "Action",
   "welcometoChatText": "Welcome to our LiveChat!",
-  "fillTheFormText": "Please fill in the form below before starting the chat."
+  "fillTheFormText": "Please fill in the form below before starting the chat.",
+
+  "dateOfMarriageText": "Date of Marriage",
+
+
+  "findBrandsText": "Find Brands...",
+
 };

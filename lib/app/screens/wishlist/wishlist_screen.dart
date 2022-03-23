@@ -23,68 +23,66 @@ class MyWishListPage extends GetView<WishlistController> {
           key: controller.scaffoldkey,
           appBar: commonAppbar(title: LanguageConstant.myWishlistText.tr),
           backgroundColor: backGroundColor,
-          body: SizedBox(
-            width: Get.width,
-            height: Get.height,
-            child: Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: wishListBorder),
-                          ),
-                          margin: EdgeInsets.all(10),
-                          padding: EdgeInsets.all(5),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              isDense: true,
-                              alignment: AlignmentDirectional.center,
-                              isExpanded: true,
-                              dropdownColor: offWhite,
-                              value: controller.chosenValue.value,
-                              // elevation: 0,
-                              style: const TextStyle(
-                                  color: appColorPrimary,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: AppConstants.fontOpenSans),
-                              items: <String>[
-                                LanguageConstant.myAccountText.tr,
-                                LanguageConstant.myOrdersText.tr,
-                                LanguageConstant.myWishlistText.tr,
-                                LanguageConstant.addressBookText.tr,
-                                LanguageConstant.accountInformationText.tr,
-                                LanguageConstant.myTicketsText.tr,
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  alignment: AlignmentDirectional.center,
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                              hint: Center(
-                                child: Text(
-                                  LanguageConstant.myWishlistText.tr,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: appColor, fontSize: 14, fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                              onChanged: (String? value) {
-                                controller.chosenValue.value = value!;
-                              },
-                            ),
+          body: Container(
+            margin: EdgeInsets.only(
+                top: MediaQuery.of(Get.context!).viewPadding.top),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: wishListBorder),
+                    ),
+                    height: 40,
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    padding: EdgeInsets.all(5),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        isDense: true,
+                        alignment: AlignmentDirectional.center,
+                        isExpanded: true,
+                        dropdownColor: offWhite,
+                        value: controller.chosenValue.value,
+                        // elevation: 0,
+                        style: const TextStyle(
+                            color: appColorPrimary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: AppConstants.fontOpenSans),
+                        items: <String>[
+                          LanguageConstant.myAccountText.tr,
+                          LanguageConstant.myOrdersText.tr,
+                          LanguageConstant.myWishlistText.tr,
+                          LanguageConstant.addressBookText.tr,
+                          LanguageConstant.accountInformationText.tr,
+                          LanguageConstant.myTicketsText.tr,
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            alignment: AlignmentDirectional.center,
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        icon: Icon(Icons.expand_more, color: appColorPrimary),
+                        hint: Center(
+                          child: Text(
+                            LanguageConstant.myWishlistText.tr,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: appColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
-                        listItem()
-                      ],
+                        onChanged: (String? value) {
+                          controller.chosenValue.value = value!;
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  listItem()
+                ],
+              ),
             ),
           ),
         ));
@@ -94,17 +92,23 @@ class MyWishListPage extends GetView<WishlistController> {
     if (controller.wishItemModel?.value.items == null) {
       return Container();
     }
-    return Container(
-      width: Get.width,
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.wishItemModel?.value.items?.length,
-        itemBuilder: (_, index) {
-          Item? item = controller.wishItemModel?.value.items?[index];
-          return WishlistItem(item: item,);
-        },
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: SizedBox(
+        width: Get.width,
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.wishItemModel?.value.items?.length,
+          // itemCount:1,
+          itemBuilder: (_, index) {
+            Item? item = controller.wishItemModel?.value.items?[index];
+            return WishlistItem(
+              item: item,
+            );
+          },
+        ),
       ),
     );
   }

@@ -109,7 +109,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                   ),
                 ),
-
                 Obx(() => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -185,7 +184,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                               Divider(),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(() => const MyTicketScreen());
+                                  Get.toNamed(RoutesConstants.myTicketsScreen);
+                                  // Get.to(() => const MyTicketScreen());
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
@@ -230,7 +230,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                               ),
                             ],
                           ),
-
                         ),
                         Container(
                           color: secondaryColor,
@@ -418,7 +417,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             ),
                           ),
                         ),
-
                         Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Column(
@@ -471,7 +469,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                               ),
                             ],
                           ),
-
                         ),
                         Container(
                           color: secondaryColor,
@@ -489,7 +486,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             ),
                           ),
                         ),
-
                         Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Column(
@@ -672,18 +668,15 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-
             backgroundColor: backGroundColor,
             contentPadding: EdgeInsets.zero,
             insetPadding: EdgeInsets.all(10),
-
             content: Stack(
               overflow: Overflow.visible,
               children: <Widget>[
                 Positioned(
                   left: 0,
                   right: 0,
-
                   top: -45.0,
                   child: CircleAvatar(
                     radius: 45,
@@ -692,7 +685,6 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                       color: Colors.white,
                       width: 40,
                       height: 40,
-
                     ),
                     backgroundColor: appColor,
                   ),
@@ -703,41 +695,36 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
-
                         height: 70,
                         margin: EdgeInsets.only(top: 60),
-
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Center(
-                                child: Text(LanguageConstant.welcometoChatText.tr,
+                                child: Text(
+                                    LanguageConstant.welcometoChatText.tr,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400))),
-
                             SizedBox(
                               height: 5,
                             ),
                             Center(
-                                child: Text(
-                                    LanguageConstant.fillTheFormText.tr,
+                                child: Text(LanguageConstant.fillTheFormText.tr,
                                     textAlign: TextAlign.center,
-
-                                    style: TextStyle(fontSize: 14,
+                                    style: TextStyle(
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w400))),
-
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 20, top: 10),
                         child: Column(
                           children: [
-
                             Container(
                                 height: 50,
                                 width: Get.width,
@@ -752,7 +739,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             SizedBox(
                               height: 10,
                             ),
-                            Container(  height: 50,
+                            Container(
+                                height: 50,
                                 width: Get.width,
                                 decoration: BoxDecoration(
                                   color: appColorAccent,
@@ -762,16 +750,13 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                   ),
                                 ),
                                 child: emailTextField()),
-
                           ],
                         ),
                       ),
                       Padding(
-
                         padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                         child: startChatButton(),
                       ),
-
                     ],
                   ),
                 ),
@@ -796,8 +781,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
         hintText: LanguageConstant.emailText.tr,
         textAlign: TextAlign.center,
         validator: (value) => Validators.validateEmail(
-          value!.trim(),
-        ));
+              value!.trim(),
+            ));
   }
 
   Widget startChatButton() {
@@ -829,5 +814,4 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
       ),
     );
   }
-
 }

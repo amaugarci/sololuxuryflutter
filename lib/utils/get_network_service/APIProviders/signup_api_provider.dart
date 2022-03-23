@@ -20,7 +20,7 @@ class SignupAPIProvider extends GetConnect implements ISignupProvider {
   Future<Response<SignUpResponseModel>> getSignupResponseProvider({required String urlPath, required String signupRequestJson}) {
     print("signupRequestJson -> " + signupRequestJson);
     print("urlPath -> "+urlPath);
-    return post(urlPath, signupRequestJson, headers: {"Content-type" : "application/json"});
+    return post(urlPath, signupRequestJson, headers: {"Content-type" : "application/json","Authorization" : AppConstants.adminToken});
   }
 
 }
