@@ -255,7 +255,8 @@ const Map<String, String> en = {
   "accountInfoText": "Account Information",
   "newsletterSubText": "Newsletter Subscriptions",
   "youaddCartText":
-      "You added ALEXANDER MCQUEEN MULES ALEXANDER MCQUEEN HYBRID SIGNATURE SLIDES to your shopping cart.",
+      "You added",
+  "youaddCartEndText":"to your shopping cart.",
   "viewCartText": "View Cart",
   "continueShoppingText": "Continue Shopping",
   "checkYourOrderText": "Check your order",

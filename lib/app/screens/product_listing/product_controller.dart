@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/product_list_api_repository.dart';
@@ -10,7 +9,9 @@ class ProductController extends GetxController {
   var likedProducts = <ProductModel>[].obs;
   var selectedIndex = 0.obs;
   var activeProduct = ProductModel().obs;
+  var isLoading = true.obs;
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
+
   /*final CartController cartController =
       Get.put(CartController(cartGetDataAPIRepository: Get.find()));*/
   var homeCategoryProductList = <ProductModel>[].obs;
@@ -43,8 +44,8 @@ class ProductController extends GetxController {
   // }
 
   getHomeProducts(String val) async {
-    productModel?.value =
-        await productListAPIRepository.getProductListApiResponse();
+    productModel?.value = await productListAPIRepository.getProductListApiResponse();
+    isLoading.value = false;
     //return homeCategoryProductList.value;
   }
 }

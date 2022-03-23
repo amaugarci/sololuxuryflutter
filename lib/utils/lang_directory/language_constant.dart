@@ -274,6 +274,7 @@ class LanguageConstant {
   static const String accountInfoText = "accountInfoText";
   static const String newsletterSubText = "newsletterSubText";
   static const String youaddCartText = "youaddCartText";
+  static const String youaddCartEndText =  "youaddCartEndText";
   static const String viewCartText = "viewCartText";
   static const String continueShoppingText = "continueShoppingText";
   static const String checkYourOrderText = "checkYourOrderText";

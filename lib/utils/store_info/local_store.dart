@@ -35,8 +35,8 @@ class LocalStore{
       currentCode = localStoreModel.currentCode!;
       currentCurrency = localStoreModel.currentCurrency!;
       name = localStoreModel.name!;
-      website_id = localStoreModel.getStore(currentCode)?.websiteId?.toString()??"";
-      store_group_id = localStoreModel.getStore(currentCode)?.storeGroupId?.toString()??"";
+      website_id = localStoreModel.getStore(currentCode).websiteId?.toString()??"";
+      store_group_id = localStoreModel.getStore(currentCode).storeGroupId?.toString()??"";
       default_group_id = store_group_id;
       print("currentCode -> " + currentCode);
       print("currentCurrency -> " + currentCurrency);
