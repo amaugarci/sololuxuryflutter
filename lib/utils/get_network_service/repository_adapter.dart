@@ -141,4 +141,11 @@ abstract class IMyOrdersRepository {
 abstract class IPostWishListRepository {
   Future<String> postWishListApiResponse(String sku);
 
+
+  Future<LoginResponseModel> getLoginAPIResponse(String loginRequestJson);
+}
+
+abstract class IBrandListRepository {
+  Future<String> getBrandListResponse();
+
 }

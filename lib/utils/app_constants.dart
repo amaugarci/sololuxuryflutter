@@ -8,6 +8,7 @@ class AppConstants {
   // static String apiEndPoint = "http://192.168.29.135";
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
+
   //static String menuEndPoint = "/V1/categories";
 
   static String bannerListEndPoint = "/bannerList";
@@ -18,6 +19,8 @@ class AppConstants {
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
   // static String referFriendEndPoint = "/V1/referFriend";
+
+
 
   // static String menuEndPoint = "/V1/categories";
   // static String estimatesShippingMethodEndPoint =
@@ -31,6 +34,7 @@ class AppConstants {
 
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
+
   static String apiEndPointMyAccount =
       "/rest/V1/customers/me";
   static String recommendedProductsEndPoint =
@@ -68,13 +72,18 @@ class AppConstants {
 
   static String apiCountryGet = "http://ip-api.com";
 
-  // static String apiEndPoint =
-  //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
+
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
 
+  // static String apiEndPoint =
+  //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
+
+
+
   //Sign Up
+
   //static String login = '/integration/customer/token';
 
   // static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
@@ -116,5 +125,9 @@ class AppConstants {
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';
+
+
+
+  static String brandListApi = 'brandList';
 
 }

@@ -2,31 +2,31 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<List<BrandData>> brandDataFromJson(String str) =>
-    List<List<BrandData>>.from(json
-        .decode(str)
-        .map((x) => List<BrandData>.from(x.map((x) => BrandData.fromJson(x)))));
+List<List<BrandModel>> brandModelFromJson(String str) =>
+    List<List<BrandModel>>.from(json.decode(str).map(
+        (x) => List<BrandModel>.from(x.map((x) => BrandModel.fromJson(x)))));
 
-String brandDataToJson(List<List<BrandData>> data) =>
+String brandModelToJson(List<List<BrandModel>> data) =>
     json.encode(List<dynamic>.from(
         data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
 
-class BrandData {
-  BrandData({
-    this.brandId,
-    this.attributeId,
-    this.name,
-    this.description,
-    this.urlKey,
-    this.logoPath,
-    this.sortOrder,
-    this.isActive,
-    this.isFeatured,
-    this.seoTitle,
-    this.seoDesc,
-    this.seoKeyword,
-    this.updatedAt,
-    this.createdAt,
+
+class BrandModel {
+  BrandModel({
+    required this.brandId,
+    required this.attributeId,
+    required this.name,
+    required this.description,
+    required this.urlKey,
+    required this.logoPath,
+    required this.sortOrder,
+    required this.isActive,
+    required this.isFeatured,
+    required this.seoTitle,
+    required this.seoDesc,
+    required this.seoKeyword,
+    required this.updatedAt,
+    required this.createdAt,
   });
 
   String? brandId;
@@ -44,7 +44,7 @@ class BrandData {
   DateTime? updatedAt;
   DateTime? createdAt;
 
-  factory BrandData.fromJson(Map<String, dynamic> json) => BrandData(
+  factory BrandModel.fromJson(Map<String, dynamic> json) => BrandModel(
         brandId: json["brand_id"],
         attributeId: json["attribute_id"],
         name: json["name"],
@@ -78,5 +78,5 @@ class BrandData {
         "created_at": createdAt?.toIso8601String(),
       };
 
-  void add(BrandData brand) {}
+  void add(BrandModel brand) {}
 }
