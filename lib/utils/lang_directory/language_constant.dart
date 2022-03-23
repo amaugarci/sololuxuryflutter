@@ -48,7 +48,6 @@ class LanguageConstant {
   static const String countryText = "countryText";
   static const String workedOnText = "workedOnText";
 
-
   ///product Details Screen
   static const String details = "details";
   static const String description = "description";
@@ -68,6 +67,9 @@ class LanguageConstant {
   static const String forgetPassword = "forgetPassword";
   static const String backToSignInScreen = "backToSignInScreen";
   static const String forgetPasswordContain = "forgetPasswordContain";
+
+  ///FAQ
+  static const String faqTitle = "faqTitle";
 
   static const String referFriendText = "referFriendText";
   static const String returnsRefundsText = "returnsRefundsText";
@@ -303,8 +305,5 @@ class LanguageConstant {
   static const String welcometoChatText = "welcometoChatText";
   static const String fillTheFormText = "fillTheFormText";
 
-
   static const String dateOfMarriageText = "dateOfMarriageText";
-
-
 }

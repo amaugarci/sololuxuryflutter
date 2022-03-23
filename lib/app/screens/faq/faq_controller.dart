@@ -28,7 +28,11 @@ class FaqController extends GetxController {
   void getFaqContent() async {
     faqModel?.value = await faqAPIRepository.getFaqApiResponse();
   }
-
+  var isSelected1 = false.obs;
+  var isSelected2 = false.obs;
+  var isSelected3 = false.obs;
+  var isSelected4 = false.obs;
+  var isSelected5 = false.obs;
   // Future<List<FaqModel>> getFaqContent() async {
   //   List<FaqModel> faqList = [];
 
