@@ -129,15 +129,15 @@ class BrandController extends GetxController {
     isLoading.value = true;
     var brandList =
         jsonDecode(await brandListAPIRepository.getBrandListResponse());
-    getbrandList!.value = List<BrandModel>.from(
+    getbrandList.value = List<BrandModel>.from(
         brandList.map((brandList) => BrandModel.fromJson(brandList)));
-    getbrandList!
+    getbrandList
         .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     print("brands list Get $getbrandList");
 
     // //////////////////////////////////////////////////
     for (var i in filterAlllist) {
-      for (var f in getbrandList!) {
+      for (var f in getbrandList) {
         if (f.name[0] != null || f.name[0] != "") {
           if (f.name[0] == "a".toLowerCase() ||
               f.name[0] == "A".toUpperCase()) {
@@ -248,12 +248,12 @@ class BrandController extends GetxController {
   //getSearch
   onSearchTextChanged(String text) async {
     print("Text is $text");
-    getbrandList!.forEach((userDetail) {
+    getbrandList.forEach((userDetail) {
       if (userDetail.name.contains(text)) {
-        getsearchList!.add(userDetail);
+        getsearchList.add(userDetail);
       }
     });
-    getsearchList!
+    getsearchList
         .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
   }
 

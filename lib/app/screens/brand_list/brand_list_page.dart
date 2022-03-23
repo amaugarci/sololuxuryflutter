@@ -33,7 +33,8 @@ class BrandListPage extends GetView<BrandController> {
         body: Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
               height: MediaQuery.of(context).size.height / 15.6,
               child: TextFormField(
                 controller: null,
@@ -41,9 +42,13 @@ class BrandListPage extends GetView<BrandController> {
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 12, top: 12, left: 12),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 12, top: 12, left: 12),
                     hintText: LanguageConstant.findBrandsText.tr.toUpperCase(),
-                    hintStyle: TextStyle(color: appColor.withOpacity(0.4), fontWeight: FontWeight.w500, fontSize: 14),
+                    hintStyle: TextStyle(
+                        color: appColor.withOpacity(0.4),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14),
                     errorStyle: TextStyle(color: Color(0xFF973133)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -65,7 +70,8 @@ class BrandListPage extends GetView<BrandController> {
                         ),
                         borderRadius: BorderRadius.circular(20.0)),
                     suffixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6.0, vertical: 4),
                       child: ClipOval(
                         child: Material(
                           color: appColor, // Button color
@@ -86,7 +92,7 @@ class BrandListPage extends GetView<BrandController> {
               ),
             ),
             Container(
-              height: 30,
+              height: 32,
               child: Center(
                 child: ListView.builder(
                     shrinkWrap: true,
@@ -96,7 +102,8 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist.contains(fliterList)) {
+                          if (controller.filtersearchAlllist
+                              .contains(fliterList)) {
                             controller.setSerchwithAlphabatic("");
                           } else {
                             controller.setSerchwithAlphabatic(fliterList);
@@ -105,19 +112,27 @@ class BrandListPage extends GetView<BrandController> {
                         child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist.contains(fliterList) ? appColor : Colors.transparent),
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                                color: controller.filtersearchAlllist
+                                        .contains(fliterList)
+                                    ? appColor
+                                    : Colors.transparent),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 8),
                             child: Text(
                               "${fliterList}",
                               style: TextStyle(
-                                  color: controller.filtersearchAlllist.contains(fliterList) ? Colors.white : appColor, fontWeight: FontWeight.w500),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? Colors.white
+                                      : appColor,
+                                  fontWeight: FontWeight.w500),
                             )),
                       );
                     }),
               ),
             ),
             Container(
-              height: 30,
+              height: 32,
               child: Center(
                 child: ListView.builder(
                     shrinkWrap: true,
@@ -127,7 +142,8 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList2[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist.contains(fliterList)) {
+                          if (controller.filtersearchAlllist
+                              .contains(fliterList)) {
                             controller.setSerchwithAlphabatic("");
                           } else {
                             controller.setSerchwithAlphabatic(fliterList);
@@ -136,19 +152,27 @@ class BrandListPage extends GetView<BrandController> {
                         child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist.contains(fliterList) ? appColor : Colors.transparent),
-                            padding: EdgeInsets.symmetric(horizontal: 7.6, vertical: 8),
+                                color: controller.filtersearchAlllist
+                                        .contains(fliterList)
+                                    ? appColor
+                                    : Colors.transparent),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 7.6, vertical: 8),
                             child: Text(
                               "${fliterList}",
                               style: TextStyle(
-                                  color: controller.filtersearchAlllist.contains(fliterList) ? Colors.white : appColor, fontWeight: FontWeight.w500),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? Colors.white
+                                      : appColor,
+                                  fontWeight: FontWeight.w500),
                             )),
                       );
                     }),
               ),
             ),
             Container(
-              height: 30,
+              height: 32,
               child: Center(
                 child: ListView.builder(
                     shrinkWrap: true,
@@ -158,7 +182,8 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList3[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist.contains(fliterList)) {
+                          if (controller.filtersearchAlllist
+                              .contains(fliterList)) {
                             controller.setSerchwithAlphabatic("");
                           } else {
                             controller.setSerchwithAlphabatic(fliterList);
@@ -167,12 +192,20 @@ class BrandListPage extends GetView<BrandController> {
                         child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist.contains(fliterList) ? appColor : Colors.transparent),
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                                color: controller.filtersearchAlllist
+                                        .contains(fliterList)
+                                    ? appColor
+                                    : Colors.transparent),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 8),
                             child: Text(
                               "${fliterList}",
                               style: TextStyle(
-                                  color: controller.filtersearchAlllist.contains(fliterList) ? Colors.white : appColor, fontWeight: FontWeight.w500),
+                                  color: controller.filtersearchAlllist
+                                          .contains(fliterList)
+                                      ? Colors.white
+                                      : appColor,
+                                  fontWeight: FontWeight.w500),
                             )),
                       );
                     }),
@@ -190,17 +223,22 @@ class BrandListPage extends GetView<BrandController> {
                   : ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      itemCount: controller.filtersearchAlllist.length > 0 ? controller.filtersearchAlllist.length : controller.filterAlllist.length,
+                      itemCount: controller.filtersearchAlllist.length > 0
+                          ? controller.filtersearchAlllist.length
+                          : controller.filterAlllist.length,
                       itemBuilder: (BuildContext context, int index) {
                         final brandsListCapital =
-                            controller.filtersearchAlllist.length > 0 ? controller.filtersearchAlllist[index] : controller.filterAlllist[index];
+                            controller.filtersearchAlllist.length > 0
+                                ? controller.filtersearchAlllist[index]
+                                : controller.filterAlllist[index];
                         return ListTileTheme(
                             contentPadding: EdgeInsets.zero,
                             minVerticalPadding: 10,
                             dense: true,
                             horizontalTitleGap: 1.2,
                             minLeadingWidth: 10,
-                            child: expandDetailWidget(context, brandsListCapital, index + 1));
+                            child: expandDetailWidget(
+                                context, brandsListCapital, index + 1));
                       },
                     ),
             ),
@@ -215,7 +253,9 @@ class BrandListPage extends GetView<BrandController> {
       () => Container(
         padding: const EdgeInsets.all(0),
         child: Container(
-          color: controller.index.value == value ? backGroundColor : appColor.withOpacity(0.1),
+          color: controller.index.value == value
+              ? backGroundColor
+              : appColor.withOpacity(0.1),
           padding: EdgeInsets.zero,
           margin: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
           child: Theme(
@@ -238,7 +278,9 @@ class BrandListPage extends GetView<BrandController> {
                               color: appColor,
                             ),
                           ),
-                          controller.index.value == value ? const Icon(Icons.remove, color: appColor) : const Icon(Icons.add, color: appColor),
+                          controller.index.value == value
+                              ? const Icon(Icons.remove, color: appColor)
+                              : const Icon(Icons.add, color: appColor),
                         ],
                       ),
                     ),
@@ -266,9 +308,12 @@ class BrandListPage extends GetView<BrandController> {
                         ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: controller.listDisplay(text).length > 5 ? 5 : controller.listDisplay(text).length,
+                          itemCount: controller.listDisplay(text).length > 5
+                              ? 5
+                              : controller.listDisplay(text).length,
                           itemBuilder: (BuildContext context, int index) {
-                            final countryInsideList = controller.listDisplay(text)[index];
+                            final countryInsideList =
+                                controller.listDisplay(text)[index];
                             return Container(
                               padding: EdgeInsets.symmetric(vertical: 8),
                               decoration: BoxDecoration(border: Border()),
@@ -288,7 +333,9 @@ class BrandListPage extends GetView<BrandController> {
                           onTap: () {
                             print("${controller.listDisplay(text).length}");
                             controller.brandDetails.value = text;
-                            Get.to(const BrandDetailsPage(),);
+                            Get.to(
+                              const BrandDetailsPage(),
+                            );
                           },
                           child: const Padding(
                             padding: EdgeInsets.symmetric(vertical: 10.0),
