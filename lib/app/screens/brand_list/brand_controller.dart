@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:solo_luxury/data/model/brand_list/BrandData.dart';
-import 'package:solo_luxury/data/requests/brand_list_request.dart';
+
 
 import "package:collection/collection.dart";
 import 'package:solo_luxury/data/model/brand_list/brand_model.dart';
@@ -17,8 +16,8 @@ class BrandController extends GetxController {
 
   Rx<GlobalKey<ScaffoldState>> scaffoldKey2 = GlobalKey<ScaffoldState>().obs;
 
-  RxList<BrandModel>? getbrandList = <BrandModel>[].obs;
-  RxList<BrandModel>? getsearchList = <BrandModel>[].obs;
+  RxList<BrandModel> getbrandList = <BrandModel>[].obs;
+  RxList<BrandModel> getsearchList = <BrandModel>[].obs;
   var brandList = <BrandModel>[].obs;
   var isLoading = true.obs;
   var filtersearchAlllist = [].obs;

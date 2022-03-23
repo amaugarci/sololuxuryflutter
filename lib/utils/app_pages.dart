@@ -253,7 +253,7 @@ class AppPages {
       name: RoutesConstants.referFriendScreen,
       page: () => const ReferFriendScreen(),
       binding: ReferFriendBindings(),
-  ),Getpage(
+  ),GetPage(
       name: RoutesConstants.brandDetailsScreen,
       page: () => const BrandDetailsPage(),
       binding: BrandBinding(),

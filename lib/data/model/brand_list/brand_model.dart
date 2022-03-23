@@ -29,20 +29,20 @@ class BrandModel {
     required this.createdAt,
   });
 
-  String? brandId;
-  String? attributeId;
-  String? name;
-  String? description;
-  String? urlKey;
-  String? logoPath;
-  String? sortOrder;
-  String? isActive;
-  String? isFeatured;
-  String? seoTitle;
-  String? seoDesc;
-  String? seoKeyword;
-  DateTime? updatedAt;
-  DateTime? createdAt;
+  String brandId;
+  String attributeId;
+  String name;
+  String description;
+  String urlKey;
+  String logoPath;
+  String sortOrder;
+  String isActive;
+  String isFeatured;
+  String seoTitle;
+  String seoDesc;
+  String seoKeyword;
+  DateTime updatedAt;
+  DateTime createdAt;
 
   factory BrandModel.fromJson(Map<String, dynamic> json) => BrandModel(
         brandId: json["brand_id"],
