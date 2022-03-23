@@ -57,7 +57,7 @@ class Item {
   String? sku;
   String? name;
   int? attributeSetId;
-  int? price;
+  double? price;
   int? status;
   int? visibility;
   String? typeId;
@@ -76,7 +76,7 @@ class Item {
     sku: json["sku"],
     name: json["name"],
     attributeSetId: json["attribute_set_id"],
-    price: json["price"],
+    price: double.parse(json["price"].toString()),
     status: json["status"],
     visibility: json["visibility"],
     typeId: json["type_id"],

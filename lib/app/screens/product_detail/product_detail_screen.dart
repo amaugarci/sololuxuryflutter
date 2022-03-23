@@ -101,8 +101,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       const SizedBox(height: 10),
                       Visibility(
                         visible: controller.isSelected1.isTrue ? true : false,
-                        child: const Text(
-                          'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
+                        child: Text(
+                          "${product!.customAttributes!.first.value}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,

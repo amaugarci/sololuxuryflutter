@@ -86,7 +86,11 @@ class ProductListScreen extends GetView<ProductController> {
                     ),
                     itemBuilder: (_, index) {
                       Item? item = controller.productModel?.value.items?[index];
-                      return Product(product: item);
+                      if(item == null){
+                        return Container();
+                      }else {
+                        return Product(product: item);
+                      }
                     },
                     itemCount: controller.productModel?.value.items?.length,
                   ),
