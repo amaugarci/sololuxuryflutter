@@ -403,7 +403,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                   onExpansionChanged: (a){
                                                     if(itemLevel2.childrenData!.isEmpty){
                                                       Get.toNamed(RoutesConstants.productListScreen,
-                                                          arguments: itemLevel2.id);
+                                                          arguments: [itemLevel2.id]);
                                                     }
                                                   },
                                                   children: [
