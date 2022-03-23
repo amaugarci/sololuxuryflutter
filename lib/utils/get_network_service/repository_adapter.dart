@@ -58,12 +58,17 @@ abstract class ICountryRepository {
 }
 
 abstract class ICheckoutOrderRepository {
-  Future<String> postEstimateAPIResponse(String requestJson);
+
+
 
   Future<ShippingInformationModel> postShippingInformationAPIResponse(
       String requestJson);
 
   Future<String> getMultiAddressAPIResponse();
+
+  Future<String> postEstimateAPIResponse(String loginRequestJson);
+
+
 }
 
 ///myAccount Class
@@ -77,7 +82,9 @@ abstract class ICartRepository {
 }
 
 abstract class IContactUsRepository {
-  Future<ContactUsResponseModel> getContactUsApiResponse(
+
+  Future<dynamic> getContactUsApiResponse(
+
       String contactusRequestJson,
       String orderNo,
       String country,
