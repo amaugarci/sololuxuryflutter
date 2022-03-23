@@ -291,64 +291,49 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     return Container(
       height: 436,
       width: Get.width,
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+      //padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: appColor),
+        border: Border.all(color: appColor, width: 1),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Stack(
+        //mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(
-                AppAsset.logo,
-                height: 12,
-              ),
-              SvgPicture.asset(AppAsset.search, height: 24, color: Colors.black45,),
-            ],
+          PageView.builder(
+              controller: controllerPage,
+              itemBuilder: (_, index) {
+                return Image.network(
+                  "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                  fit: BoxFit.fill,
+                );
+              },
+              itemCount: 6,
+            ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Align(alignment: Alignment.topRight,
+                child: SvgPicture.asset(AppAsset.search, height: 24, color: Colors.black45,)),
           ),
           SizedBox(height: 97,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.arrow_back_ios,
-                size: 20,
-                color: Colors.black54,
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(
+                    Icons.arrow_back_ios,
+                    size: 20,
+                    color: Colors.black54,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 20,
+                    color: Colors.black54,
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 241,
-                width: Get.width * 0.78,
-                child: PageView.builder(
-                  controller: controllerPage,
-                  itemBuilder: (_, index) {
-                    return Image.network(
-                      "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
-                      fit: BoxFit.fill,
-                    );
-                  },
-                  itemCount: 6,
-                ),
-              ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-                color: Colors.black54,
-              ),
-              /*IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (currentPage <= 5) {
-                      currentPage++;
-                      controller.jumpToPage(currentPage);
-                    }
-                  });
-                },
-                icon: const
-              ),*/
-            ],
+            ),
           ),
         ],
       ),
@@ -436,15 +421,20 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
   }
 
   Widget sizeChartWidget() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: backGroundColor,
-        border: Border.all(color: brown743617),
-      ),
-      child: Text(
-        'SIZE CHART',
-        style: commonTextStyle600(size: 14.0, color: brown743617),
+    return GestureDetector(
+      onTap: (){
+       
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: backGroundColor,
+          border: Border.all(color: brown743617),
+        ),
+        child: Text(
+          'SIZE CHART',
+          style: commonTextStyle600(size: 14.0, color: brown743617),
+        ),
       ),
     );
   }
@@ -644,4 +634,43 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       },
     );
   }
+
+  Widget imageDialog(text, path, context) {
+    return Dialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '$text',
+                  style: TextStyle(fontSize:16, fontWeight: FontWeight.w500),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close_rounded, size: 14,),
+                  color: appColor,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 220,
+            height: 380,
+            child: Image.network(
+              '$path',
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 }

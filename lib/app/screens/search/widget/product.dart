@@ -31,32 +31,26 @@ class Product extends StatelessWidget {
           children: [
             Container(
               height: 210,
-              padding: const EdgeInsets.all(8),
+              //padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: appColor,
                   width: 1.4,
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
+                //mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        AppAsset.logo,
-                        width: 50,
-                      ),
-                      SvgPicture.asset(AppAsset.heart, height: 14),
-                    ],
-                  ),
-                  const SizedBox(height: 68),
                   Image.network(
                     "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
-                    height: 92,
-                    width: 120,
-                    fit: BoxFit.cover,
+                    height: 210,
+                    width: 210,
+                    fit: BoxFit.fill,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Align(alignment: Alignment.topRight,
+                        child: SvgPicture.asset(AppAsset.heart, height: 14, color: appColor,)),
                   ),
                 ],
               ),
