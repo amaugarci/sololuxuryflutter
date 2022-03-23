@@ -12,7 +12,6 @@ import '../../data/model/Home/menu_model.dart';
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
 import '../../data/model/Product/product_model.dart';
 import '../../data/model/Wishlist/wishlist_model.dart';
-import '../../data/model/brand_list/BrandData.dart';
 import '../../data/model/checkout_order/multi_address_model.dart';
 
 abstract class ISplashRepository {
@@ -122,9 +121,7 @@ abstract class IWishListRepository {
   Future<WishListProductModel> getWishListApiResponse();
 }
 
-abstract class IBrandListRepository {
-  Future<List<BrandData>> getBrandDataApiResponse();
-}
+
 
 abstract class IDeleteWishListRepository {
   Future<String> deleteWishListApiResponse(String id);
@@ -140,5 +137,12 @@ abstract class IMyOrdersRepository {
 
 abstract class IPostWishListRepository {
   Future<String> postWishListApiResponse(String sku);
+
+
+
+}
+
+abstract class IBrandListRepository {
+  Future<String> getBrandListResponse();
 
 }

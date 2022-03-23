@@ -5,12 +5,12 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/brand_list_a
 import 'brand_controller.dart';
 
 class BrandBinding extends Bindings {
-
   @override
   void dependencies() {
     Get.lazyPut(() => BrandController(brandListAPIRepository: Get.find()));
-    Get.lazyPut<BrandListProvider>(() => BrandListProvider());
-    Get.put(BrandListAPIRepository(brandListProvider: Get.find()));
-  }
 
+    Get.lazyPut<BrandListAPIProvider>(() => BrandListAPIProvider());
+    Get.put(BrandListAPIRepository(brandListAPIProvider: Get.find()));
+
+  }
 }

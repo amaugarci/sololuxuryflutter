@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bindings.dart';
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
+import 'package:solo_luxury/app/screens/brand_list/brand_list_details.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/cart/cart_binding.dart';
 import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
@@ -173,6 +174,7 @@ class AppPages {
       binding: BrandBinding(),
     ),
     GetPage(
+
       name: RoutesConstants.influencerRegistrationScreen,
       page: () => const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
@@ -251,6 +253,11 @@ class AppPages {
       name: RoutesConstants.referFriendScreen,
       page: () => const ReferFriendScreen(),
       binding: ReferFriendBindings(),
+  ),GetPage(
+      name: RoutesConstants.brandDetailsScreen,
+      page: () => const BrandDetailsPage(),
+      binding: BrandBinding(),
+
     ),
   ];
 }
