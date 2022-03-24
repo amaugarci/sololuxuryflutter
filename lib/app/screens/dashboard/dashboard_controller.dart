@@ -11,6 +11,7 @@ import 'package:solo_luxury/app/screens/product_listing/product_list_binding.dar
 import 'package:solo_luxury/app/screens/profile/profile_binding.dart';
 import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_binding.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Home/menu_model.dart';
 import '../../../utils/get_network_service/APIRepository/dashboard_api_repository.dart';
@@ -23,7 +24,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   Rx<MenuModel>? menuModel = MenuModel().obs;
   RxString appbarTitle = "".obs;
 
-
+  RxString chosenValue = "ENG".obs;
   final DashboardAPIRepository dashboardAPIRepository;
   DashboardController({required this.dashboardAPIRepository});
 
@@ -48,4 +49,10 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
 
     menuModel!.value = await dashboardAPIRepository.getMenuAPIResponse();
   }
+
+  List<String> data = [
+    "ENG",
+    "EUR",
+
+  ];
 }
