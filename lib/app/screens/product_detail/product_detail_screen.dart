@@ -117,18 +117,21 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        "SKU:-${product?.sku}",
+                        LanguageConstant.sku.tr +
+                            ":- ${product?.sku}",
                         style: commonTextStyle600(
                             size: 14.0, color: Colors.black54,),
                       ),
                       const SizedBox(height: 25),
-                      Row(
+                      Visibility(visible: product!.typeId == 'configurable',
+                        child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Expanded(child: chooseAnOptionWidget()),
                           const SizedBox(width: 15),
-                          sizeChartWidget(),
+                          sizeChartWidget(context),
                         ],
+                      ),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -420,10 +423,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-  Widget sizeChartWidget() {
+  Widget sizeChartWidget(BuildContext context) {
     return GestureDetector(
       onTap: (){
-       
+        imageDialog(LanguageConstant.sizeChartText.tr, product!.customAttributes![17].value, context);
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -432,7 +435,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           border: Border.all(color: brown743617),
         ),
         child: Text(
-          'SIZE CHART',
+          LanguageConstant.sizeChartText.tr,
           style: commonTextStyle600(size: 14.0, color: brown743617),
         ),
       ),
@@ -635,41 +638,47 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-  Widget imageDialog(text, path, context) {
-    return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+   imageDialog(text, path, context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.all(20),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  '$text',
-                  style: TextStyle(fontSize:16, fontWeight: FontWeight.w500),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '$text',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500, color: appColor),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(Icons.close_rounded, size: 16,),
+                        color: appColor,
+                      ),
+                    ],
+                  ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(Icons.close_rounded, size: 14,),
-                  color: appColor,
+                Container(
+                  child: Image.network(
+                    '$path',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),
-          ),
-          Container(
-            width: 220,
-            height: 380,
-            child: Image.network(
-              '$path',
-              fit: BoxFit.fill,
-            ),
-          ),
-        ],
-      ),
+          );
+        }
     );
   }
 

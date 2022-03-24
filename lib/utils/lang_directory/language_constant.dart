@@ -303,12 +303,9 @@ class LanguageConstant {
   static const String actionText = "actionText";
   static const String welcometoChatText = "welcometoChatText";
   static const String fillTheFormText = "fillTheFormText";
-
-
   static const String dateOfMarriageText = "dateOfMarriageText";
-
-
-
   static const String findBrandsText = "findBrandsText";
+
+  static const String sizeChartText = "sizeChartText";
 
 }

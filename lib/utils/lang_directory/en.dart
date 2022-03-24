@@ -299,10 +299,8 @@ const Map<String, String> en = {
   "actionText": "Action",
   "welcometoChatText": "Welcome to our LiveChat!",
   "fillTheFormText": "Please fill in the form below before starting the chat.",
-
   "dateOfMarriageText": "Date of Marriage",
-
-
   "findBrandsText": "Find Brands...",
+  "sizeChartText": "SIZE CHART",
 
 };
