@@ -4,6 +4,7 @@ const Map<String, String> en = {
   "details": "Details",
   "orderDetails": "Order Details",
   "tax": "TAX",
+  "faqTitle":"Frequently Asked Questions",
   "promoCode": "PROMO CODE",
   "enterCode": "Enter promo code",
   "updateCart": "UPDATE CART",
