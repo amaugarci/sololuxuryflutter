@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/product_list_api_repository.dart';
 import '../../../data/model/Product/product_model.dart';
+import '../product_detail/product_detail_binding.dart';
 
 class ProductController extends GetxController {
   var likedProducts = <ProductModel>[].obs;
@@ -22,6 +23,7 @@ class ProductController extends GetxController {
     getHomeProducts(Get.arguments[0].toString());
     print("Id -> ${Get.arguments[0]}");
     print("Name -> ${Get.arguments[1]}");
+    ProductDetailsBindings().dependencies();
     super.onInit();
   }
 
