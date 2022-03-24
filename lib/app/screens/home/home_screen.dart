@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
-import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart' as custom;
+import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
+    as custom;
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
@@ -20,90 +21,19 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-          backgroundColor: appColorAccent,
-          appBar: AppBar(
-            leading: const Icon(
-              Icons.close,
-              size: 24.0,
-            ),
-            elevation: 0,
-            backgroundColor: backGroundColor,
-            iconTheme: const IconThemeData(color: Colors.black),
+    return Scaffold(
+      backgroundColor: appColorAccent,
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AppAsset.banner1),
+            fit: BoxFit.fill,
           ),
-          body: SizedBox(
-            width: Get.width,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  Image.asset(
-                    AppAsset.banner,
-                    height: 500.0,
-                    width: Get.width,
-                    fit: BoxFit.cover,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      detailsButton(LanguageConstant.aboutUsText.tr.toUpperCase(), 1),
-                      Visibility(
-                        visible: controller.index.value == 1 ? true : false,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Get.to(() => const AboutUsScreen());
-                              },
-                              child: CommonTextOpenSans(
-                                LanguageConstant.aboutUsText.tr,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Get.to(() => const ReferFriendScreen());
-                              },
-                              child: CommonTextOpenSans(
-                                LanguageConstant.referFriendText.tr,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: CommonTextOpenSans(
-                                LanguageConstant.returnsRefundsText.tr,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: CommonTextOpenSans(
-                                LanguageConstant.faqText.tr,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      detailsButton(LanguageConstant.contactText.tr.toUpperCase(), 2),
-                      detailsButton(LanguageConstant.socialText.tr.toUpperCase(), 3),
-                      detailsButton(LanguageConstant.companyText.tr.toUpperCase(), 4),
-                      const SizedBox(height: 20),
-                      emailSubscribe(),
-                      const SizedBox(height: 40),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget detailsButton(String text, int value) {
