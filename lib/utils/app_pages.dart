@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_bindings.dart';
 import 'package:solo_luxury/app/screens/affiliate_program/affiliate_program_screen.dart';
+import 'package:solo_luxury/app/screens/app_secure_shopping/app_secure_shopping.dart';
+import 'package:solo_luxury/app/screens/app_secure_shopping/app_secure_shopping_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_details.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
@@ -10,6 +12,8 @@ import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
+import 'package:solo_luxury/app/screens/donation/charity_binding.dart';
+import 'package:solo_luxury/app/screens/donation/donation_screen.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
 import 'package:solo_luxury/app/screens/faq/faq_screen.dart';
 
@@ -134,6 +138,11 @@ class AppPages {
       binding: AddAddressBindings(),
     ),
     GetPage(
+      name: RoutesConstants.appSecureShoppingScreen,
+      page: () => const AppSecureShoppingScreen(),
+      binding: AppSecureShoppingBindings(),
+    ),
+    GetPage(
       name: RoutesConstants.loginScreen,
       page: () => const LoginScreen(),
       binding: LoginBinding(),
@@ -167,6 +176,11 @@ class AppPages {
       name: RoutesConstants.filterScreen,
       page: () => ListFilterPage(),
       binding: FilterBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.charityScreen,
+      page: () => const CharityScreen(),
+      binding: CharityBinding(),
     ),
     GetPage(
       name: RoutesConstants.brandScreen,

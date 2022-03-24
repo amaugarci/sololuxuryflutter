@@ -2,6 +2,7 @@ const Map<String, String> en = {
   "language": "English",
   "appNameText": "Solo Luxury",
   "details": "Details",
+
   "orderDetails": "Order Details",
   "tax": "TAX",
   "faqTitle":"Frequently Asked Questions",
@@ -13,6 +14,17 @@ const Map<String, String> en = {
   "cartContain3": "Please click here to donate now.",
   "cartContain4": "I WANT TO DONATE",
   "cartContain5": "Check Out with Multiple Addresses",
+
+  "charityTitle": "Hope",
+  "charityContain1":
+      "When you buy from us you help support a dream A dream to give A secure future A happy environment, and A healthy life.",
+  "charityContain2":
+      "HOPE is our project to give hope and opportunities to those who need it the most. Every dollar you spend on our site - helps improve a life somewhere, from Syrian refugees to educating Children in Africa or providing clean water, we wish and hope to make the world a more equal place.",
+  "charityContain3":
+      "2% of every sale made on our website goes to help those most in need. You can also choose to contribute any further amount which we will match in addition to our 2% - unto a maximum of 5% of the order value.",
+  "charityContain4":
+      "What's more? You get updated by us about the donation in every details possible and you know where the money was spent and how it helped changed a life.",
+
   "description": "Description",
   "estimatedDelivery": "Estimated Delivery",
   "guaranteedDelivery": "Guaranteed Delivery : Nov 04 - Nov 11",

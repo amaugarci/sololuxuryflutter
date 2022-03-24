@@ -109,6 +109,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                     ),
                   ),
                 ),
+
                 Obx(() => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -230,6 +231,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                               ),
                             ],
                           ),
+
                         ),
                         Container(
                           color: secondaryColor,

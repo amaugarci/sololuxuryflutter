@@ -21,6 +21,7 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: appColorAccent,
       body: Container(
@@ -30,6 +31,7 @@ class HomeScreen extends GetView<HomeController> {
           image: DecorationImage(
             image: AssetImage(AppAsset.banner1),
             fit: BoxFit.fill,
+
           ),
         ),
       ),
