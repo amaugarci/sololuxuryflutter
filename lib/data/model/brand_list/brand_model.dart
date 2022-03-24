@@ -74,8 +74,8 @@ class BrandModel {
         "seo_title": seoTitle,
         "seo_desc": seoDesc,
         "seo_keyword": seoKeyword,
-        "updated_at": updatedAt?.toIso8601String(),
-        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
       };
 
   void add(BrandModel brand) {}

@@ -12,15 +12,13 @@ class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
   Item? product;
 
-  Product({required this.product});
+  Product({Key? key, this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(
-              product: product,
-            ));
+        Get.to(() => ProductDetailScreen(),arguments: product);
       },
       child: Container(
         width: 150,
@@ -31,32 +29,28 @@ class Product extends StatelessWidget {
           children: [
             Container(
               height: 210,
-              padding: const EdgeInsets.all(8),
+              //padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: appColor,
                   width: 1.4,
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
+                //mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        AppAsset.logo,
-                        width: 50,
-                      ),
-                      SvgPicture.asset(AppAsset.heart, height: 14),
-                    ],
-                  ),
-                  const SizedBox(height: 68),
+
                   Image.network(
                     "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
-                    height: 92,
-                    width: 120,
-                    fit: BoxFit.cover,
+                    height: 210,
+                    width: 210,
+                    fit: BoxFit.fill,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Align(alignment: Alignment.topRight,
+                        child: SvgPicture.asset(AppAsset.heart, height: 14, color: appColor,)),
+
                   ),
                 ],
               ),
@@ -64,22 +58,14 @@ class Product extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               "${product?.name}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Text(
               "${product?.name}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 6),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

@@ -65,6 +65,7 @@ class ProductListScreen extends GetView<ProductController> {
           child: const HeaderWidget(),
         ),*/
           ),
+
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.5),
             child: Column(
@@ -86,16 +87,17 @@ class ProductListScreen extends GetView<ProductController> {
                     ),
                     itemBuilder: (_, index) {
                       Item? item = controller.productModel?.value.items?[index];
-                      return Product(product: item);
+                      if(item == null){
+                        return Container();
+                      }else {
+                        return Product(product: item);
+                      }
                     },
                     itemCount: controller.productModel?.value.items?.length,
+
                   ),
                 ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ));
+  ]))));
   }
 
   Widget filterWidget() {
@@ -110,7 +112,8 @@ class ProductListScreen extends GetView<ProductController> {
             'WOMEN',
             style: TextStyle(
               color: appColor,
-              fontSize: 16.0, fontWeight: FontWeight.w600,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const Spacer(),
@@ -122,8 +125,14 @@ class ProductListScreen extends GetView<ProductController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(AppAsset.filter, width: 18.0, height: 18.0,),
-                SizedBox(width: 24,),
+                SvgPicture.asset(
+                  AppAsset.filter,
+                  width: 18.0,
+                  height: 18.0,
+                ),
+                SizedBox(
+                  width: 24,
+                ),
                 const Text(
                   'FILTER',
                   style: TextStyle(
@@ -153,7 +162,10 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w300,
+                color: Colors.black),
           ),
           Icon(
             Icons.expand_more,

@@ -449,18 +449,13 @@ class DashboardScreen extends GetView<DashboardController> {
                                                           left: 25, right: 20),
                                                   tileHeight: 35,
                                                   verticalVisualDensity: -1,
-                                                  isIcon: itemLevel2
-                                                          .childrenData!.isEmpty
-                                                      ? true
-                                                      : false,
-                                                  onExpansionChanged: (a) {
-                                                    if (itemLevel2.childrenData!
-                                                        .isEmpty) {
-                                                      Get.toNamed(
-                                                          RoutesConstants
-                                                              .productListScreen,
-                                                          arguments:
-                                                              itemLevel2.id);
+
+                                                  isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
+                                                  onExpansionChanged: (a){
+                                                    if(itemLevel2.childrenData!.isEmpty){
+                                                      Get.toNamed(RoutesConstants.productListScreen,
+                                                          arguments: [itemLevel2.id]);
+
                                                     }
                                                   },
                                                   children: [

@@ -45,9 +45,18 @@ class AppAsset {
   static const dialogSuccess = 'assets/images/success_dialog.png';
   static const shoze = 'assets/images/shoze.png';
   static const shoze1 = 'assets/images/shoze1.png';
+
   static const he = 'assets/images/he.png';
   static const edit = 'assets/images/edit.png';
   static const delete = "assets/images/delete.png";
+
+  static const appSecure = 'assets/images/appSecure.png';
+  static const googleStore = 'assets/images/googleStore.png';
+  static const moneyBank = 'assets/images/moneyBank.png';
+  static const payPal = 'assets/images/payPal.png';
+  static const charity1 = 'assets/images/charity1.png';
+  static const charity2 = 'assets/images/charity2.png';
+
   static const close = "assets/icons/close.png";
   static const minus = "assets/icons/minus.png";
   static const plus = "assets/icons/plus.png";

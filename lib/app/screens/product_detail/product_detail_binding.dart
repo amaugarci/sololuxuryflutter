@@ -7,11 +7,10 @@ class ProductDetailsBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ProductDetailController());
-
     Get.lazyPut<RecommendedProductsAPIProvider>(
         () => RecommendedProductsAPIProvider());
    /* Get.put(() => RecommendedProductsAPIRepository(
-        recommendedProductsAPIProvider: Get.find()));*/
+        RecommendedProductsAPIProvider: Get.find()));*/
     /*  Get.put(() =>
         ProductDetailController(recommendedProductsAPIRepository: Get.find()));*/
   }
