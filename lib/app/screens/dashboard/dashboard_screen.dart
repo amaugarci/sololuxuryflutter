@@ -454,7 +454,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                   onExpansionChanged: (a){
                                                     if(itemLevel2.childrenData!.isEmpty){
                                                       Get.toNamed(RoutesConstants.productListScreen,
-                                                          arguments: [itemLevel2.id]);
+                                                          arguments: [itemLevel2.id,itemLevel1.name]);
 
                                                     }
                                                   },
@@ -482,7 +482,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                                       .productListScreen,
                                                                   arguments: [
                                                                     itemLevel3
-                                                                        .id
+                                                                        .id,itemLevel1.name
                                                                   ]);
                                                             },
                                                             child: Container(

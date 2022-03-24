@@ -8,6 +8,7 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/splash_api_r
 
 import '../../../main.dart';
 import '../../../utils/get_network_service/APIProviders/country_api_provider.dart';
+import '../../services/notification_service.dart';
 import '../country/country_controller.dart';
 
 class SplashController extends GetxController {
@@ -23,6 +24,7 @@ class SplashController extends GetxController {
   }
 
   setLocalStore() async {
+    await getFCMToken();
     await localStore.getToken();
     bool isCall = await localStore.getStore();
     print("isCall -> $isCall");
