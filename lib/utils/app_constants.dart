@@ -69,6 +69,8 @@ class AppConstants {
       "https://dev3.sololuxury.com/rest/V1/contactus";
 
   static String apiCountryGet = "http://ip-api.com";
+  static String apiEndPointFaq = "https://dev3.sololuxury.com";
+  static String tokenFaq = "Bearer yn6yadqv0l8uem5rvo4pt6invys7gpo8";
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
@@ -95,7 +97,7 @@ class AppConstants {
 
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
-  static const String faq = "/rest/default/V1/snowdog/cmsPage/16";
+  static const String faq = "/rest/V1/cmspagemanagerList/16";
   static const String cartGetData = "/rest/in-en/V1/carts/mine";
 
   static const String myOrders =

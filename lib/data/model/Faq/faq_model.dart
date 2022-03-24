@@ -1,3 +1,71 @@
+
+class FaqModel {
+  String? cmspagemanagerId;
+  String? cmsId;
+  String? status;
+  Null? extraData;
+  List<CmsText>? cmsText;
+  String? createdAt;
+
+  FaqModel(
+      {this.cmspagemanagerId,
+        this.cmsId,
+        this.status,
+        this.extraData,
+        this.cmsText,
+        this.createdAt});
+
+  FaqModel.fromJson(Map<String, dynamic> json) {
+    cmspagemanagerId = json['cmspagemanager_id'];
+    cmsId = json['cms_id'];
+    status = json['status'];
+    extraData = json['extra_data'];
+    if (json['cms_text'] != null) {
+      cmsText = <CmsText>[];
+      json['cms_text'].forEach((v) {
+        cmsText!.add(new CmsText.fromJson(v));
+      });
+    }
+    createdAt = json['created_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cmspagemanager_id'] = this.cmspagemanagerId;
+    data['cms_id'] = this.cmsId;
+    data['status'] = this.status;
+    data['extra_data'] = this.extraData;
+    if (this.cmsText != null) {
+      data['cms_text'] = this.cmsText!.map((v) => v.toJson()).toList();
+    }
+    data['created_at'] = this.createdAt;
+    return data;
+  }
+}
+
+class CmsText {
+  String? title;
+  String? subTitle;
+  String? description;
+
+  CmsText({this.title, this.subTitle, this.description});
+
+  CmsText.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    subTitle = json['sub_title'];
+    description = json['description'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['sub_title'] = this.subTitle;
+    data['description'] = this.description;
+    return data;
+  }
+}
+
+/*
 // To parse this JSON data, do
 //
 //     final faqModel = faqModelFromJson(jsonString);
@@ -79,3 +147,4 @@ class FaqModel {
         "active": active,
       };
 }
+*/

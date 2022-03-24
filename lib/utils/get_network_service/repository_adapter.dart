@@ -128,7 +128,7 @@ abstract class IDeleteWishListRepository {
 }
 
 abstract class IFaqRepository {
-  Future<FaqModel> getFaqApiResponse();
+  Future getFaqApiResponse();
 }
 
 abstract class IMyOrdersRepository {
