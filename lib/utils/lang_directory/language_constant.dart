@@ -1,8 +1,8 @@
 class LanguageConstant {
   //Home Screen Constant
-  static const String aboutUsText = "aboutUs";
+  static const String aboutUsText = "aboutUsText";
 
-  //static const String aboutUsText = "aboutUsText";
+  // static const String aboutUsText = "aboutUsText";
   static const String aboutUsContain1 = "aboutUsContain1";
   static const String aboutUsContain2 = "aboutUsContain2";
   static const String aboutUsContain3 = "aboutUsContain3";
@@ -10,6 +10,15 @@ class LanguageConstant {
   static const String aboutUsContain5 = "aboutUsContain5";
   static const String aboutUsContain6 = "aboutUsContain6";
   static const String aboutUsContain7 = "aboutUsContain7";
+
+
+  ///charity
+  static const String charityTitle = "charityTitle";
+  static const String charityContain1 = "charityContain1";
+  static const String charityContain2 = "charityContain2";
+  static const String charityContain3 = "charityContain3";
+  static const String charityContain4 = "charityContain4";
+
 
   static const String returnPolicyTitle = "returnPolicyTitle";
   static const String returnProcessTitle = "returnProcessTitle";
@@ -48,7 +57,6 @@ class LanguageConstant {
   static const String countryText = "countryText";
   static const String workedOnText = "workedOnText";
 
-
   ///product Details Screen
   static const String details = "details";
   static const String description = "description";
@@ -68,6 +76,9 @@ class LanguageConstant {
   static const String forgetPassword = "forgetPassword";
   static const String backToSignInScreen = "backToSignInScreen";
   static const String forgetPasswordContain = "forgetPasswordContain";
+
+  ///FAQ
+  static const String faqTitle = "faqTitle";
 
   static const String referFriendText = "referFriendText";
   static const String returnsRefundsText = "returnsRefundsText";
@@ -275,6 +286,7 @@ class LanguageConstant {
   static const String accountInfoText = "accountInfoText";
   static const String newsletterSubText = "newsletterSubText";
   static const String youaddCartText = "youaddCartText";
+  static const String youaddCartEndText =  "youaddCartEndText";
   static const String viewCartText = "viewCartText";
   static const String continueShoppingText = "continueShoppingText";
   static const String checkYourOrderText = "checkYourOrderText";
@@ -303,9 +315,10 @@ class LanguageConstant {
   static const String actionText = "actionText";
   static const String welcometoChatText = "welcometoChatText";
   static const String fillTheFormText = "fillTheFormText";
+
   static const String dateOfMarriageText = "dateOfMarriageText";
   static const String findBrandsText = "findBrandsText";
 
   static const String sizeChartText = "sizeChartText";
-
+  
 }

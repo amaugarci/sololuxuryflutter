@@ -20,8 +20,6 @@ class AppConstants {
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
   // static String referFriendEndPoint = "/V1/referFriend";
 
-
-
   // static String menuEndPoint = "/V1/categories";
   // static String estimatesShippingMethodEndPoint =
   //     "/in-en/V1/carts/mine/estimate-shipping-methods";
@@ -35,8 +33,7 @@ class AppConstants {
   static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
 
-  static String apiEndPointMyAccount =
-      "/rest/V1/customers/me";
+  static String apiEndPointMyAccount = "/rest/V1/customers/me";
   static String recommendedProductsEndPoint =
       "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
 
@@ -63,7 +60,8 @@ class AppConstants {
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
-  static String productImageUrl = "https://www.sololuxury.com/media/catalog/product/";
+  static String productImageUrl =
+      "https://www.sololuxury.com/media/catalog/product/";
 
   //static String apiEndPoint = "https://api.solo_luxury.com";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
@@ -72,15 +70,11 @@ class AppConstants {
 
   static String apiCountryGet = "http://ip-api.com";
 
-
-
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
 
   // static String apiEndPoint =
   //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
-
-
 
   //Sign Up
 
@@ -96,13 +90,16 @@ class AppConstants {
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
+
   static const String productList = "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
+
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
   static const String faq = "/rest/default/V1/snowdog/cmsPage/16";
   static const String cartGetData = "/rest/in-en/V1/carts/mine";
 
-  static const String myOrders = "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
+  static const String myOrders =
+      "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
   static const String deleteWishlist = "/rest/V1/wishlist/";
   static const String postWishlist = "/rest/V1/wishlist/";
 
@@ -119,15 +116,8 @@ class AppConstants {
 
   static const int websiteId = 1;
 
-
-
   static String myTicketApi = '/rest/V1/mytickets/';
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';
-
-
-
-  static String brandListApi = 'brandList';
-
 }

@@ -22,8 +22,7 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
-
-  setLocalStore()async{
+  setLocalStore() async {
     await localStore.getToken();
     bool isCall = await localStore.getStore();
     print("isCall -> $isCall");
@@ -40,9 +39,7 @@ class SplashController extends GetxController {
 
   _navigate() async {
     await Future.delayed(const Duration(seconds: 2), () async {
-
       Get.offAllNamed(RoutesConstants.dashboardScreen);
-
     });
   }
 }

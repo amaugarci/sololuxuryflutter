@@ -12,15 +12,13 @@ class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
   Item? product;
 
-  Product({required this.product});
+  Product({Key? key, this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(
-              product: product,
-            ));
+        Get.to(() => ProductDetailScreen(),arguments: product);
       },
       child: Container(
         width: 150,
@@ -41,6 +39,7 @@ class Product extends StatelessWidget {
               child: Stack(
                 //mainAxisSize: MainAxisSize.min,
                 children: [
+
                   Image.network(
                     "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
                     height: 210,
@@ -51,6 +50,7 @@ class Product extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: Align(alignment: Alignment.topRight,
                         child: SvgPicture.asset(AppAsset.heart, height: 14, color: appColor,)),
+
                   ),
                 ],
               ),
@@ -58,22 +58,14 @@ class Product extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               "${product?.name}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Text(
               "${product?.name}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 6),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
