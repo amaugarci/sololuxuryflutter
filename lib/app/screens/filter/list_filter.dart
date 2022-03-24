@@ -266,8 +266,9 @@ class ListFilterPage extends GetView<FilterController> {
                 ),
               ],
             )),
-        Flexible(
+        Expanded(
           child: ListView.builder(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               primary: false, // <- add
               itemCount: getData().length,

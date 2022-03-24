@@ -65,45 +65,39 @@ class ProductListScreen extends GetView<ProductController> {
           child: const HeaderWidget(),
         ),*/
           ),
-          body: controller.isLoading.value
-              ? const Center(
-                  child: CircularProgressIndicator(
-                    color: appColor,
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.5),
-                  child: Column(
-                    children: [
-                      filterWidget(),
-                      const SizedBox(height: 15),
-                      filterDropDown(),
-                      const SizedBox(height: 30),
-                      Expanded(
-                        child: GridView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 12.5,
-                            childAspectRatio: 0.50,
-                          ),
-                          itemBuilder: (_, index) {
-                            Item? item =
-                                controller.productModel?.value.items?[index];
-                            return Product(product: item);
-                          },
-                          itemCount:
-                              controller.productModel?.value.items?.length,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.5),
+            child: Column(
+              children: [
+                filterWidget(),
+                const SizedBox(height: 15),
+                filterDropDown(),
+                const SizedBox(height: 30),
+                Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 12.5,
+                      childAspectRatio: 0.55,
+                    ),
+                    itemBuilder: (_, index) {
+                      Item? item = controller.productModel?.value.items?[index];
+                      if(item == null){
+                        return Container();
+                      }else {
+                        return Product(product: item);
+                      }
+                    },
+                    itemCount: controller.productModel?.value.items?.length,
+
                   ),
                 ),
-        ));
+  ]))));
   }
 
   Widget filterWidget() {

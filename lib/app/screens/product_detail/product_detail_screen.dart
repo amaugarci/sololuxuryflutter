@@ -110,8 +110,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       const SizedBox(height: 10),
                       Visibility(
                         visible: controller.isSelected1.isTrue ? true : false,
-                        child: const Text(
-                          'Nylon Messenger Backpack By Balenciaga, Front Closure With Hook, Top Handle, Adjustable Shoulder Straps, Front Patch Zip Pocket With Contrast Logo, Hooks As Decorative Elements.',
+                        child: Text(
+                          "${data!.customAttributes!.first.value}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -298,14 +298,15 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     return Container(
       height: 436,
       width: Get.width,
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+      //padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: appColor),
+        border: Border.all(color: appColor, width: 1),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Stack(
+        //mainAxisAlignment: MainAxisAlignment.start,
         children: [
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -348,23 +349,16 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
               const Icon(
                 Icons.arrow_forward_ios,
                 size: 20,
-                color: Colors.black54,
-              ),
-              /*IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (currentPage <= 5) {
-                      currentPage++;
-                      controller.jumpToPage(currentPage);
-                    }
-                  });
-                },
-                icon: const
-              ),*/
-            ],
-          ),
-        ],
-      ),
+                color: Colors.black54,)
+  ]
+    ),
+  ])
+
+
+
+
+
+
     );
   }
 
@@ -449,15 +443,20 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
   }
 
   Widget sizeChartWidget() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: backGroundColor,
-        border: Border.all(color: brown743617),
-      ),
-      child: Text(
-        'SIZE CHART',
-        style: commonTextStyle600(size: 14.0, color: brown743617),
+    return GestureDetector(
+      onTap: (){
+       
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: backGroundColor,
+          border: Border.all(color: brown743617),
+        ),
+        child: Text(
+          'SIZE CHART',
+          style: commonTextStyle600(size: 14.0, color: brown743617),
+        ),
       ),
     );
   }
@@ -649,4 +648,43 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       },
     );
   }
+
+  Widget imageDialog(text, path, context) {
+    return Dialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '$text',
+                  style: TextStyle(fontSize:16, fontWeight: FontWeight.w500),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close_rounded, size: 14,),
+                  color: appColor,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 220,
+            height: 380,
+            child: Image.network(
+              '$path',
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 }

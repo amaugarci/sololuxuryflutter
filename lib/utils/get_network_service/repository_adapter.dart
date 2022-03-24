@@ -114,7 +114,7 @@ abstract class IMyTicketRepository {
 }
 
 abstract class IProductListRepository {
-  Future<ProductModel> getProductListApiResponse();
+  Future<ProductModel> getProductListApiResponse(String categoryId);
 }
 
 abstract class IWishListRepository {
