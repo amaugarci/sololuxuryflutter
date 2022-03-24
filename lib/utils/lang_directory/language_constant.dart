@@ -320,5 +320,5 @@ class LanguageConstant {
   static const String findBrandsText = "findBrandsText";
 
   static const String sizeChartText = "sizeChartText";
-  
+
 }
