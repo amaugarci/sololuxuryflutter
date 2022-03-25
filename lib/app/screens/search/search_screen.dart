@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../utils/image_constant.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import 'search_controller.dart';
+import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
+    as custom;
 
 class SearchScreen extends GetView<SearchController> {
   const SearchScreen({Key? key}) : super(key: key);
@@ -73,6 +76,7 @@ class SearchScreen extends GetView<SearchController> {
                     filterDropDown(),
                     const SizedBox(height: 10),
                     Flexible(
+                      flex: 1,
                       child: DefaultTabController(
                         length:
                             controller.menuModel?.value?.childrenData?.length,
@@ -90,28 +94,21 @@ class SearchScreen extends GetView<SearchController> {
                                   unselectedLabelColor: unselectedTabColor,
                                   isScrollable: true,
                                   tabs: List<Widget>.generate(
-                                      controller.menuModel?.value?.childrenData
-                                          ?.length, (int index) {
-                                    itemLevel1 = controller
-                                        .menuModel?.value?.childrenData?[index];
-                                    return Tab(
-                                        child: Text(itemLevel1.name!,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 12.0)));
-                                  }),
-                                ),
-                              ),
-                              Container(
-                                height: 400, //height of TabBarView
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.grey,
-                                      width: 0.5,
-                                    ),
+                                    controller
+                                        .menuModel?.value?.childrenData?.length,
+                                    (int index) {
+                                      itemLevel1 = controller.menuModel?.value
+                                          ?.childrenData?[index];
+                                      return Tab(
+                                          child: Text(itemLevel1.name!,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 12.0)));
+                                    },
                                   ),
                                 ),
+                              ),
+                              Expanded(
                                 child: TabBarView(
                                   children: List<Widget>.generate(
                                     controller
@@ -126,13 +123,63 @@ class SearchScreen extends GetView<SearchController> {
                                             .length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return categoriesOptions(
-                                            text: controller
-                                                .menuModel
-                                                ?.value
-                                                ?.childrenData?[index1]
-                                                .childrenData[index]
-                                                .name,
+                                          var data2 = controller
+                                              .menuModel
+                                              ?.value
+                                              ?.childrenData?[index1]
+                                              .childrenData[index];
+                                          print("-=============");
+                                          return custom.ExpansionTile(
+                                            contentPadding: EdgeInsets.zero,
+                                            verticalVisualDensity: -1,
+                                            title: Text(
+                                              "${data2.name}",
+                                            ),
+                                            children: [
+                                              ListView.builder(
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  padding: EdgeInsets.zero,
+                                                  itemCount: data2
+                                                      .childrenData!.length,
+                                                  itemBuilder:
+                                                      (context, index2) {
+                                                    ChildrenData itemLevel3 =
+                                                        data2.childrenData![
+                                                            index2];
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Get.toNamed(
+                                                            RoutesConstants
+                                                                .productListScreen,
+                                                            arguments: [
+                                                              itemLevel3.id,
+                                                              itemLevel1.name
+                                                            ]);
+                                                      },
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                                .only(
+                                                            left: 40.0,
+                                                            top: 3.0,
+                                                            bottom: 3.0),
+                                                        child: Text(
+                                                          itemLevel3.name!,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: const TextStyle(
+                                                              fontSize: 12.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color:
+                                                                  appColorDarkGrey),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  })
+                                            ],
                                           );
                                         },
                                       );
