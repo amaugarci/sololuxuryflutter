@@ -58,4 +58,34 @@ class RecommendedProductsAPIRepository extends GetxController {
       print("ERROR+==============$e");
     }
   }
+
+  Future getSizeListApi() async {
+    final response = await http.get(
+        Uri.parse(
+            AppConstants.apiEndPointNew2 + AppConstants.getSizeListApi + "539"),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.defaultToken
+        });
+    try {
+      if (response.statusCode == 200) {
+        print("Categories=======================================");
+/*        print(response.body.toString());
+        itemData.add(recommendedProductResponseModelFromJson(response.body));*/
+        var list = json.decode(response.body);
+        /*itemData = json.decode(response.body);
+
+        print("ITEMDATA===================${itemData.toString()}");*/
+        print(response.statusCode);
+        print("LIST DATA +++++++++++++++++++$list");
+        print("LIST DATA +++++++++++++++++++${list}");
+        return list;
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
 }

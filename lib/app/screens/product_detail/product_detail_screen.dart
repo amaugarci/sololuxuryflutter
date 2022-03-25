@@ -47,7 +47,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                             width: 20,
                             margin: EdgeInsets.only(right: 12),
                             color: whiteColor,
-                            child: const Icon(Icons.arrow_back_ios, size: 16, color: Colors.black54,),
+                            child: const Icon(
+                              Icons.arrow_back_ios,
+                              size: 16,
+                              color: Colors.black54,
+                            ),
                           ),
                           Expanded(child: allProductImages()),
                           Container(
@@ -55,8 +59,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                             width: 20,
                             margin: EdgeInsets.only(left: 12),
                             color: whiteColor,
-                            child:
-                                const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black54,),
+                            child: const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.black54,
+                            ),
                           ),
                         ],
                       ),
@@ -117,21 +124,23 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        LanguageConstant.sku.tr +
-                            ":- ${product?.sku}",
+                        LanguageConstant.sku.tr + ":- ${product?.sku}",
                         style: commonTextStyle600(
-                            size: 14.0, color: Colors.black54,),
+                          size: 14.0,
+                          color: Colors.black54,
+                        ),
                       ),
                       const SizedBox(height: 25),
-                      Visibility(visible: product!.typeId == 'configurable',
+                      Visibility(
+                        visible: product!.typeId == 'configurable',
                         child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(child: chooseAnOptionWidget()),
-                          const SizedBox(width: 15),
-                          sizeChartWidget(context),
-                        ],
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(child: chooseAnOptionWidget()),
+                            const SizedBox(width: 15),
+                            sizeChartWidget(context),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -303,21 +312,28 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         //mainAxisAlignment: MainAxisAlignment.start,
         children: [
           PageView.builder(
-              controller: controllerPage,
-              itemBuilder: (_, index) {
-                return Image.network(
-                  "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
-                  fit: BoxFit.fill,
-                );
-              },
-              itemCount: 6,
-            ),
+            controller: controllerPage,
+            itemBuilder: (_, index) {
+              return Image.network(
+                "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                fit: BoxFit.fill,
+              );
+            },
+            itemCount: 6,
+          ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Align(alignment: Alignment.topRight,
-                child: SvgPicture.asset(AppAsset.search, height: 24, color: Colors.black45,)),
+            child: Align(
+                alignment: Alignment.topRight,
+                child: SvgPicture.asset(
+                  AppAsset.search,
+                  height: 24,
+                  color: Colors.black45,
+                )),
           ),
-          SizedBox(height: 97,),
+          SizedBox(
+            height: 97,
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8),
@@ -354,7 +370,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           children: [
             Text(
               text!,
-              style: const TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w400),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w400),
             ),
             const Icon(Icons.expand_more, color: Colors.black),
           ],
@@ -425,8 +444,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   Widget sizeChartWidget(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        imageDialog(LanguageConstant.sizeChartText.tr, product!.customAttributes![17].value, context);
+      onTap: () {
+        imageDialog(LanguageConstant.sizeChartText.tr,
+            product!.customAttributes![17].value, context);
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -489,25 +509,40 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   Widget chooseAnOptionWidget() {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: const Color(0xffDDD2CE)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Choose An Option...',
-            style: TextStyle(
-              color: blackColor.withOpacity(0.35),
-            ),
+          color: Colors.white,
+          border: Border.all(color: appColor.withOpacity(0.4))),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton(
+          items: controller.sizeListData
+              .map(
+                (value) => DropdownMenuItem(
+                  child: Text(value),
+                  value: value,
+                ),
+              )
+              .toList(),
+          isExpanded: true,
+          hint: controller.sizeList.toString() == ""
+              ? Text(
+                  'Choose An Option...',
+                )
+              : Text(
+                  "${controller.sizeList.value}",
+                  style: const TextStyle(color: Colors.black),
+                ),
+          icon: const Icon(
+            Icons.keyboard_arrow_down,
+            size: 22,
+            color: Colors.black,
           ),
-          Icon(
-            Icons.expand_more,
-            color: Colors.black.withOpacity(0.35),
-          ),
-        ],
+          iconEnabledColor: Colors.transparent,
+          onChanged: (valueList) {
+            print("Val");
+            controller.sizeList.value = valueList.toString();
+          },
+        ),
       ),
     );
   }
@@ -638,7 +673,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-   imageDialog(text, path, context) {
+  imageDialog(text, path, context) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -657,13 +692,18 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       Text(
                         '$text',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500, color: appColor),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: appColor),
                       ),
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon: Icon(Icons.close_rounded, size: 16,),
+                        icon: Icon(
+                          Icons.close_rounded,
+                          size: 16,
+                        ),
                         color: appColor,
                       ),
                     ],
@@ -678,8 +718,6 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
               ],
             ),
           );
-        }
-    );
+        });
   }
-
 }

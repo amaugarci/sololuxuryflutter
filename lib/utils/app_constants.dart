@@ -93,7 +93,8 @@ class AppConstants {
   static String menuEndPoint = "/rest/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
 
-  static const String productList = "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
+  static const String productList =
+      "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
 
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
@@ -120,6 +121,7 @@ class AppConstants {
   static const int websiteId = 1;
 
   static String myTicketApi = '/rest/V1/mytickets/';
+  static const String getSizeListApi = "/V1/sizeList/";
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';

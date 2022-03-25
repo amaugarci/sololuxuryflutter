@@ -17,6 +17,7 @@ class ProductDetailController extends GetxController
   @override
   void onInit() {
     // TODO: implement onInit
+    getSizeListFromApi();
     super.onInit();
     getRecommendedProductDataFromApi();
     controller = TabController(vsync: this, length: myTabs.length);
@@ -38,7 +39,9 @@ class ProductDetailController extends GetxController
   RxBool isSelected = false.obs;
   RxBool isSelected1 = false.obs;
 
-  List itemsData=[];
+  List itemsData = [];
+  List sizeListData = [].obs;
+  var sizeList = "".obs;
 
   ///API CALLING
   Future<void> getRecommendedProductDataFromApi() async {
@@ -50,6 +53,20 @@ class ProductDetailController extends GetxController
         isLoading(false);
         // recommendedProductModel(itemsData);
         print("CONTROLLER DATA ==============${itemsData[0]["type_id"]}");
+      }
+    } catch (e) {
+      print("CONTROLLER DATA ==============$e");
+      isLoading(false);
+    }
+  }
+
+  Future<void> getSizeListFromApi() async {
+    isLoading(true);
+    try {
+      sizeListData = await RecommendedProductsAPIRepository().getSizeListApi();
+      print("Size List $sizeListData");
+      if (sizeListData != null) {
+        isLoading(false);
       }
     } catch (e) {
       print("CONTROLLER DATA ==============$e");
