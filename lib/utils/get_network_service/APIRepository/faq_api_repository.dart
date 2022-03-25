@@ -12,7 +12,7 @@ class FaqAPIRepository implements IFaqRepository {
 
 
   @override
-  Future<FaqModel> getFaqApiResponse() async{
+  Future getFaqApiResponse() async{
     final response = await faqProvider.getFaqResponseProvider(endPoint: AppConstants.faq);
     if (response != null) {
       print("response.statusCode -> ");
