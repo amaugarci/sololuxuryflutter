@@ -98,6 +98,7 @@ class AppConstants {
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
   static const String faq = "/rest/V1/cmspagemanagerList/16";
+  static const String returnsAndRefund = "/rest/V1/cmspagemanagerList/15";
   static const String cartGetData = "/rest/in-en/V1/carts/mine";
 
   static const String myOrders =

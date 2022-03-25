@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
+    as custom;
 
 class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
   const ReturnsAndRefundsScreen({Key? key}) : super(key: key);
@@ -12,7 +15,9 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
     return Obx(
       () => Scaffold(
         backgroundColor: appColorAccent,
-        body: pageView(),
+        body: controller.getReturnsList.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : pageView(),
       ),
     );
   }
@@ -146,315 +151,56 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
             const SizedBox(
               height: 20,
             ),
-            listTileUtilities(
-              title: LanguageConstant.returnPolicyTitle.tr,
-              onTap: () {
-                controller.isSelected1.value = !controller.isSelected1.value;
-              },
-              isSelected: controller.isSelected1.isTrue,
-            ),
-            controller.isSelected1.isTrue
-                ? Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      border: Border.all(
-                        width: 1,
-                        color: appColorButton,
+            ListView.builder(
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.getReturnsList.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                print(
+                    "DATADATA ========${controller.getReturnsList[index].title.toString()}");
+                return Container(
+                  width: Get.width,
+                  margin: EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: appColorButton,
+                    ),
+                  ),
+                  child: custom.ExpansionTile(
+                    tileHeight: 48,
+                    verticalVisualDensity: -1,
+                    contentPadding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 3),
+                    title: Text(
+                      controller.getReturnsList[index].title.toString(),
+                      style: const TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 16,
+                        color: brownColor,
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: controller.isSelected1.isTrue ? 20 : 0,
+                    isIcon: controller.getReturnsList.isEmpty ? true : false,
+                    children: [
+                      Container(
+                        width: Get.width,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
                         ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain1.tr,
-                          isSelected: controller.isSelected1.isTrue,
-                          fontWidth: FontWeight.w600,
+                        child: Html(
+                          data: controller.getReturnsList[index].description
+                              .toString(),
                         ),
-                        bulletList(
-                          isSelected: controller.isSelected1.isTrue,
-                          strings: [
-                            LanguageConstant.returnPolicyContain2.tr,
-                            LanguageConstant.returnPolicyContain3.tr,
-                            LanguageConstant.returnPolicyContain4.tr,
-                            LanguageConstant.returnPolicyContain5.tr,
-                            LanguageConstant.returnPolicyContain6.tr,
-                            LanguageConstant.returnPolicyContain7.tr,
-                            LanguageConstant.returnPolicyContain8.tr,
-                            LanguageConstant.returnPolicyContain9.tr,
-                            LanguageConstant.returnPolicyContain12.tr,
-                          ],
-                        ),
-                        SizedBox(
-                          height: controller.isSelected1.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain10.tr,
-                          isSelected: controller.isSelected1.isTrue,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain11.tr,
-                          isSelected: controller.isSelected1.isTrue,
-                        ),
-                        SizedBox(
-                          height: controller.isSelected1.isTrue ? 10 : 0,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
-            const SizedBox(
-              height: 20,
-            ),
-            listTileUtilities(
-              title: LanguageConstant.returnProcessTitle.tr,
-              onTap: () {
-                controller.isSelected2.value = !controller.isSelected2.value;
-              },
-              isSelected: controller.isSelected2.isTrue,
-            ),
-            controller.isSelected2.isTrue
-                ? Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      border: Border.all(
-                        width: 1,
-                        color: appColorButton,
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: controller.isSelected2.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain1.tr,
-                          isSelected: controller.isSelected2.isTrue,
-                        ),
-                        bulletList(
-                          isSelected: controller.isSelected2.isTrue,
-                          strings: [
-                            LanguageConstant.returnPolicyContain2.tr,
-                            LanguageConstant.returnPolicyContain3.tr,
-                            LanguageConstant.returnPolicyContain4.tr,
-                            LanguageConstant.returnPolicyContain5.tr,
-                            LanguageConstant.returnPolicyContain6.tr,
-                            LanguageConstant.returnPolicyContain7.tr,
-                            LanguageConstant.returnPolicyContain8.tr,
-                            LanguageConstant.returnPolicyContain9.tr,
-                          ],
-                        ),
-                        SizedBox(
-                          height: controller.isSelected2.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain10.tr,
-                          isSelected: controller.isSelected2.isTrue,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain11.tr,
-                          isSelected: controller.isSelected2.isTrue,
-                        ),
-                        SizedBox(
-                          height: controller.isSelected2.isTrue ? 10 : 0,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
-            const SizedBox(
-              height: 20,
-            ),
-            listTileUtilities(
-              title: LanguageConstant.refundTitle.tr,
-              onTap: () {
-                controller.isSelected3.value = !controller.isSelected3.value;
+                    ],
+                  ),
+                );
               },
-              isSelected: controller.isSelected3.isTrue,
             ),
-            controller.isSelected3.isTrue
-                ? Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      border: Border.all(
-                        width: 1,
-                        color: appColorButton,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: controller.isSelected3.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain1.tr,
-                          isSelected: controller.isSelected3.isTrue,
-                        ),
-                        bulletList(
-                          isSelected: controller.isSelected3.isTrue,
-                          strings: [
-                            LanguageConstant.returnPolicyContain2.tr,
-                            LanguageConstant.returnPolicyContain3.tr,
-                            LanguageConstant.returnPolicyContain4.tr,
-                            LanguageConstant.returnPolicyContain5.tr,
-                            LanguageConstant.returnPolicyContain6.tr,
-                            LanguageConstant.returnPolicyContain7.tr,
-                            LanguageConstant.returnPolicyContain8.tr,
-                            LanguageConstant.returnPolicyContain9.tr,
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain10.tr,
-                          isSelected: controller.isSelected3.isTrue,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain11.tr,
-                          isSelected: controller.isSelected3.isTrue,
-                        ),
-                        SizedBox(
-                          height: controller.isSelected3.isTrue ? 10 : 0,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
-            const SizedBox(
-              height: 20,
-            ),
-            listTileUtilities(
-              title: LanguageConstant.customisedTitle.tr,
-              onTap: () {
-                controller.isSelected4.value = !controller.isSelected4.value;
-              },
-              isSelected: controller.isSelected4.isTrue,
-            ),
-            controller.isSelected4.isTrue
-                ? Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      border: Border.all(
-                        width: 1,
-                        color: appColorButton,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: controller.isSelected4.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain1.tr,
-                          isSelected: controller.isSelected4.isTrue,
-                        ),
-                        bulletList(
-                          isSelected: controller.isSelected4.isTrue,
-                          strings: [
-                            LanguageConstant.returnPolicyContain2.tr,
-                            LanguageConstant.returnPolicyContain3.tr,
-                            LanguageConstant.returnPolicyContain4.tr,
-                            LanguageConstant.returnPolicyContain5.tr,
-                            LanguageConstant.returnPolicyContain6.tr,
-                            LanguageConstant.returnPolicyContain7.tr,
-                            LanguageConstant.returnPolicyContain8.tr,
-                            LanguageConstant.returnPolicyContain9.tr,
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain10.tr,
-                          isSelected: controller.isSelected4.isTrue,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain11.tr,
-                          isSelected: controller.isSelected4.isTrue,
-                        ),
-                        SizedBox(
-                          height: controller.isSelected4.isTrue ? 10 : 0,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
-            const SizedBox(
-              height: 20,
-            ),
-            listTileUtilities(
-              title: LanguageConstant.howToReturnTitle.tr,
-              onTap: () {
-                controller.isSelected5.value = !controller.isSelected5.value;
-              },
-              isSelected: controller.isSelected5.isTrue,
-            ),
-            controller.isSelected5.isTrue
-                ? Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      border: Border.all(
-                        width: 1,
-                        color: appColorButton,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: controller.isSelected5.isTrue ? 20 : 0,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain1.tr,
-                          isSelected: controller.isSelected5.isTrue,
-                        ),
-                        bulletList(
-                          isSelected: controller.isSelected5.isTrue,
-                          strings: [
-                            LanguageConstant.returnPolicyContain2.tr,
-                            LanguageConstant.returnPolicyContain3.tr,
-                            LanguageConstant.returnPolicyContain4.tr,
-                            LanguageConstant.returnPolicyContain5.tr,
-                            LanguageConstant.returnPolicyContain6.tr,
-                            LanguageConstant.returnPolicyContain7.tr,
-                            LanguageConstant.returnPolicyContain8.tr,
-                            LanguageConstant.returnPolicyContain9.tr,
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain10.tr,
-                          isSelected: controller.isSelected5.isTrue,
-                        ),
-                        contain(
-                          contain: LanguageConstant.returnPolicyContain11.tr,
-                          isSelected: controller.isSelected5.isTrue,
-                        ),
-                        SizedBox(
-                          height: controller.isSelected5.isTrue ? 10 : 0,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
             const SizedBox(
               height: 40,
             ),

@@ -57,17 +57,12 @@ abstract class ICountryRepository {
 }
 
 abstract class ICheckoutOrderRepository {
-
-
-
   Future<ShippingInformationModel> postShippingInformationAPIResponse(
       String requestJson);
 
   Future<String> getMultiAddressAPIResponse();
 
   Future<String> postEstimateAPIResponse(String loginRequestJson);
-
-
 }
 
 ///myAccount Class
@@ -81,9 +76,7 @@ abstract class ICartRepository {
 }
 
 abstract class IContactUsRepository {
-
   Future<dynamic> getContactUsApiResponse(
-
       String contactusRequestJson,
       String orderNo,
       String country,
@@ -101,7 +94,6 @@ abstract class IContactUsRepository {
 abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
 }
-
 
 abstract class ICountryListRepository {
   Future<String> getCountryListResponse();
@@ -121,8 +113,6 @@ abstract class IWishListRepository {
   Future<WishListProductModel> getWishListApiResponse();
 }
 
-
-
 abstract class IDeleteWishListRepository {
   Future<String> deleteWishListApiResponse(String id);
 }
@@ -131,18 +121,18 @@ abstract class IFaqRepository {
   Future getFaqApiResponse();
 }
 
+abstract class IReturnsAndRefundsRepository {
+  Future getReturnsRefundsApiResponse();
+}
+
 abstract class IMyOrdersRepository {
   Future<MyOrdersData> getMyOrdersApiResponse();
 }
 
 abstract class IPostWishListRepository {
   Future<String> postWishListApiResponse(String sku);
-
-
-
 }
 
 abstract class IBrandListRepository {
   Future<String> getBrandListResponse();
-
 }
