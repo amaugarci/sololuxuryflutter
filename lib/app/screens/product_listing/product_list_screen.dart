@@ -109,8 +109,8 @@ class ProductListScreen extends GetView<ProductController> {
         children: [
           const SizedBox(width: 10),
           Text(
-            'WOMEN',
-            style: TextStyle(
+            "${Get.arguments[1]}",
+            style: const TextStyle(
               color: appColor,
               fontSize: 16.0,
               fontWeight: FontWeight.w600,

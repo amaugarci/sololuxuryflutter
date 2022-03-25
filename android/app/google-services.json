@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "101481179434",
+    "project_id": "sololuxury-b7ddd",
+    "storage_bucket": "sololuxury-b7ddd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101481179434:android:fe550d79650a03a0935653",
+        "android_client_info": {
+          "package_name": "com.app.sololuxury"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101481179434-f2pj3lgd35s9h2bp82rj8i20a0563gn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ9K5Zx-BMK3PstxGJZNtAe2t2G-WU59U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101481179434-f2pj3lgd35s9h2bp82rj8i20a0563gn0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "101481179434-edcgj11qlmqqg40p4pg8nbe2c6pkovdk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.sololuxury"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
