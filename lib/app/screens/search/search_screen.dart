@@ -134,6 +134,9 @@ class SearchScreen extends GetView<SearchController> {
                                             verticalVisualDensity: -1,
                                             title: Text(
                                               "${data2.name}",
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                             children: [
                                               ListView.builder(
