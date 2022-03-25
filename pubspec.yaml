@@ -51,6 +51,10 @@ dependencies:
   livechatt: ^1.4.0
   shared_preferences: ^2.0.13
   intl: ^0.17.0
+  firebase_core: ^1.13.1
+  flutter_local_notifications: ^9.4.0
+  firebase_messaging: ^11.2.11
+  firebase_crashlytics: ^2.5.3
 
 dev_dependencies:
   flutter_test:

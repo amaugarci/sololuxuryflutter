@@ -7,6 +7,8 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_pages.dart';
 import 'package:solo_luxury/utils/lang_directory/translation_service.dart';
 
+import 'services/notification_service.dart';
+
 class SoloLuxuryApp extends StatefulWidget {
   const SoloLuxuryApp({Key? key}) : super(key: key);
 
@@ -19,6 +21,14 @@ final GlobalKey<NavigatorState> navigatorKey =
 
 class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
   static final dataStorage = GetStorage();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    notificationPermission();
+    sendMeNotification();
+  }
 
   @override
   Widget build(BuildContext context) {
