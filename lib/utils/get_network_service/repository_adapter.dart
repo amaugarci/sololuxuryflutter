@@ -6,6 +6,8 @@ import 'package:solo_luxury/data/model/cart/cart_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/contact_us_response_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
+import 'package:solo_luxury/data/model/search/get_product_data_model.dart';
+import 'package:solo_luxury/data/model/search/search_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
@@ -43,7 +45,11 @@ abstract class IDashboardRepository {
 abstract class ISearchRepository {
   Future<MenuModel> getMenuAPIResponse();
 
-  Future<BannerListModel> getBannerListAPIResponse();
+  Future<SearchModel> getSearchAPIResponse();
+
+  Future<ProductDetailsModel> getSearchProductAPIResponse();
+
+  // Future<BannerListModel> getBannerListAPIResponse();
 }
 
 abstract class IHomeRepository {}

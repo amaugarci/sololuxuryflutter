@@ -12,9 +12,11 @@ class AppConstants {
   //static String menuEndPoint = "/V1/categories";
 
   static String bannerListEndPoint = "/bannerList";
+
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
   static String multiAddressEndPoint = "/rest/V1/customers/me";
+
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -55,8 +57,10 @@ class AppConstants {
   static String apiEndPointNewInfluencer =
       "https://erp.theluxuryunlimited.com/api/influencer/add";
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
+  static String apiEndPointBrand = "https://www.brands-labels.com";
 
   static String apiEndPoint = "";
+
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
@@ -71,6 +75,7 @@ class AppConstants {
   static String apiCountryGet = "http://ip-api.com";
   static String apiEndPointFaq = "https://dev3.sololuxury.com";
   static String tokenFaq = "Bearer yn6yadqv0l8uem5rvo4pt6invys7gpo8";
+  static String tokenSearch = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
@@ -93,7 +98,8 @@ class AppConstants {
   static String menuEndPoint = "/rest/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
 
-  static const String productList = "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
+  static const String productList =
+      "/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
 
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";
