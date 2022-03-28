@@ -22,6 +22,8 @@ class AppAsset {
   static const heart1 = "assets/icons/heart.png";
   static const check = "assets/icons/check.png";
   static const rightIcon = "assets/icons/righticon.svg";
+  static const unchecked = "assets/icons/unchecked.png";
+  static const checked = "assets/icons/checked.png";
 
 
   //Add Address Icnon List

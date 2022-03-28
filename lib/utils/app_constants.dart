@@ -121,7 +121,11 @@ class AppConstants {
   static const int websiteId = 1;
 
   static String myTicketApi = '/rest/V1/mytickets/';
+
   static const String getSizeListApi = "/V1/sizeList/";
+
+  static String filterDataApi = '/rest/V1/layeredList/386';
+
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';

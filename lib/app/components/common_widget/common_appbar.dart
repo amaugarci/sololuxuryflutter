@@ -11,7 +11,7 @@ PreferredSizeWidget commonAppbar({String title = ""}) {
         Get.back();
       },
       child: const Icon(
-        Icons.close,
+        Icons.arrow_back,
         size: 24.0,
       ),
     ),

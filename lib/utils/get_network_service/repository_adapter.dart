@@ -107,6 +107,7 @@ abstract class IMyTicketRepository {
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
+  Future<List<dynamic>> getFilterListApiResponse();
 }
 
 abstract class IWishListRepository {
