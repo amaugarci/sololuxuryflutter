@@ -388,7 +388,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       height: 36,
       child: ElevatedButton(
         onPressed: () {
-          _showDialog(context);
+          controller.postAddToCartData(
+            context,
+            product!.name!,
+            "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+            product?.sku,
+          );
         },
         style: ElevatedButton.styleFrom(
           elevation: 1,

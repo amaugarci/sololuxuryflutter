@@ -72,7 +72,8 @@ abstract class IMyAccountRepository {
 
 ///cart Class
 abstract class ICartRepository {
-  Future<CartModel> getCartGetDataApiResponse();
+  Future<String> getCartGetDataApiResponse();
+  Future<dynamic> deleteCartCartQTYDataApiResponse(String itemId);
 }
 
 abstract class IContactUsRepository {

@@ -47,6 +47,11 @@ class AppConstants {
   static String referFriendEndPoint = "/rest//V1/referFriend";
 
   static String jsonEndPoint = "/json";
+  static const String deleteCartProdyctData =
+      "/rest/in-en/V1/carts/mine/items/";
+  static const String addTocartData = "/rest/in-en/V1/carts/mine/items";
+  static const String createCart = "/rest/in-en/V1/carts/mine/";
+  static const String cartToken = "Bearer xsa9qh7daz72bzrudo8iijw9dqd5jzqo";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -125,7 +130,6 @@ class AppConstants {
   static const String getSizeListApi = "/V1/sizeList/";
 
   static String filterDataApi = '/rest/V1/layeredList/386';
-
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';
