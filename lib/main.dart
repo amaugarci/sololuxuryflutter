@@ -14,6 +14,11 @@ import 'app/services/notification_service.dart';
 
 LocalStore localStore = LocalStore();
 
+
+//Call Android Module
+const platform = MethodChannel('flutter.native/helper');
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initMessaging();

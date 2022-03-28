@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
@@ -11,6 +12,7 @@ import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 import '../../../data/model/checkout_order/estimate_shipping_method_model.dart';
 import '../../../data/model/checkout_order/multi_address_model.dart';
+import '../../../main.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
@@ -99,4 +101,20 @@ class CheckoutOrderController extends GetxController {
     shipInfoModel!.value  = await checkoutOrderAPIRepository.postShippingInformationAPIResponse(params);
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
+
+  //TODO : Payment Response using Platform
+
+  RxString nativeCode = 'Waiting for Response...'.obs;
+
+  Future<void> responseFromNativeCode() async {
+    String response = "";
+    try {
+      final String result = await platform.invokeMethod('helloFromNativeCode');
+      response = result;
+    } on PlatformException catch (e) {
+      response = "Failed to Invoke: '${e.message}'.";
+    }
+    nativeCode.value = response;
+  }
+
 }

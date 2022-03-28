@@ -819,13 +819,14 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                if (controller.formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(Get.context!).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
+                controller.responseFromNativeCode();
+                // if (controller.formKey.currentState!.validate()) {
+                //   // If the form is valid, display a snackbar. In the real world,
+                //   // you'd often call a server or save the information in a database.
+                //   ScaffoldMessenger.of(Get.context!).showSnackBar(
+                //     const SnackBar(content: Text('Processing Data')),
+                //   );
+                // }
               },
               elevation: 0.0,
               color: appColorButton,
