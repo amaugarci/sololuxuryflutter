@@ -42,8 +42,9 @@ const Map<String, String> en = {
   "marriageAnniversaryText" : "Marriage Anniversary",
   "emailText" : "Email",
   "confirmPasswordText" : "Confirm Password",
+  "backText" : "Back to login",
   "signUpForNewsletterText" : "Sign Up for Newsletter",
-  "forgotYourPasswordDescriptionText" : "Please Enter Your Email Address Below To Receive\nA Password Reset Link",
+  "forgotYourPasswordDescriptionText" : "Please enter your email address below to \nreceive a  password re copy",
   "enterYourEmailText" :"Enter your email",
   "resetMyPasswordText" :"Reset My Password",
 };
