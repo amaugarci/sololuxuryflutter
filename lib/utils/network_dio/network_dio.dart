@@ -37,6 +37,7 @@ class NetworkDioHttp {
       };
     }
   }
+
   static Future<Map<String, String>> getTestHeaders() async {
     return {
       'Content-type': 'application/json',
@@ -49,6 +50,13 @@ class NetworkDioHttp {
     return {
       'Content-type': 'application/json',
       'Authorization': 'Bearer j4lsyku1ruayxi9410x62ghyv6hfod7w',
+    };
+  }
+
+  static Future<Map<String, String>> getTestHeadersInfluencer() async {
+    return {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer pdrqv7sasg7z54851cieiycp8df4pvs8',
     };
   }
 

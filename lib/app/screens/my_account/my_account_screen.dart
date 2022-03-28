@@ -1,231 +1,372 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-import '../../utils/app_asset.dart';
-import '../home/widget/header_widget.dart';
-import 'my_account_controller.dart';
+import '../../../utils/app_constants.dart';
 
-class MyAccountPage extends GetView<MyAccountController> {
-  const MyAccountPage({Key? key}) : super(key: key);
+class MyAccountScreen extends GetView<MyAccountController> {
+  const MyAccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-      key: controller.scaffoldKey.value,
-      endDrawer: Icon(Icons.ac_unit),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        title: Image.asset(AppAsset.logo, width: 110),
-        bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: appColor),
-      ),
-      backgroundColor: backGroundColor,
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: appColor),),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(5),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    isExpanded: true, dropdownColor: offWhite,
-                    value: controller.chosenValue.value,
-                    // elevation: 0,
-                    style: TextStyle(
-                        color: appColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
-                    items: <String>[
-                      'My Account',
-                      'My Orders',
-                      'My Wish List',
-                      'Address Book',
-                      'Account Information',
-                      'My Tickets',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(value),
-                        ),
-                      );
-                    }).toList(),
-                    hint: Text(
-                      'My Account',
-                      style: TextStyle(
-                          color: appColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: appColorAccent,
+        body: controller.isLoading.value == true
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 120,
                     ),
-                    onChanged: (String? value) {
-                      controller.chosenValue.value = value!;
-                    },
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Text("Account Information",
-                    style: TextStyle(color: appColor, fontSize: 18)),
-              ),
-              Container(
-                decoration: BoxDecoration(color: offWhite),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("CONTACT INFORMATION",
-                        style: TextStyle(
-                            color: appColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    Divider(color: appColor,),
-                    SizedBox(height: 10),
-                    Text("Yogesh Kumar Sharma",
-                        style: TextStyle(color: silver, fontSize: 12)),
-                    Text("admin@gmail.com",
-                        style: TextStyle(color: silver, fontSize: 12)),
-                    SizedBox(height: 50),
                     Container(
-                        padding: EdgeInsets.all(12),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: secondaryColor),
-                        child: Text("EDIT | CHANGE PASSWORD",
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      height: 50,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        color: appColorAccent,
+                        border: Border.all(
+                          color: appColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          dropdownColor: appColorFDF3F1,
+                          icon: const Icon(Icons.expand_more_outlined,
+                              color: appColor),
+                          value: controller.chosenValue.value,
+                          elevation: 2,
+                          style: commonTextStyle(),
+                          items: controller.data
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(value),
+                              ),
+                            );
+                          }).toList(),
+                          hint: Text(
+                            LanguageConstant.myAccountText.tr,
+                            style: commonTextStyle(),
+                          ),
+                          onChanged: (String? value) {
+                            controller.chosenValue.value = value!;
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    newsLettersDesign(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            LanguageConstant.addressBookText.tr,
+                            style: commonTextStyle600(fontSize: 20.0),
+                          ),
+                          Text(
+                            LanguageConstant.manageAddresses.tr,
                             style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)))
+                              decoration: TextDecoration.underline,
+                              decorationColor: blackColor,
+                              decorationThickness: 1.5,
+                              fontSize: 14,
+                              color: blackColor,
+                              fontFamily: AppConstants.fontOpenSans,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    defaultBillingDesign(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    defaultShippingDesign(),
+                    const SizedBox(
+                      height: 40,
+                    ),
                   ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(color: offWhite),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("NEWSLETTERS",
-                        style: TextStyle(
-                            color: appColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    Divider(color: appColor,),
-                    SizedBox(height: 10),
-                    Text("You Aren;t Subscribed To\nOur Newsletter.",
-                        style: TextStyle(color: silver, fontSize: 12)),
-                    SizedBox(height: 50),
-                    Container(
-                        padding: EdgeInsets.all(12),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: secondaryColor),
-                        child: Text("EDIT",
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)))
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Address Book ",
-                        style: TextStyle(color: appColor, fontSize: 18)),
-                    Text("Manage Addresses",
-                        style: TextStyle(
-                            fontSize: 12,
-                            decoration: TextDecoration.underline)),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(color: offWhite),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("DEFAULT BILLING ADDRESS",
-                        style: TextStyle(
-                            color: appColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    Divider(color: appColor,),
-                    SizedBox(height: 10),
-                    Text(
-                        "12345\n\nJaipur, Delhi, 302019\n\nIndia\n\nT: 01234567890",
-                        style: TextStyle(color: silver, fontSize: 12)),
-                    SizedBox(height: 50),
-                    Container(
-                        padding: EdgeInsets.all(12),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: secondaryColor),
-                        child: Text("EDIT ADDRESS",
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)))
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(color: offWhite),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("DEFAULT SHIPPING ADDRESS",
-                        style: TextStyle(
-                            color: appColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    Divider(color: appColor,),
-                    SizedBox(height: 10),
-                    Text(
-                        "12345\n\nJaipur, Delhi, 302019\n\nIndia\n\nT: 01234567890",
-                        style: TextStyle(color: silver, fontSize: 12)),
-                    SizedBox(height: 50),
-                    Container(
-                        padding: EdgeInsets.all(12),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(color: secondaryColor),
-                        child: Text("EDIT ADDRESS",
-                            style: TextStyle(
-                                color: appColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)))
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
-    ));
+    );
+  }
+
+  commonTextStyle() {
+    return  TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyleNormal() {
+    return  TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
+      fontSize: 16,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyle300() {
+    return  TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
+      fontWeight: FontWeight.w300,
+      fontSize: 16,
+      color: appColorButton,
+    );
+  }
+
+  commonTextStyle600({var fontSize}) {
+    return TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
+      fontWeight: FontWeight.w600,
+      fontSize: fontSize,
+      color: appColorButton,
+    );
+  }
+
+  newsLettersDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.newsLetters.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 40),
+            child: Text(
+              LanguageConstant.newsLettersContain.tr,
+              style: commonTextStyle300(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.edit.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
+    );
+  }
+
+  defaultBillingDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.defaultBillingAddress.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10),
+            child: SizedBox(
+              width: Get.width / 2.5,
+              child: Text(
+                LanguageConstant.defaultShippingContain.tr,
+                style: commonTextStyle300(),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 20, bottom: 20),
+            child: Text(
+              "T: 01234567890",
+              style: TextStyle(
+                fontFamily: AppConstants.fontPoppins,
+                fontSize: 16,
+                color: grey6D6D6D,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.editAddress.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
+    );
+  }
+
+  defaultShippingDesign() {
+    return Container(
+      width: Get.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15),
+            child: Text(
+              LanguageConstant.defaultShippingAddress.tr,
+              style: commonTextStyle600(fontSize: 18.0),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, bottom: 15),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: appColorDullPrimary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10),
+            child: SizedBox(
+              width: Get.width / 2.5,
+              child: Text(
+                LanguageConstant.defaultShippingContain.tr,
+                style: commonTextStyle300(),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, bottom: 20),
+            child: Text(
+              "T: 01234567890",
+              style: TextStyle(
+                fontFamily: AppConstants.fontPoppins,
+                fontSize: 16,
+                color: grey6D6D6D,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 52,
+              width: Get.width,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                LanguageConstant.editAddress.tr,
+                style: commonTextStyle300(),
+              ),
+              decoration: const BoxDecoration(
+                color: appColorAccent,
+              ),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        color: appColorFDF3F1,
+        boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.25),
+            blurRadius: 8,
+          )
+        ],
+      ),
+      padding: const EdgeInsets.only(
+        top: 21,
+        bottom: 10,
+      ),
+      alignment: Alignment.centerLeft,
+    );
   }
 }

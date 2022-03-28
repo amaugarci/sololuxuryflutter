@@ -4,6 +4,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:solo_luxury/app/components/storage_constant.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/login_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
@@ -32,7 +35,9 @@ class LoginController extends GetxController {
       log("authUserData : $authUserData");
 
       loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim())).obs;
-
+      loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
+      await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+      await localStore.getToken();
       log("loginResponseModel : $loginResponseModel");
     } else {}
   }

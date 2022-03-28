@@ -1,275 +1,309 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
+import 'package:solo_luxury/app/screens/filter/filter_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-class ListFilterPage extends StatefulWidget {
-  const ListFilterPage({Key? key}) : super(key: key);
+import '../../../data/model/CheckBoxListTileModel.dart';
+import '../../utils/app_asset.dart';
 
-  @override
-  _ListFilterPageState createState() => _ListFilterPageState();
-}
+class ListFilterPage extends GetView<FilterController> {
+  ListFilterPage({Key? key}) : super(key: key);
 
-class _ListFilterPageState extends State<ListFilterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
+        key: controller.scaffoldKey.value,
         backgroundColor: backGroundColor,
         body: Container(
             child: SingleChildScrollView(
           child: Column(children: [
+            SizedBox(height: 60),
+            Container(
+                child: Image.asset(
+              AppAsset.logo,
+              height: 50,
+              width: 150,
+            )),
             SizedBox(height: 40),
             Container(
-                child: Row(children: [
-              SizedBox(width: MediaQuery.of(context).size.width * 0.3),
-              Image.asset("assets/images/logo 2.png"),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.2),
-              Icon(Icons.close, color: appColor)
-            ])),
-            SizedBox(height: 40),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: brownColor)),
+                // decoration: BoxDecoration(
+                //     border: Border.all(width: 1, color: brownColor)),
                 margin: EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10),
+                      height: 400,
                       decoration: BoxDecoration(color: lightBrownColor),
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Price",
-                        style: TextStyle(color: brownColor, fontSize: 16),
-                      ),
-                    ),
-                    // Slider(value: 100, onChanged: null)
-                  ],
-                )),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: brownColor)),
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(color: lightBrownColor),
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         children: [
-                          Text(
-                            "Color",
-                            style: TextStyle(color: brownColor, fontSize: 16),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Center(
+                                  child: Text(
+                                    LanguageConstant.filtersText.tr,
+                                    style: TextStyle(
+                                        color: appColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.close,
+                                  size: 25.0,
+                                  color: appColor,
+                                ),
+                              )
+                            ],
                           ),
-                          Image.asset("assets/images/minus.png")
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(children: [
-                            Text("Black",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Blue",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Brown",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Green",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("(56)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(3)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(9)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(2)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("White",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Yellow",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Pink",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("Tan",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("(2)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(8)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(7)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(1)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
-            Container(
-                height: 320,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: brownColor)),
-                margin: EdgeInsets.all(10),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(color: lightBrownColor),
-                        alignment: Alignment.centerLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Brand",
-                              style: TextStyle(color: brownColor, fontSize: 16),
+                          SizedBox(height: 20),
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: brownColor)),
+                              padding: EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: brownColor)),
+                                      width: Get.width * .42,
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              controller.sizeClicked.value =
+                                                  false;
+                                              controller.brandClicked.value =
+                                                  false;
+                                              controller.colorClicked.value =
+                                                  false;
+                                              controller.priceClicked.value =
+                                                  true;
+                                            },
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: controller
+                                                            .priceClicked.value
+                                                        ? backGroundColor
+                                                        : lightBrownColor),
+                                                width: Get.width,
+                                                height: 40,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .priceText.tr,
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: appColor)),
+                                                )),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              controller.sizeClicked.value =
+                                                  false;
+                                              controller.brandClicked.value =
+                                                  false;
+                                              controller.colorClicked.value =
+                                                  true;
+                                              controller.priceClicked.value =
+                                                  false;
+                                            },
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: controller
+                                                            .colorClicked.value
+                                                        ? backGroundColor
+                                                        : lightBrownColor),
+                                                width: Get.width,
+                                                height: 40,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Text(
+                                                    LanguageConstant
+                                                        .colorText.tr,
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: appColor),
+                                                  ),
+                                                )),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              controller.sizeClicked.value =
+                                                  false;
+                                              controller.brandClicked.value =
+                                                  true;
+                                              controller.colorClicked.value =
+                                                  false;
+                                              controller.priceClicked.value =
+                                                  false;
+                                            },
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: controller
+                                                            .brandClicked.value
+                                                        ? backGroundColor
+                                                        : lightBrownColor),
+                                                width: Get.width,
+                                                height: 40,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .brandText.tr,
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: appColor)),
+                                                )),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              controller.sizeClicked.value =
+                                                  true;
+                                              controller.brandClicked.value =
+                                                  false;
+                                              controller.colorClicked.value =
+                                                  false;
+                                              controller.priceClicked.value =
+                                                  false;
+                                            },
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: controller
+                                                            .sizeClicked.value
+                                                        ? backGroundColor
+                                                        : lightBrownColor),
+                                                width: Get.width,
+                                                height: 40,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Text(
+                                                      LanguageConstant
+                                                          .sizeText.tr,
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: appColor)),
+                                                )),
+                                          ),
+                                        ],
+                                      )),
+                                  Container(
+                                      alignment: Alignment.topLeft,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: brownColor)),
+                                      width: Get.width * .42,
+                                      child: priceFilterWidget()),
+                                ],
+                              ),
                             ),
-                            Image.asset("assets/images/minus.png")
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: brownColor)),
-                        margin: EdgeInsets.all(15),
-                        padding: EdgeInsets.all(10),
-                        child: TextFormField(
-                          decoration: InputDecoration.collapsed(
-                              hintText: "Search",
-                              hintStyle: TextStyle(fontSize: 14)),
-                        ),
-                      ),
-                      ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return Container(
-                                padding: EdgeInsets.all(10),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Brand 01",
-                                  style: TextStyle(
-                                      color: brownColor, fontSize: 14),
-                                ));
-                          })
-                    ],
-                  ),
-                )),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: brownColor)),
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(color: lightBrownColor),
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Size",
-                            style: TextStyle(color: brownColor, fontSize: 16),
                           ),
-                          Image.asset("assets/images/minus.png")
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(children: [
-                            Text("11",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("35",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("35.5",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("40",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("(56)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(3)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(9)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(1)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("38",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("39",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("40",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("41",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                          Column(children: [
-                            Text("(2)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(8)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(7)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                            Text("(1)",
-                                style:
-                                    TextStyle(color: brownColor, fontSize: 14)),
-                          ]),
-                        ],
-                      ),
-                    )
                   ],
                 )),
-            SizedBox(height: 100)
+            SizedBox(height: 50),
+            Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    color: appColor,
+                    border: Border.all(width: 1, color: brownColor)),
+                width: Get.width * .9,
+                child: Center(
+                    child: Text(
+                  LanguageConstant.applyText.tr,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                ))),
           ]),
-        )));
+        ))));
+  }
+
+  Widget priceFilterWidget() {
+    List<CheckBoxListTileModel> data1 = getData();
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+            margin: EdgeInsets.all(5),
+            decoration:
+                BoxDecoration(border: Border.all(width: 1, color: brownColor)),
+            padding: EdgeInsets.all(5),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.search,
+                  color: brownColor,
+                ),
+                Text(
+                  LanguageConstant.searchText.tr,
+                  style: TextStyle(color: brownColor),
+                ),
+              ],
+            )),
+        Expanded(
+          child: ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              primary: false, // <- add
+              itemCount: getData().length,
+              itemBuilder: (BuildContext context, int index) {
+                return Column(
+                  children: <Widget>[
+                    new CheckboxListTile(
+                      contentPadding: EdgeInsets.zero,
+                        activeColor: appColor,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        title: new Text(
+                          data1[index].title!,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,),
+                        ),
+                        value: data1[index].isCheck!,
+                        onChanged: (bool? val) {})
+                  ],
+                );
+              }),
+        ),
+      ],
+    );
+  }
+
+  List<CheckBoxListTileModel> getData() {
+    return <CheckBoxListTileModel>[
+      CheckBoxListTileModel(title: "\u{20B9} 500 - 1000", isCheck: true),
+      CheckBoxListTileModel(title: "\u{20B9} 1500 - 2000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 2500 - 3000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 3500 - 4000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 4500 - 5000", isCheck: false),
+      CheckBoxListTileModel(title: "\u{20B9} 5500 - 6000", isCheck: false),
+    ];
   }
 }

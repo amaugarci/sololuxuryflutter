@@ -1,17 +1,142 @@
 import 'package:flutter/material.dart';
-import '../../../../data/model/Product/product_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:solo_luxury/app/utils/app_asset.dart';
+import 'package:solo_luxury/data/model/Wishlist/wishlist_model.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import '../../../../utils/app_constants.dart';
 import '../../../utils/colors.dart';
 
 class WishlistItem extends StatelessWidget {
-  ProductModel product;
+  Item? item;
 
-  WishlistItem({required this.product});
+  WishlistItem({required this.item});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Container(
+      child: Column(
+        children: [
+          Container(
+            height: 340,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            width: Get.width,
+            child: Image.network(
+              "${AppConstants.productImageUrl}${item!.product!.customAttributes!.first.value}",
+              fit: BoxFit.fill,
+            ),
+          ),
+          Container(
+            width: Get.width,
+            padding:
+                const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: backgroundticket,
+              boxShadow: [
+                BoxShadow(
+                  color: blackColor.withOpacity(0.10),
+                  blurRadius: 25,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "${item!.product!.name}",
+                  style: commonTextStyle400(),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '\$ ' + "${item!.product!.price}",
+                    style: commonTextStyle600(),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          LanguageConstant.qtyText.tr,
+                          style: commonTextStyle400(),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          height: 30,
+                          width: 50,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "${item!.product!.status}",
+                            style: commonTextStyle400(),
+                          ),
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            border: Border.all(
+                              color: appTextFieldHintColor,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        MaterialButton(
+                          onPressed: () {},
+                          height: 30,
+                          child: Text(
+                            LanguageConstant.addTOCart.tr.toUpperCase(),
+                            style: commonTextStyle600(
+                              color: whiteColor,
+                              size: 14.0,
+                            ),
+                          ),
+                          elevation: 0,
+                          minWidth: 119,
+                          color: addToCartColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: const [
+                        Image(
+                          image: AssetImage(AppAsset.edit),
+                        ),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Image(
+                          image: AssetImage(AppAsset.delete),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+        ],
+      ),
+
+      /*: Container(
         width: 150,
         color: backGroundColor,
         child: Padding(
@@ -23,7 +148,7 @@ class WishlistItem extends StatelessWidget {
               Container(
                 height: 350,
                 child: Image.network(
-                  'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                  "${AppConstants.productImageUrl}${item!.product!.getProductImage()}",
                   // height: 150,
                   fit: BoxFit.cover,
                 ),
@@ -33,15 +158,15 @@ class WishlistItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("MIU MIU", style: TextStyle(fontSize: 20)),
+                    Text("${item!.product!.name}", style: TextStyle(fontSize: 20)),
                     SizedBox(
                       height: 5,
                     ),
-                    Text("PAINTED MARY JANE", style: TextStyle(fontSize: 14)),
+                    Text("${item!.product!.name}", style: TextStyle(fontSize: 14)),
                     SizedBox(
                       height: 10,
                     ),
-                    Text("\$ 560.00",
+                    Text('\$ ' + "${item!.product!.price}",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold))
                   ]),
@@ -78,7 +203,25 @@ class WishlistItem extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ),*/
+    );
+  }
+
+  commonTextStyle400({var size}) {
+    return TextStyle(
+      color: blackColor,
+      fontSize: size ?? 16,
+      fontWeight: FontWeight.w400,
+      fontFamily: AppConstants.fontOpenSans,
+    );
+  }
+
+  commonTextStyle600({var size, var color}) {
+    return TextStyle(
+      color: color ?? blackColor,
+      fontSize: size ?? 16,
+      fontWeight: FontWeight.w600,
+      fontFamily: AppConstants.fontOpenSans,
     );
   }
 }

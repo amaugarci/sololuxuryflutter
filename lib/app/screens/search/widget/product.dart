@@ -6,19 +6,19 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../../data/model/Product/product_model.dart';
+import '../../../../utils/app_constants.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
-  ProductModel product;
+  Item? product;
 
-  Product({required this.product});
-
+  Product({Key? key, this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(product: product,));
+        Get.to(() => ProductDetailScreen(),arguments: product);
       },
       child: Container(
         width: 150,
@@ -28,73 +28,63 @@ class Product extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 200,
-              padding: const EdgeInsets.all(8),
+              height: 210,
+              //padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: appColor,
                   width: 1.4,
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
+                //mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        AppAsset.logo,
-                        width: 90,
-                      ),
-                      SvgPicture.asset(AppAsset.heart, height: 14),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
+
                   Image.network(
-                    'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
-                    height: 150,
-                    fit: BoxFit.cover,
+                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                    height: 210,
+                    width: 210,
+                    fit: BoxFit.fill,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Align(alignment: Alignment.topRight,
+                        child: SvgPicture.asset(AppAsset.heart, height: 14, color: appColor,)),
+
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
             Text(
-              "${product.name}",
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                overflow: TextOverflow.ellipsis
-              ),
+              "${product?.name}",
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 6),
             Text(
-              "${product.name}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                  overflow: TextOverflow.ellipsis
-              ),
+              "${product?.name}",
+              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 6),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '\$ '+"${product.price}",
+                  '\$' + "${product?.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 14.5,
+                    fontSize: 16,
                   ),
                 ),
+                const SizedBox(width: 50),
                 Text(
-                  '\$ '+"${product.price}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
+                  '\$' + "${product?.price}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
                     color: Colors.black45,
                     decoration: TextDecoration.lineThrough,
-                    fontSize: 14.5,
+                    fontSize: 16,
                   ),
                 ),
               ],

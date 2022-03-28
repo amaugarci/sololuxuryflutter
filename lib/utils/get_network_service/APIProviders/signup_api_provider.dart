@@ -13,12 +13,14 @@ class SignupAPIProvider extends GetConnect implements ISignupProvider {
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => SignUpResponseModel.fromJson(val);
-    httpClient.baseUrl = AppConstants.apiEndPoint;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
   @override
   Future<Response<SignUpResponseModel>> getSignupResponseProvider({required String urlPath, required String signupRequestJson}) {
-    return post(urlPath, signupRequestJson, headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken});
+    print("signupRequestJson -> " + signupRequestJson);
+    print("urlPath -> "+urlPath);
+    return post(urlPath, signupRequestJson, headers: {"Content-type" : "application/json","Authorization" : AppConstants.adminToken});
   }
 
 }

@@ -44,9 +44,17 @@ dependencies:
   carousel_slider: ^4.0.0
   connectivity_plus: ^2.2.0
   dio_http_cache: ^0.3.0
+  http: ^0.13.4
   awesome_dialog: ^2.1.2
   datetime_picker_formfield: ^2.0.0
   flutter_html: ^2.2.1
+  livechatt: ^1.4.0
+  shared_preferences: ^2.0.13
+  intl: ^0.17.0
+  firebase_core: ^1.13.1
+  flutter_local_notifications: ^9.4.0
+  firebase_messaging: ^11.2.11
+  firebase_crashlytics: ^2.5.3
 
 dev_dependencies:
   flutter_test:

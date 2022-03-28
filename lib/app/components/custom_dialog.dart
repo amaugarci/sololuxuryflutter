@@ -5,7 +5,6 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/app_text_style.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/app/utils/static_decoration.dart';
-
 import '../app.dart';
 
 class ErrorDialog {

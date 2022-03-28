@@ -11,25 +11,23 @@ abstract class ILoginProvider {
 
 class LoginProvider extends GetConnect implements ILoginProvider {
 
-  Map<String, String> headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    'Authorization': 'Bearer $token',
-  };
+
 
 
   @override
   void onInit() {
 
     httpClient.defaultDecoder = (val) => jsonEncode(val);
-    httpClient.baseUrl = AppConstants.apiEndPoint;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
+    httpClient.timeout = Duration(seconds: 60);
   }
 
 
   @override
   Future<Response<String>> getLoginResponseProvider({required String urlPath,required String userName,required String password, required String loginRequestJson}) {
     // TODO: implement getLoginResponseProvider
-    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json", "Authorization" : AppConstants.defaultToken});
+    print("url -> " + httpClient.baseUrl.toString() + urlPath);
+    return post(urlPath + "?" + "username=" + userName + "&" + "password=" + password, "", headers: {"Content-type" : "application/json","Authorization" : AppConstants.adminToken});
   }
 
 }

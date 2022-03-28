@@ -1,43 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/components/buttons/text_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field.dart';
+import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_controller.dart';
-import 'package:solo_luxury/app/screens/home/home_controller.dart';
 import 'package:solo_luxury/app/screens/home/widget/checkout_box.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/data/model/Home/estimate_shipping_method_model.dart';
-import 'package:solo_luxury/data/model/Home/shipping_information_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-import '../home/home_screen.dart';
+import '../../../data/model/checkout_order/multi_address_model.dart';
+import '../../components/common_widget/common_appbar.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   CheckoutOrderScreen({Key? key}) : super(key: key);
-  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    print("homeController -> " + runtimeType.toString());
     return Obx(() => Scaffold(
           key: controller.scaffoldkey,
           backgroundColor: backGroundColor,
-          drawer: getDrawer(homeController),
-          body: Container(
+          appBar: commonAppbar(),
+          body: SizedBox(
             width: Get.width,
             child: Stack(
               children: [
-                Container(
-                  // margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 35.0),
-                  margin: EdgeInsets.only(top: MediaQuery.of(Get.context!).viewPadding.top + 45.0),
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Form(key: controller.formKey, child: checkOutWidget())),
-                ),
-                appBarWidget(controller),
+                SingleChildScrollView(
+                    padding: const EdgeInsets.only(top: 40.0),
+                    child: Form(key: controller.formKey, child: checkOutWidget())),
               ],
             ),
           ),
@@ -51,13 +45,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CommonTextPoppins("Checkout",
+          CommonTextPoppins(LanguageConstant.checkOutText.tr,
               color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.w600, decoration: TextDecoration.underline),
           const SizedBox(
             height: 10.0,
           ),
           CommonTextPoppins(
-            "Please Enter Your Details Below To Complete Your Purchase",
+            LanguageConstant.purchaseText.tr,
             textAlign: TextAlign.center,
             color: Colors.black87,
             fontSize: 10.0,
@@ -79,7 +73,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               color: appColorButton,
               borderRadius: 0.0,
               child: CommonTextPoppins(
-                "Sign In",
+                LanguageConstant.signInText.tr,
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
               ),
@@ -108,173 +102,293 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm() {
     return Column(
       children: [
-        CheckOutBox(title: "Shipping Address", formFieldWidget: shippingAddress()),
+        CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         const SizedBox(height: 15.0),
-        CheckOutBox(title: "Shipping Method", formFieldWidget: shippingMethod()),
+        // CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
+        // const SizedBox(height: 15.0),
+        CheckOutBox(title: LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
-          title: "Payment Method",
+          title: LanguageConstant.paymentMethod.tr,
           formFieldWidget: paymentMethod(),
         ),
         const SizedBox(height: 15.0),
-        CheckOutBox(title: "Order Summary", formFieldWidget: orderSummary()),
+        CheckOutBox(title: LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary()),
       ],
     );
   }
 
+  // Widget shippingAddress() {
+  //   return SizedBox(
+  //     width: Get.width,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         const SizedBox(height: 10.0),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.emailText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(height: 10.0),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.passwordText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(height: 5.0),
+  //         CommonTextPoppins(
+  //           LanguageConstant.alreadyAcText.tr,
+  //           textAlign: TextAlign.center,
+  //           fontWeight: FontWeight.w500,
+  //           fontSize: 9.0,
+  //         ),
+  //         const SizedBox(height: 15.0),
+  //         SizedBox(
+  //           height: 36.0,
+  //           width: Get.width,
+  //           child: CommonButton(
+  //             buttonType: ButtonType.ElevatedButton,
+  //             onPressed: () {},
+  //             elevation: 0.0,
+  //             color: appColorButton,
+  //             borderRadius: 0.0,
+  //             padding: EdgeInsets.zero,
+  //             child: CommonTextPoppins(
+  //               LanguageConstant.loginText.tr,
+  //               fontSize: 14.0,
+  //               fontWeight: FontWeight.w500,
+  //             ),
+  //           ),
+  //         ),
+  //         const SizedBox(
+  //           height: 15.0,
+  //         ),
+  //         CommonTextPoppins(
+  //           LanguageConstant.forgotText.tr,
+  //           textAlign: TextAlign.center,
+  //           fontWeight: FontWeight.w500,
+  //           fontSize: 10.0,
+  //         ),
+  //         const SizedBox(
+  //           height: 15.0,
+  //         ),
+  //         CommonDivider(
+  //           color: appColorDarkLineGrey,
+  //           height: 1.0,
+  //           width: Get.width,
+  //         ),
+  //         const SizedBox(
+  //           height: 25.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.firstNameText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.lastNameText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         CommonTextField(
+  //           hintText: LanguageConstant.companyText.tr,
+  //           controller: TextEditingController(),
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.stLineText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.cityText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.japanText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.stateText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.zipPostalText.tr,
+  //                 controller: TextEditingController(),
+  //                 isValidationShow: false,
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               width: 10.0,
+  //             ),
+  //             Expanded(
+  //               child: CommonTextField(
+  //                 hintText: LanguageConstant.phoneNumberText.tr,
+  //                 controller: TextEditingController(),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         const SizedBox(
+  //           height: 10.0,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
   Widget shippingAddress() {
+    if (controller.multiAddressModel!.value.addresses == null ||
+        controller.multiAddressModel!.value.addresses!.isEmpty) {
+      return Container();
+    }
     return SizedBox(
       width: Get.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10.0),
-          CommonTextField(
-            hintText: "Email",
-            controller: TextEditingController(),
-          ),
-          const SizedBox(height: 10.0),
-          CommonTextField(
-            hintText: "Password",
-            controller: TextEditingController(),
-          ),
-          const SizedBox(height: 5.0),
-          CommonTextPoppins(
-            "You Already have an account with us. Sign in or continue as guest.",
-            textAlign: TextAlign.center,
-            fontWeight: FontWeight.w500,
-            fontSize: 9.0,
-          ),
-          const SizedBox(height: 15.0),
-          SizedBox(
-            height: 36.0,
-            width: Get.width,
-            child: CommonButton(
-              buttonType: ButtonType.ElevatedButton,
-              onPressed: () {},
-              elevation: 0.0,
-              color: appColorButton,
-              borderRadius: 0.0,
-              padding: EdgeInsets.zero,
-              child: CommonTextPoppins(
-                "LOGIN",
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.multiAddressModel!.value.addresses!.length,
+              itemBuilder: (context, index) {
+                Address? address = controller.multiAddressModel!.value.addresses![index];
+                return Obx(() => Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CommonTextOpenSans(
+                                    "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}",
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13.0,
+                                    maxLine: 5,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(
+                                    height: 15.0,
+                                  ),
+                                  CommonTextOpenSans(
+                                    '${address.telephone}',
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13.0,
+                                    maxLine: 5,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 60.0,
+                            ),
+                            Expanded(
+                              child: CommonButton(
+                                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                buttonType: ButtonType.OutlinedButton,
+                                onPressed: () {
+                                  controller.selectedAddressIndex.value = index;
+                                },
+                                elevation: 0.0,
+                                color: controller.selectedAddressIndex.value == index
+                                    ? appColorButton
+                                    : Colors.transparent,
+                                border: controller.selectedAddressIndex.value == index
+                                    ? BorderSide.none
+                                    : const BorderSide(color: appColorButton, width: 1.0),
+                                borderRadius: 20.0,
+                                child: CommonTextOpenSans(
+                                  "Ship Here",
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        controller.multiAddressModel!.value.addresses!.length -1 == index ? Container() :Column(
+                          children: [
+                            CommonDivider(
+                              width: Get.width,
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ));
+              }),
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: 40,
+              width: 135.0,
+              child: CommonButton(
+                padding: EdgeInsets.zero,
+                buttonType: ButtonType.ElevatedButton,
+                onPressed: () {},
+                elevation: 0.0,
+                color: appColorButton,
+                borderRadius: 20.0,
+                child: CommonTextPoppins(
+                  "New Address",
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                  color: appColorAccent,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          CommonTextPoppins(
-            "Forgot Your Password?",
-            textAlign: TextAlign.center,
-            fontWeight: FontWeight.w500,
-            fontSize: 10.0,
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          CommonDivider(
-            color: appColorDarkLineGrey,
-            height: 1.0,
-            width: Get.width,
-          ),
-          const SizedBox(
-            height: 25.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: "First Name",
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: "Last Name",
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          CommonTextField(
-            hintText: "Company",
-            controller: TextEditingController(),
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: "Street Address: Line 1",
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: "City",
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: "Japan",
-                  controller: TextEditingController(),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: "State/Province",
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CommonTextField(
-                  hintText: "Zip/Postal Code",
-                  controller: TextEditingController(),
-                  isValidationShow: false,
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: CommonTextField(
-                  hintText: "Phone Number",
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
           ),
           const SizedBox(
             height: 10.0,
@@ -392,6 +506,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   border: Border.all(
                                       color: Colors.black,
                                       width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
+                                  color: controller.selectedPaymentIndex.value == index
+                                      ? Colors.black
+                                      : Colors.transparent,
                                   shape: BoxShape.circle),
                             ),
                             const SizedBox(
@@ -453,7 +570,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CommonTextPoppins(
-                          "${controller.shipInfoModel!.value.totals!.itemsQty} Item in Cart",
+                          "${controller.shipInfoModel!.value.totals!.itemsQty} ${LanguageConstant.itemInCartText.tr}",
                           fontSize: 10.0,
                           fontWeight: FontWeight.w500,
                           textAlign: TextAlign.left,
@@ -497,7 +614,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                       width: 10.0,
                                     ),
                                     Expanded(
-                                      child: Container(
+                                      child: SizedBox(
                                         height: 85.0,
                                         width: Get.width,
                                         child: Column(
@@ -516,7 +633,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 CommonTextPoppins(
-                                                  "Qty: ${shipItem.qty}",
+                                                  "${LanguageConstant.qtyText.tr}: ${shipItem.qty}",
                                                   fontSize: 12.0,
                                                   fontWeight: FontWeight.w500,
                                                   textAlign: TextAlign.left,
@@ -551,7 +668,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           children: [
             SizedBox(width: Get.width * 0.269),
             CommonTextPoppins(
-              "View Details",
+              LanguageConstant.viewDetailsText.tr,
               fontSize: 12.0,
               fontWeight: FontWeight.w500,
               textAlign: TextAlign.left,
@@ -579,7 +696,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           height: 20.0,
         ),
         CommonTextPoppins(
-          "Apply Discount Code",
+          LanguageConstant.applyDisCodeText.tr,
           fontSize: 10.0,
           fontWeight: FontWeight.w500,
           textAlign: TextAlign.left,
@@ -594,7 +711,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               Expanded(
                 flex: 4,
                 child: CommonTextField(
-                  hintText: "Enter Discount Code",
+                  hintText: LanguageConstant.enterDisCodeText.tr,
                   controller: TextEditingController(),
                   isValidationShow: false,
                 ),
@@ -612,7 +729,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   color: appColorButton,
                   borderRadius: 0.0,
                   child: CommonTextPoppins(
-                    "Apply Discount",
+                    LanguageConstant.applyDiscountText.tr,
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
@@ -678,7 +795,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CommonTextPoppins(
-              "Order Total",
+              LanguageConstant.orderTotalText.tr,
               fontSize: 14.0,
               fontWeight: FontWeight.w600,
               textAlign: TextAlign.left,
@@ -702,7 +819,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                print("valid -> ${controller.formKey.currentState!.validate()}");
                 if (controller.formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
@@ -715,7 +831,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               color: appColorButton,
               borderRadius: 0.0,
               child: CommonTextPoppins(
-                "PLACE ORDER",
+                LanguageConstant.placeOrderText.tr,
                 fontSize: 14.0,
                 fontWeight: FontWeight.w400,
                 color: Colors.white,

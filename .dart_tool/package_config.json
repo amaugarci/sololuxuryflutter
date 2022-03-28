@@ -374,6 +374,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "livechatt",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/livechatt-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "logging",
       "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/logging-1.0.2",
       "packageUri": "lib/",
@@ -556,6 +562,54 @@
     {
       "name": "rxdart",
       "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "shared_preferences_android",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "shared_preferences_ios",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_ios-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "shared_preferences_linux",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_macos",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_platform_interface-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_web",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_windows",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -788,7 +842,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-03-28T04:14:18.180259Z",
+  "generated": "2022-03-25T03:39:52.004455Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
