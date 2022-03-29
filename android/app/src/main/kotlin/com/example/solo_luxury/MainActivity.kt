@@ -9,7 +9,9 @@ import java.util.*
 
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "flutter.native/helper"
-    var result: MethodChannel.Result? = null
+    companion object {
+        @JvmStatic var result: MethodChannel.Result? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
