@@ -841,7 +841,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
           Expanded(
             child: TextField(
               decoration: InputDecoration(
-                hintText: LanguageConstant.yourEmailText.tr,
+                hintText: LanguageConstant.enterYourEmailText.tr,
                 hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
                 border: InputBorder.none,
               ),

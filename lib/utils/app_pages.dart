@@ -27,6 +27,8 @@ import 'package:solo_luxury/app/screens/filter/list_filter.dart';
 
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
+import 'package:solo_luxury/app/screens/login/bindings/forget_password_menu_binding.dart';
+import 'package:solo_luxury/app/screens/login/views/forget_password_menu/forget_password_menu_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_menu_screen.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_binding.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
@@ -164,13 +166,18 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.cartScreen,
-      page: () =>const CartScreen(),
+      page: () => const CartScreen(),
       binding: CartBinding(),
     ),
     GetPage(
       name: RoutesConstants.productDetailsScreen,
       page: () => ProductDetailScreen(),
       binding: ProductDetailsBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.forgotPasswordMenuPage,
+      page: () => const ForgetPasswordMenuScreen(),
+      binding: ForgotPasswordMenuBinding(),
     ),
     GetPage(
       name: RoutesConstants.filterScreen,
@@ -188,7 +195,6 @@ class AppPages {
       binding: BrandBinding(),
     ),
     GetPage(
-
       name: RoutesConstants.influencerRegistrationScreen,
       page: () => const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
@@ -267,11 +273,11 @@ class AppPages {
       name: RoutesConstants.referFriendScreen,
       page: () => const ReferFriendScreen(),
       binding: ReferFriendBindings(),
-  ),GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.brandDetailsScreen,
       page: () => const BrandDetailsPage(),
       binding: BrandBinding(),
-
     ),
   ];
 }

@@ -11,7 +11,6 @@ class Validators {
     }
     return null;
   }
-
 //   static String? validateContact(String value, String type) {
 //     // Pattern pattern = r'^(?:[+0][1-9])?[0-9]{5,20}$';
 //     // RegExp regExp = new RegExp(pattern);

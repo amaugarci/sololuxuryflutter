@@ -149,6 +149,7 @@ class LanguageConstant {
   static const String newCustomersText = "newCustomersText";
 
   static const String loginDescriptionText = "loginDescriptionText";
+  static const String backText = "backText";
 
   static const String createAccountText = "createAccountText";
 

@@ -13,62 +13,95 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.5),
-        child: ScrollConfiguration(
-          behavior: MyBehavior(),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 15),
-                Text(
-                  controller.screenTitle.value,
-                  style: const TextStyle(
-                    color: appColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+          backgroundColor: backGroundColor,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 110),
+                    Text(
+                      controller.screenTitle.value,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: appColor,
+                        decorationThickness: 1.5,
+                        color: appColor,
+                        fontFamily: "Open Sans",
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      LanguageConstant.forgotYourPasswordDescriptionText.tr,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: blackColor,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Open Sans",
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    forgotPasswordTextField(),
+                    const SizedBox(height: 30),
+                    resetPasswordButton(context),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.arrow_back_ios,
+                          color: appColor,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 1),
+                        Text(
+                          LanguageConstant.backText.tr,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: appColor,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Open Sans",
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  LanguageConstant.forgotYourPasswordDescriptionText.tr,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 12.5,
-                    height: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                forgotPasswordTextField(),
-                const SizedBox(height: 20),
-                resetPasswordButton(context),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
-
   Widget forgotPasswordTextField() {
-    return TextFormFieldWidget(
-      controller: null,
-      hintText: LanguageConstant.enterYourEmailText.tr,
+    return Container(
+      height: 40,
+      padding: EdgeInsets.only(left: 14),
+      decoration: BoxDecoration(
+        color: backGroundColor,
+        border: Border.all(color: appColor, width: 1),
+      ),
+      child: TextFormField(
+        controller: null,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          isDense: true,
+          hintText: LanguageConstant.enterYourEmailText.tr,
+        ),
+      ),
     );
   }
 
   Widget resetPasswordButton(BuildContext context) {
     return SizedBox(
-      width: 170,
-      height: 41,
+      width: 209,
+      height: 40,
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
@@ -79,15 +112,15 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
           ),
         ),
         child: Text(
-          LanguageConstant.resetMyPasswordText.tr,
+          LanguageConstant.resetMyPasswordText.tr.toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 13.5,
+            fontFamily: "Open Sans",
           ),
         ),
       ),
     );
   }
-
 }
