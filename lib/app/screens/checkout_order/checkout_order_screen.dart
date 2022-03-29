@@ -32,15 +32,16 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               children: [
                 SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child:
-                        Form(key: controller.formKey, child: checkOutWidget())),
+                    child: Form(
+                        key: controller.formKey,
+                        child: checkOutWidget(context))),
               ],
             ),
           ),
         ));
   }
 
-  Widget checkOutWidget() {
+  Widget checkOutWidget(context) {
     return Container(
       width: Get.width,
       color: appColorAccent,
@@ -95,7 +96,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           const SizedBox(
             height: 20.0,
           ),
-          checkoutForm(),
+          checkoutForm(context),
           const SizedBox(
             height: 30.0,
           ),
@@ -104,7 +105,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  Widget checkoutForm() {
+  Widget checkoutForm(context) {
     return Column(
       children: [
         CheckOutBox(
@@ -124,7 +125,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         const SizedBox(height: 15.0),
         CheckOutBox(
             title: LanguageConstant.orderSummaryText.tr,
-            formFieldWidget: orderSummary()),
+            formFieldWidget: orderSummary(context)),
       ],
     );
   }
@@ -593,7 +594,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  Widget orderSummary() {
+  Widget orderSummary(context) {
     if (controller.shipInfoModel!.value.totals == null) {
       return Container();
     }
@@ -870,8 +871,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-
-                controller.responseFromNativeCode();
                 // if (controller.formKey.currentState!.validate()) {
                 //   // If the form is valid, display a snackbar. In the real world,
                 //   // you'd often call a server or save the information in a database.
@@ -882,13 +881,15 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
 
                 if (controller.formKey.currentState!.validate()) {
                   if (controller.selectedPaymentIndex.value == 1) {
-                    controller.postListForOrder(cartlist);
+                    controller.postListForOrder(
+                        cartlist, "CaseOnDelivery", "", context);
+                  } else if (controller.selectedPaymentIndex.value == 3) {
+                    controller.responseFromNativeCode(cartlist, context);
                   }
                   // ScaffoldMessenger.of(Get.context!).showSnackBar(
                   //   const SnackBar(content: Text('Processing Data')),
                   // );
                 }
-
               },
               elevation: 0.0,
               color: appColorButton,

@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -109,15 +110,15 @@ class CheckoutOrderController extends GetxController {
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 
-
   //TODO : Payment Response using Platform
 
   RxString nativeCode = 'Waiting for Response...'.obs;
 
-  Future<void> responseFromNativeCode() async {
+  Future<void> responseFromNativeCode(cartData, context) async {
     String response = "";
     try {
-      final String result = await platform.invokeMethod('helloFromNativeCode',[]);
+      final String result =
+          await platform.invokeMethod('helloFromNativeCode', []);
       response = result;
       Map<String, dynamic> map = jsonDecode(response);
       print("result -> ${map.toString()}");
@@ -125,12 +126,28 @@ class CheckoutOrderController extends GetxController {
     } on PlatformException catch (e) {
       response = "Failed to Invoke: '${e.message}'.";
     }
+    Map<String, dynamic> map = jsonDecode(response);
+    print("Response Map Is Her $map");
+    if (map['resultCode'] == "Authorised") {
+      await postListForOrder(
+          cartData, "adyen_cc", "${map.toString()}", context);
+    } else {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Something went wrong. Please try again',
+        btnOkOnPress: () {
+          Navigator.pop(context);
+        },
+      )..show();
+    }
     nativeCode.value = response;
   }
 
-
   //Create Order Api Calling ----------------------------
-  postListForOrder(cartlist) async {
+  postListForOrder(cartlist, method, paymentId, context) async {
     // CartModel cartlist = cartList;
     var itemList = [];
     var shippingitemList = [];
@@ -218,8 +235,8 @@ class CheckoutOrderController extends GetxController {
           "telephone": "${cartlist.billingAddress!.telephone}"
         },
         "payment": {
-          "method": "CaseOnDelivery",
-          "additional_data": "".toString()
+          "method": "$method",
+          "additional_data": "${paymentId}".toString()
         },
         "extension_attributes": {
           "shipping_assignments": "$shippingitemList",
@@ -231,6 +248,17 @@ class CheckoutOrderController extends GetxController {
     var postCreateOrder = await checkoutOrderAPIRepository
         .postCreateOrderAPIResponse(json.encode(postList));
     print("Create Order Api Response $postCreateOrder");
+    if (postCreateOrder != null) {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.SUCCES,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Success',
+        desc: 'Your Order is Succressfully.',
+        btnOkOnPress: () {
+          Navigator.pop(context);
+        },
+      )..show();
+    }
   }
-
 }
