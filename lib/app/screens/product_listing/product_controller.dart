@@ -22,6 +22,7 @@ class ProductController extends GetxController {
 
   //Filter
   RxBool isFilter = false.obs;
+  // var isLoading = true.obs;
 
   // RxInt checked = 0.obs;
   RxInt currentCategoryIndex = 0.obs;
@@ -31,7 +32,8 @@ class ProductController extends GetxController {
   RxList<FilterModel>? saveFilterModelList = <FilterModel>[].obs;
   RxList<Category>? subCategoryList = <Category>[].obs;
   RxList<Category>? saveSubCategoryList = <Category>[].obs;
-  Rx<TextEditingController> searchEditingController = TextEditingController().obs;
+  Rx<TextEditingController> searchEditingController =
+      TextEditingController().obs;
 
   @override
   void onInit() {
@@ -44,11 +46,15 @@ class ProductController extends GetxController {
   }
 
   getHomeProducts(String val) async {
-    productModel?.value = await productListAPIRepository.getProductListApiResponse(val);
+    isLoading.value = true;
+    productModel?.value =
+        await productListAPIRepository.getProductListApiResponse(val);
+    isLoading.value = false;
   }
 
   getFilterData() async {
-    filterList.value = await productListAPIRepository.getFilterListApiResponse();
+    filterList.value =
+        await productListAPIRepository.getFilterListApiResponse();
     print("filterList.value -> ${filterList.length}");
     if (filterList.isNotEmpty) {
       for (int i = 0; i < filterList.length; i++) {
@@ -80,10 +86,14 @@ class ProductController extends GetxController {
     if (itemTitle.isNotEmpty) {
       subCategoryList!.value = saveSubCategoryList!;
       results = subCategoryList!
-          .where((element) => element.display!.toLowerCase().toString().contains(itemTitle.toLowerCase()))
+          .where((element) => element.display!
+              .toLowerCase()
+              .toString()
+              .contains(itemTitle.toLowerCase()))
           .toList();
       subCategoryList!.value = results;
-      print("Results: ${results.length.toString()} ${subCategoryList!.length.toString()}");
+      print(
+          "Results: ${results.length.toString()} ${subCategoryList!.length.toString()}");
     } else {
       for (int i = 0; i < filterModelList!.length; i++) {
         if (i == currentCategoryIndex.value) {

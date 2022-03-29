@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
@@ -16,10 +17,10 @@ class CartScreen extends GetView<CartController> {
           backgroundColor: appSubscribeButtonColor,
           body: controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(
-                    color: appColor,
-                  ),
-                )
+                  child: SpinKitThreeBounce(
+                  color: appColor,
+                  // size: 50.0,
+                ))
               : ListView(
                   children: [
                     const SizedBox(

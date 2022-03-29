@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -16,7 +17,11 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
       () => Scaffold(
         backgroundColor: appColorAccent,
         body: controller.getReturnsList.isEmpty
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : pageView(),
       ),
     );

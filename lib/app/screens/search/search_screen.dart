@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
@@ -65,7 +66,11 @@ class SearchScreen extends GetView<SearchController> {
           title: Image.asset(AppAsset.logo, width: 110),
         ),
         body: controller.menuModel?.value?.childrenData == null
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(

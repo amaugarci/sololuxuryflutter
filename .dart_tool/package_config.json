@@ -356,6 +356,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_spinkit",
+      "rootUri": "file:///D:/Software/flutter_windows_2.10.0-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///D:/Software/flutter_windows_2.10.0-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.23.0+1",
       "packageUri": "lib/",
@@ -914,7 +920,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-03-29T08:51:04.034128Z",
+  "generated": "2022-03-29T11:47:13.067224Z",
   "generator": "pub",
   "generatorVersion": "2.16.0"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_controller.dart';
@@ -31,7 +32,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           iconTheme: const IconThemeData(color: Colors.black),
         ),
         body: controller.isLoading.value == true
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.5),
                 child: SingleChildScrollView(
