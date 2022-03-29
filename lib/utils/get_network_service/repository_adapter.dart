@@ -59,10 +59,9 @@ abstract class ICountryRepository {
 abstract class ICheckoutOrderRepository {
   Future<ShippingInformationModel> postShippingInformationAPIResponse(
       String requestJson);
-
   Future<String> getMultiAddressAPIResponse();
-
   Future<String> postEstimateAPIResponse(String loginRequestJson);
+  Future<String> postCreateOrderAPIResponse(String loginRequestJson);
 }
 
 ///myAccount Class

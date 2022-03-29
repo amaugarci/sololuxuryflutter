@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../utils/colors.dart';
 import 'cart_controller.dart';
@@ -349,7 +350,10 @@ class CartScreen extends GetView<CartController> {
                           Align(
                             alignment: Alignment.center,
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(RoutesConstants.checkoutOrderScreen,
+                                    arguments: controller.cartModel!.value);
+                              },
                               child: Text(
                                 LanguageConstant.checkOutText.tr.toUpperCase(),
                                 style: textStyleUtils600(color: whiteColor),

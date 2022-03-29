@@ -41,6 +41,8 @@ class AppConstants {
       "/V1/carts/mine/estimate-shipping-methods";
   static String shippingInformationEndPoint =
       "/V1/carts/mine/shipping-information";
+
+  static String createOrderEndPoint = "/rest/V1/orders/create";
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
   static String storeViewsEndPoint = "/rest/V1/store/storeViews";
   static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
@@ -51,7 +53,7 @@ class AppConstants {
       "/rest/in-en/V1/carts/mine/items/";
   static const String addTocartData = "/rest/in-en/V1/carts/mine/items";
   static const String createCart = "/rest/in-en/V1/carts/mine/";
-  static const String cartToken = "Bearer xsa9qh7daz72bzrudo8iijw9dqd5jzqo";
+  static const String cartToken = "Bearer 0vnwaoabm14pwt2azj6yyx29033w7rqk";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
