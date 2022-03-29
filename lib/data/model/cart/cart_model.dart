@@ -15,7 +15,7 @@ class CartModel {
   final bool? customerNoteNotify;
   final int? customerTaxClassId;
   final int? storeId;
-  final ExtensionAttributes? extensionAttributes;
+  final ExtensionAttributesCart? extensionAttributes;
 
   CartModel({
     this.id,
@@ -43,38 +43,52 @@ class CartModel {
         updatedAt = json['updated_at'] as String?,
         isActive = json['is_active'] as bool?,
         isVirtual = json['is_virtual'] as bool?,
-        items = (json['items'] as List?)?.map((dynamic e) => Items.fromJson(e as Map<String,dynamic>)).toList(),
+        items = (json['items'] as List?)
+            ?.map((dynamic e) => Items.fromJson(e as Map<String, dynamic>))
+            .toList(),
         itemsCount = json['items_count'] as int?,
         itemsQty = json['items_qty'] as int?,
-        customer = (json['customer'] as Map<String,dynamic>?) != null ? Customer.fromJson(json['customer'] as Map<String,dynamic>) : null,
-        billingAddress = (json['billing_address'] as Map<String,dynamic>?) != null ? BillingAddress.fromJson(json['billing_address'] as Map<String,dynamic>) : null,
+        customer = (json['customer'] as Map<String, dynamic>?) != null
+            ? Customer.fromJson(json['customer'] as Map<String, dynamic>)
+            : null,
+        billingAddress =
+            (json['billing_address'] as Map<String, dynamic>?) != null
+                ? BillingAddress.fromJson(
+                    json['billing_address'] as Map<String, dynamic>)
+                : null,
         origOrderId = json['orig_order_id'] as int?,
-        currency = (json['currency'] as Map<String,dynamic>?) != null ? Currency.fromJson(json['currency'] as Map<String,dynamic>) : null,
+        currency = (json['currency'] as Map<String, dynamic>?) != null
+            ? Currency.fromJson(json['currency'] as Map<String, dynamic>)
+            : null,
         customerIsGuest = json['customer_is_guest'] as bool?,
         customerNoteNotify = json['customer_note_notify'] as bool?,
         customerTaxClassId = json['customer_tax_class_id'] as int?,
         storeId = json['store_id'] as int?,
-        extensionAttributes = (json['extension_attributes'] as Map<String,dynamic>?) != null ? ExtensionAttributes.fromJson(json['extension_attributes'] as Map<String,dynamic>) : null;
+        extensionAttributes =
+            (json['extension_attributes'] as Map<String, dynamic>?) != null
+                ? ExtensionAttributesCart.fromJson(
+                    json['extension_attributes'] as Map<String, dynamic>)
+                : null;
 
   Map<String, dynamic> toJson() => {
-    'id' : id,
-    'created_at' : createdAt,
-    'updated_at' : updatedAt,
-    'is_active' : isActive,
-    'is_virtual' : isVirtual,
-    'items' : items?.map((e) => e.toJson()).toList(),
-    'items_count' : itemsCount,
-    'items_qty' : itemsQty,
-    'customer' : customer?.toJson(),
-    'billing_address' : billingAddress?.toJson(),
-    'orig_order_id' : origOrderId,
-    'currency' : currency?.toJson(),
-    'customer_is_guest' : customerIsGuest,
-    'customer_note_notify' : customerNoteNotify,
-    'customer_tax_class_id' : customerTaxClassId,
-    'store_id' : storeId,
-    'extension_attributes' : extensionAttributes?.toJson()
-  };
+        'id': id,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        'is_active': isActive,
+        'is_virtual': isVirtual,
+        'items': items?.map((e) => e.toJson()).toList(),
+        'items_count': itemsCount,
+        'items_qty': itemsQty,
+        'customer': customer?.toJson(),
+        'billing_address': billingAddress?.toJson(),
+        'orig_order_id': origOrderId,
+        'currency': currency?.toJson(),
+        'customer_is_guest': customerIsGuest,
+        'customer_note_notify': customerNoteNotify,
+        'customer_tax_class_id': customerTaxClassId,
+        'store_id': storeId,
+        'extension_attributes': extensionAttributes?.toJson()
+      };
 }
 
 class Items {
@@ -106,14 +120,14 @@ class Items {
         quoteId = json['quote_id'] as String?;
 
   Map<String, dynamic> toJson() => {
-    'item_id' : itemId,
-    'sku' : sku,
-    'qty' : qty,
-    'name' : name,
-    'price' : price,
-    'product_type' : productType,
-    'quote_id' : quoteId
-  };
+        'item_id': itemId,
+        'sku': sku,
+        'qty': qty,
+        'name': name,
+        'price': price,
+        'product_type': productType,
+        'quote_id': quoteId
+      };
 }
 
 class Customer {
@@ -160,23 +174,27 @@ class Customer {
         websiteId = json['website_id'] as int?,
         addresses = json['addresses'] as List?,
         disableAutoGroupChange = json['disable_auto_group_change'] as int?,
-        extensionAttributes = (json['extension_attributes'] as Map<String,dynamic>?) != null ? ExtensionAttributes.fromJson(json['extension_attributes'] as Map<String,dynamic>) : null;
+        extensionAttributes =
+            (json['extension_attributes'] as Map<String, dynamic>?) != null
+                ? ExtensionAttributes.fromJson(
+                    json['extension_attributes'] as Map<String, dynamic>)
+                : null;
 
   Map<String, dynamic> toJson() => {
-    'id' : id,
-    'group_id' : groupId,
-    'created_at' : createdAt,
-    'updated_at' : updatedAt,
-    'created_in' : createdIn,
-    'email' : email,
-    'firstname' : firstname,
-    'lastname' : lastname,
-    'store_id' : storeId,
-    'website_id' : websiteId,
-    'addresses' : addresses,
-    'disable_auto_group_change' : disableAutoGroupChange,
-    'extension_attributes' : extensionAttributes?.toJson()
-  };
+        'id': id,
+        'group_id': groupId,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        'created_in': createdIn,
+        'email': email,
+        'firstname': firstname,
+        'lastname': lastname,
+        'store_id': storeId,
+        'website_id': websiteId,
+        'addresses': addresses,
+        'disable_auto_group_change': disableAutoGroupChange,
+        'extension_attributes': extensionAttributes?.toJson()
+      };
 }
 
 class ExtensionAttributes {
@@ -189,9 +207,7 @@ class ExtensionAttributes {
   ExtensionAttributes.fromJson(Map<String, dynamic> json)
       : isSubscribed = json['is_subscribed'] as bool?;
 
-  Map<String, dynamic> toJson() => {
-    'is_subscribed' : isSubscribed
-  };
+  Map<String, dynamic> toJson() => {'is_subscribed': isSubscribed};
 }
 
 class BillingAddress {
@@ -235,7 +251,8 @@ class BillingAddress {
         regionId = json['region_id'],
         regionCode = json['region_code'],
         countryId = json['country_id'],
-        street = (json['street'] as List?)?.map((dynamic e) => e as String).toList(),
+        street =
+            (json['street'] as List?)?.map((dynamic e) => e as String).toList(),
         telephone = json['telephone'],
         postcode = json['postcode'] as String?,
         city = json['city'],
@@ -247,22 +264,22 @@ class BillingAddress {
         saveInAddressBook = json['save_in_address_book'] as int?;
 
   Map<String, dynamic> toJson() => {
-    'id' : id,
-    'region' : region,
-    'region_id' : regionId,
-    'region_code' : regionCode,
-    'country_id' : countryId,
-    'street' : street,
-    'telephone' : telephone,
-    'postcode' : postcode,
-    'city' : city,
-    'firstname' : firstname,
-    'lastname' : lastname,
-    'customer_id' : customerId,
-    'email' : email,
-    'same_as_billing' : sameAsBilling,
-    'save_in_address_book' : saveInAddressBook
-  };
+        'id': id,
+        'region': region,
+        'region_id': regionId,
+        'region_code': regionCode,
+        'country_id': countryId,
+        'street': street,
+        'telephone': telephone,
+        'postcode': postcode,
+        'city': city,
+        'firstname': firstname,
+        'lastname': lastname,
+        'customer_id': customerId,
+        'email': email,
+        'same_as_billing': sameAsBilling,
+        'save_in_address_book': saveInAddressBook
+      };
 }
 
 class Currency {
@@ -297,15 +314,15 @@ class Currency {
         baseToQuoteRate = json['base_to_quote_rate'] as double?;
 
   Map<String, dynamic> toJson() => {
-    'global_currency_code' : globalCurrencyCode,
-    'base_currency_code' : baseCurrencyCode,
-    'store_currency_code' : storeCurrencyCode,
-    'quote_currency_code' : quoteCurrencyCode,
-    'store_to_base_rate' : storeToBaseRate,
-    'store_to_quote_rate' : storeToQuoteRate,
-    'base_to_global_rate' : baseToGlobalRate,
-    'base_to_quote_rate' : baseToQuoteRate
-  };
+        'global_currency_code': globalCurrencyCode,
+        'base_currency_code': baseCurrencyCode,
+        'store_currency_code': storeCurrencyCode,
+        'quote_currency_code': quoteCurrencyCode,
+        'store_to_base_rate': storeToBaseRate,
+        'store_to_quote_rate': storeToQuoteRate,
+        'base_to_global_rate': baseToGlobalRate,
+        'base_to_quote_rate': baseToQuoteRate
+      };
 }
 
 class ExtensionAttributesCart {
@@ -316,11 +333,15 @@ class ExtensionAttributesCart {
   });
 
   ExtensionAttributesCart.fromJson(Map<String, dynamic> json)
-      : shippingAssignments = (json['shipping_assignments'] as List?)?.map((dynamic e) => ShippingAssignments.fromJson(e as Map<String,dynamic>)).toList();
+      : shippingAssignments = (json['shipping_assignments'] as List?)
+            ?.map((dynamic e) =>
+                ShippingAssignments.fromJson(e as Map<String, dynamic>))
+            .toList();
 
   Map<String, dynamic> toJson() => {
-    'shipping_assignments' : shippingAssignments?.map((e) => e.toJson()).toList()
-  };
+        'shipping_assignments':
+            shippingAssignments?.map((e) => e.toJson()).toList()
+      };
 }
 
 class ShippingAssignments {
@@ -333,13 +354,17 @@ class ShippingAssignments {
   });
 
   ShippingAssignments.fromJson(Map<String, dynamic> json)
-      : shipping = (json['shipping'] as Map<String,dynamic>?) != null ? Shipping.fromJson(json['shipping'] as Map<String,dynamic>) : null,
-        items = (json['items'] as List?)?.map((dynamic e) => Items.fromJson(e as Map<String,dynamic>)).toList();
+      : shipping = (json['shipping'] as Map<String, dynamic>?) != null
+            ? Shipping.fromJson(json['shipping'] as Map<String, dynamic>)
+            : null,
+        items = (json['items'] as List?)
+            ?.map((dynamic e) => Items.fromJson(e as Map<String, dynamic>))
+            .toList();
 
   Map<String, dynamic> toJson() => {
-    'shipping' : shipping?.toJson(),
-    'items' : items?.map((e) => e.toJson()).toList()
-  };
+        'shipping': shipping?.toJson(),
+        'items': items?.map((e) => e.toJson()).toList()
+      };
 }
 
 class Shipping {
@@ -352,13 +377,13 @@ class Shipping {
   });
 
   Shipping.fromJson(Map<String, dynamic> json)
-      : address = (json['address'] as Map<String,dynamic>?) != null ? Address.fromJson(json['address'] as Map<String,dynamic>) : null,
+      : address = (json['address'] as Map<String, dynamic>?) != null
+            ? Address.fromJson(json['address'] as Map<String, dynamic>)
+            : null,
         method = json['method'];
 
-  Map<String, dynamic> toJson() => {
-    'address' : address?.toJson(),
-    'method' : method
-  };
+  Map<String, dynamic> toJson() =>
+      {'address': address?.toJson(), 'method': method};
 }
 
 class Address {
@@ -402,7 +427,8 @@ class Address {
         regionId = json['region_id'],
         regionCode = json['region_code'],
         countryId = json['country_id'],
-        street = (json['street'] as List?)?.map((dynamic e) => e as String).toList(),
+        street =
+            (json['street'] as List?)?.map((dynamic e) => e as String).toList(),
         telephone = json['telephone'],
         postcode = json['postcode'] as String?,
         city = json['city'],
@@ -414,22 +440,22 @@ class Address {
         saveInAddressBook = json['save_in_address_book'] as int?;
 
   Map<String, dynamic> toJson() => {
-    'id' : id,
-    'region' : region,
-    'region_id' : regionId,
-    'region_code' : regionCode,
-    'country_id' : countryId,
-    'street' : street,
-    'telephone' : telephone,
-    'postcode' : postcode,
-    'city' : city,
-    'firstname' : firstname,
-    'lastname' : lastname,
-    'customer_id' : customerId,
-    'email' : email,
-    'same_as_billing' : sameAsBilling,
-    'save_in_address_book' : saveInAddressBook
-  };
+        'id': id,
+        'region': region,
+        'region_id': regionId,
+        'region_code': regionCode,
+        'country_id': countryId,
+        'street': street,
+        'telephone': telephone,
+        'postcode': postcode,
+        'city': city,
+        'firstname': firstname,
+        'lastname': lastname,
+        'customer_id': customerId,
+        'email': email,
+        'same_as_billing': sameAsBilling,
+        'save_in_address_book': saveInAddressBook
+      };
 }
 
 class ItemsCart {
@@ -461,12 +487,12 @@ class ItemsCart {
         quoteId = json['quote_id'] as String?;
 
   Map<String, dynamic> toJson() => {
-    'item_id' : itemId,
-    'sku' : sku,
-    'qty' : qty,
-    'name' : name,
-    'price' : price,
-    'product_type' : productType,
-    'quote_id' : quoteId
-  };
+        'item_id': itemId,
+        'sku': sku,
+        'qty': qty,
+        'name': name,
+        'price': price,
+        'product_type': productType,
+        'quote_id': quoteId
+      };
 }
