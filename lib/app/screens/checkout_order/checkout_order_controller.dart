@@ -108,7 +108,6 @@ class CheckoutOrderController extends GetxController {
   }
 
   //Create Order Api Calling ----------------------------
-
   postListForOrder(cartlist) async {
     // CartModel cartlist = cartList;
     var itemList = [];
@@ -124,7 +123,7 @@ class CheckoutOrderController extends GetxController {
         "product_type": "simple",
         "qty_ordered": "${i.qty}",
         "row_total": "${i.rowTotal}",
-        "sku": "",
+        "sku": "".toString(),
         "store_id": "${cartlist.storeId}"
       });
     }
@@ -145,10 +144,10 @@ class CheckoutOrderController extends GetxController {
             "region": "${i.shipping!.address!.region}",
             "region_code": "${i.shipping!.address!.regionCode}",
             "region_id": "${i.shipping!.address!.regionId}",
-            "street": "${i.shipping!.address!.street}",
+            "street": [23],
             "telephone": "${i.shipping!.address!.telephone}"
           },
-          "method": "CaseOnDelivery"
+          "method": "flatrate_flatrate"
         }
       });
     }
@@ -189,21 +188,24 @@ class CheckoutOrderController extends GetxController {
           "email": "${cartlist.billingAddress!.email}",
           "firstname": "${cartlist.billingAddress!.firstname}",
           "lastname": "${cartlist.billingAddress!.lastname}",
-          "postcode": "${cartlist.billingAddress!.postcode}",
+          "postcode": "${cartlist.billingAddress!.postcode}".toString(),
           "region": "${cartlist.billingAddress!.region}",
           "region_code": "${cartlist.billingAddress!.regionCode}",
-          "region_id": "${cartlist.billingAddress!.regionId}",
-          "street": "${cartlist.billingAddress!.street}",
+          "region_id": "553",
+          "street": [23],
           "telephone": "${cartlist.billingAddress!.telephone}"
         },
-        "payment": {"method": "CaseOnDelivery", "additional_data": ""},
+        "payment": {
+          "method": "CaseOnDelivery",
+          "additional_data": "".toString()
+        },
         "extension_attributes": {
           "shipping_assignments": "$shippingitemList",
         }
       }
     };
 
-    print("Create Order Api List is $postList");
+    print("Create Order Api List is ${postList}");
     var postCreateOrder = await checkoutOrderAPIRepository
         .postCreateOrderAPIResponse(json.encode(postList));
     print("Create Order Api Response $postCreateOrder");
