@@ -15,6 +15,7 @@ class CartController extends GetxController {
   final CartGetDataAPIRepository cartGetDataAPIRepository;
   var cartItemNumber = 0.obs;
   var cartItemPrice = 0.obs;
+  var getCartId = 0.obs;
 
   CartController({required this.cartGetDataAPIRepository});
 
@@ -22,10 +23,23 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
-    getFaqContent();
+    getGenerateCart();
     super.onInit();
 
     print("CONTROLLER=========");
+  }
+
+  Future<void> getGenerateCart() async {
+    getCartId.value =
+        await RecommendedProductsAPIRepository().getGenerateCartApiResponse();
+    print("Generate ${getCartId.value}");
+    if (getCartId.value != null) {
+      getFaqContent();
+    } else {
+      // cartItemNumber.value = cartId["qty"];
+      // cartItemPrice.value = cartId["price"] * cartId["qty"];
+      // return print("${cartId["qty"]}");
+    }
   }
 
   void getFaqContent() async {
@@ -51,7 +65,7 @@ class CartController extends GetxController {
   //Add TO Cart Api Calling
   postAddToCartData(context, dataName, sku) async {
     var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "367"}
+      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "${getCartId.value}"}
     };
     var addTocartData = await RecommendedProductsAPIRepository()
         .postAddTOCartProductResponse(passedAddTocart);
@@ -69,7 +83,7 @@ class CartController extends GetxController {
 
   postRemoveFromCartData(context, dataName, sku) async {
     var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": -1, "quote_id": "367"}
+      "cartItem": {"sku": "$sku", "qty": -1, "quote_id": "${getCartId.value}"}
     };
     var addTocartData = await RecommendedProductsAPIRepository()
         .postAddTOCartProductResponse(passedAddTocart);
