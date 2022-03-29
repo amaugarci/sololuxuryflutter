@@ -112,6 +112,7 @@ class CheckoutOrderController extends GetxController {
       final String result = await platform.invokeMethod('helloFromNativeCode',[]);
       response = result;
       Map<String, dynamic> map = jsonDecode(response);
+      print("result -> ${map.toString()}");
       print("result -> ${map['resultCode']}");
     } on PlatformException catch (e) {
       response = "Failed to Invoke: '${e.message}'.";
