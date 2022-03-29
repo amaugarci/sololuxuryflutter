@@ -109,7 +109,8 @@ class AppConstants {
 
   static const String licenceId = '11434003';
 
-  //static String login = 'integration/customer/token';
+  static String forgetPassword = '/V1/customers/password';
+  static String forgetPasswordEndPoint = 'https://dev2.brands-labels.com';
 
   static String addAddress = '/rest/V1/customers/me';
   static String countryList = '/rest/V1/directory/countries';

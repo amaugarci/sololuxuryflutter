@@ -236,6 +236,54 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "firebase_core",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.13.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_crashlytics",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_crashlytics-2.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_crashlytics_platform_interface",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_crashlytics_platform_interface-3.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_messaging",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-11.2.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_messaging_platform_interface",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_platform_interface-3.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_messaging_web",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_web-2.2.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "flare_flutter",
       "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-3.0.2",
       "packageUri": "lib/",
@@ -274,6 +322,24 @@
     {
       "name": "flutter_lints",
       "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_local_notifications",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-9.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_local_notifications_linux",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_linux-0.4.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -692,6 +758,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "timezone",
+      "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/timezone-0.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "tuple",
       "rootUri": "file:///Users/imac/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/tuple-2.0.0",
       "packageUri": "lib/",
@@ -842,7 +914,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-03-25T03:39:52.004455Z",
+  "generated": "2022-03-29T04:14:58.837233Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

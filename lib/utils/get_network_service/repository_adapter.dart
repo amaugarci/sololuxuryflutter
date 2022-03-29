@@ -95,6 +95,11 @@ abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
 }
 
+///forget password Class
+abstract class IForgetPasswordRepository {
+  Future<String> putForgetPasswordApiResponse();
+}
+
 abstract class ICountryListRepository {
   Future<String> getCountryListResponse();
 
@@ -107,6 +112,7 @@ abstract class IMyTicketRepository {
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
+
   Future<List<dynamic>> getFilterListApiResponse();
 }
 
