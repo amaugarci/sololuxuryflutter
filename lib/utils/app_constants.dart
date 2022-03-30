@@ -12,9 +12,11 @@ class AppConstants {
   //static String menuEndPoint = "/V1/categories";
 
   static String bannerListEndPoint = "/bannerList";
+
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
   static String multiAddressEndPoint = "/rest/V1/customers/me";
+
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -54,6 +56,7 @@ class AppConstants {
   static const String addTocartData = "/rest/in-en/V1/carts/mine/items";
   static const String createCart = "/rest/in-en/V1/carts/mine/";
   static const String cartToken = "Bearer 0vnwaoabm14pwt2azj6yyx29033w7rqk";
+  static const String orderConfirmation = "/rest/V1/orders/?order_id=";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -64,6 +67,7 @@ class AppConstants {
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
 
   static String apiEndPoint = "";
+
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";

@@ -120,7 +120,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(RoutesConstants.myOrderScreen);
+                                  Get.toNamed(RoutesConstants.orderConfirmScreen);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
@@ -339,7 +339,9 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.charityScreen);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Text(
