@@ -30,21 +30,27 @@ class CardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_card)
 
         apiInterface = APIClient().getRetroClient().create(ApiInterface::class.java)
+        val intentPass = intent.getStringExtra("result")
+        val arguments: Arguments = Gson().fromJson(intentPass, Arguments::class.java)
 
-        getCardUI()
+        Log.e("TAG", "onCreate: pass ->? " + intentPass.toString())
+//        val cardComponentsData: CardComponentsData = Gson().fromJson(intent.extras, Arguments::class.java)
+
+
+        getCardUI(arguments)
 
     }
 
-    private fun getCardUI() {
+    private fun getCardUI(arguments: Arguments) {
         val paymentRequestAmount = PaymentRequestAmount()
-        paymentRequestAmount.currency = "EUR"
-        paymentRequestAmount.value = 100
+        paymentRequestAmount.currency = arguments.currency
+        paymentRequestAmount.value = arguments.amount
 
         val paymentRequest = PaymentMethodRequest()
         paymentRequest.merchantAccount = "MioModaFzeECOM"
         paymentRequest.shopperReference = ""
         paymentRequest.amount = paymentRequestAmount
-        paymentRequest.countryCode = "IN"
+        paymentRequest.countryCode = arguments.countryCode
         paymentRequest.shopperLocale = "en-US"
         paymentRequest.channel = "android"
         paymentRequest.splitCardFundingSources = false
@@ -69,7 +75,7 @@ class CardActivity : AppCompatActivity() {
 
                     Log.e("TAG", "paymentMethod: ${paymentMethodRequest}");
 
-                    setupCardView(paymentMethodRequest)
+                    setupCardView(paymentMethodRequest,arguments)
 
 
 //                    setupCardView(responsePayments)
@@ -86,13 +92,13 @@ class CardActivity : AppCompatActivity() {
     }
 
 
-    private fun setupCardView(paymentMethod: PaymentMethod) {
+    private fun setupCardView(paymentMethod: PaymentMethod, arguments: Arguments) {
         val cardConfiguration = CardConfiguration.Builder(this@CardActivity, "test_V2YCCMRAGVEELCXFN2TEMZSSUIHHMI5O").build()
         val cardComponent = CardComponent.PROVIDER.get(this@CardActivity, paymentMethod, cardConfiguration)
         findViewById<CardView>(R.id.payment_card).attach(cardComponent, this@CardActivity)
         cardComponent.observe(this@CardActivity) { paymentComponentState ->
             if (paymentComponentState.isValid) {
-                makePayment(paymentComponentState.data)
+                makePayment(paymentComponentState.data,arguments)
                 Log.e("TAG", "onCreate: paymentComponentState " + Gson().toJson(paymentComponentState.data))
                 // When the shopper proceeds to pay, pass the `paymentComponentState.data` to your server to send a /payments request
 //                sendPayment(paymentComponentState.data)
@@ -100,12 +106,12 @@ class CardActivity : AppCompatActivity() {
         }
     }
 
-    private fun makePayment(data: PaymentComponentData<*>) {
+    private fun makePayment(data: PaymentComponentData<*>, arguments: Arguments) {
         Log.e("Chintan", "makePayment: $data")
 
         val paymentComponentData = PaymentComponentData.SERIALIZER.serialize(data)
         findViewById<Button>(R.id.pay_button).setOnClickListener {
-            postPayment(paymentComponentData)
+            postPayment(paymentComponentData,arguments)
         }
 
 
@@ -132,7 +138,7 @@ class CardActivity : AppCompatActivity() {
 //        }
     }
 
-    private fun postPayment(paymentComponentData: JSONObject) {
+    private fun postPayment(paymentComponentData: JSONObject, arguments: Arguments) {
 
 
         val jsonString = Gson().toJson(paymentComponentData)
@@ -143,8 +149,8 @@ class CardActivity : AppCompatActivity() {
 
 
         val paymentRequestAmount = PaymentRequestAmount()
-        paymentRequestAmount.currency = "EUR"
-        paymentRequestAmount.value = 100
+        paymentRequestAmount.currency = arguments.currency
+        paymentRequestAmount.value = arguments.amount
 
 
         val encryptedData = EncryptedData()
@@ -165,7 +171,7 @@ class CardActivity : AppCompatActivity() {
         jsonPayRequestData.amount = paymentRequestAmount
         jsonPayRequestData.merchantAccount = "MioModaFzeECOM"
         jsonPayRequestData.returnUrl=""
-        jsonPayRequestData.countryCode = "IN"
+        jsonPayRequestData.countryCode = arguments.countryCode
         jsonPayRequestData.shopperIP = "142.12.31.22"
         jsonPayRequestData.reference =  "android-test-components_1648528151746"
         jsonPayRequestData.channel = "android"
@@ -176,15 +182,7 @@ class CardActivity : AppCompatActivity() {
         jsonPayRequestData.additionalData = additionalData
 
         jsonPayRequestData.threeDSAuthenticationOnly = false
-        val lineItems = LineItem()
-        lineItems.quantity = 2
-        lineItems.amountExcludingTax = 100
-        lineItems.taxPercentage= 0
-        lineItems.description = "Coffee"
-        lineItems.id = "1648528151894"
-        lineItems.amountIncludingTax= 100
-        lineItems.taxCategory= "Low"
-        jsonPayRequestData.lineItems = listOf(lineItems)
+        jsonPayRequestData.lineItems = arguments.lineItems
 
         val threeDS2RequestData = ThreeDS2RequestData()
         threeDS2RequestData.deviceChannel = "app"

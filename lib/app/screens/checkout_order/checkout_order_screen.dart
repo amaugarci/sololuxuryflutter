@@ -14,6 +14,7 @@ import 'package:solo_luxury/data/model/checkout_order/shipping_information_model
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/checkout_order/multi_address_model.dart';
+import '../../../main.dart';
 import '../../components/common_widget/common_appbar.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
@@ -291,7 +292,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         children: [
           const SizedBox(height: 10.0),
           ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: controller.multiAddressModel!.value.addresses!.length,
               itemBuilder: (context, index) {
@@ -347,7 +348,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   "Ship Here",
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w500,
-                                  color: controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
+                                  color:
+                                      controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
                                 ),
                               ),
                             ),
@@ -356,16 +358,18 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        controller.multiAddressModel!.value.addresses!.length -1 == index ? Container() :Column(
-                          children: [
-                            CommonDivider(
-                              width: Get.width,
-                            ),
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                          ],
-                        ),
+                        controller.multiAddressModel!.value.addresses!.length - 1 == index
+                            ? Container()
+                            : Column(
+                                children: [
+                                  CommonDivider(
+                                    width: Get.width,
+                                  ),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
+                                ],
+                              ),
                       ],
                     ));
               }),
@@ -819,7 +823,29 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-                controller.responseFromNativeCode();
+                Map<String, dynamic> lineItems = {};
+                Map<String, dynamic> paymentRequest = {};
+                for (var element in controller.shipInfoModel!.value.totals!.items!) {
+                  lineItems = {
+                    "amountExcludingTax": 0,
+                    "amountIncludingTax": element.basePriceInclTax,
+                    "description": element.name,
+                    "id": element.itemId,
+                    "quantity": element.qty,
+                    "taxCategory": "",
+                    "taxPercentage": element.taxPercent
+                  };
+                }
+                print("ListItem -> $lineItems");
+                paymentRequest = {
+                  "currency": localStore.currentCurrency,
+                  "amount": "${controller.shipInfoModel!.value.totals!.grandTotal}",
+                  "countryCode": localStore.currentCode.split("-")[0].toUpperCase(),
+                  "qty": controller.shipInfoModel!.value.totals!.itemsQty,
+                  "lineItems":[lineItems],
+                };
+                print("Payment -> $paymentRequest");
+                controller.responseFromNativeCode(paymentRequest);
                 // if (controller.formKey.currentState!.validate()) {
                 //   // If the form is valid, display a snackbar. In the real world,
                 //   // you'd often call a server or save the information in a database.
