@@ -14,7 +14,7 @@ class ForgetPasswordAPIProvider extends GetConnect implements IForgetPasswordPro
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
-    httpClient.baseUrl = AppConstants.forgetPasswordEndPoint;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
   @override
