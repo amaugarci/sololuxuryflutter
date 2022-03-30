@@ -1,4 +1,5 @@
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:solo_luxury/app/screens/faq/faq_controller.dart';
@@ -17,7 +18,11 @@ class FaqScreen extends GetView<FaqController> {
       () => Scaffold(
         backgroundColor: backGroundColor,
         body: controller.getFaqList.isEmpty
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : pageView(),
       ),
     );

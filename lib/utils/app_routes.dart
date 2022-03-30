@@ -28,6 +28,7 @@ class RoutesConstants {
 
   static const String forgotPasswordScreen = "/forgotPasswordScreen";
   static const String forgotPasswordPage = "/forgotPasswordPage";
+  static const String forgotPasswordMenuPage = "/forgotPasswordMenuPage";
 
   static const String orderConfirmScreen = "/orderConfirmScreen";
 

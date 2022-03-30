@@ -23,9 +23,9 @@ class ForgotPasswordPageController extends GetxController {
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
   Rx<String> forgotpasswordResponseModel = "".obs;
 
-  final ForgotPasswordAPIRepository forgotpasswordAPIRepository;
+  /*final ForgotPasswordAPIRepository forgotpasswordAPIRepository;
 
-  ForgotPasswordPageController({required this.forgotpasswordAPIRepository});
+  ForgotPasswordPageController({required this.forgotpasswordAPIRepository});*/
 
 
   forgotpasswordUser( {required BuildContext context}) async {
@@ -36,7 +36,7 @@ class ForgotPasswordPageController extends GetxController {
 
       log("authUserData : $authUserData");
 
-      forgotpasswordResponseModel = (await forgotpasswordAPIRepository.getForgotpasswordAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(),)).obs;
+      // forgotpasswordResponseModel = (await forgotpasswordAPIRepository.getForgotpasswordAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(),)).obs;
 
       log("forgotpasswordResponseModel : $forgotpasswordResponseModel");
     } else {}

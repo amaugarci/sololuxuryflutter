@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -16,7 +17,11 @@ class MyAccountScreen extends GetView<MyAccountController> {
       () => Scaffold(
         backgroundColor: appColorAccent,
         body: controller.isLoading.value == true
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : SingleChildScrollView(
                 child: Column(
                   children: [
@@ -114,7 +119,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
   }
 
   commonTextStyle() {
-    return  TextStyle(
+    return TextStyle(
       fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       fontSize: 14,
@@ -123,7 +128,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
   }
 
   commonTextStyleNormal() {
-    return  TextStyle(
+    return TextStyle(
       fontFamily: AppConstants.fontOpenSans,
       fontSize: 16,
       color: appColorButton,
@@ -131,7 +136,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
   }
 
   commonTextStyle300() {
-    return  TextStyle(
+    return TextStyle(
       fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w300,
       fontSize: 16,

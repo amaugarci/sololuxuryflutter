@@ -12,8 +12,6 @@ import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
-import 'package:solo_luxury/app/screens/country/country_binding.dart';
-import 'package:solo_luxury/app/screens/country_screen/country_screen.dart';
 import 'package:solo_luxury/app/screens/donation/charity_binding.dart';
 import 'package:solo_luxury/app/screens/donation/donation_screen.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
@@ -29,8 +27,8 @@ import 'package:solo_luxury/app/screens/filter/list_filter.dart';
 
 import 'package:solo_luxury/app/screens/home/home_binding.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
-import 'package:solo_luxury/app/screens/influencer_registraction/influencer_binding.dart';
-import 'package:solo_luxury/app/screens/influencer_registraction/influencer_registration_screen.dart';
+import 'package:solo_luxury/app/screens/login/bindings/forget_password_menu_binding.dart';
+import 'package:solo_luxury/app/screens/login/views/forget_password_menu/forget_password_menu_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_menu_screen.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_binding.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_screen.dart';
@@ -40,37 +38,48 @@ import 'package:solo_luxury/app/screens/login/bindings/signup_bindings.dart';
 import 'package:solo_luxury/app/screens/login/views/forgot_password.dart';
 import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/screens/login/views/signup_screen.dart';
+import 'package:solo_luxury/app/screens/my_tickets/my_tickets_binding.dart';
+import 'package:solo_luxury/app/screens/my_tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_binding.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
+import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_binding.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
+import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
+import 'package:solo_luxury/app/screens/refer_friend/refer_friend_binding.dart';
+import 'package:solo_luxury/app/screens/search/search_binding.dart';
 import 'package:solo_luxury/app/screens/splash/splash_binding.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book.dart';
+import 'package:solo_luxury/app/screens/address_book/address_book_binding.dart';
+import 'package:solo_luxury/app/screens/country_screen/country_screen.dart'
+    as country;
+import 'package:solo_luxury/app/screens/country_screen/country_screen_binding.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
+import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit.dart';
+import 'package:solo_luxury/app/screens/store_credit/store_credit_binding.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
-import '../app/screens/address_book/address_book.dart';
-import '../app/screens/address_book/address_book_binding.dart';
-import '../app/screens/country_screen/country_screen_binding.dart';
+import '../app/screens/contact_us/contact_us_screen.dart';
 import '../app/screens/dashboard/dashboard_binding.dart';
 import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/my_account/my_account_binding.dart';
 import '../app/screens/my_account/my_account_screen.dart';
-import '../app/screens/my_tickets/my_tickets_binding.dart';
-import '../app/screens/my_tickets/my_tickets_screen.dart';
+import '../app/screens/influencer_registraction/influencer_binding.dart';
+import '../app/screens/influencer_registraction/influencer_registration_screen.dart';
+import '../app/screens/country/country_binding.dart';
+import '../app/screens/country/country_screen.dart';
+import '../app/screens/dashboard/dashboard_binding.dart';
+import '../app/screens/dashboard/dashboard_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
-import '../app/screens/refer_friend/refer_friend_binding.dart';
 import '../app/screens/refer_friend/refer_friend_screen.dart';
-import '../app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
-import '../app/screens/returns_and_refunds/returns_and_refunds_screen.dart';
-import '../app/screens/search/search_binding.dart';
 import '../app/screens/search/search_screen.dart';
 import '../app/screens/checkout_order/checkout_order_screen.dart';
-import '../app/screens/selecet_country/select_country.dart';
-import '../app/screens/selecet_country/select_country_binding.dart';
 import '../app/screens/splash/splash_screen.dart';
-import '../app/screens/store_credit/store_credit.dart';
-import '../app/screens/store_credit/store_credit_binding.dart';
 import '../app/screens/wishlist/wishlist_binding.dart';
 
 class AppPages {
@@ -145,11 +154,11 @@ class AppPages {
       page: () => const SignupScreen(),
       binding: SignupBinding(),
     ),
-    GetPage(
+  /*  GetPage(
       name: RoutesConstants.forgotPasswordScreen,
       page: () => const ForgotPasswordScreen(),
       binding: ForgotPasswordBinding(),
-    ),
+    ),*/
     GetPage(
       name: RoutesConstants.orderConfirmScreen,
       page: () => OrderConfirmationPage(),
@@ -157,13 +166,18 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.cartScreen,
-      page: () =>const CartScreen(),
+      page: () => const CartScreen(),
       binding: CartBinding(),
     ),
     GetPage(
       name: RoutesConstants.productDetailsScreen,
       page: () => ProductDetailScreen(),
       binding: ProductDetailsBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.forgotPasswordMenuPage,
+      page: () => const ForgotPasswordScreen(),
+      binding: ForgotPasswordMenuBinding(),
     ),
     GetPage(
       name: RoutesConstants.filterScreen,
@@ -180,15 +194,7 @@ class AppPages {
       page: () => const BrandListPage(),
       binding: BrandBinding(),
     ),
-    /*GetPage(
-      name: RoutesConstants.forgotPasswordPage,
-      page: () => ForgotPasswordPage(),
-      binding: ForgotPasswordPageBinding(),
-    ),*/
     GetPage(
-
-
-
       name: RoutesConstants.influencerRegistrationScreen,
       page: () => const InfluencerRegistrationScreen(),
       binding: InfluencerRegistrationBindings(),
@@ -267,11 +273,11 @@ class AppPages {
       name: RoutesConstants.referFriendScreen,
       page: () => const ReferFriendScreen(),
       binding: ReferFriendBindings(),
-  ),GetPage(
+    ),
+    GetPage(
       name: RoutesConstants.brandDetailsScreen,
       page: () => const BrandDetailsPage(),
       binding: BrandBinding(),
-
     ),
   ];
 }

@@ -12,9 +12,11 @@ class AppConstants {
   //static String menuEndPoint = "/V1/categories";
 
   static String bannerListEndPoint = "/bannerList";
+
   // static String estimatesShippingMethodEndPoint = "/in-en/V1/carts/mine/estimate-shipping-methods";
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
   static String multiAddressEndPoint = "/rest/V1/customers/me";
+
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -41,12 +43,20 @@ class AppConstants {
       "/V1/carts/mine/estimate-shipping-methods";
   static String shippingInformationEndPoint =
       "/V1/carts/mine/shipping-information";
+
+  static String createOrderEndPoint = "/rest/V1/orders/create";
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
   static String storeViewsEndPoint = "/rest/V1/store/storeViews";
   static String storeConfigsEndPoint = "/rest/V1/store/storeConfigs";
   static String referFriendEndPoint = "/rest//V1/referFriend";
 
   static String jsonEndPoint = "/json";
+  static const String deleteCartProdyctData =
+      "/rest/in-en/V1/carts/mine/items/";
+  static const String addTocartData = "/rest/in-en/V1/carts/mine/items";
+  static const String createCart = "/rest/in-en/V1/carts/mine/";
+  static const String cartToken = "Bearer 0vnwaoabm14pwt2azj6yyx29033w7rqk";
+  static const String orderConfirmation = "/rest/V1/orders/?order_id=";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -57,6 +67,7 @@ class AppConstants {
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
 
   static String apiEndPoint = "";
+
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
@@ -109,7 +120,8 @@ class AppConstants {
 
   static const String licenceId = '11434003';
 
-  //static String login = 'integration/customer/token';
+  static String forgetPassword = '/V1/customers/password';
+  static String forgetPasswordEndPoint = 'https://dev2.brands-labels.com';
 
   static String addAddress = '/rest/V1/customers/me';
   static String countryList = '/rest/V1/directory/countries';
@@ -125,7 +137,6 @@ class AppConstants {
   static const String getSizeListApi = "/V1/sizeList/";
 
   static String filterDataApi = '/rest/V1/layeredList/386';
-
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';

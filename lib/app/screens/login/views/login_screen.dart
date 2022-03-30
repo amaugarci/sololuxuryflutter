@@ -125,7 +125,7 @@ class LoginScreen extends GetView<LoginController> {
   Widget forgotPasswordButton() {
     return TextButton(
       onPressed: () {
-        Get.toNamed(RoutesConstants.forgotPasswordScreen);
+        Get.toNamed(RoutesConstants.forgotPasswordMenuPage);
       },
       child: Text(
         LanguageConstant.forgotYourPasswordText.tr,

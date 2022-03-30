@@ -1,3 +1,4 @@
+/*
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/forgotpassword_api_provider.dart';
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
@@ -22,4 +23,4 @@ class ForgotPasswordAPIRepository implements IForgotpasswordRepository {
       return forgotpasswordResponseModel.body!;
     }
   }
-}
+}*/

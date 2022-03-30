@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -86,6 +87,79 @@ class RecommendedProductsAPIRepository extends GetxController {
       }
     } catch (e) {
       print("ERROR+==============$e");
+    }
+  }
+
+  Future postAddTOCartProductResponse(addToCartData) async {
+    final response = await http.post(
+        Uri.parse(AppConstants.apiEndPointLogin + AppConstants.addTocartData),
+        body: json.encode(addToCartData),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.cartToken
+        });
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        return list;
+      }
+      if (response.statusCode == 400) {
+        return json.decode(response.body);
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
+  Future getGenerateCartApiResponse() async {
+    final response = await http.post(
+        Uri.parse(AppConstants.apiEndPointLogin + AppConstants.createCart),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": localStore.customerToken
+        });
+    try {
+      if (response.statusCode == 200) {
+        print("Categories=======================================");
+        print("Categories====================${response.body}");
+        var list = json.decode(response.body);
+        print("Categories 333====================${list}");
+        print(response.statusCode);
+        print("LIST DATA +++++++++++++++++++$list");
+        return list;
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR))))))+==============$e");
+    }
+  }
+
+  Future getCreateCartApiResponse() async {
+    final response = await http.get(
+        Uri.parse(AppConstants.apiEndPointLogin + AppConstants.createCart),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.cartToken
+        });
+    try {
+      if (response.statusCode == 200) {
+        print("Categories=======================================");
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        print("LIST DATA +++++++++++++++++++$list");
+        return list;
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR))))))+==============$e");
     }
   }
 }

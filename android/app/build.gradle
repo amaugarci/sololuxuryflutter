@@ -72,4 +72,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.4'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation "com.adyen.checkout:card:4.5.0"
+    implementation "com.adyen.checkout:redirect:4.5.0"
+    implementation "com.adyen.checkout:drop-in:4.5.0"
+    implementation 'com.google.android.material:material:1.5.0-beta01'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation "com.squareup.okhttp3:okhttp:4.9.3"
+
 }

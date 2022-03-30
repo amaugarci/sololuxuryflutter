@@ -10,21 +10,22 @@ import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../../../data/model/checkout_order/shipping_information_model.dart';
 
 class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
-
   final ICheckOutOrderProvider provider;
 
   CheckoutOrderAPIRepository({required this.provider});
 
-
   @override
   Future<String> getMultiAddressAPIResponse() async {
-    final multiAddressModelResponse = await provider.getMultiAddressResponseProvider(endPoint: AppConstants.multiAddressEndPoint,);
+    final multiAddressModelResponse =
+        await provider.getMultiAddressResponseProvider(
+      endPoint: AppConstants.multiAddressEndPoint,
+    );
     if (multiAddressModelResponse != null) {
       print(AppConstants.apiEndPointLogin + AppConstants.multiAddressEndPoint);
       print("response.statusCode -> ");
       print(multiAddressModelResponse.statusCode);
     }
-    if(multiAddressModelResponse.status.hasError) {
+    if (multiAddressModelResponse.status.hasError) {
       return Future.error(multiAddressModelResponse.statusText!);
     } else {
       print("----->");
@@ -35,13 +36,19 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
 
   @override
   Future<String> postEstimateAPIResponse(String requestJson) async {
-    Response estimateResponseModel = await provider.postEstimateResponseProvider(endPoint: AppConstants.getUrlWithCode(AppConstants.estimatesShippingMethodEndPoint),requestJson: requestJson );
+    Response estimateResponseModel =
+        await provider.postEstimateResponseProvider(
+            endPoint: AppConstants.getUrlWithCode(
+                AppConstants.estimatesShippingMethodEndPoint),
+            requestJson: requestJson);
     if (estimateResponseModel != null) {
-      print(AppConstants.apiEndPointLogin + AppConstants.getUrlWithCode(AppConstants.estimatesShippingMethodEndPoint));
+      print(AppConstants.apiEndPointLogin +
+          AppConstants.getUrlWithCode(
+              AppConstants.estimatesShippingMethodEndPoint));
       print("response.statusCode -> ");
       print(estimateResponseModel.statusCode);
     }
-    if(estimateResponseModel.status.hasError) {
+    if (estimateResponseModel.status.hasError) {
       return Future.error(estimateResponseModel.statusText!);
     } else {
       return estimateResponseModel.body!;
@@ -49,18 +56,41 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   }
 
   @override
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(String requestJson) async {
-    Response estimateResponseModel = await provider.postShippingInformationResponseProvider(endPoint: AppConstants.getUrlWithCode(AppConstants.shippingInformationEndPoint),requestJson: requestJson );
+  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+      String requestJson) async {
+    Response estimateResponseModel =
+        await provider.postShippingInformationResponseProvider(
+            endPoint: AppConstants.getUrlWithCode(
+                AppConstants.shippingInformationEndPoint),
+            requestJson: requestJson);
     if (estimateResponseModel != null) {
-      print(AppConstants.apiEndPointLogin + AppConstants.getUrlWithCode(AppConstants.shippingInformationEndPoint));
+      print(AppConstants.apiEndPointLogin +
+          AppConstants.getUrlWithCode(
+              AppConstants.shippingInformationEndPoint));
       print("response.statusCode -> ");
       print(estimateResponseModel.statusCode);
     }
-    if(estimateResponseModel.status.hasError) {
+    if (estimateResponseModel.status.hasError) {
       return Future.error(estimateResponseModel.statusText!);
     } else {
-      return ShippingInformationModel.fromJson(jsonDecode(estimateResponseModel.body!));
+      return ShippingInformationModel.fromJson(
+          jsonDecode(estimateResponseModel.body!));
     }
   }
 
+  @override
+  Future<String> postCreateOrderAPIResponse(String requestJson) async {
+    Response createOrderApi = await provider.postCreateOrderResponseProvider(
+        endPoint: AppConstants.createOrderEndPoint, requestJson: requestJson);
+    print("Response IS $createOrderApi");
+    if (createOrderApi != null) {
+      print("response.statusCode -> ");
+      print(createOrderApi.statusCode);
+    }
+    if (createOrderApi.status.hasError) {
+      return Future.error(createOrderApi.statusText!);
+    } else {
+      return createOrderApi.body!;
+    }
+  }
 }

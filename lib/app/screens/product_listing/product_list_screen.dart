@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
@@ -26,19 +26,25 @@ class ProductListScreen extends GetView<ProductController> {
         resizeToAvoidBottomInset: false,
         backgroundColor: backGroundColor,
         appBar: commonAppbar(),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.5),
-            child: controller.isFilter.value
-                ? filter()
-                : Column(children: [
-                    filterWidget(),
-                    const SizedBox(height: 15),
-                    filterDropDown(),
-                    const SizedBox(height: 30),
-                    Expanded(
-                      child: products(),
-                    ),
-                  ]))));
+        body: controller.isLoading.value
+            ? Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.5),
+                child: controller.isFilter.value
+                    ? filter()
+                    : Column(children: [
+                        filterWidget(),
+                        const SizedBox(height: 15),
+                        filterDropDown(),
+                        const SizedBox(height: 30),
+                        Expanded(
+                          child: products(),
+                        ),
+                      ]))));
   }
 
   Widget filterWidget() {
@@ -109,7 +115,10 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w300,
+                color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -146,7 +155,9 @@ class ProductListScreen extends GetView<ProductController> {
                         //Filter Widget
                         Expanded(
                           child: Container(
-                            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: filterBorderColor)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -164,7 +175,8 @@ class ProductListScreen extends GetView<ProductController> {
           Container(
             width: Get.width,
             height: 40.0,
-            margin: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 20.0),
+            margin:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             child: CommonButton(
               padding: const EdgeInsets.symmetric(horizontal: 5.0),
               buttonType: ButtonType.ElevatedButton,
@@ -236,14 +248,17 @@ class ProductListScreen extends GetView<ProductController> {
   Widget category() {
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: filterBorderColor)),
         alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
+        margin: const EdgeInsets.only(
+            left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value =
+                  FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -261,13 +276,15 @@ class ProductListScreen extends GetView<ProductController> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-                color: controller.currentCategoryIndex.value == index ? backGroundColor : lightBrownColor),
+                color: controller.currentCategoryIndex.value == index
+                    ? backGroundColor
+                    : lightBrownColor),
             width: Get.width,
             height: 40,
             child: Align(
               alignment: Alignment.centerLeft,
-              child:
-                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child: CommonTextOpenSans("${item.attrLabel}",
+                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
@@ -276,9 +293,11 @@ class ProductListScreen extends GetView<ProductController> {
   Widget subCategory() {
     return Expanded(
       child: Container(
-          margin: const EdgeInsets.only(left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
+          margin: const EdgeInsets.only(
+              left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
           alignment: Alignment.topLeft,
-          decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+          decoration: BoxDecoration(
+              border: Border.all(width: 1, color: filterBorderColor)),
           child: subCategoryWidget()),
     );
   }
@@ -290,7 +309,8 @@ class ProductListScreen extends GetView<ProductController> {
       children: <Widget>[
         Container(
             margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: filterBorderColor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -313,7 +333,7 @@ class ProductListScreen extends GetView<ProductController> {
                     textFieldBorder: Border.all(color: Colors.transparent),
                     textColor: appTextFieldHintColor,
                     fontWeight: FontWeight.w600,
-                    onChanged: (val){
+                    onChanged: (val) {
                       print("onChanged -> $val");
                       controller.searchFilter(val);
                     },
@@ -347,7 +367,9 @@ class ProductListScreen extends GetView<ProductController> {
                               child: Stack(
                                 children: [
                                   Image.asset(
-                                    category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
+                                    category.isSelected.value
+                                        ? AppAsset.checked
+                                        : AppAsset.unchecked,
                                     height: 18.0,
                                     width: 18.0,
                                   ),

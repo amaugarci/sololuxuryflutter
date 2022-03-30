@@ -17,6 +17,7 @@ const Color brownE7CCBE = Color(0xffE7CCBE);
 const Color brownF3E5DE = Color(0xffF3E5DE);
 const Color brownDBD3D1 = Color(0xffDBD3D1);
 const Color brownBDB5B3 = Color(0xffBDB5B3);
+const Color brownF0DFD8 = Color(0xffF0DFD8);
 
 const Color whiteColor = Color(0xffFFFFFF);
 const Color blackColor = Color(0xff000000);
@@ -63,10 +64,10 @@ Color grey = Color(0xff999999);
 
 const Color grey636363 = Color(0xff636363);
 
-Color backgroundticket=Color(0xffFBECE5);
-const Color secondarybackgroundcolor=Color(0xFFF6E6DF);
-const Color ticketTextColor=Color(0xFF6F3015);
-const Color buttoncolor=Color(0xFF8A3A06);
+Color backgroundticket = Color(0xffFBECE5);
+const Color secondarybackgroundcolor = Color(0xFFF6E6DF);
+const Color ticketTextColor = Color(0xFF6F3015);
+const Color buttoncolor = Color(0xFF8A3A06);
 
 const MaterialColor primaryBlack = MaterialColor(
   _blackPrimaryValue,

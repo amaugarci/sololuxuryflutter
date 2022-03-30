@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
@@ -15,9 +16,14 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 112),
-              Text(
-                LanguageConstant.forgetPassword.tr,
-                style: textStyleUtils600(),
+              InkWell(
+                onTap: () {
+                  // controller.getForgetPasswordResponse();
+                },
+                child: Text(
+                  LanguageConstant.forgetPassword.tr,
+                  style: textStyleUtils600(),
+                ),
               ),
               const SizedBox(height: 15),
               Text(

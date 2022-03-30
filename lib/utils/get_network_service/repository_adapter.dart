@@ -6,6 +6,7 @@ import 'package:solo_luxury/data/model/cart/cart_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/contact_us_response_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
+import 'package:solo_luxury/data/model/orderConfirmation/order_confirmation_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
@@ -63,6 +64,8 @@ abstract class ICheckoutOrderRepository {
   Future<String> getMultiAddressAPIResponse();
 
   Future<String> postEstimateAPIResponse(String loginRequestJson);
+
+  Future<String> postCreateOrderAPIResponse(String loginRequestJson);
 }
 
 ///myAccount Class
@@ -72,7 +75,9 @@ abstract class IMyAccountRepository {
 
 ///cart Class
 abstract class ICartRepository {
-  Future<CartModel> getCartGetDataApiResponse();
+  Future<String> getCartGetDataApiResponse();
+
+  Future<dynamic> deleteCartCartQTYDataApiResponse(String itemId);
 }
 
 abstract class IContactUsRepository {
@@ -95,10 +100,20 @@ abstract class IRecommendedProductsRepository {
   Future<RecommendedProductModel> getMyAccountApiResponse();
 }
 
+///forget password Class
+abstract class IForgetPasswordRepository {
+  Future<String> putForgetPasswordApiResponse();
+}
+
 abstract class ICountryListRepository {
   Future<String> getCountryListResponse();
 
   Future<String> postaddAddressApiResponse(String response);
+}
+
+///orderConfirmation Class
+abstract class IOrderConfirmationRepository {
+  Future<dynamic> getOrderConfirmationApiResponse();
 }
 
 abstract class IMyTicketRepository {
@@ -107,6 +122,7 @@ abstract class IMyTicketRepository {
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
+
   Future<List<dynamic>> getFilterListApiResponse();
 }
 
