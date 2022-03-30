@@ -8,11 +8,15 @@ import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/recommended_products_api_repository.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../data/model/Product/product_model.dart';
+
 class ProductDetailController extends GetxController
     with GetSingleTickerProviderStateMixin {
   /* final RecommendedProductsAPIRepository? recommendedProductsAPIRepository;
 
   ProductDetailController({ this.recommendedProductsAPIRepository});*/
+
+  Rx<Item>? product = Item().obs;
 
   RxBool isLoading = true.obs;
 
@@ -22,6 +26,7 @@ class ProductDetailController extends GetxController
   void onInit() {
     // TODO: implement onInit
     getSizeListFromApi();
+    product?.value = Get.arguments[0];
     super.onInit();
     getRecommendedProductDataFromApi();
     controller = TabController(vsync: this, length: myTabs.length);

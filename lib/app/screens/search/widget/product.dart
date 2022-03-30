@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../../data/model/Product/product_model.dart';
 import '../../../../utils/app_constants.dart';
+import '../../../../utils/app_routes.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
@@ -18,7 +19,8 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(),arguments: product);
+        Get.toNamed(RoutesConstants.productDetailsScreen,
+            arguments: [product]);
       },
       child: Container(
         width: 150,

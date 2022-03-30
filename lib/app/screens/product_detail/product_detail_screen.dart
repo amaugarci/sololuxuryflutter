@@ -13,9 +13,9 @@ import '../../../utils/app_constants.dart';
 
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
-  Item? product;
-
-  ProductDetailScreen({this.product});
+  // Item? product;
+  //
+  // ProductDetailScreen({this.product});
 
   PageController controllerPage = PageController(initialPage: 1);
 
@@ -74,12 +74,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 41),
                       Text(
-                        product!.name!,
+                        controller.product!.value.name!,
                         style: commonTextStyle400(size: 24.0),
                       ),
                       const SizedBox(height: 14),
                       Text(
-                        product!.name!,
+                        controller.product!.value.name!,
                         style: commonTextStyle400(size: 18.0),
                       ),
                       const SizedBox(height: 28),
@@ -94,7 +94,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       Visibility(
                         visible: controller.isSelected.isTrue ? true : false,
                         child: Text(
-                          "${product!.customAttributes!.first.value}",
+                          "${controller.product!.value.customAttributes!.first.value}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -114,7 +114,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       Visibility(
                         visible: controller.isSelected1.isTrue ? true : false,
                         child: Text(
-                          "${product!.customAttributes!.first.value}",
+                          "${controller.product!.value.customAttributes!.first.value}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -124,12 +124,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 35),
                       Text(
-                        "£${product?.price!.toStringAsFixed(2)}",
+                        "£${controller.product!.value.price!.toStringAsFixed(2)}",
                         style: commonTextStyle600(size: 24.0),
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        LanguageConstant.sku.tr + ":- ${product?.sku}",
+                        LanguageConstant.sku.tr + ":- ${controller.product!.value.sku}",
                         style: commonTextStyle600(
                           size: 14.0,
                           color: Colors.black54,
@@ -137,7 +137,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 25),
                       Visibility(
-                        visible: product!.typeId == 'configurable',
+                        visible: controller.product!.value.typeId == 'configurable',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -320,7 +320,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
             controller: controllerPage,
             itemBuilder: (_, index) {
               return Image.network(
-                "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                "${AppConstants.productImageUrl}${controller.product!.value.customAttributes![1].value}",
                 fit: BoxFit.fill,
               );
             },
@@ -395,9 +395,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         onPressed: () {
           controller.postAddToCartData(
             context,
-            product!.name!,
-            "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
-            product?.sku,
+            controller.product!.value.name!,
+            "${AppConstants.productImageUrl}${controller.product!.value.customAttributes![1].value}",
+            controller.product!.value.sku,
           );
         },
         style: ElevatedButton.styleFrom(
@@ -456,7 +456,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     return GestureDetector(
       onTap: () {
         imageDialog(LanguageConstant.sizeChartText.tr,
-            product!.customAttributes![17].value, context);
+            controller.product!.value.customAttributes![17].value, context);
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -487,7 +487,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                    "${AppConstants.productImageUrl}${controller.product!.value.customAttributes![1].value}",
                   ),
                   fit: BoxFit.fill,
                 ),
