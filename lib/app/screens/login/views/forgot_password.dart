@@ -2,19 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/behaviour.dart';
 import 'package:solo_luxury/app/components/input_text_field_widget.dart';
+import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_controller.dart';
 import 'package:solo_luxury/app/screens/login/controller/forgot_password_controller.dart';
+import 'package:solo_luxury/app/screens/login/views/forget_password_menu/forget_password_menu_screen.dart';
 
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import 'package:solo_luxury/utils/validator.dart';
 
-class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
+class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-          backgroundColor: backGroundColor,
-          body: Padding(
+    return Obx(
+      () => Scaffold(
+        backgroundColor: backGroundColor,
+        body: Form(
+          key: controller.formKey.value,
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ScrollConfiguration(
               behavior: MyBehavior(),
@@ -76,7 +82,9 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget forgotPasswordTextField() {
@@ -88,7 +96,8 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
         border: Border.all(color: appColor, width: 1),
       ),
       child: TextFormField(
-        controller: null,
+        controller: controller.emailController.value,
+        validator: (value) => Validators.validateEmail(value!.trim()),
         decoration: InputDecoration(
           border: InputBorder.none,
           isDense: true,
@@ -103,7 +112,13 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
       width: 209,
       height: 40,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (controller.formKey.value.currentState!.validate()) {
+            controller.getForgetPasswordResponse(
+                context: context, email: controller.emailController.value.text);
+            Get.to(() => ForgetPasswordMenuScreen());
+          }
+        },
         style: ElevatedButton.styleFrom(
           elevation: 1,
           primary: appColor,

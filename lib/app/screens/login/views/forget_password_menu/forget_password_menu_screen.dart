@@ -4,47 +4,44 @@ import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_co
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
-class ForgetPasswordMenuScreen extends GetView<ForgetPasswordMenuController> {
+class ForgetPasswordMenuScreen extends StatelessWidget {
   const ForgetPasswordMenuScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        key: controller.formKey.value,
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                const SizedBox(height: 112),
-                InkWell(
-                  onTap: () {
-                    controller.getForgetPasswordResponse();
-                  },
-                  child: Text(
-                    LanguageConstant.forgetPassword.tr,
-                    style: textStyleUtils600(),
-                  ),
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 112),
+              InkWell(
+                onTap: () {
+                  // controller.getForgetPasswordResponse();
+                },
+                child: Text(
+                  LanguageConstant.forgetPassword.tr,
+                  style: textStyleUtils600(),
                 ),
-                const SizedBox(height: 15),
-                Text(
-                  LanguageConstant.forgetPasswordContain.tr,
-                  textAlign: TextAlign.center,
-                  style: textStyleUtils16(),
-                ),
-                const SizedBox(height: 25),
-                Text(
-                  LanguageConstant.continueShopping.tr.toUpperCase(),
-                  style: textStyleUtils18(),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  LanguageConstant.backToSignInScreen.tr.toUpperCase(),
-                  style: textStyleUtils18(),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 15),
+              Text(
+                LanguageConstant.forgetPasswordContain.tr,
+                textAlign: TextAlign.center,
+                style: textStyleUtils16(),
+              ),
+              const SizedBox(height: 25),
+              Text(
+                LanguageConstant.continueShopping.tr.toUpperCase(),
+                style: textStyleUtils18(),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                LanguageConstant.backToSignInScreen.tr.toUpperCase(),
+                style: textStyleUtils18(),
+              ),
+            ],
           ),
         ),
       ),
