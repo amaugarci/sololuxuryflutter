@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -215,11 +216,10 @@ class BrandListPage extends GetView<BrandController> {
               child: controller.isLoading.value
                   ? Container(
                       child: Center(
-                        child: CircularProgressIndicator(
-                          color: Color(0xFF973133),
-                        ),
-                      ),
-                    )
+                          child: SpinKitThreeBounce(
+                      color: appColor,
+                      // size: 50.0,
+                    )))
                   : ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.symmetric(horizontal: 10),

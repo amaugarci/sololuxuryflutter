@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
@@ -71,10 +72,10 @@ class MyTicketScreen extends GetView<MyTicketsController> {
           drawer: const Drawer(),
           body: controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(
-                    color: appColor,
-                  ),
-                )
+                  child: SpinKitThreeBounce(
+                  color: appColor,
+                  // size: 50.0,
+                ))
               : SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
