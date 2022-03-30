@@ -2,15 +2,19 @@ package com.example.solo_luxury
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import com.google.gson.Gson
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
 import java.util.*
 
-class MainActivity: FlutterActivity() {
+class MainActivity : FlutterActivity() {
     private val CHANNEL = "flutter.native/helper"
+
     companion object {
-        @JvmStatic var result: MethodChannel.Result? = null
+        @JvmStatic
+        var result: MethodChannel.Result? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +24,11 @@ class MainActivity: FlutterActivity() {
                 .setMethodCallHandler { call, r ->
                     if (call.method == "helloFromNativeCode") {
                         result = r
-                        //                            String greetings = helloFromNativeCode();
-//                            result.success(greetings);
-                        startActivity(Intent(applicationContext, CardActivity::class.java))
+                        Log.e("TAG", "Result -> ${call.arguments}")
+                        val intent = Intent(applicationContext, CardActivity::class.java)
+                        intent.putExtra("result", Gson().toJson(call.arguments))
+                        startActivity(intent)
                     }
                 }
-    }
-
-    private fun helloFromNativeCode(): String? {
-        return "Hello from Native Android Code"
     }
 }

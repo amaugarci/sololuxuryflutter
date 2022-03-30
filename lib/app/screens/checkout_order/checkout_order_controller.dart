@@ -110,22 +110,23 @@ class CheckoutOrderController extends GetxController {
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 
-  //TODO : Payment Response using Platform
 
-  RxString nativeCode = 'Waiting for Response...'.obs;
+  //TODO : Payment Response using Platform Channel
 
-  Future<void> responseFromNativeCode(cartData, context) async {
+
+  Future<void> responseFromNativeCode(cartData, context, Map<String, dynamic> paymentRequest) async {
     String response = "";
     try {
-      final String result =
-          await platform.invokeMethod('helloFromNativeCode', []);
+      final String result = await platform.invokeMethod('helloFromNativeCode',paymentRequest);
       response = result;
       Map<String, dynamic> map = jsonDecode(response);
       print("result -> ${map.toString()}");
       print("result -> ${map['resultCode']}");
+      Get.snackbar("Authorised", "The payment was successful.",backgroundColor: const Color(0xFF5EFF5B));
     } on PlatformException catch (e) {
       response = "Failed to Invoke: '${e.message}'.";
     }
+
     Map<String, dynamic> map = jsonDecode(response);
     print("Response Map Is Her $map");
     if (map['resultCode'] == "Authorised") {
@@ -143,7 +144,6 @@ class CheckoutOrderController extends GetxController {
         },
       )..show();
     }
-    nativeCode.value = response;
   }
 
   //Create Order Api Calling ----------------------------

@@ -16,6 +16,7 @@ import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Home/menu_model.dart';
+import '../../../main.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({Key? key}) : super(key: key);
@@ -69,6 +70,7 @@ class DashboardScreen extends GetView<DashboardController> {
                             LanguageConstant.search1Text.tr;
                         break;
                       case 2:
+                        await localStore.getToken();
                         controller.appbarTitle.value =
                             LanguageConstant.designersText.tr;
                         break;
