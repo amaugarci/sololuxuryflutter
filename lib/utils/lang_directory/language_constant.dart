@@ -2,6 +2,12 @@ class LanguageConstant {
   //Home Screen Constant
   static const String aboutUsText = "aboutUsText";
 
+  static const String orderConfirm = "orderConfirm";
+  static const String orderIdTitle = "orderIdTitle";
+  static const String qty = "qty";
+  static const String expectedDate = "expectedDate";
+  static const String orderDate = "orderDate";
+
   // static const String aboutUsText = "aboutUsText";
   static const String aboutUsContain1 = "aboutUsContain1";
   static const String aboutUsContain2 = "aboutUsContain2";

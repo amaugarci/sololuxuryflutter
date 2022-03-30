@@ -17,6 +17,7 @@ const Color brownE7CCBE = Color(0xffE7CCBE);
 const Color brownF3E5DE = Color(0xffF3E5DE);
 const Color brownDBD3D1 = Color(0xffDBD3D1);
 const Color brownBDB5B3 = Color(0xffBDB5B3);
+const Color brownF0DFD8 = Color(0xffF0DFD8);
 
 const Color whiteColor = Color(0xffFFFFFF);
 const Color blackColor = Color(0xff000000);

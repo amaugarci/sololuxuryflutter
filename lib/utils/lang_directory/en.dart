@@ -2,6 +2,12 @@ const Map<String, String> en = {
   "language": "English",
   "appNameText": "Solo Luxury",
   "details": "Details",
+  "orderConfirm": "THANK YOU FOR YOUR PURCHASE!",
+  "orderIdTitle": '''Your order # is:''',
+  "expectedDate": 'Expected Shipment Date',
+  "orderDate": 'Order Date',
+
+  "qty": 'QTY',
 
   "orderDetails": "Order Details",
   "tax": "TAX",
@@ -120,6 +126,7 @@ const Map<String, String> en = {
   "quantity": "Qty",
   "status": "Status",
   "action": "Action",
+  "backText": "Back to login",
   "paymentMethod": " Payment Method",
   "shippingAddress": "Shipping Address",
   "billingAddress": "Billing Address",
@@ -129,7 +136,6 @@ const Map<String, String> en = {
   "accountToPlaceOrderQues": "Do I need an account to place an order?",
   "accountToPlaceOrderAns":
       "No, all you need is an email address. We recommend that you register for an account to start adding pieces to your Wishlist, but, you can also place and track orders as a guest and signup at a time that suits you.",
-
   "registeredCustomersText": "Registered Customers",
   "registeredCustomersDescriptionText":
       "If You Have An Account, Sign In With Your\nEmail Address.",

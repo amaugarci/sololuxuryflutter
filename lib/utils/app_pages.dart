@@ -154,11 +154,11 @@ class AppPages {
       page: () => const SignupScreen(),
       binding: SignupBinding(),
     ),
-    GetPage(
+  /*  GetPage(
       name: RoutesConstants.forgotPasswordScreen,
       page: () => const ForgotPasswordScreen(),
       binding: ForgotPasswordBinding(),
-    ),
+    ),*/
     GetPage(
       name: RoutesConstants.orderConfirmScreen,
       page: () => OrderConfirmationPage(),
@@ -176,7 +176,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutesConstants.forgotPasswordMenuPage,
-      page: () => const ForgetPasswordMenuScreen(),
+      page: () => const ForgotPasswordScreen(),
       binding: ForgotPasswordMenuBinding(),
     ),
     GetPage(
