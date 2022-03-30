@@ -6,7 +6,8 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/order_confir
 class OrderConfirmationController extends GetxController {
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
-  Rx<OrderConfirmationModel>? orderConfirmation = OrderConfirmationModel().obs;
+  RxList<Items> items = RxList<Items>();
+  var stringParams = <String, dynamic>{};
   final OrderConfirmationApiRepository orderConfirmationApiRepository;
 
   OrderConfirmationController({required this.orderConfirmationApiRepository});
@@ -18,7 +19,11 @@ class OrderConfirmationController extends GetxController {
   }
 
   void getOrderConfirmationData({var orderId}) async {
-    orderConfirmation?.value = await orderConfirmationApiRepository
+    stringParams = await orderConfirmationApiRepository
         .getOrderConfirmationApiResponse(orderId: "1");
+    final subList = stringParams["items"];
+    items.value = List<Items>.from(
+        subList.map((countryList) => Items.fromJson(countryList)));
+    print("DATADATTATATTA=======${items[0].name}");
   }
 }
