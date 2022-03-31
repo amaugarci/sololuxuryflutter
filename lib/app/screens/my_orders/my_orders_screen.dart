@@ -270,7 +270,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     );
   }
 
-  Widget myOrderWidget({ParentItemElement? item, var index,var orderData}) {
+  Widget myOrderWidget({ParentItemElement? item, var index,MyOrdersDataItem? orderData}) {
     if (item == null) {
       return Container();
     }
@@ -315,7 +315,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             data: item.baseRowTotal.toString(),
           ),
           const SizedBox(height: 20),
-          row1(text: LanguageConstant.status.tr, data: "Pending"),
+          row1(text: LanguageConstant.status.tr, data: orderData!.status.toString()),
           const SizedBox(height: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
