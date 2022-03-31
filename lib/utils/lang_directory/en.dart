@@ -33,11 +33,13 @@ const Map<String, String> en = {
 
   "description": "Description",
   "estimatedDelivery": "Estimated Delivery",
+  "grandTotalToBeCharge": "Grand Total to be Charged:",
   "guaranteedDelivery": "Guaranteed Delivery : Nov 04 - Nov 11",
   "sizeChart": "Size Chart",
   "size": "Size",
   "subTotal": "Sub Total",
   "addTOCart": "ADD TO CART",
+  "estimatedTotal": "Estimated Total",
   "addToWishlist": "ADD TO WISHLIST",
   "whyVeraLusso": "WHY VERALUSSO",
   "knowMore": "Know More",
@@ -313,6 +315,7 @@ const Map<String, String> en = {
   "whatsonyourmindText": "What\'s On Your Mind?",
   "languageText": "Language",
   "currencyText": "Currency",
+  "itemOrder": "Items Ordered",
 
   "nameChatText": "Name",
   "idText": "ID",

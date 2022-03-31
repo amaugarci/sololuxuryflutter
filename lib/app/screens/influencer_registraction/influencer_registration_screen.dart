@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/influencer_registraction/influencer_registration_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -16,10 +17,11 @@ class InfluencerRegistrationScreen
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        appBar: commonAppbar(title: LanguageConstant.influencerRegistrationText.tr),
         backgroundColor: appColorAccent,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 90),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical:30),
             child: Container(
               child: influencerDesign(context),
               height: Get.height,

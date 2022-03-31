@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 
 import '../../../utils/app_constants.dart';
@@ -12,12 +13,13 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColorAccent,
+      appBar: commonAppbar(title: LanguageConstant.aboutUsText.tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.5),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 20),
               Text(
                 LanguageConstant.aboutUsText.tr,
                 style: TextStyle(

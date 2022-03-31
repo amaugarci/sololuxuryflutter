@@ -157,6 +157,7 @@ class DonationScreen extends StatelessWidget {
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/donation/charity_controller.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -169,6 +170,7 @@ class CharityScreen extends GetView<CharityController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColorAccent,
+      appBar: commonAppbar(title: LanguageConstant.hopeText.tr),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -176,7 +178,7 @@ class CharityScreen extends GetView<CharityController> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 60,
+                  height: 35,
                 ),
                 Text(
                   LanguageConstant.charityTitle.tr,

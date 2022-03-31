@@ -101,12 +101,12 @@ class MyOrdersDataItem {
   });
 
   String? baseCurrencyCode;
-  double? baseDiscountAmount;
-  double? baseGrandTotal;
+ dynamic baseDiscountAmount;
+  dynamic baseGrandTotal;
   int? baseShippingAmount;
   int? baseSubtotal;
   int? baseTaxAmount;
-  double? baseTotalDue;
+  dynamic baseTotalDue;
   int? billingAddressId;
   String? couponCode;
   String? createdAt;
@@ -116,11 +116,11 @@ class MyOrdersDataItem {
   int? customerIsGuest;
   String? customerLastname;
   int? customerNoteNotify;
-  double? discountAmount;
+  dynamic discountAmount;
   String? discountDescription;
   int? emailSent;
   int? entityId;
-  double? grandTotal;
+  dynamic grandTotal;
   String? incrementId;
   int? isVirtual;
   String? orderCurrencyCode;
@@ -135,7 +135,7 @@ class MyOrdersDataItem {
   int? subtotal;
   int? subtotalInclTax;
   int? taxAmount;
-  double? totalDue;
+  dynamic totalDue;
   int? totalItemCount;
   int? totalQtyOrdered;
   String? updatedAt;
@@ -152,7 +152,7 @@ class MyOrdersDataItem {
   int? baseShippingTaxAmount;
   int? baseSubtotalInclTax;
   int? baseToGlobalRate;
-  double? baseToOrderRate;
+  dynamic baseToOrderRate;
   String? globalCurrencyCode;
   int? discountTaxCompensationAmount;
   int? quoteId;
@@ -167,12 +167,12 @@ class MyOrdersDataItem {
 
   factory MyOrdersDataItem.fromJson(Map<String, dynamic> json) => MyOrdersDataItem(
         baseCurrencyCode: json["base_currency_code"],
-        baseDiscountAmount: json["base_discount_amount"].toDouble(),
-        baseGrandTotal: json["base_grand_total"].toDouble(),
+        baseDiscountAmount: json["base_discount_amount"],
+        baseGrandTotal: json["base_grand_total"],
         baseShippingAmount: json["base_shipping_amount"],
         baseSubtotal: json["base_subtotal"],
         baseTaxAmount: json["base_tax_amount"],
-        baseTotalDue: json["base_total_due"].toDouble(),
+        baseTotalDue: json["base_total_due"],
         billingAddressId: json["billing_address_id"],
         couponCode: json["coupon_code"] == null ? null : json["coupon_code"],
         createdAt: json["created_at"],
@@ -182,11 +182,11 @@ class MyOrdersDataItem {
         customerIsGuest: json["customer_is_guest"],
         customerLastname: json["customer_lastname"],
         customerNoteNotify: json["customer_note_notify"],
-        discountAmount: json["discount_amount"].toDouble(),
+        discountAmount: json["discount_amount"],
         discountDescription: json["discount_description"] == null ? null : json["discount_description"],
         emailSent: json["email_sent"],
         entityId: json["entity_id"],
-        grandTotal: json["grand_total"].toDouble(),
+        grandTotal: json["grand_total"],
         incrementId: json["increment_id"],
         isVirtual: json["is_virtual"],
         orderCurrencyCode: json["order_currency_code"],
@@ -201,7 +201,7 @@ class MyOrdersDataItem {
         subtotal: json["subtotal"],
         subtotalInclTax: json["subtotal_incl_tax"],
         taxAmount: json["tax_amount"],
-        totalDue: json["total_due"].toDouble(),
+        totalDue: json["total_due"],
         totalItemCount: json["total_item_count"],
         totalQtyOrdered: json["total_qty_ordered"],
         updatedAt: json["updated_at"],

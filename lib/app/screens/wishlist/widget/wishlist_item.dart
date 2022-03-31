@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/data/model/Wishlist/wishlist_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../utils/colors.dart';
@@ -15,7 +16,9 @@ class WishlistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(RoutesConstants.productDetailsScreen, arguments: [item]);
+      },
       child: Column(
         children: [
           Container(

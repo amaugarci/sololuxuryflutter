@@ -120,7 +120,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(RoutesConstants.orderConfirmScreen);
+                                  Get.toNamed(RoutesConstants.myOrderScreen);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
@@ -272,7 +272,9 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                               ),
                               Divider(),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(RoutesConstants.appSecureShoppingScreen);
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Text(
