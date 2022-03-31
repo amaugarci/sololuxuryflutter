@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_controller.dart';
+import 'package:solo_luxury/app/screens/my_orders/order_details_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -16,7 +17,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     return Obx(() => Scaffold(
           key: controller.scaffoldKey.value,
           backgroundColor: appColorAccent,
-      appBar: commonAppbar(title: LanguageConstant.myOrdersText.tr),
+          appBar: commonAppbar(title: LanguageConstant.myOrdersText.tr),
           body: body(),
         ));
   }
@@ -50,9 +51,10 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 padding: EdgeInsets.zero,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  ParentItemElement item = controller
-                      .myOrdersModel!.value.items![index].items![0];
-                  return myOrderWidget(item: item);
+                  ParentItemElement item =
+                      controller.myOrdersModel!.value.items![index].items![0];
+                  MyOrdersDataItem orderData=controller.myOrdersModel!.value.items![index];
+                  return myOrderWidget(item: item,orderData: orderData);
                   // return myOrderWidget();
                 },
                 itemCount: controller.myOrdersModel!.value.items!.length,
@@ -268,71 +270,83 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     );
   }
 
-  Widget myOrderWidget({ParentItemElement? item, var index}) {
-    if (item == null) {}
-    return Column(
-      children: [
-        const SizedBox(height: 20),
-        row2(
-          text: LanguageConstant.myOrderImage.tr,
-        ),
-        const SizedBox(height: 20),
-        row1(
-          text: LanguageConstant.productName.tr,
-          data: item!.name,
-        ),
-        const SizedBox(height: 20),
-        row1(
-          text: LanguageConstant.sku.tr,
-          data: item.sku,
-        ),
-        const SizedBox(height: 20),
-        row1(
-          text: LanguageConstant.price.tr,
-          data: item.price.toString(),
-        ),
-        const SizedBox(height: 20),
-        row1(
-          text: LanguageConstant.quantity.tr,
-          data: "Ordered: ${item.qtyOrdered.toString()}",
-        ),
-        const SizedBox(height: 20),
-        row1(
-          text: LanguageConstant.subTotal.tr,
-          data: item.baseRowTotal.toString(),
-        ),
-        const SizedBox(height: 20),
-        row1(text: LanguageConstant.status.tr, data: "Pending"),
-        const SizedBox(height: 20),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: Get.width / 3,
-              child: Text(
-                LanguageConstant.action.tr,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500),
-              ),
-            ),
-            Row(
-              children: const [
-                Icon(Icons.remove_red_eye_outlined),
-                SizedBox(
-                  width: 20,
+  Widget myOrderWidget({ParentItemElement? item, var index,var orderData}) {
+    if (item == null) {
+      return Container();
+    }
+    return InkWell(
+      onTap: () {
+        Get.to(
+          () => OrderDetailsScreen(
+            itemData: item,
+            orderData: orderData,
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          row2(
+            text: LanguageConstant.myOrderImage.tr,
+          ),
+          const SizedBox(height: 20),
+          row1(
+            text: LanguageConstant.productName.tr,
+            data: item.name,
+          ),
+          const SizedBox(height: 20),
+          row1(
+            text: LanguageConstant.sku.tr,
+            data: item.sku,
+          ),
+          const SizedBox(height: 20),
+          row1(
+            text: LanguageConstant.price.tr,
+            data: item.price.toString(),
+          ),
+          const SizedBox(height: 20),
+          row1(
+            text: LanguageConstant.quantity.tr,
+            data: "Ordered: ${item.qtyOrdered.toString()}",
+          ),
+          const SizedBox(height: 20),
+          row1(
+            text: LanguageConstant.subTotal.tr,
+            data: item.baseRowTotal.toString(),
+          ),
+          const SizedBox(height: 20),
+          row1(text: LanguageConstant.status.tr, data: "Pending"),
+          const SizedBox(height: 20),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: Get.width / 3,
+                child: Text(
+                  LanguageConstant.action.tr,
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.w500),
                 ),
-                Icon(Icons.clear)
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        const Divider(
-          height: 1,
-          color: blackColor,
-          thickness: 1,
-        ),
-      ],
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.remove_red_eye_outlined),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(Icons.clear)
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          const Divider(
+            height: 1,
+            color: blackColor,
+            thickness: 1,
+          ),
+        ],
+      ),
     );
 
     /*Padding(
