@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/data/model/search/get_product_data_model.dart';
 import 'package:solo_luxury/data/model/search/search_model.dart';
 import '../../../data/model/Home/menu_model.dart';
@@ -55,9 +56,9 @@ class SearchAPIProvider extends GetConnect implements ISearchProvider {
     throw UnimplementedError();
   }
 
-  Future<Response<ProductDetailsModel>> getSearchProductResponseProvider(
+  Future<Response<ProductModel>> getSearchProductResponseProvider(
       {required String endPoint}) {
-    httpClient.defaultDecoder = (val) => ProductDetailsModel.fromJson(val);
+    httpClient.defaultDecoder = (val) => ProductModel.fromJson(val);
     httpClient.baseUrl = AppConstants.apiEndPointBrand;
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint, headers: {

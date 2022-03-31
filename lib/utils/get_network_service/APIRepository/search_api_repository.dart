@@ -1,5 +1,6 @@
 import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/data/model/search/get_product_data_model.dart';
 import 'package:solo_luxury/data/model/search/search_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
@@ -66,7 +67,7 @@ class SearchAPIRepository implements ISearchRepository {
   }
 
   @override
-  Future<ProductDetailsModel> getSearchProductAPIResponse({itemID}) async {
+  Future<ProductModel> getSearchProductAPIResponse({itemID}) async {
     final response = await searchAPIProvider.getSearchProductResponseProvider(
         endPoint:
             "/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=entity_id&searchCriteria[filter_groups][0][filters][0][value]=$itemID&searchCriteria[filter_groups][0][filters][0][condition_type]=in");

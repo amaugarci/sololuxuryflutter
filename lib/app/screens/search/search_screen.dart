@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
 import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -18,7 +19,6 @@ import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.d
 
 class SearchScreen extends GetView<SearchController> {
   const SearchScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,28 +88,34 @@ class SearchScreen extends GetView<SearchController> {
                     Flexible(
                       flex: 2,
                       child: controller.controllerText.value.isNotEmpty
-                          ? GridView.builder(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 12.5,
-                                childAspectRatio: 0.55,
-                              ),
-                              itemBuilder: (_, index) {
-                                Items? item = controller
-                                    .searchProductList.value.items?[index];
-                                if (item == null) {
-                                  return const Text("NO SUCH DATA FOUND");
-                                } else {
-                                  return productListDesign(product: item);
-                                }
-                              },
-                              itemCount: controller
-                                  .searchProductList.value.items!.length,
-                            )
+                          ? controller.searchProductList!.value.items==null
+                              ? const Center(
+                                  child: SpinKitThreeBounce(
+                                  color: appColor,
+                                  // size: 50.0,
+                                ))
+                              : GridView.builder(
+                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 12.5,
+                                    childAspectRatio: 0.55,
+                                  ),
+                                  itemBuilder: (_, index) {
+                                    Item? item = controller
+                                        .searchProductList!.value.items?[index];
+                                    if (item == null) {
+                                      return const Text("NO SUCH DATA FOUND");
+                                    } else {
+                                      return Product(product: item);
+                                    }
+                                  },
+                                  itemCount: controller
+                                      .searchProductList!.value.items!.length,
+                                )
                           /* */
                           : DefaultTabController(
                               length: controller
@@ -259,7 +265,8 @@ class SearchScreen extends GetView<SearchController> {
   Widget productListDesign({var product}) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailScreen(), arguments: product);
+        Get.toNamed(RoutesConstants.productDetailsScreen,
+            arguments: [product]);
       },
       child: Container(
         width: 150,

@@ -51,7 +51,7 @@ abstract class ISearchRepository {
 
   Future<SearchModel> getSearchAPIResponse();
 
-  Future<ProductDetailsModel> getSearchProductAPIResponse();
+  Future<ProductModel> getSearchProductAPIResponse();
 
   // Future<BannerListModel> getBannerListAPIResponse();
 }

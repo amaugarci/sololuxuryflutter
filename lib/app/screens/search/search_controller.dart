@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/Home/banner_list_model.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
+import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/data/model/search/get_product_data_model.dart';
 import 'package:solo_luxury/data/model/search/search_model.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/dashboard_api_repository.dart';
@@ -18,7 +19,7 @@ class SearchController extends GetxController
   RxObjectMixin? menuModel = MenuModel().obs;
   RxObjectMixin? bannerList = BannerListModel().obs;
   Rx<SearchModel> searchItemList = SearchModel().obs;
-  Rx<ProductDetailsModel> searchProductList = ProductDetailsModel().obs;
+  Rx<ProductModel>? searchProductList = ProductModel().obs;
 
   RxList listData = [].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
@@ -56,7 +57,7 @@ class SearchController extends GetxController
   }
 
   getSearchProductList({itemId}) async {
-    searchProductList.value =
+    searchProductList!.value =
         await searchAPIRepository.getSearchProductAPIResponse(itemID: itemId);
     update();
   }
