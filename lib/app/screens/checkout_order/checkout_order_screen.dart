@@ -14,6 +14,7 @@ import 'package:solo_luxury/data/model/checkout_order/shipping_information_model
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/checkout_order/multi_address_model.dart';
+import '../../../main.dart';
 import '../../components/common_widget/common_appbar.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
@@ -365,10 +366,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w500,
                                   color:
-                                      controller.selectedAddressIndex.value ==
-                                              index
-                                          ? appColorAccent
-                                          : appColorButton,
+
+                                      controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
+
                                 ),
                               ),
                             ),
@@ -377,9 +377,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        controller.multiAddressModel!.value.addresses!.length -
-                                    1 ==
-                                index
+
+                        controller.multiAddressModel!.value.addresses!.length - 1 == index
+
                             ? Container()
                             : Column(
                                 children: [
@@ -871,6 +871,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
+
+
                 // if (controller.formKey.currentState!.validate()) {
                 //   // If the form is valid, display a snackbar. In the real world,
                 //   // you'd often call a server or save the information in a database.
@@ -884,7 +886,30 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     controller.postListForOrder(
                         cartlist, "CaseOnDelivery", "", context);
                   } else if (controller.selectedPaymentIndex.value == 3) {
-                    controller.responseFromNativeCode(cartlist, context);
+
+                    Map<String, dynamic> lineItems = {};
+                    Map<String, dynamic> paymentRequest = {};
+                    for (var element in controller.shipInfoModel!.value.totals!.items!) {
+                      lineItems = {
+                        "amountExcludingTax": 0,
+                        "amountIncludingTax": element.basePriceInclTax,
+                        "description": element.name,
+                        "id": element.itemId,
+                        "quantity": element.qty,
+                        "taxCategory": "",
+                        "taxPercentage": element.taxPercent
+                      };
+                    }
+                    print("ListItem -> $lineItems");
+                    paymentRequest = {
+                      "currency": localStore.currentCurrency,
+                      "amount": "${controller.shipInfoModel!.value.totals!.grandTotal}",
+                      "countryCode": localStore.currentCode.split("-")[0].toUpperCase(),
+                      "qty": controller.shipInfoModel!.value.totals!.itemsQty,
+                      "lineItems":[lineItems],
+                    };
+                    print("Payment -> $paymentRequest");
+                    controller.responseFromNativeCode(cartlist, context, paymentRequest);
                   }
                   // ScaffoldMessenger.of(Get.context!).showSnackBar(
                   //   const SnackBar(content: Text('Processing Data')),
