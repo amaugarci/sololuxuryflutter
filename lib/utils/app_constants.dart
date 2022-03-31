@@ -65,6 +65,7 @@ class AppConstants {
   static String apiEndPointNewInfluencer =
       "https://erp.theluxuryunlimited.com/api/influencer/add";
   static String apiEndPointNew = "https://www.sololuxury.com/rest";
+  static String apiEndPointBrand = "https://www.brands-labels.com";
 
   static String apiEndPoint = "";
 
@@ -82,6 +83,7 @@ class AppConstants {
   static String apiCountryGet = "http://ip-api.com";
   static String apiEndPointFaq = "https://dev3.sololuxury.com";
   static String tokenFaq = "Bearer yn6yadqv0l8uem5rvo4pt6invys7gpo8";
+  static String tokenSearch = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
