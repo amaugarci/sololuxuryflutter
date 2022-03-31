@@ -19,6 +19,7 @@ import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.d
 class SearchScreen extends GetView<SearchController> {
   const SearchScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     late ChildrenData itemLevel1;

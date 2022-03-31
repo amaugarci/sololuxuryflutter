@@ -17,14 +17,12 @@ class LanguageConstant {
   static const String aboutUsContain6 = "aboutUsContain6";
   static const String aboutUsContain7 = "aboutUsContain7";
 
-
   ///charity
   static const String charityTitle = "charityTitle";
   static const String charityContain1 = "charityContain1";
   static const String charityContain2 = "charityContain2";
   static const String charityContain3 = "charityContain3";
   static const String charityContain4 = "charityContain4";
-
 
   static const String returnPolicyTitle = "returnPolicyTitle";
   static const String returnProcessTitle = "returnProcessTitle";
@@ -112,7 +110,10 @@ class LanguageConstant {
   static const String companyText = "companyText";
   static const String contactUs = "contactUs";
   static const String myOrders = "myOrders";
+  static const String itemOrder = "itemOrder";
   static const String myOrderImage = "myOrderImage";
+  static const String estimatedTotal = "estimatedTotal";
+  static const String grandTotalToBeCharge = "grandTotalToBeCharge";
   static const String productName = "productName";
   static const String sku = "sku";
   static const String price = "price";
@@ -139,7 +140,6 @@ class LanguageConstant {
   static const String shopAndPlaceOrder = "shopAndPlaceOrder";
   static const String accountToPlaceOrderQues = "accountToPlaceOrderQues";
   static const String accountToPlaceOrderAns = "accountToPlaceOrderAns";
-
 
   static const String registeredCustomersText = "registeredCustomersText";
   static const String registeredCustomersDescriptionText =
@@ -293,7 +293,7 @@ class LanguageConstant {
   static const String accountInfoText = "accountInfoText";
   static const String newsletterSubText = "newsletterSubText";
   static const String youaddCartText = "youaddCartText";
-  static const String youaddCartEndText =  "youaddCartEndText";
+  static const String youaddCartEndText = "youaddCartEndText";
   static const String viewCartText = "viewCartText";
   static const String continueShoppingText = "continueShoppingText";
   static const String checkYourOrderText = "checkYourOrderText";
@@ -327,5 +327,4 @@ class LanguageConstant {
   static const String findBrandsText = "findBrandsText";
 
   static const String sizeChartText = "sizeChartText";
-
 }

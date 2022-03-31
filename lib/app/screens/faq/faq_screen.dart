@@ -2,6 +2,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/faq/faq_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -17,6 +18,7 @@ class FaqScreen extends GetView<FaqController> {
     return Obx(
       () => Scaffold(
         backgroundColor: backGroundColor,
+        appBar: commonAppbar(title: LanguageConstant.faqText.tr),
         body: controller.getFaqList.isEmpty
             ? const Center(
                 child: SpinKitThreeBounce(
@@ -39,7 +41,7 @@ class FaqScreen extends GetView<FaqController> {
           child: Column(
             children: [
               const SizedBox(
-                height: 60,
+                height: 30,
               ),
               Text(
                 LanguageConstant.faqTitle.tr,
@@ -54,7 +56,7 @@ class FaqScreen extends GetView<FaqController> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 39,
               ),
               ListView.builder(
                 padding: EdgeInsets.zero,
@@ -75,14 +77,14 @@ class FaqScreen extends GetView<FaqController> {
                       ),
                     ),
                     child: custom.ExpansionTile(
-                      tileHeight: 40,
+                      tileHeight: 48,
                       verticalVisualDensity: -1,
                       contentPadding:
-                          const EdgeInsets.only(left: 10, right: 20),
+                          const EdgeInsets.only(left: 10, right: 20, top: 3),
                       title: Text(
                         controller.getFaqList[index].title.toString(),
                         style: const TextStyle(
-                          fontFamily: "Open Sans  ",
+                          fontFamily: "Open Sans",
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
                           color: brownColor,

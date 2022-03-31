@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class AppSecureShoppingScreen extends StatelessWidget {
   const AppSecureShoppingScreen({Key? key}) : super(key: key);
@@ -10,12 +12,13 @@ class AppSecureShoppingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColorAccent,
+      appBar: commonAppbar(title: LanguageConstant.secureShoppingText.tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 39),
               const Text(
                 "Shop without Worry",
                 style: TextStyle(
