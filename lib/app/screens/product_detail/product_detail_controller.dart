@@ -9,6 +9,8 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/recommended_
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../utils/global_singlton.dart';
+import 'option/option_model.dart';
 
 class ProductDetailController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -18,9 +20,14 @@ class ProductDetailController extends GetxController
 
   Rx<Item>? product = Item().obs;
 
+  String productName = "";
+
   RxBool isLoading = true.obs;
 
   var recommendedProductModel = RecommendedProductModel().obs;
+
+  RxInt frameIndex = 0.obs;
+  PageController controllerPage = PageController(initialPage: 0);
 
   @override
   void onInit() {

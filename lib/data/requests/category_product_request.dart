@@ -7,7 +7,7 @@ import '../model/Product/product_model.dart';
 
 Future<List<ProductModel>> categoryProductsRequest(String categoryId) async {
   String url =
-      AppConstants.apiEndPointLogin+"/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
+      AppConstants.apiEndPointLogin+"/rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
 
   Map<String, String> headers = {
     "Content-Type": "application/json",

@@ -8,6 +8,7 @@ import 'package:solo_luxury/data/model/contact_us_response_model.dart';
 import 'package:solo_luxury/data/model/myAccount/my_account_model.dart';
 import 'package:solo_luxury/data/model/orderConfirmation/order_confirmation_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
+import '../../app/screens/product_detail/option/option_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
@@ -122,6 +123,7 @@ abstract class IMyTicketRepository {
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
+  Future<List<dynamic>> getOptionsListApiResponse();
 
   Future<List<dynamic>> getFilterListApiResponse();
 }

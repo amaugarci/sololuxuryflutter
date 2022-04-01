@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/product_list_api_repository.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../data/model/filter/filter_model.dart';
+import '../../utils/global_singlton.dart';
 import '../product_detail/product_detail_binding.dart';
 
 class ProductController extends GetxController {
@@ -22,6 +25,7 @@ class ProductController extends GetxController {
 
   //Filter
   RxBool isFilter = false.obs;
+
   // var isLoading = true.obs;
 
   // RxInt checked = 0.obs;
@@ -32,8 +36,7 @@ class ProductController extends GetxController {
   RxList<FilterModel>? saveFilterModelList = <FilterModel>[].obs;
   RxList<Category>? subCategoryList = <Category>[].obs;
   RxList<Category>? saveSubCategoryList = <Category>[].obs;
-  Rx<TextEditingController> searchEditingController =
-      TextEditingController().obs;
+  Rx<TextEditingController> searchEditingController = TextEditingController().obs;
 
   @override
   void onInit() {
@@ -47,14 +50,20 @@ class ProductController extends GetxController {
 
   getHomeProducts(String val) async {
     isLoading.value = true;
-    productModel?.value =
-        await productListAPIRepository.getProductListApiResponse(val);
+    await getOptionsFromAPI();
+    productModel?.value = await productListAPIRepository.getProductListApiResponse(val);
     isLoading.value = false;
   }
 
+  getOptionsFromAPI() async {
+    if (GlobalSingleton().optionList.isEmpty) {
+      GlobalSingleton().optionList = await productListAPIRepository.getOptionsListApiResponse();
+    }
+    print("OptionList -> ${GlobalSingleton().optionList.length}");
+  }
+
   getFilterData() async {
-    filterList.value =
-        await productListAPIRepository.getFilterListApiResponse();
+    filterList.value = await productListAPIRepository.getFilterListApiResponse();
     print("filterList.value -> ${filterList.length}");
     if (filterList.isNotEmpty) {
       for (int i = 0; i < filterList.length; i++) {
@@ -86,14 +95,10 @@ class ProductController extends GetxController {
     if (itemTitle.isNotEmpty) {
       subCategoryList!.value = saveSubCategoryList!;
       results = subCategoryList!
-          .where((element) => element.display!
-              .toLowerCase()
-              .toString()
-              .contains(itemTitle.toLowerCase()))
+          .where((element) => element.display!.toLowerCase().toString().contains(itemTitle.toLowerCase()))
           .toList();
       subCategoryList!.value = results;
-      print(
-          "Results: ${results.length.toString()} ${subCategoryList!.length.toString()}");
+      print("Results: ${results.length.toString()} ${subCategoryList!.length.toString()}");
     } else {
       for (int i = 0; i < filterModelList!.length; i++) {
         if (i == currentCategoryIndex.value) {

@@ -8,19 +8,21 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import '../../../../data/model/Product/product_model.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_routes.dart';
+import '../../../utils/global_singlton.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
-  Item? product;
+  Item? item;
+  List<Item>? itemList = [];
 
-  Product({Key? key, this.product}) : super(key: key);
+  Product({Key? key, this.item, this.itemList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Get.toNamed(RoutesConstants.productDetailsScreen,
-            arguments: [product]);
+            arguments: [item]);
       },
       child: Container(
         width: 150,
@@ -43,7 +45,7 @@ class Product extends StatelessWidget {
                 children: [
 
                   Image.network(
-                    "${AppConstants.productImageUrl}${product!.customAttributes![1].value}",
+                    "${AppConstants.productImageUrl}${item!.customAttributes![1].value}",
                     height: 210,
                     width: 210,
                     fit: BoxFit.fill,
@@ -59,12 +61,12 @@ class Product extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "${product?.name}",
+              "${item!.getBrandName()}",
               style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Text(
-              "${product?.name}",
+              "${item?.name}",
               style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
@@ -72,7 +74,7 @@ class Product extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '\$' + "${product?.price}",
+                  '\$' + "${item?.getPriceFromConfigurableProduct(itemList,item)}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -81,7 +83,7 @@ class Product extends StatelessWidget {
                 ),
                 const SizedBox(width: 50),
                 Text(
-                  '\$' + "${product?.price}",
+                  '\$' + "${item?.price}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black45,
