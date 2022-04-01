@@ -8,6 +8,7 @@ import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
+
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
@@ -24,36 +25,30 @@ class AddressBookScreen extends GetView<AddressBookController> {
     final List<String> _addressList = ["Address Book"];
 
 
-    return Scaffold(
-      key: controller.scaffoldKey.value,
-      appBar: commonAppbar(title: LanguageConstant.addressBookText.tr),
-      backgroundColor: backGroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(height: 20),
-          Container(
-            height: MediaQuery.of(context).size.height / 15.6,
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: 100),
-            decoration: BoxDecoration(),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton(
-                items: _addressList
-                    .map((value) => DropdownMenuItem(
-                          child: Text(value),
-                          value: value,
-                        ))
-                    .toList(),
-                isExpanded: true,
-                hint: Text(
-                  "Address Book",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: appColor,
-                    fontSize: 18,
-                  ),
+    return Obx(() => Scaffold(
+          key: controller.scaffoldKey.value,
+          backgroundColor: backGroundColor,
+          appBar: AppBar(
+            backgroundColor: backGroundColor,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
+            leading: InkWell(
+              onTap: () {
+                controller.scaffoldKey.value.currentState!.openDrawer();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SvgPicture.asset(ImageConstant.menuIcon),
+              ),
+            ),
+            actions: [
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 8.0),
+                  child: SvgPicture.asset(ImageConstant.searchIcon),
 
                 ),
               ),
