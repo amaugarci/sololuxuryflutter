@@ -44,7 +44,7 @@ class AppConstants {
   static String shippingInformationEndPoint =
       "/V1/carts/mine/shipping-information";
 
-  static String productListEndPoint = "/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=397";
+  static String productListEndPoint = "/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
   static String optionsEndPoint = "/V1/products/attributes/brands/options";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";
@@ -106,9 +106,6 @@ class AppConstants {
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/rest/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
-
-  static const String productList =
-      "/rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
 
   static const String wishList = "/rest/V1/wishlist";
   static const String brandList = "/rest/V1/brandList";

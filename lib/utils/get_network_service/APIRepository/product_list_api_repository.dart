@@ -18,7 +18,7 @@ class ProductListAPIRepository implements IProductListRepository {
   @override
   Future<ProductModel> getProductListApiResponse(String value) async{
     final response = await productListProvider.getProductListResponseProvider(endPoint: AppConstants.getUrlWithCode(
-        AppConstants.productListEndPoint));
+        AppConstants.productListEndPoint+value));
     if (response != null) {
       print("response.statusCode -> ");
       print(response.statusCode);
