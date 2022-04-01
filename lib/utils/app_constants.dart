@@ -8,7 +8,7 @@ class AppConstants {
   // static String apiEndPoint = "http://192.168.29.135";
   // static String apiEndPoint = "https://solo_luxury.virtual-manager-backend.ml";
   static String imageEndPoint = "https://solo_luxury.s3.amazonaws.com/";
-
+  static const String guestCreateCart = "/rest/V1/guest-carts";
   //static String menuEndPoint = "/V1/categories";
 
   static String bannerListEndPoint = "/bannerList";
@@ -43,6 +43,7 @@ class AppConstants {
       "/V1/carts/mine/estimate-shipping-methods";
   static String shippingInformationEndPoint =
       "/V1/carts/mine/shipping-information";
+  static const String addressList = "/rest/V1/customers/me";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";
   static String storeWebsitesEndPoint = "/rest/V1/store/websites";
@@ -142,4 +143,7 @@ class AppConstants {
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';
+
+  static String privacyPolicyApi = 'cmspagemanagerList/18';
+  static String termAndConditionApi = 'cmspagemanagerList/19';
 }

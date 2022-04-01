@@ -60,10 +60,10 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 
-  Future getSizeListApi() async {
+  Future getSizeListApi(id) async {
     final response = await http.get(
         Uri.parse(
-            AppConstants.apiEndPointNew2 + AppConstants.getSizeListApi + "539"),
+            AppConstants.apiEndPointNew2 + AppConstants.getSizeListApi + "$id"),
         headers: {
           "Content-type": "application/json",
           "Authorization": AppConstants.defaultToken
@@ -96,7 +96,7 @@ class RecommendedProductsAPIRepository extends GetxController {
         body: json.encode(addToCartData),
         headers: {
           "Content-type": "application/json",
-          "Authorization": AppConstants.cartToken
+          "Authorization": localStore.customerToken
         });
     try {
       if (response.statusCode == 200) {
@@ -115,13 +115,52 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 
-  Future getGenerateCartApiResponse() async {
+  // Future postAddTOCartProductResponse(addToCartData) async {
+  Future<dynamic> postspecialSizeResponse(
+      {required String website,
+      required String email,
+      required String sku}) async {
+    var request = http.MultipartRequest(
+        "POST", Uri.parse("https://www.sololuxury.com/rest/V1/notifyMe"));
+    request.fields["website"] = "${website.toString()}";
+    request.fields["email"] = "${email.toString()}";
+    request.fields["sku"] = "${sku.toString()}";
+    final response = await request.send().timeout(const Duration(seconds: 60));
+    var res = await http.Response.fromStream(response);
+    print("response -> " + res.body);
+    var json1 = json.decode(res.body);
+    return json1;
+  }
+  // final response = await http.post(
+  //     Uri.parse(AppConstants.apiEndPointLogin + AppConstants.addTocartData),
+  //     body: json.encode(addToCartData),
+  //     headers: {
+  //       "Content-type": "application/json",
+  //       "Authorization": localStore.customerToken
+  //     });
+  // try {
+  //   if (response.statusCode == 200) {
+  //     var list = json.decode(response.body);
+  //     print(response.statusCode);
+  //     return list;
+  //   }
+  //   if (response.statusCode == 400) {
+  //     return json.decode(response.body);
+  //   } else {
+  //     print("###################${response.body}");
+  //     return null;
+  //   }
+  // } catch (e) {
+  //   print("ERROR+==============$e");
+  // }
+  // }
+
+  Future getGenerateCartApiResponse(token, createOrderApiEndPoint) async {
+    print(
+        "Url -> ---------- ${AppConstants.apiEndPointLogin + createOrderApiEndPoint}");
     final response = await http.post(
-        Uri.parse(AppConstants.apiEndPointLogin + AppConstants.createCart),
-        headers: {
-          "Content-type": "application/json",
-          "Authorization": localStore.customerToken
-        });
+        Uri.parse(AppConstants.apiEndPointLogin + createOrderApiEndPoint),
+        headers: {"Content-type": "application/json", "Authorization": token});
     try {
       if (response.statusCode == 200) {
         print("Categories=======================================");
@@ -140,12 +179,36 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 
+  Future guestPostAddTOCartProductResponse(addToCartData, token) async {
+    final response = await http.post(
+      Uri.parse(AppConstants.apiEndPointLogin +
+          AppConstants.guestCreateCart +
+          "/$token/items"),
+      body: json.encode(addToCartData),
+    );
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        return list;
+      }
+      if (response.statusCode == 400) {
+        return json.decode(response.body);
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
   Future getCreateCartApiResponse() async {
     final response = await http.get(
         Uri.parse(AppConstants.apiEndPointLogin + AppConstants.createCart),
         headers: {
           "Content-type": "application/json",
-          "Authorization": AppConstants.cartToken
+          "Authorization": localStore.customerToken
         });
     try {
       if (response.statusCode == 200) {
@@ -163,3 +226,34 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 }
+
+// @override
+// Future getSizeListApi(id) async {
+//   final response = await http.get(
+//       Uri.parse(
+//           AppConstants.apiEndPointLogin + AppConstants.missingSizeApi + "$id"),
+//       headers: {
+//         "Content-type": "application/json",
+//         "Authorization": AppConstants.defaultToken
+//       });
+//   try {
+//     if (response.statusCode == 200) {
+//       print("Categories=======================================");
+// /*        print(response.body.toString());
+//         itemData.add(recommendedProductResponseModelFromJson(response.body));*/
+//       var sizeList = json.decode(response.body);
+//       /*itemData = json.decode(response.body);
+
+//         print("ITEMDATA===================${itemData.toString()}");*/
+//       print(response.statusCode);
+//       print("LIST DATA +++++++++++++++++++$sizeList");
+//       print("LIST DATA +++++++++++++++++++${sizeList}");
+//       return sizeList;
+//     } else {
+//       print("###################${response.body}");
+//       return null;
+//     }
+//   } catch (e) {
+//     print("ERROR+==============$e");
+  // }
+// }

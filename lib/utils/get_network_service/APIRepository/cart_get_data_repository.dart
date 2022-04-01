@@ -12,9 +12,9 @@ class CartGetDataAPIRepository implements ICartRepository {
   CartGetDataAPIRepository({required this.cartGetDataProvider});
 
   @override
-  Future<String> getCartGetDataApiResponse() async {
+  Future<String> getCartGetDataApiResponse(apiEndPoint) async {
     final response = await cartGetDataProvider.getCartGetDataResponseProvider(
-        endPoint: AppConstants.cartGetData);
+        endPoint: apiEndPoint);
     if (response != null) {
       print("response.statusCode -> ");
       print(response.statusCode);
@@ -27,10 +27,9 @@ class CartGetDataAPIRepository implements ICartRepository {
   }
 
   @override
-  Future<dynamic> deleteCartCartQTYDataApiResponse(itemId) async {
-    final response =
-        await cartGetDataProvider.deleteCartQtyDataResponseProvider(
-            endPoint: AppConstants.deleteCartProdyctData + itemId);
+  Future<dynamic> deleteCartCartQTYDataApiResponse(itemId, apiEndPOint) async {
+    final response = await cartGetDataProvider
+        .deleteCartQtyDataResponseProvider(endPoint: apiEndPOint + itemId);
     if (response != null) {
       print("Response Is $response");
       print("response.statusCode -> ");

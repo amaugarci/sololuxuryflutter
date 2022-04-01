@@ -129,7 +129,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        LanguageConstant.sku.tr + ":- ${controller.product!.value.sku}",
+                        LanguageConstant.sku.tr +
+                            ":- ${controller.product!.value.sku}",
                         style: commonTextStyle600(
                           size: 14.0,
                           color: Colors.black54,
@@ -137,7 +138,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 25),
                       Visibility(
-                        visible: controller.product!.value.typeId == 'configurable',
+                        visible:
+                            controller.product!.value.typeId == 'configurable',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -155,7 +157,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           ),
                           const SizedBox(width: 25),
                           Expanded(
-                            child: addToWishlistButton(),
+                            child: addToWishlistButton(context),
                           ),
                         ],
                       ),
@@ -393,10 +395,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       height: 36,
       child: ElevatedButton(
         onPressed: () {
-          controller.postAddToCartData(
+          controller.getGenerateCart(
             context,
             controller.product!.value.name!,
-            "${AppConstants.productImageUrl}${controller.product!.value.customAttributes![1].value}",
+            "${controller.product!.value.customAttributes![1].value}",
             controller.product!.value.sku,
           );
         },
@@ -421,12 +423,18 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-  Widget addToWishlistButton() {
+  Widget addToWishlistButton(context) {
     return SizedBox(
       width: Get.width,
       height: 36,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.showWishlistDialog(
+            context,
+            controller.product!.value.name!,
+            "${controller.product!.value.customAttributes![1].value}",
+          );
+        },
         style: ElevatedButton.styleFrom(
           elevation: 1,
           primary: appColor,

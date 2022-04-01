@@ -11,6 +11,5 @@ class BrandBinding extends Bindings {
 
     Get.lazyPut<BrandListAPIProvider>(() => BrandListAPIProvider());
     Get.put(BrandListAPIRepository(brandListAPIProvider: Get.find()));
-
   }
 }

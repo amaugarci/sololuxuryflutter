@@ -84,9 +84,11 @@ abstract class IMyAccountRepository {
 
 ///cart Class
 abstract class ICartRepository {
-  Future<String> getCartGetDataApiResponse();
-
-  Future<dynamic> deleteCartCartQTYDataApiResponse(String itemId);
+  Future<String> getCartGetDataApiResponse(
+    String apiEndPoint,
+  );
+  Future<dynamic> deleteCartCartQTYDataApiResponse(
+      String itemId, String apiEndPOint);
 }
 
 abstract class IContactUsRepository {
@@ -161,4 +163,16 @@ abstract class IPostWishListRepository {
 
 abstract class IBrandListRepository {
   Future<String> getBrandListResponse();
+}
+
+abstract class IPrivacyPolicyRepository {
+  Future<String> getPrivacyPolicyResponse();
+}
+
+abstract class ITermAndConditionRepository {
+  Future<String> getTermAndConditionResponse();
+}
+
+abstract class IAddressListRepository {
+  Future<String> getAddressListResponse();
 }

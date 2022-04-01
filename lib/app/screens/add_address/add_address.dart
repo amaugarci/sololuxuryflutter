@@ -75,6 +75,7 @@ class AddAddressScreen extends GetView<AddAddressController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20.0),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     color: Colors.white.withOpacity(0.5),
@@ -531,341 +532,265 @@ class AddAddressScreen extends GetView<AddAddressController> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 50),
-                  ExpandableNotifier(
-                      child: Column(
-                    children: <Widget>[
-                      ScrollOnExpand(
-                        scrollOnExpand: true,
-                        scrollOnCollapse: false,
-                        child: ExpandablePanel(
-                          theme: ExpandableThemeData(
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              tapBodyToCollapse: true,
-                              expandIcon: Container(),
-                              collapseIcon: Container(),
-                              iconPadding: const EdgeInsets.all(0.0)),
-                          header: detailsButton(
-                              LanguageConstant.aboutUsText.toUpperCase(), 1),
-                          controller:
-                              controller.aboutUsExpandableController.value,
-                          collapsed: Container(),
-                          expanded: Container(
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const AboutUsScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.aboutUsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const ReferFriendScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.referFriendText.tr,
-                                    style: TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () async {},
-                                  child: Text(
-                                    LanguageConstant.returnsRefundsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    LanguageConstant.faqText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          builder: (_, collapsed, expanded) {
-                            return Expandable(
-                              collapsed: collapsed,
-                              expanded: expanded,
-                              theme:
-                                  const ExpandableThemeData(crossFadePoint: 0),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  )),
-                  ExpandableNotifier(
-                      child: Column(
-                    children: <Widget>[
-                      ScrollOnExpand(
-                        scrollOnExpand: true,
-                        scrollOnCollapse: false,
-                        child: ExpandablePanel(
-                          theme: ExpandableThemeData(
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              tapBodyToCollapse: true,
-                              expandIcon: Container(),
-                              collapseIcon: Container(),
-                              iconPadding: const EdgeInsets.all(0.0)),
-                          header: detailsButton(
-                              LanguageConstant.contactText.tr.toUpperCase(), 2),
-                          collapsed: Container(),
-                          expanded: Container(
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const AboutUsScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.aboutUsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const ReferFriendScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.referFriendText.tr,
-                                    style: TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    LanguageConstant.returnsRefundsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    LanguageConstant.faqText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          builder: (_, collapsed, expanded) {
-                            return Expandable(
-                              collapsed: collapsed,
-                              expanded: expanded,
-                              theme:
-                                  const ExpandableThemeData(crossFadePoint: 0),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  )),
-                  ExpandableNotifier(
-                      child: Column(
-                    children: <Widget>[
-                      ScrollOnExpand(
-                        scrollOnExpand: true,
-                        scrollOnCollapse: false,
-                        child: ExpandablePanel(
-                          theme: ExpandableThemeData(
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              tapBodyToCollapse: true,
-                              expandIcon: Container(),
-                              collapseIcon: Container(),
-                              iconPadding: const EdgeInsets.all(0.0)),
-                          header: detailsButton(
-                              LanguageConstant.socialText.tr.toUpperCase(), 3),
-                          collapsed: Container(),
-                          expanded: Container(
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const AboutUsScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.aboutUsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const ReferFriendScreen());
-                                  },
-                                  child: Text(
-                                    LanguageConstant.referFriendText.tr,
-                                    style: TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    LanguageConstant.returnsRefundsText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    LanguageConstant.faqText.tr,
-                                    style:
-                                        const TextStyle(color: Colors.black87),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          builder: (_, collapsed, expanded) {
-                            return Expandable(
-                              collapsed: collapsed,
-                              expanded: expanded,
-                              theme:
-                                  const ExpandableThemeData(crossFadePoint: 0),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  )),
-                  ExpandableNotifier(
-                      child: Column(
-                    children: <Widget>[
-                      ScrollOnExpand(
-                        scrollOnExpand: true,
-                        scrollOnCollapse: false,
-                        child: ExpandablePanel(
-                          theme: ExpandableThemeData(
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              tapBodyToCollapse: true,
-                              expandIcon: Container(),
-                              collapseIcon: Container(),
-                              iconPadding: const EdgeInsets.all(0.0)),
-                          header: detailsButton(
-                              LanguageConstant.companyText.tr.toUpperCase(), 4),
-                          collapsed: Container(),
-                          expanded: Container(),
-                          builder: (_, collapsed, expanded) {
-                            return Expandable(
-                              collapsed: collapsed,
-                              expanded: expanded,
-                              theme:
-                                  const ExpandableThemeData(crossFadePoint: 0),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  )),
-                  const SizedBox(height: 20),
-                  emailSubscribe(),
-                  const SizedBox(height: 40),
+                  // SizedBox(height: 50),
+                  // ExpandableNotifier(
+                  //     child: Column(
+                  //   children: <Widget>[
+                  //     ScrollOnExpand(
+                  //       scrollOnExpand: true,
+                  //       scrollOnCollapse: false,
+                  //       child: ExpandablePanel(
+                  //         theme: ExpandableThemeData(
+                  //             headerAlignment:
+                  //                 ExpandablePanelHeaderAlignment.center,
+                  //             tapBodyToCollapse: true,
+                  //             expandIcon: Container(),
+                  //             collapseIcon: Container(),
+                  //             iconPadding: const EdgeInsets.all(0.0)),
+                  //         header: detailsButton(
+                  //             LanguageConstant.aboutUsText.toUpperCase(), 1),
+                  //         controller:
+                  //             controller.aboutUsExpandableController.value,
+                  //         collapsed: Container(),
+                  //         expanded: Container(
+                  //           width: MediaQuery.of(context).size.width,
+                  //           color: Colors.white,
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const AboutUsScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.aboutUsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const ReferFriendScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.referFriendText.tr,
+                  //                   style: TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () async {},
+                  //                 child: Text(
+                  //                   LanguageConstant.returnsRefundsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {},
+                  //                 child: Text(
+                  //                   LanguageConstant.faqText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         builder: (_, collapsed, expanded) {
+                  //           return Expandable(
+                  //             collapsed: collapsed,
+                  //             expanded: expanded,
+                  //             theme:
+                  //                 const ExpandableThemeData(crossFadePoint: 0),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )),
+                  // ExpandableNotifier(
+                  //     child: Column(
+                  //   children: <Widget>[
+                  //     ScrollOnExpand(
+                  //       scrollOnExpand: true,
+                  //       scrollOnCollapse: false,
+                  //       child: ExpandablePanel(
+                  //         theme: ExpandableThemeData(
+                  //             headerAlignment:
+                  //                 ExpandablePanelHeaderAlignment.center,
+                  //             tapBodyToCollapse: true,
+                  //             expandIcon: Container(),
+                  //             collapseIcon: Container(),
+                  //             iconPadding: const EdgeInsets.all(0.0)),
+                  //         header: detailsButton(
+                  //             LanguageConstant.contactText.tr.toUpperCase(), 2),
+                  //         collapsed: Container(),
+                  //         expanded: Container(
+                  //           width: MediaQuery.of(context).size.width,
+                  //           color: Colors.white,
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const AboutUsScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.aboutUsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const ReferFriendScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.referFriendText.tr,
+                  //                   style: TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {},
+                  //                 child: Text(
+                  //                   LanguageConstant.returnsRefundsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {},
+                  //                 child: Text(
+                  //                   LanguageConstant.faqText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         builder: (_, collapsed, expanded) {
+                  //           return Expandable(
+                  //             collapsed: collapsed,
+                  //             expanded: expanded,
+                  //             theme:
+                  //                 const ExpandableThemeData(crossFadePoint: 0),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )),
+                  // ExpandableNotifier(
+                  //     child: Column(
+                  //   children: <Widget>[
+                  //     ScrollOnExpand(
+                  //       scrollOnExpand: true,
+                  //       scrollOnCollapse: false,
+                  //       child: ExpandablePanel(
+                  //         theme: ExpandableThemeData(
+                  //             headerAlignment:
+                  //                 ExpandablePanelHeaderAlignment.center,
+                  //             tapBodyToCollapse: true,
+                  //             expandIcon: Container(),
+                  //             collapseIcon: Container(),
+                  //             iconPadding: const EdgeInsets.all(0.0)),
+                  //         header: detailsButton(
+                  //             LanguageConstant.socialText.tr.toUpperCase(), 3),
+                  //         collapsed: Container(),
+                  //         expanded: Container(
+                  //           width: MediaQuery.of(context).size.width,
+                  //           color: Colors.white,
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const AboutUsScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.aboutUsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Get.to(() => const ReferFriendScreen());
+                  //                 },
+                  //                 child: Text(
+                  //                   LanguageConstant.referFriendText.tr,
+                  //                   style: TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {},
+                  //                 child: Text(
+                  //                   LanguageConstant.returnsRefundsText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //               TextButton(
+                  //                 onPressed: () {},
+                  //                 child: Text(
+                  //                   LanguageConstant.faqText.tr,
+                  //                   style:
+                  //                       const TextStyle(color: Colors.black87),
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         builder: (_, collapsed, expanded) {
+                  //           return Expandable(
+                  //             collapsed: collapsed,
+                  //             expanded: expanded,
+                  //             theme:
+                  //                 const ExpandableThemeData(crossFadePoint: 0),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )),
+                  // ExpandableNotifier(
+                  //     child: Column(
+                  //   children: <Widget>[
+                  //     ScrollOnExpand(
+                  //       scrollOnExpand: true,
+                  //       scrollOnCollapse: false,
+                  //       child: ExpandablePanel(
+                  //         theme: ExpandableThemeData(
+                  //             headerAlignment:
+                  //                 ExpandablePanelHeaderAlignment.center,
+                  //             tapBodyToCollapse: true,
+                  //             expandIcon: Container(),
+                  //             collapseIcon: Container(),
+                  //             iconPadding: const EdgeInsets.all(0.0)),
+                  //         header: detailsButton(
+                  //             LanguageConstant.companyText.tr.toUpperCase(), 4),
+                  //         collapsed: Container(),
+                  //         expanded: Container(),
+                  //         builder: (_, collapsed, expanded) {
+                  //           return Expandable(
+                  //             collapsed: collapsed,
+                  //             expanded: expanded,
+                  //             theme:
+                  //                 const ExpandableThemeData(crossFadePoint: 0),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )),
+                  // const SizedBox(height: 20),
+                  // emailSubscribe(),
+                  // const SizedBox(height: 40),
                 ],
               ),
             ),
           ),
         ));
-  }
-
-  Widget detailsButton(String text, int value) {
-    return GestureDetector(
-      onTap: () {
-        if (value == 1) {
-          controller.aboutUsExpandableController.value.toggle();
-        }
-      },
-      child: Container(
-        height: 50,
-        width: Get.width,
-        decoration: BoxDecoration(
-          color: appColor,
-          border: Border.all(color: Colors.black, width: 0.4),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(width: 10),
-            const Icon(
-              Icons.expand_more,
-              color: Colors.white,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget emailSubscribe() {
-    return Container(
-      height: 47,
-      width: Get.width,
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: appColor, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          const SizedBox(width: 18),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: LanguageConstant.enterYourEmailText.tr,
-                hintStyle: TextStyle(color: Colors.black54, fontSize: 13.5),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Container(
-            height: 47,
-            width: 120,
-            decoration: BoxDecoration(
-              color: appColor,
-              borderRadius: BorderRadius.circular(30),
-              // border: Border.all(color: appColor, width: 1.5),
-            ),
-            alignment: Alignment.center,
-            child: const Text(
-              'SUBSCRIBE',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13.5,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

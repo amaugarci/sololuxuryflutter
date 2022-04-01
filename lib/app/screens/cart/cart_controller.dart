@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
 import 'package:solo_luxury/data/model/cart/cart_model.dart';
+import 'package:solo_luxury/main.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/cart_get_data_repository.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/recommended_products_api_repository.dart';
 
@@ -15,60 +17,102 @@ class CartController extends GetxController {
   final CartGetDataAPIRepository cartGetDataAPIRepository;
   var cartItemNumber = 0.obs;
   var cartItemPrice = 0.obs;
-  var getCartId = 0.obs;
 
   CartController({required this.cartGetDataAPIRepository});
 
   var isLoading = true.obs;
+  var getCartId = 0.obs;
+  var getCartToken = "".obs;
 
   @override
   void onInit() {
     getGenerateCart();
     super.onInit();
-
     print("CONTROLLER=========");
   }
 
   Future<void> getGenerateCart() async {
-    getCartId.value =
-        await RecommendedProductsAPIRepository().getGenerateCartApiResponse();
-    print("Generate ${getCartId.value}");
-    if (getCartId.value != null) {
-      getFaqContent();
+    print("User Token Is ${localStore.customerToken}");
+    if (localStore.customerToken.toString() != "") {
+      print("Customer");
+      getCartId.value = await RecommendedProductsAPIRepository()
+          .getGenerateCartApiResponse(
+              localStore.customerToken, AppConstants.createCart);
+      print("Generate ${getCartId.value}");
+      getCartToken.value = getCartId.value.toString();
+
+      if (getCartToken.value != null) {
+        getFaqContent(1);
+      } else {}
     } else {
-      // cartItemNumber.value = cartId["qty"];
-      // cartItemPrice.value = cartId["price"] * cartId["qty"];
-      // return print("${cartId["qty"]}");
+      print("Guest");
+      getCartToken.value = await RecommendedProductsAPIRepository()
+          .getGenerateCartApiResponse(
+              localStore.customerToken, AppConstants.guestCreateCart);
+      print("Generate ${getCartId.value}");
+      if (getCartToken.value != null) {
+        getFaqContent(2);
+      } else {}
     }
+    print("Create Cart ID Is ${getCartId.value}");
   }
 
-  void getFaqContent() async {
+  void getFaqContent(getValue) async {
     isLoading.value = true;
-    var cartData = await cartGetDataAPIRepository.getCartGetDataApiResponse();
+    var cartData;
+    if (getValue == 1) {
+      cartData = await cartGetDataAPIRepository
+          .getCartGetDataApiResponse(AppConstants.cartGetData);
+    } else {
+      cartData = await cartGetDataAPIRepository.getCartGetDataApiResponse(
+          AppConstants.guestCreateCart + "/${getCartToken.value}");
+      ;
+    }
     cartModel?.value = CartModel.fromJson(json.decode(cartData));
     print("CartModel Is $cartModel");
-    cartItemPrice.value = cartModel!.value.items[0].price;
-    cartItemNumber.value = cartModel!.value.items[0].qty;
+    // cartItemPrice.value = cartModel!.value.items[0].price;
+    // cartItemNumber.value = cartModel!.value.items[0].qty;
     // print( "\$${cartModel!.value.items[0].qty}");
     isLoading.value = false;
   }
 
-  void deleteCartProductContent(deleteProductId) async {
-    var deleteProduct = await cartGetDataAPIRepository
-        .deleteCartCartQTYDataApiResponse(deleteProductId);
+  void deleteCartProductContent(deleteProductId, getValue) async {
+    var deleteProduct;
+    if (getValue == 1) {
+      deleteProduct =
+          await cartGetDataAPIRepository.deleteCartCartQTYDataApiResponse(
+              deleteProductId, AppConstants.deleteCartProdyctData);
+    } else {
+      deleteProduct =
+          await cartGetDataAPIRepository.deleteCartCartQTYDataApiResponse(
+              deleteProductId,
+              AppConstants.guestCreateCart + "/${getCartToken.value}/items/");
+      ;
+    }
+    // var deleteProduct = await cartGetDataAPIRepository
+    //     .deleteCartCartQTYDataApiResponse(deleteProductId);
     print("DeleteProduct IS  Is $deleteProduct");
     cartItemNumber.value = 0;
     cartItemPrice.value = 0;
-    getFaqContent();
+    getFaqContent(getValue);
   }
 
   //Add TO Cart Api Calling
   postAddToCartData(context, dataName, sku) async {
     var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "${getCartId.value}"}
+      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "${getCartToken.value}"}
     };
-    var addTocartData = await RecommendedProductsAPIRepository()
-        .postAddTOCartProductResponse(passedAddTocart);
+    var addTocartData;
+    if (localStore.customerToken.toString() != "") {
+      print("Customer Here Post");
+      addTocartData = await RecommendedProductsAPIRepository()
+          .postAddTOCartProductResponse(passedAddTocart);
+    } else {
+      print("Guest Here Post");
+      addTocartData = await RecommendedProductsAPIRepository()
+          .guestPostAddTOCartProductResponse(
+              passedAddTocart, "${getCartToken.value}");
+    }
     print("Add To Cart Data ${addTocartData}");
     if (addTocartData['message'] != null) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -83,10 +127,25 @@ class CartController extends GetxController {
 
   postRemoveFromCartData(context, dataName, sku) async {
     var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": -1, "quote_id": "${getCartId.value}"}
+      "cartItem": {
+        "sku": "$sku",
+        "qty": -1,
+        "quote_id": "${getCartToken.value}"
+      }
     };
-    var addTocartData = await RecommendedProductsAPIRepository()
-        .postAddTOCartProductResponse(passedAddTocart);
+    var addTocartData;
+    if (localStore.customerToken.toString() != "") {
+      print("Customer Here Post");
+      addTocartData = await RecommendedProductsAPIRepository()
+          .postAddTOCartProductResponse(passedAddTocart);
+    } else {
+      print("Guest Here Post");
+      addTocartData = await RecommendedProductsAPIRepository()
+          .guestPostAddTOCartProductResponse(
+              passedAddTocart, "${getCartToken.value}");
+    }
+    // var addTocartData = await RecommendedProductsAPIRepository()
+    //     .postAddTOCartProductResponse(passedAddTocart);
     print("Add To Cart Data ${addTocartData}");
     if (addTocartData['message'] != null) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(

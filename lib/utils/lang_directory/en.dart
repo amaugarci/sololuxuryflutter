@@ -6,21 +6,19 @@ const Map<String, String> en = {
   "orderIdTitle": '''Your order # is:''',
   "expectedDate": 'Expected Shipment Date',
   "orderDate": 'Order Date',
-
   "qty": 'QTY',
-
   "orderDetails": "Order Details",
   "tax": "TAX",
-  "faqTitle":"Frequently Asked Questions",
+  "faqTitle": "Frequently Asked Questions",
   "promoCode": "PROMO CODE",
   "enterCode": "Enter promo code",
   "updateCart": "UPDATE CART",
   "cartContain1": "Support a charity with your docation",
-  "cartContain2": "15% of the order value will be donated by\nBrands&Labels for donations.",
+  "cartContain2":
+      "15% of the order value will be donated by\nBrands&Labels for donations.",
   "cartContain3": "Please click here to donate now.",
   "cartContain4": "I WANT TO DONATE",
   "cartContain5": "Check Out with Multiple Addresses",
-
   "charityTitle": "Hope",
   "charityContain1":
       "When you buy from us you help support a dream A dream to give A secure future A happy environment, and A healthy life.",
@@ -30,7 +28,6 @@ const Map<String, String> en = {
       "2% of every sale made on our website goes to help those most in need. You can also choose to contribute any further amount which we will match in addition to our 2% - unto a maximum of 5% of the order value.",
   "charityContain4":
       "What's more? You get updated by us about the donation in every details possible and you know where the money was spent and how it helped changed a life.",
-
   "description": "Description",
   "estimatedDelivery": "Estimated Delivery",
   "grandTotalToBeCharge": "Grand Total to be Charged:",
@@ -276,9 +273,8 @@ const Map<String, String> en = {
   "myWidhListText": "My Wish List",
   "accountInfoText": "Account Information",
   "newsletterSubText": "Newsletter Subscriptions",
-  "youaddCartText":
-      "You added",
-  "youaddCartEndText":"to your shopping cart.",
+  "youaddCartText": "You added",
+  "youaddCartEndText": "to your shopping cart.",
   "viewCartText": "View Cart",
   "continueShoppingText": "Continue Shopping",
   "checkYourOrderText": "Check your order",
@@ -316,7 +312,6 @@ const Map<String, String> en = {
   "languageText": "Language",
   "currencyText": "Currency",
   "itemOrder": "Items Ordered",
-
   "nameChatText": "Name",
   "idText": "ID",
   "actionText": "Action",
@@ -325,5 +320,13 @@ const Map<String, String> en = {
   "dateOfMarriageText": "Date of Marriage",
   "findBrandsText": "Find Brands...",
   "sizeChartText": "SIZE CHART",
-
+  "specialSizeRequestsText": "Special Size Requests",
+  "specialSizeEnterEmailText": "Enter Email",
+  "specialSizeSelectSizeText": "Select Size",
+  "specialSizeSubmitText": "Submit",
+  "youaddWishEndText": "to your wishlist.",
+  "viewWishListText": "View WishList",
+  "logOutText": "Logout",
+  "policyHeadingText": "Solo Luxury Privacy Policy",
+  "termAndConditionHeadingText": "Term And Condition",
 };

@@ -44,6 +44,8 @@ import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_bi
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_binding.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_screen.dart';
+import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_binding.dart';
+import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_binding.dart';
 import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
 import 'package:solo_luxury/app/screens/returns_and_refunds/returns_and_refunds_binding.dart';
@@ -60,6 +62,8 @@ import 'package:solo_luxury/app/screens/selecet_country/select_country.dart';
 import 'package:solo_luxury/app/screens/selecet_country/select_country_binding.dart';
 import 'package:solo_luxury/app/screens/store_credit/store_credit.dart';
 import 'package:solo_luxury/app/screens/store_credit/store_credit_binding.dart';
+import 'package:solo_luxury/app/screens/teams_condition/tems_condition_binding.dart';
+import 'package:solo_luxury/app/screens/teams_condition/tems_condition_screen.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 
@@ -154,7 +158,7 @@ class AppPages {
       page: () => const SignupScreen(),
       binding: SignupBinding(),
     ),
-  /*  GetPage(
+    /*  GetPage(
       name: RoutesConstants.forgotPasswordScreen,
       page: () => const ForgotPasswordScreen(),
       binding: ForgotPasswordBinding(),
@@ -278,6 +282,16 @@ class AppPages {
       name: RoutesConstants.brandDetailsScreen,
       page: () => const BrandDetailsPage(),
       binding: BrandBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.privacyPolicyScreen,
+      page: () => PrivacyPolicyScreen(),
+      binding: PrivacyPolicyBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.teamsConditionScreen,
+      page: () => TermAndConditionScreen(),
+      binding: TermAndConditionBinding(),
     ),
   ];
 }

@@ -33,6 +33,7 @@ class BrandListPage extends GetView<BrandController> {
         ),
         body: Column(
           children: [
+            SizedBox(height: 10),
             Container(
               margin:
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
@@ -103,12 +104,17 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist
-                              .contains(fliterList)) {
-                            controller.setSerchwithAlphabatic("");
-                          } else {
-                            controller.setSerchwithAlphabatic(fliterList);
-                          }
+                          // print("${controller.listDisplay(text).length}");
+                          controller.brandDetails.value = fliterList;
+                          Get.to(
+                            const BrandDetailsPage(),
+                          );
+                          // if (controller.filtersearchAlllist
+                          //     .contains(fliterList)) {
+                          //   controller.setSerchwithAlphabatic("");
+                          // } else {
+                          //   controller.setSerchwithAlphabatic(fliterList);
+                          // }
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -143,12 +149,15 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList2[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist
-                              .contains(fliterList)) {
-                            controller.setSerchwithAlphabatic("");
-                          } else {
-                            controller.setSerchwithAlphabatic(fliterList);
-                          }
+                          controller.brandDetails.value = fliterList;
+                          Get.to(const BrandDetailsPage());
+
+                          // if (controller.filtersearchAlllist
+                          //     .contains(fliterList)) {
+                          //   controller.setSerchwithAlphabatic("");
+                          // } else {
+                          //   controller.setSerchwithAlphabatic(fliterList);
+                          // }
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -183,12 +192,15 @@ class BrandListPage extends GetView<BrandController> {
                       final fliterList = controller.filterList3[index];
                       return InkWell(
                         onTap: () {
-                          if (controller.filtersearchAlllist
-                              .contains(fliterList)) {
-                            controller.setSerchwithAlphabatic("");
-                          } else {
-                            controller.setSerchwithAlphabatic(fliterList);
-                          }
+                          controller.brandDetails.value = fliterList;
+                          Get.to(const BrandDetailsPage());
+
+                          // if (controller.filtersearchAlllist
+                          //     .contains(fliterList)) {
+                          //   controller.setSerchwithAlphabatic("");
+                          // } else {
+                          //   controller.setSerchwithAlphabatic(fliterList);
+                          // }
                         },
                         child: Container(
                             decoration: BoxDecoration(

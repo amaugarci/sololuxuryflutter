@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_opensans.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
+import 'package:solo_luxury/app/screens/brand_list/brand_list_page.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_order_screen.dart';
 import 'package:solo_luxury/app/screens/dashboard/dashboard_controller.dart';
 import 'package:solo_luxury/app/screens/home/home_screen.dart';
@@ -37,7 +38,7 @@ class DashboardScreen extends GetView<DashboardController> {
                   //TODO: PAGES
                   const HomeScreen(),
                   const SearchScreen(),
-                  CheckoutOrderScreen(),
+                  BrandListPage(),
                   MyWishListPage(),
                   //ProfileScreen(),
                   MyAccountMenuPage(),
@@ -451,13 +452,20 @@ class DashboardScreen extends GetView<DashboardController> {
                                                           left: 25, right: 20),
                                                   tileHeight: 35,
                                                   verticalVisualDensity: -1,
-
-                                                  isIcon: itemLevel2.childrenData!.isEmpty ? true : false,
-                                                  onExpansionChanged: (a){
-                                                    if(itemLevel2.childrenData!.isEmpty){
-                                                      Get.toNamed(RoutesConstants.productListScreen,
-                                                          arguments: [itemLevel2.id,itemLevel1.name]);
-
+                                                  isIcon: itemLevel2
+                                                          .childrenData!.isEmpty
+                                                      ? true
+                                                      : false,
+                                                  onExpansionChanged: (a) {
+                                                    if (itemLevel2.childrenData!
+                                                        .isEmpty) {
+                                                      Get.toNamed(
+                                                          RoutesConstants
+                                                              .productListScreen,
+                                                          arguments: [
+                                                            itemLevel2.id,
+                                                            itemLevel1.name
+                                                          ]);
                                                     }
                                                   },
                                                   children: [
@@ -484,7 +492,9 @@ class DashboardScreen extends GetView<DashboardController> {
                                                                       .productListScreen,
                                                                   arguments: [
                                                                     itemLevel3
-                                                                        .id,itemLevel1.name
+                                                                        .id,
+                                                                    itemLevel1
+                                                                        .name
                                                                   ]);
                                                             },
                                                             child: Container(

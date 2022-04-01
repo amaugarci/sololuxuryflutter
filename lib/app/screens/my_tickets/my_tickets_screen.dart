@@ -220,265 +220,265 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 50),
-                      ExpandableNotifier(
-                          child: Column(
-                        children: <Widget>[
-                          ScrollOnExpand(
-                            scrollOnExpand: true,
-                            scrollOnCollapse: false,
-                            child: ExpandablePanel(
-                              theme: ExpandableThemeData(
-                                  headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
-                                  tapBodyToCollapse: true,
-                                  expandIcon: Container(),
-                                  collapseIcon: Container(),
-                                  iconPadding: const EdgeInsets.all(0.0)),
-                              header: detailsButton(
-                                  LanguageConstant.aboutUsText.toUpperCase(),
-                                  1),
-                              controller:
-                                  controller.aboutUsExpandableController.value,
-                              collapsed: Container(),
-                              expanded: Container(
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const AboutUsScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.aboutUsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const ReferFriendScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.referFriendText.tr,
-                                        style: TextStyle(color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () async {},
-                                      child: Text(
-                                        LanguageConstant.returnsRefundsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LanguageConstant.faqText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              builder: (_, collapsed, expanded) {
-                                return Expandable(
-                                  collapsed: collapsed,
-                                  expanded: expanded,
-                                  theme: const ExpandableThemeData(
-                                      crossFadePoint: 0),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      )),
-                      ExpandableNotifier(
-                          child: Column(
-                        children: <Widget>[
-                          ScrollOnExpand(
-                            scrollOnExpand: true,
-                            scrollOnCollapse: false,
-                            child: ExpandablePanel(
-                              theme: ExpandableThemeData(
-                                  headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
-                                  tapBodyToCollapse: true,
-                                  expandIcon: Container(),
-                                  collapseIcon: Container(),
-                                  iconPadding: const EdgeInsets.all(0.0)),
-                              header: detailsButton(
-                                  LanguageConstant.contactText.tr.toUpperCase(),
-                                  2),
-                              collapsed: Container(),
-                              expanded: Container(
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const AboutUsScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.aboutUsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const ReferFriendScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.referFriendText.tr,
-                                        style: TextStyle(color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LanguageConstant.returnsRefundsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LanguageConstant.faqText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              builder: (_, collapsed, expanded) {
-                                return Expandable(
-                                  collapsed: collapsed,
-                                  expanded: expanded,
-                                  theme: const ExpandableThemeData(
-                                      crossFadePoint: 0),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      )),
-                      ExpandableNotifier(
-                          child: Column(
-                        children: <Widget>[
-                          ScrollOnExpand(
-                            scrollOnExpand: true,
-                            scrollOnCollapse: false,
-                            child: ExpandablePanel(
-                              theme: ExpandableThemeData(
-                                  headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
-                                  tapBodyToCollapse: true,
-                                  expandIcon: Container(),
-                                  collapseIcon: Container(),
-                                  iconPadding: const EdgeInsets.all(0.0)),
-                              header: detailsButton(
-                                  LanguageConstant.socialText.tr.toUpperCase(),
-                                  3),
-                              collapsed: Container(),
-                              expanded: Container(
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const AboutUsScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.aboutUsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.to(() => const ReferFriendScreen());
-                                      },
-                                      child: Text(
-                                        LanguageConstant.referFriendText.tr,
-                                        style: TextStyle(color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LanguageConstant.returnsRefundsText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LanguageConstant.faqText.tr,
-                                        style: const TextStyle(
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              builder: (_, collapsed, expanded) {
-                                return Expandable(
-                                  collapsed: collapsed,
-                                  expanded: expanded,
-                                  theme: const ExpandableThemeData(
-                                      crossFadePoint: 0),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      )),
-                      ExpandableNotifier(
-                          child: Column(
-                        children: <Widget>[
-                          ScrollOnExpand(
-                            scrollOnExpand: true,
-                            scrollOnCollapse: false,
-                            child: ExpandablePanel(
-                              theme: ExpandableThemeData(
-                                  headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
-                                  tapBodyToCollapse: true,
-                                  expandIcon: Container(),
-                                  collapseIcon: Container(),
-                                  iconPadding: const EdgeInsets.all(0.0)),
-                              header: detailsButton(
-                                  LanguageConstant.companyText.tr.toUpperCase(),
-                                  4),
-                              collapsed: Container(),
-                              expanded: Container(),
-                              builder: (_, collapsed, expanded) {
-                                return Expandable(
-                                  collapsed: collapsed,
-                                  expanded: expanded,
-                                  theme: const ExpandableThemeData(
-                                      crossFadePoint: 0),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      )),
-                      const SizedBox(height: 20),
-                      emailSubscribe(),
-                      const SizedBox(height: 40),
+                      // SizedBox(height: 50),
+                      // ExpandableNotifier(
+                      //     child: Column(
+                      //   children: <Widget>[
+                      //     ScrollOnExpand(
+                      //       scrollOnExpand: true,
+                      //       scrollOnCollapse: false,
+                      //       child: ExpandablePanel(
+                      //         theme: ExpandableThemeData(
+                      //             headerAlignment:
+                      //                 ExpandablePanelHeaderAlignment.center,
+                      //             tapBodyToCollapse: true,
+                      //             expandIcon: Container(),
+                      //             collapseIcon: Container(),
+                      //             iconPadding: const EdgeInsets.all(0.0)),
+                      //         header: detailsButton(
+                      //             LanguageConstant.aboutUsText.toUpperCase(),
+                      //             1),
+                      //         controller:
+                      //             controller.aboutUsExpandableController.value,
+                      //         collapsed: Container(),
+                      //         expanded: Container(
+                      //           width: MediaQuery.of(context).size.width,
+                      //           color: Colors.white,
+                      //           child: Column(
+                      //             crossAxisAlignment: CrossAxisAlignment.start,
+                      //             children: [
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const AboutUsScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.aboutUsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const ReferFriendScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.referFriendText.tr,
+                      //                   style: TextStyle(color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () async {},
+                      //                 child: Text(
+                      //                   LanguageConstant.returnsRefundsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {},
+                      //                 child: Text(
+                      //                   LanguageConstant.faqText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //         builder: (_, collapsed, expanded) {
+                      //           return Expandable(
+                      //             collapsed: collapsed,
+                      //             expanded: expanded,
+                      //             theme: const ExpandableThemeData(
+                      //                 crossFadePoint: 0),
+                      //           );
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )),
+                      // ExpandableNotifier(
+                      //     child: Column(
+                      //   children: <Widget>[
+                      //     ScrollOnExpand(
+                      //       scrollOnExpand: true,
+                      //       scrollOnCollapse: false,
+                      //       child: ExpandablePanel(
+                      //         theme: ExpandableThemeData(
+                      //             headerAlignment:
+                      //                 ExpandablePanelHeaderAlignment.center,
+                      //             tapBodyToCollapse: true,
+                      //             expandIcon: Container(),
+                      //             collapseIcon: Container(),
+                      //             iconPadding: const EdgeInsets.all(0.0)),
+                      //         header: detailsButton(
+                      //             LanguageConstant.contactText.tr.toUpperCase(),
+                      //             2),
+                      //         collapsed: Container(),
+                      //         expanded: Container(
+                      //           width: MediaQuery.of(context).size.width,
+                      //           color: Colors.white,
+                      //           child: Column(
+                      //             crossAxisAlignment: CrossAxisAlignment.start,
+                      //             children: [
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const AboutUsScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.aboutUsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const ReferFriendScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.referFriendText.tr,
+                      //                   style: TextStyle(color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {},
+                      //                 child: Text(
+                      //                   LanguageConstant.returnsRefundsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {},
+                      //                 child: Text(
+                      //                   LanguageConstant.faqText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //         builder: (_, collapsed, expanded) {
+                      //           return Expandable(
+                      //             collapsed: collapsed,
+                      //             expanded: expanded,
+                      //             theme: const ExpandableThemeData(
+                      //                 crossFadePoint: 0),
+                      //           );
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )),
+                      // ExpandableNotifier(
+                      //     child: Column(
+                      //   children: <Widget>[
+                      //     ScrollOnExpand(
+                      //       scrollOnExpand: true,
+                      //       scrollOnCollapse: false,
+                      //       child: ExpandablePanel(
+                      //         theme: ExpandableThemeData(
+                      //             headerAlignment:
+                      //                 ExpandablePanelHeaderAlignment.center,
+                      //             tapBodyToCollapse: true,
+                      //             expandIcon: Container(),
+                      //             collapseIcon: Container(),
+                      //             iconPadding: const EdgeInsets.all(0.0)),
+                      //         header: detailsButton(
+                      //             LanguageConstant.socialText.tr.toUpperCase(),
+                      //             3),
+                      //         collapsed: Container(),
+                      //         expanded: Container(
+                      //           width: MediaQuery.of(context).size.width,
+                      //           color: Colors.white,
+                      //           child: Column(
+                      //             crossAxisAlignment: CrossAxisAlignment.start,
+                      //             children: [
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const AboutUsScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.aboutUsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {
+                      //                   Get.to(() => const ReferFriendScreen());
+                      //                 },
+                      //                 child: Text(
+                      //                   LanguageConstant.referFriendText.tr,
+                      //                   style: TextStyle(color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {},
+                      //                 child: Text(
+                      //                   LanguageConstant.returnsRefundsText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //               TextButton(
+                      //                 onPressed: () {},
+                      //                 child: Text(
+                      //                   LanguageConstant.faqText.tr,
+                      //                   style: const TextStyle(
+                      //                       color: Colors.black87),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //         builder: (_, collapsed, expanded) {
+                      //           return Expandable(
+                      //             collapsed: collapsed,
+                      //             expanded: expanded,
+                      //             theme: const ExpandableThemeData(
+                      //                 crossFadePoint: 0),
+                      //           );
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )),
+                      // ExpandableNotifier(
+                      //     child: Column(
+                      //   children: <Widget>[
+                      //     ScrollOnExpand(
+                      //       scrollOnExpand: true,
+                      //       scrollOnCollapse: false,
+                      //       child: ExpandablePanel(
+                      //         theme: ExpandableThemeData(
+                      //             headerAlignment:
+                      //                 ExpandablePanelHeaderAlignment.center,
+                      //             tapBodyToCollapse: true,
+                      //             expandIcon: Container(),
+                      //             collapseIcon: Container(),
+                      //             iconPadding: const EdgeInsets.all(0.0)),
+                      //         header: detailsButton(
+                      //             LanguageConstant.companyText.tr.toUpperCase(),
+                      //             4),
+                      //         collapsed: Container(),
+                      //         expanded: Container(),
+                      //         builder: (_, collapsed, expanded) {
+                      //           return Expandable(
+                      //             collapsed: collapsed,
+                      //             expanded: expanded,
+                      //             theme: const ExpandableThemeData(
+                      //                 crossFadePoint: 0),
+                      //           );
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )),
+                      // const SizedBox(height: 20),
+                      // emailSubscribe(),
+                      // const SizedBox(height: 40),
                     ],
                   ),
                 ),

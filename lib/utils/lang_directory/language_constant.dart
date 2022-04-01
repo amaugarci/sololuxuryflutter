@@ -327,4 +327,14 @@ class LanguageConstant {
   static const String findBrandsText = "findBrandsText";
 
   static const String sizeChartText = "sizeChartText";
+  static const String youaddWishEndText = "youaddWishEndText";
+  static const String viewWishListText = "viewWishListText";
+  static const String specialSizeRequestsText = "specialSizeRequestsText";
+  static const String specialSizeEnterEmailText = "specialSizeEnterEmailText";
+  static const String specialSizeSelectSizeText = "specialSizeSelectSizeText";
+  static const String specialSizeSubmitText = "specialSizeSubmitText";
+  static const String logOutText = "logOutText";
+  static const String policyHeadingText = "policyHeadingText";
+  static const String termAndConditionHeadingText =
+      "termAndConditionHeadingText";
 }
