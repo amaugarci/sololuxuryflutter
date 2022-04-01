@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/screens/product_detail/product_detail_screen.dart';
+import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart' as custom;
 import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/Home/menu_model.dart';
 import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
-import '../../../data/model/search/get_product_data_model.dart';
+
 import '../../../utils/image_constant.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import 'search_controller.dart';
-import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
-    as custom;
 
 class SearchScreen extends GetView<SearchController> {
   const SearchScreen({Key? key}) : super(key: key);
@@ -45,26 +43,22 @@ class SearchScreen extends GetView<SearchController> {
             InkWell(
               onTap: () {},
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                 child: SvgPicture.asset(ImageConstant.searchIcon),
               ),
             ),
             InkWell(
               onTap: () {},
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                 child: SvgPicture.asset(ImageConstant.heartIcon),
               ),
             ),
             InkWell(
               onTap: () {},
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
-                    color: Colors.black),
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                child: SvgPicture.asset(ImageConstant.shoppingCartIcon, color: Colors.black),
               ),
             ),
           ],
@@ -88,7 +82,7 @@ class SearchScreen extends GetView<SearchController> {
                     Flexible(
                       flex: 2,
                       child: controller.controllerText.value.isNotEmpty
-                          ? controller.searchProductList!.value.items==null
+                          ? controller.searchProductList!.value.items == null
                               ? const Center(
                                   child: SpinKitThreeBounce(
                                   color: appColor,
@@ -97,57 +91,49 @@ class SearchScreen extends GetView<SearchController> {
                               : GridView.builder(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   shrinkWrap: true,
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 10,
                                     crossAxisSpacing: 12.5,
                                     childAspectRatio: 0.55,
                                   ),
                                   itemBuilder: (_, index) {
-                                    Item? item = controller
-                                        .searchProductList!.value.items?[index];
+                                    Item? item = controller.searchProductList!.value.items?[index];
                                     if (item == null) {
                                       return const Text("NO SUCH DATA FOUND");
                                     } else {
-                                      return Product(product: item);
+                                      return Product(
+                                        item: item,
+                                        itemList: controller.searchProductList!.value.items,
+                                      );
                                     }
                                   },
-                                  itemCount: controller
-                                      .searchProductList!.value.items!.length,
+                                  itemCount: controller.searchProductList!.value.items!.length,
                                 )
                           /* */
                           : DefaultTabController(
-                              length: controller
-                                  .menuModel?.value?.childrenData?.length,
+                              length: controller.menuModel?.value?.childrenData?.length,
                               // length of tabs
                               initialIndex: 0,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 40),
+                                padding: const EdgeInsets.symmetric(horizontal: 40),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     Container(
                                       child: TabBar(
                                         indicatorColor: buttoncolor,
                                         labelColor: selectedTabColor,
-                                        unselectedLabelColor:
-                                            unselectedTabColor,
+                                        unselectedLabelColor: unselectedTabColor,
                                         isScrollable: true,
                                         tabs: List<Widget>.generate(
-                                          controller.menuModel?.value
-                                              ?.childrenData?.length,
+                                          controller.menuModel?.value?.childrenData?.length,
                                           (int index) {
-                                            itemLevel1 = controller.menuModel
-                                                ?.value?.childrenData?[index];
+                                            itemLevel1 = controller.menuModel?.value?.childrenData?[index];
                                             return Tab(
                                                 child: Text(itemLevel1.name!,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 12.0)));
+                                                    style:
+                                                        const TextStyle(fontWeight: FontWeight.w500, fontSize: 12.0)));
                                           },
                                         ),
                                       ),
@@ -155,87 +141,45 @@ class SearchScreen extends GetView<SearchController> {
                                     Expanded(
                                       child: TabBarView(
                                         children: List<Widget>.generate(
-                                          controller.menuModel?.value
-                                              ?.childrenData?.length,
+                                          controller.menuModel?.value?.childrenData?.length,
                                           (int index1) {
                                             return ListView.builder(
                                               itemCount: controller
-                                                  .menuModel
-                                                  ?.value
-                                                  ?.childrenData?[index1]
-                                                  .childrenData
-                                                  .length,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
+                                                  .menuModel?.value?.childrenData?[index1].childrenData.length,
+                                              itemBuilder: (BuildContext context, int index) {
                                                 var data2 = controller
-                                                    .menuModel
-                                                    ?.value
-                                                    ?.childrenData?[index1]
-                                                    .childrenData[index];
+                                                    .menuModel?.value?.childrenData?[index1].childrenData[index];
                                                 print("-=============");
                                                 return custom.ExpansionTile(
-                                                  contentPadding:
-                                                      EdgeInsets.zero,
+                                                  contentPadding: EdgeInsets.zero,
                                                   verticalVisualDensity: -1,
                                                   title: Text(
                                                     "${data2.name}",
-                                                    style: const TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                                                   ),
                                                   children: [
                                                     ListView.builder(
                                                         shrinkWrap: true,
-                                                        physics:
-                                                            const NeverScrollableScrollPhysics(),
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        itemCount: data2
-                                                            .childrenData!
-                                                            .length,
-                                                        itemBuilder:
-                                                            (context, index2) {
-                                                          ChildrenData
-                                                              itemLevel3 =
-                                                              data2.childrenData![
-                                                                  index2];
+                                                        physics: const NeverScrollableScrollPhysics(),
+                                                        padding: EdgeInsets.zero,
+                                                        itemCount: data2.childrenData!.length,
+                                                        itemBuilder: (context, index2) {
+                                                          ChildrenData itemLevel3 = data2.childrenData![index2];
                                                           return GestureDetector(
                                                             onTap: () {
-                                                              Get.toNamed(
-                                                                  RoutesConstants
-                                                                      .productListScreen,
-                                                                  arguments: [
-                                                                    itemLevel3
-                                                                        .id,
-                                                                    itemLevel1
-                                                                        .name
-                                                                  ]);
+                                                              Get.toNamed(RoutesConstants.productListScreen,
+                                                                  arguments: [itemLevel3.id, itemLevel1.name]);
                                                             },
                                                             child: Container(
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          40.0,
-                                                                      top: 3.0,
-                                                                      bottom:
-                                                                          3.0),
+                                                              margin: const EdgeInsets.only(
+                                                                  left: 40.0, top: 3.0, bottom: 3.0),
                                                               child: Text(
-                                                                itemLevel3
-                                                                    .name!,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                itemLevel3.name!,
+                                                                overflow: TextOverflow.ellipsis,
                                                                 style: const TextStyle(
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    color:
-                                                                        appColorDarkGrey),
+                                                                    fontSize: 12.0,
+                                                                    fontWeight: FontWeight.w400,
+                                                                    color: appColorDarkGrey),
                                                               ),
                                                             ),
                                                           );
@@ -265,8 +209,7 @@ class SearchScreen extends GetView<SearchController> {
   Widget productListDesign({var product}) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(RoutesConstants.productDetailsScreen,
-            arguments: [product]);
+        Get.toNamed(RoutesConstants.productDetailsScreen, arguments: [product]);
       },
       child: Container(
         width: 150,
@@ -310,19 +253,13 @@ class SearchScreen extends GetView<SearchController> {
             Text(
               "${product?.name}",
               style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+                  fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Text(
               "${product?.name}",
               style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontSize: 16,
-                  overflow: TextOverflow.ellipsis),
+                  fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Row(
