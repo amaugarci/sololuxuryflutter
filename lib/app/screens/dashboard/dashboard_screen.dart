@@ -384,6 +384,12 @@ class DashboardScreen extends GetView<DashboardController> {
                                               itemLevel1.childrenData!.isEmpty
                                                   ? true
                                                   : false,
+                                          onExpansionChanged: (val){
+                                            if( itemLevel1.childrenData!.isEmpty){
+                                              Get.toNamed(RoutesConstants.productListScreen,
+                                                  arguments: [itemLevel1.id,itemLevel1.name]);
+                                            }
+                                          },
                                           children: [
                                             ListView.builder(
                                               padding: const EdgeInsets.only(

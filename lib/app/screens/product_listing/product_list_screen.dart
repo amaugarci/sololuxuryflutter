@@ -11,7 +11,6 @@ import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
 import '../../components/common_widget/common_text_opensans.dart';
-import '../../components/common_widget/common_text_poppins.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import '../product_listing/product_controller.dart';
@@ -115,10 +114,7 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w300,
-                color: Colors.black),
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -155,9 +151,7 @@ class ProductListScreen extends GetView<ProductController> {
                         //Filter Widget
                         Expanded(
                           child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1, color: filterBorderColor)),
+                            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -175,8 +169,7 @@ class ProductListScreen extends GetView<ProductController> {
           Container(
             width: Get.width,
             height: 40.0,
-            margin:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             child: CommonButton(
               padding: const EdgeInsets.symmetric(horizontal: 5.0),
               buttonType: ButtonType.ElevatedButton,
@@ -212,7 +205,7 @@ class ProductListScreen extends GetView<ProductController> {
         if (item == null) {
           return Container();
         } else {
-          return Product(product: item);
+          return Product(item: item, itemList: controller.productModel?.value.items!);
         }
       },
       itemCount: controller.productModel?.value.items?.length,
@@ -248,17 +241,14 @@ class ProductListScreen extends GetView<ProductController> {
   Widget category() {
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(width: 1, color: filterBorderColor)),
+        decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
         alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(
-            left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
+        margin: const EdgeInsets.only(left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value =
-                  FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -276,15 +266,13 @@ class ProductListScreen extends GetView<ProductController> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-                color: controller.currentCategoryIndex.value == index
-                    ? backGroundColor
-                    : lightBrownColor),
+                color: controller.currentCategoryIndex.value == index ? backGroundColor : lightBrownColor),
             width: Get.width,
             height: 40,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: CommonTextOpenSans("${item.attrLabel}",
-                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child:
+                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
@@ -293,11 +281,9 @@ class ProductListScreen extends GetView<ProductController> {
   Widget subCategory() {
     return Expanded(
       child: Container(
-          margin: const EdgeInsets.only(
-              left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
+          margin: const EdgeInsets.only(left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
           alignment: Alignment.topLeft,
-          decoration: BoxDecoration(
-              border: Border.all(width: 1, color: filterBorderColor)),
+          decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
           child: subCategoryWidget()),
     );
   }
@@ -309,8 +295,7 @@ class ProductListScreen extends GetView<ProductController> {
       children: <Widget>[
         Container(
             margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border.all(width: 1, color: filterBorderColor)),
+            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -342,52 +327,55 @@ class ProductListScreen extends GetView<ProductController> {
               ],
             )),
         Expanded(
-          child: ListView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              primary: false,
-              // <- add
-              itemCount: controller.subCategoryList!.length,
-              itemBuilder: (BuildContext context, int index) {
-                Category category = controller.subCategoryList![index];
-                return InkWell(
-                  onTap: () {
-                    category.isSelected.value = !category.isSelected.value;
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Obx(() => Container(
-                              height: 24.0,
-                              width: 24.0,
-                              alignment: Alignment.centerLeft,
-                              child: Stack(
-                                children: [
-                                  Image.asset(
-                                    category.isSelected.value
-                                        ? AppAsset.checked
-                                        : AppAsset.unchecked,
-                                    height: 18.0,
-                                    width: 18.0,
+          child: ListView(
+            children: [
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  primary: false,
+                  // <- add
+                  itemCount: controller.subCategoryList!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Category category = controller.subCategoryList![index];
+                    return InkWell(
+                      onTap: () {
+                        category.isSelected.value = !category.isSelected.value;
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Obx(() => Container(
+                                  height: 24.0,
+                                  width: 24.0,
+                                  alignment: Alignment.centerLeft,
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
+                                        height: 18.0,
+                                        width: 18.0,
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                )),
+                            Expanded(
+                              child: CommonTextOpenSans(
+                                category.display,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
                               ),
-                            )),
-                        Expanded(
-                          child: CommonTextOpenSans(
-                            category.display,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
+            ],
+          ),
         ),
       ],
     );

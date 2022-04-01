@@ -13,6 +13,7 @@ import 'package:solo_luxury/data/model/search/get_product_data_model.dart';
 import 'package:solo_luxury/data/model/search/search_model.dart';
 
 import 'package:solo_luxury/data/model/signup_response_model.dart';
+import '../../app/screens/product_detail/option/option_model.dart';
 import '../../data/model/Home/menu_model.dart';
 
 import '../../data/model/InfluenceRegistration/influencer_registration_model.dart';
@@ -133,6 +134,7 @@ abstract class IMyTicketRepository {
 
 abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
+  Future<List<dynamic>> getOptionsListApiResponse();
 
   Future<List<dynamic>> getFilterListApiResponse();
 }
