@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
 import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
@@ -21,59 +22,12 @@ class AddressBookScreen extends GetView<AddressBookController> {
 
     return Scaffold(
       key: controller.scaffoldKey.value,
+      appBar: commonAppbar(title: LanguageConstant.addressBookText.tr),
       backgroundColor: backGroundColor,
-      appBar: AppBar(
-        backgroundColor: backGroundColor,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {
-            controller.scaffoldKey.value.currentState!.openDrawer();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SvgPicture.asset(ImageConstant.menuIcon),
-          ),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.searchIcon),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.heartIcon),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-              child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
-                  color: Colors.black),
-            ),
-          ),
-        ],
-        title: Image.asset(AppAsset.logo, width: 110),
-        /*bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),*/
-      ),
-      drawer: const Drawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 20),
           Container(
             height: MediaQuery.of(context).size.height / 15.6,
             padding: EdgeInsets.symmetric(horizontal: 8.0),

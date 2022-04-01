@@ -243,45 +243,6 @@ class DashboardScreen extends GetView<DashboardController> {
                 ),
                 Row(
                   children: [
-                    SizedBox(
-                      width: 60,
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          dropdownColor: appColorFDF3F1,
-                          icon: const Icon(Icons.expand_more_outlined,
-                              color: appColor),
-                          // value: controller.chosenValue.value,
-                          elevation: 2,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: brown833404,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          items: controller.data
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(value),
-                              ),
-                            );
-                          }).toList(),
-                          hint: const Text(
-                            "ENG",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: brown833404,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          onChanged: (String? value) {
-                            controller.chosenValue.value = value!;
-                          },
-                        ),
-                      ),
-                    ),
                     InkWell(
                       onTap: () {
                         Get.toNamed(RoutesConstants.cartScreen);

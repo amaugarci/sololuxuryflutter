@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/refer_friend/refer_friend_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_routes.dart';
 import '../../components/common_widget/common_appbar.dart';
@@ -16,7 +17,7 @@ class ReferFriendScreen extends GetView<ReferFriendController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backGroundColor,
-      appBar: commonAppbar(),
+      appBar: commonAppbar(title: LanguageConstant.contactUsText.tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.5),
         child: SingleChildScrollView(
@@ -194,7 +195,11 @@ class ReferFriendScreen extends GetView<ReferFriendController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CommonTextOpenSans(controller.responseMsg.value,textAlign: TextAlign.center,fontSize: 14.0,),
+              CommonTextOpenSans(
+                controller.responseMsg.value,
+                textAlign: TextAlign.center,
+                fontSize: 14.0,
+              ),
               const SizedBox(
                 height: 20.0,
               ),
