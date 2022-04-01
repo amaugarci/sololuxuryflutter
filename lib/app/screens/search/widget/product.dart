@@ -8,7 +8,7 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import '../../../../data/model/Product/product_model.dart';
 import '../../../../utils/app_constants.dart';
 import '../../../../utils/app_routes.dart';
-import '../../../utils/global_singlton.dart';
+import 'package:solo_luxury/main.dart';
 
 class Product extends StatelessWidget {
   //const Product({Key? key}) : super(key: key);
@@ -43,9 +43,8 @@ class Product extends StatelessWidget {
               child: Stack(
                 //mainAxisSize: MainAxisSize.min,
                 children: [
-
                   Image.network(
-                    "${AppConstants.productImageUrl}${item!.customAttributes![1].value}",
+                    "${AppConstants.productImageUrl}${item!.getProductImage()}",
                     height: 210,
                     width: 210,
                     fit: BoxFit.fill,
@@ -74,7 +73,7 @@ class Product extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '\$' + "${item?.getPriceFromConfigurableProduct(itemList,item)}",
+                  '${localStore.currentCurrency}' + "${item?.getPriceFromConfigurableProduct(itemList,item)}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,

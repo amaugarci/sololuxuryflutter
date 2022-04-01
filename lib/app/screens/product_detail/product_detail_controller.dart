@@ -20,8 +20,6 @@ class ProductDetailController extends GetxController
 
   Rx<Item>? product = Item().obs;
 
-  String productName = "";
-
   RxBool isLoading = true.obs;
 
   var recommendedProductModel = RecommendedProductModel().obs;

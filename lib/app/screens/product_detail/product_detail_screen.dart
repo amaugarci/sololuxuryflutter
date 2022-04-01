@@ -128,7 +128,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 35),
                       Text(
-                        "£${controller.product!.value.price!.toStringAsFixed(2)}",
+                        "${localStore.currentCurrency} ${controller.product!.value.price!.toStringAsFixed(2)}",
                         style: commonTextStyle600(size: 24.0),
                       ),
                       const SizedBox(height: 5),
