@@ -21,20 +21,22 @@ class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: commonAppbar(title: LanguageConstant.privacyPolicyText.tr),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.5),
-        child: Column(
-          children: [
-            Text(
-              'PRIVACY POLICY',
-              style: TextStyle(
-                color: appColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-              ),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: backGroundColor,
+        key: controller.scaffoldKey.value,
+        appBar: AppBar(
+          backgroundColor: backGroundColor,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.black),
+          centerTitle: true,
+          leading: InkWell(
+            onTap: () {
+              controller.scaffoldKey.value.currentState!.openDrawer();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SvgPicture.asset(ImageConstant.menuIcon),
 
             ),
           ),
