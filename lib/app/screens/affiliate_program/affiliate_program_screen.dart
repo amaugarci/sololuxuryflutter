@@ -32,11 +32,7 @@ class AffiliateProgramScreen extends GetView<AffiliateProgramController> {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).padding.top,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
+                        height: 30,
                       ),
                       Center(
                         child: HeadlineBodyOneBaseWidget(

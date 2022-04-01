@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +8,11 @@ import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_controller
 import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/image_constant.dart';
+
+import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
+import 'package:solo_luxury/app/utils/colors.dart';
+
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
@@ -14,22 +20,22 @@ class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        backgroundColor: backGroundColor,
-        key: controller.scaffoldKey.value,
-        appBar: AppBar(
-          backgroundColor: backGroundColor,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              controller.scaffoldKey.value.currentState!.openDrawer();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(ImageConstant.menuIcon),
+
+    return Scaffold(
+      backgroundColor: backGroundColor,
+      appBar: commonAppbar(title: LanguageConstant.privacyPolicyText.tr),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.5),
+        child: Column(
+          children: [
+            Text(
+              'PRIVACY POLICY',
+              style: TextStyle(
+                color: appColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+              ),
+
             ),
           ),
           actions: [

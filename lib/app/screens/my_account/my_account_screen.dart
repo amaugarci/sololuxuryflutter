@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -16,6 +17,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
     return Obx(
       () => Scaffold(
         backgroundColor: appColorAccent,
+        appBar: commonAppbar(title: LanguageConstant.accountInformationText.tr),
         body: controller.isLoading.value == true
             ? const Center(
                 child: SpinKitThreeBounce(
@@ -26,7 +28,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 120,
+                      height: 30,
                     ),
                     Container(
                       alignment: Alignment.center,
