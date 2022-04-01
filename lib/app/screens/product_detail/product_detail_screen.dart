@@ -67,7 +67,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       ),
                       const SizedBox(height: 41),
                       Text(
-                        controller.product!.value.brandName!,
+                        controller.product!.value.getBrandName()!,
                         style: commonTextStyle400(size: 24.0),
                       ),
                       const SizedBox(height: 14),

@@ -327,50 +327,55 @@ class ProductListScreen extends GetView<ProductController> {
               ],
             )),
         Expanded(
-          child: ListView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              primary: false,
-              // <- add
-              itemCount: controller.subCategoryList!.length,
-              itemBuilder: (BuildContext context, int index) {
-                Category category = controller.subCategoryList![index];
-                return InkWell(
-                  onTap: () {
-                    category.isSelected.value = !category.isSelected.value;
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Obx(() => Container(
-                              height: 24.0,
-                              width: 24.0,
-                              alignment: Alignment.centerLeft,
-                              child: Stack(
-                                children: [
-                                  Image.asset(
-                                    category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
-                                    height: 18.0,
-                                    width: 18.0,
+          child: ListView(
+            children: [
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  primary: false,
+                  // <- add
+                  itemCount: controller.subCategoryList!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Category category = controller.subCategoryList![index];
+                    return InkWell(
+                      onTap: () {
+                        category.isSelected.value = !category.isSelected.value;
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Obx(() => Container(
+                                  height: 24.0,
+                                  width: 24.0,
+                                  alignment: Alignment.centerLeft,
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
+                                        height: 18.0,
+                                        width: 18.0,
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                )),
+                            Expanded(
+                              child: CommonTextOpenSans(
+                                category.display,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
                               ),
-                            )),
-                        Expanded(
-                          child: CommonTextOpenSans(
-                            category.display,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
+            ],
+          ),
         ),
       ],
     );

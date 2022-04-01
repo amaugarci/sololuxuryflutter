@@ -40,7 +40,6 @@ class Item {
     this.id,
     this.sku,
     this.name,
-    this.brandName,
     this.attributeSetId,
     this.price,
     this.status,
@@ -59,7 +58,7 @@ class Item {
 
   int? id;
   String? sku;
-  String? name, brandName;
+  String? name;
   int? attributeSetId;
   double? price;
   int? status;
@@ -79,7 +78,6 @@ class Item {
         id: json["id"],
         sku: json["sku"],
         name: json["name"],
-        brandName: json["brand_name"] ?? "",
         attributeSetId: json["attribute_set_id"],
         price: double.parse(json["price"].toString()),
         status: json["status"],
@@ -101,7 +99,6 @@ class Item {
         "id": id,
         "sku": sku,
         "name": name,
-        "brand_name": brandName,
         "attribute_set_id": attributeSetId,
         "price": price,
         "status": status,
@@ -132,7 +129,10 @@ class Item {
   }
 
   getComposition() {
-    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode == "composition");
+    CustomAttribute? customAttribute = customAttributes!.firstWhere((element) {
+      return element.attributeCode == "composition";
+    }, orElse: () => CustomAttribute(attributeCode: ""));
+    if(customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
@@ -158,17 +158,19 @@ class Item {
 
   getPriceFromConfigurableProduct(List<Item>? itemList, Item? item) {
     List<double> priceList = [];
-    for (int i = 0; i < item!.extensionAttributes!.configurableProductLinks!.length; i++) {
-      for (int j = 0; j < itemList!.length; j++) {
-        int configureItemId = item.extensionAttributes!.configurableProductLinks![i];
-        print("Condition-> ${itemList[j].id} - ${configureItemId} -> ${itemList[j].id == configureItemId}");
-        if (itemList[j].id == configureItemId) {
-          priceList.add(itemList[j].price!);
+    if(item!.extensionAttributes!.configurableProductLinks!.isNotEmpty) {
+      for (int i = 0; i < item.extensionAttributes!.configurableProductLinks!.length; i++) {
+        for (int j = 0; j < itemList!.length; j++) {
+          int configureItemId = item.extensionAttributes!.configurableProductLinks![i];
+          print("Condition-> ${itemList[j].id} - ${configureItemId} -> ${itemList[j].id == configureItemId}");
+          if (itemList[j].id == configureItemId) {
+            priceList.add(itemList[j].price!);
+          }
         }
       }
-    }
-    if(item.visibility == 4){
-      item.price = priceList.reduce(min);
+      if (item.visibility == 4) {
+        item.price = priceList.reduce(min);
+      }
     }
     return item.price;
   }
