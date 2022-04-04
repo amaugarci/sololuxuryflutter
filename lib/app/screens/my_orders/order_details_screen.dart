@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../utils/app_asset.dart';
 
@@ -102,7 +103,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
-                          fontFamily: 'Poppins',
+                          fontFamily: AppConstants.fontPoppins,
                           color: unselectedTabColor,
                         ),
                       ),
@@ -111,7 +112,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
-                          fontFamily: 'Poppins',
+                          fontFamily: AppConstants.fontPoppins,
                           color: unselectedTabColor,
                         ),
                       ),
@@ -120,7 +121,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
-                          fontFamily: 'Poppins',
+                          fontFamily: AppConstants.fontPoppins,
                           color: unselectedTabColor,
                         ),
                       )
@@ -330,7 +331,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return const TextStyle(
       color: blackColor,
       fontSize: 16,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w400,
     );
   }
@@ -339,7 +340,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Poppins',
+      fontFamily: AppConstants.fontPoppins,
       fontWeight: FontWeight.w400,
     );
   }
@@ -348,7 +349,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Poppins',
+      fontFamily: AppConstants.fontPoppins,
       fontWeight: FontWeight.w500,
     );
   }
@@ -357,7 +358,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'OpenSans',
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
     );
   }
@@ -366,7 +367,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'OpenSans',
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
     );
   }
@@ -375,7 +376,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return const TextStyle(
       color: blackColor,
       fontSize: 16,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w500,
     );
   }

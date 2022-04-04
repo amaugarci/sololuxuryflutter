@@ -9,6 +9,8 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import 'package:solo_luxury/app/components/common_widget/custom_expansion_tile.dart'
     as custom;
 
+import '../../../utils/app_constants.dart';
+
 class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
   const ReturnsAndRefundsScreen({Key? key}) : super(key: key);
 
@@ -44,7 +46,7 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
                 decoration: TextDecoration.underline,
                 decorationColor: appColor.withOpacity(0.25),
                 decorationThickness: 1.5,
-                fontFamily: "OpenSans",
+                fontFamily: AppConstants.fontOpenSans,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: appColorButton,
@@ -79,7 +81,7 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
                     title: Text(
                       controller.getReturnsList[index].title.toString(),
                       style: const TextStyle(
-                        fontFamily: "OpenSans",
+                        fontFamily: AppConstants.fontOpenSans,
                         fontSize: 18,
                         color: brownColor,
                       ),
