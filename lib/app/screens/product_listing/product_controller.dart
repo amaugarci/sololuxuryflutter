@@ -23,9 +23,6 @@ class ProductController extends GetxController {
 
   ProductController({required this.productListAPIRepository});
 
-  //Filter
-  RxBool isFilter = false.obs;
-
   // var isLoading = true.obs;
 
   // RxInt checked = 0.obs;

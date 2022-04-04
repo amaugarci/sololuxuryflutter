@@ -33,17 +33,15 @@ class ProductListScreen extends GetView<ProductController> {
               ))
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.5),
-                child: controller.isFilter.value
-                    ? filter()
-                    : Column(children: [
-                        filterWidget(),
-                        const SizedBox(height: 15),
-                        filterDropDown(),
-                        const SizedBox(height: 30),
-                        Expanded(
-                          child: products(),
-                        ),
-                      ]))));
+                child: Column(children: [
+                  filterWidget(),
+                  const SizedBox(height: 15),
+                  filterDropDown(),
+                  const SizedBox(height: 30),
+                  Expanded(
+                    child: products(),
+                  ),
+                ]))));
   }
 
   Widget filterWidget() {
@@ -66,7 +64,17 @@ class ProductListScreen extends GetView<ProductController> {
           GestureDetector(
             onTap: () {
               // Get.toNamed(RoutesConstants.filterScreen);
-              controller.isFilter.value = true;
+              showGeneralDialog(
+                context: Get.context!,
+                barrierColor: Colors.black12.withOpacity(0.6),
+                // Background color
+                barrierDismissible: false,
+                barrierLabel: 'Dialog',
+                transitionDuration: Duration(milliseconds: 400),
+                pageBuilder: (_, __, ___) {
+                  return filter();
+                },
+              );
             },
             child: Container(
               color: appColor,
@@ -126,66 +134,58 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget filter() {
-    return Container(
-      height: MediaQuery.of(Get.context!).size.height,
-      alignment: Alignment.bottomCenter,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-              // decoration: BoxDecoration(
-              //     border: Border.all(width: 1, color: brownColor)),
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                    height: 400,
-                    decoration: const BoxDecoration(color: lightBrownColor),
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        //Header
-                        filterHeader(),
-                        const SizedBox(height: 20),
-                        //Filter Widget
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                category(),
-                                subCategory(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+    return Scaffold(
+      appBar: commonAppbarDialog(
+        title: "Filters",
+      ),
+      backgroundColor: Colors.white,
+      body: Container(
+        height: MediaQuery.of(Get.context!).size.height,
+        alignment: Alignment.bottomCenter,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+                // decoration: BoxDecoration(
+                //     border: Border.all(width: 1, color: brownColor)),
+                child: Column(
+              children: [
+                Container(
+                  height: Get.height * .8,
+                  width: Get.width,
+                  decoration: const BoxDecoration(color: Colors.white),
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      category(),
+                      subCategory(),
+                    ],
                   ),
-                ],
-              )),
-          Container(
-            width: Get.width,
-            height: 40.0,
-            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            child: CommonButton(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
-              buttonType: ButtonType.ElevatedButton,
-              onPressed: () {},
-              elevation: 0.0,
-              color: appColorButton,
-              borderRadius: 0.0,
-              child: CommonTextOpenSans(
-                LanguageConstant.applyText.tr,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
+                ),
+              ],
+            )),
+            Container(
+              width: Get.width,
+              height: 40.0,
+              margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 20.0),
+              child: CommonButton(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                buttonType: ButtonType.ElevatedButton,
+                onPressed: () {},
+                elevation: 0.0,
+                color: appColorButton,
+                borderRadius: 0.0,
+                child: CommonTextOpenSans(
+                  LanguageConstant.applyText.tr,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -223,7 +223,7 @@ class ProductListScreen extends GetView<ProductController> {
         ),
         InkWell(
           onTap: () {
-            controller.isFilter.value = false;
+            Get.back();
           },
           child: const Padding(
             padding: EdgeInsets.only(right: 10),
@@ -240,12 +240,15 @@ class ProductListScreen extends GetView<ProductController> {
 
   Widget category() {
     return Expanded(
+      flex: 3,
       child: Container(
-        decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
         alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
+        color: Colors.grey[300],
+        padding: const EdgeInsets.only(left: 5.0),
+        margin: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
               controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
@@ -264,11 +267,11 @@ class ProductListScreen extends GetView<ProductController> {
             controller.changedData(index);
           },
           child: Container(
+            height: 50.0,
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-                color: controller.currentCategoryIndex.value == index ? backGroundColor : lightBrownColor),
+            decoration:
+                BoxDecoration(color: controller.currentCategoryIndex.value == index ? Colors.white : Colors.grey[300]),
             width: Get.width,
-            height: 40,
             child: Align(
               alignment: Alignment.centerLeft,
               child:
@@ -280,10 +283,11 @@ class ProductListScreen extends GetView<ProductController> {
 
   Widget subCategory() {
     return Expanded(
+      flex: 4,
       child: Container(
-          margin: const EdgeInsets.only(left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
+          color: Colors.white,
+          margin: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
           alignment: Alignment.topLeft,
-          decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
           child: subCategoryWidget()),
     );
   }
@@ -294,13 +298,13 @@ class ProductListScreen extends GetView<ProductController> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
-            margin: const EdgeInsets.all(5),
+            height: 45.0,
             decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(
-                  width: 10.0,
+                  width: 15.0,
                 ),
                 Container(
                   child: Image.asset(
@@ -310,9 +314,11 @@ class ProductListScreen extends GetView<ProductController> {
                     width: 18.0,
                   ),
                 ),
+                const SizedBox(
+                  width: 3.0,
+                ),
                 Expanded(
                   child: CommonTextFieldOpenSans(
-                    height: 35.0,
                     hintText: LanguageConstant.searchText.tr,
                     controller: controller.searchEditingController.value,
                     textFieldBorder: Border.all(color: Colors.transparent),
@@ -328,9 +334,10 @@ class ProductListScreen extends GetView<ProductController> {
             )),
         Expanded(
           child: ListView(
+            padding: const EdgeInsets.only(top: 5.0),
             children: [
               ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   primary: false,
@@ -352,16 +359,15 @@ class ProductListScreen extends GetView<ProductController> {
                                   height: 24.0,
                                   width: 24.0,
                                   alignment: Alignment.centerLeft,
-                                  child: Stack(
-                                    children: [
-                                      Image.asset(
-                                        category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
-                                        height: 18.0,
-                                        width: 18.0,
-                                      ),
-                                    ],
+                                  child: Icon(
+                                    category.isSelected.value
+                                        ? Icons.check_box_sharp
+                                        : Icons.check_box_outline_blank_sharp,
+                                    color: Colors.black54,
+                                    size: 24.0,
                                   ),
                                 )),
+                            const SizedBox(width: 15.0,),
                             Expanded(
                               child: CommonTextOpenSans(
                                 category.display,
