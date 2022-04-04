@@ -357,7 +357,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: 'OpenSans',
       fontWeight: FontWeight.w600,
     );
   }
@@ -366,7 +366,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: 'OpenSans',
       fontWeight: FontWeight.w400,
     );
   }

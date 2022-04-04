@@ -352,7 +352,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: 'OpenSans',
       fontWeight: FontWeight.w600,
     );
   }
@@ -361,7 +361,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: 'OpenSans',
       fontWeight: FontWeight.w400,
     );
   }

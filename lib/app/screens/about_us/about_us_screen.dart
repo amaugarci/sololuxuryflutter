@@ -85,7 +85,7 @@ class AboutUsScreen extends StatelessWidget {
   textStyleUtils() {
     return const TextStyle(
       color: grey636363,
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontWeight: FontWeight.w400,
       height: 1.4,
     );

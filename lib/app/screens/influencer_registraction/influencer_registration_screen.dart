@@ -49,7 +49,7 @@ class InfluencerRegistrationScreen
       decoration: TextDecoration.underline,
       decorationColor: appColor,
       decorationThickness: 1.5,
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontWeight: FontWeight.w400,
       fontSize: 16,
       color: appColorPrimary,
@@ -58,7 +58,7 @@ class InfluencerRegistrationScreen
 
   subTextStyle() {
     return const TextStyle(
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: blackColor,

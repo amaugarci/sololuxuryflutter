@@ -54,7 +54,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontWeight: FontWeight.w600,
       fontSize: 20,
     );
@@ -63,7 +63,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
   textStyleUtils16() {
     return const TextStyle(
       color: blackColor,
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontSize: 16,
     );
   }
@@ -74,7 +74,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: "OpenSans",
       fontSize: 18,
     );
   }

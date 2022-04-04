@@ -44,7 +44,7 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
                 decoration: TextDecoration.underline,
                 decorationColor: appColor.withOpacity(0.25),
                 decorationThickness: 1.5,
-                fontFamily: "Open Sans",
+                fontFamily: "OpenSans",
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: appColorButton,
@@ -79,7 +79,7 @@ class ReturnsAndRefundsScreen extends GetView<ReturnsAndRefundsController> {
                     title: Text(
                       controller.getReturnsList[index].title.toString(),
                       style: const TextStyle(
-                        fontFamily: "Open Sans",
+                        fontFamily: "OpenSans",
                         fontSize: 18,
                         color: brownColor,
                       ),
