@@ -584,6 +584,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "photo_view",
+      "rootUri": "file:///D:/Software/flutter_windows_2.10.0-stable/flutter/.pub-cache/hosted/pub.dartlang.org/photo_view-0.13.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "pin_input_text_field",
       "rootUri": "file:///D:/Software/flutter_windows_2.10.0-stable/flutter/.pub-cache/hosted/pub.dartlang.org/pin_input_text_field-4.1.1",
       "packageUri": "lib/",
@@ -920,7 +926,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2022-04-01T11:36:27.062650Z",
+  "generated": "2022-04-04T05:50:52.257527Z",
   "generator": "pub",
   "generatorVersion": "2.16.0"
 }

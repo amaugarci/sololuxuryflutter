@@ -79,7 +79,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       expandDetailWidget(
                         text: LanguageConstant.description.tr,
                         onTap: () {
-                          controller.isSelected.value = !controller.isSelected.value;
+                          controller.isSelected.value =
+                              !controller.isSelected.value;
                         },
                       ),
                       const SizedBox(height: 8),
@@ -98,7 +99,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       expandDetailWidget(
                         text: LanguageConstant.details.tr,
                         onTap: () {
-                          controller.isSelected1.value = !controller.isSelected1.value;
+                          controller.isSelected1.value =
+                              !controller.isSelected1.value;
                         },
                       ),
                       const SizedBox(height: 10),
@@ -219,19 +221,22 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                             Image(
                                               width: 162,
                                               image: NetworkImage(
-                                                controller.itemsData[index]["image_url"],
+                                                controller.itemsData[index]
+                                                    ["image_url"],
                                               ),
                                             ),
                                           ],
                                         ),
                                         height: 215,
                                         width: 215,
-                                        margin: const EdgeInsets.only(right: 5, left: 5, top: 5),
+                                        margin: const EdgeInsets.only(
+                                            right: 5, left: 5, top: 5),
                                         decoration: BoxDecoration(
                                           color: backGroundColor,
                                           boxShadow: [
                                             BoxShadow(
-                                              color: blackColor.withOpacity(0.30),
+                                              color:
+                                                  blackColor.withOpacity(0.30),
                                               blurRadius: 8,
                                             ),
                                           ],
@@ -245,7 +250,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                         height: 15,
                                       ),
                                       Text(
-                                        controller.itemsData[index]["brand_name"],
+                                        controller.itemsData[index]
+                                            ["brand_name"],
                                         textAlign: TextAlign.center,
                                         style: commonTextStyle400(size: 16.0),
                                       ),
@@ -321,10 +327,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           Obx(() => PageView.builder(
                 controller: controller.controllerPage,
                 itemBuilder: (_, index) {
-                  MediaGalleryEntry item = controller.product!.value.mediaGalleryEntries![index];
+                  MediaGalleryEntry item =
+                      controller.product!.value.mediaGalleryEntries![index];
                   return GestureDetector(
                     onTap: () {
-                      imagePreview("${AppConstants.productImageUrl}${item.file}");
+                      imagePreview(
+                          "${AppConstants.productImageUrl}${item.file}");
                       // Get.to(FullScreenImage(
                       //   imageUrl: AppConstants.productImageUrl + item.file.toString(),
                       //   tag: "tag",
@@ -338,7 +346,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                         )),
                   );
                 },
-                itemCount: controller.product!.value.mediaGalleryEntries!.length,
+                itemCount:
+                    controller.product!.value.mediaGalleryEntries!.length,
               )),
           /*Padding(
             padding: const EdgeInsets.all(10.0),
@@ -361,8 +370,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      controller.controllerPage
-                          .previousPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
+                      controller.controllerPage.previousPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
                     },
                     child: const Icon(
                       Icons.arrow_back_ios,
@@ -372,8 +382,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                   ),
                   InkWell(
                     onTap: () {
-                      controller.controllerPage
-                          .nextPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
+                      controller.controllerPage.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
                     },
                     child: const Icon(
                       Icons.arrow_forward_ios,
@@ -446,7 +457,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           children: [
             Text(
               text!,
-              style: const TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w400),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w400),
             ),
             const Icon(Icons.expand_more, color: Colors.black),
           ],
@@ -495,10 +509,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       height: 36,
       child: ElevatedButton(
         onPressed: () {
-          controller.showWishlistDialog(
+          controller.postAddToWishlistData(
             context,
             controller.product!.value.name!,
             "${controller.product!.value.customAttributes![1].value}",
+            controller.product!.value.sku!,
           );
         },
         style: ElevatedButton.styleFrom(
@@ -529,7 +544,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
   Widget sizeChartWidget(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        imageDialog(LanguageConstant.sizeChartText.tr, controller.product!.value.getSizeChart(), context);
+        imageDialog(LanguageConstant.sizeChartText.tr,
+            controller.product!.value.getSizeChart(), context);
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -553,14 +569,16 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          MediaGalleryEntry item = controller.product!.value.mediaGalleryEntries![index];
+          MediaGalleryEntry item =
+              controller.product!.value.mediaGalleryEntries![index];
           return Row(
             children: [
               GestureDetector(
                 onTap: () {
                   controller.frameIndex.value = index;
-                  controller.controllerPage
-                      .animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+                  controller.controllerPage.animateToPage(index,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut);
                 },
                 child: Obx(() => Container(
                       width: 65,
@@ -591,7 +609,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       height: 45,
       width: 48,
       margin: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(border: Border.all(color: appColor, width: 1.25)),
+      decoration:
+          BoxDecoration(border: Border.all(color: appColor, width: 1.25)),
       child: Image.network(
         'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
         fit: BoxFit.cover,
@@ -602,7 +621,9 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
   Widget chooseAnOptionWidget() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 6),
-      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: appColor.withOpacity(0.4))),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: appColor.withOpacity(0.4))),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           items: controller.sizeListData
@@ -645,7 +666,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         // return object of type Dialog
         return AlertDialog(
           elevation: 6.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(0.0))),
           contentPadding: EdgeInsets.all(14.0),
           insetPadding: EdgeInsets.symmetric(horizontal: 10.0),
           backgroundColor: Color(0xffFBECE5),
@@ -703,13 +725,19 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                     children: [
                                       Container(
                                         alignment: Alignment.center,
-                                        padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
-                                        decoration:
-                                            BoxDecoration(borderRadius: BorderRadius.circular(20), color: appColor),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 14.0, vertical: 10.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: appColor),
                                         child: Text(
-                                          LanguageConstant.viewCartText.tr.toUpperCase(),
+                                          LanguageConstant.viewCartText.tr
+                                              .toUpperCase(),
                                           style: TextStyle(
-                                              fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.w500),
+                                              fontSize: 15.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500),
                                         ),
                                       ),
                                     ],
@@ -723,14 +751,20 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
-                                      decoration:
-                                          BoxDecoration(borderRadius: BorderRadius.circular(20), color: appColor),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 14.0, vertical: 10.0),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: appColor),
                                       child: Text(
-                                        LanguageConstant.continueShoppingText.tr.toUpperCase(),
+                                        LanguageConstant.continueShoppingText.tr
+                                            .toUpperCase(),
                                         textAlign: TextAlign.center,
-                                        style:
-                                            TextStyle(fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.w500),
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ),
@@ -768,7 +802,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                     children: [
                       Text(
                         '$text',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: appColor),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: appColor),
                       ),
                       IconButton(
                         onPressed: () {

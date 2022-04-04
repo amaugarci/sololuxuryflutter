@@ -5,8 +5,11 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
 import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/filter/filter_model.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../../main.dart';
 import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
@@ -41,7 +44,7 @@ class ProductListScreen extends GetView<ProductController> {
                         filterDropDown(),
                         const SizedBox(height: 30),
                         Expanded(
-                          child: products(),
+                          child: products(context),
                         ),
                       ]))));
   }
@@ -114,7 +117,10 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w300,
+                color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -151,7 +157,9 @@ class ProductListScreen extends GetView<ProductController> {
                         //Filter Widget
                         Expanded(
                           child: Container(
-                            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: filterBorderColor)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -169,7 +177,8 @@ class ProductListScreen extends GetView<ProductController> {
           Container(
             width: Get.width,
             height: 40.0,
-            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            margin:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             child: CommonButton(
               padding: const EdgeInsets.symmetric(horizontal: 5.0),
               buttonType: ButtonType.ElevatedButton,
@@ -190,26 +199,144 @@ class ProductListScreen extends GetView<ProductController> {
     );
   }
 
-  Widget products() {
-    return GridView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 12.5,
-        childAspectRatio: 0.55,
-      ),
-      itemBuilder: (_, index) {
-        Item? item = controller.productModel?.value.items?[index];
-        if (item == null) {
-          return Container();
-        } else {
-          return Product(item: item, itemList: controller.productModel?.value.items!);
-        }
-      },
-      itemCount: controller.productModel?.value.items?.length,
-    );
+  Widget products(context) {
+    return Obx(() => GridView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 12.5,
+            childAspectRatio: 0.55,
+          ),
+          itemBuilder: (_, index) {
+            Item? item = controller.productModel?.value.items?[index];
+            if (item == null) {
+              return Container();
+            } else {
+              return GestureDetector(
+                onTap: () {
+                  // Get.toNamed(RoutesConstants.productDetailsScreen,
+                  //     arguments: [item]);
+                },
+                child: Container(
+                  width: 150,
+                  color: backGroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 210,
+                        //padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: appColor,
+                            width: 1.4,
+                          ),
+                        ),
+                        child: Stack(
+                          //mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.network(
+                              "${AppConstants.productImageUrl}${item.getProductImage()}",
+                              height: 210,
+                              width: 210,
+                              fit: BoxFit.fill,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (item.isWishList.value) {
+                                  controller.deleteWishListData(
+                                      context,
+                                      item.name,
+                                      item.customAttributes![1].value,
+                                      item.sku,
+                                      item.id,
+                                      index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                } else {
+                                  controller.postAddToWishlistData(
+                                      context,
+                                      item.name,
+                                      item.customAttributes![1].value,
+                                      item.sku,
+                                      index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: favoriteOrNot(item)
+                                    //  item.isWishList.value
+                                    //     ? Icon(
+                                    //         Icons.favorite,
+                                    //         color: appColor,
+                                    //       )
+                                    //     : SvgPicture.asset(
+                                    //         AppAsset.heart,
+                                    //         height: 14,
+                                    //         color: appColor,
+                                    //       )
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "${item.getBrandName()}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "${item.name}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '${localStore.currentCurrency}' +
+                                "${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 50),
+                          Text(
+                            '\$' + "${item.price}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black45,
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
+          itemCount: controller.productModel?.value.items?.length,
+        ));
   }
 
   filterHeader() {
@@ -238,17 +365,35 @@ class ProductListScreen extends GetView<ProductController> {
     );
   }
 
+  Widget favoriteOrNot(Item item) {
+    return Obx(
+      () => item.isWishList.value
+          ? Icon(
+              Icons.favorite,
+              color: appColor,
+            )
+          : SvgPicture.asset(
+              AppAsset.heart,
+              height: 14,
+              color: appColor,
+            ),
+    );
+  }
+
   Widget category() {
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: filterBorderColor)),
         alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
+        margin: const EdgeInsets.only(
+            left: 10.0, right: 5.0, top: 10.0, bottom: 10.0),
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value =
+                  FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -266,13 +411,15 @@ class ProductListScreen extends GetView<ProductController> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-                color: controller.currentCategoryIndex.value == index ? backGroundColor : lightBrownColor),
+                color: controller.currentCategoryIndex.value == index
+                    ? backGroundColor
+                    : lightBrownColor),
             width: Get.width,
             height: 40,
             child: Align(
               alignment: Alignment.centerLeft,
-              child:
-                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child: CommonTextOpenSans("${item.attrLabel}",
+                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
@@ -281,9 +428,11 @@ class ProductListScreen extends GetView<ProductController> {
   Widget subCategory() {
     return Expanded(
       child: Container(
-          margin: const EdgeInsets.only(left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
+          margin: const EdgeInsets.only(
+              left: 5.0, right: 10.0, top: 10.0, bottom: 10.0),
           alignment: Alignment.topLeft,
-          decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+          decoration: BoxDecoration(
+              border: Border.all(width: 1, color: filterBorderColor)),
           child: subCategoryWidget()),
     );
   }
@@ -295,7 +444,8 @@ class ProductListScreen extends GetView<ProductController> {
       children: <Widget>[
         Container(
             margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(border: Border.all(width: 1, color: filterBorderColor)),
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: filterBorderColor)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -330,7 +480,7 @@ class ProductListScreen extends GetView<ProductController> {
           child: ListView(
             children: [
               ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   primary: false,
@@ -355,7 +505,9 @@ class ProductListScreen extends GetView<ProductController> {
                                   child: Stack(
                                     children: [
                                       Image.asset(
-                                        category.isSelected.value ? AppAsset.checked : AppAsset.unchecked,
+                                        category.isSelected.value
+                                            ? AppAsset.checked
+                                            : AppAsset.unchecked,
                                         height: 18.0,
                                         width: 18.0,
                                       ),

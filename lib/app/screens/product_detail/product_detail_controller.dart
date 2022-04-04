@@ -164,6 +164,19 @@ class ProductDetailController extends GetxController
     }
   }
 
+  //Add TO WishList Api Calling
+  postAddToWishlistData(context, dataName, customImage, sku) async {
+    var addToWishData;
+    print("Here Customer Post");
+    addToWishData = await RecommendedProductsAPIRepository()
+        .addTOWishListProductResponse(sku);
+
+    print("Add To Cart Data ${addToWishData}");
+    if (addToWishData) {
+      return showWishlistDialog(context, dataName, customImage);
+    }
+  }
+
   //ShowDialog For Confomation
   void showAddDialog(var context, dataname, customimage) {
     showDialog(

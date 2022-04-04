@@ -5,9 +5,12 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:get/get.dart';
+
 import '../../../app/utils/global_singlton.dart';
 
-ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
+ProductModel productModelFromJson(String str) =>
+    ProductModel.fromJson(json.decode(str));
 
 String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
@@ -73,6 +76,7 @@ class Item {
   List<MediaGalleryEntry>? mediaGalleryEntries;
   List<dynamic>? tierPrices;
   List<CustomAttribute>? customAttributes;
+  RxBool isWishList = false.obs;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         id: json["id"],
@@ -86,13 +90,16 @@ class Item {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         weight: json["weight"],
-        extensionAttributes: ExtensionAttributes.fromJson(json["extension_attributes"]),
+        extensionAttributes:
+            ExtensionAttributes.fromJson(json["extension_attributes"]),
         productLinks: List<dynamic>.from(json["product_links"].map((x) => x)),
         options: List<dynamic>.from(json["options"].map((x) => x)),
-        mediaGalleryEntries:
-            List<MediaGalleryEntry>.from(json["media_gallery_entries"].map((x) => MediaGalleryEntry.fromJson(x))),
+        mediaGalleryEntries: List<MediaGalleryEntry>.from(
+            json["media_gallery_entries"]
+                .map((x) => MediaGalleryEntry.fromJson(x))),
         tierPrices: List<dynamic>.from(json["tier_prices"].map((x) => x)),
-        customAttributes: List<CustomAttribute>.from(json["custom_attributes"].map((x) => CustomAttribute.fromJson(x))),
+        customAttributes: List<CustomAttribute>.from(
+            json["custom_attributes"].map((x) => CustomAttribute.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -110,25 +117,30 @@ class Item {
         "extension_attributes": extensionAttributes!.toJson(),
         "product_links": List<dynamic>.from(productLinks!.map((x) => x)),
         "options": List<dynamic>.from(options!.map((x) => x)),
-        "media_gallery_entries": List<dynamic>.from(mediaGalleryEntries!.map((x) => x.toJson())),
+        "media_gallery_entries":
+            List<dynamic>.from(mediaGalleryEntries!.map((x) => x.toJson())),
         "tier_prices": List<dynamic>.from(tierPrices!.map((x) => x)),
-        "custom_attributes": List<dynamic>.from(customAttributes!.map((x) => x.toJson())),
+        "custom_attributes":
+            List<dynamic>.from(customAttributes!.map((x) => x.toJson())),
       };
 
   getProductImage() {
-    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode == "image");
+    CustomAttribute customAttribute = customAttributes!
+        .firstWhere((element) => element.attributeCode == "image");
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
+
   getProductDescription() {
-    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode == "description");
+    CustomAttribute customAttribute = customAttributes!
+        .firstWhere((element) => element.attributeCode == "description");
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getSizeChart() {
-    CustomAttribute customAttribute =
-        customAttributes!.firstWhere((element) => element.attributeCode == "size_chart_url");
+    CustomAttribute customAttribute = customAttributes!
+        .firstWhere((element) => element.attributeCode == "size_chart_url");
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
@@ -137,19 +149,21 @@ class Item {
     CustomAttribute? customAttribute = customAttributes!.firstWhere((element) {
       return element.attributeCode == "composition";
     }, orElse: () => CustomAttribute(attributeCode: ""));
-    if(customAttribute.attributeCode!.isEmpty) return "";
+    if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getColor() {
-    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode == "color");
+    CustomAttribute customAttribute = customAttributes!
+        .firstWhere((element) => element.attributeCode == "color");
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getBrandName() {
-    CustomAttribute customAttribute = customAttributes!.firstWhere((element) => element.attributeCode == "brands");
+    CustomAttribute customAttribute = customAttributes!
+        .firstWhere((element) => element.attributeCode == "brands");
     for (int i = 0; i < GlobalSingleton().optionList.length; i++) {
       if (customAttributes == null) {
         return "";
@@ -163,11 +177,15 @@ class Item {
 
   getPriceFromConfigurableProduct(List<Item>? itemList, Item? item) {
     List<double> priceList = [];
-    if(item!.extensionAttributes!.configurableProductLinks!.isNotEmpty) {
-      for (int i = 0; i < item.extensionAttributes!.configurableProductLinks!.length; i++) {
+    if (item!.extensionAttributes!.configurableProductLinks!.isNotEmpty) {
+      for (int i = 0;
+          i < item.extensionAttributes!.configurableProductLinks!.length;
+          i++) {
         for (int j = 0; j < itemList!.length; j++) {
-          int configureItemId = item.extensionAttributes!.configurableProductLinks![i];
-          print("Condition-> ${itemList[j].id} - ${configureItemId} -> ${itemList[j].id == configureItemId}");
+          int configureItemId =
+              item.extensionAttributes!.configurableProductLinks![i];
+          print(
+              "Condition-> ${itemList[j].id} - ${configureItemId} -> ${itemList[j].id == configureItemId}");
           if (itemList[j].id == configureItemId) {
             priceList.add(itemList[j].price!);
           }
@@ -190,7 +208,8 @@ class CustomAttribute {
   String? attributeCode;
   dynamic? value;
 
-  factory CustomAttribute.fromJson(Map<String, dynamic> json) => CustomAttribute(
+  factory CustomAttribute.fromJson(Map<String, dynamic> json) =>
+      CustomAttribute(
         attributeCode: json["attribute_code"],
         value: json["value"],
       );
@@ -212,9 +231,11 @@ class ExtensionAttributes {
   List<CategoryLink>? categoryLinks;
   List<int>? configurableProductLinks;
 
-  factory ExtensionAttributes.fromJson(Map<String, dynamic> json) => ExtensionAttributes(
+  factory ExtensionAttributes.fromJson(Map<String, dynamic> json) =>
+      ExtensionAttributes(
         websiteIds: List<int>.from(json["website_ids"].map((x) => x)),
-        categoryLinks: List<CategoryLink>.from(json["category_links"].map((x) => CategoryLink.fromJson(x))),
+        categoryLinks: List<CategoryLink>.from(
+            json["category_links"].map((x) => CategoryLink.fromJson(x))),
         configurableProductLinks: json["configurable_product_links"] != null
             ? List<int>.from(json["configurable_product_links"].map((x) => x))
             : [],
@@ -222,8 +243,10 @@ class ExtensionAttributes {
 
   Map<String, dynamic> toJson() => {
         "website_ids": List<dynamic>.from(websiteIds!.map((x) => x)),
-        "category_links": List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
-        "configurable_product_links": List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
+        "category_links":
+            List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
+        "configurable_product_links":
+            List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
       };
 }
 
@@ -266,7 +289,8 @@ class MediaGalleryEntry {
   List<String>? types;
   String? file;
 
-  factory MediaGalleryEntry.fromJson(Map<String, dynamic> json) => MediaGalleryEntry(
+  factory MediaGalleryEntry.fromJson(Map<String, dynamic> json) =>
+      MediaGalleryEntry(
         id: json["id"],
         mediaType: json["media_type"],
         label: json["label"],
@@ -295,11 +319,13 @@ class SearchCriteria {
   List<FilterGroup>? filterGroups;
 
   factory SearchCriteria.fromJson(Map<String, dynamic> json) => SearchCriteria(
-        filterGroups: List<FilterGroup>.from(json["filter_groups"].map((x) => FilterGroup.fromJson(x))),
+        filterGroups: List<FilterGroup>.from(
+            json["filter_groups"].map((x) => FilterGroup.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "filter_groups": List<dynamic>.from(filterGroups!.map((x) => x.toJson())),
+        "filter_groups":
+            List<dynamic>.from(filterGroups!.map((x) => x.toJson())),
       };
 }
 
@@ -311,7 +337,8 @@ class FilterGroup {
   List<Filter>? filters;
 
   factory FilterGroup.fromJson(Map<String, dynamic> json) => FilterGroup(
-        filters: List<Filter>.from(json["filters"].map((x) => Filter.fromJson(x))),
+        filters:
+            List<Filter>.from(json["filters"].map((x) => Filter.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
