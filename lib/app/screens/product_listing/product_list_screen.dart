@@ -42,7 +42,7 @@ class ProductListScreen extends GetView<ProductController> {
                   filterDropDown(),
                   const SizedBox(height: 30),
                   Expanded(
-                    child: products(),
+                    child: products(context),
                   ),
                 ]))));
   }
