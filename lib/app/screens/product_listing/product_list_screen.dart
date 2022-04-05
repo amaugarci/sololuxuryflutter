@@ -138,11 +138,6 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget filter() {
-    return Scaffold(
-      appBar: commonAppbarDialog(
-        title: "Filters",
-      ),
-      backgroundColor: Colors.white,
     return Material(
       child: Container(
         height: Get.height,
