@@ -61,4 +61,6 @@ class RoutesConstants {
   static const String referFriendScreen = "/referFriendScreen";
 
   static const String brandDetailsScreen = "/brandDetailsScreen";
+
+  static const String newsLetterScreen = "/newsLetterScreen";
 }

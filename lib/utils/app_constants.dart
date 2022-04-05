@@ -130,6 +130,8 @@ class AppConstants {
   static String addAddress = '/rest/V1/customers/me';
   static String countryList = '/rest/V1/directory/countries';
 
+  static String newsLetterSubscribe = '/rest/V1/newsletter/subscribe';
+
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }

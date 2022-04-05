@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../utils/app_constants.dart';
@@ -18,7 +19,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
       () => Scaffold(
         backgroundColor: appColorAccent,
         appBar: commonAppbar(title: LanguageConstant.accountInformationText.tr),
-        body: controller.isLoading.value == true
+        body: controller.isLoading.value != true
             ? const Center(
                 child: SpinKitThreeBounce(
                 color: appColor,
@@ -186,17 +187,22 @@ class MyAccountScreen extends GetView<MyAccountController> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Container(
-              height: 52,
-              width: Get.width,
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                LanguageConstant.edit.tr,
-                style: commonTextStyle300(),
-              ),
-              decoration: const BoxDecoration(
-                color: appColorAccent,
+            child: InkWell(
+              onTap: (){
+                Get.toNamed(RoutesConstants.newsLetterScreen);
+              },
+              child: Container(
+                height: 52,
+                width: Get.width,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  LanguageConstant.edit.tr,
+                  style: commonTextStyle300(),
+                ),
+                decoration: const BoxDecoration(
+                  color: appColorAccent,
+                ),
               ),
             ),
           ),
