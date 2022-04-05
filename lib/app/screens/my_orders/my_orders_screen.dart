@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/my_orders/my_orders_controller.dart';
-import 'package:solo_luxury/app/screens/my_orders/order_details_screen.dart';
+import 'package:solo_luxury/app/screens/my_orders/order_details_screen/order_details_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -19,7 +20,13 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
           key: controller.scaffoldKey.value,
           backgroundColor: appColorAccent,
           appBar: commonAppbar(title: LanguageConstant.myOrdersText.tr),
-          body: body(),
+          body: controller.isLoading.value
+              ? Center(
+                  child: SpinKitThreeBounce(
+                    color: appColor,
+                  ),
+                )
+              : body(),
         ));
   }
 
@@ -54,8 +61,9 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
                 itemBuilder: (context, index) {
                   ParentItemElement item =
                       controller.myOrdersModel!.value.items![index].items![0];
-                  MyOrdersDataItem orderData=controller.myOrdersModel!.value.items![index];
-                  return myOrderWidget(item: item,orderData: orderData);
+                  MyOrdersDataItem orderData =
+                      controller.myOrdersModel!.value.items![index];
+                  return myOrderWidget(item: item, orderData: orderData);
                   // return myOrderWidget();
                 },
                 itemCount: controller.myOrdersModel!.value.items!.length,
@@ -271,18 +279,21 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     );
   }
 
-  Widget myOrderWidget({ParentItemElement? item, var index,MyOrdersDataItem? orderData}) {
+  Widget myOrderWidget(
+      {ParentItemElement? item, var index, MyOrdersDataItem? orderData}) {
     if (item == null) {
       return Container();
     }
     return InkWell(
       onTap: () {
-        Get.to(
-          () => OrderDetailsScreen(
-            itemData: item,
-            orderData: orderData,
-          ),
-        );
+        Get.toNamed(RoutesConstants.orderDetailsScreen,
+            arguments: [item, orderData]);
+        // Get.to(
+        //   () => OrderDetailsScreen(
+        //     itemData: item,
+        //     orderData: orderData,
+        //   ),
+        // );
       },
       child: Column(
         children: [
@@ -316,7 +327,9 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
             data: item.baseRowTotal.toString(),
           ),
           const SizedBox(height: 20),
-          row1(text: LanguageConstant.status.tr, data: orderData!.status.toString()),
+          row1(
+              text: LanguageConstant.status.tr,
+              data: orderData!.status.toString()),
           const SizedBox(height: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

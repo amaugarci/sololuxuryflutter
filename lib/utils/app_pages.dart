@@ -38,6 +38,8 @@ import 'package:solo_luxury/app/screens/login/bindings/signup_bindings.dart';
 import 'package:solo_luxury/app/screens/login/views/forgot_password.dart';
 import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/screens/login/views/signup_screen.dart';
+import 'package:solo_luxury/app/screens/my_orders/order_details_screen/order_details_binding.dart';
+import 'package:solo_luxury/app/screens/my_orders/order_details_screen/order_details_screen.dart';
 import 'package:solo_luxury/app/screens/my_tickets/my_tickets_binding.dart';
 import 'package:solo_luxury/app/screens/my_tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_binding.dart';
@@ -292,6 +294,11 @@ class AppPages {
       name: RoutesConstants.teamsConditionScreen,
       page: () => TermAndConditionScreen(),
       binding: TermAndConditionBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.orderDetailsScreen,
+      page: () => OrderDetailsScreen(),
+      binding: OrderDetailsBinding(),
     ),
   ];
 }

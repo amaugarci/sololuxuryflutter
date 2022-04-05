@@ -178,3 +178,7 @@ abstract class ITermAndConditionRepository {
 abstract class IAddressListRepository {
   Future<String> getAddressListResponse();
 }
+
+abstract class IReturnReasonRepository {
+  Future<String> getReturnReasonResponse();
+}

@@ -13,6 +13,7 @@ class MyOrdersController extends GetxController {
 
   final MyOrdersAPIRepository myOrdersAPIRepository;
   MyOrdersController({required this.myOrdersAPIRepository});
+  var isLoading = true.obs;
 
   @override
   void onInit() {
@@ -28,8 +29,8 @@ class MyOrdersController extends GetxController {
   // }
 
   void getMyOrders() async {
+    isLoading.value = true;
     myOrdersModel?.value = await myOrdersAPIRepository.getMyOrdersApiResponse();
+    isLoading.value = false;
   }
-
-
 }

@@ -329,4 +329,6 @@ const Map<String, String> en = {
   "logOutText": "Logout",
   "policyHeadingText": "Solo Luxury Privacy Policy",
   "termAndConditionHeadingText": "Term And Condition",
+  "reasonReturnText": "Reason to return",
+  "returnItemText": "Return ltem",
 };
