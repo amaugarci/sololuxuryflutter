@@ -10,6 +10,8 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import 'package:solo_luxury/utils/validator.dart';
 
+import '../../../../utils/app_constants.dart';
+
 class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
                         decorationColor: appColor,
                         decorationThickness: 1.5,
                         color: appColor,
-                        fontFamily: "Open Sans",
+                        fontFamily: AppConstants.fontOpenSans,
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                       ),
@@ -47,7 +49,7 @@ class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
                       style: const TextStyle(
                         color: blackColor,
                         fontWeight: FontWeight.w400,
-                        fontFamily: "Open Sans",
+                        fontFamily: AppConstants.fontOpenSans,
                         fontSize: 16,
                       ),
                     ),
@@ -71,7 +73,7 @@ class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
                           style: const TextStyle(
                             color: appColor,
                             fontWeight: FontWeight.w400,
-                            fontFamily: "Open Sans",
+                            fontFamily: AppConstants.fontOpenSans,
                             fontSize: 16,
                           ),
                         ),
@@ -132,7 +134,7 @@ class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 13.5,
-            fontFamily: "Open Sans",
+            fontFamily: AppConstants.fontOpenSans,
           ),
         ),
       ),

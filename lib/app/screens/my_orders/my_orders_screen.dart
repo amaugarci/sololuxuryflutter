@@ -7,6 +7,7 @@ import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/MyOrders/MyOrdersData.dart';
+import '../../../utils/app_constants.dart';
 import '../../components/common_widget/common_appbar.dart';
 
 class MyOrdersScreen extends GetView<MyOrdersController> {
@@ -206,7 +207,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 16.0,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w500,
     );
   }
@@ -215,7 +216,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 16.0,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w400,
     );
   }

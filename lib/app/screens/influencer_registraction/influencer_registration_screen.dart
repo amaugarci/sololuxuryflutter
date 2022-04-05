@@ -5,6 +5,7 @@ import 'package:solo_luxury/app/screens/influencer_registraction/influencer_regi
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../utils/app_constants.dart';
 import '../../../utils/validator.dart';
 import '../../components/common_widget/common_button.dart';
 import '../../components/common_widget/common_text_poppins.dart';
@@ -49,7 +50,7 @@ class InfluencerRegistrationScreen
       decoration: TextDecoration.underline,
       decorationColor: appColor,
       decorationThickness: 1.5,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
       fontSize: 16,
       color: appColorPrimary,
@@ -58,7 +59,7 @@ class InfluencerRegistrationScreen
 
   subTextStyle() {
     return const TextStyle(
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: blackColor,

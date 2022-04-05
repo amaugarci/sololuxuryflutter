@@ -290,7 +290,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   commonTextStyle400({var size}) {
     return TextStyle(
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
       color: blackColor,
       fontSize: size ?? 14,
@@ -299,7 +299,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
 
   commonTextStyle600({var size, var color}) {
     return TextStyle(
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       color: color ?? blackColor,
       fontSize: size ?? 14,

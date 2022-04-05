@@ -4,6 +4,8 @@ import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_co
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../../../utils/app_constants.dart';
+
 class ForgetPasswordMenuScreen extends StatelessWidget {
   const ForgetPasswordMenuScreen({Key? key}) : super(key: key);
 
@@ -54,7 +56,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       fontSize: 20,
     );
@@ -63,7 +65,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
   textStyleUtils16() {
     return const TextStyle(
       color: blackColor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontSize: 16,
     );
   }
@@ -74,7 +76,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontSize: 18,
     );
   }

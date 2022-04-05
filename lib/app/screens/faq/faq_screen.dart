@@ -49,7 +49,7 @@ class FaqScreen extends GetView<FaqController> {
                   decoration: TextDecoration.underline,
                   decorationColor: appColor,
                   decorationThickness: 1.5,
-                  fontFamily: "Open Sans",
+                  fontFamily: "OpenSans",
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: appColorButton,
@@ -84,7 +84,7 @@ class FaqScreen extends GetView<FaqController> {
                       title: Text(
                         controller.getFaqList[index].title.toString(),
                         style: const TextStyle(
-                          fontFamily: "Open Sans",
+                          fontFamily: "OpenSans",
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
                           color: brownColor,

@@ -43,7 +43,7 @@ class CountryScreen extends GetView<CountryController> {
                                 //     title: LanguageConstant.selectLangCurrText.tr,
                                 //     middleText: LanguageConstant.selectLangCurrDescText.tr,
                                 //     backgroundColor: appSubscribeButtonColor,
-                                //     titleStyle: const TextStyle(color: appColorPrimary,fontSize: 14.0,fontFamily: 'Open Sans'),
+                                //     titleStyle: const TextStyle(color: appColorPrimary,fontSize: 14.0,fontFamily: 'OpenSans'),
                                 //     middleTextStyle: const TextStyle(color: Colors.white),
                                 //     contentPadding: EdgeInsets.zero,
                                 //     radius: 2,

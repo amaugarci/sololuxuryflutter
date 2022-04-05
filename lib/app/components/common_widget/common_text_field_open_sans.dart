@@ -15,7 +15,7 @@ class CommonTextFieldOpenSans extends StatelessWidget {
   bool? isValidationShow = true;
   Border? textFieldBorder;
   Color? textColor;
-  String? fontFamily = "Open Sans";
+  String? fontFamily = "OpenSans";
   FontWeight? fontWeight;
   TextAlign? textAlign;
   Color? borderColor;

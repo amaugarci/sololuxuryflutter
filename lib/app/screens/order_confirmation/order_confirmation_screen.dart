@@ -7,6 +7,7 @@ import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/order_confirmation/order_confirmation_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import '../../../utils/app_constants.dart';
 import '../../utils/app_asset.dart';
 
 class OrderConfirmationPage extends GetView<OrderConfirmationController> {
@@ -43,7 +44,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
                             style: const TextStyle(
                               color: blackColor,
                               fontSize: 18,
-                              fontFamily: 'Poppins',
+                              fontFamily: AppConstants.fontPoppins,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -125,7 +126,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
-                                        fontFamily: 'Poppins',
+                                        fontFamily: AppConstants.fontPoppins,
                                         color: unselectedTabColor,
                                       ),
                                     ),
@@ -134,7 +135,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
-                                        fontFamily: 'Poppins',
+                                        fontFamily: AppConstants.fontPoppins,
                                         color: unselectedTabColor,
                                       ),
                                     ),
@@ -144,7 +145,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
-                                        fontFamily: 'Poppins',
+                                        fontFamily: AppConstants.fontPoppins,
                                         color: unselectedTabColor,
                                       ),
                                     )
@@ -325,7 +326,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return const TextStyle(
       color: blackColor,
       fontSize: 16,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w400,
     );
   }
@@ -334,7 +335,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Poppins',
+      fontFamily: AppConstants.fontPoppins,
       fontWeight: FontWeight.w400,
     );
   }
@@ -343,7 +344,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Poppins',
+      fontFamily: AppConstants.fontPoppins,
       fontWeight: FontWeight.w500,
     );
   }
@@ -352,7 +353,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
     );
   }
@@ -361,7 +362,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return TextStyle(
       color: color ?? blackColor,
       fontSize: size ?? 20,
-      fontFamily: 'Open Sans',
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
     );
   }
@@ -370,7 +371,7 @@ class OrderConfirmationPage extends GetView<OrderConfirmationController> {
     return const TextStyle(
       color: blackColor,
       fontSize: 16,
-      fontFamily: "Montserrat",
+      fontFamily: AppConstants.fontMontserrat,
       fontWeight: FontWeight.w500,
     );
   }

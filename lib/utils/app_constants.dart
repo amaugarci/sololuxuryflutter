@@ -143,6 +143,7 @@ class AppConstants {
 
   static const String fontPoppins = 'Poppins';
   static const String fontOpenSans = 'OpenSans';
+  static const String fontMontserrat = 'Montserrat';
 
   static String privacyPolicyApi = 'cmspagemanagerList/18';
   static String termAndConditionApi = 'cmspagemanagerList/19';

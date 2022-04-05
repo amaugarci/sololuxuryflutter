@@ -163,6 +163,8 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
+import '../../../utils/app_constants.dart';
+
 class CharityScreen extends GetView<CharityController> {
   const CharityScreen({Key? key}) : super(key: key);
 
@@ -187,7 +189,7 @@ class CharityScreen extends GetView<CharityController> {
                     decorationColor: appColor,
                     decorationThickness: 1.5,
                     color: appColor,
-                    fontFamily: "OpenSans",
+                    fontFamily: AppConstants.fontOpenSans,
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
                   ),
@@ -252,7 +254,7 @@ class CharityScreen extends GetView<CharityController> {
   commonStyle400({var textSize}) {
     return  TextStyle(
       color: blackColor,
-      fontFamily: "OpenSans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w400,
       fontSize:textSize?? 16,
     );
