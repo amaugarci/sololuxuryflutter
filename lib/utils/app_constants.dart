@@ -45,7 +45,8 @@ class AppConstants {
       "/V1/carts/mine/shipping-information";
   static const String addressList = "/rest/V1/customers/me";
 
-  static String productListEndPoint = "/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
+  static String productListEndPoint =
+      "/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
   static String optionsEndPoint = "/V1/products/attributes/brands/options";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";
@@ -147,4 +148,5 @@ class AppConstants {
 
   static String privacyPolicyApi = 'cmspagemanagerList/18';
   static String termAndConditionApi = 'cmspagemanagerList/19';
+  static String addWishList = '/rest/V1/wishlist/';
 }

@@ -21,8 +21,7 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(RoutesConstants.productDetailsScreen,
-            arguments: [item]);
+        Get.toNamed(RoutesConstants.productDetailsScreen, arguments: [item]);
       },
       child: Container(
         width: 150,
@@ -51,9 +50,18 @@ class Product extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Align(alignment: Alignment.topRight,
-                        child: SvgPicture.asset(AppAsset.heart, height: 14, color: appColor,)),
-
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: item!.isWishList.value
+                            ? Icon(
+                                Icons.favorite,
+                                color: appColor,
+                              )
+                            : SvgPicture.asset(
+                                AppAsset.heart,
+                                height: 14,
+                                color: appColor,
+                              )),
                   ),
                 ],
               ),
@@ -61,19 +69,28 @@ class Product extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               "${item!.getBrandName()}",
-              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                  fontSize: 16,
+                  overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Text(
               "${item?.name}",
-              style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16, overflow: TextOverflow.ellipsis),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                  fontSize: 16,
+                  overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 6),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '${localStore.currentCurrency}' + "${item?.getPriceFromConfigurableProduct(itemList,item)}",
+                  '${localStore.currentCurrency}' +
+                      "${item?.getPriceFromConfigurableProduct(itemList, item)}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,

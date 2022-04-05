@@ -225,8 +225,67 @@ class RecommendedProductsAPIRepository extends GetxController {
       print("ERROR))))))+==============$e");
     }
   }
-}
 
+  Future addTOWishListProductResponse(sku) async {
+    var postData = {"email": "parth.vision123@gmail.com"};
+    print(
+        "Url-> ${AppConstants.apiEndPointLogin + AppConstants.addWishList + "$sku"}");
+    final response = await http.put(
+      Uri.parse(
+          AppConstants.apiEndPointLogin + AppConstants.addWishList + "$sku"),
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": localStore.customerToken
+      },
+      body: json.encode(postData),
+    );
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        return list;
+      }
+      if (response.statusCode == 400) {
+        return json.decode(response.body);
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
+  Future deleteWishList(getId) async {
+    var postData = {"email": "parth.vision123@gmail.com"};
+    print(
+        "Url-> ${AppConstants.apiEndPointLogin + AppConstants.addWishList + "$getId"}");
+    final response = await http.delete(
+      Uri.parse(
+          AppConstants.apiEndPointLogin + AppConstants.addWishList + "$getId"),
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": localStore.customerToken
+      },
+      body: json.encode(postData),
+    );
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        return list;
+      }
+      if (response.statusCode == 400) {
+        return json.decode(response.body);
+      } else {
+        print("###################${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+}
 // @override
 // Future getSizeListApi(id) async {
 //   final response = await http.get(

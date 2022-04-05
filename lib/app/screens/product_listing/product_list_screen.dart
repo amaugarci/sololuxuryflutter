@@ -5,8 +5,11 @@ import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
 import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/filter/filter_model.dart';
+import 'package:solo_luxury/utils/app_constants.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 
 import '../../../data/model/Product/product_model.dart';
+import '../../../main.dart';
 import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
@@ -122,7 +125,10 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w300,
+                color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -182,6 +188,7 @@ class ProductListScreen extends GetView<ProductController> {
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
+
               ),
             )
           ],
@@ -190,26 +197,144 @@ class ProductListScreen extends GetView<ProductController> {
     );
   }
 
-  Widget products() {
-    return GridView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 12.5,
-        childAspectRatio: 0.55,
-      ),
-      itemBuilder: (_, index) {
-        Item? item = controller.productModel?.value.items?[index];
-        if (item == null) {
-          return Container();
-        } else {
-          return Product(item: item, itemList: controller.productModel?.value.items!);
-        }
-      },
-      itemCount: controller.productModel?.value.items?.length,
-    );
+  Widget products(context) {
+    return Obx(() => GridView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 12.5,
+            childAspectRatio: 0.55,
+          ),
+          itemBuilder: (_, index) {
+            Item? item = controller.productModel?.value.items?[index];
+            if (item == null) {
+              return Container();
+            } else {
+              return GestureDetector(
+                onTap: () {
+                  // Get.toNamed(RoutesConstants.productDetailsScreen,
+                  //     arguments: [item]);
+                },
+                child: Container(
+                  width: 150,
+                  color: backGroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 210,
+                        //padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: appColor,
+                            width: 1.4,
+                          ),
+                        ),
+                        child: Stack(
+                          //mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.network(
+                              "${AppConstants.productImageUrl}${item.getProductImage()}",
+                              height: 210,
+                              width: 210,
+                              fit: BoxFit.fill,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (item.isWishList.value) {
+                                  controller.deleteWishListData(
+                                      context,
+                                      item.name,
+                                      item.customAttributes![1].value,
+                                      item.sku,
+                                      item.id,
+                                      index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                } else {
+                                  controller.postAddToWishlistData(
+                                      context,
+                                      item.name,
+                                      item.customAttributes![1].value,
+                                      item.sku,
+                                      index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: favoriteOrNot(item)
+                                    //  item.isWishList.value
+                                    //     ? Icon(
+                                    //         Icons.favorite,
+                                    //         color: appColor,
+                                    //       )
+                                    //     : SvgPicture.asset(
+                                    //         AppAsset.heart,
+                                    //         height: 14,
+                                    //         color: appColor,
+                                    //       )
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "${item.getBrandName()}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "${item.name}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '${localStore.currentCurrency}' +
+                                "${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 50),
+                          Text(
+                            '\$' + "${item.price}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black45,
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
+          itemCount: controller.productModel?.value.items?.length,
+        ));
   }
 
   filterHeader() {
@@ -238,20 +363,38 @@ class ProductListScreen extends GetView<ProductController> {
     );
   }
 
+  Widget favoriteOrNot(Item item) {
+    return Obx(
+      () => item.isWishList.value
+          ? Icon(
+              Icons.favorite,
+              color: appColor,
+            )
+          : SvgPicture.asset(
+              AppAsset.heart,
+              height: 14,
+              color: appColor,
+            ),
+    );
+  }
+
   Widget category() {
     return Expanded(
       flex: 3,
       child: Container(
+
         alignment: Alignment.centerLeft,
         color: Colors.grey[300],
         padding: const EdgeInsets.only(left: 5.0),
         margin: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
+
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value =
+                  FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -274,8 +417,8 @@ class ProductListScreen extends GetView<ProductController> {
             width: Get.width,
             child: Align(
               alignment: Alignment.centerLeft,
-              child:
-                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child: CommonTextOpenSans("${item.attrLabel}",
+                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
