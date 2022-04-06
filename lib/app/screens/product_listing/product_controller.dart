@@ -21,6 +21,8 @@ class ProductController extends GetxController {
   var homeCategoryProductList = <ProductModel>[].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
+  List<Item> itemList = [];
+  ProductModel saveProductModel = ProductModel();
   final ProductListAPIRepository productListAPIRepository;
 
   ProductController({required this.productListAPIRepository});
@@ -53,6 +55,13 @@ class ProductController extends GetxController {
     await getOptionsFromAPI();
     productModel?.value =
         await productListAPIRepository.getProductListApiResponse(val);
+    print("getHomeProducts -> ${productModel!.value.items!.length}");
+    if(productModel?.value!=null){
+      itemList = [];
+      for(var element in productModel!.value.items!){
+        itemList.add(element);
+      }
+    }
     isLoading.value = false;
   }
 

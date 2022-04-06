@@ -22,7 +22,7 @@ PreferredSizeWidget commonAppbar({String title = ""}) {
   );
 }
 
-PreferredSizeWidget commonAppbarDialog({String title = ""}) {
+PreferredSizeWidget commonAppbarDialog({String title = "",onTapRefresh}) {
   return AppBar(
     leading: InkWell(
       onTap: () {
@@ -33,12 +33,15 @@ PreferredSizeWidget commonAppbarDialog({String title = ""}) {
         size: 24.0,
       ),
     ),
-    actions: const [
-      Padding(
-        padding: EdgeInsets.only(right:8.0),
-        child: Icon(
-          Icons.refresh_sharp,
-          size: 24.0,
+    actions: [
+      InkWell(
+        onTap: onTapRefresh,
+        child: const Padding(
+          padding: EdgeInsets.only(right:8.0),
+          child: Icon(
+            Icons.refresh_sharp,
+            size: 24.0,
+          ),
         ),
       ),
     ],

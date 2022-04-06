@@ -3,10 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
-import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/filter/filter_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
-import 'package:solo_luxury/utils/app_routes.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../main.dart';
@@ -125,10 +123,7 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w300,
-                color: Colors.black),
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -140,37 +135,24 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget filter() {
-    return Scaffold(
-      appBar: commonAppbarDialog(
-        title: "Filters",
-      ),
-      backgroundColor: Colors.white,
-      body: Container(
-        height: MediaQuery.of(Get.context!).size.height,
-        alignment: Alignment.bottomCenter,
+    return Material(
+      child: Container(
+        height: Get.height,
+        width: Get.width,
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-                // decoration: BoxDecoration(
-                //     border: Border.all(width: 1, color: brownColor)),
-                child: Column(
-              children: [
-                Container(
-                  height: Get.height * .8,
-                  width: Get.width,
-                  decoration: const BoxDecoration(color: Colors.white),
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      category(),
-                      subCategory(),
-                    ],
-                  ),
-                ),
-              ],
-            )),
+            commonAppbarDialog(title: "Filters", onTapRefresh: () {}),
+            Expanded(
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  category(),
+                  subCategory(),
+                ],
+              ),
+            ),
             Container(
               width: Get.width,
               height: 40.0,
@@ -178,7 +160,9 @@ class ProductListScreen extends GetView<ProductController> {
               child: CommonButton(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 buttonType: ButtonType.ElevatedButton,
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 elevation: 0.0,
                 color: appColorButton,
                 borderRadius: 0.0,
@@ -188,9 +172,8 @@ class ProductListScreen extends GetView<ProductController> {
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
-
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -198,6 +181,10 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget products(context) {
+    controller.productModel?.value.items = controller.productModel?.value.items!.where((element) {
+      print("element -> $element");
+      return element.visibility == 4;
+    }).toList();
     return Obx(() => GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
@@ -209,9 +196,8 @@ class ProductListScreen extends GetView<ProductController> {
           ),
           itemBuilder: (_, index) {
             Item? item = controller.productModel?.value.items?[index];
-            if (item == null) {
-              return Container();
-            } else {
+            if (item != null && item.visibility == 4) {
+              print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
               return GestureDetector(
                 onTap: () {
                   // Get.toNamed(RoutesConstants.productDetailsScreen,
@@ -246,28 +232,17 @@ class ProductListScreen extends GetView<ProductController> {
                               onTap: () {
                                 if (item.isWishList.value) {
                                   controller.deleteWishListData(
-                                      context,
-                                      item.name,
-                                      item.customAttributes![1].value,
-                                      item.sku,
-                                      item.id,
-                                      index);
+                                      context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
                                   print("@@@@@@${item.isWishList.value}");
                                 } else {
                                   controller.postAddToWishlistData(
-                                      context,
-                                      item.name,
-                                      item.customAttributes![1].value,
-                                      item.sku,
-                                      index);
+                                      context, item.name, item.customAttributes![1].value, item.sku, index);
                                   print("@@@@@@${item.isWishList.value}");
                                 }
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: favoriteOrNot(item)
+                                child: Align(alignment: Alignment.topRight, child: favoriteOrNot(item)
                                     //  item.isWishList.value
                                     //     ? Icon(
                                     //         Icons.favorite,
@@ -307,8 +282,10 @@ class ProductListScreen extends GetView<ProductController> {
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            '${localStore.currentCurrency}' +
-                                "${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
+                            '${localStore.getRegularPriceWithCurrency(
+                              item.getPriceFromConfigurableProduct(controller.itemList, item).toString(),
+                              item.getConvertRegularPriceFromConfigurableProduct(controller.itemList, item),
+                            )}',
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
@@ -317,7 +294,7 @@ class ProductListScreen extends GetView<ProductController> {
                           ),
                           const SizedBox(width: 50),
                           Text(
-                            '\$' + "${item.price}",
+                            '${item.extensionAttributes!.convertedRegularOldPrice}',
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black45,
@@ -330,6 +307,12 @@ class ProductListScreen extends GetView<ProductController> {
                     ],
                   ),
                 ),
+              );
+            } else {
+              return Container(
+                height: 10.0,
+                width: 10.0,
+                color: Colors.pink,
               );
             }
           },
@@ -382,19 +365,16 @@ class ProductListScreen extends GetView<ProductController> {
     return Expanded(
       flex: 3,
       child: Container(
-
         alignment: Alignment.centerLeft,
-        color: Colors.grey[300],
+        color: lightBrownColor,
         padding: const EdgeInsets.only(left: 5.0),
         margin: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
-
         child: ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value =
-                  FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -413,12 +393,12 @@ class ProductListScreen extends GetView<ProductController> {
             height: 50.0,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration:
-                BoxDecoration(color: controller.currentCategoryIndex.value == index ? Colors.white : Colors.grey[300]),
+                BoxDecoration(color: controller.currentCategoryIndex.value == index ? Colors.white : lightBrownColor),
             width: Get.width,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: CommonTextOpenSans("${item.attrLabel}",
-                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child:
+                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
@@ -479,7 +459,7 @@ class ProductListScreen extends GetView<ProductController> {
           child: ListView(
             padding: const EdgeInsets.only(top: 5.0),
             children: [
-              ListView.builder(
+              Obx(() => ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -495,7 +475,7 @@ class ProductListScreen extends GetView<ProductController> {
                       child: Container(
                         margin: const EdgeInsets.all(10.0),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Obx(() => Container(
@@ -510,7 +490,9 @@ class ProductListScreen extends GetView<ProductController> {
                                     size: 24.0,
                                   ),
                                 )),
-                            const SizedBox(width: 15.0,),
+                            const SizedBox(
+                              width: 15.0,
+                            ),
                             Expanded(
                               child: CommonTextOpenSans(
                                 category.display,
@@ -522,7 +504,7 @@ class ProductListScreen extends GetView<ProductController> {
                         ),
                       ),
                     );
-                  }),
+                  })),
             ],
           ),
         ),
