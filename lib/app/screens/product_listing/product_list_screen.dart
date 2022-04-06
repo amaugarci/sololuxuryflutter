@@ -185,7 +185,6 @@ class ProductListScreen extends GetView<ProductController> {
       print("element -> $element");
       return element.visibility == 4;
     }).toList();
-    print("controller.productModel?.value.items -> ${controller.productModel?.value.items!.length}");
     return Obx(() => GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
@@ -198,7 +197,7 @@ class ProductListScreen extends GetView<ProductController> {
           itemBuilder: (_, index) {
             Item? item = controller.productModel?.value.items?[index];
             if (item != null && item.visibility == 4) {
-              print("item -> ${item.getBrandName()}");
+              print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
               return GestureDetector(
                 onTap: () {
                   // Get.toNamed(RoutesConstants.productDetailsScreen,
@@ -283,7 +282,10 @@ class ProductListScreen extends GetView<ProductController> {
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            '${localStore.getRegularPriceWithCurrency(item.price.toString(), item.extensionAttributes!.convertedRegularPrice,)}',
+                            '${localStore.getRegularPriceWithCurrency(
+                              item.getPriceFromConfigurableProduct(controller.itemList, item).toString(),
+                              item.getConvertRegularPriceFromConfigurableProduct(controller.itemList, item),
+                            )}',
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black,

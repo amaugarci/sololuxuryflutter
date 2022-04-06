@@ -194,11 +194,31 @@ class Item {
           }
         }
       }
-      // if (item.visibility == 4) {
-      //   item.price = priceList.reduce(min);
-      // }
+       if (item.visibility == 4) {
+         item.price = priceList.reduce(min);
+       }
     }
     return item.price;
+  }
+
+  getConvertRegularPriceFromConfigurableProduct(List<Item>? itemList, Item? item) {
+    print("getConvertRegularPriceFromConfigurableProduct -> ${itemList!.length} - ${item!.extensionAttributes!.convertedRegularPrice}");
+    if (item.extensionAttributes!.configurableProductLinks!.isNotEmpty) {
+      for (int i = 0;
+          i < item.extensionAttributes!.configurableProductLinks!.length;
+          i++) {
+
+        for (int j = 0; j < itemList.length; j++) {
+          int configureItemId =
+              item.extensionAttributes!.configurableProductLinks![i];
+          print("name -> ${item.getBrandName()} -> ${itemList[j].id} - ${configureItemId}");
+          if (itemList[j].id == configureItemId) {
+            item.extensionAttributes!.convertedRegularPrice = itemList[j].extensionAttributes!.convertedRegularPrice!;
+          }
+        }
+      }
+    }
+    return item.extensionAttributes!.convertedRegularPrice;
   }
 }
 
