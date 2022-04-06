@@ -92,6 +92,7 @@ class AppConstants {
 
   static const String defaultToken = "Bearer u75tnrg0z2ls8c4yubonwquupncvhqie";
   static const String defaultToken1 = "Bearer 6yd15hrwmolzw4vjl33bdmy3ry0yqge7";
+  static const String defaultToken3 = "Bearer 81ob72p4r5npe8q4zh12k9d9jrzuqz4m";
 
   // static String apiEndPoint =
   //     "http://solo_luxury-env.eba-hfpkwp9f.us-east-1.elasticbeanstalk.com";
@@ -151,4 +152,6 @@ class AppConstants {
   static String privacyPolicyApi = 'cmspagemanagerList/18';
   static String termAndConditionApi = 'cmspagemanagerList/19';
   static String addWishList = '/rest/V1/wishlist/';
+  static String returnReasonApi = '/V1/orderReturnList/';
+  // static String returnReasonApi = '/rest/V1/orderReturnList/';
 }

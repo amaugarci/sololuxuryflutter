@@ -62,5 +62,9 @@ class RoutesConstants {
 
   static const String brandDetailsScreen = "/brandDetailsScreen";
 
+
   static const String newsLetterScreen = "/newsLetterScreen";
+
+  static const String orderDetailsScreen = "/orderDetailsScreen";
+
 }

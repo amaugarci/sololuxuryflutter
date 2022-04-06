@@ -337,4 +337,6 @@ class LanguageConstant {
   static const String policyHeadingText = "policyHeadingText";
   static const String termAndConditionHeadingText =
       "termAndConditionHeadingText";
+  static const String reasonReturnText = "reasonReturnText";
+  static const String returnItemText = "returnItemText";
 }
