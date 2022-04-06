@@ -47,6 +47,9 @@ class AppConstants {
 
   static String productListEndPoint =
       "/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
+
+  static String sortedProductListEndPoint = "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]=";
+
   static String optionsEndPoint = "/V1/products/attributes/brands/options";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";
@@ -77,8 +80,7 @@ class AppConstants {
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
   static String apiEndPointLogin = "https://www.sololuxury.com";
   static String adminToken = "Bearer 1zo8slf3nn8a1nlijrvbwse53kmvo962";
-  static String productImageUrl =
-      "https://www.sololuxury.com/media/catalog/product/";
+  static String productImageUrl = "https://www.sololuxury.com/media/catalog/product/";
 
   //static String apiEndPoint = "https://api.solo_luxury.com";
   //static String apiEndPointLogin = "https://dev3.sololuxury.com";
