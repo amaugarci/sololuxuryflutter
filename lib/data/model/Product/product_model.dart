@@ -126,21 +126,24 @@ class Item {
 
   getProductImage() {
     CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "image");
+        .firstWhere((element) => element.attributeCode == "image", orElse: () => CustomAttribute(attributeCode: ""));
+    if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getProductDescription() {
     CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "description");
+        .firstWhere((element) => element.attributeCode == "description", orElse: () => CustomAttribute(attributeCode: ""));
+    if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getSizeChart() {
     CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "size_chart_url");
+        .firstWhere((element) => element.attributeCode == "size_chart_url", orElse: () => CustomAttribute(attributeCode: ""));
+    if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
@@ -156,7 +159,8 @@ class Item {
 
   getColor() {
     CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "color");
+        .firstWhere((element) => element.attributeCode == "color", orElse: () => CustomAttribute(attributeCode: ""));
+    if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
@@ -184,16 +188,15 @@ class Item {
         for (int j = 0; j < itemList!.length; j++) {
           int configureItemId =
               item.extensionAttributes!.configurableProductLinks![i];
-          print(
-              "Condition-> ${itemList[j].id} - ${configureItemId} -> ${itemList[j].id == configureItemId}");
+
           if (itemList[j].id == configureItemId) {
             priceList.add(itemList[j].price!);
           }
         }
       }
-      if (item.visibility == 4) {
-        item.price = priceList.reduce(min);
-      }
+      // if (item.visibility == 4) {
+      //   item.price = priceList.reduce(min);
+      // }
     }
     return item.price;
   }
@@ -225,11 +228,15 @@ class ExtensionAttributes {
     this.websiteIds,
     this.categoryLinks,
     this.configurableProductLinks,
+    this.convertedRegularPrice,
+    this.convertedRegularOldPrice,
   });
 
   List<int>? websiteIds;
   List<CategoryLink>? categoryLinks;
   List<int>? configurableProductLinks;
+  String? convertedRegularPrice;
+  String? convertedRegularOldPrice;
 
   factory ExtensionAttributes.fromJson(Map<String, dynamic> json) =>
       ExtensionAttributes(
@@ -239,6 +246,8 @@ class ExtensionAttributes {
         configurableProductLinks: json["configurable_product_links"] != null
             ? List<int>.from(json["configurable_product_links"].map((x) => x))
             : [],
+        convertedRegularPrice: json["converted_regular_price"],
+        convertedRegularOldPrice: json["converted_regular_old_price"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -247,6 +256,8 @@ class ExtensionAttributes {
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
         "configurable_product_links":
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
+    "converted_regular_price": convertedRegularPrice,
+    "converted_regular_old_price": convertedRegularOldPrice,
       };
 }
 

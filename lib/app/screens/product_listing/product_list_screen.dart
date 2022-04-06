@@ -123,10 +123,7 @@ class ProductListScreen extends GetView<ProductController> {
         children: const [
           Text(
             'Newest First',
-            style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w300,
-                color: Colors.black),
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
           ),
           Icon(
             Icons.expand_more,
@@ -146,8 +143,7 @@ class ProductListScreen extends GetView<ProductController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            commonAppbarDialog(title: "Filters", onTapRefresh: () {
-            }),
+            commonAppbarDialog(title: "Filters", onTapRefresh: () {}),
             Expanded(
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -185,6 +181,11 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget products(context) {
+    controller.productModel?.value.items = controller.productModel?.value.items!.where((element) {
+      print("element -> $element");
+      return element.visibility == 4;
+    }).toList();
+    print("controller.productModel?.value.items -> ${controller.productModel?.value.items!.length}");
     return Obx(() => GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
@@ -196,9 +197,8 @@ class ProductListScreen extends GetView<ProductController> {
           ),
           itemBuilder: (_, index) {
             Item? item = controller.productModel?.value.items?[index];
-            if (item == null) {
-              return Container();
-            } else {
+            if (item != null && item.visibility == 4) {
+              print("item -> ${item.getBrandName()}");
               return GestureDetector(
                 onTap: () {
                   // Get.toNamed(RoutesConstants.productDetailsScreen,
@@ -233,20 +233,11 @@ class ProductListScreen extends GetView<ProductController> {
                               onTap: () {
                                 if (item.isWishList.value) {
                                   controller.deleteWishListData(
-                                      context,
-                                      item.name,
-                                      item.customAttributes![1].value,
-                                      item.sku,
-                                      item.id,
-                                      index);
+                                      context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
                                   print("@@@@@@${item.isWishList.value}");
                                 } else {
                                   controller.postAddToWishlistData(
-                                      context,
-                                      item.name,
-                                      item.customAttributes![1].value,
-                                      item.sku,
-                                      index);
+                                      context, item.name, item.customAttributes![1].value, item.sku, index);
                                   print("@@@@@@${item.isWishList.value}");
                                 }
                               },
@@ -292,8 +283,7 @@ class ProductListScreen extends GetView<ProductController> {
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            '${localStore.currentCurrency}' +
-                                "${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
+                            '${localStore.getRegularPriceWithCurrency(item.price.toString(), item.extensionAttributes!.convertedRegularPrice,)}',
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
@@ -302,7 +292,7 @@ class ProductListScreen extends GetView<ProductController> {
                           ),
                           const SizedBox(width: 50),
                           Text(
-                            '\$' + "${item.price}",
+                            '${item.extensionAttributes!.convertedRegularOldPrice}',
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black45,
@@ -315,6 +305,12 @@ class ProductListScreen extends GetView<ProductController> {
                     ],
                   ),
                 ),
+              );
+            } else {
+              return Container(
+                height: 10.0,
+                width: 10.0,
+                color: Colors.pink,
               );
             }
           },
@@ -367,7 +363,6 @@ class ProductListScreen extends GetView<ProductController> {
     return Expanded(
       flex: 3,
       child: Container(
-
         alignment: Alignment.centerLeft,
         color: lightBrownColor,
         padding: const EdgeInsets.only(left: 5.0),
@@ -377,8 +372,7 @@ class ProductListScreen extends GetView<ProductController> {
             padding: EdgeInsets.zero,
             itemCount: controller.filterList.length,
             itemBuilder: (_, index) {
-              controller.filterModel!.value =
-                  FilterModel.fromJson(controller.filterList[index]);
+              controller.filterModel!.value = FilterModel.fromJson(controller.filterList[index]);
               if (controller.filterModel == null) {
                 return Container();
               }
@@ -401,8 +395,8 @@ class ProductListScreen extends GetView<ProductController> {
             width: Get.width,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: CommonTextOpenSans("${item.attrLabel}",
-                  fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+              child:
+                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
             ),
           ),
         ));
@@ -494,7 +488,9 @@ class ProductListScreen extends GetView<ProductController> {
                                     size: 24.0,
                                   ),
                                 )),
-                            const SizedBox(width: 15.0,),
+                            const SizedBox(
+                              width: 15.0,
+                            ),
                             Expanded(
                               child: CommonTextOpenSans(
                                 category.display,
