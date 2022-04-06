@@ -78,6 +78,7 @@ import '../app/screens/country/country_binding.dart';
 import '../app/screens/country/country_screen.dart';
 import '../app/screens/dashboard/dashboard_binding.dart';
 import '../app/screens/dashboard/dashboard_screen.dart';
+import '../app/screens/news_letter/news_letter_screen.dart';
 import '../app/screens/product_listing/product_list_binding.dart';
 import '../app/screens/product_listing/product_list_screen.dart';
 import '../app/screens/refer_friend/refer_friend_screen.dart';
@@ -88,6 +89,11 @@ import '../app/screens/wishlist/wishlist_binding.dart';
 
 class AppPages {
   static final routes = [
+    GetPage(
+      name: RoutesConstants.newsLetterScreen,
+      page: () => NewsLetterScreen(),
+      // binding: NewsLetterBinding(),
+    ),
     GetPage(
       name: RoutesConstants.splashScreen,
       page: () => const SplashScreen(),
@@ -292,6 +298,11 @@ class AppPages {
       name: RoutesConstants.teamsConditionScreen,
       page: () => TermAndConditionScreen(),
       binding: TermAndConditionBinding(),
+    ),
+    GetPage(
+      name: RoutesConstants.newsLetterScreen,
+      page: () => NewsLetterScreen(),
+     // binding: TermAndConditionBinding(),
     ),
   ];
 }

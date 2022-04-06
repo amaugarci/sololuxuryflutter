@@ -11,12 +11,8 @@ abstract class ILoginProvider {
 
 class LoginProvider extends GetConnect implements ILoginProvider {
 
-
-
-
   @override
   void onInit() {
-
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = Duration(seconds: 60);

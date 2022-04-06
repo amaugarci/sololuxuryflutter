@@ -7,6 +7,7 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_pages.dart';
 import 'package:solo_luxury/utils/lang_directory/translation_service.dart';
 
+import '../utils/app_routes.dart';
 import 'services/notification_service.dart';
 
 class SoloLuxuryApp extends StatefulWidget {
@@ -58,6 +59,7 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
           ),
         ),
         getPages: AppPages.routes,
+        // initialRoute: RoutesConstants.newsLetterScreen,
         locale: TranslationService.locale,
         fallbackLocale: TranslationService.fallbackLocale,
         translations: TranslationService(),
