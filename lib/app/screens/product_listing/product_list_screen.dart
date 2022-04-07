@@ -204,7 +204,7 @@ class ProductListScreen extends GetView<ProductController> {
             crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 12.5,
-            childAspectRatio: 0.50,
+            childAspectRatio: 0.60,
           ),
           itemBuilder: (_, index) {
             Item? item = controller.productModel?.value.items?[index];
@@ -336,37 +336,37 @@ class ProductListScreen extends GetView<ProductController> {
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: () {
-                                  controller.getGenerateCart(
-                                    context,
-                                    item.name!,
-                                    "${item.customAttributes![1].value}",
-                                    item.sku,
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 4),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: appColor)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.shopping_cart,
-                                        size: 18,
-                                        color: appColor,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        LanguageConstant.addTOCart.tr,
-                                        style:
-                                            commonTextStyle600(color: appColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
+                              // InkWell(
+                              //   onTap: () {
+                              //     controller.getGenerateCart(
+                              //       context,
+                              //       item.name!,
+                              //       "${item.customAttributes![1].value}",
+                              //       item.sku,
+                              //     );
+                              //   },
+                              //   child: Container(
+                              //     padding: EdgeInsets.symmetric(vertical: 4),
+                              //     decoration: BoxDecoration(
+                              //         border: Border.all(color: appColor)),
+                              //     child: Row(
+                              //       mainAxisAlignment: MainAxisAlignment.center,
+                              //       children: [
+                              //         Icon(
+                              //           Icons.shopping_cart,
+                              //           size: 18,
+                              //           color: appColor,
+                              //         ),
+                              //         SizedBox(width: 10.0),
+                              //         Text(
+                              //           LanguageConstant.addTOCart.tr,
+                              //           style:
+                              //               commonTextStyle600(color: appColor),
+                              //         ),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // )
                             ],
                           ),
                         ),
