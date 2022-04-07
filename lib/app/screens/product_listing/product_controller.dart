@@ -22,7 +22,6 @@ class ProductController extends GetxController {
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
   List<Item> itemList = [];
-  ProductModel saveProductModel = ProductModel();
   final ProductListAPIRepository productListAPIRepository;
 
   ProductController({required this.productListAPIRepository});
