@@ -111,7 +111,7 @@ class AppConstants {
 
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
-  static String menuEndPoint = "/rest/V1/categories";
+  static String menuEndPoint = "/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
 
   static const String wishList = "/rest/V1/wishlist";
