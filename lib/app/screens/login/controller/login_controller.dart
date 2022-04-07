@@ -33,11 +33,14 @@ class LoginController extends GetxController {
       };
 
       log("authUserData : $authUserData");
-
-      loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim())).obs;
-      loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
-      await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
-      await localStore.getToken();
+      var data = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim()));
+      if(data!= null){
+        String dataString = jsonEncode(data);
+        loginResponseModel.value = dataString;
+        loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
+        await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+        await localStore.getToken();
+      }
       log("loginResponseModel : $loginResponseModel");
     } else {}
   }

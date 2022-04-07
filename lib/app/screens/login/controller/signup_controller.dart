@@ -4,13 +4,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:intl/intl.dart';
 import 'package:solo_luxury/app/components/storage_constant.dart';
 import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/data/model/signup_request_model.dart';
 import 'package:solo_luxury/data/model/signup_response_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
-import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/signup_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
@@ -21,25 +19,22 @@ class SignupController extends GetxController {
   Rx<TextEditingController> firstNameController = TextEditingController().obs;
   Rx<TextEditingController> lastNameController = TextEditingController().obs;
   Rx<TextEditingController> dateOfBirthController = TextEditingController().obs;
-  Rx<TextEditingController> marriageAnniversaryController =
-      TextEditingController().obs;
+  Rx<TextEditingController> marriageAnniversaryController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
-  Rx<TextEditingController> confirmPasswordController =
-      TextEditingController().obs;
+  Rx<TextEditingController> confirmPasswordController = TextEditingController().obs;
   RxBool newsLetter = false.obs;
 
   static final dataStorage = GetStorage();
 
   Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
 
-  Rx<SignUpResponseModel> signUpResponseModel = SignUpResponseModel().obs;
+  Rx<SignUpResponseModel?> signUpResponseModel = SignUpResponseModel().obs;
 
   final SignupAPIRepository signupAPIRepository;
 
   SignupController({required this.signupAPIRepository});
 
   registerUser(context, formKey) async {
-
     if (formKey.currentState!.validate()) {
       if (newsLetter.value) {
         /*{"customer":{"email":"custom799@gmail.com","firstname":"bb","lastname":"bb","website_id":151,"addresses":[], "dob":"05/05/1990","extension_attributes": {
@@ -59,7 +54,7 @@ class SignupController extends GetxController {
             lastname: lastNameController.value.text,
             email: emailController.value.text.trim(),
             websiteId: AppConstants.websiteId,
-            dob:  dateOfBirthController.value.text,
+            dob: dateOfBirthController.value.text,
             extensionAttributes: RequestExtensionAttributes(
               dom: marriageAnniversaryController.value.text,
             ),
@@ -67,14 +62,13 @@ class SignupController extends GetxController {
           password: passwordController.value.text.trim(),
         );
 
-        signUpResponseModel = (await signupAPIRepository
-                .getSignupAPIResponse(jsonEncode(signUpRequestModel)))
-            .obs;
-
-        setPrefStringValue(StorageConstant.userDatModel,
-            signUpResponseModelToJson(signUpResponseModel.value));
-
-        log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value)}");
+        var data = (await signupAPIRepository.getSignupAPIResponse(jsonEncode(signUpRequestModel)));
+        if (data != null) {
+          String dataString = jsonEncode(data);
+          signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(dataString)).obs;
+          setPrefStringValue(StorageConstant.userDatModel, signUpResponseModelToJson(signUpResponseModel.value!));
+          log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value!)}");
+        }
       } else {
         Get.snackbar("Alert", "Please agree for newsletter");
       }

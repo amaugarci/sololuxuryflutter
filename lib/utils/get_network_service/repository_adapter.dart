@@ -30,12 +30,12 @@ abstract class IReferFriendRepository {
 }
 
 abstract class ILoginRepository {
-  Future<String> getLoginAPIResponse(
+  Future<dynamic> getLoginAPIResponse(
       String loginRequestJson, String userName, String password);
 }
 
 abstract class ISignupRepository {
-  Future<SignUpResponseModel> getSignupAPIResponse(String signupRequestJson);
+  Future<dynamic> getSignupAPIResponse(String signupRequestJson);
 }
 
 abstract class IInfluencerRepository {
