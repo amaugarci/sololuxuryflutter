@@ -25,4 +25,41 @@ class ReturnReasonAPIRepository implements IReturnReasonRepository {
       return response.body!;
     }
   }
+
+  @override
+  Future<dynamic> postReturnItemAPIResponse(
+    String orderId,
+    String productsku,
+    String email,
+    String reason,
+    String langCode,
+  ) async {
+    final returnItemResponse =
+        await returnReasonAPIProvider.postReturnItemResponseProvider(
+            orderId: orderId,
+            productsku: productsku,
+            email: email,
+            reason: reason,
+            langCode: langCode);
+
+    print("Return Response Us Response $returnItemResponse");
+    return returnItemResponse;
+  }
+
+  @override
+  Future<String> getOrderTeakingResponse(id) async {
+    Response response =
+        await returnReasonAPIProvider.getOrderTeakingAPIResponse(
+            endPoint: AppConstants.orderTrakingApi + id);
+    if (response != null) {
+      print("response.statusCode -> ");
+      print(response.statusCode);
+    }
+
+    if (response.status.hasError) {
+      return Future.error(response.statusText!);
+    } else {
+      return response.body!;
+    }
+  }
 }

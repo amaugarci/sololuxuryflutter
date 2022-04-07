@@ -93,137 +93,137 @@ class BrandListPage extends GetView<BrandController> {
                 },
               ),
             ),
-            Container(
-              height: 32,
-              child: Center(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.filterList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final fliterList = controller.filterList[index];
-                      return InkWell(
-                        onTap: () {
-                          // print("${controller.listDisplay(text).length}");
-                          controller.brandDetails.value = fliterList;
-                          Get.to(
-                            const BrandDetailsPage(),
-                          );
-                          // if (controller.filtersearchAlllist
-                          //     .contains(fliterList)) {
-                          //   controller.setSerchwithAlphabatic("");
-                          // } else {
-                          //   controller.setSerchwithAlphabatic(fliterList);
-                          // }
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist
-                                        .contains(fliterList)
-                                    ? appColor
-                                    : Colors.transparent),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 8),
-                            child: Text(
-                              "${fliterList}",
-                              style: TextStyle(
-                                  color: controller.filtersearchAlllist
-                                          .contains(fliterList)
-                                      ? Colors.white
-                                      : appColor,
-                                  fontWeight: FontWeight.w500),
-                            )),
-                      );
-                    }),
-              ),
-            ),
-            Container(
-              height: 32,
-              child: Center(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.filterList2.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final fliterList = controller.filterList2[index];
-                      return InkWell(
-                        onTap: () {
-                          controller.brandDetails.value = fliterList;
-                          Get.to(const BrandDetailsPage());
+            // Container(
+            //   height: 32,
+            //   child: Center(
+            //     child: ListView.builder(
+            //         shrinkWrap: true,
+            //         scrollDirection: Axis.horizontal,
+            //         itemCount: controller.filterList.length,
+            //         itemBuilder: (BuildContext context, int index) {
+            //           final fliterList = controller.filterList[index];
+            //           return InkWell(
+            //             onTap: () {
+            //               // print("${controller.listDisplay(text).length}");
+            //               controller.brandDetails.value = fliterList;
+            //               Get.to(
+            //                 const BrandDetailsPage(),
+            //               );
+            //               // if (controller.filtersearchAlllist
+            //               //     .contains(fliterList)) {
+            //               //   controller.setSerchwithAlphabatic("");
+            //               // } else {
+            //               //   controller.setSerchwithAlphabatic(fliterList);
+            //               // }
+            //             },
+            //             child: Container(
+            //                 decoration: BoxDecoration(
+            //                     borderRadius: BorderRadius.circular(5),
+            //                     color: controller.filtersearchAlllist
+            //                             .contains(fliterList)
+            //                         ? appColor
+            //                         : Colors.transparent),
+            //                 padding: EdgeInsets.symmetric(
+            //                     horizontal: 8, vertical: 8),
+            //                 child: Text(
+            //                   "${fliterList}",
+            //                   style: TextStyle(
+            //                       color: controller.filtersearchAlllist
+            //                               .contains(fliterList)
+            //                           ? Colors.white
+            //                           : appColor,
+            //                       fontWeight: FontWeight.w500),
+            //                 )),
+            //           );
+            //         }),
+            //   ),
+            // ),
+            // Container(
+            //   height: 32,
+            //   child: Center(
+            //     child: ListView.builder(
+            //         shrinkWrap: true,
+            //         scrollDirection: Axis.horizontal,
+            //         itemCount: controller.filterList2.length,
+            //         itemBuilder: (BuildContext context, int index) {
+            //           final fliterList = controller.filterList2[index];
+            //           return InkWell(
+            //             onTap: () {
+            //               controller.brandDetails.value = fliterList;
+            //               Get.to(const BrandDetailsPage());
 
-                          // if (controller.filtersearchAlllist
-                          //     .contains(fliterList)) {
-                          //   controller.setSerchwithAlphabatic("");
-                          // } else {
-                          //   controller.setSerchwithAlphabatic(fliterList);
-                          // }
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist
-                                        .contains(fliterList)
-                                    ? appColor
-                                    : Colors.transparent),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 7.6, vertical: 8),
-                            child: Text(
-                              "${fliterList}",
-                              style: TextStyle(
-                                  color: controller.filtersearchAlllist
-                                          .contains(fliterList)
-                                      ? Colors.white
-                                      : appColor,
-                                  fontWeight: FontWeight.w500),
-                            )),
-                      );
-                    }),
-              ),
-            ),
-            Container(
-              height: 32,
-              child: Center(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.filterList3.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final fliterList = controller.filterList3[index];
-                      return InkWell(
-                        onTap: () {
-                          controller.brandDetails.value = fliterList;
-                          Get.to(const BrandDetailsPage());
+            //               // if (controller.filtersearchAlllist
+            //               //     .contains(fliterList)) {
+            //               //   controller.setSerchwithAlphabatic("");
+            //               // } else {
+            //               //   controller.setSerchwithAlphabatic(fliterList);
+            //               // }
+            //             },
+            //             child: Container(
+            //                 decoration: BoxDecoration(
+            //                     borderRadius: BorderRadius.circular(5),
+            //                     color: controller.filtersearchAlllist
+            //                             .contains(fliterList)
+            //                         ? appColor
+            //                         : Colors.transparent),
+            //                 padding: EdgeInsets.symmetric(
+            //                     horizontal: 7.6, vertical: 8),
+            //                 child: Text(
+            //                   "${fliterList}",
+            //                   style: TextStyle(
+            //                       color: controller.filtersearchAlllist
+            //                               .contains(fliterList)
+            //                           ? Colors.white
+            //                           : appColor,
+            //                       fontWeight: FontWeight.w500),
+            //                 )),
+            //           );
+            //         }),
+            //   ),
+            // ),
+            // Container(
+            //   height: 32,
+            //   child: Center(
+            //     child: ListView.builder(
+            //         shrinkWrap: true,
+            //         scrollDirection: Axis.horizontal,
+            //         itemCount: controller.filterList3.length,
+            //         itemBuilder: (BuildContext context, int index) {
+            //           final fliterList = controller.filterList3[index];
+            //           return InkWell(
+            //             onTap: () {
+            //               controller.brandDetails.value = fliterList;
+            //               Get.to(const BrandDetailsPage());
 
-                          // if (controller.filtersearchAlllist
-                          //     .contains(fliterList)) {
-                          //   controller.setSerchwithAlphabatic("");
-                          // } else {
-                          //   controller.setSerchwithAlphabatic(fliterList);
-                          // }
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: controller.filtersearchAlllist
-                                        .contains(fliterList)
-                                    ? appColor
-                                    : Colors.transparent),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 8),
-                            child: Text(
-                              "${fliterList}",
-                              style: TextStyle(
-                                  color: controller.filtersearchAlllist
-                                          .contains(fliterList)
-                                      ? Colors.white
-                                      : appColor,
-                                  fontWeight: FontWeight.w500),
-                            )),
-                      );
-                    }),
-              ),
-            ),
+            //               // if (controller.filtersearchAlllist
+            //               //     .contains(fliterList)) {
+            //               //   controller.setSerchwithAlphabatic("");
+            //               // } else {
+            //               //   controller.setSerchwithAlphabatic(fliterList);
+            //               // }
+            //             },
+            //             child: Container(
+            //                 decoration: BoxDecoration(
+            //                     borderRadius: BorderRadius.circular(5),
+            //                     color: controller.filtersearchAlllist
+            //                             .contains(fliterList)
+            //                         ? appColor
+            //                         : Colors.transparent),
+            //                 padding: EdgeInsets.symmetric(
+            //                     horizontal: 8, vertical: 8),
+            //                 child: Text(
+            //                   "${fliterList}",
+            //                   style: TextStyle(
+            //                       color: controller.filtersearchAlllist
+            //                               .contains(fliterList)
+            //                           ? Colors.white
+            //                           : appColor,
+            //                       fontWeight: FontWeight.w500),
+            //                 )),
+            //           );
+            //         }),
+            //   ),
+            // ),
             Expanded(
               child: controller.isLoading.value
                   ? Container(
