@@ -4,7 +4,7 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import '../../config/global_config.dart';
 import '../model/Product/product_model.dart';
 
-Future<List<ProductModel>> getWishlistRequest() async {
+Future<List<ProductModel>> getWishlistRequest () async {
   String url = AppConstants.apiEndPointLogin+"/rest/V1/wishlist";
   Map<String, String> headers = {
     "Content-Type": "application/json",

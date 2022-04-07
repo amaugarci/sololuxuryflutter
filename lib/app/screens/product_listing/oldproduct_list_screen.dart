@@ -29,22 +29,22 @@ class ProductListScreen extends GetView<ProductController> {
         appBar: commonAppbar(title: "${Get.arguments[1]}",centerTitle: false,useAnotherTextStyle: true),
         body: controller.isLoading.value
             ? const Center(
-            child: SpinKitThreeBounce(
-              color: appColor,
-              // size: 50.0,
-            ))
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.5),
-            child: Column(children: [
-              filterWidget(),
-              const SizedBox(height: 15),
-              filterDropDown(),
-              const SizedBox(height: 30),
-              Expanded(
-                child: products(context),
-              ),
-            ]
-            )
+                padding: const EdgeInsets.symmetric(horizontal: 12.5),
+                child: Column(children: [
+                  filterWidget(),
+                  const SizedBox(height: 15),
+                  filterDropDown(),
+                  const SizedBox(height: 30),
+                  Expanded(
+                    child: products(context),
+                  ),
+                ]
+                )
         )
     )
     );
@@ -63,10 +63,10 @@ class ProductListScreen extends GetView<ProductController> {
               // padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                   color: backGroundColor.withOpacity(0.2),
-                  border: Border.all(
-                      color: appColor,
-                      width: 1.5
-                  )
+                border: Border.all(
+                  color: appColor,
+                  width: 1.5
+                )
               ),
               child: MaterialButton(
                 onPressed: (){
@@ -195,56 +195,56 @@ class ProductListScreen extends GetView<ProductController> {
       ),
       backgroundColor: Colors.white,
       body: Obx(
-              () {
-            return Column(
-              children: [
-                Divider(
-                  color: Colors.black,
-                  thickness: 1.5,
-                ),
-                ...List.generate(controller.sortTypeList.length, (index) =>
-                    InkWell(
-                      onTap: (){
-                        controller.selectedSortIndex.value = index;
-                        controller.selectedSortVal.value = controller.sortTypeList[index];
-                        print("selected sort type -> ${controller.selectedSortVal.value.name}");
-                      },
-                      child: Padding(
-                        padding:  EdgeInsets.only(left: 20.0,right:30,top: index == 0? 25:15,bottom: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(controller.sortTypeList.value[index].name,style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: appColor
-                            ),),
-                            Container(
-                              height: 18,
-                              width: 18,
+       () {
+          return Column(
+            children: [
+              Divider(
+                color: Colors.black,
+                thickness: 1.5,
+              ),
+              ...List.generate(controller.sortTypeList.length, (index) =>
+                  InkWell(
+                    onTap: (){
+                      controller.selectedSortIndex.value = index;
+                      controller.selectedSortVal.value = controller.sortTypeList[index];
+                      print("selected sort type -> ${controller.selectedSortVal.value.name}");
+                    },
+                    child: Padding(
+                      padding:  EdgeInsets.only(left: 20.0,right:30,top: index == 0? 25:15,bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(controller.sortTypeList.value[index].name,style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: appColor
+                          ),),
+                          Container(
+                            height: 18,
+                            width: 18,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: appColor,
+                                    width: 2
+                                )
+                            ),
+                            child: Container(
+                              margin: EdgeInsets.all(2.2),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: appColor,
-                                      width: 2
-                                  )
+                                color: controller.selectedSortIndex.value ==  index ? appColor:Colors.white
                               ),
-                              child: Container(
-                                margin: EdgeInsets.all(2.2),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: controller.selectedSortIndex.value ==  index ? appColor:Colors.white
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                )
-              ],
-            );
-          }
+                    ),
+                  )
+              )
+            ],
+          );
+        }
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
@@ -321,138 +321,138 @@ class ProductListScreen extends GetView<ProductController> {
       return element.visibility == 4;
     }).toList();
     return Obx(() => GridView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 12.5,
-        childAspectRatio: 0.55,
-      ),
-      itemBuilder: (_, index) {
-        Item? item = controller.productModel?.value.items?[index];
-        if (item != null && item.visibility == 4) {
-          print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
-          return GestureDetector(
-            onTap: () {
-              // Get.toNamed(RoutesConstants.productDetailsScreen,
-              //     arguments: [item]);
-            },
-            child: Container(
-              width: 150,
-              color: backGroundColor,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 210,
-                    //padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: appColor,
-                        width: 1.4,
-                      ),
-                    ),
-                    child: Stack(
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.network(
-                          "${AppConstants.productImageUrl}${item.getProductImage()}",
-                          height: 210,
-                          width: 210,
-                          fit: BoxFit.fill,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (item.isWishList.value) {
-                              controller.deleteWishListData(
-                                  context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
-                              print("@@@@@@${item.isWishList.value}");
-                            } else {
-                              controller.postAddToWishlistData(
-                                  context, item.name, item.customAttributes![1].value, item.sku, index);
-                              print("@@@@@@${item.isWishList.value}");
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Align(alignment: Alignment.topRight, child: favoriteOrNot(item)
-                              //  item.isWishList.value
-                              //     ? Icon(
-                              //         Icons.favorite,
-                              //         color: appColor,
-                              //       )
-                              //     : SvgPicture.asset(
-                              //         AppAsset.heart,
-                              //         height: 14,
-                              //         color: appColor,
-                              //       )
-                            ),
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 12.5,
+            childAspectRatio: 0.55,
+          ),
+          itemBuilder: (_, index) {
+            Item? item = controller.productModel?.value.items?[index];
+            if (item != null && item.visibility == 4) {
+              print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
+              return GestureDetector(
+                onTap: () {
+                  // Get.toNamed(RoutesConstants.productDetailsScreen,
+                  //     arguments: [item]);
+                },
+                child: Container(
+                  width: 150,
+                  color: backGroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 210,
+                        //padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: appColor,
+                            width: 1.4,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "${item.getBrandName()}",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                        fontSize: 16,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    "${item.name}",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                        fontSize: 16,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                  const SizedBox(height: 6),
-                  Row(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        '${localStore.getRegularPriceWithCurrency(
-                          item.getPriceFromConfigurableProduct(controller.itemList, item).toString(),
-                          item.getConvertRegularPriceFromConfigurableProduct(controller.itemList, item),
-                        )}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 16,
+                        child: Stack(
+                          //mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.network(
+                              "${AppConstants.productImageUrl}${item.getProductImage()}",
+                              height: 210,
+                              width: 210,
+                              fit: BoxFit.fill,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (item.isWishList.value) {
+                                  controller.deleteWishListData(
+                                      context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                } else {
+                                  controller.postAddToWishlistData(
+                                      context, item.name, item.customAttributes![1].value, item.sku, index);
+                                  print("@@@@@@${item.isWishList.value}");
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Align(alignment: Alignment.topRight, child: favoriteOrNot(item)
+                                    //  item.isWishList.value
+                                    //     ? Icon(
+                                    //         Icons.favorite,
+                                    //         color: appColor,
+                                    //       )
+                                    //     : SvgPicture.asset(
+                                    //         AppAsset.heart,
+                                    //         height: 14,
+                                    //         color: appColor,
+                                    //       )
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 50),
+                      const SizedBox(height: 10),
                       Text(
-                        '${item.extensionAttributes!.convertedRegularOldPrice}',
+                        "${item.getBrandName()}",
                         style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black45,
-                          decoration: TextDecoration.lineThrough,
-                          fontSize: 16,
-                        ),
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        "${item.name}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '${localStore.getRegularPriceWithCurrency(
+                              item.getPriceFromConfigurableProduct(controller.itemList, item).toString(),
+                              item.getConvertRegularPriceFromConfigurableProduct(controller.itemList, item),
+                            )}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 50),
+                          Text(
+                            '${item.extensionAttributes!.convertedRegularOldPrice}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black45,
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          );
-        } else {
-          return Container(
-            height: 10.0,
-            width: 10.0,
-            color: Colors.pink,
-          );
-        }
-      },
-      itemCount: controller.productModel?.value.items?.length,
-    ));
+                ),
+              );
+            } else {
+              return Container(
+                height: 10.0,
+                width: 10.0,
+                color: Colors.pink,
+              );
+            }
+          },
+          itemCount: controller.productModel?.value.items?.length,
+        ));
   }
 
   filterHeader() {
@@ -483,16 +483,16 @@ class ProductListScreen extends GetView<ProductController> {
 
   Widget favoriteOrNot(Item item) {
     return Obx(
-          () => item.isWishList.value
+      () => item.isWishList.value
           ? const Icon(
-        Icons.favorite,
-        color: appColor,
-      )
+              Icons.favorite,
+              color: appColor,
+            )
           : SvgPicture.asset(
-        AppAsset.heart,
-        height: 14,
-        color: appColor,
-      ),
+              AppAsset.heart,
+              height: 14,
+              color: appColor,
+            ),
     );
   }
 
@@ -521,22 +521,22 @@ class ProductListScreen extends GetView<ProductController> {
 
   Widget categoryWidget(FilterModel item, int index) {
     return Obx(() => GestureDetector(
-      onTap: () {
-        controller.changedData(index);
-      },
-      child: Container(
-        height: 50.0,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration:
-        BoxDecoration(color: controller.currentCategoryIndex.value == index ? Colors.white : lightBrownColor),
-        width: Get.width,
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child:
-          CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
-        ),
-      ),
-    ));
+          onTap: () {
+            controller.changedData(index);
+          },
+          child: Container(
+            height: 50.0,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration:
+                BoxDecoration(color: controller.currentCategoryIndex.value == index ? Colors.white : lightBrownColor),
+            width: Get.width,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child:
+                  CommonTextOpenSans("${item.attrLabel}", fontSize: 16, fontWeight: FontWeight.w400, color: appColor),
+            ),
+          ),
+        ));
   }
 
   Widget subCategory() {
@@ -614,17 +614,17 @@ class ProductListScreen extends GetView<ProductController> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Obx(() => Container(
-                              height: 24.0,
-                              width: 24.0,
-                              alignment: Alignment.centerLeft,
-                              child: Icon(
-                                category.isSelected.value
-                                    ? Icons.check_box_sharp
-                                    : Icons.check_box_outline_blank_sharp,
-                                color: Colors.black54,
-                                size: 24.0,
-                              ),
-                            )),
+                                  height: 24.0,
+                                  width: 24.0,
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    category.isSelected.value
+                                        ? Icons.check_box_sharp
+                                        : Icons.check_box_outline_blank_sharp,
+                                    color: Colors.black54,
+                                    size: 24.0,
+                                  ),
+                                )),
                             const SizedBox(
                               width: 15.0,
                             ),

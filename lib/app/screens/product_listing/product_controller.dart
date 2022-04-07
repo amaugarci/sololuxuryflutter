@@ -8,6 +8,7 @@ import 'package:solo_luxury/utils/get_network_service/APIRepository/recommended_
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../data/model/filter/filter_model.dart';
+import '../../../utils/app_constants.dart';
 import '../../utils/global_singlton.dart';
 import '../product_detail/product_detail_binding.dart';
 
@@ -16,6 +17,17 @@ class ProductController extends GetxController {
   var selectedIndex = 0.obs;
   var activeProduct = ProductModel().obs;
   var isLoading = true.obs;
+  RxString productId = "".obs;
+  RxInt selectedSortIndex = 0.obs;
+  Rx<SortValue> selectedSortVal = SortValue("Relevance", "DESC").obs;
+  RxList sortTypeList = <SortValue>[
+    SortValue("Relevance", "DESC"),
+    SortValue("New Arrivals", "DESC"),
+    SortValue("Price(highest first)", "DESC"),
+    SortValue("Price(lowest first)", "ASC"),
+    SortValue("Discount(highest first)", "DESC"),
+    SortValue("Discount(lowest first)", "ASC"),
+  ].obs;
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
 
   var homeCategoryProductList = <ProductModel>[].obs;
@@ -45,6 +57,7 @@ class ProductController extends GetxController {
     getHomeProducts(Get.arguments[0].toString());
     print("Id -> ${Get.arguments[0]}");
     print("Name -> ${Get.arguments[1]}");
+    productId.value = Get.arguments[0].toString();
     ProductDetailsBindings().dependencies();
     getFilterData();
     super.onInit();
@@ -62,6 +75,14 @@ class ProductController extends GetxController {
         itemList.add(element);
       }
     }
+    isLoading.value = false;
+  }
+
+  getSortedProducts() async {
+    isLoading.value = true;
+    await getOptionsFromAPI();
+    productModel?.value =
+    await productListAPIRepository.getSortedProductListApiResponse("$productId"+ AppConstants.sortedProductListEndPoint+selectedSortVal.value.value!);
     isLoading.value = false;
   }
 
@@ -149,4 +170,11 @@ class ProductController extends GetxController {
       }
     }
   }
+}
+
+class SortValue {
+  final String? name;
+  final String? value;
+
+  SortValue(this.name, this.value);
 }

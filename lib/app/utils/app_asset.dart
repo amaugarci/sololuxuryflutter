@@ -12,6 +12,7 @@ class AppAsset {
   static const search = "assets/icons/search.svg";
   static const heart = "assets/icons/heart.svg";
   static const filter = "assets/icons/filter.svg";
+  static const sort = "assets/icons/sort.png";
   static const menu = "assets/icons/menu.png";
   static const downArrow = "assets/icons/down_arrow.png";
   static const upArrow = "assets/icons/up_arrow.png";
