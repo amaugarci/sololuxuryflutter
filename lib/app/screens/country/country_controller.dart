@@ -89,9 +89,21 @@ class CountryController extends GetxController {
     storeWebsitesList.value = [];
     storeViewsList.value = [];
     storeConfigsList.value = [];
-    storeWebsitesList.value = jsonDecode(await countryAPIRepository.getStoreWebsitesAPIResponse());
-    storeViewsList.value = jsonDecode(await countryAPIRepository.getStoreViewsAPIResponse());
-    storeConfigsList.value = jsonDecode(await countryAPIRepository.getStoreConfigsAPIResponse());
+    var data = await countryAPIRepository.getStoreWebsitesAPIResponse();
+    if(data!=null){
+      String dataString = jsonEncode(data);
+      storeWebsitesList.value = jsonDecode(dataString);
+    }
+    var data1 = await countryAPIRepository.getStoreViewsAPIResponse();
+    if(data1!=null){
+      String dataString = jsonEncode(data1);
+      storeViewsList.value = jsonDecode(dataString);
+    }
+    var data2 = await countryAPIRepository.getStoreConfigsAPIResponse();
+    if(data2!=null){
+      String dataString = jsonEncode(data2);
+      storeConfigsList.value = jsonDecode(dataString);
+    }
     if(countryCode!=null) {
       for (int i = 0; i < storeWebsitesList.value.length; i++) {
         StoreWebSitesModel item = StoreWebSitesModel.fromJson(storeWebsitesList.value[i]);

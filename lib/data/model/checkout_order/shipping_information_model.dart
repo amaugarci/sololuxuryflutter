@@ -51,13 +51,13 @@ class PaymentMethods {
 
 class Totals {
   int? grandTotal;
-  int? baseGrandTotal;
+  double? baseGrandTotal;
   int? subtotal;
-  int? baseSubtotal;
+  double? baseSubtotal;
   int? discountAmount;
   int? baseDiscountAmount;
   int? subtotalWithDiscount;
-  int? baseSubtotalWithDiscount;
+  double? baseSubtotalWithDiscount;
   int? shippingAmount;
   int? baseShippingAmount;
   int? shippingDiscountAmount;
@@ -179,11 +179,11 @@ class Totals {
 
 class Items {
   int? itemId;
-  int? price;
-  int? basePrice;
+  dynamic price;
+  dynamic basePrice;
   int? qty;
   int? rowTotal;
-  int? baseRowTotal;
+  dynamic baseRowTotal;
   int? rowTotalWithDiscount;
   int? taxAmount;
   int? baseTaxAmount;
@@ -192,12 +192,12 @@ class Items {
   int? baseDiscountAmount;
   int? discountPercent;
   int? priceInclTax;
-  int? basePriceInclTax;
+  dynamic basePriceInclTax;
   int? rowTotalInclTax;
-  int? baseRowTotalInclTax;
+  dynamic baseRowTotalInclTax;
   String? options;
-  Null? weeeTaxAppliedAmount;
-  Null? weeeTaxApplied;
+  dynamic weeeTaxAppliedAmount;
+  dynamic weeeTaxApplied;
   String? name;
 
   Items(

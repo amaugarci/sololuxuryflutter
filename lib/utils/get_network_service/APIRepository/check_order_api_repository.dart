@@ -8,6 +8,7 @@ import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
 
 import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../../../data/model/checkout_order/shipping_information_model.dart';
+import '../../validator.dart';
 
 class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   final ICheckOutOrderProvider provider;
@@ -15,7 +16,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   CheckoutOrderAPIRepository({required this.provider});
 
   @override
-  Future<String> getMultiAddressAPIResponse() async {
+  Future<dynamic> getMultiAddressAPIResponse() async {
     final multiAddressModelResponse =
         await provider.getMultiAddressResponseProvider(
       endPoint: AppConstants.multiAddressEndPoint,
@@ -26,7 +27,8 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(multiAddressModelResponse.statusCode);
     }
     if (multiAddressModelResponse.status.hasError) {
-      return Future.error(multiAddressModelResponse.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(multiAddressModelResponse.body!), message: multiAddressModelResponse.statusText);
+      return null;
     } else {
       print("----->");
       print(multiAddressModelResponse.body!);
@@ -35,7 +37,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   }
 
   @override
-  Future<String> postEstimateAPIResponse(String requestJson) async {
+  Future<dynamic> postEstimateAPIResponse(String requestJson) async {
     Response estimateResponseModel =
         await provider.postEstimateResponseProvider(
             endPoint: AppConstants.getUrlWithCode(
@@ -49,14 +51,15 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
-      return Future.error(estimateResponseModel.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(estimateResponseModel.body!), message: estimateResponseModel.statusText);
+      return null;
     } else {
       return estimateResponseModel.body!;
     }
   }
 
   @override
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+  Future<dynamic> postShippingInformationAPIResponse(
       String requestJson) async {
     Response estimateResponseModel =
         await provider.postShippingInformationResponseProvider(
@@ -71,10 +74,10 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
-      return Future.error(estimateResponseModel.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(estimateResponseModel.body!), message: estimateResponseModel.statusText);
+      return null;
     } else {
-      return ShippingInformationModel.fromJson(
-          jsonDecode(estimateResponseModel.body!));
+      return estimateResponseModel.body!;
     }
   }
 
