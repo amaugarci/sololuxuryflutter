@@ -8,6 +8,7 @@ import 'package:solo_luxury/utils/app_constants.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../main.dart';
+import '../../../utils/app_routes.dart';
 import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
@@ -335,8 +336,7 @@ class ProductListScreen extends GetView<ProductController> {
           print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
           return GestureDetector(
             onTap: () {
-              // Get.toNamed(RoutesConstants.productDetailsScreen,
-              //     arguments: [item]);
+
             },
             child: Container(
               width: 150,
@@ -365,15 +365,18 @@ class ProductListScreen extends GetView<ProductController> {
                         ),
                         InkWell(
                           onTap: () {
-                            if (item.isWishList.value) {
-                              controller.deleteWishListData(
-                                  context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
-                              print("@@@@@@${item.isWishList.value}");
-                            } else {
-                              controller.postAddToWishlistData(
-                                  context, item.name, item.customAttributes![1].value, item.sku, index);
-                              print("@@@@@@${item.isWishList.value}");
-                            }
+                            Get.toNamed(RoutesConstants.productDetailsScreen,
+                                arguments: [item]);
+                            // if (item.isWishList.value) {
+                            //   controller.deleteWishListData(
+                            //       context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
+                            //   print("@@@@@@${item.isWishList.value}");
+                            //
+                            // } else {
+                            //   controller.postAddToWishlistData(
+                            //       context, item.name, item.customAttributes![1].value, item.sku, index);
+                            //   print("@@@@@@${item.isWishList.value}");
+                            // }
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
