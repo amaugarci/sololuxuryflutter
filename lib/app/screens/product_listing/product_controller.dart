@@ -29,7 +29,7 @@ class ProductController extends GetxController {
     SortValue("Discount(lowest first)", "ASC"),
   ].obs;
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
-
+Rx<FilterModel> selectedCategory = FilterModel().obs;
   var homeCategoryProductList = <ProductModel>[].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
@@ -43,6 +43,7 @@ class ProductController extends GetxController {
   // RxInt checked = 0.obs;
   RxInt currentCategoryIndex = 0.obs;
   RxList filterList = [].obs;
+  RxMap<String,List>selectedMap = <String,List> {}.obs;
   Rx<FilterModel>? filterModel = FilterModel().obs;
   RxList<FilterModel>? filterModelList = <FilterModel>[].obs;
   RxList<FilterModel>? saveFilterModelList = <FilterModel>[].obs;
@@ -87,6 +88,40 @@ class ProductController extends GetxController {
     isLoading.value = false;
   }
 
+  getFilteredProducts() async {
+    isLoading.value = true;
+    String url ="";
+    selectedMap.value.forEach((key, value) {
+      if(key == "cat"){
+       if(value.isNotEmpty){
+         url = url+AppConstants.filteredCatProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+       }
+      }else if ( key =="price") {
+        if(value.isNotEmpty){
+          url = url+AppConstants.filteredPriceProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+        }
+      }else if ( key =="size_v2") {
+        if(value.isNotEmpty){
+          url = url+AppConstants.filteredSizeProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+        }
+      }else if (key == "color_v2"){
+        if(value.isNotEmpty){
+          url = url+AppConstants.filteredColorProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+        }
+      }else if (key == "brands"){
+        if(value.isNotEmpty){
+          url = url+AppConstants.filteredBrandProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+        }
+      }
+    });
+    print(url);
+    await getOptionsFromAPI();
+    productModel?.value = await productListAPIRepository
+        .getFilteredProductListApiResponse("$productId" + url);
+
+    isLoading.value = false;
+  }
+
   getOptionsFromAPI() async {
     if (GlobalSingleton().optionList.isEmpty) {
       GlobalSingleton().optionList =
@@ -108,6 +143,7 @@ class ProductController extends GetxController {
       print("model -> ${filterModel?.value.toJson()}");
       subCategoryList?.value = filterModel!.value.category!;
       saveSubCategoryList?.value = filterModel!.value.category!;
+      selectedCategory.value = filterModel!.value;
     }
   }
 

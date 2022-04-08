@@ -27,9 +27,11 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(multiAddressModelResponse.statusCode);
     }
     if (multiAddressModelResponse.status.hasError) {
+
       Validators.apiResponseMessage(
           body: jsonEncode(multiAddressModelResponse.body!),
           message: multiAddressModelResponse.statusText);
+
       return null;
     } else {
       print("----->");
@@ -53,9 +55,11 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
+
       Validators.apiResponseMessage(
           body: jsonEncode(estimateResponseModel.body!),
           message: estimateResponseModel.statusText);
+
       return null;
     } else {
       return estimateResponseModel.body!;
@@ -63,7 +67,9 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   }
 
   @override
+
   Future<dynamic> postShippingInformationAPIResponse(String requestJson) async {
+
     Response estimateResponseModel =
         await provider.postShippingInformationResponseProvider(
             endPoint: AppConstants.getUrlWithCode(
@@ -77,9 +83,11 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
+
       Validators.apiResponseMessage(
           body: jsonEncode(estimateResponseModel.body!),
           message: estimateResponseModel.statusText);
+
       return null;
     } else {
       return estimateResponseModel.body!;

@@ -222,6 +222,7 @@ class CartScreen extends GetView<CartController> {
                                             color: brownE7CCBE, width: 1),
                                       ),
                                       child: cartNumber(index),
+
                                     ),
                                     const SizedBox(
                                       width: 14,
@@ -241,7 +242,9 @@ class CartScreen extends GetView<CartController> {
                                     ),
                                   ],
                                 ),
+
                                 cartPrice(index),
+
                               ],
                             ),
                             const SizedBox(
@@ -406,6 +409,7 @@ class CartScreen extends GetView<CartController> {
                 ),
         ));
   }
+
 
   cartNumber(index) {
     return Obx(() => Text("${controller.cartModel!.value.items[index].qty}"));

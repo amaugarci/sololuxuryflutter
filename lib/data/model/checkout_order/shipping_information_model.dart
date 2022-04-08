@@ -48,6 +48,7 @@ class PaymentMethods {
 }
 
 class Totals {
+
   dynamic grandTotal;
   dynamic baseGrandTotal;
   dynamic subtotal;
@@ -68,6 +69,7 @@ class Totals {
   dynamic subtotalInclTax;
   dynamic shippingInclTax;
   dynamic baseShippingInclTax;
+
   String? baseCurrencyCode;
   String? quoteCurrencyCode;
   dynamic itemsQty;
@@ -175,6 +177,7 @@ class Totals {
 }
 
 class Items {
+
   dynamic itemId;
   dynamic price;
   dynamic basePrice;
@@ -191,10 +194,11 @@ class Items {
   dynamic priceInclTax;
   dynamic basePriceInclTax;
   dynamic rowTotalInclTax;
+
   dynamic baseRowTotalInclTax;
   String? options;
-  Null? weeeTaxAppliedAmount;
-  Null? weeeTaxApplied;
+  dynamic weeeTaxAppliedAmount;
+  dynamic weeeTaxApplied;
   String? name;
 
   Items(

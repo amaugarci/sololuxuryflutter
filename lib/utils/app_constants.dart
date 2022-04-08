@@ -51,6 +51,22 @@ class AppConstants {
   static String sortedProductListEndPoint =
       "&searchCriteria[sortOrders][0][field]=price&searchCriteria[sortOrders][0][direction]=";
 
+  static String filteredColorProductListEndPoint =
+      "&searchCriteria[filter_groups][0][filters][0][field]=color_v2&searchCriteria[filter_groups][0][filters][0][value]=";
+
+  static String filteredCatProductListEndPoint =
+      "&searchCriteria[filter_groups][0][filters][0][field]=cat&searchCriteria[filter_groups][0][filters][0][value]=";
+
+  static String filteredPriceProductListEndPoint =
+      "&searchCriteria[filter_groups][0][filters][0][field]=price&searchCriteria[filter_groups][0][filters][0][value]=";
+
+  static String filteredSizeProductListEndPoint =
+      "&searchCriteria[filter_groups][0][filters][0][field]=size_v2&searchCriteria[filter_groups][0][filters][0][value]=";
+
+  static String filteredBrandProductListEndPoint =
+      "&searchCriteria[filter_groups][0][filters][0][field]=brands&searchCriteria[filter_groups][0][filters][0][value]=";
+
+
   static String optionsEndPoint = "/V1/products/attributes/brands/options";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";

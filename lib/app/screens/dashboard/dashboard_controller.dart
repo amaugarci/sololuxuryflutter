@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/screens/brand_list/brand_binding.dart';
@@ -53,7 +55,9 @@ class DashboardController extends GetxController
     //menuModel!.value = await NetworkRepository().getMenu();
 
     var data = await dashboardAPIRepository.getMenuAPIResponse();
+
     if (data != null) {
+
       String dataString = jsonEncode(data);
       menuModel!.value = MenuModel.fromJson(jsonDecode(dataString));
     }

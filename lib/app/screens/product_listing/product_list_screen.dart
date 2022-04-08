@@ -9,6 +9,7 @@ import 'package:solo_luxury/utils/app_routes.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../main.dart';
+import '../../../utils/app_routes.dart';
 import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
@@ -135,7 +136,9 @@ class ProductListScreen extends GetView<ProductController> {
                       height: 18.0,
                       color: appColor,
                     ),
-                    SizedBox(
+
+                    const SizedBox(
+
                       width: 24,
                     ),
                     const Text(
@@ -294,6 +297,9 @@ class ProductListScreen extends GetView<ProductController> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 buttonType: ButtonType.ElevatedButton,
                 onPressed: () {
+
+                  controller.getFilteredProducts();
+
                   Get.back();
                 },
                 elevation: 0.0,
@@ -320,7 +326,102 @@ class ProductListScreen extends GetView<ProductController> {
       return element.visibility == 4;
     }).toList();
     return Obx(() => GridView.builder(
-          padding: EdgeInsets.zero,
+// this is giving conflicts
+      // padding: EdgeInsets.zero,
+      // shrinkWrap: true,
+      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //   crossAxisCount: 2,
+      //   mainAxisSpacing: 10,
+      //   crossAxisSpacing: 12.5,
+      //   childAspectRatio: 0.55,
+      // ),
+      // itemBuilder: (_, index) {
+      //   Item? item = controller.productModel?.value.items?[index];
+      //   if (item != null && item.visibility == 4) {
+      //     print("item -> ${item.getBrandName()} - ${controller.itemList.length}");
+      //     return GestureDetector(
+      //       onTap: () {},
+      //       child: Container(
+      //         width: 150,
+      //         color: backGroundColor,
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           mainAxisSize: MainAxisSize.min,
+      //           children: [
+      //             Container(
+      //               height: 210,
+      //               //padding: const EdgeInsets.all(8),
+      //               decoration: BoxDecoration(
+      //                 border: Border.all(
+      //                   color: appColor,
+      //                   width: 1.4,
+      //                 ),
+      //               ),
+      //               child: Stack(
+      //                 //mainAxisSize: MainAxisSize.min,
+      //                 children: [
+      //                   Image.network(
+      //                     "${AppConstants.productImageUrl}${item.getProductImage()}",
+      //                     height: 210,
+      //                     width: 210,
+      //                     fit: BoxFit.fill,
+      //                   ),
+      //                   InkWell(
+      //                     onTap: () {
+      //                       Get.toNamed(RoutesConstants.productDetailsScreen,
+      //                           arguments: [item]);
+      //                       // if (item.isWishList.value) {
+      //                       //   controller.deleteWishListData(
+      //                       //       context, item.name, item.customAttributes![1].value, item.sku, item.id, index);
+      //                       //   print("@@@@@@${item.isWishList.value}");
+      //                       //
+      //                       // } else {
+      //                       //   controller.postAddToWishlistData(
+      //                       //       context, item.name, item.customAttributes![1].value, item.sku, index);
+      //                       //   print("@@@@@@${item.isWishList.value}");
+      //                       // }
+      //                     },
+      //                     child: Padding(
+      //                       padding: const EdgeInsets.all(10.0),
+      //                       child: Align(alignment: Alignment.topRight, child: favoriteOrNot(item)
+      //                         //  item.isWishList.value
+      //                         //     ? Icon(
+      //                         //         Icons.favorite,
+      //                         //         color: appColor,
+      //                         //       )
+      //                         //     : SvgPicture.asset(
+      //                         //         AppAsset.heart,
+      //                         //         height: 14,
+      //                         //         color: appColor,
+      //                         //       )
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //             const SizedBox(height: 10),
+      //             Text(
+      //               "${item.getBrandName()}",
+      //               style: const TextStyle(
+      //                   fontWeight: FontWeight.w400,
+      //                   color: Colors.black,
+      //                   fontSize: 16,
+      //                   overflow: TextOverflow.ellipsis),
+      //             ),
+      //             const SizedBox(height: 6),
+      //             Text(
+      //               "${item.name}",
+      //               style: const TextStyle(
+      //                   fontWeight: FontWeight.w400,
+      //                   color: Colors.black,
+      //                   fontSize: 16,
+      //                   overflow: TextOverflow.ellipsis),
+      //             ),
+      //             const SizedBox(height: 6),
+      //             Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      padding: EdgeInsets.zero,
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -554,6 +655,7 @@ class ProductListScreen extends GetView<ProductController> {
     return Obx(() => GestureDetector(
           onTap: () {
             controller.changedData(index);
+            controller.selectedCategory.value = item;
           },
           child: Container(
             height: 50.0,
@@ -640,6 +742,22 @@ class ProductListScreen extends GetView<ProductController> {
                     return InkWell(
                       onTap: () {
                         category.isSelected.value = !category.isSelected.value;
+                        if(category.isSelected.value){
+                          controller.selectedMap.value.containsKey(controller.selectedCategory.value.attrCode) ? controller.selectedMap.value.update(controller.selectedCategory.value.attrCode!, (value) {
+                            List tempVal = value;
+                           // print( value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace);
+                            value.contains(category.value) ? tempVal.remove(category.value) : tempVal.add(category.value);
+                            return tempVal;
+                          }
+                          ):controller.selectedMap.value.addAll({controller.selectedCategory.value.attrCode!: [category.value]});
+                        }else{
+                          controller.selectedMap.value.containsKey(controller.selectedCategory.value.attrCode) ? controller.selectedMap.value.update(controller.selectedCategory.value.attrCode!,(value) {
+                            List tempVal = value;
+                            value.contains(category.value) ? tempVal.remove(category.value) : tempVal.add(category.value);
+                            return tempVal;
+                          }):controller.selectedMap.value.addAll({controller.selectedCategory.value.attrCode!: [category.value]});
+                        }
+                        print(controller.selectedMap.value);
                       },
                       child: Container(
                         margin: const EdgeInsets.all(10.0),
