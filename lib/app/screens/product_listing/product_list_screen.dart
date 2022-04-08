@@ -3,7 +3,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
-import 'package:solo_luxury/app/screens/search/widget/product.dart';
 import 'package:solo_luxury/data/model/filter/filter_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
@@ -14,6 +13,7 @@ import '../../../utils/lang_directory/language_constant.dart';
 import '../../components/common_widget/common_appbar.dart';
 import '../../components/common_widget/common_button.dart';
 import '../../components/common_widget/common_text_opensans.dart';
+import '../../components/common_widget/common_text_poppins.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import '../product_listing/product_controller.dart';
@@ -24,12 +24,15 @@ class ProductListScreen extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-        // key: controller.scaffoldKey.value,
+        key: controller.scaffoldKey.value,
         resizeToAvoidBottomInset: false,
         backgroundColor: backGroundColor,
-        appBar: commonAppbar(),
+        appBar: commonAppbar(
+            title: "${Get.arguments[1]}",
+            centerTitle: false,
+            useAnotherTextStyle: true),
         body: controller.isLoading.value
-            ? Center(
+            ? const Center(
                 child: SpinKitThreeBounce(
                 color: appColor,
                 // size: 50.0,
@@ -40,7 +43,7 @@ class ProductListScreen extends GetView<ProductController> {
                   filterWidget(),
                   const SizedBox(height: 15),
                   filterDropDown(),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 30),
                   Expanded(
                     child: products(context),
                   ),
@@ -50,59 +53,101 @@ class ProductListScreen extends GetView<ProductController> {
   Widget filterWidget() {
     return Container(
       height: 47,
-      color: secondaryColor,
       width: Get.width,
       child: Row(
         children: [
-          const SizedBox(width: 10),
-          Text(
-            "${Get.arguments[1]}",
-            style: const TextStyle(
-              color: appColor,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w600,
+          Expanded(
+            child: Container(
+              height: 47,
+              margin: const EdgeInsets.only(right: 5),
+              // padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                  color: backGroundColor.withOpacity(0.2),
+                  border: Border.all(color: appColor, width: 1.5)),
+              child: MaterialButton(
+                onPressed: () {
+                  showGeneralDialog(
+                    context: Get.context!,
+                    barrierColor: Colors.black12.withOpacity(0.6),
+                    // Background color
+                    barrierDismissible: false,
+                    barrierLabel: 'Dialog',
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) {
+                      return sort();
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      AppAsset.sort,
+                      width: 18.0,
+                      height: 18.0,
+                      color: appColor,
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    const Text(
+                      'SORT',
+                      style: TextStyle(
+                        color: appColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-          const Spacer(),
-          GestureDetector(
-            onTap: () {
-              showGeneralDialog(
-                context: Get.context!,
-                barrierColor: Colors.black12.withOpacity(0.6),
-                // Background color
-                barrierDismissible: false,
-                barrierLabel: 'Dialog',
-                transitionDuration: Duration(milliseconds: 400),
-                pageBuilder: (_, __, ___) {
-                  return filter();
-                },
-              );
-            },
+          Expanded(
             child: Container(
-              color: appColor,
-              width: 166,
+              margin: const EdgeInsets.only(left: 5),
               height: 47,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppAsset.filter,
-                    width: 18.0,
-                    height: 18.0,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  const Text(
-                    'FILTER',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
+              decoration: BoxDecoration(
+                  color: backGroundColor.withOpacity(0.2),
+                  border: Border.all(color: appColor, width: 1.5)),
+              child: MaterialButton(
+                onPressed: () {
+                  // Get.toNamed(RoutesConstants.filterScreen);
+                  // controller.getSortedProducts();
+                  showGeneralDialog(
+                    context: Get.context!,
+                    barrierColor: Colors.black12.withOpacity(0.6),
+                    // Background color
+                    barrierDismissible: false,
+                    barrierLabel: 'Dialog',
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) {
+                      return filter();
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppAsset.filter,
+                      width: 18.0,
+                      height: 18.0,
+                      color: appColor,
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 24,
+                    ),
+                    const Text(
+                      'FILTER',
+                      style: TextStyle(
+                        color: appColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -113,7 +158,7 @@ class ProductListScreen extends GetView<ProductController> {
 
   Widget filterDropDown() {
     return Container(
-      height: 45,
+      height: 50,
       width: Get.width,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -138,38 +183,108 @@ class ProductListScreen extends GetView<ProductController> {
     );
   }
 
-  Widget filter() {
+  Widget sort() {
     return Scaffold(
       appBar: commonAppbarDialog(
-        title: "Filters",
+        title: "Sort by",
       ),
       backgroundColor: Colors.white,
-      body: Container(
-        height: MediaQuery.of(Get.context!).size.height,
-        alignment: Alignment.bottomCenter,
+      body: Obx(() {
+        return Column(
+          children: [
+            Divider(
+              color: Colors.black,
+              thickness: 1.5,
+            ),
+            ...List.generate(
+                controller.sortTypeList.length,
+                (index) => InkWell(
+                      onTap: () {
+                        controller.selectedSortIndex.value = index;
+                        controller.selectedSortVal.value =
+                            controller.sortTypeList[index];
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 20.0,
+                            right: 30,
+                            top: index == 0 ? 25 : 15,
+                            bottom: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              controller.sortTypeList.value[index].name,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: appColor),
+                            ),
+                            Container(
+                              height: 18,
+                              width: 18,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(color: appColor, width: 2)),
+                              child: Container(
+                                margin: EdgeInsets.all(2.2),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: controller.selectedSortIndex.value ==
+                                            index
+                                        ? appColor
+                                        : Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ))
+          ],
+        );
+      }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.zero,
+        color: appColorButton,
+        child: MaterialButton(
+          onPressed: () {
+            controller.getSortedProducts();
+            Get.back();
+          },
+          child: CommonTextPoppins(
+            LanguageConstant.applyText.tr,
+            fontSize: 18.0,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget filter() {
+    return Material(
+      child: Container(
+        height: Get.height,
+        width: Get.width,
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-                // decoration: BoxDecoration(
-                //     border: Border.all(width: 1, color: brownColor)),
-                child: Column(
-              children: [
-                Container(
-                  height: Get.height * .8,
-                  width: Get.width,
-                  decoration: const BoxDecoration(color: Colors.white),
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      category(),
-                      subCategory(),
-                    ],
-                  ),
-                ),
-              ],
-            )),
+            commonAppbarDialog(title: "Filters", onTapRefresh: () {}),
+            Expanded(
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  category(),
+                  subCategory(),
+                ],
+              ),
+            ),
             Container(
               width: Get.width,
               height: 40.0,
@@ -178,7 +293,9 @@ class ProductListScreen extends GetView<ProductController> {
               child: CommonButton(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 buttonType: ButtonType.ElevatedButton,
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 elevation: 0.0,
                 color: appColorButton,
                 borderRadius: 0.0,
@@ -189,7 +306,7 @@ class ProductListScreen extends GetView<ProductController> {
                   color: Colors.white,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -197,6 +314,11 @@ class ProductListScreen extends GetView<ProductController> {
   }
 
   Widget products(context) {
+    controller.productModel?.value.items =
+        controller.productModel?.value.items!.where((element) {
+      print("element -> $element");
+      return element.visibility == 4;
+    }).toList();
     return Obx(() => GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
@@ -208,7 +330,6 @@ class ProductListScreen extends GetView<ProductController> {
           ),
           itemBuilder: (_, index) {
             Item? item = controller.productModel?.value.items?[index];
-
             if (item == null) {
               return Container();
             } else {
@@ -311,8 +432,14 @@ class ProductListScreen extends GetView<ProductController> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      '${localStore.currentCurrency}' +
-                                          " ${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
+                                      '${localStore.getRegularPriceWithCurrency(
+                                        item
+                                            .getPriceFromConfigurableProduct(
+                                                controller.itemList, item)
+                                            .toString(),
+                                        item.getConvertRegularPriceFromConfigurableProduct(
+                                            controller.itemList, item),
+                                      )}',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           fontSize: 15,
@@ -336,37 +463,6 @@ class ProductListScreen extends GetView<ProductController> {
                                   ),
                                 ],
                               ),
-                              // InkWell(
-                              //   onTap: () {
-                              //     controller.getGenerateCart(
-                              //       context,
-                              //       item.name!,
-                              //       "${item.customAttributes![1].value}",
-                              //       item.sku,
-                              //     );
-                              //   },
-                              //   child: Container(
-                              //     padding: EdgeInsets.symmetric(vertical: 4),
-                              //     decoration: BoxDecoration(
-                              //         border: Border.all(color: appColor)),
-                              //     child: Row(
-                              //       mainAxisAlignment: MainAxisAlignment.center,
-                              //       children: [
-                              //         Icon(
-                              //           Icons.shopping_cart,
-                              //           size: 18,
-                              //           color: appColor,
-                              //         ),
-                              //         SizedBox(width: 10.0),
-                              //         Text(
-                              //           LanguageConstant.addTOCart.tr,
-                              //           style:
-                              //               commonTextStyle600(color: appColor),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // )
                             ],
                           ),
                         ),
@@ -375,137 +471,16 @@ class ProductListScreen extends GetView<ProductController> {
                   ),
                 ),
               );
-              //  GestureDetector(
-              //   onTap: () {
-              //     Get.toNamed(RoutesConstants.productDetailsScreen,
-              //         arguments: [item]);
-              //   },
-              //   child: Container(
-              //     width: 150,
-              //     color: backGroundColor,
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisSize: MainAxisSize.min,
-              //       children: [
-              //         Container(
-              //           height: 210,
-              //           //padding: const EdgeInsets.all(8),
-              //           decoration: BoxDecoration(
-              //             border: Border.all(
-              //               color: appColor,
-              //               width: 1.4,
-              //             ),
-              //           ),
-              //           child: Stack(
-              //             //mainAxisSize: MainAxisSize.min,
-              //             children: [
-              //               Image.network(
-              //                 "${AppConstants.productImageUrl}${item.getProductImage()}",
-              //                 height: 210,
-              //                 width: 210,
-              //                 fit: BoxFit.fill,
-              //               ),
-              //               InkWell(
-              //                 onTap: () {
-              //                   Get.toNamed(
-              //                       RoutesConstants.productDetailsScreen,
-              //                       arguments: [item]);
-              //                 },
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.all(10.0),
-              //                   child: Align(
-              //                       alignment: Alignment.topRight,
-              //                       child: InkWell(
-              //                           onTap: () {
-              //                             if (item.isWishList.value) {
-              //                               controller.deleteWishListData(
-              //                                   context,
-              //                                   item.name,
-              //                                   item.customAttributes![1].value,
-              //                                   item.sku,
-              //                                   item.id,
-              //                                   index);
-              //                               print(
-              //                                   "@@@@@@${item.isWishList.value}");
-              //                             } else {
-              //                               controller.postAddToWishlistData(
-              //                                   context,
-              //                                   item.name,
-              //                                   item.customAttributes![1].value,
-              //                                   item.sku,
-              //                                   index);
-              //                               print(
-              //                                   "@@@@@@${item.isWishList.value}");
-              //                             }
-              //                           },
-              //                           child: favoriteOrNot(item))
-              //                       //  item.isWishList.value
-              //                       //     ? Icon(
-              //                       //         Icons.favorite,
-              //                       //         color: appColor,
-              //                       //       )
-              //                       //     : SvgPicture.asset(
-              //                       //         AppAsset.heart,
-              //                       //         height: 14,
-              //                       //         color: appColor,
-              //                       //       )
-              //                       ),
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //         const SizedBox(height: 10),
-              //         Text(
-              //           "${item.getBrandName()}",
-              //           maxLines: 1,
-              //           style: const TextStyle(
-              //               fontWeight: FontWeight.w400,
-              //               color: Colors.black,
-              //               fontSize: 14,
-              //               overflow: TextOverflow.ellipsis),
-              //         ),
-              //         SizedBox(height: 6),
-              //         Text(
-              //           "${item.name}",
-              //           maxLines: 1,
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.w400,
-              //               color: Colors.black,
-              //               fontSize: 14,
-              //               overflow: TextOverflow.ellipsis),
-              //         ),
-              //         const SizedBox(height: 6),
-              //         Row(
-              //           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //           children: [
-              //             Text(
-              //               '${localStore.currentCurrency}' +
-              //                   "${item.getPriceFromConfigurableProduct(controller.productModel?.value.items, item)}",
-              //               style: const TextStyle(
-              //                 fontWeight: FontWeight.w600,
-              //                 color: Colors.black,
-              //                 fontSize: 16,
-              //               ),
-              //             ),
-              //             const SizedBox(width: 50),
-              //             Text(
-              //               '\$' + "${item.price}",
-              //               style: const TextStyle(
-              //                 fontWeight: FontWeight.w600,
-              //                 color: Colors.black45,
-              //                 decoration: TextDecoration.lineThrough,
-              //                 fontSize: 16,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // );
             }
           },
+          // } else {
+          //   return Container(
+          //     height: 10.0,
+          //     width: 10.0,
+          //     color: Colors.pink,
+          //   );
+          // }
+          // },
           itemCount: controller.productModel?.value.items?.length,
         ));
   }
@@ -539,10 +514,9 @@ class ProductListScreen extends GetView<ProductController> {
   Widget favoriteOrNot(Item item) {
     return Obx(
       () => item.isWishList.value
-          ? Icon(
+          ? const Icon(
               Icons.favorite,
               color: appColor,
-              size: 20,
             )
           : SvgPicture.asset(
               AppAsset.heart,
@@ -557,7 +531,7 @@ class ProductListScreen extends GetView<ProductController> {
       flex: 3,
       child: Container(
         alignment: Alignment.centerLeft,
-        color: Colors.grey[300],
+        color: lightBrownColor,
         padding: const EdgeInsets.only(left: 5.0),
         margin: const EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0),
         child: ListView.builder(
@@ -587,7 +561,7 @@ class ProductListScreen extends GetView<ProductController> {
             decoration: BoxDecoration(
                 color: controller.currentCategoryIndex.value == index
                     ? Colors.white
-                    : Colors.grey[300]),
+                    : lightBrownColor),
             width: Get.width,
             child: Align(
               alignment: Alignment.centerLeft,
@@ -654,7 +628,7 @@ class ProductListScreen extends GetView<ProductController> {
           child: ListView(
             padding: const EdgeInsets.only(top: 5.0),
             children: [
-              ListView.builder(
+              Obx(() => ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -670,7 +644,7 @@ class ProductListScreen extends GetView<ProductController> {
                       child: Container(
                         margin: const EdgeInsets.all(10.0),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Obx(() => Container(
@@ -699,20 +673,11 @@ class ProductListScreen extends GetView<ProductController> {
                         ),
                       ),
                     );
-                  }),
+                  })),
             ],
           ),
         ),
       ],
-    );
-  }
-
-  commonTextStyle600({var size, var color}) {
-    return TextStyle(
-      fontFamily: AppConstants.fontOpenSans,
-      fontWeight: FontWeight.w600,
-      color: color ?? blackColor,
-      fontSize: size ?? 14,
     );
   }
 }
