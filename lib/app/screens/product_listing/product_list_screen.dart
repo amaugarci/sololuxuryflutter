@@ -136,7 +136,7 @@ class ProductListScreen extends GetView<ProductController> {
                       height: 18.0,
                       color: appColor,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 24,
                     ),
                     const Text(
@@ -295,6 +295,7 @@ class ProductListScreen extends GetView<ProductController> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 buttonType: ButtonType.ElevatedButton,
                 onPressed: () {
+                  controller.getFilteredProducts();
                   Get.back();
                 },
                 elevation: 0.0,
@@ -650,6 +651,7 @@ class ProductListScreen extends GetView<ProductController> {
     return Obx(() => GestureDetector(
           onTap: () {
             controller.changedData(index);
+            controller.selectedCategory.value = item;
           },
           child: Container(
             height: 50.0,
@@ -736,6 +738,22 @@ class ProductListScreen extends GetView<ProductController> {
                     return InkWell(
                       onTap: () {
                         category.isSelected.value = !category.isSelected.value;
+                        if(category.isSelected.value){
+                          controller.selectedMap.value.containsKey(controller.selectedCategory.value.attrCode) ? controller.selectedMap.value.update(controller.selectedCategory.value.attrCode!, (value) {
+                            List tempVal = value;
+                           // print( value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace);
+                            value.contains(category.value) ? tempVal.remove(category.value) : tempVal.add(category.value);
+                            return tempVal;
+                          }
+                          ):controller.selectedMap.value.addAll({controller.selectedCategory.value.attrCode!: [category.value]});
+                        }else{
+                          controller.selectedMap.value.containsKey(controller.selectedCategory.value.attrCode) ? controller.selectedMap.value.update(controller.selectedCategory.value.attrCode!,(value) {
+                            List tempVal = value;
+                            value.contains(category.value) ? tempVal.remove(category.value) : tempVal.add(category.value);
+                            return tempVal;
+                          }):controller.selectedMap.value.addAll({controller.selectedCategory.value.attrCode!: [category.value]});
+                        }
+                        print(controller.selectedMap.value);
                       },
                       child: Container(
                         margin: const EdgeInsets.all(10.0),
