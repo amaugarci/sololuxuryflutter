@@ -4,12 +4,11 @@ import 'package:solo_luxury/utils/get_network_service/APIProviders/wishlist_api_
 import 'package:solo_luxury/utils/get_network_service/APIRepository/wishlist_api_repository.dart';
 
 class WishlistBindings extends Bindings {
-
   @override
   void dependencies() {
     Get.lazyPut(() => WishlistController(wishListAPIRepository: Get.find()));
     Get.lazyPut<IWishListProvider>(() => WishListAPIProvider());
     Get.put(WishListAPIRepository(wishListProvider: Get.find()));
+    Get.put(() => WishlistController(wishListAPIRepository: Get.find()));
   }
-
 }

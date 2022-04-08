@@ -136,7 +136,9 @@ class ProductListScreen extends GetView<ProductController> {
                       height: 18.0,
                       color: appColor,
                     ),
+
                     const SizedBox(
+
                       width: 24,
                     ),
                     const Text(
@@ -295,7 +297,9 @@ class ProductListScreen extends GetView<ProductController> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 buttonType: ButtonType.ElevatedButton,
                 onPressed: () {
+
                   controller.getFilteredProducts();
+
                   Get.back();
                 },
                 elevation: 0.0,

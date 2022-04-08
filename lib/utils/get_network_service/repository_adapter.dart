@@ -68,8 +68,9 @@ abstract class ICountryRepository {
 }
 
 abstract class ICheckoutOrderRepository {
-  Future<dynamic> postShippingInformationAPIResponse(
-      String requestJson);
+
+  Future<dynamic> postShippingInformationAPIResponse(String requestJson);
+
 
   Future<dynamic> getMultiAddressAPIResponse();
 
@@ -85,7 +86,7 @@ abstract class IMyAccountRepository {
 
 ///cart Class
 abstract class ICartRepository {
-  Future<String> getCartGetDataApiResponse(
+  Future<dynamic> getCartGetDataApiResponse(
     String apiEndPoint,
   );
   Future<dynamic> deleteCartCartQTYDataApiResponse(
@@ -118,9 +119,9 @@ abstract class IForgetPasswordRepository {
 }
 
 abstract class ICountryListRepository {
-  Future<String> getCountryListResponse();
+  Future<dynamic> getCountryListResponse();
 
-  Future<String> postaddAddressApiResponse(String response);
+  Future<dynamic> postaddAddressApiResponse(String response);
 }
 
 ///orderConfirmation Class
@@ -144,7 +145,7 @@ abstract class IWishListRepository {
 }
 
 abstract class IDeleteWishListRepository {
-  Future<String> deleteWishListApiResponse(String id);
+  Future<dynamic> deleteWishListApiResponse(String id);
 }
 
 abstract class IFaqRepository {
@@ -160,28 +161,28 @@ abstract class IMyOrdersRepository {
 }
 
 abstract class IPostWishListRepository {
-  Future<String> postWishListApiResponse(String sku);
+  Future<dynamic> postWishListApiResponse(String sku);
 }
 
 abstract class IBrandListRepository {
-  Future<String> getBrandListResponse();
+  Future<dynamic> getBrandListResponse();
 }
 
 abstract class IPrivacyPolicyRepository {
-  Future<String> getPrivacyPolicyResponse();
+  Future<dynamic> getPrivacyPolicyResponse();
 }
 
 abstract class ITermAndConditionRepository {
-  Future<String> getTermAndConditionResponse();
+  Future<dynamic> getTermAndConditionResponse();
 }
 
 abstract class IAddressListRepository {
-  Future<String> getAddressListResponse();
+  Future<dynamic> getAddressListResponse();
 }
 
 abstract class IReturnReasonRepository {
-  Future<String> getReturnReasonResponse();
+  Future<dynamic> getReturnReasonResponse();
   Future<dynamic> postReturnItemAPIResponse(String orderId, String productsku,
       String email, String reason, String langCode);
-  Future<String> getOrderTeakingResponse(String id);
+  Future<dynamic> getOrderTeakingResponse(String id);
 }

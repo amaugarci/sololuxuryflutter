@@ -7,7 +7,7 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import '../../../main.dart';
 
 abstract class ICartProvider {
-  Future<Response> getCartGetDataResponseProvider({required String endPoint});
+  Future<dynamic> getCartGetDataResponseProvider({required String endPoint});
   Future<dynamic> deleteCartQtyDataResponseProvider({required String endPoint});
 }
 
@@ -19,7 +19,7 @@ class CartGetDataProvider extends GetConnect implements ICartProvider {
   }
 
   @override
-  Future<Response> getCartGetDataResponseProvider({required String endPoint}) {
+  Future<dynamic> getCartGetDataResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint, headers: {
       "Content-type": "application/json",

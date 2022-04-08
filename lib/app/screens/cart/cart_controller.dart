@@ -15,7 +15,7 @@ class CartController extends GetxController {
   var cartProducts = <ProductModel>[].obs;
   RxObjectMixin? cartModel = CartModel().obs;
   final CartGetDataAPIRepository cartGetDataAPIRepository;
-  var cartItemNumber = 0.obs;
+  List cartItemNumber = [].obs;
   var cartItemPrice = 0.obs;
 
   CartController({required this.cartGetDataAPIRepository});
@@ -23,6 +23,7 @@ class CartController extends GetxController {
   var isLoading = true.obs;
   var getCartId = 0.obs;
   var getCartToken = "".obs;
+  var subtotal = 0.obs;
 
   @override
   void onInit() {
@@ -40,6 +41,8 @@ class CartController extends GetxController {
               localStore.customerToken, AppConstants.createCart);
       print("Generate ${getCartId.value}");
       getCartToken.value = getCartId.value.toString();
+
+      // cartItemNumber.value =
 
       if (getCartToken.value != null) {
         getFaqContent(1);
@@ -69,7 +72,14 @@ class CartController extends GetxController {
       ;
     }
     cartModel?.value = CartModel.fromJson(json.decode(cartData));
+    // cartItemNumber.addAll(ca)
     print("CartModel Is $cartModel");
+    cartModel!.value.items.forEach((i) {
+      var total = i.price * i.qty;
+      subtotal.value += int.parse(subtotal.value.toString()) +
+          num.parse(total.toString()).round();
+    });
+
     // cartItemPrice.value = cartModel!.value.items[0].price;
     // cartItemNumber.value = cartModel!.value.items[0].qty;
     // print( "\$${cartModel!.value.items[0].qty}");
@@ -92,7 +102,7 @@ class CartController extends GetxController {
     // var deleteProduct = await cartGetDataAPIRepository
     //     .deleteCartCartQTYDataApiResponse(deleteProductId);
     print("DeleteProduct IS  Is $deleteProduct");
-    cartItemNumber.value = 0;
+    // cartItemNumber.value = 0;
     cartItemPrice.value = 0;
     getFaqContent(getValue);
   }
@@ -119,7 +129,7 @@ class CartController extends GetxController {
         SnackBar(content: CommonTextPoppins(addTocartData['message'])),
       );
     } else {
-      cartItemNumber.value = addTocartData["qty"];
+      // cartItemNumber.value = addTocartData["qty"];
       cartItemPrice.value = addTocartData["price"] * addTocartData["qty"];
       return print("${addTocartData["qty"]}");
     }
@@ -152,7 +162,7 @@ class CartController extends GetxController {
         SnackBar(content: CommonTextPoppins(addTocartData['message'])),
       );
     } else {
-      cartItemNumber.value = addTocartData["qty"];
+      // cartItemNumber.value = addTocartData["qty"];
       cartItemPrice.value = addTocartData["price"] * addTocartData["qty"];
       return print("${addTocartData["qty"]}");
     }

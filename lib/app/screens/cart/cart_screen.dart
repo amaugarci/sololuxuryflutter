@@ -221,7 +221,8 @@ class CartScreen extends GetView<CartController> {
                                         border: Border.all(
                                             color: brownE7CCBE, width: 1),
                                       ),
-                                      child: cartNumber(),
+                                      child: cartNumber(index),
+
                                     ),
                                     const SizedBox(
                                       width: 14,
@@ -241,7 +242,9 @@ class CartScreen extends GetView<CartController> {
                                     ),
                                   ],
                                 ),
-                                cartPrice(),
+
+                                cartPrice(index),
+
                               ],
                             ),
                             const SizedBox(
@@ -286,7 +289,11 @@ class CartScreen extends GetView<CartController> {
                                 LanguageConstant.subTotal.tr,
                                 style: textStyleUtils600(size: 22.0),
                               ),
-                              cartPrice(),
+                              Text(
+                                "\$${controller.subtotal.value..toString()}",
+                                style: TextStyle(fontSize: 18),
+                              )
+                              // cartPrice(index),
                             ],
                           ),
                           const SizedBox(
@@ -355,7 +362,7 @@ class CartScreen extends GetView<CartController> {
                           ),
                           Align(
                             alignment: Alignment.center,
-                            child: cartPrice(),
+                            // child: cartPrice(index),
                           ),
                           const SizedBox(
                             height: 15,
@@ -403,14 +410,15 @@ class CartScreen extends GetView<CartController> {
         ));
   }
 
-  cartNumber() {
-    return Obx(() => Text("${controller.cartItemNumber.value}"));
+
+  cartNumber(index) {
+    return Obx(() => Text("${controller.cartModel!.value.items[index].qty}"));
   }
 
-  cartPrice() {
+  cartPrice(index) {
     return Obx(
       () => Text(
-        "\$${controller.cartItemPrice.value}",
+        "\$${controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price}",
         style: textStyleUtils400(size: 18.0),
       ),
     );

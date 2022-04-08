@@ -118,6 +118,7 @@ Rx<FilterModel> selectedCategory = FilterModel().obs;
     await getOptionsFromAPI();
     productModel?.value = await productListAPIRepository
         .getFilteredProductListApiResponse("$productId" + url);
+
     isLoading.value = false;
   }
 

@@ -7,8 +7,8 @@ import 'package:solo_luxury/data/model/country/country_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 abstract class ICountryListProvider {
-  Future<Response> getcountryListAPIResponse({required String endPoint});
-  Future<Response> postAddAddressResponse(
+  Future<dynamic> getcountryListAPIResponse({required String endPoint});
+  Future<dynamic> postAddAddressResponse(
       {required String endPoint, required String requestJson});
 }
 
@@ -23,7 +23,7 @@ class CountryListAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getcountryListAPIResponse({required String endPoint}) {
+  Future<dynamic> getcountryListAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
@@ -35,7 +35,7 @@ class CountryListAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> postAddAddressResponse(
+  Future<dynamic> postAddAddressResponse(
       {required String endPoint, required String requestJson}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return post(endPoint, requestJson, headers: {

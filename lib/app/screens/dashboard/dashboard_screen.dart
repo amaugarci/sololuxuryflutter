@@ -33,7 +33,7 @@ class DashboardScreen extends GetView<DashboardController> {
           children: [
             TabBarView(
                 controller: controller.tabController,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   //TODO: PAGES
                   const HomeScreen(),
@@ -384,10 +384,16 @@ class DashboardScreen extends GetView<DashboardController> {
                                               itemLevel1.childrenData!.isEmpty
                                                   ? true
                                                   : false,
-                                          onExpansionChanged: (val){
-                                            if( itemLevel1.childrenData!.isEmpty){
-                                              Get.toNamed(RoutesConstants.productListScreen,
-                                                  arguments: [itemLevel1.id,itemLevel1.name]);
+                                          onExpansionChanged: (val) {
+                                            if (itemLevel1
+                                                .childrenData!.isEmpty) {
+                                              Get.toNamed(
+                                                  RoutesConstants
+                                                      .productListScreen,
+                                                  arguments: [
+                                                    itemLevel1.id,
+                                                    itemLevel1.name
+                                                  ]);
                                             }
                                           },
                                           children: [

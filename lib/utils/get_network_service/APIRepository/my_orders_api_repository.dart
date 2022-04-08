@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
 
 import '../../app_constants.dart';
+import '../../validator.dart';
 import '../APIProviders/my_orders_api_provider.dart';
 
 class MyOrdersAPIRepository implements IMyOrdersRepository {
@@ -19,8 +22,13 @@ class MyOrdersAPIRepository implements IMyOrdersRepository {
       print(response.body!.toJson());
     }
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      print("error -> ");
+      print(response.statusText!);
+      Validators.apiResponseMessage(
+          body: response.body!, message: response.statusText);
+      return null!;
     } else {
+      print("success -> ");
       return response.body!;
     }
   }
