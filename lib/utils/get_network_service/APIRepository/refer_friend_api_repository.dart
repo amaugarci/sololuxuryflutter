@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 
 import '../../app_constants.dart';
+import '../../validator.dart';
 import '../APIProviders/refer_friend_api_provider.dart';
 import '../repository_adapter.dart';
 
@@ -12,7 +13,7 @@ class ReferFriendAPIRepository implements IReferFriendRepository {
   ReferFriendAPIRepository({required this.referFriendAPIProvider});
 
   @override
-  Future<String> getReferFriendAPIResponse(
+  Future<dynamic> getReferFriendAPIResponse(
       {String? refFirstName,
       String? refEmail,
       String? refPhone,
@@ -31,9 +32,10 @@ class ReferFriendAPIRepository implements IReferFriendRepository {
       print(response.statusCode);
     }
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(response.body!), message: response.statusText);
+      return null;
     } else {
-      return jsonDecode(response.body!)['message'];
+      return response.body!;
     }
   }
 }

@@ -26,7 +26,7 @@ abstract class ISplashRepository {
 }
 
 abstract class IReferFriendRepository {
-  Future<String> getReferFriendAPIResponse();
+  Future<dynamic> getReferFriendAPIResponse();
 }
 
 abstract class ILoginRepository {
@@ -44,7 +44,7 @@ abstract class IInfluencerRepository {
 }
 
 abstract class IDashboardRepository {
-  Future<MenuModel> getMenuAPIResponse();
+  Future<dynamic> getMenuAPIResponse();
 }
 
 abstract class ISearchRepository {
@@ -60,22 +60,22 @@ abstract class ISearchRepository {
 abstract class IHomeRepository {}
 
 abstract class ICountryRepository {
-  Future<String> getStoreWebsitesAPIResponse();
+  Future<dynamic> getStoreWebsitesAPIResponse();
 
-  Future<String> getStoreViewsAPIResponse();
+  Future<dynamic> getStoreViewsAPIResponse();
 
-  Future<String> getStoreConfigsAPIResponse();
+  Future<dynamic> getStoreConfigsAPIResponse();
 }
 
 abstract class ICheckoutOrderRepository {
-  Future<ShippingInformationModel> postShippingInformationAPIResponse(
+  Future<dynamic> postShippingInformationAPIResponse(
       String requestJson);
 
-  Future<String> getMultiAddressAPIResponse();
+  Future<dynamic> getMultiAddressAPIResponse();
 
-  Future<String> postEstimateAPIResponse(String loginRequestJson);
+  Future<dynamic> postEstimateAPIResponse(String loginRequestJson);
 
-  Future<String> postCreateOrderAPIResponse(String loginRequestJson);
+  Future<dynamic> postCreateOrderAPIResponse(String loginRequestJson);
 }
 
 ///myAccount Class

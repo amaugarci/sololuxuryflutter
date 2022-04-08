@@ -1,9 +1,13 @@
 
 
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/country_api_provider.dart';
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
+
+import '../../validator.dart';
 
 class CountryAPIRepository implements ICountryRepository {
   final CountryAPIProvider countryAPIProvider;
@@ -11,28 +15,30 @@ class CountryAPIRepository implements ICountryRepository {
   CountryAPIRepository({required this.countryAPIProvider});
 
   @override
-  Future<String> getStoreWebsitesAPIResponse() async {
+  Future<dynamic> getStoreWebsitesAPIResponse() async {
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeWebsitesEndPoint);
     if (response != null) {
       print("getStoreWebsitesAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(response.body!), message: response.statusText);
+      return null;
     } else {
       return response.body!;
     }
   }
 
   @override
-  Future<String> getStoreViewsAPIResponse() async {
+  Future<dynamic> getStoreViewsAPIResponse() async {
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeViewsEndPoint);
     if (response != null) {
       print("getStoreViewsAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(response.body!), message: response.statusText);
+      return null;
     } else {
       return response.body!;
     }
@@ -40,14 +46,15 @@ class CountryAPIRepository implements ICountryRepository {
 
 
   @override
-  Future<String> getStoreConfigsAPIResponse() async{
+  Future<dynamic> getStoreConfigsAPIResponse() async{
     Response response = await countryAPIProvider.getStoreAPIResponse(endPoint: AppConstants.storeConfigsEndPoint);
     if (response != null) {
       print("getStoreConfigsAPIResponse -> ");
       print(response.statusCode);
     }
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(response.body!), message: response.statusText);
+      return null;
     } else {
       return response.body!;
     }

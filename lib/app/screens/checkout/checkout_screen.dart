@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+
+import '../../../utils/lang_directory/language_constant.dart';
+import '../../components/common_widget/common_appbar.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({Key? key}) : super(key: key);
@@ -13,13 +17,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const Icon(Icons.ac_unit),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        title: Image.asset("assets/images/logo 2.png"),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: appColor),
+      appBar: commonAppbar(
+        title: LanguageConstant.checkOutText.tr,
       ),
       backgroundColor: backGroundColor,
       body: Container(

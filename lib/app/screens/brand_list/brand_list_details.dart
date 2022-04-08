@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../components/common_widget/common_appbar.dart';
 import '../../utils/app_asset.dart';
 import '../../utils/colors.dart';
 import 'brand_controller.dart';
@@ -15,6 +16,7 @@ class BrandDetailsPage extends GetView<BrandController> {
       () => Scaffold(
         key: controller.scaffoldKey2.value,
         backgroundColor: backGroundColor,
+        appBar: commonAppbar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40),
           child: Column(

@@ -12,6 +12,8 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/signup_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
+import '../../../../utils/app_routes.dart';
+
 class SignupController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
 
@@ -67,6 +69,7 @@ class SignupController extends GetxController {
           String dataString = jsonEncode(data);
           signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(dataString)).obs;
           setPrefStringValue(StorageConstant.userDatModel, signUpResponseModelToJson(signUpResponseModel.value!));
+          Get.toNamed(RoutesConstants.loginScreen);
           log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value!)}");
         }
       } else {

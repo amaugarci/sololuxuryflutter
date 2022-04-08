@@ -8,12 +8,12 @@ import '../../../config/global_config.dart';
 import '../../../data/model/checkout_order/multi_address_model.dart';
 
 abstract class ICheckOutOrderProvider {
-  Future<Response> getMultiAddressResponseProvider({required String endPoint});
-  Future<Response> postEstimateResponseProvider(
+  Future<dynamic> getMultiAddressResponseProvider({required String endPoint});
+  Future<dynamic> postEstimateResponseProvider(
       {required String endPoint, required String requestJson});
-  Future<Response> postShippingInformationResponseProvider(
+  Future<dynamic> postShippingInformationResponseProvider(
       {required String endPoint, required String requestJson});
-  Future<Response> postCreateOrderResponseProvider(
+  Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson});
 }
 
@@ -27,14 +27,14 @@ class CheckOutOrderProvider extends GetConnect
 
   @override
   void onInit() {
-    httpClient.defaultDecoder = (val) => jsonEncode(val);
+    httpClient.defaultDecoder = (val) => val;
     //httpClient.baseUrl = AppConstants.apiEndPointNew1;
     httpClient.timeout = Duration(seconds: 60);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
   }
 
   @override
-  Future<Response> getMultiAddressResponseProvider({required String endPoint}) {
+  Future<dynamic> getMultiAddressResponseProvider({required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     print("headers -> " + headers.toString());
     // httpClient.defaultDecoder = (val) => MultiAddressModel.fromJson(val);
@@ -42,7 +42,7 @@ class CheckOutOrderProvider extends GetConnect
   }
 
   @override
-  Future<Response<dynamic>> postEstimateResponseProvider(
+  Future<dynamic> postEstimateResponseProvider(
       {required String endPoint, required String requestJson}) {
     // TODO: implement getLoginResponseProvider
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
@@ -50,7 +50,7 @@ class CheckOutOrderProvider extends GetConnect
   }
 
   @override
-  Future<Response> postShippingInformationResponseProvider(
+  Future<dynamic> postShippingInformationResponseProvider(
       {required String endPoint, required String requestJson}) {
     // TODO: implement postShippingInformationResponseProvider
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
@@ -58,7 +58,7 @@ class CheckOutOrderProvider extends GetConnect
   }
 
   @override
-  Future<Response> postCreateOrderResponseProvider(
+  Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return put(endPoint, requestJson, headers: {

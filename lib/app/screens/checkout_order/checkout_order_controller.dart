@@ -42,15 +42,12 @@ class CheckoutOrderController extends GetxController {
   }
 
   getEstimateAndShipInformationFromApi() async {
-    Rx<MultiAddressModel>? multiAddressModel = MultiAddressModel().obs;
-    RxInt selectedAddressIndex = 0.obs;
-    final response =
+    var data =
         await checkoutOrderAPIRepository.getMultiAddressAPIResponse();
-    if (response.isNotEmpty) {
-      multiAddressModel.value =
-          MultiAddressModel.fromJson(jsonDecode(response));
+    if (data!=null) {
+      String dataString = jsonEncode(data);
+      multiAddressModel!.value = MultiAddressModel.fromJson(jsonDecode(dataString));
     }
-    if (estimatesList != null) {
       estimatesList?.value = [];
       var params = json.encode({
         "address": {
@@ -69,12 +66,16 @@ class CheckoutOrderController extends GetxController {
           "same_as_billing": 1
         }
       });
-      estimatesList?.value = jsonDecode(
-          await checkoutOrderAPIRepository.postEstimateAPIResponse(params));
-      // estimatesList?.value = await NetworkRepository().postEstimateShippingMethod() ?? [];
-    }
+      var data1 = await checkoutOrderAPIRepository.postEstimateAPIResponse(params);
+      if(data1!=null){
+        String dataString = jsonEncode(data1);
+        estimatesList?.value = jsonDecode(dataString);
+      }
 
-    var params = json.encode({
+      // estimatesList?.value = await NetworkRepository().postEstimateShippingMethod() ?? [];
+
+
+    var params1 = json.encode({
       "addressInformation": {
         "shipping_address": {
           "region": "Maharashtra",
@@ -105,8 +106,12 @@ class CheckoutOrderController extends GetxController {
         "shipping_method_code": "freeshipping"
       }
     });
-    shipInfoModel!.value = await checkoutOrderAPIRepository
-        .postShippingInformationAPIResponse(params);
+    var data2 = await checkoutOrderAPIRepository
+        .postShippingInformationAPIResponse(params1);
+    if(data2!=null){
+      String dataString = jsonEncode(data2);
+      shipInfoModel!.value = ShippingInformationModel.fromJson(jsonDecode(dataString));
+    }
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 
