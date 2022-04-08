@@ -192,6 +192,7 @@ class ReferFriendScreen extends GetView<ReferFriendController> {
   Widget successfully() {
     return Obx(() => Container(
           height: Get.height,
+          width: Get.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -1,5 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/refer_friend_api_repository.dart';
@@ -26,18 +28,23 @@ class ReferFriendController extends GetxController {
   }
 
   postData() async {
-    String message = await referFriendAPIRepository.getReferFriendAPIResponse(
+    var data = await referFriendAPIRepository.getReferFriendAPIResponse(
         refFirstName: refFirstNameController.text,
         refEmail: refEmailController.text,
         refPhone: refPhoneController.text,
         yourFirstName: yourFirstNameController.text,
         yourEmail: yourEmailController.text,
         yourPhone: yourPhoneController.text);
-    print("message---> $message");
-    if(message.isNotEmpty){
-      isSuccessfully.value = true;
-      responseMsg.value = message;
+    if(data!=null){
+      String dataString = jsonEncode(data);
+      String message = jsonDecode(dataString)['message'];
+      print("message---> $message");
+      if(message.isNotEmpty){
+        isSuccessfully.value = true;
+        responseMsg.value = message;
+      }
     }
+
     // ScaffoldMessenger.of(Get.context!).showSnackBar(
     //   SnackBar(content: CommonTextPoppins(message)),
     // );
