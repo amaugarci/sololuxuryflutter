@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/login_api_provider.dart';
 import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
+
+import '../../validator.dart';
 
 class LoginAPIRepository implements ILoginRepository {
 
@@ -9,13 +13,14 @@ class LoginAPIRepository implements ILoginRepository {
   LoginAPIRepository({required this.provider});
 
   @override
-  Future<String> getLoginAPIResponse(String loginRequestJson, String userName, String password) async {
+  Future<dynamic> getLoginAPIResponse(String loginRequestJson, String userName, String password) async {
     final loginResponseModel = await provider.getLoginResponseProvider(urlPath: AppConstants.login, userName: userName, password: password, loginRequestJson: loginRequestJson);
 
     if(loginResponseModel.status.hasError) {
       print("error -> ");
       print(loginResponseModel.statusText!);
-      return Future.error(loginResponseModel.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(loginResponseModel.body!), message: loginResponseModel.statusText);
+      return null;
     } else {
       print("success -> ");
       return loginResponseModel.body!;

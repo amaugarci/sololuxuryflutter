@@ -30,12 +30,12 @@ abstract class IReferFriendRepository {
 }
 
 abstract class ILoginRepository {
-  Future<String> getLoginAPIResponse(
+  Future<dynamic> getLoginAPIResponse(
       String loginRequestJson, String userName, String password);
 }
 
 abstract class ISignupRepository {
-  Future<SignUpResponseModel> getSignupAPIResponse(String signupRequestJson);
+  Future<dynamic> getSignupAPIResponse(String signupRequestJson);
 }
 
 abstract class IInfluencerRepository {
@@ -181,4 +181,7 @@ abstract class IAddressListRepository {
 
 abstract class IReturnReasonRepository {
   Future<String> getReturnReasonResponse();
+  Future<dynamic> postReturnItemAPIResponse(String orderId, String productsku,
+      String email, String reason, String langCode);
+  Future<String> getOrderTeakingResponse(String id);
 }

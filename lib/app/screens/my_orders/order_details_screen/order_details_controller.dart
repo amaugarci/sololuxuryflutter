@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
+import 'package:solo_luxury/app/screens/my_orders/order_details_screen/return_reason_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
+import 'package:solo_luxury/data/model/order_traking/order_traking_model.dart';
 import 'package:solo_luxury/data/model/return_reason/return_reason_model.dart';
 import 'package:solo_luxury/data/requests/get_my_orders.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/return_reason_api_repository.dart';
@@ -12,21 +15,22 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 class OrderDetailsController extends GetxController {
   RxInt index = 0.obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
-
   final ReturnReasonAPIRepository myOrdersAPIRepository;
   OrderDetailsController({required this.myOrdersAPIRepository});
   RxList<ReturnReasonModel> returnReasonList = RxList<ReturnReasonModel>();
+  RxList<OrderTrackingModel> orderTrackingList = RxList<OrderTrackingModel>();
   var isLoading = true.obs;
+  dynamic argumentData = Get.arguments;
 
   @override
   void onInit() {
-    getReturnReasonList();
+    getOrderTrackingList();
     super.onInit();
   }
 
   Rx<ReturnReasonModel> selectReturnReason = ReturnReasonModel().obs;
   getReturnReasonList() async {
-    isLoading.value = true;
+    // isLoading.value = true;
     print("getStoreDataFromApi -> ");
     var returnReasonListData =
         jsonDecode(await myOrdersAPIRepository.getReturnReasonResponse());
@@ -39,9 +43,475 @@ class OrderDetailsController extends GetxController {
     isLoading.value = false;
   }
 
-  //showReturn Reason Dialog
+  getOrderTrackingList() async {
+    isLoading.value = true;
+    print("getStoreDataFromApi -> ");
+    var returnReasonListData = jsonDecode(await myOrdersAPIRepository
+        .getOrderTeakingResponse(argumentData[1]!.incrementId.toString()));
+    orderTrackingList.value = List<OrderTrackingModel>.from(
+      returnReasonListData.map(
+        (reason) => OrderTrackingModel.fromJson(reason),
+      ),
+    );
+    print("OrderTracking  list Get $orderTrackingList");
+    print("${orderTrackingList}");
+    await getReturnReasonList();
+  }
 
-  showDialogBoxOpen(context) {
+  //Post Return Item Data
+  postReturnItem(order, context) async {
+    var postReturnItem = await myOrdersAPIRepository.postReturnItemAPIResponse(
+        order[0]!.itemId.toString(),
+        order[0]!.sku.toString(),
+        order[1]!.customerEmail.toString(),
+        "${selectReturnReason.value.reason.toString()}",
+        "gb-en");
+    print("Response Is $postReturnItem");
+    if (postReturnItem["message"] ==
+        "Order return request successfully sent, you will get updates soon.") {
+      Get.to(ReturnReasonScreen());
+    } else {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        SnackBar(content: CommonTextPoppins(postReturnItem["message"])),
+      );
+      // Get.to(ReturnReasonScreen());
+    }
+  }
+
+//Order Tracking Dialog Box
+  showOrderTrackingDialogBox(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Obx(
+          () => AlertDialog(
+            insetPadding: EdgeInsets.symmetric(horizontal: 10.0),
+            contentPadding: EdgeInsets.zero,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            // titlePadding: EdgeInsets.zero,
+            backgroundColor: Color(0xFFF9EAE3),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 2,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 14.0, top: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.close, color: Color(0xff7e7a79))),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Container(
+                    width: double.maxFinite,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 20.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    left: 6,
+                                  ),
+                                  height: 80,
+                                  width: 4,
+                                  color: orderTrackingList[0]
+                                                  .statusDate
+                                                  .toString() ==
+                                              "null" ||
+                                          orderTrackingList[0]
+                                                  .statusDate
+                                                  .toString() ==
+                                              ""
+                                      ? Color(0xff7e7a79)
+                                      : Color(0xff7d675c),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ClipOval(
+                                      child: Material(
+                                        color: appColor, // Button color
+                                        child: SizedBox(
+                                          width: 18,
+                                          height: 18,
+                                          child: Center(
+                                            child: Text(
+                                              "1",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${orderTrackingList[0].statusTitle}",
+                                          style: TextStyle(
+                                            color: appColor,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(width: 60),
+                                        orderTrackingList[0]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    "null" ||
+                                                orderTrackingList[0]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    ""
+                                            ? Text("")
+                                            : Text(
+                                                "${orderTrackingList[0].statusDate}",
+                                                style: TextStyle(
+                                                  color: appColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 6),
+                                  height: 50,
+                                  width: 4,
+                                  color: orderTrackingList[1]
+                                                  .statusDate
+                                                  .toString() ==
+                                              "null" ||
+                                          orderTrackingList[1]
+                                                  .statusDate
+                                                  .toString() ==
+                                              ""
+                                      ? Color(0xff7e7a79)
+                                      : Color(0xff7d675c),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    ClipOval(
+                                        child: Material(
+                                      color: orderTrackingList[1]
+                                                      .statusDate
+                                                      .toString() ==
+                                                  "null" ||
+                                              orderTrackingList[1]
+                                                      .statusDate
+                                                      .toString() ==
+                                                  ""
+                                          ? Color(0xff7e7a79)
+                                          : appColor, // Button color
+                                      child: SizedBox(
+                                        width: 18,
+                                        height: 18,
+                                        child: Center(
+                                          child: Text(
+                                            "2",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )),
+                                    SizedBox(width: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${orderTrackingList[1].statusTitle}",
+                                          style: TextStyle(
+                                            color: orderTrackingList[2]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        "null" ||
+                                                    orderTrackingList[2]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        ""
+                                                ? Color(0xff7e7a79)
+                                                : appColor,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(width: 60),
+                                        orderTrackingList[1]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    "null" ||
+                                                orderTrackingList[1]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    ""
+                                            ? Text("")
+                                            : Text(
+                                                "${orderTrackingList[1].statusDate}",
+                                                style: TextStyle(
+                                                  color: appColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 6),
+                                  height: 30,
+                                  width: 4,
+                                  color: orderTrackingList[2]
+                                                  .statusDate
+                                                  .toString() ==
+                                              "null" ||
+                                          orderTrackingList[2]
+                                                  .statusDate
+                                                  .toString() ==
+                                              ""
+                                      ? Color(0xff7e7a79)
+                                      : Color(0xff7d675c),
+                                ),
+                              ],
+                            ),
+                            Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 6),
+                                  height: 80,
+                                  width: 4,
+                                  color: orderTrackingList[2]
+                                                  .statusDate
+                                                  .toString() ==
+                                              "null" ||
+                                          orderTrackingList[2]
+                                                  .statusDate
+                                                  .toString() ==
+                                              ""
+                                      ? Color(0xff7e7a79)
+                                      : Color(0xff7d675c),
+                                ),
+                                Row(
+                                  children: [
+                                    ClipOval(
+                                      child: Material(
+                                        color: orderTrackingList[2]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    "null" ||
+                                                orderTrackingList[2]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    ""
+                                            ? Color(0xff7e7a79)
+                                            : Color(0xff7d675c), // Button color
+                                        child: SizedBox(
+                                          width: 18,
+                                          height: 18,
+                                          child: Center(
+                                            child: Text(
+                                              "3",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${orderTrackingList[2].statusTitle}",
+                                          style: TextStyle(
+                                            color: orderTrackingList[2]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        "null" ||
+                                                    orderTrackingList[2]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        ""
+                                                ? Color(0xff7e7a79)
+                                                : appColor,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(width: 60),
+                                        orderTrackingList[2]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    "null" ||
+                                                orderTrackingList[2]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    ""
+                                            ? Text("")
+                                            : Text(
+                                                "${orderTrackingList[2].statusDate}",
+                                                style: TextStyle(
+                                                  color: appColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Stack(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 6),
+                                  height: 10,
+                                  width: 4,
+                                  color: orderTrackingList[3]
+                                                  .statusDate
+                                                  .toString() ==
+                                              "null" ||
+                                          orderTrackingList[3]
+                                                  .statusDate
+                                                  .toString() ==
+                                              ""
+                                      ? Color(0xff7e7a79)
+                                      : Color(0xff7d675c),
+                                ),
+                                Row(
+                                  children: [
+                                    ClipOval(
+                                        child: Material(
+                                            color: orderTrackingList[3]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        "null" ||
+                                                    orderTrackingList[3]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        ""
+                                                ? Color(0xff7e7a79)
+                                                : Color(
+                                                    0xff7d675c), // Button color
+                                            child: SizedBox(
+                                              width: 18,
+                                              height: 18,
+                                              child: Center(
+                                                child: Text(
+                                                  "4",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ))),
+                                    SizedBox(width: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${orderTrackingList[3].statusTitle}",
+                                          style: TextStyle(
+                                            color: orderTrackingList[3]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        "null" ||
+                                                    orderTrackingList[3]
+                                                            .statusDate
+                                                            .toString() ==
+                                                        ""
+                                                ? Color(0xff7e7a79)
+                                                : appColor,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(width: 60),
+                                        orderTrackingList[3]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    "null" ||
+                                                orderTrackingList[3]
+                                                        .statusDate
+                                                        .toString() ==
+                                                    ""
+                                            ? Text("")
+                                            : Text(
+                                                "${orderTrackingList[3].statusDate}",
+                                                style: TextStyle(
+                                                  color: appColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  //showReturn Reason Dialog
+  showDialogBoxOpen(context, order) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -142,7 +612,18 @@ class OrderDetailsController extends GetxController {
                   ),
                   const SizedBox(height: 25.0),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (selectReturnReason.value.reason.toString() ==
+                          "null") {
+                        ScaffoldMessenger.of(Get.context!).showSnackBar(
+                          SnackBar(
+                              content: CommonTextPoppins(
+                                  "Please Select Return Reason Item")),
+                        );
+                      } else {
+                        postReturnItem(order, context);
+                      }
+                    },
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
@@ -169,3 +650,60 @@ class OrderDetailsController extends GetxController {
     );
   }
 }
+//   Row(
+//     children: [
+//       ClipOval(
+//           child: Material(
+//               color: appColor, // Button color
+//               child: SizedBox(
+//                 width: 18,
+//                 height: 18,
+//                 child: Center(
+//                   child: Text("1",
+//                       style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: 12,
+//                           fontWeight: FontWeight.w500)),
+//                 ),
+//               ))),
+//       SizedBox(
+//         width: 10.0,
+//       ),
+//       Expanded(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Text(
+//               "Order Placed",
+//               style: TextStyle(
+//                 color: appColor,
+//                 fontSize: 14,
+//               ),
+//             ),
+//             Text(
+//               "March 11, 2022",
+//               style: TextStyle(
+//                 color: appColor,
+//                 fontSize: 14,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     ],
+//   ),
+//   Row(
+//     children: [
+//       SizedBox(
+//         width: 6.0,
+//       ),
+//       Container(
+//         width: 4,
+//         height: 20,
+//         color: appColor.withOpacity(1.0),
+//       ),
+//       SizedBox(
+//         width: 10.0,
+//       ),
+//     ],
+//   ),

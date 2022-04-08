@@ -13,7 +13,7 @@ class DashboardAPIRepository implements IDashboardRepository {
 
   @override
   Future<MenuModel> getMenuAPIResponse() async {
-    final response = await dashboardAPIProvider.getMenuResponseProvider(endPoint: AppConstants.menuEndPoint);
+    final response = await dashboardAPIProvider.getMenuResponseProvider(endPoint: AppConstants.getUrlWithCode(AppConstants.menuEndPoint));
     if (response != null) {
       print("response.statusCode -> ");
       print(response.statusCode);

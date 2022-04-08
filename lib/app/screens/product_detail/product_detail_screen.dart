@@ -14,7 +14,7 @@ import '../../../utils/app_constants.dart';
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
   // Item? product;
-  //
+
   // ProductDetailScreen({this.product});
 
   @override

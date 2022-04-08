@@ -339,4 +339,7 @@ class LanguageConstant {
       "termAndConditionHeadingText";
   static const String reasonReturnText = "reasonReturnText";
   static const String returnItemText = "returnItemText";
+  static const String returnRequestText = "returnRequestText";
+  static const String teamSoloLuxuryText = "teamSoloLuxuryText";
+  static const String wehaveRecivedText = "wehaveRecivedText";
 }
