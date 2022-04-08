@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../app_constants.dart';
 
 abstract class ITermAndConditionProvider {
-  Future<Response> getTermAndConditionAPIResponse({required String endPoint});
+  Future<dynamic> getTermAndConditionAPIResponse({required String endPoint});
 }
 
 class TermAndConditionAPIProvider extends GetConnect
@@ -17,7 +17,7 @@ class TermAndConditionAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getTermAndConditionAPIResponse({required String endPoint}) {
+  Future<dynamic> getTermAndConditionAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = "https://www.sololuxury.com/rest/V1/";
     httpClient.timeout = const Duration(seconds: 60);

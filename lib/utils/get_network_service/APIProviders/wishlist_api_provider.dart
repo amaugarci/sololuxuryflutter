@@ -6,11 +6,11 @@ import '../../../main.dart';
 import '../../app_constants.dart';
 
 abstract class IWishListProvider {
-  Future<Response<WishListProductModel>> getWishListResponseProvider({required String endPoint});
+  Future<Response<WishListProductModel>> getWishListResponseProvider(
+      {required String endPoint});
 }
 
 class WishListAPIProvider extends GetConnect implements IWishListProvider {
-
   @override
   void onInit() {
     httpClient.defaultDecoder = (val) => WishListProductModel.fromJson(val);
@@ -18,11 +18,13 @@ class WishListAPIProvider extends GetConnect implements IWishListProvider {
   }
 
   @override
-  Future<Response<WishListProductModel>> getWishListResponseProvider({required String endPoint}) {
+  Future<Response<WishListProductModel>> getWishListResponseProvider(
+      {required String endPoint}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     print("customer token -> " + localStore.customerToken);
-    return get(endPoint,  headers: {"Content-type" : "application/json", "Authorization" : localStore.customerToken});
+    return get(endPoint, headers: {
+      "Content-type": "application/json",
+      "Authorization": localStore.customerToken
+    });
   }
-
-
 }

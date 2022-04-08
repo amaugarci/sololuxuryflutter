@@ -8,7 +8,7 @@ import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 abstract class IAddressListProvider {
-  Future<Response> getAddressListAPIResponse({required String endPoint});
+  Future<dynamic> getAddressListAPIResponse({required String endPoint});
 }
 
 class AddressListAPIProvider extends GetConnect
@@ -21,7 +21,7 @@ class AddressListAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getAddressListAPIResponse({required String endPoint}) {
+  Future<dynamic> getAddressListAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);

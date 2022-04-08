@@ -38,6 +38,7 @@ class RecommendedProductsAPIRepository extends GetxController {
     final response = await http.get(
       Uri.parse(AppConstants.recommendedProductsEndPoint),
     );
+
     try {
       if (response.statusCode == 200) {
         print("Categories=======================================");
@@ -161,6 +162,7 @@ class RecommendedProductsAPIRepository extends GetxController {
     final response = await http.post(
         Uri.parse(AppConstants.apiEndPointLogin + createOrderApiEndPoint),
         headers: {"Content-type": "application/json", "Authorization": token});
+
     try {
       if (response.statusCode == 200) {
         print("Categories=======================================");

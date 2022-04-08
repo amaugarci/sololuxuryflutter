@@ -96,7 +96,7 @@ class Items {
   final String? sku;
   final int? qty;
   final String? name;
-  final int? price;
+  final dynamic price;
   final String? productType;
   final String? quoteId;
 
@@ -115,7 +115,7 @@ class Items {
         sku = json['sku'] as String?,
         qty = json['qty'] as int?,
         name = json['name'] as String?,
-        price = json['price'] as int?,
+        price = json['price'] as dynamic,
         productType = json['product_type'] as String?,
         quoteId = json['quote_id'] as String?;
 
@@ -139,7 +139,7 @@ class Customer {
   final String? email;
   final String? firstname;
   final String? lastname;
-  final int? storeId;
+  final dynamic storeId;
   final int? websiteId;
   final List<dynamic>? addresses;
   final int? disableAutoGroupChange;
@@ -170,7 +170,7 @@ class Customer {
         email = json['email'] as String?,
         firstname = json['firstname'] as String?,
         lastname = json['lastname'] as String?,
-        storeId = json['store_id'] as int?,
+        storeId = json['store_id'] as dynamic,
         websiteId = json['website_id'] as int?,
         addresses = json['addresses'] as List?,
         disableAutoGroupChange = json['disable_auto_group_change'] as int?,

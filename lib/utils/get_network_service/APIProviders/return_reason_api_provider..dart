@@ -9,8 +9,8 @@ import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:http/http.dart' as http;
 
 abstract class IReturnReasonProvider {
-  Future<Response> getReturnReasonAPIResponse({required String endPoint});
-  Future<Response> getOrderTeakingAPIResponse({required String endPoint});
+  Future<dynamic> getReturnReasonAPIResponse({required String endPoint});
+  Future<dynamic> getOrderTeakingAPIResponse({required String endPoint});
 }
 
 class ReturnReasonAPIProvider extends GetConnect
@@ -23,7 +23,7 @@ class ReturnReasonAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getReturnReasonAPIResponse({required String endPoint}) {
+  Future<dynamic> getReturnReasonAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
@@ -64,7 +64,7 @@ class ReturnReasonAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getOrderTeakingAPIResponse({required String endPoint}) {
+  Future<dynamic> getOrderTeakingAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);

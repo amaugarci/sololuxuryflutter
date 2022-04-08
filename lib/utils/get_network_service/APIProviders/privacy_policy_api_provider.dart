@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../app_constants.dart';
 
 abstract class IPrivacyPolicyProvider {
-  Future<Response> getPrivacyPolicyAPIResponse({required String endPoint});
+  Future<dynamic> getPrivacyPolicyAPIResponse({required String endPoint});
 }
 
 class PrivacyPolicyAPIProvider extends GetConnect
@@ -17,7 +17,7 @@ class PrivacyPolicyAPIProvider extends GetConnect
   }
 
   @override
-  Future<Response> getPrivacyPolicyAPIResponse({required String endPoint}) {
+  Future<dynamic> getPrivacyPolicyAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = "https://www.sololuxury.com/rest/V1/";
     httpClient.timeout = const Duration(seconds: 60);

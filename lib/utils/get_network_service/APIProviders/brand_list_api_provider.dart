@@ -7,7 +7,7 @@ import 'package:solo_luxury/data/model/brand_list/brand_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
 abstract class IBrandListProvider {
-  Future<Response> getBrandListAPIResponse({required String endPoint});
+  Future<dynamic> getBrandListAPIResponse({required String endPoint});
 }
 
 class BrandListAPIProvider extends GetConnect implements IBrandListProvider {
@@ -20,7 +20,7 @@ class BrandListAPIProvider extends GetConnect implements IBrandListProvider {
   }
 
   @override
-  Future<Response> getBrandListAPIResponse({required String endPoint}) {
+  Future<dynamic> getBrandListAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);

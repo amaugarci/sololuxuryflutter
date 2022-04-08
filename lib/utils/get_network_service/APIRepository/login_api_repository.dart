@@ -26,5 +26,4 @@ class LoginAPIRepository implements ILoginRepository {
       return loginResponseModel.body!;
     }
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -20,8 +19,8 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../data/model/Home/menu_model.dart';
 import '../../../utils/get_network_service/APIRepository/dashboard_api_repository.dart';
 
-
-class DashboardController extends GetxController with GetSingleTickerProviderStateMixin{
+class DashboardController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   TabController? tabController;
 
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
@@ -48,12 +47,13 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     BrandBinding().dependencies();
     getMenuDataFromApi();
   }
+
   getMenuDataFromApi() async {
     print("getMenuDataFromApi -> ");
     //menuModel!.value = await NetworkRepository().getMenu();
 
     var data = await dashboardAPIRepository.getMenuAPIResponse();
-    if(data!=null){
+    if (data != null) {
       String dataString = jsonEncode(data);
       menuModel!.value = MenuModel.fromJson(jsonDecode(dataString));
     }
@@ -62,6 +62,5 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   List<String> data = [
     "ENG",
     "EUR",
-
   ];
 }

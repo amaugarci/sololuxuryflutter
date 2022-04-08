@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/return_reason_api_provider..dart';
 
+import '../../validator.dart';
 import '../repository_adapter.dart';
 
 class ReturnReasonAPIRepository implements IReturnReasonRepository {
@@ -47,7 +50,7 @@ class ReturnReasonAPIRepository implements IReturnReasonRepository {
   }
 
   @override
-  Future<String> getOrderTeakingResponse(id) async {
+  Future<dynamic> getOrderTeakingResponse(id) async {
     Response response =
         await returnReasonAPIProvider.getOrderTeakingAPIResponse(
             endPoint: AppConstants.orderTrakingApi + id);
@@ -57,8 +60,13 @@ class ReturnReasonAPIRepository implements IReturnReasonRepository {
     }
 
     if (response.status.hasError) {
-      return Future.error(response.statusText!);
+      print("error -> ");
+      print(response.statusText!);
+      Validators.apiResponseMessage(
+          body: response.body!, message: response.statusText);
+      return null;
     } else {
+      print("success -> ");
       return response.body!;
     }
   }
