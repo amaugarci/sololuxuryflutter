@@ -11,6 +11,8 @@ import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/login_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
+import '../../../../utils/app_routes.dart';
+
 class LoginController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
   Rx<TextEditingController> emailController = TextEditingController().obs;
@@ -40,6 +42,7 @@ class LoginController extends GetxController {
         loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
         await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
         await localStore.getToken();
+        Get.offNamed(RoutesConstants.dashboardScreen);
       }
       log("loginResponseModel : $loginResponseModel");
     } else {}

@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/components/expandable_container.dart';
-import 'package:solo_luxury/app/screens/about_us/about_us_screen.dart';
 import 'package:solo_luxury/app/screens/my_tickets/my_tickets_controller.dart';
-import 'package:solo_luxury/app/screens/refer_friend/refer_friend_screen.dart';
-import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/data/model/country/country_model.dart';
-import 'package:solo_luxury/utils/image_constant.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../components/common_widget/common_appbar.dart';
 
 class MyTicketScreen extends GetView<MyTicketsController> {
   const MyTicketScreen({Key? key}) : super(key: key);
@@ -22,54 +17,7 @@ class MyTicketScreen extends GetView<MyTicketsController> {
 
     return Obx(() => Scaffold(
           backgroundColor: backGroundColor,
-          appBar: AppBar(
-            backgroundColor: backGroundColor,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.black),
-            centerTitle: true,
-            leading: InkWell(
-              onTap: () {
-                controller.scaffoldKey.value.currentState!.openDrawer();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(ImageConstant.menuIcon),
-              ),
-            ),
-            actions: [
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 8.0),
-                  child: SvgPicture.asset(ImageConstant.searchIcon),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 8.0),
-                  child: SvgPicture.asset(ImageConstant.heartIcon),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 8.0),
-                  child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
-                      color: Colors.black),
-                ),
-              ),
-            ],
-            title: Image.asset(AppAsset.logo, width: 110),
-            /*bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),*/
-          ),
-          drawer: const Drawer(),
+          appBar: commonAppbar(),
           body: controller.isLoading.value
               ? Center(
                   child: SpinKitThreeBounce(
@@ -104,19 +52,15 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                             Container(
                               color: appColor,
                               child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 10.0),
+                                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Expanded(
                                         flex: 2,
                                         child: Text(
-                                          LanguageConstant.idText.tr
-                                              .toUpperCase(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white),
+                                          LanguageConstant.idText.tr.toUpperCase(),
+                                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
                                         )),
                                     SizedBox(
                                       width: 4,
@@ -124,22 +68,16 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                                     Expanded(
                                         flex: 2,
                                         child: Text(
-                                          LanguageConstant.nameChatText.tr
-                                              .toUpperCase(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white),
+                                          LanguageConstant.nameChatText.tr.toUpperCase(),
+                                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
                                         )),
                                     SizedBox(
                                       width: 4,
                                     ),
                                     Expanded(
                                         child: Text(
-                                      LanguageConstant.actionText.tr
-                                          .toUpperCase(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white),
+                                      LanguageConstant.actionText.tr.toUpperCase(),
+                                      style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
                                     )),
                                   ],
                                 ),
@@ -153,32 +91,24 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                             Expanded(
                               child: ListView.builder(
                                   itemCount: controller.getticketList.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    final ticket =
-                                        controller.getticketList[index];
+                                  itemBuilder: (BuildContext context, int index) {
+                                    final ticket = controller.getticketList[index];
                                     return Container(
                                         child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                           Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10.0,
-                                                vertical: 10.0),
+                                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Expanded(
                                                     flex: 2,
                                                     child: Text(
                                                       '${ticket.ticketId}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                      overflow: TextOverflow.ellipsis,
                                                       style: TextStyle(),
                                                     )),
                                                 SizedBox(
@@ -189,8 +119,7 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                                                     child: Text(
                                                       '${ticket.subject}',
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                      overflow: TextOverflow.ellipsis,
                                                       style: TextStyle(),
                                                     )),
                                                 SizedBox(
@@ -199,18 +128,11 @@ class MyTicketScreen extends GetView<MyTicketsController> {
                                                 Expanded(
                                                     child: InkWell(
                                                         onTap: () {
-                                                          ticket.messages ==
-                                                                      null ||
-                                                                  ticket.messages
-                                                                          .toString() ==
-                                                                      "[]"
+                                                          ticket.messages == null || ticket.messages.toString() == "[]"
                                                               ? Container()
-                                                              : controller
-                                                                  .showDialogBoxOpen(
-                                                                      context);
+                                                              : controller.showDialogBoxOpen(context);
                                                         },
-                                                        child: Icon(Icons
-                                                            .visibility_outlined))),
+                                                        child: Icon(Icons.visibility_outlined))),
                                               ],
                                             ),
                                           ),
