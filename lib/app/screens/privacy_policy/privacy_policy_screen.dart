@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_controller.dart';
-import 'package:solo_luxury/app/utils/app_asset.dart';
-import 'package:solo_luxury/app/utils/colors.dart';
-import 'package:solo_luxury/utils/image_constant.dart';
-
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
+import 'package:solo_luxury/app/screens/privacy_policy/privacy_policy_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
-
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
@@ -20,59 +12,11 @@ class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Obx(
       () => Scaffold(
         backgroundColor: backGroundColor,
         key: controller.scaffoldKey.value,
-        appBar: AppBar(
-          backgroundColor: backGroundColor,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              controller.scaffoldKey.value.currentState!.openDrawer();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(ImageConstant.menuIcon),
-
-            ),
-          ),
-          actions: [
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                child: SvgPicture.asset(ImageConstant.searchIcon),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                child: SvgPicture.asset(ImageConstant.heartIcon),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                child: SvgPicture.asset(ImageConstant.shoppingCartIcon,
-                    color: Colors.black),
-              ),
-            ),
-          ],
-          title: Image.asset(AppAsset.logo, width: 110),
-          /*bottom: PreferredSize(
-          preferredSize: Size(Get.width, 60),
-          child: const HeaderWidget(),
-        ),*/
-        ),
+        appBar: commonAppbar(),
         body: controller.isLoading.value
             ? const Center(
                 child: SpinKitThreeBounce(
@@ -103,13 +47,10 @@ class PrivacyPolicyScreen extends GetView<PrivacyPolicyController> {
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
-                        itemCount:
-                            controller.getprivacyPolicy[0].cmsText!.length,
+                        itemCount: controller.getprivacyPolicy[0].cmsText!.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final getList =
-                              controller.getprivacyPolicy[0].cmsText![index];
-                          return expandDetailWidget(
-                              getList.title!, getList.description!, index + 1);
+                          final getList = controller.getprivacyPolicy[0].cmsText![index];
+                          return expandDetailWidget(getList.title!, getList.description!, index + 1);
                         },
                       ),
                     ),
