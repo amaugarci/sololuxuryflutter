@@ -125,24 +125,27 @@ class Item {
       };
 
   getProductImage() {
-    CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "image", orElse: () => CustomAttribute(attributeCode: ""));
+    CustomAttribute customAttribute = customAttributes!.firstWhere(
+        (element) => element.attributeCode == "image",
+        orElse: () => CustomAttribute(attributeCode: ""));
     if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getProductDescription() {
-    CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "description", orElse: () => CustomAttribute(attributeCode: ""));
+    CustomAttribute customAttribute = customAttributes!.firstWhere(
+        (element) => element.attributeCode == "description",
+        orElse: () => CustomAttribute(attributeCode: ""));
     if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
   }
 
   getSizeChart() {
-    CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "size_chart_url", orElse: () => CustomAttribute(attributeCode: ""));
+    CustomAttribute customAttribute = customAttributes!.firstWhere(
+        (element) => element.attributeCode == "size_chart_url",
+        orElse: () => CustomAttribute(attributeCode: ""));
     if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
@@ -158,8 +161,9 @@ class Item {
   }
 
   getColor() {
-    CustomAttribute customAttribute = customAttributes!
-        .firstWhere((element) => element.attributeCode == "color", orElse: () => CustomAttribute(attributeCode: ""));
+    CustomAttribute customAttribute = customAttributes!.firstWhere(
+        (element) => element.attributeCode == "color",
+        orElse: () => CustomAttribute(attributeCode: ""));
     if (customAttribute.attributeCode!.isEmpty) return "";
     if (customAttributes == null) return "";
     return customAttribute.value;
@@ -194,26 +198,29 @@ class Item {
           }
         }
       }
-       if (item.visibility == 4) {
-         item.price = priceList.reduce(min);
-       }
+      if (item.visibility == 4) {
+        item.price = priceList.reduce(min);
+      }
     }
-    return item.price;
+    return item.price!.round();
   }
 
-  getConvertRegularPriceFromConfigurableProduct(List<Item>? itemList, Item? item) {
-    print("getConvertRegularPriceFromConfigurableProduct -> ${itemList!.length} - ${item!.extensionAttributes!.convertedRegularPrice}");
+  getConvertRegularPriceFromConfigurableProduct(
+      List<Item>? itemList, Item? item) {
+    print(
+        "getConvertRegularPriceFromConfigurableProduct -> ${itemList!.length} - ${item!.extensionAttributes!.convertedRegularPrice}");
     if (item.extensionAttributes!.configurableProductLinks!.isNotEmpty) {
       for (int i = 0;
           i < item.extensionAttributes!.configurableProductLinks!.length;
           i++) {
-
         for (int j = 0; j < itemList.length; j++) {
           int configureItemId =
               item.extensionAttributes!.configurableProductLinks![i];
-          print("name -> ${item.getBrandName()} -> ${itemList[j].id} - ${configureItemId}");
+          print(
+              "name -> ${item.getBrandName()} -> ${itemList[j].id} - ${configureItemId}");
           if (itemList[j].id == configureItemId) {
-            item.extensionAttributes!.convertedRegularPrice = itemList[j].extensionAttributes!.convertedRegularPrice!;
+            item.extensionAttributes!.convertedRegularPrice =
+                itemList[j].extensionAttributes!.convertedRegularPrice!;
           }
         }
       }
@@ -276,8 +283,8 @@ class ExtensionAttributes {
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
         "configurable_product_links":
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
-    "converted_regular_price": convertedRegularPrice,
-    "converted_regular_old_price": convertedRegularOldPrice,
+        "converted_regular_price": convertedRegularPrice,
+        "converted_regular_old_price": convertedRegularOldPrice,
       };
 }
 
