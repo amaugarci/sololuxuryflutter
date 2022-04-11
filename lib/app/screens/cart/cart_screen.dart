@@ -6,6 +6,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import '../../components/common_widget/common_appbar.dart';
 import '../../utils/colors.dart';
 import 'cart_controller.dart';
 
@@ -16,6 +17,7 @@ class CartScreen extends GetView<CartController> {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           backgroundColor: appSubscribeButtonColor,
+          appBar: commonAppbar(),
           body: controller.isLoading.value
               ? Center(
                   child: SpinKitThreeBounce(
