@@ -239,7 +239,7 @@ class Items {
     baseDiscountAmount = json['base_discount_amount'];
     discountPercent = json['discount_percent'];
     priceInclTax = json['price_incl_tax'];
-    basePriceInclTax = json['base_price_incl_tax'];
+    basePriceInclTax = double.tryParse(json['base_price_incl_tax'].toString());
     rowTotalInclTax = json['row_total_incl_tax'];
     baseRowTotalInclTax = json['base_row_total_incl_tax'];
     options = json['options'];

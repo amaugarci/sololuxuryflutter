@@ -68,9 +68,7 @@ abstract class ICountryRepository {
 }
 
 abstract class ICheckoutOrderRepository {
-
   Future<dynamic> postShippingInformationAPIResponse(String requestJson);
-
 
   Future<dynamic> getMultiAddressAPIResponse();
 
@@ -137,7 +135,7 @@ abstract class IProductListRepository {
   Future<ProductModel> getProductListApiResponse(String categoryId);
   Future<List<dynamic>> getOptionsListApiResponse();
 
-  Future<List<dynamic>> getFilterListApiResponse();
+  Future<List<dynamic>> getFilterListApiResponse(String id);
 }
 
 abstract class IWishListRepository {
