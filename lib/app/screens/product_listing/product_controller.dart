@@ -29,7 +29,7 @@ class ProductController extends GetxController {
     SortValue("Discount(lowest first)", "ASC"),
   ].obs;
   Rx<Color> backgroundColorValue = const Color(0xffF7E8E1).obs;
-Rx<FilterModel> selectedCategory = FilterModel().obs;
+  Rx<FilterModel> selectedCategory = FilterModel().obs;
   var homeCategoryProductList = <ProductModel>[].obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
@@ -43,7 +43,9 @@ Rx<FilterModel> selectedCategory = FilterModel().obs;
   // RxInt checked = 0.obs;
   RxInt currentCategoryIndex = 0.obs;
   RxList filterList = [].obs;
-  RxMap<String,List> selectedMap = <String,List> {}.obs;
+
+  RxMap<String, List> selectedMap = <String, List>{}.obs;
+
   Rx<FilterModel>? filterModel = FilterModel().obs;
   RxList<FilterModel>? filterModelList = <FilterModel>[].obs;
   RxList<FilterModel>? saveFilterModelList = <FilterModel>[].obs;
@@ -90,27 +92,57 @@ Rx<FilterModel> selectedCategory = FilterModel().obs;
 
   getFilteredProducts() async {
     isLoading.value = true;
-    String url ="";
+    String url = "";
     selectedMap.value.forEach((key, value) {
-      if(key == "cat"){
-       if(value.isNotEmpty){
-         url = url+AppConstants.filteredCatProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
-       }
-      }else if ( key =="price") {
-        if(value.isNotEmpty){
-          url = url+AppConstants.filteredPriceProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+      if (key == "cat") {
+        if (value.isNotEmpty) {
+          url = url +
+              AppConstants.filteredCatProductListEndPoint +
+              value
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .removeAllWhitespace;
         }
-      }else if ( key =="size_v2") {
-        if(value.isNotEmpty){
-          url = url+AppConstants.filteredSizeProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+      } else if (key == "price") {
+        if (value.isNotEmpty) {
+          url = url +
+              AppConstants.filteredPriceProductListEndPoint +
+              value
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .removeAllWhitespace;
         }
-      }else if (key == "color_v2"){
-        if(value.isNotEmpty){
-          url = url+AppConstants.filteredColorProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+      } else if (key == "size_v2") {
+        if (value.isNotEmpty) {
+          url = url +
+              AppConstants.filteredSizeProductListEndPoint +
+              value
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .removeAllWhitespace;
         }
-      }else if (key == "brands"){
-        if(value.isNotEmpty){
-          url = url+AppConstants.filteredBrandProductListEndPoint+value.toString().replaceAll("[", "").replaceAll("]", "").removeAllWhitespace;
+      } else if (key == "color_v2") {
+        if (value.isNotEmpty) {
+          url = url +
+              AppConstants.filteredColorProductListEndPoint +
+              value
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .removeAllWhitespace;
+        }
+      } else if (key == "brands") {
+        if (value.isNotEmpty) {
+          url = url +
+              AppConstants.filteredBrandProductListEndPoint +
+              value
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "")
+                  .removeAllWhitespace;
         }
       }
     });
@@ -131,9 +163,10 @@ Rx<FilterModel> selectedCategory = FilterModel().obs;
   }
 
   getFilterData() async {
-    filterList.value =
-        await productListAPIRepository.getFilterListApiResponse();
+    filterList.value = await productListAPIRepository
+        .getFilterListApiResponse(Get.arguments[0].toString());
     print("filterList.value -> ${filterList.length}");
+    print("filterList.value -> ${filterList}");
     if (filterList.isNotEmpty) {
       for (int i = 0; i < filterList.length; i++) {
         filterModelList!.add(FilterModel.fromJson(filterList[i]));

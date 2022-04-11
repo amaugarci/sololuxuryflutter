@@ -42,7 +42,7 @@ class LoginController extends GetxController {
         loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
         await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
         await localStore.getToken();
-        Get.offNamed(RoutesConstants.dashboardScreen);
+        Get.offAllNamed(RoutesConstants.dashboardScreen);
       }
       log("loginResponseModel : $loginResponseModel");
     } else {}

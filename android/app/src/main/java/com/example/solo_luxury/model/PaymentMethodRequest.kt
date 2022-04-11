@@ -184,7 +184,7 @@ class LineItem {
 
     @SerializedName("amountIncludingTax")
     @Expose
-    var amountIncludingTax: Int? = null
+    var amountIncludingTax: Double? = null
 
     @SerializedName("taxCategory")
     @Expose

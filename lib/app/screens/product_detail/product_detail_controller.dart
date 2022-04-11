@@ -90,8 +90,8 @@ class ProductDetailController extends GetxController
     try {
       // sizeListData =
       //     await RecommendedProductsAPIRepository().getSizeListApi("539");
-      sizeListData =
-          await RecommendedProductsAPIRepository().getSizeListApi(539);
+      sizeListData = await RecommendedProductsAPIRepository()
+          .getSizeListApi(product!.value.id.toString());
       print("Size List $sizeListData");
       if (sizeListData != null) {
         isLoading(false);
