@@ -69,9 +69,10 @@ class RecommendedProductsAPIRepository extends GetxController {
           "Content-type": "application/json",
           "Authorization": AppConstants.defaultToken
         });
+    print('Get Size List $response');
     try {
       if (response.statusCode == 200) {
-        print("Categories=======================================");
+        print("Get Size LIst Data=======================================");
 /*        print(response.body.toString());
         itemData.add(recommendedProductResponseModelFromJson(response.body));*/
         var list = json.decode(response.body);
