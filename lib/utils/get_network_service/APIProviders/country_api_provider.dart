@@ -23,6 +23,7 @@ class CountryAPIProvider extends GetConnect implements ICountryProvider {
 
   @override
   Future<dynamic> getStoreAPIResponse({required String endPoint}) {
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return get(endPoint, headers: {"Content-type": "application/json", "Authorization": AppConstants.adminToken});
   }
