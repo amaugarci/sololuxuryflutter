@@ -55,7 +55,7 @@ class AppConstants {
       "&searchCriteria[filter_groups][0][filters][0][field]=color_v2&searchCriteria[filter_groups][0][filters][0][value]=";
 
   static String filteredCatProductListEndPoint =
-      "&searchCriteria[filter_groups][0][filters][0][field]=cat&searchCriteria[filter_groups][0][filters][0][value]=";
+      "&searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=";
 
   static String filteredPriceProductListEndPoint =
       "&searchCriteria[filter_groups][0][filters][0][field]=price&searchCriteria[filter_groups][0][filters][0][value]=";
