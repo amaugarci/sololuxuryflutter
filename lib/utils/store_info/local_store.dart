@@ -63,4 +63,11 @@ class LocalStore {
     }
     return regularPrice;
   }
+
+  getPriceWithSymbol(String price) {
+    if (currentCurrency == 'EUR') {
+      return "€" + price;
+    }
+    return currentCurrency + " " + price;
+  }
 }

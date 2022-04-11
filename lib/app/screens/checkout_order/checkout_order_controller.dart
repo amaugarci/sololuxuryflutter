@@ -6,12 +6,12 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/data/model/Home/menu_model.dart';
-import 'package:solo_luxury/data/model/cart/cart_model.dart';
+import 'package:solo_luxury/data/model/checkout_order/multi_address_model.dart' as MultiAddress;
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/check_order_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
+import '../../../data/model/cart/cart_model.dart';
 import '../../../data/model/checkout_order/estimate_shipping_method_model.dart';
 import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../../../main.dart';
@@ -27,9 +27,15 @@ class CheckoutOrderController extends GetxController {
   RxInt selectedAddressIndex = 0.obs;
   RxInt selectedShippingIndex = 0.obs;
   RxInt selectedPaymentIndex = 0.obs;
+  RxInt selectedBillingIndex = 0.obs;
+  RxBool isSameAsBilling = true.obs;
   RxBool isShowItems = true.obs;
+  RxBool isLoading = false.obs;
   final formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
+  MultiAddress.Address shippingAddress = MultiAddress.Address();
+  MultiAddress.Address billingAddress = MultiAddress.Address();
+
 
   final CheckoutOrderAPIRepository checkoutOrderAPIRepository;
 
@@ -47,30 +53,39 @@ class CheckoutOrderController extends GetxController {
     if (data!=null) {
       String dataString = jsonEncode(data);
       multiAddressModel!.value = MultiAddressModel.fromJson(jsonDecode(dataString));
-    }
-      estimatesList?.value = [];
-      var params = json.encode({
-        "address": {
-          "region": "Maharashtra",
-          "region_id": 553,
-          "region_code": "MH",
-          "country_id": "IN",
-          "street": ["123 Oak Ave"],
-          "postcode": "400012",
-          "city": "Mumbai",
-          "firstname": "ap",
-          "lastname": "test",
-          "customer_id": 55,
-          "email": "aptest@gmail.com",
-          "telephone": "9876988111",
-          "same_as_billing": 1
-        }
-      });
-      var data1 = await checkoutOrderAPIRepository.postEstimateAPIResponse(params);
-      if(data1!=null){
-        String dataString = jsonEncode(data1);
-        estimatesList?.value = jsonDecode(dataString);
+      if(multiAddressModel!=null && multiAddressModel!.value.addresses!.isNotEmpty){
+        estimateAndShippingAPICall(multiAddressModel!.value.addresses!.first,multiAddressModel!.value.addresses!.first,);
+        shippingAddress = multiAddressModel!.value.addresses!.first;
       }
+    }
+    // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
+  }
+
+  estimateAndShippingAPICall(MultiAddress.Address address,MultiAddress.Address billingAddress, )async{
+    isLoading.value = true;
+    var params = json.encode({
+      "address": {
+        "region": "${billingAddress.region!.region}",
+        "region_id": billingAddress.region!.regionId,
+        "region_code": "${billingAddress.region!.regionCode}",
+        "country_id": "${billingAddress.countryId}",
+        "street": billingAddress.street,
+        "postcode": "${billingAddress.postcode}",
+        "city": "${billingAddress.city}",
+        "firstname": "${billingAddress.firstname}",
+        "lastname": "${billingAddress.lastname}",
+        "customer_id": billingAddress.customerId,
+        "email": multiAddressModel!.value.email,
+        "telephone": "${billingAddress.telephone}",
+        "same_as_billing": 1
+      }
+    });
+    var data1 = await checkoutOrderAPIRepository.postEstimateAPIResponse(params);
+    if(data1!=null){
+      estimatesList?.value = [];
+      String dataString = jsonEncode(data1);
+      estimatesList?.value = jsonDecode(dataString);
+    }
 
       // estimatesList?.value = await NetworkRepository().postEstimateShippingMethod() ?? [];
 
@@ -78,41 +93,44 @@ class CheckoutOrderController extends GetxController {
     var params1 = json.encode({
       "addressInformation": {
         "shipping_address": {
-          "region": "Maharashtra",
-          "region_id": 553,
-          "region_code": "MH",
-          "country_id": "IN",
-          "street": ["123 Oak Ave"],
-          "postcode": "400012",
-          "city": "Mumbai",
-          "firstname": "ap",
-          "lastname": "test",
-          "email": "aptest@gmail.com",
-          "telephone": "9876988111"
+          "region": "${address.region!.region}",
+          "region_id": address.region!.regionId,
+          "region_code": "${address.region!.regionCode}",
+          "country_id": "${address.countryId}",
+          "street": address.street,
+          "postcode": "${address.postcode}",
+          "city": "${address.city}",
+          "firstname": "${address.firstname}",
+          "lastname": "${address.lastname}",
+          "email": "${multiAddressModel!.value.email}",
+          "telephone": "${address.telephone}",
+          "same_as_billing" : 1,
         },
         "billing_address": {
-          "region": "Maharashtra",
-          "region_code": "MH",
-          "country_id": "IN",
-          "street": ["123 Oak Ave"],
-          "postcode": "400012",
-          "city": "Mumbai",
-          "firstname": "ap",
-          "lastname": "test",
-          "email": "aptest@gmail.com",
-          "telephone": "9876988111"
+          "region": "${billingAddress.region!.region}",
+          "region_code": "${billingAddress.region!.regionCode}",
+          "country_id": "${billingAddress.countryId}",
+          "street": billingAddress.street,
+          "postcode": "${billingAddress.postcode}",
+          "city": "${billingAddress.city}",
+          "firstname": "${billingAddress.firstname}",
+          "lastname": "${billingAddress.lastname}",
+          "email": "${multiAddressModel!.value.email}",
+          "telephone": "${billingAddress.telephone}"
         },
         "shipping_carrier_code": "freeshipping",
         "shipping_method_code": "freeshipping"
       }
     });
+    print("Params 1 -> $params1");
     var data2 = await checkoutOrderAPIRepository
         .postShippingInformationAPIResponse(params1);
     if(data2!=null){
       String dataString = jsonEncode(data2);
       shipInfoModel!.value = ShippingInformationModel.fromJson(jsonDecode(dataString));
     }
-    // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
+
+    isLoading.value = false;
   }
 
 
