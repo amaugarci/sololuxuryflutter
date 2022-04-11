@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_divider.dart';
@@ -19,6 +20,7 @@ import '../../components/common_widget/common_appbar.dart';
 
 class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   dynamic cartlist = Get.arguments;
+
   CheckoutOrderScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,9 +35,17 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               children: [
                 SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: Form(
-                        key: controller.formKey,
-                        child: checkOutWidget(context))),
+                    child: Form(key: controller.formKey, child: checkOutWidget(context))),
+                controller.isLoading.value
+                    ? Container(
+                    width: Get.width,
+                    height: Get.height,
+                    color: Colors.transparent,
+                    child: const SpinKitThreeBounce(
+                      color: appColor,
+                      // size: 50.0,
+                    ))
+                    : Container(),
               ],
             ),
           ),
@@ -46,60 +56,64 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return Container(
       width: Get.width,
       color: appColorAccent,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
         children: [
-          CommonTextPoppins(LanguageConstant.checkOutText.tr,
-              color: Colors.black,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w600,
-              decoration: TextDecoration.underline),
-          const SizedBox(
-            height: 10.0,
-          ),
-          CommonTextPoppins(
-            LanguageConstant.purchaseText.tr,
-            textAlign: TextAlign.center,
-            color: Colors.black87,
-            fontSize: 10.0,
-            fontWeight: FontWeight.w500,
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-
-          //TODO: Login Button
-          SizedBox(
-            height: 40,
-            width: 120.0,
-            child: CommonButton(
-              padding: EdgeInsets.zero,
-              buttonType: ButtonType.ElevatedButton,
-              onPressed: () {},
-              elevation: 0.0,
-              color: appColorButton,
-              borderRadius: 0.0,
-              child: CommonTextPoppins(
-                LanguageConstant.signInText.tr,
-                fontSize: 16.0,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CommonTextPoppins(LanguageConstant.checkOutText.tr,
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline),
+              const SizedBox(
+                height: 10.0,
+              ),
+              CommonTextPoppins(
+                LanguageConstant.purchaseText.tr,
+                textAlign: TextAlign.center,
+                color: Colors.black87,
+                fontSize: 10.0,
                 fontWeight: FontWeight.w500,
               ),
-            ),
-          ),
-          // PrimaryTextButton(
-          //   height: 40,
-          //   width: 120.0,
-          //   title: 'Sign In',
-          //   buttonColor: appColorButton,
-          //   titleTextStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
-          //   onPressed: () {},
-          // ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          checkoutForm(context),
-          const SizedBox(
-            height: 30.0,
+              const SizedBox(
+                height: 20.0,
+              ),
+
+              //TODO: Login Button
+              SizedBox(
+                height: 40,
+                width: 120.0,
+                child: CommonButton(
+                  padding: EdgeInsets.zero,
+                  buttonType: ButtonType.ElevatedButton,
+                  onPressed: () {},
+                  elevation: 0.0,
+                  color: appColorButton,
+                  borderRadius: 0.0,
+                  child: CommonTextPoppins(
+                    LanguageConstant.signInText.tr,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              // PrimaryTextButton(
+              //   height: 40,
+              //   width: 120.0,
+              //   title: 'Sign In',
+              //   buttonColor: appColorButton,
+              //   titleTextStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
+              //   onPressed: () {},
+              // ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              checkoutForm(context),
+              const SizedBox(
+                height: 30.0,
+              ),
+            ],
           ),
         ],
       ),
@@ -109,24 +123,19 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm(context) {
     return Column(
       children: [
-        CheckOutBox(
-            title: LanguageConstant.shippingAddressText.tr,
-            formFieldWidget: shippingAddress()),
+        CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         const SizedBox(height: 15.0),
         // CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         // const SizedBox(height: 15.0),
-        CheckOutBox(
-            title: LanguageConstant.shippingMethodText.tr,
-            formFieldWidget: shippingMethod()),
+        CheckOutBox(title: LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
           title: LanguageConstant.paymentMethod.tr,
           formFieldWidget: paymentMethod(),
         ),
         const SizedBox(height: 15.0),
-        CheckOutBox(
-            title: LanguageConstant.orderSummaryText.tr,
-            formFieldWidget: orderSummary(context)),
+        const SizedBox(height: 15.0),
+        CheckOutBox(title: LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary(context)),
       ],
     );
   }
@@ -308,8 +317,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               shrinkWrap: true,
               itemCount: controller.multiAddressModel!.value.addresses!.length,
               itemBuilder: (context, index) {
-                Address? address =
-                    controller.multiAddressModel!.value.addresses![index];
+                Address? address = controller.multiAddressModel!.value.addresses![index];
                 return Obx(() => Column(
                       children: [
                         Row(
@@ -344,31 +352,40 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             ),
                             Expanded(
                               child: CommonButton(
-                                padding: const EdgeInsets.only(
-                                    left: 5.0, right: 5.0),
+                                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                                 buttonType: ButtonType.OutlinedButton,
                                 onPressed: () {
+                                  if (controller.selectedAddressIndex.value != index) {
+                                    controller.shippingAddress = address;
+                                    if(!controller.isSameAsBilling.value){
+                                      controller.estimateAndShippingAPICall(
+                                        controller.shippingAddress,
+                                        controller.billingAddress,
+                                      );
+                                    }
+                                    else{
+                                      controller.estimateAndShippingAPICall(
+                                        controller.shippingAddress,
+                                        controller.shippingAddress,
+                                      );
+                                    }
+                                  }
                                   controller.selectedAddressIndex.value = index;
                                 },
                                 elevation: 0.0,
-                                color: controller.selectedAddressIndex.value ==
-                                        index
+                                color: controller.selectedAddressIndex.value == index
                                     ? appColorButton
                                     : Colors.transparent,
-                                border: controller.selectedAddressIndex.value ==
-                                        index
+                                border: controller.selectedAddressIndex.value == index
                                     ? BorderSide.none
-                                    : const BorderSide(
-                                        color: appColorButton, width: 1.0),
+                                    : const BorderSide(color: appColorButton, width: 1.0),
                                 borderRadius: 20.0,
                                 child: CommonTextOpenSans(
                                   "Ship Here",
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w500,
                                   color:
-
                                       controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
-
                                 ),
                               ),
                             ),
@@ -377,9 +394,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         const SizedBox(
                           height: 15.0,
                         ),
-
                         controller.multiAddressModel!.value.addresses!.length - 1 == index
-
                             ? Container()
                             : Column(
                                 children: [
@@ -435,8 +450,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             itemCount: controller.estimatesList?.length,
             itemBuilder: (context, index) {
               controller.estimateShipModel!.value =
-                  EstimateShippingMethodModel.fromJson(
-                      controller.estimatesList?[index]);
+                  EstimateShippingMethodModel.fromJson(controller.estimatesList?[index]);
               return Obx(() => InkWell(
                     onTap: () {
                       controller.selectedShippingIndex.value = index;
@@ -457,11 +471,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black,
-                                        width: controller.selectedShippingIndex
-                                                    .value ==
-                                                index
-                                            ? 4.5
-                                            : 0.8),
+                                        width: controller.selectedShippingIndex.value == index ? 4.5 : 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -472,8 +482,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           Expanded(
                             flex: 2,
                             child: CommonTextPoppins(
-                              controller.estimateShipModel!.value.baseAmount
-                                  .toString(),
+                              "${localStore.getPriceWithSymbol(controller.estimateShipModel!.value.baseAmount.toString())}",
                               fontSize: 10.0,
                               textAlign: TextAlign.left,
                               fontWeight: FontWeight.w500,
@@ -521,36 +530,24 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.shipInfoModel!.value.paymentMethods!.length,
             itemBuilder: (context, index) {
-              PaymentMethods paymentMethods =
-                  controller.shipInfoModel!.value.paymentMethods![index];
+              PaymentMethods paymentMethods = controller.shipInfoModel!.value.paymentMethods![index];
               return InkWell(
                 onTap: () {
                   controller.selectedPaymentIndex.value = index;
-                  print(
-                      "Payment Method Is ${controller.selectedPaymentIndex.value}");
+                  print("Payment Method Is ${controller.selectedPaymentIndex.value}");
                 },
                 child: Obx(() => Column(
                       children: [
                         Row(
                           children: [
                             Container(
-                              height: 14,
-                              width: 14,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.black,
-                                      width: controller
-                                                  .selectedPaymentIndex.value ==
-                                              index
-                                          ? 4.5
-                                          : 0.8),
-                                  color:
-                                      controller.selectedPaymentIndex.value ==
-                                              index
-                                          ? Colors.black
-                                          : Colors.transparent,
-                                  shape: BoxShape.circle),
-                            ),
+                                height: 14,
+                                width: 14,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black,
+                                        width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
+                                    shape: BoxShape.circle)),
                             const SizedBox(
                               width: 20.0,
                             ),
@@ -567,10 +564,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            index ==
-                                    controller.shipInfoModel!.value
-                                            .paymentMethods!.length -
-                                        1
+                            index == controller.shipInfoModel!.value.paymentMethods!.length - 1
                                 ? Container()
                                 : Column(
                                     children: [
@@ -590,6 +584,158 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     )),
               );
             }),
+        CommonDivider(
+          color: appColorDarkLineGrey,
+          height: 1.0,
+          width: Get.width,
+        ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        controller.multiAddressModel!.value.addresses!.length > 1
+            ? InkWell(
+                onTap: () {
+                  controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Obx(() => Container(
+                              height: 24.0,
+                              width: 24.0,
+                              alignment: Alignment.centerLeft,
+                              child: Icon(
+                                controller.isSameAsBilling.value
+                                    ? Icons.check_box_sharp
+                                    : Icons.check_box_outline_blank_sharp,
+                                color: Colors.black54,
+                                size: 24.0,
+                              ),
+                            )),
+                        const SizedBox(
+                          width: 15.0,
+                        ),
+                        Expanded(
+                          child: CommonTextOpenSans(
+                            "My billing and shipping address are the same",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    !controller.isSameAsBilling.value
+                        ? Column(
+                            children: [
+                              const SizedBox(height: 20.0),
+                              ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: controller.multiAddressModel!.value.addresses!.length,
+                                  itemBuilder: (context, index) {
+                                    Address? address = controller.multiAddressModel!.value.addresses![index];
+                                    return Obx(() => Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                if (controller.selectedBillingIndex.value != index) {
+                                                  controller.billingAddress = address;
+                                                  if(!controller.isSameAsBilling.value){
+                                                    controller.estimateAndShippingAPICall(
+                                                      controller.shippingAddress,
+                                                      controller.billingAddress,
+                                                    );
+                                                  }else{
+                                                    controller.estimateAndShippingAPICall(
+                                                      controller.shippingAddress,
+                                                      controller.shippingAddress,
+                                                    );
+                                                  }
+                                                }
+                                                controller.selectedBillingIndex.value = index;
+                                              },
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Obx(
+                                                    () => Container(
+                                                        height: 14,
+                                                        width: 14,
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors.black,
+                                                                width: controller.selectedBillingIndex.value == index
+                                                                    ? 4.5
+                                                                    : 0.8),
+                                                            shape: BoxShape.circle)),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 15.0,
+                                                  ),
+                                                  Expanded(
+                                                    child: CommonTextOpenSans(
+                                                      "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}'${address.telephone}",
+                                                      textAlign: TextAlign.start,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 13.0,
+                                                      maxLine: 5,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 15.0,
+                                            ),
+                                            controller.multiAddressModel!.value.addresses!.length - 1 == index
+                                                ? Container()
+                                                : Column(
+                                                    children: [
+                                                      CommonDivider(
+                                                        width: Get.width,
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10.0,
+                                                      ),
+                                                    ],
+                                                  ),
+                                          ],
+                                        ));
+                                  }),
+                              const SizedBox(height: 15.0),
+                              SizedBox(
+                                height: 40,
+                                width: 135.0,
+                                child: CommonButton(
+                                  padding: EdgeInsets.zero,
+                                  buttonType: ButtonType.ElevatedButton,
+                                  onPressed: () {},
+                                  elevation: 0.0,
+                                  color: appColorButton,
+                                  borderRadius: 20.0,
+                                  child: CommonTextPoppins(
+                                    "New Address",
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: appColorAccent,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Container(),
+
+                  ],
+                ),
+              )
+            : Container(),
       ],
     );
   }
@@ -641,11 +787,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           padding: EdgeInsets.zero,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: controller
-                              .shipInfoModel!.value.totals!.items!.length,
+                          itemCount: controller.shipInfoModel!.value.totals!.items!.length,
                           itemBuilder: (context, index) {
-                            Items shipItem = controller
-                                .shipInfoModel!.value.totals!.items![index];
+                            Items shipItem = controller.shipInfoModel!.value.totals!.items![index];
                             return Column(
                               children: [
                                 const SizedBox(
@@ -654,8 +798,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset(AppAsset.frame,
-                                        height: 85.0, width: 85.0),
+                                    Image.asset(AppAsset.frame, height: 85.0, width: 85.0),
                                     const SizedBox(
                                       width: 10.0,
                                     ),
@@ -664,10 +807,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                         height: 85.0,
                                         width: Get.width,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             CommonTextPoppins(
                                               shipItem.name,
@@ -678,9 +819,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 CommonTextPoppins(
                                                   "${LanguageConstant.qtyText.tr}: ${shipItem.qty}",
@@ -689,7 +828,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                                   textAlign: TextAlign.left,
                                                 ),
                                                 CommonTextPoppins(
-                                                  "${shipItem.price}",
+                                                  "${localStore.getPriceWithSymbol(shipItem.priceInclTax.toString())}",
                                                   fontSize: 12.0,
                                                   fontWeight: FontWeight.w500,
                                                   textAlign: TextAlign.left,
@@ -703,7 +842,27 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 10.0,
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(width: Get.width * 0.269),
+                                    CommonTextPoppins(
+                                      LanguageConstant.viewDetailsText.tr,
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w500,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Image.asset(
+                                      AppAsset.downArrow,
+                                      width: 18.0,
+                                      height: 18.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ],
                                 ),
                               ],
                             );
@@ -714,26 +873,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                 ],
               ),
             )),
-        Row(
-          children: [
-            SizedBox(width: Get.width * 0.269),
-            CommonTextPoppins(
-              LanguageConstant.viewDetailsText.tr,
-              fontSize: 12.0,
-              fontWeight: FontWeight.w500,
-              textAlign: TextAlign.left,
-            ),
-            const SizedBox(
-              width: 10.0,
-            ),
-            Image.asset(
-              AppAsset.downArrow,
-              width: 18.0,
-              height: 18.0,
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
         const SizedBox(
           height: 30.0,
         ),
@@ -799,11 +938,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount:
-                controller.shipInfoModel!.value.totals!.totalSegments!.length,
+            itemCount: controller.shipInfoModel!.value.totals!.totalSegments!.length,
             itemBuilder: (context, index) {
-              TotalSegments totalSegmentsItem =
-                  controller.shipInfoModel!.value.totals!.totalSegments![index];
+              TotalSegments totalSegmentsItem = controller.shipInfoModel!.value.totals!.totalSegments![index];
               return Column(
                 children: [
                   Row(
@@ -819,7 +956,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         ),
                       ),
                       CommonTextPoppins(
-                        "${totalSegmentsItem.value ?? 0}",
+                        "${localStore.getPriceWithSymbol(totalSegmentsItem.value.toString())}",
                         fontSize: 10.0,
                         fontWeight: FontWeight.w500,
                         textAlign: TextAlign.left,
@@ -853,7 +990,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               textAlign: TextAlign.left,
             ),
             CommonTextPoppins(
-              "${controller.shipInfoModel!.value.totals!.grandTotal}",
+              "${localStore.getPriceWithSymbol(controller.shipInfoModel!.value.totals!.grandTotal.toString())}",
               fontSize: 14.0,
               fontWeight: FontWeight.w500,
               textAlign: TextAlign.left,
@@ -871,8 +1008,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               buttonType: ButtonType.ElevatedButton,
               onPressed: () {
-
-
                 // if (controller.formKey.currentState!.validate()) {
                 //   // If the form is valid, display a snackbar. In the real world,
                 //   // you'd often call a server or save the information in a database.
@@ -883,10 +1018,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
 
                 if (controller.formKey.currentState!.validate()) {
                   if (controller.selectedPaymentIndex.value == 1) {
-                    controller.postListForOrder(
-                        cartlist, "CaseOnDelivery", "", context);
+                    controller.postListForOrder(cartlist, "CaseOnDelivery", "", context);
                   } else if (controller.selectedPaymentIndex.value == 3) {
-
                     Map<String, dynamic> lineItems = {};
                     Map<String, dynamic> paymentRequest = {};
                     for (var element in controller.shipInfoModel!.value.totals!.items!) {
@@ -906,7 +1039,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       "amount": "${controller.shipInfoModel!.value.totals!.grandTotal}",
                       "countryCode": localStore.currentCode.split("-")[0].toUpperCase(),
                       "qty": controller.shipInfoModel!.value.totals!.itemsQty,
-                      "lineItems":[lineItems],
+                      "lineItems": [lineItems],
                     };
                     print("Payment -> $paymentRequest");
                     controller.responseFromNativeCode(cartlist, context, paymentRequest);
