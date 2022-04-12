@@ -293,14 +293,16 @@ class DashboardScreen extends GetView<DashboardController> {
             child: Row(
               children: [
                 Expanded(
-                  flex: 2,
                   child: Container(
                     height: Get.height,
                     color: appColorPrimary,
                     alignment: Alignment.center,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(
+                          width: 10.0,
+                        ),
                         GestureDetector(
                             onTap: () {
                               Get.back();
@@ -325,25 +327,25 @@ class DashboardScreen extends GetView<DashboardController> {
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: Get.height,
-                    color: appColorPrimaryGrey,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(left: 30.0),
-                    child: Text(
-                      LanguageConstant.accountText.tr,
-                      style: const TextStyle(
-                          color: appColorDarkGrey, fontSize: 16.0),
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   flex: 3,
+                //   child: Container(
+                //     height: Get.height,
+                //     color: appColorPrimaryGrey,
+                //     alignment: Alignment.centerLeft,
+                //     padding: const EdgeInsets.only(left: 30.0),
+                //     child: Text(
+                //       LanguageConstant.accountText.tr,
+                //       style: const TextStyle(
+                //           color: appColorDarkGrey, fontSize: 16.0),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 65),
+            margin: const EdgeInsets.only(top: 75),
             child: Stack(
               children: [
                 ListView(
