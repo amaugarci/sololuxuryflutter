@@ -42,6 +42,8 @@ class PrivacyPolicyController extends GetxController {
     super.onInit();
   }
 
+  var nodata = false.obs;
+  var messageData = "".obs;
   //CountrList
   getPrivacyPolicy() async {
     isLoading.value = true;
@@ -49,12 +51,19 @@ class PrivacyPolicyController extends GetxController {
 
     var privacyPolicy =
         jsonDecode(await privacyPolicyAPIRepository.getPrivacyPolicyResponse());
-    getprivacyPolicy.value = List<CmsPageModel>.from(
-      privacyPolicy.map(
-        (privacyPolicy) => CmsPageModel.fromJson(privacyPolicy),
-      ),
-    );
-    print("country list Get $getprivacyPolicy");
-    isLoading.value = false;
+    if (privacyPolicy[0]['status'] == "No Data") {
+      nodata.value = true;
+      messageData.value = "${privacyPolicy[0]['message']}";
+      isLoading.value = false;
+    } else {
+      nodata.value = false;
+      getprivacyPolicy.value = List<CmsPageModel>.from(
+        privacyPolicy.map(
+          (privacyPolicy) => CmsPageModel.fromJson(privacyPolicy),
+        ),
+      );
+      print("country list Get $getprivacyPolicy");
+      isLoading.value = false;
+    }
   }
 }

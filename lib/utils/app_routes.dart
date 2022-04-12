@@ -10,6 +10,7 @@ class RoutesConstants {
   static const String dashboardScreen = "/dashboardScreen";
 
   static const String countryScreen = "/countryScreen";
+  static const String countryPopUpScreen = "/countryPopUpScreen";
 
   static const String productListScreen = "/productListScreen";
   static const String appSecureShoppingScreen = "/appSecureShoppingScreen";
@@ -62,9 +63,7 @@ class RoutesConstants {
 
   static const String brandDetailsScreen = "/brandDetailsScreen";
 
-
   static const String newsLetterScreen = "/newsLetterScreen";
 
   static const String orderDetailsScreen = "/orderDetailsScreen";
-
 }

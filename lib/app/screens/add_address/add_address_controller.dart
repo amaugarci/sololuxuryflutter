@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
+import 'package:solo_luxury/data/model/address_list/address_list.dart';
 import 'package:solo_luxury/data/model/country/country_model.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/country_list_api_repository.dart';
@@ -33,6 +34,7 @@ class AddAddressController extends GetxController {
   // var selectedState = "".obs;
   Rx<CountryListModel> selectedCoutry = CountryListModel().obs;
   Rx<AvailableRegion> selectedState = AvailableRegion().obs;
+  AddressListModel getAddressList = Get.arguments;
 
   CountryListAPIRepository countryListAPIRepository;
   String? countryCode;
@@ -45,7 +47,7 @@ class AddAddressController extends GetxController {
     super.onInit();
   }
 
-//CountrList
+//CountrLista
   getCountryList() async {
     print("getStoreDataFromApi -> ");
 
@@ -59,25 +61,43 @@ class AddAddressController extends GetxController {
 //Api Calling
   addAddress(context, formKey) async {
     if (formKey.currentState!.validate()) {
-      final authUserData = json.encode({
-        "address": {
-          "customer_id": '68',
-          "region": {"region_code": "", "region": "", "region_id": 0},
-          "country_id": "${selectedCoutry.value.id}",
-          "street": [
-            "${address1Controller.value.text}",
-            "${address2Controller.value.text}"
-          ],
-          "postcode": "${zipPovinceController.value.text}",
-          "city": "${cityController.value.text}",
-          "firstname": "${firstNameController.value.text}",
-          "lastname": "${lastNameController.value.text}",
-          "telephone": "${phoneNumberController.value.text}",
-          "countryId": "${selectedCoutry.value.id}",
-        }
-      });
+      final address = {
+        "customer_id": '${getAddressList.id}',
+        "region": {"region_code": "", "region": "", "region_id": 0},
+        "country_id": "${selectedCoutry.value.id}",
+        "street": [
+          "${address1Controller.value.text}",
+          "${address2Controller.value.text}"
+        ],
+        "postcode": "${zipPovinceController.value.text}",
+        "city": "${cityController.value.text}",
+        "firstname": "${firstNameController.value.text}",
+        "lastname": "${lastNameController.value.text}",
+        "telephone": "${phoneNumberController.value.text}",
+        "countryId": "${selectedCoutry.value.id}",
+      };
+      List addressList = getAddressList.addresses!;
+      // final finalAdd = addressList.add(address);
+      var addaddressPost = {
+        "id": "${getAddressList.id}",
+        "group_id": "${getAddressList.groupId}",
+        "created_at": "${getAddressList.createdAt}",
+        "updated_at": "${getAddressList.updatedAt}",
+        "created_in": "${getAddressList.createdIn}",
+        "dob": "${getAddressList.dob}",
+        "email": "${getAddressList.email}",
+        "firstname": "${getAddressList.firstname}",
+        "lastname": "${getAddressList.lastname}",
+        "store_id": "${getAddressList.storeId}",
+        "website_id": "${getAddressList.websiteId}",
+        "addresses": "${address}",
+        "disable_auto_group_change": "${getAddressList.disableAutoGroupChange}",
+        "extension_attributes": "${getAddressList.extensionAttributes}",
+        "custom_attributes": "${getAddressList.customAttributes}"
+      };
+
       dynamic authResponse = await countryListAPIRepository
-          .postaddAddressApiResponse(authUserData);
+          .postaddAddressApiResponse(json.encode(addaddressPost));
       printLog(authResponse);
       // checkLoginData(authResponse, context);
     } else {}

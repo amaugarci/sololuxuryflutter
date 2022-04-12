@@ -27,7 +27,7 @@ class LoginController extends GetxController {
 
   LoginController({required this.loginAPIRepository});
 
-  loginUser( {required BuildContext context}) async {
+  loginUser({required BuildContext context}) async {
     if (formKey.value.currentState!.validate()) {
       final authUserData = {
         "username": emailController.value.text.trim(),
@@ -35,12 +35,17 @@ class LoginController extends GetxController {
       };
 
       log("authUserData : $authUserData");
-      var data = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim()));
-      if(data!= null){
+      var data = (await loginAPIRepository.getLoginAPIResponse(
+          jsonEncode(authUserData),
+          emailController.value.text.trim(),
+          passwordController.value.text.trim()));
+      if (data != null) {
+        print("Response Is $data");
         String dataString = jsonEncode(data);
         loginResponseModel.value = dataString;
         loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
-        await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+        await setPrefStringValue(
+            StorageConstant.authToken, loginResponseModel.value);
         await localStore.getToken();
         Get.offAllNamed(RoutesConstants.dashboardScreen);
       }

@@ -48,14 +48,18 @@ class CartController extends GetxController {
         getFaqContent(1);
       } else {}
     } else {
-      print("Guest");
-      getCartToken.value = await RecommendedProductsAPIRepository()
-          .getGenerateCartApiResponse(
-              localStore.customerToken, AppConstants.guestCreateCart);
-      print("Generate ${getCartId.value}");
-      if (getCartToken.value != null) {
+      if (localStore.guestToken.toString() != "") {
         getFaqContent(2);
-      } else {}
+      } else {
+        print("Guest");
+        getCartToken.value = await RecommendedProductsAPIRepository()
+            .getGenerateCartApiResponse(
+                localStore.customerToken, AppConstants.guestCreateCart);
+        print("Generate ${getCartId.value}");
+        if (getCartToken.value != null) {
+          getFaqContent(2);
+        } else {}
+      }
     }
     print("Create Cart ID Is ${getCartId.value}");
   }
@@ -68,7 +72,8 @@ class CartController extends GetxController {
           .getCartGetDataApiResponse(AppConstants.cartGetData);
     } else {
       cartData = await cartGetDataAPIRepository.getCartGetDataApiResponse(
-          AppConstants.guestCreateCart + "/${getCartToken.value}");
+          AppConstants.guestCreateCart +
+              "/${localStore.guestToken.toString()}");
       ;
     }
     cartModel?.value = CartModel.fromJson(json.decode(cartData));
@@ -96,7 +101,8 @@ class CartController extends GetxController {
       deleteProduct =
           await cartGetDataAPIRepository.deleteCartCartQTYDataApiResponse(
               deleteProductId,
-              AppConstants.guestCreateCart + "/${getCartToken.value}/items/");
+              AppConstants.guestCreateCart +
+                  "/${localStore.guestToken.toString()}/items/");
       ;
     }
     // var deleteProduct = await cartGetDataAPIRepository
@@ -110,7 +116,11 @@ class CartController extends GetxController {
   //Add TO Cart Api Calling
   postAddToCartData(context, dataName, sku) async {
     var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "${getCartToken.value}"}
+      "cartItem": {
+        "sku": "$sku",
+        "qty": 1,
+        "quote_id": "${localStore.guestToken.toString()}"
+      }
     };
     var addTocartData;
     if (localStore.customerToken.toString() != "") {
@@ -121,7 +131,7 @@ class CartController extends GetxController {
       print("Guest Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .guestPostAddTOCartProductResponse(
-              passedAddTocart, "${getCartToken.value}");
+              passedAddTocart, "${localStore.guestToken.toString()}");
     }
     print("Add To Cart Data ${addTocartData}");
     if (addTocartData['message'] != null) {
@@ -135,12 +145,12 @@ class CartController extends GetxController {
     }
   }
 
-  postRemoveFromCartData(context, dataName, sku) async {
+  postRemoveFromCartData(context, dataName, sku, qty) async {
     var passedAddTocart = {
       "cartItem": {
         "sku": "$sku",
-        "qty": -1,
-        "quote_id": "${getCartToken.value}"
+        "qty": "${int.parse(qty) - 1}",
+        "quote_id": "${localStore.guestToken.toString()}"
       }
     };
     var addTocartData;
@@ -152,7 +162,7 @@ class CartController extends GetxController {
       print("Guest Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .guestPostAddTOCartProductResponse(
-              passedAddTocart, "${getCartToken.value}");
+              passedAddTocart, "${localStore.guestToken.toString()}");
     }
     // var addTocartData = await RecommendedProductsAPIRepository()
     //     .postAddTOCartProductResponse(passedAddTocart);

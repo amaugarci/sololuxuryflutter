@@ -173,8 +173,7 @@ class LanguageConstant {
 
   static const String accessYourAccountDetailsText =
       "accessYourAccountDetailsText";
-  static const String newAddressText =
-      "newAddresstext";
+  static const String newAddressText = "newAddresstext";
   static const String myBillingShipAddressSameText =
       "myBillingShipAddressSameText";
 
@@ -346,4 +345,6 @@ class LanguageConstant {
   static const String returnRequestText = "returnRequestText";
   static const String teamSoloLuxuryText = "teamSoloLuxuryText";
   static const String wehaveRecivedText = "wehaveRecivedText";
+  static const String saveInAddressBookText = "saveInAddressBookText";
+  static const String shipHereText = "shipHereText";
 }

@@ -20,6 +20,7 @@ class LocalStore {
   var currentCurrency = "";
   var customerToken = "";
   var website_id = "";
+  var guestToken = "";
   var store_group_id = "";
   var default_group_id = "";
   var name = "";
@@ -28,12 +29,14 @@ class LocalStore {
     print("getStore -> ");
     String data = await getPrefStringValue(key_local_store_model);
     if (data != null && data.isNotEmpty) {
-      LocalStoreModel localStoreModel = LocalStoreModel.fromJson(jsonDecode(data));
+      LocalStoreModel localStoreModel =
+          LocalStoreModel.fromJson(jsonDecode(data));
       currentCode = localStoreModel.currentCode!;
       currentCurrency = localStoreModel.currentCurrency!;
       name = localStoreModel.name!;
       website_id = localStoreModel.getStore(currentCode)!.websiteId.toString();
-      store_group_id = localStoreModel.getStore(currentCode)!.storeGroupId.toString();
+      store_group_id =
+          localStoreModel.getStore(currentCode)!.storeGroupId.toString();
       default_group_id = store_group_id;
       print("currentCode -> " + currentCode);
       print("currentCurrency -> " + currentCurrency);
@@ -57,6 +60,16 @@ class LocalStore {
     }
   }
 
+  getGuestToken() async {
+    print("getGuestToken -> ");
+    String data = await getPrefStringValue(StorageConstant.guestauthToken);
+    if (data != null && data.isNotEmpty) {
+      guestToken = data;
+      print("token -> " + guestToken);
+      return true;
+    }
+  }
+
   getRegularPriceWithCurrency(String price, regularPrice) {
     if (currentCurrency == 'EUR') {
       return "€" + price;
@@ -71,7 +84,7 @@ class LocalStore {
     return currentCurrency + " " + price;
   }
 
-  setItemPriceWithSymbol(String price,String basePriceInclTax) {
+  setItemPriceWithSymbol(String price, String basePriceInclTax) {
     if (currentCurrency == 'EUR') {
       return "€" + basePriceInclTax;
     }

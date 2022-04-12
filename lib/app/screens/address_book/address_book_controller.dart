@@ -30,6 +30,7 @@ class AddressBookController extends GetxController {
     isLoading.value = true;
     var addressList =
         jsonDecode(await addressListAPIRepository.getAddressListResponse());
+    print("Details Of Address ${addressList}");
     getAdressList.value = AddressListModel.fromJson(addressList);
     print("Address List Is $getAdressList");
     isLoading.value = false;
