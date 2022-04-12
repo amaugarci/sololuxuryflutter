@@ -270,7 +270,7 @@ class CheckoutOrderController extends GetxController {
     print("Create Order Api List is ${postList}");
     var postCreateOrder = await checkoutOrderAPIRepository
         .postCreateOrderAPIResponse(json.encode(postList));
-    print("Create Order Api Response $postCreateOrder");
+    //print("Create Order Api Response $postCreateOrder");
     if (postCreateOrder != null) {
       AwesomeDialog(
         context: context,
