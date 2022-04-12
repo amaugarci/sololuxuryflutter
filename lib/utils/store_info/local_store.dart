@@ -70,4 +70,11 @@ class LocalStore {
     }
     return currentCurrency + " " + price;
   }
+
+  setItemPriceWithSymbol(String price,String basePriceInclTax) {
+    if (currentCurrency == 'EUR') {
+      return "€" + basePriceInclTax;
+    }
+    return currentCurrency + " " + price;
+  }
 }
