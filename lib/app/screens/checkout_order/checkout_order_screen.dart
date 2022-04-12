@@ -438,7 +438,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           color: appColorButton,
           borderRadius: 20.0,
           child: CommonTextPoppins(
-            "New Address",
+            LanguageConstant.newAddressText.tr,
             fontSize: 14.0,
             fontWeight: FontWeight.w500,
             color: appColorAccent,
@@ -631,7 +631,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         ),
                         Expanded(
                           child: CommonTextOpenSans(
-                            "My billing and shipping address are the same",
+                            LanguageConstant.myBillingShipAddressSameText.tr,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),
@@ -731,7 +731,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   color: appColorButton,
                                   borderRadius: 20.0,
                                   child: CommonTextPoppins(
-                                    "New Address",
+                                    LanguageConstant.newAddressText.tr,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.w500,
                                     color: appColorAccent,

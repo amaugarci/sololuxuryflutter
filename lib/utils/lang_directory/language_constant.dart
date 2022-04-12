@@ -173,6 +173,10 @@ class LanguageConstant {
 
   static const String accessYourAccountDetailsText =
       "accessYourAccountDetailsText";
+  static const String newAddressText =
+      "newAddresstext";
+  static const String myBillingShipAddressSameText =
+      "myBillingShipAddressSameText";
 
   //TODO:Brijesh
   static const String yourEmail1Text = "Your E-Mail";

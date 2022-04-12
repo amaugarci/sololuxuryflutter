@@ -335,4 +335,6 @@ const Map<String, String> en = {
   "teamSoloLuxuryText": "Team Solo Luxury.",
   "wehaveRecivedText":
       "We have received your request and your request Id is - Please Check the status of your request at @@@@. contact us at care@sololuxury.com - for any query with regards to request.",
+  "newAddressText": "New Address",
+  "myBillingShipAddressSameText": "My billing and shipping address are the same",
 };
