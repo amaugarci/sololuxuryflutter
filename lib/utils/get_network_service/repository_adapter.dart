@@ -69,10 +69,12 @@ abstract class ICountryRepository {
 
 abstract class ICheckoutOrderRepository {
   Future<dynamic> postShippingInformationAPIResponse(String requestJson);
+  Future<dynamic> postGuestShippingInformationResponse(String requestJson);
 
   Future<dynamic> getMultiAddressAPIResponse();
 
   Future<dynamic> postEstimateAPIResponse(String loginRequestJson);
+  Future<dynamic> postGuestEstimateAPIResponse(String loginRequestJson);
 
   Future<dynamic> postCreateOrderAPIResponse(String loginRequestJson);
   Future<dynamic> getCountryListResponse();

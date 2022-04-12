@@ -24,15 +24,15 @@ class ProductListScreen extends GetView<ProductController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return  Scaffold(
         key: controller.scaffoldKey.value,
         resizeToAvoidBottomInset: false,
         backgroundColor: backGroundColor,
         appBar: commonAppbar(
-            title: "${Get.arguments[1]}",
+            title: "${Get.arguments[1]??""}",
             centerTitle: false,
             useAnotherTextStyle: true),
-        body: controller.isLoading.value
+        body: Obx(() =>controller.isLoading.value
             ? const Center(
                 child: SpinKitThreeBounce(
                 color: appColor,

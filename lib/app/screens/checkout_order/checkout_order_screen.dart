@@ -15,6 +15,7 @@ import 'package:solo_luxury/data/model/checkout_order/shipping_information_model
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/checkout_order/multi_address_model.dart';
+import '../../../data/model/country/country_model.dart';
 import '../../../main.dart';
 import '../../components/common_widget/common_appbar.dart';
 
@@ -148,7 +149,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  // Widget shippingAddress() {
+  // Widget guestShippingAddress() {
   //   return SizedBox(
   //     width: Get.width,
   //     child: Column(
@@ -309,17 +310,20 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   //     ),
   //   );
   // }
+
   Widget shippingAddress(context) {
     if (controller.multiAddressModel!.value.addresses == null ||
         controller.multiAddressModel!.value.addresses!.isEmpty) {
-      return Column(
-        children: [
-          const SizedBox(
-            height: 20.0,
-          ),
-          newAddressButton(context),
-        ],
-      );
+      return localStore.isGuest
+          ? guestShippingAddressForm()
+          : Column(
+              children: [
+                const SizedBox(
+                  height: 20.0,
+                ),
+                newAddressButton(context),
+              ],
+            );
     }
     return SizedBox(
       width: Get.width,
@@ -440,6 +444,1100 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget guestShippingAddressForm() {
+    return Column(
+      children: [
+        SizedBox(height: 14.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                // width: 140,
+                child: TextFormField(
+                  controller: controller.firstNameController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: const EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "First Name",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: const BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: const BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (val){
+                    controller.firstName.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter First Name";
+                    }
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                width: 140,
+                child: TextFormField(
+                  controller: controller.lastNameController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Last Name",
+                    hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Last Name";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.lastName.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.address1Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 1",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add1.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.cityController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "City",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter City";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.city.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.address2Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 2",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add2.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40.0,
+                padding: EdgeInsets.only(left: 8.0, right: 6.0),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: appColor, width: 1),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<CountryListModel>(
+                    dropdownColor: backGroundColor,
+                    items: controller.getcountryList
+                        .map((value) => DropdownMenuItem<CountryListModel>(
+                              child: Text(value.fullNameEnglish.toString()),
+                              value: value,
+                            ))
+                        .toList(),
+                    isExpanded: true,
+                    hint: controller.selectedCoutry1.value.fullNameEnglish.toString() == "null"
+                        ? Text(
+                            "Country",
+                            style: TextStyle(color: Colors.black, fontSize: 14.0),
+                          )
+                        : Text(
+                            controller.selectedCoutry1.value.fullNameEnglish.toString(),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 28,
+                      color: appColor.withOpacity(0.2),
+                    ),
+                    onChanged: (value) {
+                      print("value Is $value");
+                      controller.selectedCoutry1.value = value!;
+                      controller.countryName.value = value.fullNameEnglish!;
+                        controller.shippingValidationAddress();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.address3Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 3",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add3.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.stateController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "State/Province",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter State/Province";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.state.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.zipPovinceController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Zip/Postal Code",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Zip Postal Code";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.zipCode.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.phoneNumberController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Phone Number",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Phone Number";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.phone.value = val;
+                    controller.shippingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget guestBillingAddressForm() {
+    return Column(
+      children: [
+        SizedBox(height: 14.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                // width: 140,
+                child: TextFormField(
+                  controller: controller.billingFirstNameController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: const EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "First Name",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: const BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: const BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (val){
+                    controller.firstNameBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter First Name";
+                    }
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                width: 140,
+                child: TextFormField(
+                  controller: controller.billingLastNameController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Last Name",
+                    hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Last Name";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.lastNameBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingAddress1Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 1",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add1Billing.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingCityController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "City",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter City";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.cityBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingAddress2Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 2",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add2Billing.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40.0,
+                padding: EdgeInsets.only(left: 8.0, right: 6.0),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(color: appColor, width: 1),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<CountryListModel>(
+                    dropdownColor: backGroundColor,
+                    items: controller.getcountryList
+                        .map((value) => DropdownMenuItem<CountryListModel>(
+                      child: Text(value.fullNameEnglish.toString()),
+                      value: value,
+                    ))
+                        .toList(),
+                    isExpanded: true,
+                    hint: controller.selectedCoutry1.value.fullNameEnglish.toString() == "null"
+                        ? Text(
+                      "Country",
+                      style: TextStyle(color: Colors.black, fontSize: 14.0),
+                    )
+                        : Text(
+                      controller.selectedCoutry1.value.fullNameEnglish.toString(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 28,
+                      color: appColor.withOpacity(0.2),
+                    ),
+                    onChanged: (value) {
+                      print("value Is $value");
+                      controller.selectedCoutry1.value = value!;
+                      controller.countryNameBilling.value = value.fullNameEnglish!;
+                      controller.billingValidationAddress();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingAddress3Controller.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Street Address 3",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Street Address";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.add3Billing.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingStateController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "State/Province",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter State/Province";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.stateBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 6.0),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingZipPovinceController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Zip/Postal Code",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Zip Postal Code";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.zipCodeBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+            SizedBox(width: 6.0),
+            Expanded(
+              child: Container(
+                height: 40,
+                child: TextFormField(
+                  controller: controller.billingPhoneNumberController.value,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.transparent,
+                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    hintText: "Phone Number",
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                    errorStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide: BorderSide(
+                        color: appColor,
+                        width: 1.0,
+                      ),
+                    ),
+                    isDense: true,
+                    suffixIcon: null,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: appColor,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return "Enter Phone Number";
+                    }
+                  },
+                  onChanged: (val){
+                    controller.phoneBilling.value = val;
+                    controller.billingValidationAddress();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget billingAddressList() {
+    return Column(
+      children: [
+        const SizedBox(height: 20.0),
+        ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: controller.multiAddressModel!.value.addresses!.length,
+            itemBuilder: (context, index) {
+              Address? address = controller.multiAddressModel!.value.addresses![index];
+              return Obx(() => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          if (controller.selectedBillingIndex.value != index) {
+                            controller.billingAddress = address;
+                            if (!controller.isSameAsBilling.value) {
+                              controller.estimateAndShippingAPICall(
+                                controller.shippingAddress,
+                                controller.billingAddress,
+                              );
+                            } else {
+                              controller.estimateAndShippingAPICall(
+                                controller.shippingAddress,
+                                controller.shippingAddress,
+                              );
+                            }
+                          }
+                          controller.selectedBillingIndex.value = index;
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Obx(
+                              () => Container(
+                                  height: 14,
+                                  width: 14,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black,
+                                          width: controller.selectedBillingIndex.value == index ? 4.5 : 0.8),
+                                      shape: BoxShape.circle)),
+                            ),
+                            const SizedBox(
+                              width: 15.0,
+                            ),
+                            Expanded(
+                              child: CommonTextOpenSans(
+                                "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}'${address.telephone}",
+                                textAlign: TextAlign.start,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13.0,
+                                maxLine: 5,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      controller.multiAddressModel!.value.addresses!.length - 1 == index
+                          ? Container()
+                          : Column(
+                              children: [
+                                CommonDivider(
+                                  width: Get.width,
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                              ],
+                            ),
+                    ],
+                  ));
+            }),
+        const SizedBox(height: 15.0),
+        SizedBox(
+          height: 40,
+          width: 135.0,
+          child: CommonButton(
+            padding: EdgeInsets.zero,
+            buttonType: ButtonType.ElevatedButton,
+            onPressed: () {},
+            elevation: 0.0,
+            color: appColorButton,
+            borderRadius: 20.0,
+            child: CommonTextPoppins(
+              LanguageConstant.newAddressText.tr,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w500,
+              color: appColorAccent,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -637,181 +1735,95 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         const SizedBox(
           height: 15.0,
         ),
-        controller.multiAddressModel!.value.addresses!.length > 1
-            ? InkWell(
-                onTap: () {
-                  controller.isSameAsBilling.value =
-                      !controller.isSameAsBilling.value;
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Obx(() => Container(
-                              height: 24.0,
-                              width: 24.0,
-                              alignment: Alignment.centerLeft,
-                              child: Icon(
-                                controller.isSameAsBilling.value
-                                    ? Icons.check_box_sharp
-                                    : Icons.check_box_outline_blank_sharp,
-                                color: Colors.black54,
-                                size: 24.0,
-                              ),
-                            )),
-                        const SizedBox(
-                          width: 15.0,
-                        ),
-                        Expanded(
-                          child: CommonTextOpenSans(
-                            LanguageConstant.myBillingShipAddressSameText.tr,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    !controller.isSameAsBilling.value
-                        ? Column(
-                            children: [
-                              const SizedBox(height: 20.0),
-                              ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: controller.multiAddressModel!.value
-                                      .addresses!.length,
-                                  itemBuilder: (context, index) {
-                                    Address? address = controller
-                                        .multiAddressModel!
-                                        .value
-                                        .addresses![index];
-                                    return Obx(() => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                if (controller
-                                                        .selectedBillingIndex
-                                                        .value !=
-                                                    index) {
-                                                  controller.billingAddress =
-                                                      address;
-                                                  if (!controller
-                                                      .isSameAsBilling.value) {
-                                                    controller
-                                                        .estimateAndShippingAPICall(
-                                                      controller
-                                                          .shippingAddress,
-                                                      controller.billingAddress,
-                                                    );
-                                                  } else {
-                                                    controller
-                                                        .estimateAndShippingAPICall(
-                                                      controller
-                                                          .shippingAddress,
-                                                      controller
-                                                          .shippingAddress,
-                                                    );
-                                                  }
-                                                }
-                                                controller.selectedBillingIndex
-                                                    .value = index;
-                                              },
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Obx(
-                                                    () => Container(
-                                                        height: 14,
-                                                        width: 14,
-                                                        decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: controller
-                                                                            .selectedBillingIndex
-                                                                            .value ==
-                                                                        index
-                                                                    ? 4.5
-                                                                    : 0.8),
-                                                            shape: BoxShape
-                                                                .circle)),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 15.0,
-                                                  ),
-                                                  Expanded(
-                                                    child: CommonTextOpenSans(
-                                                      "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}'${address.telephone}",
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 13.0,
-                                                      maxLine: 5,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 15.0,
-                                            ),
-                                            controller.multiAddressModel!.value
-                                                            .addresses!.length -
-                                                        1 ==
-                                                    index
-                                                ? Container()
-                                                : Column(
-                                                    children: [
-                                                      CommonDivider(
-                                                        width: Get.width,
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10.0,
-                                                      ),
-                                                    ],
-                                                  ),
-                                          ],
-                                        ));
-                                  }),
-                              const SizedBox(height: 15.0),
-                              SizedBox(
-                                height: 40,
-                                width: 135.0,
-                                child: CommonButton(
-                                  padding: EdgeInsets.zero,
-                                  buttonType: ButtonType.ElevatedButton,
-                                  onPressed: () {
-                                    controller.showDialogAddress(context);
-                                  },
-                                  elevation: 0.0,
-                                  color: appColorButton,
-                                  borderRadius: 20.0,
-                                  child: CommonTextPoppins(
-                                    LanguageConstant.newAddressText.tr,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: appColorAccent,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Container(),
-                  ],
-                ),
-              )
-            : Container(),
+        localStore.isGuest ? guestMyBillingAddress() : myBillingAddress(),
       ],
+    );
+  }
+
+  Widget myBillingAddress(){
+    return controller.multiAddressModel!.value.addresses!.length > 1 ? InkWell(
+      onTap: () {
+        controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Obx(() => Container(
+                height: 24.0,
+                width: 24.0,
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  controller.isSameAsBilling.value
+                      ? Icons.check_box_sharp
+                      : Icons.check_box_outline_blank_sharp,
+                  color: Colors.black54,
+                  size: 24.0,
+                ),
+              )),
+              const SizedBox(
+                width: 15.0,
+              ),
+              Expanded(
+                child: CommonTextOpenSans(
+                  LanguageConstant.myBillingShipAddressSameText.tr,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+          !controller.isSameAsBilling.value
+              ? billingAddressList()
+              : Container(),
+        ],
+      ),
+    ) : Container();
+  }
+  Widget guestMyBillingAddress(){
+    return InkWell(
+      onTap: () {
+        controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Obx(() => Container(
+                height: 24.0,
+                width: 24.0,
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  controller.isSameAsBilling.value
+                      ? Icons.check_box_sharp
+                      : Icons.check_box_outline_blank_sharp,
+                  color: Colors.black54,
+                  size: 24.0,
+                ),
+              )),
+              const SizedBox(
+                width: 15.0,
+              ),
+              Expanded(
+                child: CommonTextOpenSans(
+                  LanguageConstant.myBillingShipAddressSameText.tr,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+          !controller.isSameAsBilling.value
+              ? guestBillingAddressForm()
+              : Container(),
+        ],
+      ),
     );
   }
 

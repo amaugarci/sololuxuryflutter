@@ -54,6 +54,21 @@ class CheckoutOrderController extends GetxController {
   final address3Controller = TextEditingController().obs;
   final cityController = TextEditingController().obs;
   final stateController = TextEditingController().obs;
+
+  final billingFirstNameController = TextEditingController().obs;
+  final billingLastNameController = TextEditingController().obs;
+  final billingPhoneNumberController = TextEditingController().obs;
+  final billingZipPovinceController = TextEditingController().obs;
+  final billingAddress1Controller = TextEditingController().obs;
+  final billingAddress2Controller = TextEditingController().obs;
+  final billingAddress3Controller = TextEditingController().obs;
+  final billingCityController = TextEditingController().obs;
+  final billingStateController = TextEditingController().obs;
+
+  RxString firstName = "".obs,lastName = "".obs,add1 = "".obs,add2 = "".obs,add3 = "".obs,city = "".obs,countryName = "".obs,state = "".obs, zipCode = "".obs, phone = "".obs ;
+  RxString firstNameBilling = "".obs,lastNameBilling = "".obs,add1Billing = "".obs,add2Billing = "".obs,add3Billing = "".obs,cityBilling = "".obs,countryNameBilling = "".obs,stateBilling = "".obs, zipCodeBilling = "".obs, phoneBilling = "".obs ;
+
+
   Rx<CountryListModel> selectedCoutry1 = CountryListModel().obs;
   Rx<AvailableRegion> selectedState = AvailableRegion().obs;
   RxList<CountryListModel> getcountryList = RxList<CountryListModel>();
@@ -64,16 +79,64 @@ class CheckoutOrderController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    print("localStore.isGuest -> ${localStore.isGuest}");
     getCountryList();
-    getEstimateAndShipInformationFromApi();
+    if(localStore.isGuest){
+      getGuestEstimateAndShipInformationFromApi();
+    }else {
+      getEstimateAndShipInformationFromApi();
+    }
   }
 
+  getGuestEstimateAndShipInformationFromApi() async {
+    print("Guest Shipping Information -> ");
+    isLoading.value = true;
+    var params = json.encode({
+      "address": {
+        "region": "Maharashtra",
+        "region_id": 553,
+        "region_code": "MH",
+        "country_id": "IN",
+        "street": [
+          "123 Oak Ave"
+        ],
+        "postcode": "400012",
+        "city": "Mumbai",
+        "firstname": "ap",
+        "lastname": "test",
+        "customer_id": 55,
+        "email": "aptest@gmail.com",
+        "telephone": "9876988111",
+        "same_as_billing": 1
+      }
+    });
+    print("Estimate param :- $params");
+    var data =
+    await checkoutOrderAPIRepository.postGuestEstimateAPIResponse(params);
+    if (data != null) {
+      estimatesList?.value = [];
+      String dataString = jsonEncode(data);
+      estimatesList?.value = jsonDecode(dataString);
+    }
+
+    // estimatesList?.value = await NetworkRepository().postEstimateShippingMethod() ?? [];
+
+    var params1 = jsonEncode({   "addressInformation": {     "shipping_address": {       "region": "Maharashtra",     "region_id": 553,     "region_code": "MH",     "country_id": "IN",     "street": [       "123 Oak Ave"     ],     "postcode": "400012",     "city": "Mumbai",     "firstname": "ap",     "lastname": "test",     "email": "aptest@gmail.com",     "telephone": "9876988111"     },     "billing_address": {       "region": "Maharashtra", "region_id": 553,  "region_code": "MH",     "country_id": "IN",     "street": [       "123 Oak Ave"     ],     "postcode": "400012",     "city": "Mumbai",     "firstname": "ap",     "lastname": "test",     "email": "aptest@gmail.com",     "telephone": "9876988111"     },     "shipping_carrier_code": "freeshipping",     "shipping_method_code": "freeshipping"   } });
+    var data1 = await checkoutOrderAPIRepository.postGuestShippingInformationResponse(params1);
+    if(data1 != null){
+      String dataString =  jsonEncode(data1);
+      shipInfoModel!.value =
+          ShippingInformationModel.fromJson(jsonDecode(dataString));
+    }
+    isLoading.value = false;
+  }
   getEstimateAndShipInformationFromApi() async {
     var data = await checkoutOrderAPIRepository.getMultiAddressAPIResponse();
     if (data != null) {
-      String dataString = jsonEncode(data);
+       String dataString = jsonEncode(data);
+       print("dataString -> ${dataString}");
       multiAddressModel!.value =
-          MultiAddressModel.fromJson(jsonDecode(dataString));
+          MultiAddressModel.fromJson(json.decode(dataString));
       if (multiAddressModel != null &&
           multiAddressModel!.value.addresses!.isNotEmpty) {
         estimateAndShippingAPICall(
@@ -86,10 +149,7 @@ class CheckoutOrderController extends GetxController {
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 
-  estimateAndShippingAPICall(
-    MultiAddress.Address address,
-    MultiAddress.Address billingAddress,
-  ) async {
+  estimateAndShippingAPICall(MultiAddress.Address address, MultiAddress.Address billingAddress,) async {
     isLoading.value = true;
     var params = json.encode({
       "address": {
@@ -108,6 +168,7 @@ class CheckoutOrderController extends GetxController {
         "same_as_billing": 1
       }
     });
+    print("Estimate param :- $params");
     var data1 =
         await checkoutOrderAPIRepository.postEstimateAPIResponse(params);
     if (data1 != null) {
@@ -319,11 +380,13 @@ class CheckoutOrderController extends GetxController {
   getCountryList() async {
     print("getStoreDataFromApi -> ");
 
-    var countryList =
-        jsonDecode(await checkoutOrderAPIRepository.getCountryListResponse());
-    getcountryList.value = List<CountryListModel>.from(countryList
-        .map((countryList) => CountryListModel.fromJson(countryList)));
-    print("country list Get $getcountryList");
+    var data = await checkoutOrderAPIRepository.getCountryListResponse();
+    if(data!=null){
+      String dataString = jsonEncode(data);
+      getcountryList.value = List<CountryListModel>.from(jsonDecode(dataString)
+          .map((countryList) => CountryListModel.fromJson(countryList)));
+      print("country list Get $getcountryList");
+    }
   }
 
 //Api Calling
@@ -991,5 +1054,19 @@ class CheckoutOrderController extends GetxController {
             ));
       },
     );
+  }
+  
+  shippingValidationAddress(){
+    if(firstName.isNotEmpty && lastName.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
+        SystemChannels.textInput.invokeMethod('TextInput.hide');
+        getGuestEstimateAndShipInformationFromApi();
+    }
+  }
+  
+  billingValidationAddress(){
+    if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
+        SystemChannels.textInput.invokeMethod('TextInput.hide');
+        getGuestEstimateAndShipInformationFromApi();
+    }
   }
 }

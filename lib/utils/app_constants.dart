@@ -155,7 +155,12 @@ class AppConstants {
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }
+  static getGuestUrlWithCode(url) {
+    return "/rest/V1/guest-carts/" + localStore.guestToken + url;
+  }
 
+  static const String shippingInformation = "/shipping-information";
+  static const String estimateMethods = "/estimate-shipping-methods";
   static const int websiteId = 1;
 
   static String myTicketApi = '/rest/V1/mytickets/';
