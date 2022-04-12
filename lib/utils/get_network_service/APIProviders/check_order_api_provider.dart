@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
@@ -23,6 +24,12 @@ class CheckOutOrderProvider extends GetConnect
     "Content-Type": "application/json",
     "Accept": "application/json",
     'Authorization': localStore.customerToken,
+  };
+
+  Map<String, String> adminHeader = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    'Authorization': AppConstants.adminToken,
   };
 
   @override
@@ -60,10 +67,9 @@ class CheckOutOrderProvider extends GetConnect
   @override
   Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson}) {
+    print("postCreateOrderResponseProvider -> ");
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
-    return put(endPoint, requestJson, headers: {
-      "Content-Type": "application/json",
-      'Authorization': AppConstants.defaultToken,
-    });
+    debugPrint("requestJson -> " + requestJson);
+    return put(endPoint, requestJson, headers: adminHeader);
   }
 }
