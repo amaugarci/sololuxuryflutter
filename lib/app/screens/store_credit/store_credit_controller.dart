@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
+import 'package:solo_luxury/data/model/store_credit/store_credit_model.dart';
+import 'package:solo_luxury/utils/get_network_service/APIRepository/store_credit_api_repository.dart';
+import 'package:solo_luxury/utils/repository/network_repository.dart';
 
 class StoreCreditController extends GetxController {
   RxInt index = 0.obs;
@@ -9,7 +14,10 @@ class StoreCreditController extends GetxController {
   Rx<ExpandableController> aboutUsExpandableController =
       ExpandableController().obs;
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
-  var shoopingbiling = false.obs;
+  var shoopingbiling = true.obs;
+
+  RxList<StoreCreditModel>? getStoreCreditList = <StoreCreditModel>[].obs;
+  NetworkRepository networkRepository = NetworkRepository();
 
   List storeCreditLIst = [
     {
@@ -46,8 +54,38 @@ class StoreCreditController extends GetxController {
     },
   ];
 
+  StoreCreditAPIRepository storeCreditAPIRepository;
+  String? countryCode;
+
+  StoreCreditController(
+      {required this.storeCreditAPIRepository, this.countryCode});
   @override
   void onInit() {
+    getStoreCredit();
     super.onInit();
+  }
+
+  var nodata = false.obs;
+  var messageData = "".obs;
+//CountrList
+  getStoreCredit() async {
+    shoopingbiling.value = true;
+    var storeCredit =
+        jsonDecode(await storeCreditAPIRepository.getStoreCreditResponse("2"));
+
+    print("temas_condition Get $storeCredit");
+    if (storeCredit[0]['status'] == "No Data") {
+      nodata.value = true;
+      messageData.value = "${storeCredit[0]['message']}";
+      shoopingbiling.value = false;
+    } else {
+      getStoreCreditList!.value = List<StoreCreditModel>.from(
+        storeCredit.map(
+          (privacyPolicy) => StoreCreditModel.fromJson(privacyPolicy),
+        ),
+      );
+      nodata.value = false;
+      shoopingbiling.value = false;
+    }
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
+import 'package:solo_luxury/app/components/storage_constant.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
 import 'package:solo_luxury/main.dart';
@@ -39,7 +41,6 @@ class ProductDetailController extends GetxController
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getSizeListFromApi();
     product?.value = Get.arguments[0];
     super.onInit();
@@ -88,13 +89,16 @@ class ProductDetailController extends GetxController
   Future<void> getSizeListFromApi() async {
     isLoading(true);
     try {
+      print("Size List ${Get.arguments[1]}");
       // sizeListData =
       //     await RecommendedProductsAPIRepository().getSizeListApi("539");
-      sizeListData = await RecommendedProductsAPIRepository()
-          .getSizeListApi(product!.value.id.toString());
+      var sizeListData1 = await RecommendedProductsAPIRepository()
+          .getSizeListApi(Get.arguments[1].toString());
       print("Size List $sizeListData");
-      if (sizeListData != null) {
-        isLoading(false);
+      if (sizeListData[0]['status'] != "No Data") {
+        isLoading(true);
+        sizeListData = sizeListData1;
+        print("Size List Inside $sizeListData");
       }
     } catch (e) {
       print("CONTROLLER DATA ==============$e");
@@ -118,14 +122,23 @@ class ProductDetailController extends GetxController
       } else {}
     } else {
       print("Guest");
-      getCartToken.value = await RecommendedProductsAPIRepository()
-          .getGenerateCartApiResponse(
-              localStore.customerToken, AppConstants.guestCreateCart);
-      print("Generate ${getCartId.value}");
-      if (getCartToken.value != null) {
+      if (localStore.guestToken.toString() != "") {
         postAddToCartData(
-            context, dataName, customImage, sku, "2", getCartToken.value);
-      } else {}
+            context, dataName, customImage, sku, "2", localStore.guestToken);
+      } else {
+        getCartToken.value = await RecommendedProductsAPIRepository()
+            .getGenerateCartApiResponse(
+                localStore.customerToken, AppConstants.guestCreateCart);
+        print("Generate ${getCartId.value}");
+        if (getCartToken.value != null) {
+          await setPrefStringValue(
+              StorageConstant.guestauthToken, getCartToken.value.toString());
+          await localStore.getGuestToken();
+          print("Guest Token Is ${localStore.guestToken}");
+          postAddToCartData(
+              context, dataName, customImage, sku, "2", getCartToken.value);
+        } else {}
+      }
     }
     print("Create Cart ID Is ${getCartId.value}");
   }
@@ -144,6 +157,7 @@ class ProductDetailController extends GetxController
     var passedAddTocart = {
       "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "$getToken"}
     };
+    print("json is ${passedAddTocart}");
     var addTocartData;
     if (getValue == "1") {
       print("Here Customer Post");

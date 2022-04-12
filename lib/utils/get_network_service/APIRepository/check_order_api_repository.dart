@@ -27,7 +27,6 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(multiAddressModelResponse.statusCode);
     }
     if (multiAddressModelResponse.status.hasError) {
-
       Validators.apiResponseMessage(
           body: jsonEncode(multiAddressModelResponse.body!),
           message: multiAddressModelResponse.statusText);
@@ -55,7 +54,6 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
-
       Validators.apiResponseMessage(
           body: jsonEncode(estimateResponseModel.body!),
           message: estimateResponseModel.statusText);
@@ -67,9 +65,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   }
 
   @override
-
   Future<dynamic> postShippingInformationAPIResponse(String requestJson) async {
-
     Response estimateResponseModel =
         await provider.postShippingInformationResponseProvider(
             endPoint: AppConstants.getUrlWithCode(
@@ -83,7 +79,6 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       print(estimateResponseModel.statusCode);
     }
     if (estimateResponseModel.status.hasError) {
-
       Validators.apiResponseMessage(
           body: jsonEncode(estimateResponseModel.body!),
           message: estimateResponseModel.statusText);
@@ -112,6 +107,44 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
     } else {
       print("success -> ");
       return createOrderApi.body!;
+    }
+  }
+
+  @override
+  Future<dynamic> getCountryListResponse() async {
+    Response response = await provider.getcountryListAPIResponse(
+        endPoint: AppConstants.countryList);
+    if (response != null) {
+      print("response.statusCode -> ");
+      print(response.statusCode);
+    }
+    if (response.status.hasError) {
+      print("error -> ");
+      print(response.statusText!);
+      Validators.apiResponseMessage(
+          body: jsonEncode(response.body!), message: response.statusText);
+      return null;
+    } else {
+      print("success -> ");
+      return response.body!;
+    }
+  }
+
+  @override
+  Future<dynamic> postaddAddressApiResponse(String requestJson) async {
+    Response estimateResponseModel = await provider.postAddAddressResponse(
+        endPoint: AppConstants.addAddress, requestJson: requestJson);
+    print("statusCode -> ${estimateResponseModel.statusCode}");
+    if (estimateResponseModel.status.hasError) {
+      print("error -> ");
+      print(estimateResponseModel.statusText!);
+      Validators.apiResponseMessage(
+          body: estimateResponseModel.body!,
+          message: estimateResponseModel.statusText);
+      return null;
+    } else {
+      print("success -> ");
+      return estimateResponseModel.body!;
     }
   }
 }

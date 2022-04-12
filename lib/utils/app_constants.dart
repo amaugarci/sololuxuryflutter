@@ -66,7 +66,6 @@ class AppConstants {
   static String filteredBrandProductListEndPoint =
       "&searchCriteria[filter_groups][0][filters][0][field]=brands&searchCriteria[filter_groups][0][filters][0][value]=";
 
-
   static String optionsEndPoint = "/V1/products/attributes/brands/options";
 
   static String createOrderEndPoint = "/rest/V1/orders/create";
@@ -161,7 +160,7 @@ class AppConstants {
 
   static String myTicketApi = '/rest/V1/mytickets/';
 
-  static const String getSizeListApi = "/V1/sizeList/";
+  static const String getSizeListApi = "/rest/V1/sizeList/";
 
   static String filterDataApi = '/rest/V1/layeredList/';
 
@@ -175,6 +174,7 @@ class AppConstants {
   static String returnReasonApi = '/rest/V1/orderReturnList/';
   static String orderTrakingApi = '/rest/V1/orderTrackingList/';
   static String postReturnReasonApi = '/rest/in-en/V1/orderReturn';
-
+  static String storeCreditApi = '/rest/V1/store/credits/balance/';
+  // static String returnReasonApi = '/rest/V1/orderReturnList/';
   // static String returnReasonApi = '/rest/V1/orderReturnList/';
 }

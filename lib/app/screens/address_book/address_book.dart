@@ -25,7 +25,8 @@ class AddressBookScreen extends GetView<AddressBookController> {
           ),
           bottomNavigationBar: InkWell(
             onTap: () {
-              Get.toNamed(RoutesConstants.addAdressScreen);
+              Get.toNamed(RoutesConstants.addAdressScreen,
+                  arguments: controller.getAdressList.value);
             },
             child: Container(
               height: 50,
@@ -33,7 +34,10 @@ class AddressBookScreen extends GetView<AddressBookController> {
               alignment: Alignment.center,
               child: Text(
                 "Add Address",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16),
               ),
             ),
           ),
@@ -81,7 +85,8 @@ class AddressBookScreen extends GetView<AddressBookController> {
                     // ),
                     SizedBox(height: 20),
                     Container(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 14.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 14.0),
                       color: Color(0xffF5E5DD),
                       child: Row(
                         children: [
@@ -89,21 +94,29 @@ class AddressBookScreen extends GetView<AddressBookController> {
                             flex: 3,
                             child: Text(
                               LanguageConstant.addressText.tr,
-                              style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                           Expanded(
                               flex: 2,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    LanguageConstant.billingText.tr.toUpperCase(),
-                                    style: TextStyle(fontWeight: FontWeight.w500),
+                                    LanguageConstant.billingText.tr
+                                        .toUpperCase(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                   Text(
-                                    LanguageConstant.shippingText.tr.toUpperCase(),
-                                    style: TextStyle(fontWeight: FontWeight.w500),
+                                    LanguageConstant.shippingText.tr
+                                        .toUpperCase(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ],
                               )),
@@ -119,21 +132,28 @@ class AddressBookScreen extends GetView<AddressBookController> {
                             flex: 3,
                             child: Text(
                               "Hitesh jfdsio, jfdsio,\nstreet-added-contc,\ncity-testing-named \n12345, italy. ",
-                              style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ),
                           Expanded(
                               flex: 2,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     height: 20,
                                     width: 20,
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(border: Border.all(color: appColor.withOpacity(0.6), width: 2)),
-                                    child: Icon(Icons.check, size: 14, color: appColor),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: appColor.withOpacity(0.6),
+                                            width: 2)),
+                                    child: Icon(Icons.check,
+                                        size: 14, color: appColor),
                                   ),
                                   SizedBox(width: 0),
                                   Padding(
@@ -142,8 +162,10 @@ class AddressBookScreen extends GetView<AddressBookController> {
                                       height: 20,
                                       width: 20,
                                       alignment: Alignment.center,
-                                      decoration:
-                                          BoxDecoration(border: Border.all(color: appColor.withOpacity(0.6), width: 2)),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: appColor.withOpacity(0.6),
+                                              width: 2)),
                                       child: Icon(
                                         Icons.check,
                                         size: 14,
@@ -174,21 +196,28 @@ class AddressBookScreen extends GetView<AddressBookController> {
                             flex: 3,
                             child: Text(
                               "Hitesh jfdsio, jfdsio,\nstreet-added-contc,\ncity-testing-named \n12345, italy. ",
-                              style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ),
                           Expanded(
                               flex: 2,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     height: 20,
                                     width: 20,
                                     alignment: Alignment.center,
-                                    decoration:
-                                        BoxDecoration(border: Border.all(color: appColor.withOpacity(0.6), width: 2)),
-                                    child: Icon(Icons.check, size: 14, color: appColor),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: appColor.withOpacity(0.6),
+                                            width: 2)),
+                                    child: Icon(Icons.check,
+                                        size: 14, color: appColor),
                                   ),
                                   SizedBox(width: 0),
                                   Padding(
@@ -197,8 +226,10 @@ class AddressBookScreen extends GetView<AddressBookController> {
                                       height: 20,
                                       width: 20,
                                       alignment: Alignment.center,
-                                      decoration:
-                                          BoxDecoration(border: Border.all(color: appColor.withOpacity(0.6), width: 2)),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: appColor.withOpacity(0.6),
+                                              width: 2)),
                                       child: Icon(
                                         Icons.check,
                                         size: 14,

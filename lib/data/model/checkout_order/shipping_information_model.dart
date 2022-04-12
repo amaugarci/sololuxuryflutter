@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 class ShippingInformationModel {
@@ -197,6 +199,7 @@ class Items {
 
   dynamic baseRowTotalInclTax;
   String? options;
+  RxBool isOptionsOpen = false.obs;
   dynamic weeeTaxAppliedAmount;
   dynamic weeeTaxApplied;
   String? name;
@@ -220,6 +223,7 @@ class Items {
       rowTotalInclTax,
       baseRowTotalInclTax,
       options,
+      isOptionsOpen,
       weeeTaxAppliedAmount,
       weeeTaxApplied,
       name});
@@ -271,6 +275,45 @@ class Items {
     data['weee_tax_applied_amount'] = weeeTaxAppliedAmount;
     data['weee_tax_applied'] = weeeTaxApplied;
     data['name'] = name;
+    return data;
+  }
+
+  getOptionsLabel(){
+    if(options != "[]") {
+      List<dynamic> optionsMap = jsonDecode(options!);
+      List<Options> optionsList = (optionsMap)
+          .map((itemWord) => Options.fromJson(itemWord))
+          .toList();
+      return optionsList.first.label;
+    }
+    return "";
+  }
+
+  getOptionsValue(){
+    if(options != "[]") {
+      List<dynamic> optionsMap = jsonDecode(options!);
+      List<Options> optionsList = (optionsMap)
+          .map((itemWord) => Options.fromJson(itemWord))
+          .toList();
+      return optionsList.first.value;
+    }
+    return "";
+  }
+}
+
+class Options{
+  String? label;
+  String? value;
+
+  Options.fromJson(Map<String, dynamic> json) {
+    label = json['label'];
+    value = json['value'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['label'] = label;
+    data['value'] = value;
     return data;
   }
 }

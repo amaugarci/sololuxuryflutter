@@ -32,12 +32,13 @@ class CountryScreen extends GetView<CountryController> {
                       child: ListView.builder(
                         itemCount: controller.storeWebsitesList.value.length,
                         itemBuilder: (context, index) {
-                          StoreWebSitesModel item =
-                              StoreWebSitesModel.fromJson(controller.storeWebsitesList.value[index]);
+                          StoreWebSitesModel item = StoreWebSitesModel.fromJson(
+                              controller.storeWebsitesList.value[index]);
                           return InkWell(
                               onTap: () async {
                                 controller.isChangeCurrency.value = false;
-                                await controller.setLanguageAndCurrency(item, false);
+                                await controller.setLanguageAndCurrency(
+                                    item, false);
 
                                 // Get.defaultDialog(
                                 //     title: LanguageConstant.selectLangCurrText.tr,
@@ -120,7 +121,8 @@ class CountryScreen extends GetView<CountryController> {
                                             Container(
                                                 width: double.infinity,
                                                 color: appSubscribeButtonColor,
-                                                padding: const EdgeInsets.all(20.0),
+                                                padding:
+                                                    const EdgeInsets.all(20.0),
                                                 child: dialogContent(item)),
                                           ],
                                         ));
@@ -194,15 +196,21 @@ class CountryScreen extends GetView<CountryController> {
                           onTap: () {
                             controller.isChangeLanguage.value = true;
                             controller.languageSelectIndex.value = index;
-                            controller.setLanguageSelected(controller.rxLanguageList[index].toString());
+                            controller.setLanguageSelected(
+                                controller.rxLanguageList[index].toString());
                           },
                           child: Obx(() => CommonTextOpenSans(
                                 controller.rxLanguageList.length - 1 != index
                                     ? "${controller.rxLanguageList[index].toString().toUpperCase()} / "
-                                    : controller.rxLanguageList[index].toString().toUpperCase(),
+                                    : controller.rxLanguageList[index]
+                                        .toString()
+                                        .toUpperCase(),
                                 fontSize: 12,
                                 textAlign: TextAlign.center,
-                                color: controller.languageSelectIndex.value == index ? appColorPrimary : Colors.black,
+                                color: controller.languageSelectIndex.value ==
+                                        index
+                                    ? appColorPrimary
+                                    : Colors.black,
                               )),
                         );
                       }),
@@ -238,15 +246,21 @@ class CountryScreen extends GetView<CountryController> {
                           onTap: () {
                             controller.isChangeCurrency.value = true;
                             controller.currencySelectIndex.value = index;
-                            controller.setCurrencySelected(controller.rxCurrencyList[index].toString());
+                            controller.setCurrencySelected(
+                                controller.rxCurrencyList[index].toString());
                           },
                           child: Obx(() => CommonTextOpenSans(
                                 controller.rxCurrencyList.length - 1 != index
                                     ? "${controller.rxCurrencyList[index].toString().toUpperCase()} / "
-                                    : controller.rxCurrencyList[index].toString().toUpperCase(),
+                                    : controller.rxCurrencyList[index]
+                                        .toString()
+                                        .toUpperCase(),
                                 fontSize: 12,
                                 textAlign: TextAlign.center,
-                                color: controller.currencySelectIndex.value == index ? appColorPrimary : Colors.black,
+                                color: controller.currencySelectIndex.value ==
+                                        index
+                                    ? appColorPrimary
+                                    : Colors.black,
                               )),
                         );
                       }),
@@ -266,10 +280,12 @@ class CountryScreen extends GetView<CountryController> {
                     print("Language -> ${controller.isChangeLanguage.value}");
                     print("Currency -> ${controller.isChangeCurrency.value}");
                     if (!controller.isChangeLanguage.value) {
-                      controller.langSelected.value = controller.rxLanguageList.first.toString();
+                      controller.langSelected.value =
+                          controller.rxLanguageList.first.toString();
                     }
                     if (!controller.isChangeCurrency.value) {
-                      controller.currencySelected.value = controller.rxCurrencyList.first.toString();
+                      controller.currencySelected.value =
+                          controller.rxCurrencyList.first.toString();
                     }
                     await controller.changeName(item.name);
                     await controller.changeLanguage();
