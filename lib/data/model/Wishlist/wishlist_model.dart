@@ -70,7 +70,7 @@ class Product {
   String? sku;
   String? name;
   int? attributeSetId;
-  int? price;
+  dynamic price;
   int? status;
   int? visibility;
   String? typeId;
