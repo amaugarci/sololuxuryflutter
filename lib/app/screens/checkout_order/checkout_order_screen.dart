@@ -35,16 +35,18 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               children: [
                 SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: Form(key: controller.formKey, child: checkOutWidget(context))),
+                    child: Form(
+                        key: controller.formKey,
+                        child: checkOutWidget(context))),
                 controller.isLoading.value
                     ? Container(
-                    width: Get.width,
-                    height: Get.height,
-                    color: Colors.transparent,
-                    child: const SpinKitThreeBounce(
-                      color: appColor,
-                      // size: 50.0,
-                    ))
+                        width: Get.width,
+                        height: Get.height,
+                        color: Colors.transparent,
+                        child: const SpinKitThreeBounce(
+                          color: appColor,
+                          // size: 50.0,
+                        ))
                     : Container(),
               ],
             ),
@@ -123,19 +125,25 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   Widget checkoutForm(context) {
     return Column(
       children: [
-        CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
+        CheckOutBox(
+            title: LanguageConstant.shippingAddressText.tr,
+            formFieldWidget: shippingAddress(context)),
         const SizedBox(height: 15.0),
         // CheckOutBox(title: LanguageConstant.shippingAddressText.tr, formFieldWidget: shippingAddress()),
         // const SizedBox(height: 15.0),
-        CheckOutBox(title: LanguageConstant.shippingMethodText.tr, formFieldWidget: shippingMethod()),
+        CheckOutBox(
+            title: LanguageConstant.shippingMethodText.tr,
+            formFieldWidget: shippingMethod()),
         const SizedBox(height: 15.0),
         CheckOutBox(
           title: LanguageConstant.paymentMethod.tr,
-          formFieldWidget: paymentMethod(),
+          formFieldWidget: paymentMethod(context),
         ),
         const SizedBox(height: 15.0),
         const SizedBox(height: 15.0),
-        CheckOutBox(title: LanguageConstant.orderSummaryText.tr, formFieldWidget: orderSummary(context)),
+        CheckOutBox(
+            title: LanguageConstant.orderSummaryText.tr,
+            formFieldWidget: orderSummary(context)),
       ],
     );
   }
@@ -301,7 +309,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
   //     ),
   //   );
   // }
-  Widget shippingAddress() {
+  Widget shippingAddress(context) {
     if (controller.multiAddressModel!.value.addresses == null ||
         controller.multiAddressModel!.value.addresses!.isEmpty) {
       return Column(
@@ -309,7 +317,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           const SizedBox(
             height: 20.0,
           ),
-          newAddressButton(),
+          newAddressButton(context),
         ],
       );
     }
@@ -324,7 +332,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               shrinkWrap: true,
               itemCount: controller.multiAddressModel!.value.addresses!.length,
               itemBuilder: (context, index) {
-                Address? address = controller.multiAddressModel!.value.addresses![index];
+                Address? address =
+                    controller.multiAddressModel!.value.addresses![index];
                 return Obx(() => Column(
                       children: [
                         Row(
@@ -359,10 +368,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             ),
                             Expanded(
                               child: CommonButton(
-                                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                                padding: const EdgeInsets.only(
+                                    left: 5.0, right: 5.0),
                                 buttonType: ButtonType.OutlinedButton,
                                 onPressed: () {
-                                  if (controller.selectedAddressIndex.value != index) {
+                                  if (controller.selectedAddressIndex.value !=
+                                      index) {
                                     controller.shippingAddress = address;
                                     if (!controller.isSameAsBilling.value) {
                                       controller.estimateAndShippingAPICall(
@@ -379,19 +390,25 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   controller.selectedAddressIndex.value = index;
                                 },
                                 elevation: 0.0,
-                                color: controller.selectedAddressIndex.value == index
+                                color: controller.selectedAddressIndex.value ==
+                                        index
                                     ? appColorButton
                                     : Colors.transparent,
-                                border: controller.selectedAddressIndex.value == index
+                                border: controller.selectedAddressIndex.value ==
+                                        index
                                     ? BorderSide.none
-                                    : const BorderSide(color: appColorButton, width: 1.0),
+                                    : const BorderSide(
+                                        color: appColorButton, width: 1.0),
                                 borderRadius: 20.0,
                                 child: CommonTextOpenSans(
                                   "Ship Here",
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w500,
                                   color:
-                                      controller.selectedAddressIndex.value == index ? appColorAccent : appColorButton,
+                                      controller.selectedAddressIndex.value ==
+                                              index
+                                          ? appColorAccent
+                                          : appColorButton,
                                 ),
                               ),
                             ),
@@ -400,7 +417,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        controller.multiAddressModel!.value.addresses!.length - 1 == index
+                        controller.multiAddressModel!.value.addresses!.length -
+                                    1 ==
+                                index
                             ? Container()
                             : Column(
                                 children: [
@@ -415,7 +434,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       ],
                     ));
               }),
-          newAddressButton(),
+          newAddressButton(context),
           const SizedBox(
             height: 10.0,
           ),
@@ -424,7 +443,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  Widget newAddressButton() {
+  Widget newAddressButton(context) {
     return Align(
       alignment: Alignment.center,
       child: SizedBox(
@@ -433,7 +452,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         child: CommonButton(
           padding: EdgeInsets.zero,
           buttonType: ButtonType.ElevatedButton,
-          onPressed: () {},
+          onPressed: () {
+            controller.showDialogAddress(context);
+          },
           elevation: 0.0,
           color: appColorButton,
           borderRadius: 20.0,
@@ -460,7 +481,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             itemCount: controller.estimatesList?.length,
             itemBuilder: (context, index) {
               controller.estimateShipModel!.value =
-                  EstimateShippingMethodModel.fromJson(controller.estimatesList?[index]);
+                  EstimateShippingMethodModel.fromJson(
+                      controller.estimatesList?[index]);
               return Obx(() => InkWell(
                     onTap: () {
                       controller.selectedShippingIndex.value = index;
@@ -481,7 +503,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black,
-                                        width: controller.selectedShippingIndex.value == index ? 4.5 : 0.8),
+                                        width: controller.selectedShippingIndex
+                                                    .value ==
+                                                index
+                                            ? 4.5
+                                            : 0.8),
                                     shape: BoxShape.circle),
                               ),
                             ),
@@ -527,7 +553,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  Widget paymentMethod() {
+  Widget paymentMethod(context) {
     if (controller.shipInfoModel!.value.paymentMethods == null) {
       return Container();
     }
@@ -540,11 +566,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.shipInfoModel!.value.paymentMethods!.length,
             itemBuilder: (context, index) {
-              PaymentMethods paymentMethods = controller.shipInfoModel!.value.paymentMethods![index];
+              PaymentMethods paymentMethods =
+                  controller.shipInfoModel!.value.paymentMethods![index];
               return InkWell(
                 onTap: () {
                   controller.selectedPaymentIndex.value = index;
-                  print("Payment Method Is ${controller.selectedPaymentIndex.value}");
+                  print(
+                      "Payment Method Is ${controller.selectedPaymentIndex.value}");
                 },
                 child: Obx(() => Column(
                       children: [
@@ -556,7 +584,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black,
-                                        width: controller.selectedPaymentIndex.value == index ? 4.5 : 0.8),
+                                        width: controller.selectedPaymentIndex
+                                                    .value ==
+                                                index
+                                            ? 4.5
+                                            : 0.8),
                                     shape: BoxShape.circle)),
                             const SizedBox(
                               width: 20.0,
@@ -574,7 +606,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            index == controller.shipInfoModel!.value.paymentMethods!.length - 1
+                            index ==
+                                    controller.shipInfoModel!.value
+                                            .paymentMethods!.length -
+                                        1
                                 ? Container()
                                 : Column(
                                     children: [
@@ -605,7 +640,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         controller.multiAddressModel!.value.addresses!.length > 1
             ? InkWell(
                 onTap: () {
-                  controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+                  controller.isSameAsBilling.value =
+                      !controller.isSameAsBilling.value;
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -645,32 +681,49 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                               ListView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: controller.multiAddressModel!.value.addresses!.length,
+                                  itemCount: controller.multiAddressModel!.value
+                                      .addresses!.length,
                                   itemBuilder: (context, index) {
-                                    Address? address = controller.multiAddressModel!.value.addresses![index];
+                                    Address? address = controller
+                                        .multiAddressModel!
+                                        .value
+                                        .addresses![index];
                                     return Obx(() => Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             InkWell(
                                               onTap: () {
-                                                if (controller.selectedBillingIndex.value != index) {
-                                                  controller.billingAddress = address;
-                                                  if(!controller.isSameAsBilling.value){
-                                                    controller.estimateAndShippingAPICall(
-                                                      controller.shippingAddress,
+                                                if (controller
+                                                        .selectedBillingIndex
+                                                        .value !=
+                                                    index) {
+                                                  controller.billingAddress =
+                                                      address;
+                                                  if (!controller
+                                                      .isSameAsBilling.value) {
+                                                    controller
+                                                        .estimateAndShippingAPICall(
+                                                      controller
+                                                          .shippingAddress,
                                                       controller.billingAddress,
                                                     );
-                                                  }else{
-                                                    controller.estimateAndShippingAPICall(
-                                                      controller.shippingAddress,
-                                                      controller.shippingAddress,
+                                                  } else {
+                                                    controller
+                                                        .estimateAndShippingAPICall(
+                                                      controller
+                                                          .shippingAddress,
+                                                      controller
+                                                          .shippingAddress,
                                                     );
                                                   }
                                                 }
-                                                controller.selectedBillingIndex.value = index;
+                                                controller.selectedBillingIndex
+                                                    .value = index;
                                               },
                                               child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Obx(
@@ -679,11 +732,16 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                                         width: 14,
                                                         decoration: BoxDecoration(
                                                             border: Border.all(
-                                                                color: Colors.black,
-                                                                width: controller.selectedBillingIndex.value == index
+                                                                color: Colors
+                                                                    .black,
+                                                                width: controller
+                                                                            .selectedBillingIndex
+                                                                            .value ==
+                                                                        index
                                                                     ? 4.5
                                                                     : 0.8),
-                                                            shape: BoxShape.circle)),
+                                                            shape: BoxShape
+                                                                .circle)),
                                                   ),
                                                   const SizedBox(
                                                     width: 15.0,
@@ -691,11 +749,14 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                                   Expanded(
                                                     child: CommonTextOpenSans(
                                                       "${address.firstname} ${address.lastname} ${address.street!.join(",")} ${address.city} ${address.postcode}'${address.telephone}",
-                                                      textAlign: TextAlign.start,
-                                                      fontWeight: FontWeight.w500,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                       fontSize: 13.0,
                                                       maxLine: 5,
-                                                      overflow: TextOverflow.ellipsis,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                     ),
                                                   ),
                                                 ],
@@ -704,7 +765,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                             const SizedBox(
                                               height: 15.0,
                                             ),
-                                            controller.multiAddressModel!.value.addresses!.length - 1 == index
+                                            controller.multiAddressModel!.value
+                                                            .addresses!.length -
+                                                        1 ==
+                                                    index
                                                 ? Container()
                                                 : Column(
                                                     children: [
@@ -726,7 +790,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 child: CommonButton(
                                   padding: EdgeInsets.zero,
                                   buttonType: ButtonType.ElevatedButton,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    controller.showDialogAddress(context);
+                                  },
                                   elevation: 0.0,
                                   color: appColorButton,
                                   borderRadius: 20.0,
@@ -757,159 +823,176 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Obx(() => Column(
-          children: [
-            InkWell(
-              onTap: () {controller.isShowItems.value = !controller.isShowItems.value;},
-              child: SizedBox(
-                height: 30.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CommonTextPoppins(
-                      "${controller.shipInfoModel!.value.totals!.itemsQty} ${LanguageConstant.itemInCartText.tr}",
-                      fontSize: 10.0,
-                      fontWeight: FontWeight.w500,
-                      textAlign: TextAlign.left,
+              children: [
+                InkWell(
+                  onTap: () {
+                    controller.isShowItems.value =
+                        !controller.isShowItems.value;
+                  },
+                  child: SizedBox(
+                    height: 30.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CommonTextPoppins(
+                          "${controller.shipInfoModel!.value.totals!.itemsQty} ${LanguageConstant.itemInCartText.tr}",
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.w500,
+                          textAlign: TextAlign.left,
+                        ),
+                        Image.asset(
+                          AppAsset.upArrow,
+                          width: 18.0,
+                          height: 18.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
                     ),
-                    Image.asset(
-                      AppAsset.upArrow,
-                      width: 18.0,
-                      height: 18.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            CommonDivider(
-              color: appColorDarkLineGrey,
-              height: 1.0,
-              width: Get.width,
-            ),
-            const SizedBox(
-              height: 3.0,
-            ),
-            !controller.isShowItems.value
-                ? Container()
-                : ListView.builder(
-                    padding: EdgeInsets.zero,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller.shipInfoModel!.value.totals!.items!.length,
-                    itemBuilder: (context, index) {
-                      Items shipItem = controller.shipInfoModel!.value.totals!.items![index];
-                      return Obx(()=>Column(
-                        children: [
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset(AppAsset.frame, height: 85.0, width: 85.0),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 85.0,
-                                  width: Get.width,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CommonTextPoppins(
-                                        shipItem.name,
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w500,
-                                        textAlign: TextAlign.left,
-                                        maxLine: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          CommonTextPoppins(
-                                            "${LanguageConstant.qtyText.tr}: ${shipItem.qty}",
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.w500,
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          CommonTextPoppins(
-                                            "${localStore.setItemPriceWithSymbol(shipItem.rowTotalInclTax.toString(), shipItem.baseRowTotalInclTax.toString())}",
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.w500,
-                                            textAlign: TextAlign.left,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                CommonDivider(
+                  color: appColorDarkLineGrey,
+                  height: 1.0,
+                  width: Get.width,
+                ),
+                const SizedBox(
+                  height: 3.0,
+                ),
+                !controller.isShowItems.value
+                    ? Container()
+                    : ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller
+                            .shipInfoModel!.value.totals!.items!.length,
+                        itemBuilder: (context, index) {
+                          Items shipItem = controller
+                              .shipInfoModel!.value.totals!.items![index];
+                          return Obx(() => Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10.0,
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 15.0,
-                          ),
-                          shipItem.options != null && shipItem.options == "[]"
-                              ? Container()
-                              : InkWell(
-                                  onTap: () {
-                                    shipItem.isOptionsOpen.value = !shipItem.isOptionsOpen.value;
-                                    print("shipItem.isOptionsOpen -> ${shipItem.isOptionsOpen}");
-                                  },
-                                  child: Row(
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(width: Get.width * 0.269),
-                                      CommonTextPoppins(
-                                        LanguageConstant.viewDetailsText.tr,
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w500,
-                                        textAlign: TextAlign.left,
-                                      ),
+                                      Image.asset(AppAsset.frame,
+                                          height: 85.0, width: 85.0),
                                       const SizedBox(
                                         width: 10.0,
                                       ),
-                                      Image.asset(
-                                        AppAsset.downArrow,
-                                        width: 18.0,
-                                        height: 18.0,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 85.0,
+                                          width: Get.width,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CommonTextPoppins(
+                                                shipItem.name,
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                textAlign: TextAlign.left,
+                                                maxLine: 3,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  CommonTextPoppins(
+                                                    "${LanguageConstant.qtyText.tr}: ${shipItem.qty}",
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                  CommonTextPoppins(
+                                                    "${localStore.setItemPriceWithSymbol(shipItem.rowTotalInclTax.toString(), shipItem.baseRowTotalInclTax.toString())}",
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
                                     ],
                                   ),
-                                ),
-                          shipItem.isOptionsOpen.value
-                              ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CommonTextPoppins(
-                                shipItem.getOptionsLabel(),
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w600,
-                                textAlign: TextAlign.left,
-                              ),
-                              const SizedBox(
-                                width: 15.0,
-                              ),
-                              CommonTextPoppins(
-                                shipItem.getOptionsValue(),
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w400,
-                                textAlign: TextAlign.left,
-                              ),
-                            ],
-                          )
-                              : Container(),
-                        ],
-                      ));
-                    }),
-            const SizedBox(
-              height: 15.0,
-            ),
-          ],
-        )),
+                                  const SizedBox(
+                                    height: 15.0,
+                                  ),
+                                  shipItem.options != null &&
+                                          shipItem.options == "[]"
+                                      ? Container()
+                                      : InkWell(
+                                          onTap: () {
+                                            shipItem.isOptionsOpen.value =
+                                                !shipItem.isOptionsOpen.value;
+                                            print(
+                                                "shipItem.isOptionsOpen -> ${shipItem.isOptionsOpen}");
+                                          },
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                  width: Get.width * 0.269),
+                                              CommonTextPoppins(
+                                                LanguageConstant
+                                                    .viewDetailsText.tr,
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                textAlign: TextAlign.left,
+                                              ),
+                                              const SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Image.asset(
+                                                AppAsset.downArrow,
+                                                width: 18.0,
+                                                height: 18.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                  shipItem.isOptionsOpen.value
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CommonTextPoppins(
+                                              shipItem.getOptionsLabel(),
+                                              fontSize: 12.0,
+                                              fontWeight: FontWeight.w600,
+                                              textAlign: TextAlign.left,
+                                            ),
+                                            const SizedBox(
+                                              width: 15.0,
+                                            ),
+                                            CommonTextPoppins(
+                                              shipItem.getOptionsValue(),
+                                              fontSize: 12.0,
+                                              fontWeight: FontWeight.w400,
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ],
+                                        )
+                                      : Container(),
+                                ],
+                              ));
+                        }),
+                const SizedBox(
+                  height: 15.0,
+                ),
+              ],
+            )),
         const SizedBox(
           height: 30.0,
         ),
@@ -975,9 +1058,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: controller.shipInfoModel!.value.totals!.totalSegments!.length,
+            itemCount:
+                controller.shipInfoModel!.value.totals!.totalSegments!.length,
             itemBuilder: (context, index) {
-              TotalSegments totalSegmentsItem = controller.shipInfoModel!.value.totals!.totalSegments![index];
+              TotalSegments totalSegmentsItem =
+                  controller.shipInfoModel!.value.totals!.totalSegments![index];
               return Column(
                 children: [
                   Row(
@@ -1057,11 +1142,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
 
                       if (controller.formKey.currentState!.validate()) {
                         if (controller.selectedPaymentIndex.value == 1) {
-                          controller.postListForOrder(cartlist, "CaseOnDelivery", "", context);
+                          controller.postListForOrder(
+                              cartlist, "CaseOnDelivery", "", context);
                         } else if (controller.selectedPaymentIndex.value == 3) {
                           Map<String, dynamic> lineItems = {};
                           Map<String, dynamic> paymentRequest = {};
-                          for (var element in controller.shipInfoModel!.value.totals!.items!) {
+                          for (var element in controller
+                              .shipInfoModel!.value.totals!.items!) {
                             lineItems = {
                               "amountExcludingTax": 0,
                               "amountIncludingTax": element.basePriceInclTax,
@@ -1075,13 +1162,18 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           print("ListItem -> $lineItems");
                           paymentRequest = {
                             "currency": localStore.currentCurrency,
-                            "amount": "${controller.shipInfoModel!.value.totals!.grandTotal}",
-                            "countryCode": localStore.currentCode.split("-")[0].toUpperCase(),
-                            "qty": controller.shipInfoModel!.value.totals!.itemsQty,
+                            "amount":
+                                "${controller.shipInfoModel!.value.totals!.grandTotal}",
+                            "countryCode": localStore.currentCode
+                                .split("-")[0]
+                                .toUpperCase(),
+                            "qty": controller
+                                .shipInfoModel!.value.totals!.itemsQty,
                             "lineItems": [lineItems],
                           };
                           print("Payment -> $paymentRequest");
-                          controller.responseFromNativeCode(cartlist, context, paymentRequest);
+                          controller.responseFromNativeCode(
+                              cartlist, context, paymentRequest);
                         }
                         // ScaffoldMessenger.of(Get.context!).showSnackBar(
                         //   const SnackBar(content: Text('Processing Data')),
