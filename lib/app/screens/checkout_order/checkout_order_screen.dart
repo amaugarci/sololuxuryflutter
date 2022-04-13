@@ -1869,6 +1869,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return InkWell(
       onTap: () {
         controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+        controller.checkEnablePlaceOrder();
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
