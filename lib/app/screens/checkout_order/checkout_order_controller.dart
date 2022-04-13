@@ -1110,7 +1110,43 @@ class CheckoutOrderController extends GetxController {
         });
         print("params pass -> $params");
         if(isSameAsBilling.value){
-          getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
+          var params1 = jsonEncode({
+            "addressInformation": {
+              "shipping_address": {
+                "region": state.value,
+                "country_id": selectedCoutry1.value.id,
+                "street": [
+                  add1.value,
+                  add2.value,
+                  add3.value,
+                ],
+                "postcode": zipCode.value,
+                "city": city.value,
+                "firstname": firstName.value,
+                "lastname": lastName.value,
+                "email": email.value,
+                "telephone": phone.value,
+              },
+              "billing_address": {
+                "region": state.value,
+                "country_id": selectedCoutry1.value.id,
+                "street": [
+                  add1.value,
+                  add2.value,
+                  add3.value,
+                ],
+                "postcode": zipCode.value,
+                "city": city.value,
+                "firstname": firstName.value,
+                "lastname": lastName.value,
+                "email": email.value,
+                "telephone": phone.value,
+              },
+              "shipping_carrier_code": "freeshipping",
+              "shipping_method_code": "freeshipping"
+            }
+          });
+          getGuestEstimateAndShipInformationFromApi(paramShipping: params,paramBilling: params1);
         }else{
           if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && emailBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty) {
             var params1 = jsonEncode({
