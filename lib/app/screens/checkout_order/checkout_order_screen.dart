@@ -1213,13 +1213,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     ))
                         .toList(),
                     isExpanded: true,
-                    hint: controller.selectedCoutry1.value.fullNameEnglish.toString() == "null"
+                    hint: controller.selectedCoutry2.value.fullNameEnglish.toString() == "null"
                         ? Text(
                       "Country",
                       style: TextStyle(color: Colors.black, fontSize: 14.0),
                     )
                         : Text(
-                      controller.selectedCoutry1.value.fullNameEnglish.toString(),
+                      controller.selectedCoutry2.value.fullNameEnglish.toString(),
                       style: TextStyle(color: Colors.black),
                     ),
                     icon: Icon(
@@ -1229,7 +1229,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     ),
                     onChanged: (value) {
                       print("value Is $value");
-                      controller.selectedCoutry1.value = value!;
+                      controller.selectedCoutry2.value = value!;
                       controller.countryNameBilling.value = value.fullNameEnglish!;
                       controller.billingValidationAddress();
                     },

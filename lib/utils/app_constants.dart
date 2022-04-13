@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:solo_luxury/main.dart';
 
 enum Environment { DEV, STAGING, PROD }
@@ -157,6 +158,9 @@ class AppConstants {
   }
   static getGuestUrlWithCode(url) {
     return "/rest/V1/guest-carts/" + localStore.guestToken + url;
+  }
+  static dismissKeyboard() {
+    return SystemChannels.textInput.invokeMethod('TextInput.hide');;
   }
 
   static const String shippingInformation = "/shipping-information";

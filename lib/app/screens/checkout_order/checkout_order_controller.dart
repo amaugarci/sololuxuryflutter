@@ -20,6 +20,7 @@ import '../../../data/model/cart/cart_model.dart';
 import '../../../data/model/checkout_order/estimate_shipping_method_model.dart';
 import '../../../data/model/checkout_order/multi_address_model.dart';
 import '../../../main.dart';
+import '../../../utils/app_constants.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
@@ -70,6 +71,7 @@ class CheckoutOrderController extends GetxController {
 
 
   Rx<CountryListModel> selectedCoutry1 = CountryListModel().obs;
+  Rx<CountryListModel> selectedCoutry2 = CountryListModel().obs;
   Rx<AvailableRegion> selectedState = AvailableRegion().obs;
   RxList<CountryListModel> getcountryList = RxList<CountryListModel>();
 
@@ -88,7 +90,7 @@ class CheckoutOrderController extends GetxController {
     }
   }
 
-  getGuestEstimateAndShipInformationFromApi() async {
+  getGuestEstimateAndShipInformationFromApi({paramShipping,paramBilling}) async {
     print("Guest Shipping Information -> ");
     isLoading.value = true;
     var params = json.encode({
@@ -110,7 +112,10 @@ class CheckoutOrderController extends GetxController {
         "same_as_billing": 1
       }
     });
-    print("Estimate param :- $params");
+    if(paramShipping!=null){
+      params = paramShipping;
+    }
+    print("Shiping param :- $params");
     var data =
     await checkoutOrderAPIRepository.postGuestEstimateAPIResponse(params);
     if (data != null) {
@@ -122,6 +127,10 @@ class CheckoutOrderController extends GetxController {
     // estimatesList?.value = await NetworkRepository().postEstimateShippingMethod() ?? [];
 
     var params1 = jsonEncode({   "addressInformation": {     "shipping_address": {       "region": "Maharashtra",     "region_id": 553,     "region_code": "MH",     "country_id": "IN",     "street": [       "123 Oak Ave"     ],     "postcode": "400012",     "city": "Mumbai",     "firstname": "ap",     "lastname": "test",     "email": "aptest@gmail.com",     "telephone": "9876988111"     },     "billing_address": {       "region": "Maharashtra", "region_id": 553,  "region_code": "MH",     "country_id": "IN",     "street": [       "123 Oak Ave"     ],     "postcode": "400012",     "city": "Mumbai",     "firstname": "ap",     "lastname": "test",     "email": "aptest@gmail.com",     "telephone": "9876988111"     },     "shipping_carrier_code": "freeshipping",     "shipping_method_code": "freeshipping"   } });
+    if(paramBilling!=null){
+      params1 = paramBilling;
+    }
+    print("Shipping Billing Param :- $params");
     var data1 = await checkoutOrderAPIRepository.postGuestShippingInformationResponse(params1);
     if(data1 != null){
       String dataString =  jsonEncode(data1);
@@ -448,7 +457,6 @@ class CheckoutOrderController extends GetxController {
             "${multiAddressModel!.value.extensionAttributes}",
         "custom_attributes": "${multiAddressModel!.value.customAttributes}"
       };
-
       dynamic authResponse = await checkoutOrderAPIRepository
           .postaddAddressApiResponse(json.encode(addaddressPost));
       printLog(authResponse);
@@ -1058,15 +1066,72 @@ class CheckoutOrderController extends GetxController {
   
   shippingValidationAddress(){
     if(firstName.isNotEmpty && lastName.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
-        SystemChannels.textInput.invokeMethod('TextInput.hide');
-        getGuestEstimateAndShipInformationFromApi();
+        AppConstants.dismissKeyboard();
+
+        var params = json.encode({
+          "address": {
+            "region": state.value,
+            "country_id": selectedCoutry1.value.id,
+            "street": [
+              add1.value,
+              add2.value,
+              add3.value,
+            ],
+            "postcode": zipCode.value,
+            "city": city.value,
+            "firstname": firstName.value,
+            "lastname": lastName.value,
+            // "email": email,
+            "telephone": phone.value,
+            "same_as_billing": 1
+          }
+        });
+
+        getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
     }
   }
   
   billingValidationAddress(){
     if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
-        SystemChannels.textInput.invokeMethod('TextInput.hide');
-        getGuestEstimateAndShipInformationFromApi();
+      AppConstants.dismissKeyboard();
+        var params1 = jsonEncode({
+          "addressInformation": {
+            "shipping_address": {
+              "region": state.value,
+              "country_id": selectedCoutry1.value.id,
+              "street": [
+                add1.value,
+                add2.value,
+                add3.value,
+              ],
+              "postcode": zipCode.value,
+              "city": city.value,
+              "firstname": firstName.value,
+              "lastname": lastName.value,
+              // "email": "aptest@gmail.com.value",
+              "telephone": phone.value,
+            },
+            "billing_address": {
+              "region": stateBilling.value,
+              "country_id": selectedCoutry2.value.id,
+              "street": [
+                add1Billing.value,
+                add2Billing.value,
+                add3Billing.value,
+              ],
+              "postcode": zipCodeBilling.value,
+              "city": cityBilling.value,
+              "firstname": firstNameBilling.value,
+              "lastname": lastNameBilling.value,
+              // "email": "aptest@gmail.com.value",
+              "telephone": phoneBilling.value
+            },
+            "shipping_carrier_code": "freeshipping",
+            "shipping_method_code": "freeshipping"
+          }
+        });
+
+        getGuestEstimateAndShipInformationFromApi(paramBilling: params1);
     }
   }
 }
