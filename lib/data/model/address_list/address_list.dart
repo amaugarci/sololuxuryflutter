@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 AddressListModel addressListModelFromJson(String str) =>
     AddressListModel.fromJson(json.decode(str));
 
@@ -17,7 +19,6 @@ class AddressListModel {
     this.createdAt,
     this.updatedAt,
     this.createdIn,
-    this.dob,
     this.email,
     this.firstname,
     this.lastname,
@@ -34,7 +35,6 @@ class AddressListModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? createdIn;
-  dynamic dob;
   String? email;
   String? firstname;
   String? lastname;
@@ -43,7 +43,7 @@ class AddressListModel {
   List<Address>? addresses;
   int? disableAutoGroupChange;
   ExtensionAttributes? extensionAttributes;
-  List<dynamic>? customAttributes;
+  List<CustomAttribute>? customAttributes;
 
   factory AddressListModel.fromJson(Map<String, dynamic> json) =>
       AddressListModel(
@@ -56,7 +56,6 @@ class AddressListModel {
             ? null
             : DateTime.parse(json["updated_at"]),
         createdIn: json["created_in"] == null ? null : json["created_in"],
-        dob: json["dob"] == null ? null : json["dob"],
         email: json["email"] == null ? null : json["email"],
         firstname: json["firstname"] == null ? null : json["firstname"],
         lastname: json["lastname"] == null ? null : json["lastname"],
@@ -64,7 +63,8 @@ class AddressListModel {
         websiteId: json["website_id"] == null ? null : json["website_id"],
         addresses: json["addresses"] == null
             ? null
-            : List<Address>.from(json["addresses"].map((x) => x)),
+            : List<Address>.from(
+                json["addresses"].map((x) => Address.fromJson(x))),
         disableAutoGroupChange: json["disable_auto_group_change"] == null
             ? null
             : json["disable_auto_group_change"],
@@ -73,7 +73,8 @@ class AddressListModel {
             : ExtensionAttributes.fromJson(json["extension_attributes"]),
         customAttributes: json["custom_attributes"] == null
             ? null
-            : List<dynamic>.from(json["custom_attributes"].map((x) => x)),
+            : List<CustomAttribute>.from(json["custom_attributes"]
+                .map((x) => CustomAttribute.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,7 +83,6 @@ class AddressListModel {
         "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
         "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "created_in": createdIn == null ? null : createdIn,
-        "dob": dob == null ? null : dob,
         "email": email == null ? null : email,
         "firstname": firstname == null ? null : firstname,
         "lastname": lastname == null ? null : lastname,
@@ -90,14 +90,14 @@ class AddressListModel {
         "website_id": websiteId == null ? null : websiteId,
         "addresses": addresses == null
             ? null
-            : List<Address>.from(addresses!.map((x) => x)),
+            : List<dynamic>.from(addresses!.map((x) => x.toJson())),
         "disable_auto_group_change":
             disableAutoGroupChange == null ? null : disableAutoGroupChange,
         "extension_attributes":
             extensionAttributes == null ? null : extensionAttributes!.toJson(),
         "custom_attributes": customAttributes == null
             ? null
-            : List<dynamic>.from(customAttributes!.map((x) => x)),
+            : List<dynamic>.from(customAttributes!.map((x) => x.toJson())),
       };
 }
 
@@ -127,33 +127,38 @@ class Address {
   String? city;
   String? firstname;
   String? lastname;
+  RxBool isBinding = false.obs;
+  RxBool isShiipng = false.obs;
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-        id: json["id"],
-        customerId: json["customer_id"],
-        region: Region.fromJson(json["region"]),
-        regionId: json["region_id"],
-        countryId: json["country_id"],
-        street: List<String>.from(json["street"].map((x) => x)),
-        telephone: json["telephone"],
-        postcode: json["postcode"],
-        city: json["city"],
-        firstname: json["firstname"],
-        lastname: json["lastname"],
+        id: json["id"] == null ? null : json["id"],
+        customerId: json["customer_id"] == null ? null : json["customer_id"],
+        region: json["region"] == null ? null : Region.fromJson(json["region"]),
+        regionId: json["region_id"] == null ? null : json["region_id"],
+        countryId: json["country_id"] == null ? null : json["country_id"],
+        street: json["street"] == null
+            ? null
+            : List<String>.from(json["street"].map((x) => x)),
+        telephone: json["telephone"] == null ? null : json["telephone"],
+        postcode: json["postcode"] == null ? null : json["postcode"],
+        city: json["city"] == null ? null : json["city"],
+        firstname: json["firstname"] == null ? null : json["firstname"],
+        lastname: json["lastname"] == null ? null : json["lastname"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "customer_id": customerId,
-        "region": region!.toJson(),
-        "region_id": regionId,
-        "country_id": countryId,
-        "street": List<dynamic>.from(street!.map((x) => x)),
-        "telephone": telephone,
-        "postcode": postcode,
-        "city": city,
-        "firstname": firstname,
-        "lastname": lastname,
+        "id": id == null ? null : id,
+        "customer_id": customerId == null ? null : customerId,
+        "region": region == null ? null : region!.toJson(),
+        "region_id": regionId == null ? null : regionId,
+        "country_id": countryId == null ? null : countryId,
+        "street":
+            street == null ? null : List<dynamic>.from(street!.map((x) => x)),
+        "telephone": telephone == null ? null : telephone,
+        "postcode": postcode == null ? null : postcode,
+        "city": city == null ? null : city,
+        "firstname": firstname == null ? null : firstname,
+        "lastname": lastname == null ? null : lastname,
       };
 }
 
@@ -169,15 +174,37 @@ class Region {
   int? regionId;
 
   factory Region.fromJson(Map<String, dynamic> json) => Region(
-        regionCode: json["region_code"],
-        region: json["region"],
-        regionId: json["region_id"],
+        regionCode: json["region_code"] == null ? null : json["region_code"],
+        region: json["region"] == null ? null : json["region"],
+        regionId: json["region_id"] == null ? null : json["region_id"],
       );
 
   Map<String, dynamic> toJson() => {
-        "region_code": regionCode,
-        "region": region,
-        "region_id": regionId,
+        "region_code": regionCode == null ? null : regionCode,
+        "region": region == null ? null : region,
+        "region_id": regionId == null ? null : regionId,
+      };
+}
+
+class CustomAttribute {
+  CustomAttribute({
+    this.attributeCode,
+    this.value,
+  });
+
+  String? attributeCode;
+  String? value;
+
+  factory CustomAttribute.fromJson(Map<String, dynamic> json) =>
+      CustomAttribute(
+        attributeCode:
+            json["attribute_code"] == null ? null : json["attribute_code"],
+        value: json["value"] == null ? null : json["value"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "attribute_code": attributeCode == null ? null : attributeCode,
+        "value": value == null ? null : value,
       };
 }
 

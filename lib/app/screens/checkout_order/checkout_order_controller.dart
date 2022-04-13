@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/data/model/address_list/address_list.dart';
 import 'package:solo_luxury/data/model/checkout_order/multi_address_model.dart'
     as MultiAddress;
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
@@ -86,6 +87,7 @@ class CheckoutOrderController extends GetxController {
     if(localStore.isGuest){
       getGuestEstimateAndShipInformationFromApi();
     }else {
+      getAddressList();
       getEstimateAndShipInformationFromApi();
     }
   }
@@ -384,7 +386,9 @@ class CheckoutOrderController extends GetxController {
       )..show();
     }
   }
+
   //Add Address PopUP
+  // Rx<AddressListModel> getAdressList = AddressListModel().obs;
 
   getCountryList() async {
     print("getStoreDataFromApi -> ");
@@ -398,70 +402,73 @@ class CheckoutOrderController extends GetxController {
     }
   }
 
+//CountrList
+  Rx<AddressListModel> getAdressList1 = AddressListModel().obs;
+  getAddressList() async {
+    // isLoading.value = true;
+    var addressList =
+        jsonDecode(await checkoutOrderAPIRepository.getAddressListResponse());
+    print("Details Of Address ${addressList}");
+    getAdressList1.value = AddressListModel.fromJson(addressList);
+    print("Address List Is $getAdressList1");
+    // isLoading.value = false;
+  }
+
 //Api Calling
+
   addAddress(context, formKey) async {
     if (formKey.currentState!.validate()) {
-      Map<String, dynamic> authUserData = {
-        "customer_id": '${multiAddressModel!.value.id}',
-        "region": {"region_code": "", "region": "", "region_id": 0},
-        "country_id": "${selectedCoutry1.value.id}",
-        "street": [
-          "${address1Controller.value.text}",
-          "${address2Controller.value.text}"
-        ],
-        "postcode": "${zipPovinceController.value.text}",
-        "city": "${cityController.value.text}",
-        "firstname": "${firstNameController.value.text}",
-        "lastname": "${lastNameController.value.text}",
-        "telephone": "${phoneNumberController.value.text}",
-        "countryId": "${selectedCoutry1.value.id}",
-      };
-      var add = MultiAddress.Address(
-        customerId: multiAddressModel!.value.id,
-        id: multiAddressModel!.value.id,
-        region: MultiAddress.Region(
-            region: selectedCoutry1.value.availableRegions!.first.name,
-            regionId: int.parse(
-                selectedCoutry1.value.availableRegions!.first.id.toString()),
-            regionCode:
-                selectedCoutry1.value.availableRegions!.first.code.toString()),
-        regionId: int.parse(
-            selectedCoutry1.value.availableRegions!.first.id.toString()),
-        countryId: selectedCoutry1.value.id,
-        street: [
-          "${address1Controller.value.text}",
-          "${address2Controller.value.text}"
-        ],
-        telephone: phoneNumberController.value.text,
-        postcode: zipPovinceController.value.text,
-        city: cityController.value.text,
-        firstname: firstNameController.value.text,
-        lastname: lastNameController.value.text,
-      );
-      var addaddressPost = {
-        "id": "${multiAddressModel!.value.id}",
-        "group_id": "${multiAddressModel!.value.groupId}",
-        "created_at": "${multiAddressModel!.value.createdAt}",
-        "updated_at": "${multiAddressModel!.value.updatedAt}",
-        "created_in": "${multiAddressModel!.value.createdIn}",
-        "dob": "${multiAddressModel!.value.dob}",
-        "email": "${multiAddressModel!.value.email}",
-        "firstname": "${multiAddressModel!.value.firstname}",
-        "lastname": "${multiAddressModel!.value.lastname}",
-        "store_id": "${multiAddressModel!.value.storeId}",
-        "website_id": "${multiAddressModel!.value.websiteId}",
-        "addresses": "${multiAddressModel!.value.addresses}",
-        "disable_auto_group_change":
-            "${multiAddressModel!.value.disableAutoGroupChange}",
-        "extension_attributes":
-            "${multiAddressModel!.value.extensionAttributes}",
-        "custom_attributes": "${multiAddressModel!.value.customAttributes}"
-      };
-      dynamic authResponse = await checkoutOrderAPIRepository
-          .postaddAddressApiResponse(json.encode(addaddressPost));
-      printLog(authResponse);
-      // checkLoginData(authResponse, context);
-    } else {}
+
+      var getList = [].obs;
+      for (var i in getAdressList1.value.addresses!) {
+        getList.add({
+          "region": i.region,
+          "country_id": "${i.countryId}",
+          "street": i.street,
+          "Firstname": "${i.firstname}",
+          "lastname": "${i.lastname}",
+          "telephone": "${i.telephone}",
+          "postcode": "${i.postcode}",
+          "city": "${i.city}",
+          "default_shipping": false,
+          "default_billing": false
+        });
+      }
+      getList.add({
+        "region": {"region_code": "TX", "region": "Texas", "region_id": 12},
+        "country_id": "${selectedCoutry1.value.id.toString()}",
+        "street": ["${address1Controller.value.text.toString()}"],
+        "Firstname": "${getAdressList1.value.firstname.toString()}",
+        "lastname": "${getAdressList1.value.lastname.toString()}",
+        "telephone": "${phoneNumberController.value.text.toString()}",
+        "postcode": "${zipPovinceController.value.text.toString()}",
+        "city": "${cityController.value.text.toString()}",
+        "default_shipping": false,
+        "default_billing": false
+      });
+
+      postaddress(context, getList);
+    }
+  }
+
+  postaddress(context, getaddress) async {
+    print("Add Address ${getaddress}");
+    var addaddressPost = {
+      "customer": {
+        "email": "${getAdressList1.value.email.toString()}",
+        "firstname": "${getAdressList1.value.firstname.toString()}",
+        "lastname": "${getAdressList1.value.lastname.toString()}",
+        "website_id": 1,
+        "addresses": getaddress,
+      }
+    };
+    dynamic authResponse = await checkoutOrderAPIRepository
+        .postaddAddressApiResponse(json.encode(addaddressPost));
+    printLog(authResponse);
+    Navigator.pop(context);
+
+    // checkLoginData(authResponse, context);
+
   }
 
   //Add To Cart Open Dialog3
@@ -891,6 +898,7 @@ class CheckoutOrderController extends GetxController {
                           child: Container(
                             height: 40,
                             child: TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: zipPovinceController.value,
                               decoration: InputDecoration(
                                 filled: true,
@@ -936,6 +944,7 @@ class CheckoutOrderController extends GetxController {
                           child: Container(
                             height: 40,
                             child: TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: phoneNumberController.value,
                               decoration: InputDecoration(
                                 filled: true,

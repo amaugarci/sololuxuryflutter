@@ -99,7 +99,6 @@ class WishlistController extends GetxController {
     var addTocartData;
     addTocartData =
         await RecommendedProductsAPIRepository().deleteWishList(getId);
-
     print("Delete ID  To Cart Data ${addTocartData}");
     if (addTocartData['message'] != null) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(

@@ -43,7 +43,9 @@ class ProductController extends GetxController {
   // RxInt checked = 0.obs;
   RxInt currentCategoryIndex = 0.obs;
   RxList filterList = [].obs;
+
   RxMap<String, List> selectedMap = <String, List>{}.obs;
+
   Rx<FilterModel>? filterModel = FilterModel().obs;
   RxList<FilterModel>? filterModelList = <FilterModel>[].obs;
   RxList<FilterModel>? saveFilterModelList = <FilterModel>[].obs;

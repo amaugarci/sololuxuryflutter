@@ -82,6 +82,8 @@ class AppConstants {
   static const String createCart = "/rest/in-en/V1/carts/mine/";
   static const String cartToken = "Bearer 0vnwaoabm14pwt2azj6yyx29033w7rqk";
   static const String orderConfirmation = "/rest/V1/orders/";
+  static const String getChooseInOptionApi =
+      "/rest/all/V1/products/attributes/size_v2/options/";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
