@@ -31,6 +31,7 @@ class CheckoutOrderController extends GetxController {
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
   Rx<MultiAddressModel>? multiAddressModel = MultiAddressModel().obs;
+  Rx<MultiAddressModel>? billingMultiAddressModel = MultiAddressModel().obs;
   RxInt selectedAddressIndex = 0.obs;
   RxInt selectedShippingIndex = 0.obs;
   RxInt selectedPaymentIndex = 0.obs;
@@ -148,13 +149,16 @@ class CheckoutOrderController extends GetxController {
        print("dataString -> ${dataString}");
       multiAddressModel!.value =
           MultiAddressModel.fromJson(json.decode(dataString));
-      if (multiAddressModel != null &&
-          multiAddressModel!.value.addresses!.isNotEmpty) {
+       billingMultiAddressModel!.value =
+          MultiAddressModel.fromJson(json.decode(dataString));
+      if (multiAddressModel != null) {
         estimateAndShippingAPICall(
           multiAddressModel!.value.addresses!.first,
           multiAddressModel!.value.addresses!.first,
         );
-        shippingAddress = multiAddressModel!.value.addresses!.first;
+        if(multiAddressModel!.value.addresses!.isNotEmpty){
+          shippingAddress = multiAddressModel!.value.addresses!.first;
+        }
       }
     }
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
@@ -406,11 +410,14 @@ class CheckoutOrderController extends GetxController {
   Rx<AddressListModel> getAdressList1 = AddressListModel().obs;
   getAddressList() async {
     // isLoading.value = true;
-    var addressList =
-        jsonDecode(await checkoutOrderAPIRepository.getAddressListResponse());
-    print("Details Of Address ${addressList}");
-    getAdressList1.value = AddressListModel.fromJson(addressList);
+    var data = await checkoutOrderAPIRepository.getAddressListResponse();
+    if(data!=null){
+      String dataString = jsonEncode(data);
+      print("Details Of Address ${dataString}");
+    getAdressList1.value = AddressListModel.fromJson(jsonDecode(dataString));
     print("Address List Is $getAdressList1");
+    }
+
     // isLoading.value = false;
   }
 
@@ -1072,7 +1079,7 @@ class CheckoutOrderController extends GetxController {
       },
     );
   }
-  
+
   shippingValidationAddress(){
     if(firstName.isNotEmpty && lastName.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
         AppConstants.dismissKeyboard();
@@ -1099,7 +1106,7 @@ class CheckoutOrderController extends GetxController {
         getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
     }
   }
-  
+
   billingValidationAddress(){
     if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
       AppConstants.dismissKeyboard();
@@ -1143,4 +1150,5 @@ class CheckoutOrderController extends GetxController {
         getGuestEstimateAndShipInformationFromApi(paramBilling: params1);
     }
   }
+
 }

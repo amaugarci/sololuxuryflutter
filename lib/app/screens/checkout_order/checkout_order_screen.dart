@@ -36,9 +36,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               children: [
                 SingleChildScrollView(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: Form(
-                        key: controller.formKey,
-                        child: checkOutWidget(context))),
+                    child: checkOutWidget(context)),
                 controller.isLoading.value
                     ? Container(
                         width: Get.width,
@@ -1519,24 +1517,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   ));
             }),
         const SizedBox(height: 15.0),
-        SizedBox(
-          height: 40,
-          width: 135.0,
-          child: CommonButton(
-            padding: EdgeInsets.zero,
-            buttonType: ButtonType.ElevatedButton,
-            onPressed: () {},
-            elevation: 0.0,
-            color: appColorButton,
-            borderRadius: 20.0,
-            child: CommonTextPoppins(
-              LanguageConstant.newAddressText.tr,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w500,
-              color: appColorAccent,
-            ),
-          ),
-        ),
+        newAddressButton(Get.context!),
       ],
     );
   }
@@ -1551,6 +1532,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           padding: EdgeInsets.zero,
           buttonType: ButtonType.ElevatedButton,
           onPressed: () {
+            print("Aaa->");
             controller.showDialogAddress(context);
           },
           elevation: 0.0,
@@ -1744,6 +1726,17 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return controller.multiAddressModel!.value.addresses!.length > 1 ? InkWell(
       onTap: () {
         controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
+
+        controller.shippingAddress = controller.multiAddressModel!.value.addresses![controller.selectedAddressIndex.value];
+
+        if(controller.isSameAsBilling.value){
+          controller.billingAddress = controller.multiAddressModel!.value.addresses![controller.selectedAddressIndex.value];
+          controller.estimateAndShippingAPICall(controller.shippingAddress, controller.billingAddress);
+        }else{
+          controller.billingAddress = controller.multiAddressModel!.value.addresses![controller.selectedBillingIndex.value];
+          controller.estimateAndShippingAPICall(controller.shippingAddress, controller.billingAddress);
+        }
+
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

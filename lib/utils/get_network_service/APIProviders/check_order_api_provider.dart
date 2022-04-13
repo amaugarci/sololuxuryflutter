@@ -128,7 +128,7 @@ class CheckOutOrderProvider extends GetConnect
   }
 
   Future<dynamic> getAddressListAPIResponse({required String endPoint}) {
-    httpClient.defaultDecoder = (val) => jsonEncode(val);
+    httpClient.defaultDecoder = (val) => val;
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
     print("url country -> " + httpClient.baseUrl.toString() + endPoint);
