@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
+
 import 'package:solo_luxury/app/components/storage_constant.dart';
+
 import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
@@ -24,6 +28,7 @@ class ProductDetailController extends GetxController
   Rx<Item>? product = Item().obs;
 
   RxBool isLoading = true.obs;
+  RxList<Item> recentlyItemsData = <Item>[].obs;
 
   var recommendedProductModel = RecommendedProductModel().obs;
 
@@ -46,7 +51,13 @@ class ProductDetailController extends GetxController
     product?.value = Get.arguments[0];
     super.onInit();
     getRecommendedProductDataFromApi();
+   // getRecentlyViewProduct ();
     controller = TabController(vsync: this, length: myTabs.length);
+  }
+
+  onRecommended(){
+    getSizeListFromApi();
+    getRecommendedProductDataFromApi();
   }
 
   final List<Tab> myTabs = <Tab>[
@@ -65,18 +76,37 @@ class ProductDetailController extends GetxController
   RxBool isSelected = false.obs;
   RxBool isSelected1 = false.obs;
 
-  List itemsData = [];
+  RxList itemsData = [].obs;
   List sizeListData = [].obs;
   List chooseOption = [].obs;
   var getCartId = 0.obs;
   var getCartToken = "".obs;
 
+  // Future getRecentlyViewProduct () async {
+  //   isLoading(true);
+  //   print("this is recent ${await getPrefRecentlyValue(AppConstants.recentlyProduct)}");
+  //   List<dynamic> convertedData = jsonDecode(await getPrefRecentlyValue(AppConstants.recentlyProduct));
+  //     print(convertedData.runtimeType);
+  //     convertedData.forEach((element) {
+  //       print(element.runtimeType);
+  //     });
+  //   recentlyItemsData.value = List<Item>.from(convertedData.map((x) => Item.fromJson(x)));
+  //   isLoading(false);
+  // }
+
+  Future getProductDetail () async {
+    isLoading(true);
+    product?.value  = await RecommendedProductsAPIRepository()
+        .getProductDetailApi(product!.value.sku.toString());
+    isLoading(false);
+  }
+
   ///API CALLING
   Future<void> getRecommendedProductDataFromApi() async {
     isLoading(true);
     try {
-      itemsData = await RecommendedProductsAPIRepository()
-          .getRecommendedProductResponse();
+      itemsData.value = await RecommendedProductsAPIRepository()
+          .getRecommendedProductResponse(product!.value.sku.toString());
       if (itemsData != null) {
         isLoading(false);
         // recommendedProductModel(itemsData);
@@ -94,14 +124,18 @@ class ProductDetailController extends GetxController
       print("Size List ${Get.arguments[1]}");
       // sizeListData =
       //     await RecommendedProductsAPIRepository().getSizeListApi("539");
+
+
       sizeListData = await RecommendedProductsAPIRepository()
-          .getSizeListApi(Get.arguments[1].toString());
+          .getSizeListApi(product!.value.id.toString());
+
       print("Size List $sizeListData");
       if (sizeListData[0]['status'] != "No Data") {
         print("Here INside Size");
         // sizeListData.addAll(sizeListData);
         print("Here INside Size111");
         isLoading(true);
+
         print("Size List Inside $sizeListData");
       }
     } catch (e) {

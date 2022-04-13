@@ -29,7 +29,9 @@ class ProductListScreen extends GetView<ProductController> {
         resizeToAvoidBottomInset: false,
         backgroundColor: backGroundColor,
         appBar: commonAppbar(
-            title: "${Get.arguments[1]??""}",
+
+            title: controller.title.value,
+
             centerTitle: false,
             useAnotherTextStyle: true),
         body: Obx(() =>controller.isLoading.value
@@ -435,7 +437,7 @@ class ProductListScreen extends GetView<ProductController> {
               return InkWell(
                 onTap: () {
                   Get.toNamed(RoutesConstants.productDetailsScreen,
-                      arguments: [item, Get.arguments[0]]);
+                      arguments: [item,Get.arguments[0]]);//controller.setRecentlyItem(item);
                 },
                 child: Container(
                   child: Column(
