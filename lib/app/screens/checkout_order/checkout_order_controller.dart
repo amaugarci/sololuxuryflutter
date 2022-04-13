@@ -134,7 +134,7 @@ class CheckoutOrderController extends GetxController {
         "customer_id": 55,
         "email": "aptest@gmail.com",
         "telephone": "9876988111",
-        "same_as_billing": 1
+        "same_as_billing": isSameAsBilling.value ? 1 : 0
       }
     });
     if (paramShipping != null) {
@@ -241,7 +241,7 @@ class CheckoutOrderController extends GetxController {
         "customer_id": address.customerId,
         "email": multiAddressModel!.value.email,
         "telephone": "${address.telephone}",
-        "same_as_billing": 1
+        "same_as_billing": isSameAsBilling.value ? 1 : 0
       }
     });
     print("Estimate param :- $params");
@@ -269,7 +269,7 @@ class CheckoutOrderController extends GetxController {
           "lastname": "${address.lastname}",
           "email": "${multiAddressModel!.value.email}",
           "telephone": "${address.telephone}",
-          "same_as_billing": 1,
+          "same_as_billing": isSameAsBilling.value ? 1 : 0
         },
         "billing_address": {
           "region": "${billingAddress.region!.region}",
@@ -1171,7 +1171,7 @@ class CheckoutOrderController extends GetxController {
           "lastname": lastName.value,
           "email": email.value,
           "telephone": phone.value,
-          "same_as_billing": 1
+          "same_as_billing": isSameAsBilling.value ? 1 : 0
         }
       });
       print("params pass -> $params");

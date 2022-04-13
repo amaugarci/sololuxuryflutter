@@ -1549,6 +1549,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                 controller.shippingAddress,
                                 controller.billingAddress,
                               );
+                              controller.isSameAsBilling.value = false;
                             } else {
                               controller.estimateAndShippingAPICall(
                                 controller.shippingAddress,
