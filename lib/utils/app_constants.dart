@@ -159,11 +159,14 @@ class AppConstants {
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }
+
   static getGuestUrlWithCode(url) {
     return "/rest/V1/guest-carts/" + localStore.guestToken + url;
   }
+
   static dismissKeyboard() {
-    return SystemChannels.textInput.invokeMethod('TextInput.hide');;
+    return SystemChannels.textInput.invokeMethod('TextInput.hide');
+    ;
   }
 
   static const String shippingInformation = "/shipping-information";
@@ -172,9 +175,8 @@ class AppConstants {
 
   static String myTicketApi = '/rest/V1/mytickets/';
 
-  static const String getSizeListApi = "/V1/sizeList/";
+  static const String getSizeListApi = "/rest/V1/sizeList/";
   static const String getProductDetailApi = "/rest/all/V1/products/";
-
 
   static String filterDataApi = '/rest/V1/layeredList/';
 

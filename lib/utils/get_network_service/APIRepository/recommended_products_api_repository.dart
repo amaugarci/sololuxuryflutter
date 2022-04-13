@@ -36,9 +36,10 @@ class RecommendedProductsAPIRepository extends GetxController {
   List<RecommendedProductModel> itemData = [];
 
   Future getRecommendedProductResponse(String id) async {
-    print("this is recommended url -> ${AppConstants.recommendedProductsEndPoint+id}");
+    print(
+        "this is recommended url -> ${AppConstants.recommendedProductsEndPoint + id}");
     final response = await http.get(
-      Uri.parse(AppConstants.recommendedProductsEndPoint+id),
+      Uri.parse(AppConstants.recommendedProductsEndPoint + id),
     );
     try {
       if (response.statusCode == 200) {
@@ -100,32 +101,38 @@ class RecommendedProductsAPIRepository extends GetxController {
     // print("URLS --> ${AppConstants.apiEndPointLogin + AppConstants.getChooseInOptionApi}")
     final response = await http.get(
         Uri.parse(
-            AppConstants.apiEndPointLogin + AppConstants.getChooseInOptionApi));
-        // print('Get Choose Option List ${response.body}');
-
-        try {
-    if (response.statusCode == 200) {
-    var list = json.decode(response.body);
-    print(response.statusCode);
-    print('Get Choose Option List1 ${response.body}');
-    return list;
-    } else {
-    return null;
-    }
-    } catch (e) {
-      print("ERROR+==============$e");
-        }
-  }
-
-  Future <Item> getProductDetailApi (id) async {
-    final response = await http.get(
-        Uri.parse(
-            AppConstants.apiEndPointLogin + AppConstants.getProductDetailApi + "$id"),
+            AppConstants.apiEndPointLogin + AppConstants.getChooseInOptionApi),
         headers: {
           "Content-type": "application/json",
           "Authorization": AppConstants.adminToken
         });
-    print("url -> ${AppConstants.apiEndPointLogin + AppConstants.getProductDetailApi + "$id"}");
+    // print('Get Choose Option List ${response.body}');
+
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        print('Get Choose Option List1 ${response.body}');
+        return list;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
+  Future<Item> getProductDetailApi(id) async {
+    final response = await http.get(
+        Uri.parse(AppConstants.apiEndPointLogin +
+            AppConstants.getProductDetailApi +
+            "$id"),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.adminToken
+        });
+    print(
+        "url -> ${AppConstants.apiEndPointLogin + AppConstants.getProductDetailApi + "$id"}");
     print('Get Size List ${response.body}');
     try {
       if (response.statusCode == 200) {
