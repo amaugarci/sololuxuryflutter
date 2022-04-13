@@ -18,6 +18,7 @@ class AppConstants {
   // static String shippingInformationEndPoint = "/in-en/V1/carts/mine/shipping-information";
   static String multiAddressEndPoint = "/rest/V1/customers/me";
 
+  static String recentlyProduct = "recentCheck";
   // static String storeWebsitesEndPoint = "/V1/store/websites";
   // static String storeViewsEndPoint = "/V1/store/storeViews";
   // static String storeConfigsEndPoint = "/V1/store/storeConfigs";
@@ -38,7 +39,7 @@ class AppConstants {
 
   static String apiEndPointMyAccount = "/rest/V1/customers/me";
   static String recommendedProductsEndPoint =
-      "https://dev3.sololuxury.com/rest/V1/recommendedList?sku=4996230JNAN-Blue";
+      "https://www.sololuxury.com/rest/V1/recommendedList?sku=";
 
   static String estimatesShippingMethodEndPoint =
       "/V1/carts/mine/estimate-shipping-methods";
@@ -171,7 +172,9 @@ class AppConstants {
 
   static String myTicketApi = '/rest/V1/mytickets/';
 
-  static const String getSizeListApi = "/rest/V1/sizeList/";
+  static const String getSizeListApi = "/V1/sizeList/";
+  static const String getProductDetailApi = "/rest/all/V1/products/";
+
 
   static String filterDataApi = '/rest/V1/layeredList/';
 

@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/product_list_api_repository.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/recommended_products_api_repository.dart';
 
@@ -34,6 +36,7 @@ class ProductController extends GetxController {
   Rx<GlobalKey<ScaffoldState>> scaffoldKey = GlobalKey<ScaffoldState>().obs;
   Rx<ProductModel>? productModel = ProductModel().obs;
   List<Item> itemList = [];
+  RxString title = "".obs;
   final ProductListAPIRepository productListAPIRepository;
 
   ProductController({required this.productListAPIRepository});
@@ -59,6 +62,7 @@ class ProductController extends GetxController {
     getHomeProducts(Get.arguments[0].toString());
     print("Id -> ${Get.arguments[0]}");
     print("Name -> ${Get.arguments[1]}");
+    title.value = Get.arguments[1];
     productId.value = Get.arguments[0].toString();
     ProductDetailsBindings().dependencies();
     getFilterData();
@@ -79,6 +83,11 @@ class ProductController extends GetxController {
     }
     isLoading.value = false;
   }
+
+  // Future setRecentlyItem (Item? item) async {
+  //   String value = jsonEncode([item]);
+  //  await setPrefRecentlyValue(AppConstants.recentlyProduct , value);
+  // }
 
   getSortedProducts() async {
     isLoading.value = true;

@@ -10,6 +10,7 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Product/product_model.dart';
 import '../../../utils/app_constants.dart';
+import '../../../utils/app_routes.dart';
 
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
@@ -198,77 +199,90 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.itemsData.length,
-                                itemBuilder: (context, index) => SizedBox(
-                                  width: 215,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            const Positioned(
-                                              top: 0,
-                                              right: 0,
-                                              child: Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Icon(
-                                                  Icons.favorite_border,
-                                                  size: 18,
-                                                  color: blackColor,
+                                itemBuilder: (context, index) => InkWell(
+                                  onTap: (){
+                                    controller.product!.value = Item(
+                                      id:  int.parse(controller.itemsData[index]['product_id']),
+                                      sku: controller.itemsData[index]['sku'],
+                                    );
+                                    print(controller.itemsData[index]['id']);
+                                    print(controller.itemsData[index]['sku']);
+                                     controller.getProductDetail();
+                                    // Get.toNamed(RoutesConstants.productDetailsScreen,
+                                    //     arguments: []);
+                                  },
+                                  child: SizedBox(
+                                    width: 215,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              const Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(5.0),
+                                                  child: Icon(
+                                                    Icons.favorite_border,
+                                                    size: 18,
+                                                    color: blackColor,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Image(
-                                              width: 162,
-                                              image: NetworkImage(
-                                                controller.itemsData[index]
-                                                    ["image_url"],
+                                              Image(
+                                                width: 162,
+                                                image: NetworkImage(
+                                                  controller.itemsData[index]
+                                                      ["image_url"],
+                                                ),
                                               ),
+                                            ],
+                                          ),
+                                          height: 215,
+                                          width: 215,
+                                          margin: const EdgeInsets.only(
+                                              right: 5, left: 5, top: 5),
+                                          decoration: BoxDecoration(
+                                            color: backGroundColor,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color:
+                                                    blackColor.withOpacity(0.30),
+                                                blurRadius: 8,
+                                              ),
+                                            ],
+                                            border: Border.all(
+                                              color: brown743617,
+                                              width: 1,
                                             ),
-                                          ],
-                                        ),
-                                        height: 215,
-                                        width: 215,
-                                        margin: const EdgeInsets.only(
-                                            right: 5, left: 5, top: 5),
-                                        decoration: BoxDecoration(
-                                          color: backGroundColor,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  blackColor.withOpacity(0.30),
-                                              blurRadius: 8,
-                                            ),
-                                          ],
-                                          border: Border.all(
-                                            color: brown743617,
-                                            width: 1,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Text(
-                                        controller.itemsData[index]
-                                            ["brand_name"],
-                                        textAlign: TextAlign.center,
-                                        style: commonTextStyle400(size: 16.0),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        controller.itemsData[index]["name"],
-                                        textAlign: TextAlign.center,
-                                        style: commonTextStyle400(size: 16.0),
-                                      ),
-                                      Text(
-                                        controller.itemsData[index]["price"],
-                                        textAlign: TextAlign.center,
-                                        style: commonTextStyle400(size: 16.0),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Text(
+                                          controller.itemsData[index]
+                                              ["brand_name"],
+                                          textAlign: TextAlign.center,
+                                          style: commonTextStyle400(size: 16.0),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          controller.itemsData[index]["name"],
+                                          textAlign: TextAlign.center,
+                                          style: commonTextStyle400(size: 16.0),
+                                        ),
+                                        Text(
+                                          controller.itemsData[index]["price"],
+                                          textAlign: TextAlign.center,
+                                          style: commonTextStyle400(size: 16.0),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -583,7 +597,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     return SizedBox(
       height: 65,
       child: ListView.builder(
-        itemCount: controller.product!.value.mediaGalleryEntries!.length,
+        itemCount: controller.product!.value.mediaGalleryEntries == null ? 0 : controller.product!.value.mediaGalleryEntries!.length,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
