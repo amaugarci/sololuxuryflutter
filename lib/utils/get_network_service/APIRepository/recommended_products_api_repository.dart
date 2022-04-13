@@ -95,6 +95,31 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 
+  Future getChooseinSizeList() async {
+    print(
+        "URLS --> ${AppConstants.apiEndPointLogin + AppConstants.getChooseInOptionApi}");
+    final response = await http.get(
+        Uri.parse(
+            AppConstants.apiEndPointLogin + AppConstants.getChooseInOptionApi),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.adminToken
+        });
+    print('Get Choose Option List ${response.body}');
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        print('Get Choose Option List1 ${response.body}');
+        return list;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
   Future postAddTOCartProductResponse(addToCartData) async {
     print("Response is $addToCartData");
     final response = await http.post(

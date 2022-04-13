@@ -15,6 +15,10 @@ class AddressBookController extends GetxController {
   String? countryCode;
   var isLoading = true.obs;
   Rx<AddressListModel> getAdressList = AddressListModel().obs;
+  var getbidingaddress = false.obs;
+  var getshipping = false.obs;
+  List visibleMonth = [].obs;
+  List visibleshiping = [].obs;
 
   AddressBookController(
       {required this.addressListAPIRepository, this.countryCode});
@@ -32,7 +36,11 @@ class AddressBookController extends GetxController {
         jsonDecode(await addressListAPIRepository.getAddressListResponse());
     print("Details Of Address ${addressList}");
     getAdressList.value = AddressListModel.fromJson(addressList);
-    print("Address List Is $getAdressList");
+    print("Address List Is ${getAdressList.value.addresses!.length}");
+    for (var i = 0; i < getAdressList.value.addresses!.length; i++) {
+      visibleMonth.add(false);
+      visibleshiping.add(false);
+    }
     isLoading.value = false;
   }
 }

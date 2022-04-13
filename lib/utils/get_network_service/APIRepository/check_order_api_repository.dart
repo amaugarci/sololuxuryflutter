@@ -147,4 +147,20 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       return estimateResponseModel.body!;
     }
   }
+
+  Future<dynamic> getAddressListResponse() async {
+    final response = await provider.getAddressListAPIResponse(
+        endPoint: AppConstants.addressList);
+    print("Api Response Error ${response.body!}");
+    if (response.status.hasError) {
+      print("error -> ");
+      print(response.statusText!);
+      Validators.apiResponseMessage(
+          body: response.body!, message: response.statusText);
+      return null;
+    } else {
+      print("success -> ");
+      return response.body!;
+    }
+  }
 }

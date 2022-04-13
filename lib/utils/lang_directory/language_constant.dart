@@ -173,7 +173,7 @@ class LanguageConstant {
 
   static const String accessYourAccountDetailsText =
       "accessYourAccountDetailsText";
-  static const String newAddressText = "newAddresstext";
+  static const String newAddressText = "newAddressText";
   static const String myBillingShipAddressSameText =
       "myBillingShipAddressSameText";
 

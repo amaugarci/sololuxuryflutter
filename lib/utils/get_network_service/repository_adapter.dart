@@ -77,6 +77,7 @@ abstract class ICheckoutOrderRepository {
   Future<dynamic> postCreateOrderAPIResponse(String loginRequestJson);
   Future<dynamic> getCountryListResponse();
   Future<dynamic> postaddAddressApiResponse(String loginRequestJson);
+  Future<dynamic> getAddressListResponse();
 }
 
 ///myAccount Class
