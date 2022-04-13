@@ -75,6 +75,8 @@ abstract class ICheckoutOrderRepository {
   Future<dynamic> postEstimateAPIResponse(String loginRequestJson);
 
   Future<dynamic> postCreateOrderAPIResponse(String loginRequestJson);
+  Future<dynamic> getCountryListResponse();
+  Future<dynamic> postaddAddressApiResponse(String loginRequestJson);
 }
 
 ///myAccount Class
@@ -183,4 +185,12 @@ abstract class IReturnReasonRepository {
   Future<dynamic> postReturnItemAPIResponse(String orderId, String productsku,
       String email, String reason, String langCode);
   Future<dynamic> getOrderTeakingResponse(String id);
+}
+
+abstract class IStoreCreditRepository {
+  Future<String> getStoreCreditResponse(String id);
+}
+
+abstract class ISelectCountryRepository {
+  Future<String> getSelectCountryResponse();
 }

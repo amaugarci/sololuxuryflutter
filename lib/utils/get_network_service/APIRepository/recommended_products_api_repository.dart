@@ -63,12 +63,15 @@ class RecommendedProductsAPIRepository extends GetxController {
   }
 
   Future getSizeListApi(id) async {
+    print(
+        "URLS --> ${AppConstants.apiEndPointLogin + AppConstants.getSizeListApi + "$id"}");
     final response = await http.get(
-        Uri.parse(
-            AppConstants.apiEndPointNew2 + AppConstants.getSizeListApi + "$id"),
+        Uri.parse(AppConstants.apiEndPointLogin +
+            AppConstants.getSizeListApi +
+            "$id"),
         headers: {
           "Content-type": "application/json",
-          "Authorization": AppConstants.defaultToken
+          "Authorization": AppConstants.adminToken
         });
     print('Get Size List ${response.body}');
     try {
@@ -128,6 +131,7 @@ class RecommendedProductsAPIRepository extends GetxController {
   }
 
   Future postAddTOCartProductResponse(addToCartData) async {
+    print("Response is $addToCartData");
     final response = await http.post(
         Uri.parse(AppConstants.apiEndPointLogin + AppConstants.addTocartData),
         body: json.encode(addToCartData),
@@ -218,10 +222,14 @@ class RecommendedProductsAPIRepository extends GetxController {
   }
 
   Future guestPostAddTOCartProductResponse(addToCartData, token) async {
+    print(
+        "Request Posrt Data ${AppConstants.apiEndPointLogin + AppConstants.guestCreateCart + "/$token/items"}");
+    print("Request Posrt Data ${addToCartData}");
     final response = await http.post(
       Uri.parse(AppConstants.apiEndPointLogin +
           AppConstants.guestCreateCart +
           "/$token/items"),
+      headers: {"Content-type": "application/json"},
       body: json.encode(addToCartData),
     );
     try {

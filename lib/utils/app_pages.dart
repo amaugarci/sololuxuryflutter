@@ -12,6 +12,7 @@ import 'package:solo_luxury/app/screens/cart/cart_screen.dart';
 import 'package:solo_luxury/app/screens/checkout_order/checkout_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_binding.dart';
 import 'package:solo_luxury/app/screens/contact_us/contact_us_screen.dart';
+import 'package:solo_luxury/app/screens/country_screen/country_screen.dart';
 import 'package:solo_luxury/app/screens/donation/charity_binding.dart';
 import 'package:solo_luxury/app/screens/donation/donation_screen.dart';
 import 'package:solo_luxury/app/screens/faq/faq_binding.dart';
@@ -254,7 +255,12 @@ class AppPages {
     GetPage(
       name: RoutesConstants.countryScreen,
       page: () => CountryScreen(),
-      binding: CountryScreenBindings(),
+      binding: CountryBindings(),
+    ),
+    GetPage(
+      name: RoutesConstants.countryPopUpScreen,
+      page: () => CountryPopUpScreen(),
+      binding: CountryPopUpScreenBindings(),
     ),
     GetPage(
       name: RoutesConstants.guestReturnsScreen,
@@ -302,11 +308,11 @@ class AppPages {
       binding: TermAndConditionBinding(),
     ),
     GetPage(
-
       name: RoutesConstants.newsLetterScreen,
       page: () => NewsLetterScreen(),
-     // binding: TermAndConditionBinding(),
-  ),GetPage(
+      // binding: TermAndConditionBinding(),
+    ),
+    GetPage(
       name: RoutesConstants.orderDetailsScreen,
       page: () => OrderDetailsScreen(),
       binding: OrderDetailsBinding(),

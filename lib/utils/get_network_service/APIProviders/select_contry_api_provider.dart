@@ -4,17 +4,16 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:solo_luxury/data/model/country/country_model.dart';
-import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 
-abstract class ICountryListProvider {
-  Future<dynamic> getcountryListAPIResponse({required String endPoint});
-  Future<dynamic> postAddAddressResponse(
+abstract class ISelectCountryProvider {
+  Future<Response> getselectCountryAPIResponse({required String endPoint});
+  Future<Response> postAddAddressResponse(
       {required String endPoint, required String requestJson});
 }
 
-class CountryListAPIProvider extends GetConnect
-    implements ICountryListProvider {
+class SelectCountryAPIProvider extends GetConnect
+    implements ISelectCountryProvider {
   @override
   void onInit() {
     //Get All Store Model (Websites,Views and Configs)
@@ -24,7 +23,7 @@ class CountryListAPIProvider extends GetConnect
   }
 
   @override
-  Future<dynamic> getcountryListAPIResponse({required String endPoint}) {
+  Future<Response> getselectCountryAPIResponse({required String endPoint}) {
     httpClient.defaultDecoder = (val) => jsonEncode(val);
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
@@ -36,13 +35,16 @@ class CountryListAPIProvider extends GetConnect
   }
 
   @override
-  Future<dynamic> postAddAddressResponse(
+  Future<Response> postAddAddressResponse(
       {required String endPoint, required String requestJson}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
-    return put(endPoint, requestJson, headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      'Authorization': localStore.customerToken,
+    print("Response Od Body ${post(endPoint, requestJson, headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.defaultToken
+        })}");
+    return post(endPoint, requestJson, headers: {
+      "Content-type": "application/json",
+      "Authorization": AppConstants.adminToken
     });
   }
 }
