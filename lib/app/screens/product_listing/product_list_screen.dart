@@ -29,7 +29,7 @@ class ProductListScreen extends GetView<ProductController> {
         resizeToAvoidBottomInset: false,
         backgroundColor: backGroundColor,
         appBar: commonAppbar(
-            title: "${Get.arguments[1]}",
+            title: controller.title.value,
             centerTitle: false,
             useAnotherTextStyle: true),
         body: controller.isLoading.value
@@ -439,6 +439,7 @@ class ProductListScreen extends GetView<ProductController> {
                 onTap: () {
                   Get.toNamed(RoutesConstants.productDetailsScreen,
                       arguments: [item]);
+                  //controller.setRecentlyItem(item);
                 },
                 child: Container(
                   child: Column(

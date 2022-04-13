@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:solo_luxury/data/model/Product/product_model.dart';
 import 'package:solo_luxury/data/model/RecommendedProducts/recommended_products_model.dart';
 import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
@@ -34,11 +35,11 @@ import 'package:solo_luxury/utils/get_network_service/repository_adapter.dart';
 class RecommendedProductsAPIRepository extends GetxController {
   List<RecommendedProductModel> itemData = [];
 
-  Future getRecommendedProductResponse() async {
+  Future getRecommendedProductResponse(String id) async {
+    print("this is recommended url -> ${AppConstants.recommendedProductsEndPoint+id}");
     final response = await http.get(
-      Uri.parse(AppConstants.recommendedProductsEndPoint),
+      Uri.parse(AppConstants.recommendedProductsEndPoint+id),
     );
-
     try {
       if (response.statusCode == 200) {
         print("Categories=======================================");
@@ -69,7 +70,7 @@ class RecommendedProductsAPIRepository extends GetxController {
           "Content-type": "application/json",
           "Authorization": AppConstants.defaultToken
         });
-    print('Get Size List $response');
+    print('Get Size List ${response.body}');
     try {
       if (response.statusCode == 200) {
         print("Get Size LIst Data=======================================");
@@ -89,6 +90,40 @@ class RecommendedProductsAPIRepository extends GetxController {
       }
     } catch (e) {
       print("ERROR+==============$e");
+    }
+  }
+
+  Future <Item> getProductDetailApi (id) async {
+    final response = await http.get(
+        Uri.parse(
+            AppConstants.apiEndPointLogin + AppConstants.getProductDetailApi + "$id"),
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": AppConstants.adminToken
+        });
+    print("url -> ${AppConstants.apiEndPointLogin + AppConstants.getProductDetailApi + "$id"}");
+    print('Get Size List ${response.body}');
+    try {
+      if (response.statusCode == 200) {
+        print("Get Size LIst Data=======================================");
+/*        print(response.body.toString());
+        itemData.add(recommendedProductResponseModelFromJson(response.body));*/
+        var list = json.decode(response.body);
+
+        /*itemData = json.decode(response.body);
+
+        print("ITEMDATA===================${itemData.toString()}");*/
+        print(response.statusCode);
+        print("LIST DATA +++++++++++++++++++$list");
+        print("LIST DATA +++++++++++++++++++${list}");
+        return Item.fromJson(list);
+      } else {
+        print("###################${response.body}");
+        return Item();
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+      return Item();
     }
   }
 
