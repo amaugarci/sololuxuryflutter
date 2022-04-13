@@ -122,6 +122,7 @@ class CheckoutOrderController extends GetxController {
     });
     if(paramShipping!=null){
       params = paramShipping;
+      print("paramShipping :- $paramShipping");
     }
     print("Shiping param :- $params");
     var data =
@@ -138,7 +139,7 @@ class CheckoutOrderController extends GetxController {
     if(paramBilling!=null){
       params1 = paramBilling;
     }
-    print("Shipping Billing Param :- $params");
+    print("Shipping Billing Param :- $params1");
     var data1 = await checkoutOrderAPIRepository.postGuestShippingInformationResponse(params1);
     if(data1 != null){
       String dataString =  jsonEncode(data1);
@@ -1102,58 +1103,55 @@ class CheckoutOrderController extends GetxController {
             "city": city.value,
             "firstname": firstName.value,
             "lastname": lastName.value,
-            // "email": email,
+            "email": email.value,
             "telephone": phone.value,
             "same_as_billing": 1
           }
         });
-
-        getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
-    }
-    checkEnablePlaceOrder();
-  }
-
-  billingValidationAddress(){
-    if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && emailBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
-      AppConstants.dismissKeyboard();
-        var params1 = jsonEncode({
-          "addressInformation": {
-            "shipping_address": {
-              "region": state.value,
-              "country_id": selectedCoutry1.value.id,
-              "street": [
-                add1.value,
-                add2.value,
-                add3.value,
-              ],
-              "postcode": zipCode.value,
-              "city": city.value,
-              "firstname": firstName.value,
-              "lastname": lastName.value,
-              // "email": "aptest@gmail.com.value",
-              "telephone": phone.value,
-            },
-            "billing_address": {
-              "region": stateBilling.value,
-              "country_id": selectedCoutry2.value.id,
-              "street": [
-                add1Billing.value,
-                add2Billing.value,
-                add3Billing.value,
-              ],
-              "postcode": zipCodeBilling.value,
-              "city": cityBilling.value,
-              "firstname": firstNameBilling.value,
-              "lastname": lastNameBilling.value,
-              // "email": "aptest@gmail.com.value",
-              "telephone": phoneBilling.value
-            },
-            "shipping_carrier_code": "freeshipping",
-            "shipping_method_code": "freeshipping"
+        print("params pass -> $params");
+        if(isSameAsBilling.value){
+          getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
+        }else{
+          if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && emailBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty) {
+            var params1 = jsonEncode({
+              "addressInformation": {
+                "shipping_address": {
+                  "region": state.value,
+                  "country_id": selectedCoutry1.value.id,
+                  "street": [
+                    add1.value,
+                    add2.value,
+                    add3.value,
+                  ],
+                  "postcode": zipCode.value,
+                  "city": city.value,
+                  "firstname": firstName.value,
+                  "lastname": lastName.value,
+                  "email": email.value,
+                  "telephone": phone.value,
+                },
+                "billing_address": {
+                  "region": stateBilling.value,
+                  "country_id": selectedCoutry2.value.id,
+                  "street": [
+                    add1Billing.value,
+                    add2Billing.value,
+                    add3Billing.value,
+                  ],
+                  "postcode": zipCodeBilling.value,
+                  "city": cityBilling.value,
+                  "firstname": firstNameBilling.value,
+                  "lastname": lastNameBilling.value,
+                  "email": emailBilling.value,
+                  "telephone": phoneBilling.value
+                },
+                "shipping_carrier_code": "freeshipping",
+                "shipping_method_code": "freeshipping"
+              }
+            });
+            getGuestEstimateAndShipInformationFromApi(paramShipping: params, paramBilling: params1);
           }
-        });
-
-        getGuestEstimateAndShipInformationFromApi(paramBilling: params1);
+        }
     }
     checkEnablePlaceOrder();
   }

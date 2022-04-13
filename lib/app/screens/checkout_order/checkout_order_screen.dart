@@ -1030,7 +1030,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             },
             onChanged: (val){
               controller.emailBilling.value = val;
-              controller.billingValidationAddress();
+              controller.shippingValidationAddress();
             },
           ),
         ),
@@ -1074,7 +1074,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   ),
                   onChanged: (val){
                     controller.firstNameBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                   validator: (value) {
                     if (value == null || value == '') {
@@ -1127,7 +1127,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.lastNameBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1178,7 +1178,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.add1Billing.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1225,7 +1225,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.cityBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1276,7 +1276,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.add2Billing.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1319,7 +1319,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       print("value Is $value");
                       controller.selectedCoutry2.value = value!;
                       controller.countryNameBilling.value = value.fullNameEnglish!;
-                      controller.billingValidationAddress();
+                      controller.shippingValidationAddress();
                     },
                   ),
                 ),
@@ -1371,7 +1371,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.add3Billing.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1418,7 +1418,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.stateBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1469,7 +1469,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.zipCodeBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1516,7 +1516,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   },
                   onChanged: (val){
                     controller.phoneBilling.value = val;
-                    controller.billingValidationAddress();
+                    controller.shippingValidationAddress();
                   },
                 ),
               ),
