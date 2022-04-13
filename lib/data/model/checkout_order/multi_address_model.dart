@@ -55,7 +55,7 @@ class MultiAddressModel {
     lastname: json["lastname"],
     storeId: json["store_id"],
     websiteId: json["website_id"],
-    addresses: List<Address>.from(json["addresses"].map((x) => Address.fromJson(x))),
+    addresses: json["addresses"] == null ? List<Address>.from(json["addresses"].map((x) => Address.fromJson(x))) : [],
     disableAutoGroupChange: json["disable_auto_group_change"],
     extensionAttributes: ExtensionAttributes.fromJson(json["extension_attributes"]),
     customAttributes: !json.containsKey("custom_attributes") ? [] : List<CustomAttribute>.from(json["custom_attributes"].map((x) => CustomAttribute.fromJson(x))),
