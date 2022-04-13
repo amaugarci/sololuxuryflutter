@@ -114,7 +114,6 @@ class CheckoutOrderController extends GetxController {
       getAddressList();
       getEstimateAndShipInformationFromApi();
     }
-    checkEnablePlaceOrder();
   }
 
   getGuestEstimateAndShipInformationFromApi(
@@ -196,6 +195,7 @@ class CheckoutOrderController extends GetxController {
       shipInfoModel!.value =
           ShippingInformationModel.fromJson(jsonDecode(dataString));
     }
+    checkEnablePlaceOrder();
     isLoading.value = false;
   }
 
@@ -217,6 +217,7 @@ class CheckoutOrderController extends GetxController {
           shippingAddress = multiAddressModel!.value.addresses!.first;
         }
       }
+      checkEnablePlaceOrder();
     }
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
@@ -228,18 +229,18 @@ class CheckoutOrderController extends GetxController {
     isLoading.value = true;
     var params = json.encode({
       "address": {
-        "region": "${billingAddress.region!.region}",
-        "region_id": billingAddress.region!.regionId,
-        "region_code": "${billingAddress.region!.regionCode}",
-        "country_id": "${billingAddress.countryId}",
-        "street": billingAddress.street,
-        "postcode": "${billingAddress.postcode}",
-        "city": "${billingAddress.city}",
-        "firstname": "${billingAddress.firstname}",
-        "lastname": "${billingAddress.lastname}",
-        "customer_id": billingAddress.customerId,
+        "region": "${address.region!.region}",
+        "region_id": address.region!.regionId,
+        "region_code": "${address.region!.regionCode}",
+        "country_id": "${address.countryId}",
+        "street": address.street,
+        "postcode": "${address.postcode}",
+        "city": "${address.city}",
+        "firstname": "${address.firstname}",
+        "lastname": "${address.lastname}",
+        "customer_id": address.customerId,
         "email": multiAddressModel!.value.email,
-        "telephone": "${billingAddress.telephone}",
+        "telephone": "${address.telephone}",
         "same_as_billing": 1
       }
     });

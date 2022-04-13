@@ -1557,6 +1557,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             }
                           }
                           controller.selectedBillingIndex.value = index;
+                          controller.checkEnablePlaceOrder();
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
