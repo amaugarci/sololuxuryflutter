@@ -449,6 +449,51 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return Column(
       children: [
         SizedBox(height: 14.0),
+        Container(
+          height: 40,
+          child: TextFormField(
+            controller: controller.emailController.value,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.transparent,
+              contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+              hintText: "Email Address",
+              hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+              errorStyle: TextStyle(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide(
+                  color: appColor,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide(
+                  color: appColor,
+                  width: 1.0,
+                ),
+              ),
+              isDense: true,
+              suffixIcon: null,
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: appColor,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value == '') {
+                return "Enter Email Address";
+              }
+            },
+            onChanged: (val){
+              controller.email.value = val;
+              controller.shippingValidationAddress();
+            },
+          ),
+        ),
+        SizedBox(height: 6.0),
         Row(
           children: [
             Expanded(
@@ -945,6 +990,51 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return Column(
       children: [
         SizedBox(height: 14.0),
+        Container(
+          height: 40,
+          child: TextFormField(
+            controller: controller.billingEmailController.value,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.transparent,
+              contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+              hintText: "Email Address",
+              hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+              errorStyle: TextStyle(color: Colors.black),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide(
+                  color: appColor,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide(
+                  color: appColor,
+                  width: 1.0,
+                ),
+              ),
+              isDense: true,
+              suffixIcon: null,
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: appColor,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value == '') {
+                return "Enter Email Address";
+              }
+            },
+            onChanged: (val){
+              controller.emailBilling.value = val;
+              controller.billingValidationAddress();
+            },
+          ),
+        ),
+        SizedBox(height: 6.0),
         Row(
           children: [
             Expanded(
@@ -1726,7 +1816,6 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     return controller.multiAddressModel!.value.addresses!.length > 1 ? InkWell(
       onTap: () {
         controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
-
         controller.shippingAddress = controller.multiAddressModel!.value.addresses![controller.selectedAddressIndex.value];
 
         if(controller.isSameAsBilling.value){
@@ -1736,7 +1825,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
           controller.billingAddress = controller.multiAddressModel!.value.addresses![controller.selectedBillingIndex.value];
           controller.estimateAndShippingAPICall(controller.shippingAddress, controller.billingAddress);
         }
-
+        controller.checkEnablePlaceOrder();
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -2127,8 +2216,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         const SizedBox(
           height: 15.0,
         ),
-        controller.multiAddressModel!.value.addresses == null ||
-                controller.multiAddressModel!.value.addresses!.isNotEmpty
+        Obx(()=> controller.isEnabledPlaceOrder.value
             ? Align(
                 alignment: Alignment.center,
                 child: SizedBox(
@@ -2197,7 +2285,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   ),
                 ),
               )
-            : Container()
+            : Container())
       ],
     );
   }

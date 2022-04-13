@@ -50,6 +50,7 @@ class CheckoutOrderController extends GetxController {
 
   final firstNameController = TextEditingController().obs;
   final lastNameController = TextEditingController().obs;
+  final emailController = TextEditingController().obs;
   final phoneNumberController = TextEditingController().obs;
   final zipPovinceController = TextEditingController().obs;
   final address1Controller = TextEditingController().obs;
@@ -60,6 +61,7 @@ class CheckoutOrderController extends GetxController {
 
   final billingFirstNameController = TextEditingController().obs;
   final billingLastNameController = TextEditingController().obs;
+  final billingEmailController = TextEditingController().obs;
   final billingPhoneNumberController = TextEditingController().obs;
   final billingZipPovinceController = TextEditingController().obs;
   final billingAddress1Controller = TextEditingController().obs;
@@ -68,8 +70,8 @@ class CheckoutOrderController extends GetxController {
   final billingCityController = TextEditingController().obs;
   final billingStateController = TextEditingController().obs;
 
-  RxString firstName = "".obs,lastName = "".obs,add1 = "".obs,add2 = "".obs,add3 = "".obs,city = "".obs,countryName = "".obs,state = "".obs, zipCode = "".obs, phone = "".obs ;
-  RxString firstNameBilling = "".obs,lastNameBilling = "".obs,add1Billing = "".obs,add2Billing = "".obs,add3Billing = "".obs,cityBilling = "".obs,countryNameBilling = "".obs,stateBilling = "".obs, zipCodeBilling = "".obs, phoneBilling = "".obs ;
+  RxString firstName = "".obs,lastName = "".obs,email = "".obs,add1 = "".obs,add2 = "".obs,add3 = "".obs,city = "".obs,countryName = "".obs,state = "".obs, zipCode = "".obs, phone = "".obs ;
+  RxString firstNameBilling = "".obs,lastNameBilling = "".obs,emailBilling = "".obs,add1Billing = "".obs,add2Billing = "".obs,add3Billing = "".obs,cityBilling = "".obs,countryNameBilling = "".obs,stateBilling = "".obs, zipCodeBilling = "".obs, phoneBilling = "".obs ;
 
 
   Rx<CountryListModel> selectedCoutry1 = CountryListModel().obs;
@@ -79,6 +81,8 @@ class CheckoutOrderController extends GetxController {
 
   var selectedCoutry = "".obs;
   var saveAddressBook = 1.obs;
+
+  RxBool isEnabledPlaceOrder = false.obs;
 
   @override
   void onInit() {
@@ -91,6 +95,7 @@ class CheckoutOrderController extends GetxController {
       getAddressList();
       getEstimateAndShipInformationFromApi();
     }
+    checkEnablePlaceOrder();
   }
 
   getGuestEstimateAndShipInformationFromApi({paramShipping,paramBilling}) async {
@@ -1081,7 +1086,7 @@ class CheckoutOrderController extends GetxController {
   }
 
   shippingValidationAddress(){
-    if(firstName.isNotEmpty && lastName.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
+    if(firstName.isNotEmpty && lastName.isNotEmpty && email.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
         AppConstants.dismissKeyboard();
 
         var params = json.encode({
@@ -1105,10 +1110,11 @@ class CheckoutOrderController extends GetxController {
 
         getGuestEstimateAndShipInformationFromApi(paramShipping: params,);
     }
+    checkEnablePlaceOrder();
   }
 
   billingValidationAddress(){
-    if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
+    if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && emailBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
       AppConstants.dismissKeyboard();
         var params1 = jsonEncode({
           "addressInformation": {
@@ -1148,6 +1154,31 @@ class CheckoutOrderController extends GetxController {
         });
 
         getGuestEstimateAndShipInformationFromApi(paramBilling: params1);
+    }
+    checkEnablePlaceOrder();
+  }
+
+  checkEnablePlaceOrder(){
+    if(localStore.isGuest){
+      if(isSameAsBilling.value){
+        if(firstName.isNotEmpty && lastName.isNotEmpty && email.isNotEmpty && add1.isNotEmpty && city.isNotEmpty && add2.isNotEmpty && countryName.isNotEmpty && add3.isNotEmpty && state.isNotEmpty && zipCode.isNotEmpty && phone.isNotEmpty){
+          isEnabledPlaceOrder.value = true;
+        }else{
+          isEnabledPlaceOrder.value = false;
+        }
+      }else{
+        if(firstNameBilling.isNotEmpty && lastNameBilling.isNotEmpty && emailBilling.isNotEmpty && add1Billing.isNotEmpty &&cityBilling.isNotEmpty && add2Billing.isNotEmpty && countryNameBilling.isNotEmpty && add3Billing.isNotEmpty && stateBilling.isNotEmpty && zipCodeBilling.isNotEmpty && phoneBilling.isNotEmpty){
+          isEnabledPlaceOrder.value = true;
+        }else{
+          isEnabledPlaceOrder.value = false;
+        }
+      }
+    }else{
+      if(multiAddressModel!.value.addresses!.isNotEmpty){
+        isEnabledPlaceOrder.value = true;
+      }else{
+        isEnabledPlaceOrder.value = false;
+      }
     }
   }
 
