@@ -63,6 +63,30 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       return estimateResponseModel.body!;
     }
   }
+  @override
+  Future<dynamic> postGuestEstimateAPIResponse(String requestJson) async {
+    Response estimateResponseModel =
+        await provider.postGuestEstimateResponseProvider(
+            endPoint: AppConstants.getGuestUrlWithCode(
+                AppConstants.estimateMethods),
+            requestJson: requestJson);
+    if (estimateResponseModel != null) {
+      print(AppConstants.apiEndPointLogin +
+          AppConstants.getUrlWithCode(
+              AppConstants.estimateMethods));
+      print("response.statusCode -> ");
+      print(estimateResponseModel.statusCode);
+    }
+    if (estimateResponseModel.status.hasError) {
+      Validators.apiResponseMessage(
+          body: jsonEncode(estimateResponseModel.body!),
+          message: estimateResponseModel.statusText);
+
+      return null;
+    } else {
+      return estimateResponseModel.body!;
+    }
+  }
 
   @override
   Future<dynamic> postShippingInformationAPIResponse(String requestJson) async {
@@ -77,6 +101,31 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
               AppConstants.shippingInformationEndPoint));
       print("response.statusCode -> ");
       print(estimateResponseModel.statusCode);
+    }
+    if (estimateResponseModel.status.hasError) {
+      Validators.apiResponseMessage(
+          body: jsonEncode(estimateResponseModel.body!),
+          message: estimateResponseModel.statusText);
+
+      return null;
+    } else {
+      return estimateResponseModel.body!;
+    }
+  }
+
+  Future<dynamic> postGuestShippingInformationResponse(String requestJson) async {
+    Response estimateResponseModel =
+        await provider.postGuestShippingInformationResponseProvider(
+            endPoint: AppConstants.getGuestUrlWithCode(
+                AppConstants.shippingInformation),
+            requestJson: requestJson);
+    if (estimateResponseModel != null) {
+      print(AppConstants.apiEndPointLogin +
+          AppConstants.getGuestUrlWithCode(
+              AppConstants.shippingInformation));
+      print("response.statusCode -> ");
+      print(estimateResponseModel.statusCode);
+      print(estimateResponseModel.body);
     }
     if (estimateResponseModel.status.hasError) {
       Validators.apiResponseMessage(
@@ -145,6 +194,22 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
     } else {
       print("success -> ");
       return estimateResponseModel.body!;
+    }
+  }
+
+  Future<dynamic> getAddressListResponse() async {
+    final response = await provider.getAddressListAPIResponse(
+        endPoint: AppConstants.addressList);
+    print("Api Response Error ${response.body!}");
+    if (response.status.hasError) {
+      print("error -> ");
+      print(response.statusText!);
+      Validators.apiResponseMessage(
+          body: response.body!, message: response.statusText);
+      return null;
+    } else {
+      print("success -> ");
+      return response.body!;
     }
   }
 }

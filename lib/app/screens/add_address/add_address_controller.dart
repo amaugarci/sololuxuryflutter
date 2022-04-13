@@ -34,15 +34,18 @@ class AddAddressController extends GetxController {
   // var selectedState = "".obs;
   Rx<CountryListModel> selectedCoutry = CountryListModel().obs;
   Rx<AvailableRegion> selectedState = AvailableRegion().obs;
-  AddressListModel getAddressList = Get.arguments;
+  AddressListModel getAddressList = Get.arguments[0];
+
+  Rx<Address> getUpdateAddressList = Address().obs;
 
   CountryListAPIRepository countryListAPIRepository;
   String? countryCode;
-
+  var isLoadding = true.obs;
   AddAddressController(
       {required this.countryListAPIRepository, this.countryCode});
   @override
   void onInit() {
+    // getUpdateOrNot();
     getCountryList();
     super.onInit();
   }
@@ -56,50 +59,139 @@ class AddAddressController extends GetxController {
     getcountryList.value = List<CountryListModel>.from(countryList
         .map((countryList) => CountryListModel.fromJson(countryList)));
     print("country list Get $getcountryList");
+    getUpdateOrNot();
+  }
+
+  getUpdateOrNot() {
+    isLoadding.value = true;
+    if (Get.arguments[2] == 1) {
+      getUpdateAddressList.value = Get.arguments[1];
+      firstNameController.value.text = getUpdateAddressList.value.firstname!;
+      lastNameController.value.text = getUpdateAddressList.value.lastname!;
+      phoneNumberController.value.text = getUpdateAddressList.value.telephone!;
+      zipPovinceController.value.text = getUpdateAddressList.value.postcode!;
+      address1Controller.value.text = getUpdateAddressList.value.street!.first;
+      address2Controller.value.text = getUpdateAddressList.value.street!.first;
+      cityController.value.text = getUpdateAddressList.value.city!;
+      for (var i in getcountryList) {
+        if (i.id.toString() ==
+            getUpdateAddressList.value.countryId.toString()) {
+          selectedCoutry.value = i;
+        }
+      }
+    }
+    isLoadding.value = false;
   }
 
 //Api Calling
   addAddress(context, formKey) async {
     if (formKey.currentState!.validate()) {
-      final address = {
-        "customer_id": '${getAddressList.id}',
-        "region": {"region_code": "", "region": "", "region_id": 0},
-        "country_id": "${selectedCoutry.value.id}",
-        "street": [
-          "${address1Controller.value.text}",
-          "${address2Controller.value.text}"
-        ],
-        "postcode": "${zipPovinceController.value.text}",
-        "city": "${cityController.value.text}",
-        "firstname": "${firstNameController.value.text}",
-        "lastname": "${lastNameController.value.text}",
-        "telephone": "${phoneNumberController.value.text}",
-        "countryId": "${selectedCoutry.value.id}",
-      };
-      List addressList = getAddressList.addresses!;
-      // final finalAdd = addressList.add(address);
-      var addaddressPost = {
-        "id": "${getAddressList.id}",
-        "group_id": "${getAddressList.groupId}",
-        "created_at": "${getAddressList.createdAt}",
-        "updated_at": "${getAddressList.updatedAt}",
-        "created_in": "${getAddressList.createdIn}",
-        "dob": "${getAddressList.dob}",
-        "email": "${getAddressList.email}",
-        "firstname": "${getAddressList.firstname}",
-        "lastname": "${getAddressList.lastname}",
-        "store_id": "${getAddressList.storeId}",
-        "website_id": "${getAddressList.websiteId}",
-        "addresses": "${address}",
-        "disable_auto_group_change": "${getAddressList.disableAutoGroupChange}",
-        "extension_attributes": "${getAddressList.extensionAttributes}",
-        "custom_attributes": "${getAddressList.customAttributes}"
-      };
+      var getList = [].obs;
+      for (var i in getAddressList.addresses!) {
+        getList.add({
+          "region": i.region,
+          "country_id": "${i.countryId}",
+          "street": i.street,
+          "Firstname": "${i.firstname}",
+          "lastname": "${i.lastname}",
+          "telephone": "${i.telephone}",
+          "postcode": "${i.postcode}",
+          "city": "${i.city}",
+          "default_shipping": false,
+          "default_billing": false
+        });
+      }
+      getList.add({
+        "region": {"region_code": "TX", "region": "Texas", "region_id": 12},
+        "country_id": "${selectedCoutry.value.id.toString()}",
+        "street": ["${address1Controller.value.text.toString()}"],
+        "Firstname": "${getAddressList.firstname.toString()}",
+        "lastname": "${getAddressList.lastname.toString()}",
+        "telephone": "${phoneNumberController.value.text.toString()}",
+        "postcode": "${zipPovinceController.value.text.toString()}",
+        "city": "${cityController.value.text.toString()}",
+        "default_shipping": false,
+        "default_billing": false
+      });
 
-      dynamic authResponse = await countryListAPIRepository
-          .postaddAddressApiResponse(json.encode(addaddressPost));
-      printLog(authResponse);
-      // checkLoginData(authResponse, context);
-    } else {}
+      postaddress(context, getList);
+    }
+  }
+
+  postaddress(context, getaddress) async {
+    print("Add Address ${getaddress}");
+    var addaddressPost = {
+      "customer": {
+        "email": "${getAddressList.email.toString()}",
+        "firstname": "${getAddressList.firstname.toString()}",
+        "lastname": "${getAddressList.lastname.toString()}",
+        "website_id": 1,
+        "addresses": getaddress,
+      }
+    };
+    dynamic authResponse = await countryListAPIRepository
+        .postaddAddressApiResponse(json.encode(addaddressPost));
+    printLog(authResponse);
+    Navigator.pop(context);
+
+    // checkLoginData(authResponse, context);
+  }
+
+  //Update Address
+  updateAddress(context, formKey) async {
+    if (formKey.currentState!.validate()) {
+      var getList = [].obs;
+      for (var i in getAddressList.addresses!) {
+        if (i.id.toString() == getUpdateAddressList.value.id.toString()) {
+          print("HEre Is One Time ");
+          getList.add({
+            "region": {"region_code": "TX", "region": "Texas", "region_id": 12},
+            "country_id": "${selectedCoutry.value.id.toString()}",
+            "street": ["${address1Controller.value.text.toString()}"],
+            "Firstname": "${getAddressList.firstname.toString()}",
+            "lastname": "${getAddressList.lastname.toString()}",
+            "telephone": "${phoneNumberController.value.text.toString()}",
+            "postcode": "${zipPovinceController.value.text.toString()}",
+            "city": "${cityController.value.text.toString()}",
+            "default_shipping": false,
+            "default_billing": false
+          });
+        } else {
+          print("HEre Is Two Time ");
+          getList.add({
+            "region": i.region,
+            "country_id": "${i.countryId}",
+            "street": i.street,
+            "Firstname": "${i.firstname}",
+            "lastname": "${i.lastname}",
+            "telephone": "${i.telephone}",
+            "postcode": "${i.postcode}",
+            "city": "${i.city}",
+            "default_shipping": false,
+            "default_billing": false
+          });
+        }
+      }
+      postupdateaddress(context, getList);
+    }
+  }
+
+  postupdateaddress(context, getaddress) async {
+    print("Add Address ${getaddress}");
+    var addaddressPost = {
+      "customer": {
+        "email": "${getAddressList.email.toString()}",
+        "firstname": "${getAddressList.firstname.toString()}",
+        "lastname": "${getAddressList.lastname.toString()}",
+        "website_id": 1,
+        "addresses": getaddress,
+      }
+    };
+    dynamic authResponse = await countryListAPIRepository
+        .postaddAddressApiResponse(json.encode(addaddressPost));
+    printLog(authResponse);
+    Navigator.pop(context);
+
+    // checkLoginData(authResponse, context);
   }
 }

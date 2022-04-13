@@ -36,7 +36,7 @@ class ProductDetailController extends GetxController
   final emailController = TextEditingController().obs;
   final sizeController = TextEditingController().obs;
   var slectSize = "".obs;
-  var sizeList = "".obs;
+  var sizeList = [].obs;
   // List sizeList = [];
 
   // SpecialSizeAPIRepository specialSizeAPIRepository;
@@ -46,6 +46,7 @@ class ProductDetailController extends GetxController
 
   @override
   void onInit() {
+    getChooseOption();
     getSizeListFromApi();
     product?.value = Get.arguments[0];
     super.onInit();
@@ -77,6 +78,7 @@ class ProductDetailController extends GetxController
 
   RxList itemsData = [].obs;
   List sizeListData = [].obs;
+  List chooseOption = [].obs;
   var getCartId = 0.obs;
   var getCartToken = "".obs;
 
@@ -123,22 +125,65 @@ class ProductDetailController extends GetxController
       // sizeListData =
       //     await RecommendedProductsAPIRepository().getSizeListApi("539");
 
+
       sizeListData = await RecommendedProductsAPIRepository()
           .getSizeListApi(product!.value.id.toString());
 
+
       print("Size List $sizeListData");
       if (sizeListData[0]['status'] != "No Data") {
+        print("Here INside Size");
+        // sizeListData.addAll(sizeListData);
+        print("Here INside Size111");
         isLoading(true);
-        //sizeListData = sizeListData1;
+
         print("Size List Inside $sizeListData");
       }
     } catch (e) {
-      print("CONTROLLER DATA ==============$e");
+      print("Here INside Size");
+      print("CONTROLLER DATA 111==============$e");
       isLoading(false);
     }
   }
 
-  Future<void> getGenerateCart(context, dataName, customImage, sku) async {
+  var listOfChoose = [].obs;
+  Future<void> getChooseOption() async {
+    isLoading(true);
+    try {
+      // sizeListData =
+      //     await RecommendedProductsAPIRepository().getSizeListApi("539");
+      chooseOption =
+          await RecommendedProductsAPIRepository().getChooseinSizeList();
+      // print("Choose Option List $chooseOption");
+      for (var i in chooseOption) {
+        for (var f in product!.value.extensionAttributes!
+            .configurableProductOptions!.first.values!) {
+          if (i['value'] != "") {
+            // print("Choose Option List1 $chooseOption");
+            // print(
+            //     "Choose Option List1 ${product!.value.extensionAttributes!.configurableProductOptions!.first.values!.first.valueIndex.toString()}");
+            if (i['value'].toString() == f.valueIndex.toString()) {
+              print("Choose Option List2 $chooseOption");
+              listOfChoose.add(i);
+            }
+          }
+        }
+      }
+      listOfChoose.add({
+        'label': 'Size missing? Be notified when it is back in',
+        'value': 'Missing'
+      });
+
+      print("Choose Option Selecte 3 List $listOfChoose");
+      isLoading(true);
+      print("Choose Option List 3$chooseOption");
+    } catch (e) {
+      isLoading(false);
+    }
+  }
+
+  Future<void> getGenerateCart(context, dataName, customImage, sku, productType,
+      optionId, optionvalue) async {
     print("User Token Is ${localStore.customerToken}");
     if (localStore.customerToken.toString() != "") {
       print("Customer");
@@ -149,14 +194,14 @@ class ProductDetailController extends GetxController
       getCartToken.value = getCartId.value.toString();
 
       if (getCartToken.value != null) {
-        postAddToCartData(
-            context, dataName, customImage, sku, "1", getCartToken.value);
+        postAddToCartData(context, dataName, customImage, sku, "1",
+            getCartToken.value, productType, optionId, optionvalue);
       } else {}
     } else {
       print("Guest");
       if (localStore.guestToken.toString() != "") {
-        postAddToCartData(
-            context, dataName, customImage, sku, "2", localStore.guestToken);
+        postAddToCartData(context, dataName, customImage, sku, "2",
+            localStore.guestToken, productType, optionId, optionvalue);
       } else {
         getCartToken.value = await RecommendedProductsAPIRepository()
             .getGenerateCartApiResponse(
@@ -167,8 +212,8 @@ class ProductDetailController extends GetxController
               StorageConstant.guestauthToken, getCartToken.value.toString());
           await localStore.getGuestToken();
           print("Guest Token Is ${localStore.guestToken}");
-          postAddToCartData(
-              context, dataName, customImage, sku, "2", getCartToken.value);
+          postAddToCartData(context, dataName, customImage, sku, "2",
+              getCartToken.value, productType, optionId, optionvalue);
         } else {}
       }
     }
@@ -184,11 +229,45 @@ class ProductDetailController extends GetxController
   }
 
   //Add TO Cart Api Calling
-  postAddToCartData(
-      context, dataName, customImage, sku, getValue, getToken) async {
-    var passedAddTocart = {
-      "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "$getToken"}
-    };
+  postAddToCartData(context, dataName, customImage, sku, getValue, getToken,
+      productType, optionId, optionValue) async {
+    var passedAddTocart;
+    print("Add Product is $productType");
+    print("Add Product is $optionValue");
+    if (sizeList.toString() == "[]") {
+      passedAddTocart = {
+        "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "$getToken"}
+      };
+    } else {
+      if (productType == "configurable") {
+        print("Here Inside Condife");
+        passedAddTocart = {
+          "cartItem": {
+            "sku": "$sku",
+            "qty": 1,
+            "product_type": "configurable",
+            "quote_id": "$getToken",
+            "product_option": {
+              "extension_attributes": {
+                "configurable_item_options": [
+                  {
+                    "option_id": "${optionId}",
+                    "option_value":
+                        "${sizeList.first['value'] == "Missing" ? slectSize : optionValue}"
+                  }
+                ]
+              }
+            }
+          }
+        };
+      } else {
+        print("Here OutSide Condife");
+        passedAddTocart = {
+          "cartItem": {"sku": "$sku", "qty": 1, "quote_id": "$getToken"}
+        };
+      }
+    }
+
     print("json is ${passedAddTocart}");
     var addTocartData;
     if (getValue == "1") {
@@ -674,7 +753,8 @@ class ProductDetailController extends GetxController
                     RecommendedProductsAPIRepository().postspecialSizeResponse(
                         website: "www.sololuxury.com",
                         email: emailController.value.text,
-                        sku: slectSize.value);
+                        sku: product!.value.sku.toString());
+                    Navigator.pop(context);
                   },
                   child: Text(
                     LanguageConstant.specialSizeSubmitText.tr,

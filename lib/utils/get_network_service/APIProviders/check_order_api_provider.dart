@@ -12,21 +12,34 @@ abstract class ICheckOutOrderProvider {
   Future<dynamic> getMultiAddressResponseProvider({required String endPoint});
   Future<dynamic> postEstimateResponseProvider(
       {required String endPoint, required String requestJson});
+  Future<dynamic> postGuestEstimateResponseProvider(
+      {required String endPoint, required String requestJson});
   Future<dynamic> postShippingInformationResponseProvider(
+      {required String endPoint, required String requestJson});
+  Future<dynamic> postGuestShippingInformationResponseProvider(
       {required String endPoint, required String requestJson});
   Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson});
   Future<dynamic> postAddAddressResponse(
       {required String endPoint, required String requestJson});
   Future<dynamic> getcountryListAPIResponse({required String endPoint});
+  Future<dynamic> getAddressListAPIResponse({required String endPoint});
 }
 
 class CheckOutOrderProvider extends GetConnect
     implements ICheckOutOrderProvider {
+
+
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
     'Authorization': localStore.customerToken,
+  };
+
+  Map<String, String> guestHeaders = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    'Authorization': AppConstants.adminToken,
   };
 
   Map<String, String> adminHeader = {
@@ -60,11 +73,27 @@ class CheckOutOrderProvider extends GetConnect
   }
 
   @override
+  Future<dynamic> postGuestEstimateResponseProvider(
+      {required String endPoint, required String requestJson}) {
+    // TODO: implement getLoginResponseProvider
+    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    return post(endPoint, requestJson, headers: headers);
+  }
+
+  @override
   Future<dynamic> postShippingInformationResponseProvider(
       {required String endPoint, required String requestJson}) {
     // TODO: implement postShippingInformationResponseProvider
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return post(endPoint, requestJson, headers: headers);
+  }
+
+  @override
+  Future<dynamic> postGuestShippingInformationResponseProvider(
+      {required String endPoint, required String requestJson}) {
+    // TODO: implement postGuestShippingInformationResponseProvider
+    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    return post(endPoint, requestJson, headers: guestHeaders);
   }
 
   @override
@@ -78,7 +107,7 @@ class CheckOutOrderProvider extends GetConnect
 
   @override
   Future<dynamic> getcountryListAPIResponse({required String endPoint}) {
-    httpClient.defaultDecoder = (val) => jsonEncode(val);
+    httpClient.defaultDecoder = (val) => val;
     httpClient.baseUrl = AppConstants.apiEndPointLogin;
     httpClient.timeout = const Duration(seconds: 60);
     print("url country -> " + httpClient.baseUrl.toString() + endPoint);
@@ -93,6 +122,17 @@ class CheckOutOrderProvider extends GetConnect
       {required String endPoint, required String requestJson}) {
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     return put(endPoint, requestJson, headers: {
+      "Content-type": "application/json",
+      "Authorization": localStore.customerToken
+    });
+  }
+
+  Future<dynamic> getAddressListAPIResponse({required String endPoint}) {
+    httpClient.defaultDecoder = (val) => val;
+    httpClient.baseUrl = AppConstants.apiEndPointLogin;
+    httpClient.timeout = const Duration(seconds: 60);
+    print("url country -> " + httpClient.baseUrl.toString() + endPoint);
+    return get(endPoint, headers: {
       "Content-type": "application/json",
       "Authorization": localStore.customerToken
     });

@@ -150,7 +150,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Expanded(child: chooseAnOptionWidget()),
+                            Expanded(child: chooseAnOptionWidget(context)),
                             const SizedBox(width: 15),
                             sizeChartWidget(context),
                           ],
@@ -489,12 +489,30 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
       height: 36,
       child: ElevatedButton(
         onPressed: () {
-          controller.getGenerateCart(
-            context,
-            controller.product!.value.name!,
-            "${controller.product!.value.customAttributes![1].value}",
-            controller.product!.value.sku,
-          );
+          print("ProductType Is ${controller.product!.value.typeId}");
+          if (controller.product!.value.typeId.toString() == "configurable") {
+            controller.getGenerateCart(
+              context,
+              controller.product!.value.name!,
+              "${controller.product!.value.customAttributes![1].value}",
+              controller.product!.value.sku,
+              controller.product!.value.typeId,
+              controller.product!.value.extensionAttributes!
+                  .configurableProductOptions!.first.attributeId,
+              controller.product!.value.extensionAttributes!
+                  .configurableProductOptions!.first.values!.first.valueIndex,
+            );
+          } else {
+            controller.getGenerateCart(
+              context,
+              controller.product!.value.name!,
+              "${controller.product!.value.customAttributes![1].value}",
+              controller.product!.value.sku,
+              controller.product!.value.typeId,
+              "0",
+              "0",
+            );
+          }
         },
         style: ElevatedButton.styleFrom(
           elevation: 1,
@@ -632,7 +650,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-  Widget chooseAnOptionWidget() {
+  Widget chooseAnOptionWidget(context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
@@ -640,22 +658,22 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           border: Border.all(color: appColor.withOpacity(0.4))),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
-          items: controller.sizeListData
+          items: controller.listOfChoose
               .map(
                 (value) => DropdownMenuItem(
-                  child: Text(value),
+                  child: Text(value['label']),
                   value: value,
                 ),
               )
               .toList(),
           isExpanded: true,
-          hint: controller.sizeList.toString() == ""
+          hint: controller.sizeList.toString() == "[]"
               ? Text(
                   'Choose An Option...',
                 )
               : Text(
-                  "${controller.sizeList.value}",
-                  style: const TextStyle(color: Colors.black),
+                  "${controller.sizeList.first['label']}",
+                  style: TextStyle(color: Colors.black),
                 ),
           icon: const Icon(
             Icons.keyboard_arrow_down,
@@ -665,7 +683,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           iconEnabledColor: Colors.transparent,
           onChanged: (valueList) {
             print("Val");
-            controller.sizeList.value = valueList.toString();
+            controller.sizeList.clear();
+            controller.sizeList.add(valueList);
+            if (controller.sizeList.first['value'] == "Missing") {
+              controller.showDialogBoxOpen(context);
+            }
           },
         ),
       ),

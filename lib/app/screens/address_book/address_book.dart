@@ -26,7 +26,7 @@ class AddressBookScreen extends GetView<AddressBookController> {
           bottomNavigationBar: InkWell(
             onTap: () {
               Get.toNamed(RoutesConstants.addAdressScreen,
-                  arguments: controller.getAdressList.value);
+                  arguments: [controller.getAdressList.value, '', 0]);
             },
             child: Container(
               height: 50,
@@ -124,125 +124,200 @@ class AddressBookScreen extends GetView<AddressBookController> {
                       ),
                     ),
                     SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Text(
-                              "Hitesh jfdsio, jfdsio,\nstreet-added-contc,\ncity-testing-named \n12345, italy. ",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Expanded(
-                              flex: 2,
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        itemCount:
+                            controller.getAdressList.value.addresses!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final getaddress =
+                              controller.getAdressList.value.addresses![index];
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed(RoutesConstants.addAdressScreen,
+                                  arguments: [
+                                    controller.getAdressList.value,
+                                    getaddress,
+                                    1
+                                  ]);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14.0, vertical: 10.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
                                 children: [
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: appColor.withOpacity(0.6),
-                                            width: 2)),
-                                    child: Icon(Icons.check,
-                                        size: 14, color: appColor),
-                                  ),
-                                  SizedBox(width: 0),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Container(
-                                      height: 20,
-                                      width: 20,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: appColor.withOpacity(0.6),
-                                              width: 2)),
-                                      child: Icon(
-                                        Icons.check,
-                                        size: 14,
-                                        color: appColor,
-                                      ),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Text(
+                                      "${getaddress.firstname}, ${getaddress.lastname}, ${getaddress.street!.first}, ${getaddress.city}, ${getaddress.postcode}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   ),
-                                  SizedBox(width: 0),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Obx(() => InkWell(
+                                                onTap: () {
+                                                  controller.visibleshiping
+                                                      .clear();
+                                                  for (var i = 0;
+                                                      i <
+                                                          controller
+                                                              .getAdressList
+                                                              .value
+                                                              .addresses!
+                                                              .length;
+                                                      i++) {
+                                                    if (index == i) {
+                                                      controller.visibleshiping
+                                                          .add(true);
+                                                    } else {
+                                                      controller.visibleshiping
+                                                          .add(false);
+                                                    }
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: appColor
+                                                              .withOpacity(0.6),
+                                                          width: 2)),
+                                                  child: controller
+                                                          .visibleshiping[index]
+                                                      ? Icon(Icons.check,
+                                                          size: 14,
+                                                          color: appColor)
+                                                      : Container(),
+                                                ),
+                                              )),
+                                          SizedBox(width: 0),
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.only(left: 20.0),
+                                            child: Obx(() => InkWell(
+                                                  onTap: () {
+                                                    controller.visibleMonth
+                                                        .clear();
+                                                    for (var i = 0;
+                                                        i <
+                                                            controller
+                                                                .getAdressList
+                                                                .value
+                                                                .addresses!
+                                                                .length;
+                                                        i++) {
+                                                      if (index == i) {
+                                                        controller.visibleMonth
+                                                            .add(true);
+                                                      } else {
+                                                        controller.visibleMonth
+                                                            .add(false);
+                                                      }
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    height: 20,
+                                                    width: 20,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: appColor
+                                                                .withOpacity(
+                                                                    0.6),
+                                                            width: 2)),
+                                                    child: controller
+                                                            .visibleMonth[index]
+                                                        ? Icon(
+                                                            Icons.check,
+                                                            size: 14,
+                                                            color: appColor,
+                                                          )
+                                                        : Container(),
+                                                  ),
+                                                )),
+                                          ),
+                                          SizedBox(width: 0),
+                                        ],
+                                      )),
                                 ],
-                              )),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 14),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                        child: Container(
-                          height: 1.2,
-                          width: double.infinity,
-                          color: appColor.withOpacity(0.8),
-                        )),
-                    SizedBox(height: 14),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Text(
-                              "Hitesh jfdsio, jfdsio,\nstreet-added-contc,\ncity-testing-named \n12345, italy. ",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: appColor.withOpacity(0.6),
-                                            width: 2)),
-                                    child: Icon(Icons.check,
-                                        size: 14, color: appColor),
-                                  ),
-                                  SizedBox(width: 0),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Container(
-                                      height: 20,
-                                      width: 20,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: appColor.withOpacity(0.6),
-                                              width: 2)),
-                                      child: Icon(
-                                        Icons.check,
-                                        size: 14,
-                                        color: appColor,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 0),
-                                ],
-                              )),
-                        ],
-                      ),
-                    ),
+                          );
+                        }),
+                    // SizedBox(height: 14),
+                    // Padding(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                    //     child: Container(
+                    //       height: 1.2,
+                    //       width: double.infinity,
+                    //       color: appColor.withOpacity(0.8),
+                    //     )),
+                    // SizedBox(height: 14),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         flex: 3,
+                    //         child: Text(
+                    //           "Hitesh jfdsio, jfdsio,\nstreet-added-contc,\ncity-testing-named \n12345, italy. ",
+                    //           style: TextStyle(
+                    //               fontSize: 16,
+                    //               color: Colors.black,
+                    //               fontWeight: FontWeight.w400),
+                    //         ),
+                    //       ),
+                    //       Expanded(
+                    //           flex: 2,
+                    //           child: Row(
+                    //             mainAxisAlignment:
+                    //                 MainAxisAlignment.spaceAround,
+                    //             children: [
+                    //               Container(
+                    //                 height: 20,
+                    //                 width: 20,
+                    //                 alignment: Alignment.center,
+                    //                 decoration: BoxDecoration(
+                    //                     border: Border.all(
+                    //                         color: appColor.withOpacity(0.6),
+                    //                         width: 2)),
+                    //                 child: Icon(Icons.check,
+                    //                     size: 14, color: appColor),
+                    //               ),
+                    //               SizedBox(width: 0),
+                    //               Padding(
+                    //                 padding: const EdgeInsets.only(left: 20.0),
+                    //                 child: Container(
+                    //                   height: 20,
+                    //                   width: 20,
+                    //                   alignment: Alignment.center,
+                    //                   decoration: BoxDecoration(
+                    //                       border: Border.all(
+                    //                           color: appColor.withOpacity(0.6),
+                    //                           width: 2)),
+                    //                   child: Icon(
+                    //                     Icons.check,
+                    //                     size: 14,
+                    //                     color: appColor,
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               SizedBox(width: 0),
+                    //             ],
+                    //           )),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
         ));

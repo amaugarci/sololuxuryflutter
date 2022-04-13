@@ -255,6 +255,7 @@ class ExtensionAttributes {
     this.websiteIds,
     this.categoryLinks,
     this.configurableProductLinks,
+    this.configurableProductOptions,
     this.convertedRegularPrice,
     this.convertedRegularOldPrice,
   });
@@ -262,6 +263,7 @@ class ExtensionAttributes {
   List<int>? websiteIds;
   List<CategoryLink>? categoryLinks;
   List<int>? configurableProductLinks;
+  List<ConfigurableProductOption>? configurableProductOptions;
   String? convertedRegularPrice;
   String? convertedRegularOldPrice;
 
@@ -273,6 +275,11 @@ class ExtensionAttributes {
         configurableProductLinks: json["configurable_product_links"] != null
             ? List<int>.from(json["configurable_product_links"].map((x) => x))
             : [],
+        configurableProductOptions: json["configurable_product_links"] != null
+            ? List<ConfigurableProductOption>.from(
+                json["configurable_product_options"]
+                    .map((x) => ConfigurableProductOption.fromJson(x)))
+            : [],
         convertedRegularPrice: json["converted_regular_price"],
         convertedRegularOldPrice: json["converted_regular_old_price"],
       );
@@ -281,10 +288,70 @@ class ExtensionAttributes {
         "website_ids": List<dynamic>.from(websiteIds!.map((x) => x)),
         "category_links":
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
+        "configurable_product_options": List<dynamic>.from(
+            configurableProductOptions!.map((x) => x.toJson())),
         "configurable_product_links":
             List<dynamic>.from(categoryLinks!.map((x) => x.toJson())),
         "converted_regular_price": convertedRegularPrice,
         "converted_regular_old_price": convertedRegularOldPrice,
+      };
+}
+
+class ConfigurableProductOption {
+  ConfigurableProductOption({
+    this.id,
+    this.attributeId,
+    this.label,
+    this.position,
+    this.values,
+    this.productId,
+  });
+
+  int? id;
+  String? attributeId;
+  String? label;
+  int? position;
+  List<ValueElement>? values;
+  int? productId;
+
+  factory ConfigurableProductOption.fromJson(Map<String, dynamic> json) =>
+      ConfigurableProductOption(
+        id: json["id"] == null ? null : json["id"],
+        attributeId: json["attribute_id"] == null ? null : json["attribute_id"],
+        label: json["label"] == null ? null : json["label"],
+        position: json["position"] == null ? null : json["position"],
+        values: json["values"] == null
+            ? null
+            : List<ValueElement>.from(
+                json["values"].map((x) => ValueElement.fromJson(x))),
+        productId: json["product_id"] == null ? null : json["product_id"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id == null ? null : id,
+        "attribute_id": attributeId == null ? null : attributeId,
+        "label": label == null ? null : label,
+        "position": position == null ? null : position,
+        "values": values == null
+            ? null
+            : List<dynamic>.from(values!.map((x) => x.toJson())),
+        "product_id": productId == null ? null : productId,
+      };
+}
+
+class ValueElement {
+  ValueElement({
+    this.valueIndex,
+  });
+
+  int? valueIndex;
+
+  factory ValueElement.fromJson(Map<String, dynamic> json) => ValueElement(
+        valueIndex: json["value_index"] == null ? null : json["value_index"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "value_index": valueIndex == null ? null : valueIndex,
       };
 }
 

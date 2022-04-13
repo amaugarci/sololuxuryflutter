@@ -21,6 +21,7 @@ class LocalStore {
   var customerToken = "";
   var website_id = "";
   var guestToken = "";
+  var isGuest = false;
   var store_group_id = "";
   var default_group_id = "";
   var name = "";
@@ -89,5 +90,13 @@ class LocalStore {
       return "€" + basePriceInclTax;
     }
     return currentCurrency + " " + price;
+  }
+
+  checkGuest(){
+    if(customerToken.isNotEmpty){
+      isGuest = false;
+    }else{
+      isGuest = true;
+    }
   }
 }

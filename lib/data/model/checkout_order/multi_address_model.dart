@@ -38,7 +38,7 @@ class MultiAddressModel {
   String? lastname;
   int? storeId;
   int? websiteId;
-  List<Address>? addresses;
+  List<Address>? addresses = [];
   int? disableAutoGroupChange;
   ExtensionAttributes? extensionAttributes;
   List<CustomAttribute>? customAttributes;

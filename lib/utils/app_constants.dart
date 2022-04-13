@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:solo_luxury/main.dart';
 
 enum Environment { DEV, STAGING, PROD }
@@ -82,6 +83,8 @@ class AppConstants {
   static const String createCart = "/rest/in-en/V1/carts/mine/";
   static const String cartToken = "Bearer 0vnwaoabm14pwt2azj6yyx29033w7rqk";
   static const String orderConfirmation = "/rest/V1/orders/";
+  static const String getChooseInOptionApi =
+      "/rest/all/V1/products/attributes/size_v2/options/";
 
   //static String apiEndPointNew2 = "https://dev3.sololuxury.com/rest";
   //static String apiEndPointNew1 = "https://dev2.brands-labels.com/rest";
@@ -156,7 +159,15 @@ class AppConstants {
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }
+  static getGuestUrlWithCode(url) {
+    return "/rest/V1/guest-carts/" + localStore.guestToken + url;
+  }
+  static dismissKeyboard() {
+    return SystemChannels.textInput.invokeMethod('TextInput.hide');;
+  }
 
+  static const String shippingInformation = "/shipping-information";
+  static const String estimateMethods = "/estimate-shipping-methods";
   static const int websiteId = 1;
 
   static String myTicketApi = '/rest/V1/mytickets/';
