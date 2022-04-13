@@ -69,7 +69,7 @@ class SignupController extends GetxController {
           String dataString = jsonEncode(data);
           signUpResponseModel = SignUpResponseModel.fromJson(jsonDecode(dataString)).obs;
           setPrefStringValue(StorageConstant.userDatModel, signUpResponseModelToJson(signUpResponseModel.value!));
-          Get.toNamed(RoutesConstants.loginScreen);
+          Get.offAllNamed(RoutesConstants.loginScreen);
           log("signUpResponseModel : ${signUpResponseModelToJson(signUpResponseModel.value!)}");
         }
       } else {

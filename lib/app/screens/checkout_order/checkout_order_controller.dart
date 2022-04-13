@@ -209,12 +209,14 @@ class CheckoutOrderController extends GetxController {
       billingMultiAddressModel!.value =
           MultiAddressModel.fromJson(json.decode(dataString));
       if (multiAddressModel != null) {
-        estimateAndShippingAPICall(
-          multiAddressModel!.value.addresses!.first,
-          multiAddressModel!.value.addresses!.first,
-        );
-        if (multiAddressModel!.value.addresses!.isNotEmpty) {
-          shippingAddress = multiAddressModel!.value.addresses!.first;
+        if(multiAddressModel!.value.addresses!.isNotEmpty) {
+          estimateAndShippingAPICall(
+            multiAddressModel!.value.addresses!.first,
+            multiAddressModel!.value.addresses!.first,
+          );
+          if (multiAddressModel!.value.addresses!.isNotEmpty) {
+            shippingAddress = multiAddressModel!.value.addresses!.first;
+          }
         }
       }
       checkEnablePlaceOrder();
