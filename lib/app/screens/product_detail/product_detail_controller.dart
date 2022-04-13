@@ -51,11 +51,11 @@ class ProductDetailController extends GetxController
     product?.value = Get.arguments[0];
     super.onInit();
     getRecommendedProductDataFromApi();
-   // getRecentlyViewProduct ();
+    // getRecentlyViewProduct ();
     controller = TabController(vsync: this, length: myTabs.length);
   }
 
-  onRecommended(){
+  onRecommended() {
     getSizeListFromApi();
     getRecommendedProductDataFromApi();
   }
@@ -94,9 +94,9 @@ class ProductDetailController extends GetxController
   //   isLoading(false);
   // }
 
-  Future getProductDetail () async {
+  Future getProductDetail() async {
     isLoading(true);
-    product?.value  = await RecommendedProductsAPIRepository()
+    product?.value = await RecommendedProductsAPIRepository()
         .getProductDetailApi(product!.value.sku.toString());
     isLoading(false);
   }
@@ -125,9 +125,8 @@ class ProductDetailController extends GetxController
       // sizeListData =
       //     await RecommendedProductsAPIRepository().getSizeListApi("539");
 
-
       sizeListData = await RecommendedProductsAPIRepository()
-          .getSizeListApi(product!.value.id.toString());
+          .getSizeListApi(Get.arguments[1].toString());
 
       print("Size List $sizeListData");
       if (sizeListData[0]['status'] != "No Data") {
