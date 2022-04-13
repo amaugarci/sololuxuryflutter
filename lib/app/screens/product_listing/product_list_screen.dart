@@ -437,7 +437,7 @@ class ProductListScreen extends GetView<ProductController> {
               return InkWell(
                 onTap: () {
                   Get.toNamed(RoutesConstants.productDetailsScreen,
-                      arguments: [item]);//controller.setRecentlyItem(item);
+                      arguments: [item,Get.arguments[0]]);//controller.setRecentlyItem(item);
                 },
                 child: Container(
                   child: Column(

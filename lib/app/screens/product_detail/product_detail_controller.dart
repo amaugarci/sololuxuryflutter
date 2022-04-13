@@ -129,7 +129,6 @@ class ProductDetailController extends GetxController
       sizeListData = await RecommendedProductsAPIRepository()
           .getSizeListApi(product!.value.id.toString());
 
-
       print("Size List $sizeListData");
       if (sizeListData[0]['status'] != "No Data") {
         print("Here INside Size");
