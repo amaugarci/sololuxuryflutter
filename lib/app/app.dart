@@ -59,7 +59,7 @@ class _SoloLuxuryAppState extends State<SoloLuxuryApp> {
           ),
         ),
         getPages: AppPages.routes,
-        // initialRoute: RoutesConstants.newsLetterScreen,
+        // initialRoute: RoutesConstants.storeCreditScreen,
         locale: TranslationService.locale,
         fallbackLocale: TranslationService.fallbackLocale,
         translations: TranslationService(),

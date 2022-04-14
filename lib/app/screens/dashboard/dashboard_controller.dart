@@ -19,6 +19,7 @@ import 'package:solo_luxury/app/screens/wishlist/wishlist_binding.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/Home/menu_model.dart';
+import '../../../main.dart';
 import '../../../utils/get_network_service/APIRepository/dashboard_api_repository.dart';
 
 class DashboardController extends GetxController
@@ -34,9 +35,10 @@ class DashboardController extends GetxController
   DashboardController({required this.dashboardAPIRepository});
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     tabController = TabController(initialIndex: 0, length: 5, vsync: this);
+    await localStore.getUserDetail();
     HomeBindings().dependencies();
     ProductListBinding().dependencies();
     CheckoutOrderBindings().dependencies();

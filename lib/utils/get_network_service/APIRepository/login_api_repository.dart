@@ -26,4 +26,19 @@ class LoginAPIRepository implements ILoginRepository {
       return loginResponseModel.body!;
     }
   }
+
+  @override
+  Future<dynamic> getUserDetailAPIResponse(String userToken) async {
+    final loginResponseModel = await provider.getUserDetailResponseProvider(urlPath: AppConstants.addressList, userToken: userToken);
+
+    if(loginResponseModel.status.hasError) {
+      print("error -> ");
+      print(loginResponseModel.statusText!);
+      Validators.apiResponseMessage(body: jsonEncode(loginResponseModel.body!), message: loginResponseModel.statusText);
+      return null;
+    } else {
+      print("success -> ");
+      return loginResponseModel.body!;
+    }
+  }
 }

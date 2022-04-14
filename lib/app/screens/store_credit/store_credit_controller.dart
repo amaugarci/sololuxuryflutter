@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/expandable_container.dart';
 import 'package:solo_luxury/data/model/store_credit/store_credit_model.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/store_credit_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
 
@@ -69,9 +70,11 @@ class StoreCreditController extends GetxController {
   var messageData = "".obs;
 //CountrList
   getStoreCredit() async {
+    await localStore.getUserDetail();
+    print("User Id -> "+localStore.userDetail.id.toString());
     shoopingbiling.value = true;
     var storeCredit =
-        jsonDecode(await storeCreditAPIRepository.getStoreCreditResponse("2"));
+        jsonDecode(await storeCreditAPIRepository.getStoreCreditResponse(localStore.userDetail.id.toString()));
 
     print("temas_condition Get $storeCredit");
     if (storeCredit[0]['status'] == "No Data") {
