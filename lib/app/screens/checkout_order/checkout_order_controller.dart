@@ -1156,8 +1156,6 @@ class CheckoutOrderController extends GetxController {
         state.isNotEmpty &&
         zipCode.isNotEmpty &&
         phone.isNotEmpty) {
-      AppConstants.dismissKeyboard();
-
       var params = json.encode({
         "address": {
           "region": state.value,
@@ -1216,6 +1214,7 @@ class CheckoutOrderController extends GetxController {
         });
         getGuestEstimateAndShipInformationFromApi(
             paramShipping: params, paramBilling: params1);
+        AppConstants.dismissKeyboard();
       } else {
         if (firstNameBilling.isNotEmpty &&
             lastNameBilling.isNotEmpty &&
@@ -1266,6 +1265,7 @@ class CheckoutOrderController extends GetxController {
           });
           getGuestEstimateAndShipInformationFromApi(
               paramShipping: params, paramBilling: params1);
+          AppConstants.dismissKeyboard();
         }
       }
     }

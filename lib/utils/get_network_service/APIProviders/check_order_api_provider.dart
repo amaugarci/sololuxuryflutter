@@ -77,7 +77,7 @@ class CheckOutOrderProvider extends GetConnect
       {required String endPoint, required String requestJson}) {
     // TODO: implement getLoginResponseProvider
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
-    return post(endPoint, requestJson, headers: headers);
+    return post(endPoint, requestJson, headers: guestHeaders);
   }
 
   @override
