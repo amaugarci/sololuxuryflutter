@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/data/model/country/local_store_language_currency/local_store_model.dart';
+import 'package:solo_luxury/data/model/sign_up/user_detail_model.dart';
 
 import '../../app/components/storage_constant.dart';
 
@@ -25,6 +26,7 @@ class LocalStore {
   var store_group_id = "";
   var default_group_id = "";
   var name = "";
+  UserDetail userDetail = UserDetail();
 
   getStore() async {
     print("getStore -> ");
@@ -57,6 +59,15 @@ class LocalStore {
     if (data != null && data.isNotEmpty) {
       customerToken = "Bearer " + data;
       print("token -> " + customerToken);
+      return true;
+    }
+  }
+
+  getUserDetail() async {
+    print("getUserDetail -> ");
+    String data = await getPrefStringValue(StorageConstant.userDetail);
+    if (data != null && data.isNotEmpty) {
+     userDetail = UserDetail.fromJson(jsonDecode(data));
       return true;
     }
   }
