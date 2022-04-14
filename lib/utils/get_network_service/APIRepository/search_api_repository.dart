@@ -33,7 +33,7 @@ class SearchAPIRepository implements ISearchRepository {
   @override
   Future<MenuModel> getMenuAPIResponse() async {
     final response = await searchAPIProvider.getMenuResponseProvider(
-        endPoint: AppConstants.menuEndPoint);
+        endPoint: AppConstants.menuEndPoint1);
     if (response != null) {
       print("response.statusCode -> ");
       print(response.statusCode);

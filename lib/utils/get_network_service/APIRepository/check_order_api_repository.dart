@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:solo_luxury/app/components/storage_constant.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/check_order_api_provider.dart';
 import 'package:solo_luxury/utils/get_network_service/APIProviders/login_api_provider.dart';
@@ -63,17 +66,17 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       return estimateResponseModel.body!;
     }
   }
+
   @override
   Future<dynamic> postGuestEstimateAPIResponse(String requestJson) async {
     Response estimateResponseModel =
         await provider.postGuestEstimateResponseProvider(
-            endPoint: AppConstants.getGuestUrlWithCode(
-                AppConstants.estimateMethods),
+            endPoint:
+                AppConstants.getGuestUrlWithCode(AppConstants.estimateMethods),
             requestJson: requestJson);
     if (estimateResponseModel != null) {
       print(AppConstants.apiEndPointLogin +
-          AppConstants.getUrlWithCode(
-              AppConstants.estimateMethods));
+          AppConstants.getUrlWithCode(AppConstants.estimateMethods));
       print("response.statusCode -> ");
       print(estimateResponseModel.statusCode);
     }
@@ -113,7 +116,8 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
     }
   }
 
-  Future<dynamic> postGuestShippingInformationResponse(String requestJson) async {
+  Future<dynamic> postGuestShippingInformationResponse(
+      String requestJson) async {
     Response estimateResponseModel =
         await provider.postGuestShippingInformationResponseProvider(
             endPoint: AppConstants.getGuestUrlWithCode(
@@ -121,8 +125,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
             requestJson: requestJson);
     if (estimateResponseModel != null) {
       print(AppConstants.apiEndPointLogin +
-          AppConstants.getGuestUrlWithCode(
-              AppConstants.shippingInformation));
+          AppConstants.getGuestUrlWithCode(AppConstants.shippingInformation));
       print("response.statusCode -> ");
       print(estimateResponseModel.statusCode);
       print(estimateResponseModel.body);
@@ -155,6 +158,34 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
       return null!;
     } else {
       print("success -> ");
+      return createOrderApi.body!;
+    }
+  }
+
+  @override
+  Future<dynamic> postGuestCreateOrderAPIResponse(
+      String requestJson, String cartId) async {
+    Response createOrderApi =
+        await provider.postGuestCreateOrderResponseProvider(
+            endPoint: AppConstants.guestOrderApi + "${cartId}/order",
+            requestJson: requestJson);
+    print("Response IS $createOrderApi");
+    print("Response IS ${createOrderApi.body}");
+    if (createOrderApi != null) {
+      print("response.statusCode -> ");
+      print(createOrderApi.statusCode);
+    }
+    if (createOrderApi.status.hasError) {
+      print("error -> ");
+      print(createOrderApi.statusText!);
+      Validators.apiResponseMessage(
+          body: createOrderApi.body!, message: createOrderApi.statusText);
+      return null!;
+    } else {
+      print("success -> ");
+      // localStore.guestToken.
+      await removePrefValue(StorageConstant.authToken);
+      await removePrefValue(localStore.customerToken);
       return createOrderApi.body!;
     }
   }
