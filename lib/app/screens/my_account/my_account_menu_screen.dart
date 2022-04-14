@@ -596,6 +596,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                         StorageConstant.authToken);
                                     await removePrefValue(
                                         localStore.customerToken);
+                                    await removePrefValue(StorageConstant.userDetail);
                                     Get.offAndToNamed(
                                         RoutesConstants.loginScreen);
                                     // showTitleDialog1(context);

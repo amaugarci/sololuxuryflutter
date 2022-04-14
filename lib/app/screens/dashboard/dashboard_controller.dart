@@ -38,7 +38,6 @@ class DashboardController extends GetxController
   Future<void> onInit() async {
     super.onInit();
     tabController = TabController(initialIndex: 0, length: 5, vsync: this);
-    await localStore.getUserDetail();
     HomeBindings().dependencies();
     ProductListBinding().dependencies();
     CheckoutOrderBindings().dependencies();
