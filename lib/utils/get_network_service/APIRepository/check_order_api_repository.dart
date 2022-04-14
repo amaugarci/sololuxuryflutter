@@ -184,8 +184,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
     } else {
       print("success -> ");
       // localStore.guestToken.
-      await removePrefValue(StorageConstant.authToken);
-      await removePrefValue(localStore.customerToken);
+      await removePrefValue(localStore.guestToken);
       return createOrderApi.body!;
     }
   }
