@@ -195,7 +195,7 @@ class CartScreen extends GetView<CartController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "\$${controller.cartModel!.value.items[index].price.toString()}",
+                                  "${localStore.getPriceWithSymbol(controller.cartModel!.value.items[index].price.toString())}",
                                   style: textStyleUtils400(size: 16.0),
                                 ),
                                 Row(
@@ -291,7 +291,7 @@ class CartScreen extends GetView<CartController> {
                                 style: textStyleUtils600(size: 22.0),
                               ),
                               Text(
-                                "\$${controller.subtotal.value..toString()}",
+                                "${localStore.getPriceWithSymbol(controller.subtotal.value.toString())}",
                                 style: TextStyle(fontSize: 18),
                               )
                               // cartPrice(index),
@@ -315,7 +315,7 @@ class CartScreen extends GetView<CartController> {
                                 style: textStyleUtils600(size: 22.0),
                               ),
                               Text(
-                                "\$0.00",
+                                "${localStore.getPriceWithSymbol(0.0.toString())}",
                                 style: textStyleUtils400(size: 18.0),
                               ),
                             ],
@@ -418,7 +418,7 @@ class CartScreen extends GetView<CartController> {
   cartPrice(index) {
     return Obx(
       () => Text(
-        "\$${controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price}",
+        "${localStore.getPriceWithSymbol((controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price).toString())}",
         style: textStyleUtils400(size: 18.0),
       ),
     );

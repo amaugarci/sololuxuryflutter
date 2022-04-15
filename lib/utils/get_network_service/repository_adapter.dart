@@ -80,6 +80,8 @@ abstract class ICheckoutOrderRepository {
   Future<dynamic> getCountryListResponse();
   Future<dynamic> postaddAddressApiResponse(String loginRequestJson);
   Future<dynamic> getAddressListResponse();
+  Future<dynamic> postGuestCreateOrderAPIResponse(
+      String loginRequestJson, String cartid);
 }
 
 ///myAccount Class

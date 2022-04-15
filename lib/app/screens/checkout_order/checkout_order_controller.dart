@@ -25,8 +25,6 @@ import '../../../utils/app_constants.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
-  Rx<EstimateShippingMethodModel>? estimateShipModel =
-      EstimateShippingMethodModel().obs;
 
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
@@ -209,7 +207,7 @@ class CheckoutOrderController extends GetxController {
       billingMultiAddressModel!.value =
           MultiAddressModel.fromJson(json.decode(dataString));
       if (multiAddressModel != null) {
-        if(multiAddressModel!.value.addresses!.isNotEmpty) {
+        if (multiAddressModel!.value.addresses!.isNotEmpty) {
           estimateAndShippingAPICall(
             multiAddressModel!.value.addresses!.first,
             multiAddressModel!.value.addresses!.first,
@@ -322,8 +320,12 @@ class CheckoutOrderController extends GetxController {
     Map<String, dynamic> map = jsonDecode(response);
     print("Response Map Is Her $map");
     if (map['resultCode'] == "Authorised") {
-      await postListForOrder(
-          cartData, "adyen_cc", "${map.toString()}", context);
+      if (localStore.customerToken.toString() == "") {
+        await postGuestOrderForOrder(cartData, "CaseOnDelivery", "", context);
+      } else {
+        await postListForOrder(
+            cartData, "adyen_cc", "${map.toString()}", context);
+      }
     } else {
       AwesomeDialog(
         context: context,
@@ -427,7 +429,7 @@ class CheckoutOrderController extends GetxController {
           "telephone": "${cartlist.billingAddress!.telephone}"
         },
         "payment": {
-          "method": "$method",
+          "method": "CaseOnDevlivery",
           "additional_data": "${paymentId}".toString()
         },
         "extension_attributes": {
@@ -454,6 +456,32 @@ class CheckoutOrderController extends GetxController {
     }
   }
 
+//Creaate Guest Order Api
+  postGuestOrderForOrder(cartlist, method, paymentId, context) async {
+    // CartModel cartlist = cartList;
+
+    var podLIst = {
+      "paymentMethod": {"method": "checkmo"}
+    };
+
+    print("Create Order Api List is ${podLIst}");
+    var postCreateOrder =
+        await checkoutOrderAPIRepository.postGuestCreateOrderAPIResponse(
+            json.encode(podLIst), localStore.guestToken.toString());
+
+    if (postCreateOrder != null) {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.SUCCES,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Success',
+        desc: 'Your Order is Succressfully.',
+        btnOkOnPress: () {
+          Navigator.pop(context);
+        },
+      )..show();
+    }
+  }
   //Add Address PopUP
   // Rx<AddressListModel> getAdressList = AddressListModel().obs;
 
