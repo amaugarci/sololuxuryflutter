@@ -82,23 +82,25 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
               ),
 
               //TODO: Login Button
-              SizedBox(
-                height: 40,
-                width: 120.0,
-                child: CommonButton(
-                  padding: EdgeInsets.zero,
-                  buttonType: ButtonType.ElevatedButton,
-                  onPressed: () {},
-                  elevation: 0.0,
-                  color: appColorButton,
-                  borderRadius: 0.0,
-                  child: CommonTextPoppins(
-                    LanguageConstant.signInText.tr,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+              localStore.customerToken.toString() == ""
+                  ? SizedBox(
+                      height: 40,
+                      width: 120.0,
+                      child: CommonButton(
+                        padding: EdgeInsets.zero,
+                        buttonType: ButtonType.ElevatedButton,
+                        onPressed: () {},
+                        elevation: 0.0,
+                        color: appColorButton,
+                        borderRadius: 0.0,
+                        child: CommonTextPoppins(
+                          LanguageConstant.signInText.tr,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  : Container(),
               // PrimaryTextButton(
               //   height: 40,
               //   width: 120.0,
@@ -487,7 +489,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                 return "Enter Email Address";
               }
             },
-            onChanged: (val){
+            onChanged: (val) {
               controller.email.value = val;
               controller.shippingValidationAddress();
             },
@@ -505,7 +507,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: const EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        const EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "First Name",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -531,7 +534,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.firstName.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -553,9 +556,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Last Name",
-                    hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                    hintStyle:
+                        const TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -584,7 +589,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Last Name";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.lastName.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -604,7 +609,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 1",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -635,7 +641,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add1.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -651,7 +657,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "City",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -682,7 +689,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter City";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.city.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -702,7 +709,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 2",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -733,7 +741,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add2.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -760,13 +768,17 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                             ))
                         .toList(),
                     isExpanded: true,
-                    hint: controller.selectedCoutry1.value.fullNameEnglish.toString() == "null"
+                    hint: controller.selectedCoutry1.value.fullNameEnglish
+                                .toString() ==
+                            "null"
                         ? Text(
                             "Country",
-                            style: TextStyle(color: Colors.black, fontSize: 14.0),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.0),
                           )
                         : Text(
-                            controller.selectedCoutry1.value.fullNameEnglish.toString(),
+                            controller.selectedCoutry1.value.fullNameEnglish
+                                .toString(),
                             style: TextStyle(color: Colors.black),
                           ),
                     icon: Icon(
@@ -778,7 +790,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       print("value Is $value");
                       controller.selectedCoutry1.value = value!;
                       controller.countryName.value = value.fullNameEnglish!;
-                        controller.shippingValidationAddress();
+                      controller.shippingValidationAddress();
                     },
                   ),
                 ),
@@ -797,7 +809,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 3",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -828,7 +841,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add3.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -844,7 +857,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "State/Province",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -875,7 +889,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter State/Province";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.state.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -895,7 +909,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Zip/Postal Code",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -926,7 +941,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Zip Postal Code";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.zipCode.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -942,7 +957,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Phone Number",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -973,9 +989,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Phone Number";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.phone.value = val;
-                    controller.shippingValidationAddress();
+                    // controller.shippingValidationAddress();
                   },
                 ),
               ),
@@ -1028,7 +1044,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                 return "Enter Email Address";
               }
             },
-            onChanged: (val){
+            onChanged: (val) {
               controller.emailBilling.value = val;
               controller.shippingValidationAddress();
             },
@@ -1046,7 +1062,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: const EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        const EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "First Name",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1072,7 +1089,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.firstNameBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1094,9 +1111,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Last Name",
-                    hintStyle: const TextStyle(color: Colors.black, fontSize: 14),
+                    hintStyle:
+                        const TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -1125,7 +1144,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Last Name";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.lastNameBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1145,7 +1164,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 1",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1176,7 +1196,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add1Billing.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1192,7 +1212,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "City",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1223,7 +1244,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter City";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.cityBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1243,7 +1264,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 2",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1274,7 +1296,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add2Billing.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1296,20 +1318,24 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     dropdownColor: backGroundColor,
                     items: controller.getcountryList
                         .map((value) => DropdownMenuItem<CountryListModel>(
-                      child: Text(value.fullNameEnglish.toString()),
-                      value: value,
-                    ))
+                              child: Text(value.fullNameEnglish.toString()),
+                              value: value,
+                            ))
                         .toList(),
                     isExpanded: true,
-                    hint: controller.selectedCoutry2.value.fullNameEnglish.toString() == "null"
+                    hint: controller.selectedCoutry2.value.fullNameEnglish
+                                .toString() ==
+                            "null"
                         ? Text(
-                      "Country",
-                      style: TextStyle(color: Colors.black, fontSize: 14.0),
-                    )
+                            "Country",
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.0),
+                          )
                         : Text(
-                      controller.selectedCoutry2.value.fullNameEnglish.toString(),
-                      style: TextStyle(color: Colors.black),
-                    ),
+                            controller.selectedCoutry2.value.fullNameEnglish
+                                .toString(),
+                            style: TextStyle(color: Colors.black),
+                          ),
                     icon: Icon(
                       Icons.keyboard_arrow_down,
                       size: 28,
@@ -1318,7 +1344,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                     onChanged: (value) {
                       print("value Is $value");
                       controller.selectedCoutry2.value = value!;
-                      controller.countryNameBilling.value = value.fullNameEnglish!;
+                      controller.countryNameBilling.value =
+                          value.fullNameEnglish!;
                       controller.shippingValidationAddress();
                     },
                   ),
@@ -1338,7 +1365,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Street Address 3",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1369,7 +1397,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Street Address";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.add3Billing.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1385,7 +1413,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "State/Province",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1416,7 +1445,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter State/Province";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.stateBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1436,7 +1465,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Zip/Postal Code",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1467,7 +1497,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Zip Postal Code";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.zipCodeBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1483,7 +1513,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.transparent,
-                    contentPadding: EdgeInsets.only(bottom: 10, top: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(bottom: 10, top: 12, left: 10),
                     hintText: "Phone Number",
                     hintStyle: TextStyle(color: Colors.black, fontSize: 14),
                     errorStyle: TextStyle(color: Colors.black),
@@ -1514,7 +1545,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       return "Enter Phone Number";
                     }
                   },
-                  onChanged: (val){
+                  onChanged: (val) {
                     controller.phoneBilling.value = val;
                     controller.shippingValidationAddress();
                   },
@@ -1536,7 +1567,8 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             shrinkWrap: true,
             itemCount: controller.multiAddressModel!.value.addresses!.length,
             itemBuilder: (context, index) {
-              Address? address = controller.multiAddressModel!.value.addresses![index];
+              Address? address =
+                  controller.multiAddressModel!.value.addresses![index];
               return Obx(() => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1571,7 +1603,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Colors.black,
-                                          width: controller.selectedBillingIndex.value == index ? 4.5 : 0.8),
+                                          width: controller.selectedBillingIndex
+                                                      .value ==
+                                                  index
+                                              ? 4.5
+                                              : 0.8),
                                       shape: BoxShape.circle)),
                             ),
                             const SizedBox(
@@ -1593,7 +1629,9 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      controller.multiAddressModel!.value.addresses!.length - 1 == index
+                      controller.multiAddressModel!.value.addresses!.length -
+                                  1 ==
+                              index
                           ? Container()
                           : Column(
                               children: [
@@ -1811,60 +1849,69 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
     );
   }
 
-  Widget myBillingAddress(){
-    return controller.multiAddressModel!.value.addresses!.length > 1 ? InkWell(
-      onTap: () {
-        controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
-        controller.shippingAddress = controller.multiAddressModel!.value.addresses![controller.selectedAddressIndex.value];
+  Widget myBillingAddress() {
+    return controller.multiAddressModel!.value.addresses!.length > 1
+        ? InkWell(
+            onTap: () {
+              controller.isSameAsBilling.value =
+                  !controller.isSameAsBilling.value;
+              controller.shippingAddress = controller.multiAddressModel!.value
+                  .addresses![controller.selectedAddressIndex.value];
 
-        if(controller.isSameAsBilling.value){
-          controller.billingAddress = controller.multiAddressModel!.value.addresses![controller.selectedAddressIndex.value];
-          controller.estimateAndShippingAPICall(controller.shippingAddress, controller.billingAddress);
-        }else{
-          controller.billingAddress = controller.multiAddressModel!.value.addresses![controller.selectedBillingIndex.value];
-          controller.estimateAndShippingAPICall(controller.shippingAddress, controller.billingAddress);
-        }
-        controller.checkEnablePlaceOrder();
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Obx(() => Container(
-                height: 24.0,
-                width: 24.0,
-                alignment: Alignment.centerLeft,
-                child: Icon(
-                  controller.isSameAsBilling.value
-                      ? Icons.check_box_sharp
-                      : Icons.check_box_outline_blank_sharp,
-                  color: Colors.black54,
-                  size: 24.0,
+              if (controller.isSameAsBilling.value) {
+                controller.billingAddress = controller.multiAddressModel!.value
+                    .addresses![controller.selectedAddressIndex.value];
+                controller.estimateAndShippingAPICall(
+                    controller.shippingAddress, controller.billingAddress);
+              } else {
+                controller.billingAddress = controller.multiAddressModel!.value
+                    .addresses![controller.selectedBillingIndex.value];
+                controller.estimateAndShippingAPICall(
+                    controller.shippingAddress, controller.billingAddress);
+              }
+              controller.checkEnablePlaceOrder();
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Obx(() => Container(
+                          height: 24.0,
+                          width: 24.0,
+                          alignment: Alignment.centerLeft,
+                          child: Icon(
+                            controller.isSameAsBilling.value
+                                ? Icons.check_box_sharp
+                                : Icons.check_box_outline_blank_sharp,
+                            color: Colors.black54,
+                            size: 24.0,
+                          ),
+                        )),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Expanded(
+                      child: CommonTextOpenSans(
+                        LanguageConstant.myBillingShipAddressSameText.tr,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
                 ),
-              )),
-              const SizedBox(
-                width: 15.0,
-              ),
-              Expanded(
-                child: CommonTextOpenSans(
-                  LanguageConstant.myBillingShipAddressSameText.tr,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          !controller.isSameAsBilling.value
-              ? billingAddressList()
-              : Container(),
-        ],
-      ),
-    ) : Container();
+                !controller.isSameAsBilling.value
+                    ? billingAddressList()
+                    : Container(),
+              ],
+            ),
+          )
+        : Container();
   }
-  Widget guestMyBillingAddress(){
+
+  Widget guestMyBillingAddress() {
     return InkWell(
       onTap: () {
         controller.isSameAsBilling.value = !controller.isSameAsBilling.value;
@@ -1878,17 +1925,17 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Obx(() => Container(
-                height: 24.0,
-                width: 24.0,
-                alignment: Alignment.centerLeft,
-                child: Icon(
-                  controller.isSameAsBilling.value
-                      ? Icons.check_box_sharp
-                      : Icons.check_box_outline_blank_sharp,
-                  color: Colors.black54,
-                  size: 24.0,
-                ),
-              )),
+                    height: 24.0,
+                    width: 24.0,
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      controller.isSameAsBilling.value
+                          ? Icons.check_box_sharp
+                          : Icons.check_box_outline_blank_sharp,
+                      color: Colors.black54,
+                      size: 24.0,
+                    ),
+                  )),
               const SizedBox(
                 width: 15.0,
               ),
@@ -2216,7 +2263,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
         const SizedBox(
           height: 15.0,
         ),
-        Obx(()=> controller.isEnabledPlaceOrder.value
+        Obx(() => controller.isEnabledPlaceOrder.value
             ? Align(
                 alignment: Alignment.center,
                 child: SizedBox(
@@ -2233,45 +2280,50 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       //   );
                       // }
 
-                      if (controller.formKey.currentState!.validate()) {
-                        if (controller.selectedPaymentIndex.value == 1) {
+                      // if (controller.formKey.currentState!.validate()) {
+                      if (controller.selectedPaymentIndex.value == 1) {
+                        if (localStore.customerToken.toString() == "") {
+                          controller.postGuestOrderForOrder(
+                              cartlist, "CaseOnDelivery", "", context);
+                        } else {
                           controller.postListForOrder(
                               cartlist, "CaseOnDelivery", "", context);
-                        } else if (controller.selectedPaymentIndex.value == 3) {
-                          Map<String, dynamic> lineItems = {};
-                          Map<String, dynamic> paymentRequest = {};
-                          for (var element in controller
-                              .shipInfoModel!.value.totals!.items!) {
-                            lineItems = {
-                              "amountExcludingTax": 0,
-                              "amountIncludingTax": element.basePriceInclTax,
-                              "description": element.name,
-                              "id": element.itemId,
-                              "quantity": element.qty,
-                              "taxCategory": "",
-                              "taxPercentage": element.taxPercent
-                            };
-                          }
-                          print("ListItem -> $lineItems");
-                          paymentRequest = {
-                            "currency": localStore.currentCurrency,
-                            "amount":
-                                "${controller.shipInfoModel!.value.totals!.grandTotal}",
-                            "countryCode": localStore.currentCode
-                                .split("-")[0]
-                                .toUpperCase(),
-                            "qty": controller
-                                .shipInfoModel!.value.totals!.itemsQty,
-                            "lineItems": [lineItems],
-                          };
-                          print("Payment -> $paymentRequest");
-                          controller.responseFromNativeCode(
-                              cartlist, context, paymentRequest);
                         }
-                        // ScaffoldMessenger.of(Get.context!).showSnackBar(
-                        //   const SnackBar(content: Text('Processing Data')),
-                        // );
+                      } else if (controller.selectedPaymentIndex.value == 3) {
+                        Map<String, dynamic> lineItems = {};
+                        Map<String, dynamic> paymentRequest = {};
+                        for (var element
+                            in controller.shipInfoModel!.value.totals!.items!) {
+                          lineItems = {
+                            "amountExcludingTax": 0,
+                            "amountIncludingTax": element.basePriceInclTax,
+                            "description": element.name,
+                            "id": element.itemId,
+                            "quantity": element.qty,
+                            "taxCategory": "",
+                            "taxPercentage": element.taxPercent
+                          };
+                        }
+                        print("ListItem -> $lineItems");
+                        paymentRequest = {
+                          "currency": localStore.currentCurrency,
+                          "amount":
+                              "${controller.shipInfoModel!.value.totals!.grandTotal}",
+                          "countryCode": localStore.currentCode
+                              .split("-")[0]
+                              .toUpperCase(),
+                          "qty":
+                              controller.shipInfoModel!.value.totals!.itemsQty,
+                          "lineItems": [lineItems],
+                        };
+                        print("Payment -> $paymentRequest");
+                        controller.responseFromNativeCode(
+                            cartlist, context, paymentRequest);
                       }
+                      // ScaffoldMessenger.of(Get.context!).showSnackBar(
+                      //   const SnackBar(content: Text('Processing Data')),
+                      // );
+                      // }
                     },
                     elevation: 0.0,
                     color: appColorButton,

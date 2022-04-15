@@ -133,6 +133,7 @@ class AppConstants {
   static String login = '/rest/V1/integration/customer/token';
   static const String signUp = "/rest/V1/customers";
   static String menuEndPoint = "/V1/categories";
+  static String menuEndPoint1 = "/rest/V1/categories";
   static const String contactUs = "/rest/V1/contactus";
 
   static const String wishList = "/rest/V1/wishlist";
@@ -145,6 +146,7 @@ class AppConstants {
       "/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
   static const String deleteWishlist = "/rest/V1/wishlist/";
   static const String postWishlist = "/rest/V1/wishlist/";
+  static const String guestOrderApi = "/rest/V1/guest-carts/";
 
   static const String licenceId = '11434003';
 

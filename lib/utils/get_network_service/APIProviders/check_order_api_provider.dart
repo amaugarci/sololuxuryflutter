@@ -20,6 +20,8 @@ abstract class ICheckOutOrderProvider {
       {required String endPoint, required String requestJson});
   Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson});
+  Future<dynamic> postGuestCreateOrderResponseProvider(
+      {required String endPoint, required String requestJson});
   Future<dynamic> postAddAddressResponse(
       {required String endPoint, required String requestJson});
   Future<dynamic> getcountryListAPIResponse({required String endPoint});
@@ -28,8 +30,6 @@ abstract class ICheckOutOrderProvider {
 
 class CheckOutOrderProvider extends GetConnect
     implements ICheckOutOrderProvider {
-
-
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -100,6 +100,15 @@ class CheckOutOrderProvider extends GetConnect
   Future<dynamic> postCreateOrderResponseProvider(
       {required String endPoint, required String requestJson}) {
     print("postCreateOrderResponseProvider -> ");
+    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    debugPrint("requestJson -> " + requestJson);
+    return put(endPoint, requestJson, headers: adminHeader);
+  }
+
+  @override
+  Future<dynamic> postGuestCreateOrderResponseProvider(
+      {required String endPoint, required String requestJson}) {
+    print("postGuestCreateOrderResponseProvider -> ");
     print("url -> " + httpClient.baseUrl.toString() + endPoint);
     debugPrint("requestJson -> " + requestJson);
     return put(endPoint, requestJson, headers: adminHeader);
