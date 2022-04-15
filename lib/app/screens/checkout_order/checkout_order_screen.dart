@@ -1652,72 +1652,69 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
             shrinkWrap: true,
             itemCount: controller.estimatesList?.length,
             itemBuilder: (context, index) {
-              controller.estimateShipModel!.value =
+              EstimateShippingMethodModel estimateModel =
                   EstimateShippingMethodModel.fromJson(
                       controller.estimatesList?[index]);
               return Obx(() => InkWell(
                     onTap: () {
                       controller.selectedShippingIndex.value = index;
                     },
-                    child: SizedBox(
-                      height: 25.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 18.0,
-                            width: 18.0,
-                            child: Center(
-                              child: Container(
-                                height: 14,
-                                width: 14,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black,
-                                        width: controller.selectedShippingIndex
-                                                    .value ==
-                                                index
-                                            ? 4.5
-                                            : 0.8),
-                                    shape: BoxShape.circle),
-                              ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 18.0,
+                          width: 18.0,
+                          child: Center(
+                            child: Container(
+                              height: 14,
+                              width: 14,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black,
+                                      width: controller.selectedShippingIndex
+                                                  .value ==
+                                              index
+                                          ? 4.5
+                                          : 0.8),
+                                  shape: BoxShape.circle),
                             ),
                           ),
-                          const SizedBox(
-                            width: 20.0,
+                        ),
+                        const SizedBox(
+                          width: 20.0,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: CommonTextPoppins(
+                            "${localStore.setItemPriceWithSymbol(estimateModel.amount.toString(), estimateModel.baseAmount.toString())}",
+                            fontSize: 10.0,
+                            textAlign: TextAlign.left,
+                            fontWeight: FontWeight.w500,
                           ),
-                          Expanded(
-                            flex: 2,
-                            child: CommonTextPoppins(
-                              "${localStore.setItemPriceWithSymbol(controller.estimateShipModel!.value.amount.toString(), controller.estimateShipModel!.value.baseAmount.toString())}",
-                              fontSize: 10.0,
-                              textAlign: TextAlign.left,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: CommonTextPoppins(
+                            estimateModel.methodTitle,
+                            fontSize: 10.0,
+                            textAlign: TextAlign.left,
+                            fontWeight: FontWeight.w500,
                           ),
-                          Expanded(
-                            flex: 2,
-                            child: CommonTextPoppins(
-                              controller.estimateShipModel!.value.methodTitle,
-                              fontSize: 10.0,
-                              textAlign: TextAlign.left,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: CommonTextPoppins(
+                            estimateModel.carrierTitle,
+                            textAlign: TextAlign.left,
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.w500,
+                            maxLine: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          Expanded(
-                            flex: 4,
-                            child: CommonTextPoppins(
-                              controller.estimateShipModel!.value.carrierTitle,
-                              textAlign: TextAlign.left,
-                              fontSize: 10.0,
-                              fontWeight: FontWeight.w500,
-                              maxLine: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ));
             }),

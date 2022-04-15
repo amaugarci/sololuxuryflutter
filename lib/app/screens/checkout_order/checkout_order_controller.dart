@@ -25,8 +25,6 @@ import '../../../utils/app_constants.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
-  Rx<EstimateShippingMethodModel>? estimateShipModel =
-      EstimateShippingMethodModel().obs;
 
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
