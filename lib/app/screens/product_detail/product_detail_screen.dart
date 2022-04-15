@@ -15,296 +15,310 @@ import '../../../utils/app_routes.dart';
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
   // Item? product;
-
   // ProductDetailScreen({this.product});
-
   @override
   Widget build(BuildContext context) {
     print("USER TOKEN =============${localStore.customerToken}");
+    print("product detail :- ${controller.product!.value}");
     return Obx(
-      () => Scaffold(
-        backgroundColor: backGroundColor,
-        appBar: commonAppbar(),
-        body: controller.isLoading.value == true
-            ? const Center(
-                child: SpinKitThreeBounce(
+      () {
+        bool isInStock = controller.product!.value.extensionAttributes == null ? false: controller.product!.value.extensionAttributes!.stockItem!.isInStock!;
+        return Scaffold(
+          backgroundColor: backGroundColor,
+          appBar: commonAppbar(),
+          body: controller.isLoading.value == true
+              ? const Center(
+              child: SpinKitThreeBounce(
                 color: appColor,
                 // size: 50.0,
               ))
-            : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.5),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.5),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  imageCarousel(),
+                  const SizedBox(height: 25),
+                  Row(
                     children: [
-                      imageCarousel(),
-                      const SizedBox(height: 25),
-                      Row(
-                        children: [
-                          // Container(
-                          //   height: 65,
-                          //   width: 20,
-                          //   margin: EdgeInsets.only(right: 12),
-                          //   color: whiteColor,
-                          //   child: const Icon(
-                          //     Icons.arrow_back_ios,
-                          //     size: 16,
-                          //     color: Colors.black54,
-                          //   ),
-                          // ),
-                          Expanded(child: allProductImages()),
-                          // Container(
-                          //   height: 65,
-                          //   width: 20,
-                          //   margin: EdgeInsets.only(left: 12),
-                          //   color: whiteColor,
-                          //   child: const Icon(
-                          //     Icons.arrow_forward_ios,
-                          //     size: 16,
-                          //     color: Colors.black54,
-                          //   ),
-                          // ),
-                        ],
+                      // Container(
+                      //   height: 65,
+                      //   width: 20,
+                      //   margin: EdgeInsets.only(right: 12),
+                      //   color: whiteColor,
+                      //   child: const Icon(
+                      //     Icons.arrow_back_ios,
+                      //     size: 16,
+                      //     color: Colors.black54,
+                      //   ),
+                      // ),
+                      Expanded(child: allProductImages()),
+                      // Container(
+                      //   height: 65,
+                      //   width: 20,
+                      //   margin: EdgeInsets.only(left: 12),
+                      //   color: whiteColor,
+                      //   child: const Icon(
+                      //     Icons.arrow_forward_ios,
+                      //     size: 16,
+                      //     color: Colors.black54,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  const SizedBox(height: 41),
+                  Text(
+                    controller.product!.value.getBrandName()!,
+                    style: commonTextStyle400(size: 24.0),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    controller.product!.value.name!,
+                    style: commonTextStyle400(size: 18.0),
+                  ),
+                  const SizedBox(height: 28),
+                  expandDetailWidget(
+                    text: LanguageConstant.description.tr,
+                    onTap: () {
+                      controller.isSelected.value =
+                      !controller.isSelected.value;
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Visibility(
+                    visible: controller.isSelected.isTrue ? true : false,
+                    child: Text(
+                      "${controller.product!.value.getProductDescription()}",
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54,
                       ),
-                      const SizedBox(height: 41),
-                      Text(
-                        controller.product!.value.getBrandName()!,
-                        style: commonTextStyle400(size: 24.0),
-                      ),
-                      const SizedBox(height: 14),
-                      Text(
-                        controller.product!.value.name!,
-                        style: commonTextStyle400(size: 18.0),
-                      ),
-                      const SizedBox(height: 28),
-                      expandDetailWidget(
-                        text: LanguageConstant.description.tr,
-                        onTap: () {
-                          controller.isSelected.value =
-                              !controller.isSelected.value;
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      Visibility(
-                        visible: controller.isSelected.isTrue ? true : false,
-                        child: Text(
-                          "${controller.product!.value.getProductDescription()}",
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  expandDetailWidget(
+                    text: LanguageConstant.details.tr,
+                    onTap: () {
+                      controller.isSelected1.value =
+                      !controller.isSelected1.value;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  Visibility(
+                    visible: controller.isSelected1.isTrue ? true : false,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Composition : ${controller.product!.value.getComposition()}",
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
                             color: Colors.black54,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      expandDetailWidget(
-                        text: LanguageConstant.details.tr,
-                        onTap: () {
-                          controller.isSelected1.value =
-                              !controller.isSelected1.value;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      Visibility(
-                        visible: controller.isSelected1.isTrue ? true : false,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Composition : ${controller.product!.value.getComposition()}",
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black54,
-                              ),
-                            ),
-                            Text(
-                              "Color : ${controller.product!.value.getColor()}",
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 35),
-                      Text(
-                        "${localStore.getRegularPriceWithCurrency(controller.product!.value.price!.toStringAsFixed(2), controller.product!.value.extensionAttributes!.convertedRegularPrice)}",
-                        style: commonTextStyle600(size: 24.0),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        LanguageConstant.sku.tr +
-                            ":- ${controller.product!.value.sku}",
-                        style: commonTextStyle600(
-                          size: 14.0,
-                          color: Colors.black54,
-                        ),
-                      ),
-                      const SizedBox(height: 25),
-                      Visibility(
-                        visible:
-                            controller.product!.value.typeId == 'configurable',
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(child: chooseAnOptionWidget(context)),
-                            const SizedBox(width: 15),
-                            sizeChartWidget(context),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: addToCartButton(context: context),
+                        Text(
+                          "Color : ${controller.product!.value.getColor()}",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54,
                           ),
-                          const SizedBox(width: 25),
-                          Expanded(
-                            child: addToWishlistButton(context),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 50),
-                      TabBar(
-                        tabs: controller.myTabs,
-                        unselectedLabelColor: blackColor.withOpacity(0.50),
-                        labelStyle: commonTextStyle600(size: 18.0),
-                        unselectedLabelStyle: commonTextStyle600(
-                          size: 18.0,
-                          color: blackColor.withOpacity(0.50),
                         ),
-                        labelColor: blackColor,
-                        isScrollable: false,
-                        controller: controller.controller,
-                        indicatorSize: TabBarIndicatorSize.label,
-                        indicatorPadding: EdgeInsets.zero,
-                        labelPadding: EdgeInsets.zero,
-                        indicatorColor: brown743617,
-                        indicatorWeight: 2,
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 35),
+                  Text(
+                    "${localStore.getRegularPriceWithCurrency(controller.product!.value.price!.toStringAsFixed(2), controller.product!.value.extensionAttributes!.convertedRegularPrice)}",
+                    style: commonTextStyle600(size: 24.0),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    LanguageConstant.sku.tr +
+                        ":- ${controller.product!.value.sku}",
+                    style: commonTextStyle600(
+                      size: 14.0,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Visibility(
+                    visible:
+                    controller.product!.value.typeId == 'configurable',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(child: chooseAnOptionWidget(context)),
+                        const SizedBox(width: 15),
+                        sizeChartWidget(context),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: addToCartButton(context: context, title: !isInStock ? LanguageConstant.soldOut.tr: LanguageConstant.addTOCart.tr),
                       ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      SizedBox(
-                        height: Get.height / 2,
-                        child: TabBarView(
-                          controller: controller.controller,
-                          children: [
-                            SizedBox(
-                              height: 290,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.itemsData.length,
-                                itemBuilder: (context, index) => InkWell(
-                                  onTap: (){
-                                    controller.product!.value = Item(
-                                      id:  int.parse(controller.itemsData[index]['product_id']),
-                                      sku: controller.itemsData[index]['sku'],
-                                    );
-                                    print(controller.itemsData[index]['id']);
-                                    print(controller.itemsData[index]['sku']);
-                                     controller.getProductDetail();
-                                    // Get.toNamed(RoutesConstants.productDetailsScreen,
-                                    //     arguments: []);
-                                  },
-                                  child: SizedBox(
-                                    width: 215,
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              const Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
-                                                  child: Icon(
-                                                    Icons.favorite_border,
-                                                    size: 18,
-                                                    color: blackColor,
-                                                  ),
-                                                ),
-                                              ),
-                                              Image(
-                                                width: 162,
-                                                image: NetworkImage(
-                                                  controller.itemsData[index]
-                                                      ["image_url"],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          height: 215,
-                                          width: 215,
-                                          margin: const EdgeInsets.only(
-                                              right: 5, left: 5, top: 5),
-                                          decoration: BoxDecoration(
-                                            color: backGroundColor,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color:
-                                                    blackColor.withOpacity(0.30),
-                                                blurRadius: 8,
-                                              ),
-                                            ],
-                                            border: Border.all(
-                                              color: brown743617,
-                                              width: 1,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        Text(
-                                          controller.itemsData[index]
-                                              ["brand_name"],
-                                          textAlign: TextAlign.center,
-                                          style: commonTextStyle400(size: 16.0),
-                                        ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          controller.itemsData[index]["name"],
-                                          textAlign: TextAlign.center,
-                                          style: commonTextStyle400(size: 16.0),
-                                        ),
-                                        Text(
-                                          controller.itemsData[index]["price"],
-                                          textAlign: TextAlign.center,
-                                          style: commonTextStyle400(size: 16.0),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "Free global returns and pick up",
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: commonTextStyle400(size: 16.0),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
+                      const SizedBox(width: 25),
+                      Expanded(
+                        child: !isInStock ? InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Text("Notify me when this product is in stock ",style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              decorationThickness: 1.5
+                          ),),
+                        ): addToWishlistButton(context),
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 50),
+                  TabBar(
+                    tabs: controller.myTabs,
+                    unselectedLabelColor: blackColor.withOpacity(0.50),
+                    labelStyle: commonTextStyle600(size: 18.0),
+                    unselectedLabelStyle: commonTextStyle600(
+                      size: 18.0,
+                      color: blackColor.withOpacity(0.50),
+                    ),
+                    labelColor: blackColor,
+                    isScrollable: false,
+                    controller: controller.controller,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorPadding: EdgeInsets.zero,
+                    labelPadding: EdgeInsets.zero,
+                    indicatorColor: brown743617,
+                    indicatorWeight: 2,
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  SizedBox(
+                    height: Get.height / 2,
+                    child: TabBarView(
+                      controller: controller.controller,
+                      children: [
+                        SizedBox(
+                          height: 290,
+                          child: controller.itemsData[0]["image_url"] == null ? Center(
+                            child: Text(controller.itemsData[0]["message"]),
+                          ) :ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: controller.itemsData.length,
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: (){
+                                controller.product!.value = Item(
+                                  id:  int.parse(controller.itemsData[index]['product_id']),
+                                  sku: controller.itemsData[index]['sku'],
+                                );
+                                print(controller.itemsData[index]['id']);
+                                print(controller.itemsData[index]['sku']);
+                                controller.getProductDetail();
+                                // Get.toNamed(RoutesConstants.productDetailsScreen,
+                                //     arguments: []);
+                              },
+                              child: SizedBox(
+                                width: 215,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          const Positioned(
+                                            top: 0,
+                                            right: 0,
+                                            child: Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                Icons.favorite_border,
+                                                size: 18,
+                                                color: blackColor,
+                                              ),
+                                            ),
+                                          ),
+                                          Image(
+                                            width: 162,
+                                            image: NetworkImage(
+                                              controller.itemsData[index]
+                                              ["image_url"],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      height: 215,
+                                      width: 215,
+                                      margin: const EdgeInsets.only(
+                                          right: 5, left: 5, top: 5),
+                                      decoration: BoxDecoration(
+                                        color: backGroundColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                            blackColor.withOpacity(0.30),
+                                            blurRadius: 8,
+                                          ),
+                                        ],
+                                        border: Border.all(
+                                          color: brown743617,
+                                          width: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      controller.itemsData[index]
+                                      ["brand_name"],
+                                      textAlign: TextAlign.center,
+                                      style: commonTextStyle400(size: 16.0),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      controller.itemsData[index]["name"],
+                                      textAlign: TextAlign.center,
+                                      style: commonTextStyle400(size: 16.0),
+                                    ),
+                                    Text(
+                                      controller.itemsData[index]["price"],
+                                      textAlign: TextAlign.center,
+                                      style: commonTextStyle400(size: 16.0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Free global returns and pick up",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: commonTextStyle400(size: 16.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
               ),
-      ),
+            ),
+          ),
+        );
+      }
     );
   }
 
@@ -483,12 +497,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     );
   }
 
-  Widget addToCartButton({var context}) {
+  Widget addToCartButton({var context,String? title}) {
     return SizedBox(
       width: Get.width,
       height: 36,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: title == LanguageConstant.addTOCart.tr ? () {
           print("ProductType Is ${controller.product!.value.typeId}");
           if (controller.product!.value.typeId.toString() == "configurable") {
             controller.getGenerateCart(
@@ -513,6 +527,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
               "0",
             );
           }
+        }: (){
+
         },
         style: ElevatedButton.styleFrom(
           elevation: 1,
@@ -522,11 +538,12 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           ),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.shopping_cart, size: 15),
+            title == LanguageConstant.soldOut.tr ? Container(height: 0,width: 0,): const Icon(Icons.shopping_cart, size: 15),
+            SizedBox(width: title == LanguageConstant.soldOut.tr ? 0:10,),
             Text(
-              LanguageConstant.addTOCart.tr,
+              title!,
               style: commonTextStyle600(color: whiteColor),
             ),
           ],

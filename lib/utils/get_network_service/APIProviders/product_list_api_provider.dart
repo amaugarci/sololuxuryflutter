@@ -23,7 +23,7 @@ class ProductListProvider extends GetConnect implements IProductListProvider {
   @override
   Future<Response<ProductModel>> getProductListResponseProvider(
       {required String endPoint}) {
-    print("url -> " + httpClient.baseUrl.toString() + endPoint);
+    print("product list url -> " + httpClient.baseUrl.toString() + endPoint);
     httpClient.defaultDecoder = (val) => ProductModel.fromJson(val);
     return get(endPoint, headers: {
       "Content-type": "application/json",

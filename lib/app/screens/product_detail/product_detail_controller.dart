@@ -37,6 +37,7 @@ class ProductDetailController extends GetxController
   final sizeController = TextEditingController().obs;
   var slectSize = "".obs;
   var sizeList = [].obs;
+  RxBool isInStock = true.obs;
   // List sizeList = [];
 
   // SpecialSizeAPIRepository specialSizeAPIRepository;
