@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_poppins.dart';
+import 'package:solo_luxury/app/components/storage_constant.dart';
+import 'package:solo_luxury/app/db/shared_pref.dart';
 import 'package:solo_luxury/data/model/cart/cart_model.dart';
 import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
@@ -55,6 +57,9 @@ class CartController extends GetxController {
         getCartToken.value = await RecommendedProductsAPIRepository()
             .getGenerateCartApiResponse(
                 localStore.customerToken, AppConstants.guestCreateCart);
+        await setPrefStringValue(
+            StorageConstant.guestauthToken, getCartToken.value.toString());
+        await localStore.getGuestToken();
         print("Generate ${getCartId.value}");
         if (getCartToken.value != null) {
           getFaqContent(2);
