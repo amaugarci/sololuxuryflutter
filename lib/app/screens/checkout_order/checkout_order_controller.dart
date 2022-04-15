@@ -341,7 +341,7 @@ class CheckoutOrderController extends GetxController {
   }
 
   //Create Order Api Calling ----------------------------
-  postListForOrder(cartlist, method, paymentId, context) async {
+ Future<String> postListForOrder(cartlist, method, paymentId, context) async {
     // CartModel cartlist = cartList;
     var itemList = [];
     var shippingitemList = [];
@@ -361,7 +361,6 @@ class CheckoutOrderController extends GetxController {
       });
     }
     CartModel cartList = cartlist;
-
     for (var i in cartList.extensionAttributes!.shippingAssignments!) {
       shippingitemList.add({
         "shipping": {
@@ -384,7 +383,6 @@ class CheckoutOrderController extends GetxController {
         }
       });
     }
-
     print("Segment File Lis Is ${shippingitemList}");
     var postList = {
       "entity": {
@@ -437,29 +435,29 @@ class CheckoutOrderController extends GetxController {
         }
       }
     };
-
     print("Create Order Api List is ${postList}");
     var postCreateOrder = await checkoutOrderAPIRepository
         .postCreateOrderAPIResponse(json.encode(postList));
+    print("this is $postCreateOrder");
     //print("Create Order Api Response $postCreateOrder");
-    if (postCreateOrder != null) {
-      AwesomeDialog(
-        context: context,
-        dialogType: DialogType.SUCCES,
-        animType: AnimType.BOTTOMSLIDE,
-        title: 'Success',
-        desc: 'Your Order is Succressfully.',
-        btnOkOnPress: () {
-          Navigator.pop(context);
-        },
-      )..show();
-    }
+    // if (postCreateOrder != null) {
+    //   AwesomeDialog(
+    //     context: context,
+    //     dialogType: DialogType.SUCCES,
+    //     animType: AnimType.BOTTOMSLIDE,
+    //     title: 'Success',
+    //     desc: 'Your Order is Succressfully.',
+    //     btnOkOnPress: () {
+    //       Navigator.pop(context);
+    //     },
+    //   )..show();
+    // }
+    return postCreateOrder['entity_id'].toString();
   }
 
 //Creaate Guest Order Api
-  postGuestOrderForOrder(cartlist, method, paymentId, context) async {
+ Future postGuestOrderForOrder(cartlist, method, paymentId, context) async {
     // CartModel cartlist = cartList;
-
     var podLIst = {
       "paymentMethod": {"method": "checkmo"}
     };
@@ -469,18 +467,20 @@ class CheckoutOrderController extends GetxController {
         await checkoutOrderAPIRepository.postGuestCreateOrderAPIResponse(
             json.encode(podLIst), localStore.guestToken.toString());
 
-    if (postCreateOrder != null) {
-      AwesomeDialog(
-        context: context,
-        dialogType: DialogType.SUCCES,
-        animType: AnimType.BOTTOMSLIDE,
-        title: 'Success',
-        desc: 'Your Order is Succressfully.',
-        btnOkOnPress: () {
-          Navigator.pop(context);
-        },
-      )..show();
-    }
+    print("this is postCreateOrder -> ${postCreateOrder.runtimeType}");
+    // if (postCreateOrder != null) {
+    //   AwesomeDialog(
+    //     context: context,
+    //     dialogType: DialogType.SUCCES,
+    //     animType: AnimType.BOTTOMSLIDE,
+    //     title: 'Success',
+    //     desc: 'Your Order is Succressfully.',
+    //     btnOkOnPress: () {
+    //       Navigator.pop(context);
+    //     },
+    //   )..show();
+    // }
+    return postCreateOrder;
   }
   //Add Address PopUP
   // Rx<AddressListModel> getAdressList = AddressListModel().obs;

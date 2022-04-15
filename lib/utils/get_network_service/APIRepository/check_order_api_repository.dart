@@ -145,7 +145,7 @@ class CheckoutOrderAPIRepository implements ICheckoutOrderRepository {
   Future<dynamic> postCreateOrderAPIResponse(String requestJson) async {
     Response createOrderApi = await provider.postCreateOrderResponseProvider(
         endPoint: AppConstants.createOrderEndPoint, requestJson: requestJson);
-    print("Response IS $createOrderApi");
+    print("Response IS ${createOrderApi.body}");
     if (createOrderApi != null) {
       print("response.statusCode -> ");
       print(createOrderApi.statusCode);

@@ -12,6 +12,7 @@ import 'package:solo_luxury/app/utils/app_asset.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/checkout_order/estimate_shipping_method_model.dart';
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 import '../../../data/model/checkout_order/multi_address_model.dart';
@@ -2271,7 +2272,7 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                   child: CommonButton(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     buttonType: ButtonType.ElevatedButton,
-                    onPressed: () {
+                    onPressed: () async {
                       // if (controller.formKey.currentState!.validate()) {
                       //   // If the form is valid, display a snackbar. In the real world,
                       //   // you'd often call a server or save the information in a database.
@@ -2281,12 +2282,13 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       // }
 
                       // if (controller.formKey.currentState!.validate()) {
+                      String? response;
                       if (controller.selectedPaymentIndex.value == 1) {
                         if (localStore.customerToken.toString() == "") {
-                          controller.postGuestOrderForOrder(
+                          response =  await controller.postGuestOrderForOrder(
                               cartlist, "CaseOnDelivery", "", context);
                         } else {
-                          controller.postListForOrder(
+                           response = await controller.postListForOrder(
                               cartlist, "CaseOnDelivery", "", context);
                         }
                       } else if (controller.selectedPaymentIndex.value == 3) {
@@ -2317,9 +2319,11 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           "lineItems": [lineItems],
                         };
                         print("Payment -> $paymentRequest");
-                        controller.responseFromNativeCode(
-                            cartlist, context, paymentRequest);
+                        controller.responseFromNativeCode(cartlist, context, paymentRequest);
                       }
+
+                      print("this is order id -> ${response}");
+                      Get.toNamed(RoutesConstants.orderConfirmScreen,arguments: response);
                       // ScaffoldMessenger.of(Get.context!).showSnackBar(
                       //   const SnackBar(content: Text('Processing Data')),
                       // );
