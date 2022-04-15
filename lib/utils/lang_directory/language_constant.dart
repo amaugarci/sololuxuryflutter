@@ -70,6 +70,7 @@ class LanguageConstant {
   static const String size = "size";
   static const String knowMore = "knowMore";
   static const String addTOCart = "addTOCart";
+  static const String soldOut = "soldOut";
   static const String addToWishlist = "addToWishlist";
   static const String whyVeraLusso = "whyVeraLusso";
   static const String recommendation = "recommendation";

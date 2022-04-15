@@ -36,6 +36,7 @@ const Map<String, String> en = {
   "size": "Size",
   "subTotal": "Sub Total",
   "addTOCart": "ADD TO CART",
+  "soldOut" : "SOLD OUT",
   "estimatedTotal": "Estimated Total",
   "addToWishlist": "ADD TO WISHLIST",
   "whyVeraLusso": "WHY VERALUSSO",
