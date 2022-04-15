@@ -131,12 +131,6 @@ class CountryController extends GetxController {
     }
   }
 
-  showFunction() {
-    // for(var i in storeWebsitesList){
-    // if(i.)
-    // }
-  }
-
   Future<void> setLanguageAndCurrency(
       StoreWebSitesModel item, bool isUpdate) async {
     print(
@@ -215,25 +209,28 @@ class CountryController extends GetxController {
         print("Here is Call${item.code}");
         print("Here is Call${localStore.currentCode}");
         isChangeCurrency.value = false;
-        showDialog(
-          context: Get.context!,
-          builder: (BuildContext context) {
-            return Dialog(
-                backgroundColor: Colors.transparent,
-                insetPadding: const EdgeInsets.all(10),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    Container(
-                        width: double.infinity,
-                        color: appSubscribeButtonColor,
-                        padding: const EdgeInsets.all(20.0),
-                        child: dialogContent(item)),
-                  ],
-                ));
-          },
-        );
+        Future.delayed(Duration(milliseconds: 10), () async {
+          print("Here is Call222");
+          await showDialog(
+            context: Get.context!,
+            builder: (BuildContext context) {
+              return Dialog(
+                  backgroundColor: Colors.transparent,
+                  insetPadding: const EdgeInsets.all(10),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: double.infinity,
+                          color: appSubscribeButtonColor,
+                          padding: const EdgeInsets.all(20.0),
+                          child: dialogContent(item)),
+                    ],
+                  ));
+            },
+          );
+        });
       }
       print("LocalMap -> ${jsonEncode(localStoreModel)}");
       await getCurrentLanguageCurrency();
