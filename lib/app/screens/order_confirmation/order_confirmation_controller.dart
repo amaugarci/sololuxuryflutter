@@ -8,6 +8,7 @@ class OrderConfirmationController extends GetxController {
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
   RxList<Items> items = RxList<Items>();
   var stringParams = <String, dynamic>{};
+  RxString orderId = "".obs;
   final OrderConfirmationApiRepository orderConfirmationApiRepository;
 
   OrderConfirmationController({required this.orderConfirmationApiRepository});
@@ -15,15 +16,19 @@ class OrderConfirmationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getOrderConfirmationData();
+    orderId.value = Get.arguments;
+    if(orderId.value != null){
+      getOrderConfirmationData(orderId: orderId.value);
+    }
   }
 
   void getOrderConfirmationData({var orderId}) async {
     stringParams = await orderConfirmationApiRepository
-        .getOrderConfirmationApiResponse(orderId: "1");
+        .getOrderConfirmationApiResponse(orderId: orderId);
     final subList = stringParams["items"];
+    print("this is subList -> $subList");
     items.value = List<Items>.from(
         subList.map((countryList) => Items.fromJson(countryList)));
-    print("DATADATTATATTA=======${items[0].name}");
+   // print("DATADATTATATTA=======${items[0].name}");
   }
 }
