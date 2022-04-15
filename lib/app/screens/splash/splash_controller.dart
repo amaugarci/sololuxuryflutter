@@ -35,7 +35,8 @@ class SplashController extends GetxController {
       Get.put(CountryController(
           countryAPIRepository:
               CountryAPIRepository(countryAPIProvider: CountryAPIProvider()),
-          countryCode: countryCode));
+          countryCode: countryCode,
+          selectPopUp: "1"));
     }
     _navigate();
   }
