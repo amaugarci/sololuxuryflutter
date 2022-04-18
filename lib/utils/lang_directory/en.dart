@@ -322,6 +322,7 @@ const Map<String, String> en = {
   "findBrandsText": "Find Brands...",
   "sizeChartText": "SIZE CHART",
   "specialSizeRequestsText": "Special Size Requests",
+  "notifyMe": "Notify Me When Available",
   "specialSizeEnterEmailText": "Enter Email",
   "specialSizeSelectSizeText": "Select Size",
   "specialSizeSubmitText": "Submit",

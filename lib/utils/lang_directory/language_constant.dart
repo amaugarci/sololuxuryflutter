@@ -334,6 +334,7 @@ class LanguageConstant {
   static const String youaddWishEndText = "youaddWishEndText";
   static const String viewWishListText = "viewWishListText";
   static const String specialSizeRequestsText = "specialSizeRequestsText";
+  static const String notifyMe = "notifyMe";
   static const String specialSizeEnterEmailText = "specialSizeEnterEmailText";
   static const String specialSizeSelectSizeText = "specialSizeSelectSizeText";
   static const String specialSizeSubmitText = "specialSizeSubmitText";

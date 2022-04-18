@@ -11,6 +11,7 @@ import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import '../../../data/model/Product/product_model.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/app_routes.dart';
+import '../../components/common_widget/common_text_poppins.dart';
 
 // ignore: must_be_immutable
 class ProductDetailScreen extends GetView<ProductDetailController> {
@@ -22,7 +23,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
     print("product detail :- ${controller.product!.value}");
     return Obx(
       () {
-        bool isInStock = controller.product!.value.extensionAttributes == null ? false: controller.product!.value.extensionAttributes!.stockItem!.isInStock!;
+        bool isInStock = controller.product!.value.extensionAttributes == null ? false: !controller.product!.value.extensionAttributes!.stockItem!.isInStock!;
         return Scaffold(
           backgroundColor: backGroundColor,
           appBar: commonAppbar(),
@@ -166,8 +167,26 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       const SizedBox(width: 25),
                       Expanded(
                         child: !isInStock ? InkWell(
-                          onTap: (){
-
+                          onTap: () async {
+                            await localStore.getUserDetail();
+                            print(localStore.userDetail.email);
+                            print(controller.sizeList);
+                            if(localStore.customerToken == "" && localStore.userDetail.email == null){
+                              controller.showDialogBoxOpen(context,false);
+                            }else{
+                              if(controller.product!.value.typeId == 'configurable'){
+                                if(controller.sizeList.isNotEmpty){
+                                  controller.postNotifyMe(controller.product!.value.sku!, localStore.userDetail.email!,productSize: controller.sizeList.first['value'] != "Missing" ? int.parse( controller.sizeList.first['label']) : 0);
+                                }
+                                else{
+                                  ScaffoldMessenger.of(Get.context!).showSnackBar(
+                                    SnackBar(content: CommonTextPoppins("Please choose an option")),
+                                  );
+                                }
+                              }else{
+                                controller.postNotifyMe(controller.product!.value.sku!, localStore.userDetail.email!);
+                              }
+                            }
                           },
                           child: const Text("Notify me when this product is in stock ",style: TextStyle(
                               decoration: TextDecoration.underline,
@@ -207,7 +226,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                       children: [
                         SizedBox(
                           height: 290,
-                          child: controller.itemsData[0]["image_url"] == null ? Center(
+                          child: controller.itemsData.isEmpty ? Container():controller.itemsData[0]["image_url"] == null ? Center(
                             child: Text(controller.itemsData[0]["message"]),
                           ) :ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -699,11 +718,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
           ),
           iconEnabledColor: Colors.transparent,
           onChanged: (valueList) {
-            print("Val");
+            print("Val $valueList");
             controller.sizeList.clear();
             controller.sizeList.add(valueList);
             if (controller.sizeList.first['value'] == "Missing") {
-              controller.showDialogBoxOpen(context);
+              controller.showDialogBoxOpen(context,true);
             }
           },
         ),
