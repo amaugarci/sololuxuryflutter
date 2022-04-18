@@ -235,9 +235,13 @@ class BrandListPage extends GetView<BrandController> {
                   : ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      itemCount: controller.filtersearchAlllist.length > 0
-                          ? controller.filtersearchAlllist.length
-                          : controller.filterAlllist.length,
+                      itemCount: controller.getsearchList.toString() == "[]"
+                          ? controller.filtersearchAlllist.length > 0
+                              ? controller.filtersearchAlllist.length
+                              : controller.filterAlllist.length
+                          : controller.filtersearchAlllist.length > 0
+                              ? controller.filtersearchAlllist.length
+                              : controller.filterAlllist.length,
                       itemBuilder: (BuildContext context, int index) {
                         final brandsListCapital =
                             controller.filtersearchAlllist.length > 0

@@ -40,12 +40,14 @@ class OrderDetailsController extends GetxController {
       ),
     );
     print("Reason list Get $returnReasonList");
+    print("Reason list Get ${returnReasonList}");
     isLoading.value = false;
   }
 
   getOrderTrackingList() async {
     isLoading.value = true;
     print("getStoreDataFromApi -> ");
+    print("getStoreDataFromApi -> ${argumentData[1]!.incrementId.toString()}");
     var returnReasonListData = jsonDecode(await myOrdersAPIRepository
         .getOrderTeakingResponse(argumentData[1]!.incrementId.toString()));
     orderTrackingList.value = List<OrderTrackingModel>.from(

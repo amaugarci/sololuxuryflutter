@@ -297,7 +297,7 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                           Divider(),
                           GestureDetector(
                             onTap: () {
-                              Get.toNamed(RoutesConstants.productsScreen);
+                              Get.toNamed(RoutesConstants.searchScreen);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -596,7 +596,8 @@ class MyAccountMenuPage extends GetView<MyAccountController> {
                                         StorageConstant.authToken);
                                     await removePrefValue(
                                         localStore.customerToken);
-                                    await removePrefValue(StorageConstant.userDetail);
+                                    await removePrefValue(
+                                        StorageConstant.userDetail);
                                     Get.offAndToNamed(
                                         RoutesConstants.loginScreen);
                                     // showTitleDialog1(context);

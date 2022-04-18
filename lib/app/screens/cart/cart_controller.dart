@@ -115,7 +115,34 @@ class CartController extends GetxController {
     print("DeleteProduct IS  Is $deleteProduct");
     // cartItemNumber.value = 0;
     cartItemPrice.value = 0;
-    getFaqContent(getValue);
+    getFaqContent2(getValue);
+  }
+
+  void getFaqContent2(getValue) async {
+    // isLoading.value = true;
+    var cartData;
+    if (getValue == 1) {
+      cartData = await cartGetDataAPIRepository
+          .getCartGetDataApiResponse(AppConstants.cartGetData);
+    } else {
+      cartData = await cartGetDataAPIRepository.getCartGetDataApiResponse(
+          AppConstants.guestCreateCart +
+              "/${localStore.guestToken.toString()}");
+      ;
+    }
+    cartModel?.value = CartModel.fromJson(json.decode(cartData));
+    // cartItemNumber.addAll(ca)
+    print("CartModel Is $cartModel");
+    cartModel!.value.items.forEach((i) {
+      var total = i.price * i.qty;
+      subtotal.value += int.parse(subtotal.value.toString()) +
+          num.parse(total.toString()).round();
+    });
+
+    // cartItemPrice.value = cartModel!.value.items[0].price;
+    // cartItemNumber.value = cartModel!.value.items[0].qty;
+    // print( "\$${cartModel!.value.items[0].qty}");
+    // isLoading.value = false;
   }
 
   //Add TO Cart Api Calling
@@ -127,16 +154,19 @@ class CartController extends GetxController {
         "quote_id": "${localStore.guestToken.toString()}"
       }
     };
+
     var addTocartData;
     if (localStore.customerToken.toString() != "") {
       print("Customer Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .postAddTOCartProductResponse(passedAddTocart);
+      getFaqContent2(1);
     } else {
       print("Guest Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .guestPostAddTOCartProductResponse(
               passedAddTocart, "${localStore.guestToken.toString()}");
+      getFaqContent2(0);
     }
     print("Add To Cart Data ${addTocartData}");
     if (addTocartData['message'] != null) {
@@ -163,11 +193,13 @@ class CartController extends GetxController {
       print("Customer Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .postAddTOCartProductResponse(passedAddTocart);
+      getFaqContent2(1);
     } else {
       print("Guest Here Post");
       addTocartData = await RecommendedProductsAPIRepository()
           .guestPostAddTOCartProductResponse(
               passedAddTocart, "${localStore.guestToken.toString()}");
+      getFaqContent2(0);
     }
     // var addTocartData = await RecommendedProductsAPIRepository()
     //     .postAddTOCartProductResponse(passedAddTocart);

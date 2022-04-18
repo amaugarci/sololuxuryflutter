@@ -195,7 +195,7 @@ class CartScreen extends GetView<CartController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "${localStore.getPriceWithSymbol(controller.cartModel!.value.items[index].price.toString())}",
+                                  "${localStore.getRegularPriceWithCurrency(controller.cartModel!.value.items[index].price.toString(), controller.cartModel!.value.items[index].price.toString())}",
                                   style: textStyleUtils400(size: 16.0),
                                 ),
                                 Row(
@@ -291,7 +291,7 @@ class CartScreen extends GetView<CartController> {
                                 style: textStyleUtils600(size: 22.0),
                               ),
                               Text(
-                                "${localStore.getPriceWithSymbol(controller.subtotal.value.toString())}",
+                                "${localStore.getRegularPriceWithCurrency(controller.subtotal.value.toString(), controller.subtotal.value.toString())}",
                                 style: TextStyle(fontSize: 18),
                               )
                               // cartPrice(index),
@@ -315,7 +315,10 @@ class CartScreen extends GetView<CartController> {
                                 style: textStyleUtils600(size: 22.0),
                               ),
                               Text(
-                                "${localStore.getPriceWithSymbol(0.0.toString())}",
+                                "${localStore.getRegularPriceWithCurrency(
+                                  0.0.toString(),
+                                  0.0.toString(),
+                                )}",
                                 style: textStyleUtils400(size: 18.0),
                               ),
                             ],
@@ -418,7 +421,7 @@ class CartScreen extends GetView<CartController> {
   cartPrice(index) {
     return Obx(
       () => Text(
-        "${localStore.getPriceWithSymbol((controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price).toString())}",
+        "${localStore.getRegularPriceWithCurrency((controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price).toString(), (controller.cartModel!.value.items[index].qty * controller.cartModel!.value.items[index].price).toString())}",
         style: textStyleUtils400(size: 18.0),
       ),
     );

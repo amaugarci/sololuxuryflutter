@@ -5,6 +5,7 @@ import 'package:solo_luxury/app/components/common_widget/common_button.dart';
 import 'package:solo_luxury/app/components/common_widget/common_text_field_open_sans.dart';
 import 'package:solo_luxury/app/screens/wishlist/wishlist_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
@@ -148,7 +149,7 @@ class MyWishListPage extends GetView<WishlistController> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '\$ ' + "${item.product!.price}",
+                              "${localStore.getRegularPriceWithCurrency(item.product!.price.toStringAsFixed(2), item.product!.price!)}",
                               style: commonTextStyle600(),
                             ),
                           ),

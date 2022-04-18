@@ -141,7 +141,7 @@ class ProductDetailController extends GetxController
     } catch (e) {
       print("Here INside Size");
       print("CONTROLLER DATA 111==============$e");
-      isLoading(false);
+      isLoading(true);
     }
   }
 
@@ -301,26 +301,31 @@ class ProductDetailController extends GetxController
     }
   }
 
-  postNotifyMe (String productSkuId,String email, {int? productSize})async{
+  postNotifyMe(String productSkuId, String email, {int? productSize}) async {
     print("productSkuId ==> $productSkuId");
     print("email ==> $email");
     print("productSize ==> $productSize");
-    Map<String,Map<String,dynamic>> bodyData = {};
-    if(productSize == null){
-      bodyData=  {"notifymeForm": {
-        "email": email,
-        "product_sku": productSkuId,
-      }};
-    }else{
-      bodyData = {"notifymeForm": {
-        "email": email,
-        "product_sku": productSkuId,
-        "product_size": productSize
-      }};
+    Map<String, Map<String, dynamic>> bodyData = {};
+    if (productSize == null) {
+      bodyData = {
+        "notifymeForm": {
+          "email": email,
+          "product_sku": productSkuId,
+        }
+      };
+    } else {
+      bodyData = {
+        "notifymeForm": {
+          "email": email,
+          "product_sku": productSkuId,
+          "product_size": productSize
+        }
+      };
     }
-   var data  =  await RecommendedProductsAPIRepository().postNotifyMeReq(bodyData);
-      print("this is revert data from notify me :- $data");
-    if(data["message"] != null){
+    var data =
+        await RecommendedProductsAPIRepository().postNotifyMeReq(bodyData);
+    print("this is revert data from notify me :- $data");
+    if (data["message"] != null) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         SnackBar(content: CommonTextPoppins(data["message"])),
       );
@@ -626,7 +631,7 @@ class ProductDetailController extends GetxController
   // }
 
   //Missing SIze Dialog Merge
-  showDialogBoxOpen(context,bool fromSpecialSize) {
+  showDialogBoxOpen(context, bool fromSpecialSize) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -657,7 +662,9 @@ class ProductDetailController extends GetxController
                       color: Colors.transparent,
                     ),
                     Text(
-                      fromSpecialSize? LanguageConstant.specialSizeRequestsText.tr : LanguageConstant.notifyMe.tr,
+                      fromSpecialSize
+                          ? LanguageConstant.specialSizeRequestsText.tr
+                          : LanguageConstant.notifyMe.tr,
                       style: const TextStyle(
                           color: appColor, fontWeight: FontWeight.w500),
                     ),
@@ -725,117 +732,135 @@ class ProductDetailController extends GetxController
                   ),
                 ),
                 const SizedBox(height: 10.0),
-               fromSpecialSize ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height / 15.6,
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(0.0),
-                      border:
-                          Border.all(color: const Color(0xFFDEC5B9), width: 1),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                        items: sizeListData
-                            .map(
-                              (value) => DropdownMenuItem(
-                                child: Text(value),
-                                value: value,
+                fromSpecialSize
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 15.6,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(0.0),
+                            border: Border.all(
+                                color: const Color(0xFFDEC5B9), width: 1),
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              items: sizeListData
+                                  .map(
+                                    (value) => DropdownMenuItem(
+                                      child: Text(value),
+                                      value: value,
+                                    ),
+                                  )
+                                  .toList(),
+                              isExpanded: true,
+                              hint: slectSize.toString() == ""
+                                  ? Text(
+                                      LanguageConstant
+                                          .specialSizeSelectSizeText.tr,
+                                      style: const TextStyle(
+                                          color: Color(0xFF6B6B6B)),
+                                    )
+                                  : Text(
+                                      "${slectSize}",
+                                      style: const TextStyle(
+                                          color: Color(0xFF6B6B6B)),
+                                    ),
+                              icon: const Icon(
+                                Icons.keyboard_arrow_down,
+                                size: 22,
+                                color: appColor,
                               ),
-                            )
-                            .toList(),
-                        isExpanded: true,
-                        hint: slectSize.toString() == ""
-                            ? Text(
-                                LanguageConstant.specialSizeSelectSizeText.tr,
-                                style:
-                                    const TextStyle(color: Color(0xFF6B6B6B)),
-                              )
-                            : Text(
-                                "${slectSize}",
-                                style:
-                                    const TextStyle(color: Color(0xFF6B6B6B)),
-                              ),
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 22,
-                          color: appColor,
+                              iconEnabledColor: Colors.transparent,
+                              onChanged: (value) {
+                                slectSize.value = value.toString();
+                              },
+                            ),
+                          ),
                         ),
-                        iconEnabledColor: Colors.transparent,
-                        onChanged: (value) {
-                          slectSize.value = value.toString();
-                        },
-                      ),
-                    ),
-                  ),
-                ) : !fromSpecialSize && product!.value.typeId == 'configurable' ?  Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                 child: Container(
-                   height: MediaQuery.of(context).size.height / 15.6,
-                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                   width: double.infinity,
-                   decoration: BoxDecoration(
-                     color: Colors.transparent,
-                     borderRadius: BorderRadius.circular(0.0),
-                     border:
-                     Border.all(color: const Color(0xFFDEC5B9), width: 1),
-                   ),
-                   child: DropdownButtonHideUnderline(
-                     child: DropdownButton(
-                       items: sizeListData
-                           .map(
-                             (value) => DropdownMenuItem(
-                           child: Text(value),
-                           value: value,
-                         ),
-                       )
-                           .toList(),
-                       isExpanded: true,
-                       hint: slectSize.toString() == ""
-                           ? Text(
-                         LanguageConstant.specialSizeSelectSizeText.tr,
-                         style:
-                         const TextStyle(color: Color(0xFF6B6B6B)),
-                       )
-                           : Text(
-                         "${slectSize}",
-                         style:
-                         const TextStyle(color: Color(0xFF6B6B6B)),
-                       ),
-                       icon: const Icon(
-                         Icons.keyboard_arrow_down,
-                         size: 22,
-                         color: appColor,
-                       ),
-                       iconEnabledColor: Colors.transparent,
-                       onChanged: (value) {
-                         slectSize.value = value.toString();
-                       },
-                     ),
-                   ),
-                 ),
-               ) :Container(height: 0,width: 0,) ,
+                      )
+                    : !fromSpecialSize &&
+                            product!.value.typeId == 'configurable'
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height / 15.6,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(0.0),
+                                border: Border.all(
+                                    color: const Color(0xFFDEC5B9), width: 1),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  items: sizeListData
+                                      .map(
+                                        (value) => DropdownMenuItem(
+                                          child: Text(value),
+                                          value: value,
+                                        ),
+                                      )
+                                      .toList(),
+                                  isExpanded: true,
+                                  hint: slectSize.toString() == ""
+                                      ? Text(
+                                          LanguageConstant
+                                              .specialSizeSelectSizeText.tr,
+                                          style: const TextStyle(
+                                              color: Color(0xFF6B6B6B)),
+                                        )
+                                      : Text(
+                                          "${slectSize}",
+                                          style: const TextStyle(
+                                              color: Color(0xFF6B6B6B)),
+                                        ),
+                                  icon: const Icon(
+                                    Icons.keyboard_arrow_down,
+                                    size: 22,
+                                    color: appColor,
+                                  ),
+                                  iconEnabledColor: Colors.transparent,
+                                  onChanged: (value) {
+                                    slectSize.value = value.toString();
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            height: 0,
+                            width: 0,
+                          ),
                 const SizedBox(height: 25.0),
                 InkWell(
-                  onTap: fromSpecialSize ?() {
-                    RecommendedProductsAPIRepository().postspecialSizeResponse(
-                        website: "www.sololuxury.com",
-                        email: emailController.value.text,
-                        sku: product!.value.sku.toString());
-                    Navigator.pop(context);
-                    emailController.value.clear();
-                  }: (){
-                    if(product!.value.typeId == 'configurable'){
-                      postNotifyMe(product!.value.sku!,  emailController.value.text, productSize: int.parse(slectSize.value));
-                    }else{
-                      postNotifyMe(product!.value.sku!,  emailController.value.text);
-                    }
-                    Navigator.pop(context);
-                    emailController.value.clear();
-                  },
+                  onTap: fromSpecialSize
+                      ? () {
+                          RecommendedProductsAPIRepository()
+                              .postspecialSizeResponse(
+                                  website: "www.sololuxury.com",
+                                  email: emailController.value.text,
+                                  sku: product!.value.sku.toString());
+                          Navigator.pop(context);
+                          emailController.value.clear();
+                        }
+                      : () {
+                          if (product!.value.typeId == 'configurable') {
+                            postNotifyMe(
+                                product!.value.sku!, emailController.value.text,
+                                productSize: int.parse(slectSize.value));
+                          } else {
+                            postNotifyMe(product!.value.sku!,
+                                emailController.value.text);
+                          }
+                          Navigator.pop(context);
+                          emailController.value.clear();
+                        },
                   child: Text(
                     LanguageConstant.specialSizeSubmitText.tr,
                     style: const TextStyle(
@@ -854,6 +879,4 @@ class ProductDetailController extends GetxController
       },
     );
   }
-
-
 }

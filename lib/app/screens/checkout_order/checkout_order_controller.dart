@@ -12,6 +12,7 @@ import 'package:solo_luxury/data/model/checkout_order/multi_address_model.dart'
     as MultiAddress;
 import 'package:solo_luxury/data/model/checkout_order/shipping_information_model.dart';
 import 'package:solo_luxury/data/model/country/country_model.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/check_order_api_repository.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
@@ -25,7 +26,6 @@ import '../../../utils/app_constants.dart';
 import '../home/home_controller.dart';
 
 class CheckoutOrderController extends GetxController {
-
   Rx<ShippingInformationModel>? shipInfoModel = ShippingInformationModel().obs;
   RxList? estimatesList = [].obs;
   Rx<MultiAddressModel>? multiAddressModel = MultiAddressModel().obs;
@@ -222,6 +222,31 @@ class CheckoutOrderController extends GetxController {
     // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
   }
 
+  getAddAddresssEstimateAndShipInformationFromApi() async {
+    var data = await checkoutOrderAPIRepository.getMultiAddressAPIResponse();
+    if (data != null) {
+      String dataString = jsonEncode(data);
+      print("dataString -> ${dataString}");
+      multiAddressModel!.value =
+          MultiAddressModel.fromJson(json.decode(dataString));
+      billingMultiAddressModel!.value =
+          MultiAddressModel.fromJson(json.decode(dataString));
+      if (multiAddressModel != null) {
+        if (multiAddressModel!.value.addresses!.isNotEmpty) {
+          estimateAndShippingAPICall(
+            multiAddressModel!.value.addresses!.first,
+            multiAddressModel!.value.addresses!.first,
+          );
+          if (multiAddressModel!.value.addresses!.isNotEmpty) {
+            shippingAddress = multiAddressModel!.value.addresses!.first;
+          }
+        }
+      }
+      // checkEnablePlaceOrder();
+    }
+    // shipInfoModel!.value = await NetworkRepository().postShippingInformation();
+  }
+
   estimateAndShippingAPICall(
     MultiAddress.Address address,
     MultiAddress.Address billingAddress,
@@ -311,8 +336,8 @@ class CheckoutOrderController extends GetxController {
       Map<String, dynamic> map = jsonDecode(response);
       print("result -> ${map.toString()}");
       print("result -> ${map['resultCode']}");
-      Get.snackbar("Authorised", "The payment was successful.",
-          backgroundColor: const Color(0xFF5EFF5B));
+      // Get.snackbar("Authorised", "The payment was successful.",
+      //     backgroundColor: const Color(0xFF5EFF5B));
     } on PlatformException catch (e) {
       response = "Failed to Invoke: '${e.message}'.";
     }
@@ -327,6 +352,8 @@ class CheckoutOrderController extends GetxController {
             cartData, "adyen_cc", "${map.toString()}", context);
       }
     } else {
+      // Get.toNamed(RoutesConstants.orderConfirmScreen,
+      //     arguments: postCreateOrder);
       AwesomeDialog(
         context: context,
         dialogType: DialogType.ERROR,
@@ -341,7 +368,8 @@ class CheckoutOrderController extends GetxController {
   }
 
   //Create Order Api Calling ----------------------------
- Future<String> postListForOrder(cartlist, method, paymentId, context) async {
+//Create Order Api Calling ----------------------------
+  postListForOrder(cartlist, method, paymentId, context) async {
     // CartModel cartlist = cartList;
     var itemList = [];
     var shippingitemList = [];
@@ -361,28 +389,30 @@ class CheckoutOrderController extends GetxController {
       });
     }
     CartModel cartList = cartlist;
+
     for (var i in cartList.extensionAttributes!.shippingAssignments!) {
       shippingitemList.add({
         "shipping": {
           "address": {
             "address_type": "shipping",
-            "city": "${i.shipping!.address!.city}",
+            "city": "${shippingAddress.city}",
             "company": "Rbj",
-            "country_id": "${i.shipping!.address!.countryId}",
+            "country_id": "${shippingAddress.countryId}",
             "email": "${i.shipping!.address!.email}",
-            "firstname": "${i.shipping!.address!.firstname}",
-            "lastname": "${i.shipping!.address!.lastname}",
-            "postcode": "${i.shipping!.address!.postcode}",
+            "firstname": "${shippingAddress.firstname}",
+            "lastname": "${shippingAddress.lastname}",
+            "postcode": "${shippingAddress.postcode}",
             "region": "${i.shipping!.address!.region}",
             "region_code": "${i.shipping!.address!.regionCode}",
             "region_id": "${i.shipping!.address!.regionId}",
-            "street": [23],
-            "telephone": "${i.shipping!.address!.telephone}"
+            "street": shippingAddress.street,
+            "telephone": "${shippingAddress.telephone}"
           },
           "method": "flatrate_flatrate"
         }
       });
     }
+
     print("Segment File Lis Is ${shippingitemList}");
     var postList = {
       "entity": {
@@ -413,21 +443,21 @@ class CheckoutOrderController extends GetxController {
         "billing_address": {
           "customer_address_id": "${cartlist.billingAddress!.id}",
           "address_type": "shipping",
-          "city": "${cartlist.billingAddress!.city}",
+          "city": "${billingAddress.city}",
           "company": "Rbj",
-          "country_id": "${cartlist.billingAddress!.countryId}",
+          "country_id": "${billingAddress.countryId}",
           "email": "${cartlist.billingAddress!.email}",
-          "firstname": "${cartlist.billingAddress!.firstname}",
-          "lastname": "${cartlist.billingAddress!.lastname}",
-          "postcode": "${cartlist.billingAddress!.postcode}".toString(),
+          "firstname": "${billingAddress.firstname}",
+          "lastname": "${billingAddress.lastname}",
+          "postcode": "${billingAddress.postcode}".toString(),
           "region": "${cartlist.billingAddress!.region}",
           "region_code": "${cartlist.billingAddress!.regionCode}",
           "region_id": "553",
-          "street": [23],
-          "telephone": "${cartlist.billingAddress!.telephone}"
+          "street": billingAddress.street,
+          "telephone": "${billingAddress.telephone}"
         },
         "payment": {
-          "method": "CaseOnDevlivery",
+          "method": "$method",
           "additional_data": "${paymentId}".toString()
         },
         "extension_attributes": {
@@ -435,28 +465,17 @@ class CheckoutOrderController extends GetxController {
         }
       }
     };
+
     print("Create Order Api List is ${postList}");
     var postCreateOrder = await checkoutOrderAPIRepository
         .postCreateOrderAPIResponse(json.encode(postList));
-    print("this is $postCreateOrder");
-    //print("Create Order Api Response $postCreateOrder");
-    // if (postCreateOrder != null) {
-    //   AwesomeDialog(
-    //     context: context,
-    //     dialogType: DialogType.SUCCES,
-    //     animType: AnimType.BOTTOMSLIDE,
-    //     title: 'Success',
-    //     desc: 'Your Order is Succressfully.',
-    //     btnOkOnPress: () {
-    //       Navigator.pop(context);
-    //     },
-    //   )..show();
-    // }
+    Get.toNamed(RoutesConstants.orderConfirmScreen,
+        arguments: postCreateOrder['entity_id'].toString());
     return postCreateOrder['entity_id'].toString();
   }
 
 //Creaate Guest Order Api
- Future postGuestOrderForOrder(cartlist, method, paymentId, context) async {
+  Future postGuestOrderForOrder(cartlist, method, paymentId, context) async {
     // CartModel cartlist = cartList;
     var podLIst = {
       "paymentMethod": {"method": "checkmo"}
@@ -468,7 +487,10 @@ class CheckoutOrderController extends GetxController {
             json.encode(podLIst), localStore.guestToken.toString());
 
     print("this is postCreateOrder -> ${postCreateOrder.runtimeType}");
-    // if (postCreateOrder != null) {
+    if (postCreateOrder != null) {
+      Get.toNamed(RoutesConstants.orderConfirmScreen,
+          arguments: postCreateOrder);
+    }
     //   AwesomeDialog(
     //     context: context,
     //     dialogType: DialogType.SUCCES,
@@ -480,6 +502,7 @@ class CheckoutOrderController extends GetxController {
     //     },
     //   )..show();
     // }
+
     return postCreateOrder;
   }
   //Add Address PopUP
@@ -562,6 +585,7 @@ class CheckoutOrderController extends GetxController {
     dynamic authResponse = await checkoutOrderAPIRepository
         .postaddAddressApiResponse(json.encode(addaddressPost));
     printLog(authResponse);
+    getAddAddresssEstimateAndShipInformationFromApi();
     Navigator.pop(context);
 
     // checkLoginData(authResponse, context);

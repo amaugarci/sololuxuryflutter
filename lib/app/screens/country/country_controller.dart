@@ -209,7 +209,7 @@ class CountryController extends GetxController {
         print("Here is Call${item.code}");
         print("Here is Call${localStore.currentCode}");
         isChangeCurrency.value = false;
-        Future.delayed(Duration(milliseconds: 10), () async {
+        Future.delayed(Duration(milliseconds: 16), () async {
           print("Here is Call222");
           await showDialog(
             context: Get.context!,

@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 import "package:collection/collection.dart";
 import 'package:solo_luxury/data/model/brand_list/brand_model.dart';
 
@@ -250,7 +248,54 @@ class BrandController extends GetxController {
     print("Text is $text");
     getbrandList.forEach((userDetail) {
       if (userDetail.name.contains(text)) {
-        getsearchList.add(userDetail);
+        if (text.toString() == "") {
+          print("Null Data Here");
+          var filterAlllist1 = [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ].obs;
+          filterAlllist.clear();
+          filterAlllist.addAll(filterAlllist1);
+        } else {
+          print("Not Null Data Here");
+          filterAlllist.clear();
+          filterAlllist.add(text[0]);
+        }
+        // getsearchList.add(userDetail);
       }
     });
     getsearchList
@@ -336,7 +381,6 @@ class BrandController extends GetxController {
     }
   }
 
-
   //Loading Widgets
   setSerchwithAlphabatic(value) {
     isLoading.value = true;
@@ -349,7 +393,6 @@ class BrandController extends GetxController {
         filtersearchAlllist.add("$value");
         isLoading.value = false;
       });
-
     }
   }
 }

@@ -2285,10 +2285,10 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                       String? response;
                       if (controller.selectedPaymentIndex.value == 1) {
                         if (localStore.customerToken.toString() == "") {
-                          response =  await controller.postGuestOrderForOrder(
+                          response = await controller.postGuestOrderForOrder(
                               cartlist, "CaseOnDelivery", "", context);
                         } else {
-                           response = await controller.postListForOrder(
+                          response = await controller.postListForOrder(
                               cartlist, "CaseOnDelivery", "", context);
                         }
                       } else if (controller.selectedPaymentIndex.value == 3) {
@@ -2319,11 +2319,12 @@ class CheckoutOrderScreen extends GetView<CheckoutOrderController> {
                           "lineItems": [lineItems],
                         };
                         print("Payment -> $paymentRequest");
-                        controller.responseFromNativeCode(cartlist, context, paymentRequest);
+                        controller.responseFromNativeCode(
+                            cartlist, context, paymentRequest);
                       }
 
                       print("this is order id -> ${response}");
-                      Get.toNamed(RoutesConstants.orderConfirmScreen,arguments: response);
+                      // Get.toNamed(RoutesConstants.orderConfirmScreen,arguments: response);
                       // ScaffoldMessenger.of(Get.context!).showSnackBar(
                       //   const SnackBar(content: Text('Processing Data')),
                       // );
