@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:solo_luxury/app/screens/tickets/my_tickets_screen.dart';
 import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/country_api_repository.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/splash_api_repository.dart';
 
 import '../../../main.dart';
 import '../../../utils/get_network_service/APIProviders/country_api_provider.dart';
+import '../../services/notification_service.dart';
 import '../country/country_controller.dart';
 
 class SplashController extends GetxController {
@@ -23,13 +23,20 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
-  setLocalStore()async{
+  setLocalStore() async {
+    await getFCMToken();
+    await localStore.getToken();
+    localStore.checkGuest();
     bool isCall = await localStore.getStore();
     print("isCall -> $isCall");
-    if(!isCall){
+    if (!isCall) {
       String countryCode = await splashAPIRepository.getSplashAPIResponse();
       print("countryCode---> $countryCode");
-      Get.put(CountryController(countryAPIRepository: CountryAPIRepository(countryAPIProvider: CountryAPIProvider()),countryCode: countryCode));
+      Get.put(CountryController(
+          countryAPIRepository:
+              CountryAPIRepository(countryAPIProvider: CountryAPIProvider()),
+          countryCode: countryCode,
+          selectPopUp: "1"));
     }
     _navigate();
   }

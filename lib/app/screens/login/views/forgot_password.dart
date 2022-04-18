@@ -2,75 +2,125 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/components/behaviour.dart';
 import 'package:solo_luxury/app/components/input_text_field_widget.dart';
+import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_controller.dart';
 import 'package:solo_luxury/app/screens/login/controller/forgot_password_controller.dart';
+import 'package:solo_luxury/app/screens/login/views/forget_password_menu/forget_password_menu_screen.dart';
 
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+import 'package:solo_luxury/utils/validator.dart';
 
-class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
+import '../../../../utils/app_constants.dart';
+
+class ForgotPasswordScreen extends GetView<ForgetPasswordMenuController> {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-      backgroundColor: backGroundColor,
-      appBar: AppBar(
-        elevation: 0,
+    return Obx(
+      () => Scaffold(
         backgroundColor: backGroundColor,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.5),
-        child: ScrollConfiguration(
-          behavior: MyBehavior(),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 15),
-                Text(
-                  controller.screenTitle.value,
-                  style: const TextStyle(
-                    color: appColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+        body: Form(
+          key: controller.formKey.value,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 110),
+                    Text(
+                      controller.screenTitle.value,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: appColor,
+                        decorationThickness: 1.5,
+                        color: appColor,
+                        fontFamily: AppConstants.fontOpenSans,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      LanguageConstant.forgotYourPasswordDescriptionText.tr,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: blackColor,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: AppConstants.fontOpenSans,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    forgotPasswordTextField(),
+                    const SizedBox(height: 30),
+                    resetPasswordButton(context),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.arrow_back_ios,
+                          color: appColor,
+                          size: 15,
+                        ),
+                        const SizedBox(width: 1),
+                        Text(
+                          LanguageConstant.backText.tr,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: appColor,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: AppConstants.fontOpenSans,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  LanguageConstant.forgotYourPasswordDescriptionText.tr,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 12.5,
-                    height: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                forgotPasswordTextField(),
-                const SizedBox(height: 20),
-                resetPasswordButton(context),
-              ],
+              ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 
-
   Widget forgotPasswordTextField() {
-    return TextFormFieldWidget(
-      controller: null,
-      hintText: LanguageConstant.enterYourEmailText.tr,
+    return Container(
+      height: 40,
+      padding: EdgeInsets.only(left: 14),
+      decoration: BoxDecoration(
+        color: backGroundColor,
+        border: Border.all(color: appColor, width: 1),
+      ),
+      child: TextFormField(
+        controller: controller.emailController.value,
+        validator: (value) => Validators.validateEmail(value!.trim()),
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          isDense: true,
+          hintText: LanguageConstant.enterYourEmailText.tr,
+        ),
+      ),
     );
   }
 
   Widget resetPasswordButton(BuildContext context) {
     return SizedBox(
-      width: 170,
-      height: 41,
+      width: 209,
+      height: 40,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (controller.formKey.value.currentState!.validate()) {
+            controller.getForgetPasswordResponse(
+                context: context, email: controller.emailController.value.text);
+            Get.to(() => ForgetPasswordMenuScreen());
+          }
+        },
         style: ElevatedButton.styleFrom(
           elevation: 1,
           primary: appColor,
@@ -79,15 +129,15 @@ class ForgotPasswordScreen extends GetView<ForgotPasswordController> {
           ),
         ),
         child: Text(
-          LanguageConstant.resetMyPasswordText.tr,
+          LanguageConstant.resetMyPasswordText.tr.toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 13.5,
+            fontFamily: AppConstants.fontOpenSans,
           ),
         ),
       ),
     );
   }
-
 }

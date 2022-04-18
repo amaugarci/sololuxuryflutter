@@ -5,7 +5,7 @@ import 'package:solo_luxury/config/global_config.dart';
 import 'package:solo_luxury/data/model/MyOrders/MyOrdersData.dart';
 
 class GetMyOrdersRequest {
-  static Future<List<MyOrdersData>> fetchMyOrdersData() async {
+  static Future<List<MyOrdersData>> fetchMyOrdersData () async {
     String url =
         "$golobalURL/rest/default/V1/orders?searchCriteria[filter_groups][0][filters][0][field]=customer_email&searchCriteria[filter_groups][0][filters][0][value]=devdyna@gmail.com";
     Map<String, String> headers = {

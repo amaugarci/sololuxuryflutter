@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/app_constants.dart';
+
 class CommonTextOpenSans extends StatelessWidget {
   String? text;
   double? fontSize;
@@ -28,7 +30,7 @@ class CommonTextOpenSans extends StatelessWidget {
       text!,
       overflow: overflow,
       style: TextStyle(
-          fontFamily: "OpenSans",
+          fontFamily: AppConstants.fontOpenSans,
           fontSize: fontSize,
           height: height,
           fontWeight: fontWeight,

@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:solo_luxury/utils/app_constants.dart';
 
-import '../../config/global_config.dart';
 import '../model/Product/product_model.dart';
 
 
-Future<List<ProductModel>> categoryProductsRequest(String categoryId) async {
+Future<List<ProductModel>> categoryProductsRequest (String categoryId) async {
   String url =
-      "$GLOBAL_URL/rest/default/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
+      AppConstants.apiEndPointLogin+"/rest/V1/products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]=464";
 
   Map<String, String> headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    'Authorization': 'Bearer $token',
+    'Authorization': 'Bearer $AppConstants.adminToken',
   };
 
   final client = new http.Client();

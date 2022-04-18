@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/screens/my_account/my_account_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/app_routes.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../utils/app_constants.dart';
 
 class MyAccountScreen extends GetView<MyAccountController> {
   const MyAccountScreen({Key? key}) : super(key: key);
@@ -13,13 +18,18 @@ class MyAccountScreen extends GetView<MyAccountController> {
     return Obx(
       () => Scaffold(
         backgroundColor: appColorAccent,
-        body: controller.isLoading.value == true
-            ? const Center(child: CircularProgressIndicator())
+        appBar: commonAppbar(title: LanguageConstant.accountInformationText.tr),
+        body: controller.isLoading.value != true
+            ? const Center(
+                child: SpinKitThreeBounce(
+                color: appColor,
+                // size: 50.0,
+              ))
             : SingleChildScrollView(
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 120,
+                      height: 30,
                     ),
                     Container(
                       alignment: Alignment.center,
@@ -81,13 +91,13 @@ class MyAccountScreen extends GetView<MyAccountController> {
                           ),
                           Text(
                             LanguageConstant.manageAddresses.tr,
-                            style: const TextStyle(
+                            style: TextStyle(
                               decoration: TextDecoration.underline,
                               decorationColor: blackColor,
                               decorationThickness: 1.5,
                               fontSize: 14,
                               color: blackColor,
-                              fontFamily: "OpenSans",
+                              fontFamily: AppConstants.fontOpenSans,
                             ),
                           ),
                         ],
@@ -112,8 +122,8 @@ class MyAccountScreen extends GetView<MyAccountController> {
   }
 
   commonTextStyle() {
-    return const TextStyle(
-      fontFamily: "OpenSans",
+    return TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       fontSize: 14,
       color: appColorButton,
@@ -121,16 +131,16 @@ class MyAccountScreen extends GetView<MyAccountController> {
   }
 
   commonTextStyleNormal() {
-    return const TextStyle(
-      fontFamily: "OpenSans",
+    return TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
       fontSize: 16,
       color: appColorButton,
     );
   }
 
   commonTextStyle300() {
-    return const TextStyle(
-      fontFamily: "OpenSans",
+    return TextStyle(
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w300,
       fontSize: 16,
       color: appColorButton,
@@ -139,7 +149,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
 
   commonTextStyle600({var fontSize}) {
     return TextStyle(
-      fontFamily: "OpenSans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       fontSize: fontSize,
       color: appColorButton,
@@ -177,17 +187,22 @@ class MyAccountScreen extends GetView<MyAccountController> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Container(
-              height: 52,
-              width: Get.width,
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                LanguageConstant.edit.tr,
-                style: commonTextStyle300(),
-              ),
-              decoration: const BoxDecoration(
-                color: appColorAccent,
+            child: InkWell(
+              onTap: (){
+                Get.toNamed(RoutesConstants.newsLetterScreen);
+              },
+              child: Container(
+                height: 52,
+                width: Get.width,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  LanguageConstant.edit.tr,
+                  style: commonTextStyle300(),
+                ),
+                decoration: const BoxDecoration(
+                  color: appColorAccent,
+                ),
               ),
             ),
           ),
@@ -242,12 +257,12 @@ class MyAccountScreen extends GetView<MyAccountController> {
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 20, bottom: 20),
             child: Text(
               "T: 01234567890",
               style: TextStyle(
-                fontFamily: "Poppins",
+                fontFamily: AppConstants.fontPoppins,
                 fontSize: 16,
                 color: grey6D6D6D,
                 fontWeight: FontWeight.w300,
@@ -326,7 +341,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
             child: Text(
               "T: 01234567890",
               style: TextStyle(
-                fontFamily: "Poppins",
+                fontFamily: AppConstants.fontPoppins,
                 fontSize: 16,
                 color: grey6D6D6D,
                 fontWeight: FontWeight.w300,

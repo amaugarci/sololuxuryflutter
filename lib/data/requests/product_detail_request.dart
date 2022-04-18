@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../../config/global_config.dart';
 
-Future<Map<String, dynamic>> getProductDetailRequest(String sku) async {
+Future<Map<String, dynamic>> getProductDetailRequest (String sku) async {
 
   String url = "$GLOBAL_URL/rest/all/V1/products/"+sku;
 

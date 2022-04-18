@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
@@ -149,6 +150,122 @@ class DonationScreen extends StatelessWidget {
             fontSize: 12.8,
           ),
         ),
+      ),
+    );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
+import 'package:solo_luxury/app/screens/donation/charity_controller.dart';
+import 'package:solo_luxury/app/utils/app_asset.dart';
+import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../utils/app_constants.dart';
+
+class CharityScreen extends GetView<CharityController> {
+  const CharityScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: appColorAccent,
+      appBar: commonAppbar(title: LanguageConstant.hopeText.tr),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 35,
+                ),
+                Text(
+                  LanguageConstant.charityTitle.tr,
+                  style: const TextStyle(
+                    decoration: TextDecoration.underline,
+                    decorationColor: appColor,
+                    decorationThickness: 1.5,
+                    color: appColor,
+                    fontFamily: AppConstants.fontOpenSans,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  LanguageConstant.charityContain1.tr,
+                  textAlign: TextAlign.center,
+                  style: commonStyle400(),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                commonContainer(
+                  height: 294.0,
+                  imageUrl: AppAsset.charity1,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  LanguageConstant.charityContain2.tr,
+                  textAlign: TextAlign.justify,
+                  style: commonStyle400(textSize: 16.0),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                commonContainer(
+                  height: 294.0,
+                  imageUrl: AppAsset.charity2,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  LanguageConstant.charityContain3.tr,
+                  textAlign: TextAlign.justify,
+                  style: commonStyle400(textSize: 16.0),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  LanguageConstant.charityContain4.tr,
+                  textAlign: TextAlign.justify,
+                  style: commonStyle400(textSize: 16.0),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  commonStyle400({var textSize}) {
+    return  TextStyle(
+      color: blackColor,
+      fontFamily: AppConstants.fontOpenSans,
+      fontWeight: FontWeight.w400,
+      fontSize:textSize?? 16,
+    );
+  }
+
+  commonContainer({var height, var imageUrl}) {
+    return Container(
+      height: height,
+      width: Get.width,
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage(imageUrl), fit: BoxFit.fill),
       ),
     );
   }

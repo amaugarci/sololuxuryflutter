@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:solo_luxury/app/components/common_widget/common_appbar.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
+import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 
 class TermsAndConditionScreen extends StatefulWidget {
   const TermsAndConditionScreen({Key? key}) : super(key: key);
@@ -16,11 +19,7 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backGroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: backGroundColor,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: commonAppbar(title: LanguageConstant.privacyPolicyText.tr),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.5),
         child: Column(

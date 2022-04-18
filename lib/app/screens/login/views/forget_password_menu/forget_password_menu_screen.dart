@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solo_luxury/app/screens/login/controller/forget_password_menu_controller.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
+
+import '../../../../../utils/app_constants.dart';
 
 class ForgetPasswordMenuScreen extends StatelessWidget {
   const ForgetPasswordMenuScreen({Key? key}) : super(key: key);
@@ -15,9 +18,14 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 112),
-              Text(
-                LanguageConstant.forgetPassword.tr,
-                style: textStyleUtils600(),
+              InkWell(
+                onTap: () {
+                  // controller.getForgetPasswordResponse();
+                },
+                child: Text(
+                  LanguageConstant.forgetPassword.tr,
+                  style: textStyleUtils600(),
+                ),
               ),
               const SizedBox(height: 15),
               Text(
@@ -48,7 +56,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontWeight: FontWeight.w600,
       fontSize: 20,
     );
@@ -57,7 +65,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
   textStyleUtils16() {
     return const TextStyle(
       color: blackColor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontSize: 16,
     );
   }
@@ -68,7 +76,7 @@ class ForgetPasswordMenuScreen extends StatelessWidget {
       decorationColor: buttoncolor,
       decorationThickness: 1.5,
       color: buttoncolor,
-      fontFamily: "Open Sans",
+      fontFamily: AppConstants.fontOpenSans,
       fontSize: 18,
     );
   }

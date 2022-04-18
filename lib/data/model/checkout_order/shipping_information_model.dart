@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 class ShippingInformationModel {
@@ -13,15 +15,13 @@ class ShippingInformationModel {
         paymentMethods!.add(PaymentMethods.fromJson(v));
       });
     }
-    totals =
-    json['totals'] != null ? Totals.fromJson(json['totals']) : null;
+    totals = json['totals'] != null ? Totals.fromJson(json['totals']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (paymentMethods != null) {
-      data['payment_methods'] =
-          paymentMethods!.map((v) => v.toJson()).toList();
+      data['payment_methods'] = paymentMethods!.map((v) => v.toJson()).toList();
     }
     if (totals != null) {
       data['totals'] = totals!.toJson();
@@ -50,58 +50,60 @@ class PaymentMethods {
 }
 
 class Totals {
-  int? grandTotal;
-  int? baseGrandTotal;
-  int? subtotal;
-  int? baseSubtotal;
-  int? discountAmount;
-  int? baseDiscountAmount;
-  int? subtotalWithDiscount;
-  int? baseSubtotalWithDiscount;
-  int? shippingAmount;
-  int? baseShippingAmount;
-  int? shippingDiscountAmount;
-  int? baseShippingDiscountAmount;
-  int? taxAmount;
-  int? baseTaxAmount;
-  int? weeeTaxAppliedAmount = 0;
-  int? shippingTaxAmount;
-  int? baseShippingTaxAmount;
-  int? subtotalInclTax;
-  int? shippingInclTax;
-  int? baseShippingInclTax;
+
+  dynamic grandTotal;
+  dynamic baseGrandTotal;
+  dynamic subtotal;
+  dynamic baseSubtotal;
+  dynamic discountAmount;
+  dynamic baseDiscountAmount;
+  dynamic subtotalWithDiscount;
+  dynamic baseSubtotalWithDiscount;
+  dynamic shippingAmount;
+  dynamic baseShippingAmount;
+  dynamic shippingDiscountAmount;
+  dynamic baseShippingDiscountAmount;
+  dynamic taxAmount;
+  dynamic baseTaxAmount;
+  dynamic weeeTaxAppliedAmount = 0;
+  dynamic shippingTaxAmount;
+  dynamic baseShippingTaxAmount;
+  dynamic subtotalInclTax;
+  dynamic shippingInclTax;
+  dynamic baseShippingInclTax;
+
   String? baseCurrencyCode;
   String? quoteCurrencyCode;
-  int? itemsQty;
+  dynamic itemsQty;
   List<Items>? items;
   List<TotalSegments>? totalSegments;
 
   Totals(
       {grandTotal,
-        baseGrandTotal,
-        subtotal,
-        baseSubtotal,
-        discountAmount,
-        baseDiscountAmount,
-        subtotalWithDiscount,
-        baseSubtotalWithDiscount,
-        shippingAmount,
-        baseShippingAmount,
-        shippingDiscountAmount,
-        baseShippingDiscountAmount,
-        taxAmount,
-        baseTaxAmount,
-        weeeTaxAppliedAmount,
-        shippingTaxAmount,
-        baseShippingTaxAmount,
-        subtotalInclTax,
-        shippingInclTax,
-        baseShippingInclTax,
-        baseCurrencyCode,
-        quoteCurrencyCode,
-        itemsQty,
-        items,
-        totalSegments});
+      baseGrandTotal,
+      subtotal,
+      baseSubtotal,
+      discountAmount,
+      baseDiscountAmount,
+      subtotalWithDiscount,
+      baseSubtotalWithDiscount,
+      shippingAmount,
+      baseShippingAmount,
+      shippingDiscountAmount,
+      baseShippingDiscountAmount,
+      taxAmount,
+      baseTaxAmount,
+      weeeTaxAppliedAmount,
+      shippingTaxAmount,
+      baseShippingTaxAmount,
+      subtotalInclTax,
+      shippingInclTax,
+      baseShippingInclTax,
+      baseCurrencyCode,
+      quoteCurrencyCode,
+      itemsQty,
+      items,
+      totalSegments});
 
   Totals.fromJson(Map<String, dynamic> json) {
     grandTotal = json['grand_total'];
@@ -170,58 +172,61 @@ class Totals {
       data['items'] = items!.map((v) => v.toJson()).toList();
     }
     if (totalSegments != null) {
-      data['total_segments'] =
-          totalSegments!.map((v) => v.toJson()).toList();
+      data['total_segments'] = totalSegments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Items {
-  int? itemId;
-  int? price;
-  int? basePrice;
-  int? qty;
-  int? rowTotal;
-  int? baseRowTotal;
-  int? rowTotalWithDiscount;
-  int? taxAmount;
-  int? baseTaxAmount;
-  int? taxPercent;
-  int? discountAmount;
-  int? baseDiscountAmount;
-  int? discountPercent;
-  int? priceInclTax;
-  int? basePriceInclTax;
-  int? rowTotalInclTax;
-  int? baseRowTotalInclTax;
+
+  dynamic itemId;
+  dynamic price;
+  dynamic basePrice;
+  dynamic qty;
+  dynamic rowTotal;
+  dynamic baseRowTotal;
+  dynamic rowTotalWithDiscount;
+  dynamic taxAmount;
+  dynamic baseTaxAmount;
+  dynamic taxPercent;
+  dynamic discountAmount;
+  dynamic baseDiscountAmount;
+  dynamic discountPercent;
+  dynamic priceInclTax;
+  dynamic basePriceInclTax;
+  dynamic rowTotalInclTax;
+
+  dynamic baseRowTotalInclTax;
   String? options;
-  Null? weeeTaxAppliedAmount;
-  Null? weeeTaxApplied;
+  RxBool isOptionsOpen = false.obs;
+  dynamic weeeTaxAppliedAmount;
+  dynamic weeeTaxApplied;
   String? name;
 
   Items(
       {itemId,
-        price,
-        basePrice,
-        qty,
-        rowTotal,
-        baseRowTotal,
-        rowTotalWithDiscount,
-        taxAmount,
-        baseTaxAmount,
-        taxPercent,
-        discountAmount,
-        baseDiscountAmount,
-        discountPercent,
-        priceInclTax,
-        basePriceInclTax,
-        rowTotalInclTax,
-        baseRowTotalInclTax,
-        options,
-        weeeTaxAppliedAmount,
-        weeeTaxApplied,
-        name});
+      price,
+      basePrice,
+      qty,
+      rowTotal,
+      baseRowTotal,
+      rowTotalWithDiscount,
+      taxAmount,
+      baseTaxAmount,
+      taxPercent,
+      discountAmount,
+      baseDiscountAmount,
+      discountPercent,
+      priceInclTax,
+      basePriceInclTax,
+      rowTotalInclTax,
+      baseRowTotalInclTax,
+      options,
+      isOptionsOpen,
+      weeeTaxAppliedAmount,
+      weeeTaxApplied,
+      name});
 
   Items.fromJson(Map<String, dynamic> json) {
     itemId = json['item_id'];
@@ -238,7 +243,7 @@ class Items {
     baseDiscountAmount = json['base_discount_amount'];
     discountPercent = json['discount_percent'];
     priceInclTax = json['price_incl_tax'];
-    basePriceInclTax = json['base_price_incl_tax'];
+    basePriceInclTax = double.tryParse(json['base_price_incl_tax'].toString());
     rowTotalInclTax = json['row_total_incl_tax'];
     baseRowTotalInclTax = json['base_row_total_incl_tax'];
     options = json['options'];
@@ -272,16 +277,54 @@ class Items {
     data['name'] = name;
     return data;
   }
+
+  getOptionsLabel(){
+    if(options != "[]") {
+      List<dynamic> optionsMap = jsonDecode(options!);
+      List<Options> optionsList = (optionsMap)
+          .map((itemWord) => Options.fromJson(itemWord))
+          .toList();
+      return optionsList.first.label;
+    }
+    return "";
+  }
+
+  getOptionsValue(){
+    if(options != "[]") {
+      List<dynamic> optionsMap = jsonDecode(options!);
+      List<Options> optionsList = (optionsMap)
+          .map((itemWord) => Options.fromJson(itemWord))
+          .toList();
+      return optionsList.first.value;
+    }
+    return "";
+  }
+}
+
+class Options{
+  String? label;
+  String? value;
+
+  Options.fromJson(Map<String, dynamic> json) {
+    label = json['label'];
+    value = json['value'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['label'] = label;
+    data['value'] = value;
+    return data;
+  }
 }
 
 class TotalSegments {
   String? code;
   String? title;
-  int? value;
+  dynamic value;
   String? area;
 
-  TotalSegments(
-      {code, title, value, area});
+  TotalSegments({code, title, value, area});
 
   TotalSegments.fromJson(Map<String, dynamic> json) {
     code = json['code'];

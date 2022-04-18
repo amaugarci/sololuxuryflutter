@@ -1,4 +1,19 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class Validators {
+  static apiResponseMessage({body, success = false, message ,isDecode = true}) {
+    Map response = jsonDecode(body);
+    print("response['message'] -> ${message}");
+    if(response['message']!=null){
+      Get.snackbar("Alert", "${response['message']}", colorText: Colors.red);
+    }else {
+      Get.snackbar("Alert", "$message", colorText: Colors.red);
+    }
+  }
+
   static String? validateDigits(String value, String type, int length) {
     String patttern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(patttern);
@@ -11,7 +26,6 @@ class Validators {
     }
     return null;
   }
-
 //   static String? validateContact(String value, String type) {
 //     // Pattern pattern = r'^(?:[+0][1-9])?[0-9]{5,20}$';
 //     // RegExp regExp = new RegExp(pattern);

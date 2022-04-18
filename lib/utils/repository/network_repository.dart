@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:solo_luxury/app/screens/login/login_screen.dart';
+import 'package:solo_luxury/app/screens/login/views/login_screen.dart';
 import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/data/model/country/country_model.dart';
 import 'package:solo_luxury/utils/app_constants.dart';
@@ -11,6 +11,7 @@ import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/network_dio/network_dio.dart';
 import 'package:http/http.dart' as http;
 
+import '../../app/screens/login/views/login_screen.dart';
 import '../process_indicator.dart';
 
 class NetworkRepository {
@@ -64,44 +65,6 @@ class NetworkRepository {
       // return UpdateImageModel.fromJson(parsedJson);
     } else {
       return '';
-    }
-  }
-
-  addAddress(context, addAddress) async {
-    try {
-      final authUserResponse = await NetworkDioHttp.putDioHttpMethod(
-        context: context,
-        url: '${AppConstants.apiEndPoint}${AppConstants.addAddress}',
-        data: addAddress,
-      );
-
-      return checkResponse(authUserResponse, authUserResponse['body']);
-    } catch (e) {
-      print("Add Address");
-      CommonMethod().getXSnackBar("Error", e.toString(), red);
-    }
-  }
-
-  Future countryList() async {
-    String url = '${AppConstants.apiEndPoint}${AppConstants.countryList}';
-    // final header = await NetworkDioHttp.getTestHeaders();
-    print("url -> " + url);
-    // print("header -> " + header.toString());
-    http.Response response = await http.get(
-      Uri.parse(url),
-    );
-    //request.headers.addAll(token);
-    if (response != null) {
-      print("response.statusCode -> ");
-      print(response.statusCode);
-    }
-    if (response != null && response.statusCode == 200) {
-      var parsedJson = await json.decode(response.body);
-      print("Files Is ${parsedJson}");
-      return List<CountryListModel>.from(
-          parsedJson.map((country) => CountryListModel.fromJson(country)));
-    } else {
-      return null!;
     }
   }
 

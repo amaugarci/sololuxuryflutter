@@ -12,18 +12,5 @@ class HomeAPIRepository implements IHomeRepository {
 
   HomeAPIRepository({required this.homeAPIProvider});
 
-  @override
-  Future<MenuModel> getMenuAPIResponse() async {
-    final response = await homeAPIProvider.getMenuResponseProvider(endPoint: AppConstants.menuEndPoint);
-    if (response != null) {
-      print("response.statusCode -> ");
-      print(response.statusCode);
-    }
-    if(response.status.hasError) {
-      return Future.error(response.statusText!);
-    } else {
-      return response.body!;
-    }
-  }
 
 }

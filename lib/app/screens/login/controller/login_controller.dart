@@ -6,9 +6,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:solo_luxury/app/components/storage_constant.dart';
 import 'package:solo_luxury/app/db/shared_pref.dart';
+import 'package:solo_luxury/data/model/sign_up/user_detail_model.dart';
+import 'package:solo_luxury/main.dart';
 import 'package:solo_luxury/utils/common_methods.dart';
 import 'package:solo_luxury/utils/get_network_service/APIRepository/login_api_repository.dart';
 import 'package:solo_luxury/utils/repository/network_repository.dart';
+
+import '../../../../utils/app_routes.dart';
 
 class LoginController extends GetxController {
   NetworkRepository networkRepository = NetworkRepository();
@@ -24,7 +28,7 @@ class LoginController extends GetxController {
 
   LoginController({required this.loginAPIRepository});
 
-  loginUser( {required BuildContext context}) async {
+  loginUser({required BuildContext context}) async {
     if (formKey.value.currentState!.validate()) {
       final authUserData = {
         "username": emailController.value.text.trim(),
@@ -32,10 +36,29 @@ class LoginController extends GetxController {
       };
 
       log("authUserData : $authUserData");
+      var data = (await loginAPIRepository.getLoginAPIResponse(
+          jsonEncode(authUserData),
+          emailController.value.text.trim(),
+          passwordController.value.text.trim()));
+      if (data != null) {
+        print("Response Is $data");
 
-      loginResponseModel = (await loginAPIRepository.getLoginAPIResponse(jsonEncode(authUserData), emailController.value.text.trim(), passwordController.value.text.trim())).obs;
-
-      setPrefStringValue(StorageConstant.authToken, loginResponseModel);
+        var userData = await loginAPIRepository.getUserDetailAPIResponse(data);
+        if(userData != null){
+          //
+          print("this is userData => ${userData}");
+          await setPrefStringValue(
+              StorageConstant.userDetail, jsonEncode(userData));
+          String dataString = jsonEncode(data);
+          loginResponseModel.value = dataString;
+          loginResponseModel.value = loginResponseModel.value.replaceAll('"', "");
+          await setPrefStringValue(StorageConstant.authToken, loginResponseModel.value);
+          await localStore.getToken();
+          await localStore.getUserDetail();
+          localStore.checkGuest();
+          Get.offAllNamed(RoutesConstants.dashboardScreen);
+        }
+      }
       log("loginResponseModel : $loginResponseModel");
     } else {}
   }

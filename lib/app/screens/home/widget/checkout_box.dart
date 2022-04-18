@@ -32,7 +32,7 @@ class CheckOutBox extends StatelessWidget {
               const SizedBox(height: 10.0),
               Container(
                 color: appColorDarkLineGrey,
-                height: 1.0,
+                height: 2.0,
               ),
               formFieldWidget!,
             ])));

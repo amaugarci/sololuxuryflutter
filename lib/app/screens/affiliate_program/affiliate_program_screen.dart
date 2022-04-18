@@ -12,13 +12,15 @@ import 'package:solo_luxury/app/utils/colors.dart';
 import 'package:solo_luxury/utils/lang_directory/language_constant.dart';
 import 'package:solo_luxury/utils/validator.dart';
 
+import '../../components/common_widget/common_appbar.dart';
+
 class AffiliateProgramScreen extends GetView<AffiliateProgramController> {
   const AffiliateProgramScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          appBar: null,
+      appBar: commonAppbar(title: LanguageConstant.affiliateProgramText),
           backgroundColor: controller.backColor.value,
           body: Stack(
             children: [
@@ -30,11 +32,7 @@ class AffiliateProgramScreen extends GetView<AffiliateProgramController> {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).padding.top,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
+                        height: 30,
                       ),
                       Center(
                         child: HeadlineBodyOneBaseWidget(
@@ -54,7 +52,7 @@ class AffiliateProgramScreen extends GetView<AffiliateProgramController> {
                   ),
                 ),
               ),
-              appBarWidget(controller),
+              // appBarWidget(controller),
             ],
           ),
         ));

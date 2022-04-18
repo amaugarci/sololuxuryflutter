@@ -14,9 +14,9 @@ class InfluencerAPIProvider extends GetConnect
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    httpClient.defaultDecoder =
-        (val) => InfluencerRegistrationMethodModel.fromJson(val);
-    httpClient.baseUrl = AppConstants.apiEndPointNewInfluencer;
+    // httpClient.defaultDecoder =
+    //     (val) => InfluencerRegistrationMethodModel.fromJson(val);
+    // httpClient.baseUrl = AppConstants.apiEndPointNewInfluencer;
   }
 
   @override
@@ -25,7 +25,7 @@ class InfluencerAPIProvider extends GetConnect
     // final header = await NetworkDioHttp.getTestHeadersInfluencer();
 
     var response = await http.post(
-        Uri.parse("https://erp.theluxuryunlimited.com/api/influencer/add"),
+        Uri.parse(urlPath),
         body: influencerRequestJson,
         headers: {
           'Content-type': 'application/json',

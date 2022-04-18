@@ -50,6 +50,13 @@ dependencies:
   flutter_html: ^2.2.1
   livechatt: ^1.4.0
   shared_preferences: ^2.0.13
+  intl: ^0.17.0
+  firebase_core: ^1.13.1
+  flutter_local_notifications: ^9.4.0
+  firebase_messaging: ^11.2.11
+  firebase_crashlytics: ^2.5.3
+  flutter_spinkit: ^5.1.0
+  photo_view: ^0.13.0
 
 dev_dependencies:
   flutter_test:
@@ -130,4 +137,18 @@ flutter:
           - asset: assets/fonts/OpenSans/OpenSans-Bold.ttf
             weight: 700
           - asset: assets/fonts/OpenSans/OpenSans-ExtraBold.ttf
+            weight: 900
+    - family: Montserrat
+      fonts:
+          - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
+            weight: 300
+          - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+            weight: 400
+          - asset: assets/fonts/Montserrat/Montserrat-Medium.ttf
+            weight: 500
+          - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
+            weight: 600
+          - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+            weight: 700
+          - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
             weight: 900

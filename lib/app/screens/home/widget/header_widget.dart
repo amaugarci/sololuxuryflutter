@@ -55,8 +55,8 @@ class HeaderWidget extends StatelessWidget {
               child: SvgPicture.asset(AppAsset.search, height: 12.5)),
           const SizedBox(width: 10),
           GestureDetector(
-              onTap: () async{
-                await Future.delayed(const Duration(seconds: 2), () async  {
+              onTap: () async {
+                await Future.delayed(const Duration(seconds: 2), () async {
                   Get.toNamed(RoutesConstants.wishlistScreen);
                 });
               },
@@ -64,13 +64,10 @@ class HeaderWidget extends StatelessWidget {
           const SizedBox(width: 10),
           GestureDetector(
               onTap: () {
-                Get.to(() => CartScreen());
+                Get.toNamed(RoutesConstants.cartScreen);
               },
-
-
-              child: SvgPicture.asset(AppAsset.cart, color: Colors.black, height: 12.5)),
-
-
+              child: SvgPicture.asset(AppAsset.cart,
+                  color: Colors.black, height: 12.5)),
           const SizedBox(width: 2),
           const Text('0'),
         ],

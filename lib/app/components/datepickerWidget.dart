@@ -36,7 +36,7 @@ class _DatepickerWidgetState extends State<DatepickerWidget> {
   DateTime expirydate2 = DateTime.now();
   // final format = new DateFormat('E d,yyyy');
 
-  static DateFormat dateFormat = DateFormat('MM-dd-yyyy');
+  static DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   @override
   Widget build(BuildContext context) {
     return FormField(builder: (FormFieldState state) {
