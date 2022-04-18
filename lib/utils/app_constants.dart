@@ -158,6 +158,8 @@ class AppConstants {
 
   static String newsLetterSubscribe = '/rest/V1/newsletter/subscribe';
 
+  static String notifyMe = '/V1/stocknotifyme';
+
   static getUrlWithCode(url) {
     return "/rest/" + localStore.currentCode + url;
   }

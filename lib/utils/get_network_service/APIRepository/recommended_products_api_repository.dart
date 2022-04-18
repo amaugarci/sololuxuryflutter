@@ -122,6 +122,34 @@ class RecommendedProductsAPIRepository extends GetxController {
     }
   }
 
+  Future postNotifyMeReq (Object? body) async {
+    final response = await http.post(
+        Uri.parse(
+            AppConstants.apiEndPointNew2 + AppConstants.notifyMe),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": AppConstants.adminToken
+        },
+    body: jsonEncode(body)
+    );
+    print("notify me url ==> ${AppConstants.apiEndPointNew2 + AppConstants.notifyMe}");
+
+    try {
+      if (response.statusCode == 200) {
+        var list = json.decode(response.body);
+        print(response.statusCode);
+        print('Post Notify Me ${response.body}');
+        return list;
+      } else {
+        print(response.body);
+        return null;
+      }
+    } catch (e) {
+      print("ERROR+==============$e");
+    }
+  }
+
   Future<Item> getProductDetailApi(id) async {
     final response = await http.get(
         Uri.parse(AppConstants.apiEndPointLogin +
